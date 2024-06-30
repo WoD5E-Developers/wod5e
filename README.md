@@ -1,7 +1,7 @@
 
 # World of Darkness 5e System
 
-[![Foundry Shield 11]][Foundry URL]
+[![Foundry Shield 12]][Foundry URL]
 [![MIT License]][MIT URL]
 [![GitHub Super-Linter]][Super-Linter URL]
 
@@ -35,49 +35,15 @@ Please check the issues list before suggesting new features.
 
 ## Credits
 
-### Core Developers
-* Lead System Developer: [Veilza]
-* Creator: [Rayji96]
+You can find a full list of contributors to the World of Darkness 5e system [here](https://github.com/WoD5E-Developers/.github/blob/main/contributors.md)
 
-Huge thanks to these folks for their contributions!
-
-### System Contributors
-* Addition of Hunter sheets and SPC sheets by [MrDionysus] (MrDionysus#9673)
-* Features improvements and custom roll table by [Veichassur]
-* Limited character sheet by [pedroboh]
-* Character sheet lock by [Varkal]
-* CSS improvements by [lipefl]
-* Incredible work on dot and box counters by [erizocosmico]
-* Refactors and enhancements by [bmgraves]
-* Partial HTML, character types, migrations, bugfixes, and refactors by [Dakayl]
-* Adding blood potency bonus to discipline rolls by [MarkusOzgur]
-* Various upgrades and CSS design improvements by [LorduFreeman]
-* Dicebox by [crcroberts]
-
-### Localization Contributors
-* French localization started by @Lloyxide#6914
-* Italian localization started by @Arcadio21#8780
-* Help with french localization by [Lemantia]
-* Brazilian Portuguese localization started by [danielmalka]
-* German localization started by [tom959] and maintained by [LorduFreeman]
-* Spanish localization started by [erizocosmico]
-* Spanish localization help by [Musrha]
-* Polish localization help by [gbursson]
-* Russian localization help by [Xuula]
-
-### Additional Contributions
-* This system was initially based on the [boilerplate system] by @asacolips#1867
-* Icons used with permissions from [cftarbay]
-* Feedback and fixes by [eisenfuchs]
-* Feedback and fixes by @OldMightyFriendlyGamer#0832
-* Initial testing and DiceSoNice feedback by Clement#1490
 ## Dark Pack
 
 [![Dark Pack]][Dark Pack URL]
 
 Licensed WoD 5e materials will not be provided as this system is provided for public usage, for free. We have made every effort to keep the Dark Pack guidelines as posted at [Dark Pack Agreement].
 
-[Foundry Shield 11]: https://img.shields.io/badge/Foundry-11-informational
+[Foundry Shield 12]: [https://img.shields.io/badge/Foundry-11-informational](https://img.shields.io/badge/Foundry-12-informational)
 [Foundry URL]: https://foundryvtt.com
 
 [MIT License]: https://img.shields.io/badge/License-MIT-green
@@ -89,26 +55,3 @@ Licensed WoD 5e materials will not be provided as this system is provided for pu
 [Dark Pack]: https://s3-eu-north-1.amazonaws.com/pdx-campaign-wp-data/uploads/sites/10/2021/10/05102936/darkpack_logo2-300x300.png
 [Dark Pack URL]: https://www.paradoxinteractive.com/games/world-of-darkness/community/dark-pack-agreement
 [Dark Pack Agreement]: https://www.paradoxinteractive.com/games/world-of-darkness/community/dark-pack-agreement
-
-[boilerplate system]: https://gitlab.com/asacolips-projects/foundry-mods/foundryvtt-system-tutorial
-[danielmalka]: https://github.com/danielmalka
-[cftarbay]: https://github.com/cftarbay
-[lipefl]: https://github.com/lipefl
-[erizocosmico]: https://github.com/erizocosmico
-[tom959]: https://github.com/tom959
-[bmgraves]: https://github.com/bmgraves
-[eisenfuchs]: https://github.com/eisenfuchs
-[Veichassur]: https://github.com/Veichassur
-[pedroboh]: https://github.com/pedroboh
-[Lemantia]: https://github.com/Lemantia
-[Varkal]: https://github.com/Varkal
-[Dakayl]: https://github.com/Dakayl
-[Veilza]: https://github.com/Veilza
-[MarkusOzgur]: https://github.com/MarkusOzgur
-[Musrha]: https://github.com/Musrha
-[crcroberts]: https://github.com/crcroberts
-[gbursson]: https://github.com/gbursson
-[MrDionysus]: https://github.com/MrDionysus
-[LorduFreeman]: https://github.com/LorduFreeman
-[Xuula]: https://github.com/Xuula
-[Rayji96]: https://github.com/Rayji96
