@@ -43,7 +43,7 @@ You can find a full list of contributors to the World of Darkness 5e system [her
 
 Licensed WoD 5e materials will not be provided as this system is provided for public usage, for free. We have made every effort to keep the Dark Pack guidelines as posted at [Dark Pack Agreement].
 
-[Foundry Shield 12]: [https://img.shields.io/badge/Foundry-11-informational](https://img.shields.io/badge/Foundry-12-informational)
+[Foundry Shield 12]: https://img.shields.io/badge/Foundry-11-informational
 [Foundry URL]: https://foundryvtt.com
 
 [MIT License]: https://img.shields.io/badge/License-MIT-green
