@@ -33,9 +33,11 @@ You can also reach out to "weinerdolphin" or "veilza" on Discord, or leave a mes
 
 Please check the issues list before suggesting new features.
 
-## Credits
+## Contributors
 
-You can find a full list of contributors to the World of Darkness 5e system [here](https://github.com/WoD5E-Developers/.github/blob/main/contributors.md)
+The lead system developer is [Veilza](https://github.com/Veilza), and the original creator of the system is [Rayji96](https://github.com/Rayji96).
+
+There's lots of other people who contribute to the system, too, and you can find the full list of them down [here](./contributors.md)!
 
 ## Dark Pack
 
