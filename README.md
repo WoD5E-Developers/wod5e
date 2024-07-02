@@ -27,7 +27,7 @@ Replace the 1s with however many you want to roll for each type, and let the dic
 
 ## Feedback
 
-Bugs or feature requests created to this repository are greatly appreciate. Please use the [Issues](https://github.com/Rayji96/foundry-V5/issues) page for these!
+Bugs or feature requests created to this repository are greatly appreciate. Please use the [Issues](https://github.com/WoD5E-Developers/wod5e//issues) page for these!
 
 You can also reach out to "weinerdolphin" or "veilza" on Discord, or leave a message in the #wod channel in the official Foundry Discord server, with any issues. We'd love to help you get your game running smoothly!
 
@@ -49,9 +49,9 @@ Licensed WoD 5e materials will not be provided as this system is provided for pu
 [Foundry URL]: https://foundryvtt.com
 
 [MIT License]: https://img.shields.io/badge/License-MIT-green
-[MIT URL]: https://github.com/Rayji96/foundry-V5/blob/main/LICENSE
+[MIT URL]: https://github.com/WoD5E-Developers/wod5e//blob/main/LICENSE
 
-[GitHub Super-Linter]: https://github.com/Rayji96/foundry-V5/workflows/Super-Linter/badge.svg
+[GitHub Super-Linter]: https://github.com/WoD5E-Developers/wod5e//workflows/Super-Linter/badge.svg
 [Super-Linter URL]: https://github.com/marketplace/actions/super-linter
 
 [Dark Pack]: https://s3-eu-north-1.amazonaws.com/pdx-campaign-wp-data/uploads/sites/10/2021/10/05102936/darkpack_logo2-300x300.png
