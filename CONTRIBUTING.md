@@ -2,9 +2,9 @@
 
 ## **Did you find a bug?**
 
-* **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/Rayji96/foundry-V5/issues).
+* **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/WoD5E-Developers/wod5e//issues).
 
-* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/Rayji96/foundry-V5/issues/new). Be sure to include a **title and clear description and label it as bug** and as much relevant information as possible. **Steps to reproduce or a screenshot is a must!**
+* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/WoD5E-Developers/wod5e//issues/new). Be sure to include a **title and clear description and label it as bug** and as much relevant information as possible. **Steps to reproduce or a screenshot is a must!**
 
 ## **Did you write a patch that fixes a bug?**
 
