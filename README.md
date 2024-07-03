@@ -1,7 +1,7 @@
 
 # World of Darkness 5e System
 
-[![Foundry Shield 12]][Foundry URL]
+[![Foundry Version Support]][System URL]
 [![MIT License]][MIT URL]
 [![GitHub Super-Linter]][Super-Linter URL]
 
@@ -45,8 +45,8 @@ There's lots of other people who contribute to the system, too, and you can find
 
 Licensed WoD 5e materials will not be provided as this system is provided for public usage, for free. We have made every effort to keep the Dark Pack guidelines as posted at [Dark Pack Agreement].
 
-[Foundry Shield 12]: https://img.shields.io/badge/Foundry-12-informational
-[Foundry URL]: https://foundryvtt.com
+[Foundry Version Support]: https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dplastic%26url%3Dhttps%3A%2F%2Fgithub.com%2FWoD5E-Developers%2Fwod5e%2Freleases%2Flatest%2Fdownload%2Fsystem.json
+[System URL]: https://foundryvtt.com/packages/vtm5e/
 
 [MIT License]: https://img.shields.io/badge/License-MIT-green
 [MIT URL]: https://github.com/WoD5E-Developers/wod5e//blob/main/LICENSE
