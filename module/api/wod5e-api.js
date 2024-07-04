@@ -275,12 +275,12 @@ export class wod5eAPI {
 
     if (system === 'vampire' && actor.type !== 'ghoul' && actor.type !== 'spc') {
       // Define actor's hunger dice, ensuring it can't go below 0
-      const hungerDice = Math.max(actorData.hunger.value, 0)
+      const hungerDice = Math.max(actorData?.hunger?.value, 0)
 
       return hungerDice
-    } else if (system === 'werewolf') {
+    } else if (system === 'werewolf' && actor.type !== 'spc') {
       // Define actor's rage dice, ensuring it can't go below 0
-      const rageDice = Math.max(actorData.rage.value, 0)
+      const rageDice = Math.max(actorData?.rage?.value, 0)
 
       return rageDice
     } else {
