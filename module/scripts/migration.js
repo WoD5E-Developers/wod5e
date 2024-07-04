@@ -73,7 +73,6 @@ export const migrateWorld = async () => {
 
         // Only reload if there's 1 or more updates
         if (updates.length > 0) {
-          console.log(updates)
           ui.notifications.info('Upgrade complete! Foundry will now refresh in 10 seconds...')
 
           // Reload to implement the fixes after 20 seconds
