@@ -220,137 +220,110 @@
         "exceptionaldicepools": {
           "athletics": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Athletics",
             "visible": false
           },
           "animalken": {
             "value": 0,
-            "name": "WOD5E.SkillsList.AnimalKen",
             "visible": false
           },
           "academics": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Academics",
             "visible": false
           },
           "brawl": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Brawl",
             "visible": false
           },
           "etiquette": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Etiquette",
             "visible": false
           },
           "awareness": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Awareness",
             "visible": false
           },
           "craft": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Craft",
             "visible": false
           },
           "insight": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Insight",
             "visible": false
           },
           "finance": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Finance",
             "visible": false
           },
           "drive": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Drive",
             "visible": false
           },
           "intimidation": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Intimidation",
             "visible": false
           },
           "investigation": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Investigation",
             "visible": false
           },
           "firearms": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Firearms",
             "visible": false
           },
           "leadership": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Leadership",
             "visible": false
           },
           "medicine": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Medicine",
             "visible": false
           },
           "larceny": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Larceny",
             "visible": false
           },
           "performance": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Performance",
             "visible": false
           },
           "occult": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Occult",
             "visible": false
           },
           "melee": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Melee",
             "visible": false
           },
           "persuasion": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Persuasion",
             "visible": false
           },
           "politics": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Politics",
             "visible": false
           },
           "stealth": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Stealth",
             "visible": false
           },
           "streetwise": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Streetwise",
             "visible": false
           },
           "science": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Science",
             "visible": false
           },
           "survival": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Survival",
             "visible": false
           },
           "subterfuge": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Subterfuge",
             "visible": false
           },
           "technology": {
             "value": 0,
-            "name": "WOD5E.SkillsList.Technology",
             "visible": false
           }
         }
@@ -460,84 +433,72 @@
       "edges": {
         "edges": {
           "arsenal": {
-            "name": "WOD5E.HTR.Arsenal",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "fleet": {
-            "name": "WOD5E.HTR.Fleet",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "ordnance": {
-            "name": "WOD5E.HTR.Ordnance",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "library": {
-            "name": "WOD5E.HTR.Library",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "improvisedgear": {
-            "name": "WOD5E.HTR.ImprovisedGear",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "globalaccess": {
-            "name": "WOD5E.HTR.GlobalAccess",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "dronejockey": {
-            "name": "WOD5E.HTR.DroneJockey",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "beastwhisperer": {
-            "name": "WOD5E.HTR.BeastWhisperer",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "sensetheunnatural": {
-            "name": "WOD5E.HTR.SenseTheUnnatural",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "repeltheunnatural": {
-            "name": "WOD5E.HTR.RepelTheUnnatural",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "thwarttheunnatural": {
-            "name": "WOD5E.HTR.ThwartTheUnnatural",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "artifact": {
-            "name": "WOD5E.HTR.Artifact",
             "description": "",
             "value": 0,
             "powers": [],
@@ -683,103 +644,86 @@
       "gifts": {
         "gifts": {
           "native": {
-            "name": "WOD5E.WTA.Native",
             "description": "",
             "value": 0,
             "powers": []
           },
           "ragabash": {
-            "name": "WOD5E.WTA.Ragabash",
             "description": "",
             "value": 0,
             "powers": []
           },
           "theurge": {
-            "name": "WOD5E.WTA.Theurge",
             "description": "",
             "value": 0,
             "powers": []
           },
           "philodox": {
-            "name": "WOD5E.WTA.Philodox",
             "description": "",
             "value": 0,
             "powers": []
           },
           "galliard": {
-            "name": "WOD5E.WTA.Galliard",
             "description": "",
             "value": 0,
             "powers": []
           },
           "ahroun": {
-            "name": "WOD5E.WTA.Ahroun",
             "description": "",
             "value": 0,
             "powers": []
           },
           "blackfury": {
-            "name": "WOD5E.WTA.BlackFury",
             "description": "",
             "value": 0,
             "powers": []
           },
           "bonegnawer": {
-            "name": "WOD5E.WTA.BoneGnawer",
             "description": "",
             "value": 0,
             "powers": []
           },
           "childrenofgaia": {
-            "name": "WOD5E.WTA.ChildrenOfGaia",
             "description": "",
             "value": 0,
             "powers": []
           },
           "galestalker": {
-            "name": "WOD5E.WTA.Galestalker",
             "description": "",
             "value": 0,
             "powers": []
           },
           "ghostcouncil": {
-            "name": "WOD5E.WTA.GhostCouncil",
             "description": "",
             "value": 0,
             "powers": []
           },
           "glasswalker": {
-            "name": "WOD5E.WTA.GlassWalker",
             "description": "",
             "value": 0,
             "powers": []
           },
           "hartwarden": {
-            "name": "WOD5E.WTA.HartWarden",
             "description": "",
             "value": 0,
             "powers": []
           },
           "redtalon": {
-            "name": "WOD5E.WTA.RedTalon",
             "description": "",
             "value": 0,
             "powers": []
           },
           "shadowlord": {
-            "name": "WOD5E.WTA.ShadowLord",
             "description": "",
             "value": 0,
             "powers": []
           },
           "silentstrider": {
-            "name": "WOD5E.WTA.SilentStrider",
             "description": "",
             "value": 0,
             "powers": []
           },
           "silverfang": {
-            "name": "WOD5E.WTA.SilverFang",
             "description": "",
             "value": 0,
             "powers": []
@@ -889,7 +833,8 @@
       "collapsed": true
     },
     "spc": {
-      "templates": ["abbreviated", "disciplines"],
+      "templates": ["abbreviated", "disciplines", "gifts", "edges"],
+      "spcType": "mortal",
       "gamesystem": "mortal"
     }
   },

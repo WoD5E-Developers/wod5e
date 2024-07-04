@@ -28,7 +28,10 @@
   margin-bottom: 5px;
 }
 
-.wod5e.werewolf-sheet .window-content .sheet-body .tab > .resource-label, .wod5e.werewolf-sheet .items-list .item-header {
+.wod5e.werewolf-sheet .window-content .sheet-body .tab > .resource-label,
+.wod5e.werewolf-sheet .items-list .item-header,
+.wod5e.werewolf-sheet .items-list .spc-item-header,
+.wod5e.werewolf-sheet .spc-pool-header {
   color: var(--werewolf-primary);
   border-color: var(--werewolf-primary);
 }

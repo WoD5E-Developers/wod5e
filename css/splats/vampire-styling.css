@@ -67,6 +67,15 @@
   color: var(--vampire-primary);
 }
 
+.wod5e .items-list .spc-item-header {
+  color: var(--vampire-primary);
+}
+
+.wod5e .spc-pool-header {
+  border-bottom: 1px solid var(--vampire-primary);
+  margin-top: -7px;
+}
+
 .wod5e .collapsible:hover,
 .wod5e .collapsible:focus {
   text-shadow: 0 0 10px red;

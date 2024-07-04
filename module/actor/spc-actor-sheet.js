@@ -37,6 +37,19 @@ export class SPCActorSheet extends WoDActor {
   /** @override */
   get template () {
     if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/templates/actor/limited-sheet.hbs'
+
+    const spcType = this.actor.system.spcType
+
+    // Push the appropriate CSS class depending on SPC type
+    // Additionally, update the gamesystem
+    if (spcType === 'vampire' || spcType === 'ghoul') {
+      this.options.classes.push(...['vampire-sheet'])
+    } else if (spcType === 'hunter') {
+      this.options.classes.push(...['hunter-sheet'])
+    } else if (spcType === 'werewolf') {
+      this.options.classes.push(...['werewolf-sheet'])
+    }
+
     return 'systems/vtm5e/templates/actor/spc-sheet.hbs'
   }
 
@@ -51,6 +64,36 @@ export class SPCActorSheet extends WoDActor {
     if (this.actor.type === 'spc') {
       this._prepareItems(data)
     }
+
+    // Apply new CSS classes to the sheet, if necessary
+    this._applyClasses()
+
+    // SPC type options
+    data.spcTypes = {
+      mortal: 'WOD5E.Mortal',
+      vampire: 'WOD5E.VTM.Label',
+      ghoul: 'WOD5E.VTM.Ghoul',
+      hunter: 'WOD5E.HTR.Label',
+      werewolf: 'WOD5E.WTA.Label'
+    }
+
+    // Determine gamesystem based on spcType
+    const spcType = this.actor.system.spcType
+
+    // Push the appropriate CSS class depending on SPC type
+    // Additionally, update the gamesystem
+    if (spcType === 'vampire' || spcType === 'ghoul') {
+      this.actor.system.gamesystem = 'vampire'
+    } else if (spcType === 'hunter') {
+      this.actor.system.gamesystem = 'hunter'
+    } else if (spcType === 'werewolf') {
+      this.actor.system.gamesystem = 'werewolf'
+    } else {
+      this.actor.system.gamesystem = 'mortal'
+    }
+
+    // Apply new CSS classes to the sheet, if necessary
+    this._applyClasses()
 
     return data
   }
@@ -142,7 +185,7 @@ export class SPCActorSheet extends WoDActor {
     if (!this.options.editable) return
 
     // Make Exceptional Skill visible
-    html.find('.exceptionalskill-create').click(this._onShowExceptionalSkill.bind(this))
+    html.find('.exceptionalskill-create').click(this._onCreateExceptionalSkill.bind(this))
 
     // Make Exceptional Skill hidden
     html.find('.exceptionalskill-delete').click(ev => {
@@ -150,13 +193,20 @@ export class SPCActorSheet extends WoDActor {
       actor.update({ [`system.exceptionaldicepools.${data.exceptionalskill}.visible`]: false })
     })
 
-    // Make Discipline visible
-    html.find('.discipline-create').click(this._onShowDiscipline.bind(this))
+    // Make powers visible
+    html.find('.power-create').click(this._onCreatePower.bind(this))
 
-    // Make Discipline hidden
-    html.find('.discipline-delete').click(ev => {
+    // Make powers hidden
+    html.find('.power-delete').click(ev => {
       const data = $(ev.currentTarget)[0].dataset
-      actor.update({ [`system.disciplines.${data.discipline}.visible`]: false })
+
+      if (data.type === 'discipline') {
+        actor.update({ [`system.disciplines.${data.id}.visible`]: false })
+      } else if (data.type === 'edge') {
+        actor.update({ [`system.edges.${data.id}.visible`]: false })
+      } else if (data.type === 'gift') {
+        actor.update({ [`system.gifts.${data.id}.visible`]: false })
+      }
     })
   }
 
@@ -165,7 +215,7 @@ export class SPCActorSheet extends WoDActor {
      * @param {Event} event   The originating click event
      * @private
      */
-  _onShowExceptionalSkill (event) {
+  _onCreateExceptionalSkill (event) {
     event.preventDefault()
 
     // Top-level variables
@@ -208,6 +258,9 @@ export class SPCActorSheet extends WoDActor {
       }
     }
 
+    // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
+    const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+
     // Display the dialog
     new Dialog({
       title: game.i18n.localize('WOD5E.SPC.AddSkill'),
@@ -216,7 +269,7 @@ export class SPCActorSheet extends WoDActor {
       default: 'submit'
     },
     {
-      classes: ['wod5e', 'mortal-dialog', 'mortal-sheet']
+      classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
     }).render(true)
   }
 
@@ -225,27 +278,53 @@ export class SPCActorSheet extends WoDActor {
      * @param {Event} event   The originating click event
      * @private
      */
-  _onShowDiscipline (event) {
+  _onCreatePower (event) {
     event.preventDefault()
 
     // Top-level variables
     const actor = this.actor
+    const data = $(event.currentTarget)[0].dataset
+    const powerType = data.type
 
     // Variables yet to be defined
     let options = ''
     let buttons = {}
+    let titleLabel = ''
+    let label = ''
 
     // Gather and push the list of options to the 'options' variable
-    for (const [key, value] of Object.entries(actor.system.disciplines)) {
-      options = options.concat(`<option value="${key}">${game.i18n.localize(value.name)}</option>`)
+    if (powerType === 'discipline') {
+      const disciplinesList = WOD5E.Disciplines.getList()
+      for (const [key, value] of Object.entries(disciplinesList)) {
+        options = options.concat(`<option value="${key}">${value.displayName}</option>`)
+      }
+
+      titleLabel = game.i18n.localize('WOD5E.VTM.AddDiscipline')
+      label = game.i18n.localize('WOD5E.VTM.SelectDiscipline')
+    } else if (powerType === 'gift') {
+      const giftsList = WOD5E.Gifts.getList()
+      for (const [key, value] of Object.entries(giftsList)) {
+        options = options.concat(`<option value="${key}">${value.displayName}</option>`)
+      }
+
+      titleLabel = game.i18n.localize('WOD5E.WTA.AddGift')
+      label = game.i18n.localize('WOD5E.WTA.SelectGift')
+    } else if (powerType === 'edge') {
+      const edgesList = WOD5E.Edges.getList()
+      for (const [key, value] of Object.entries(edgesList)) {
+        options = options.concat(`<option value="${key}">${value.displayName}</option>`)
+      }
+
+      titleLabel = game.i18n.localize('WOD5E.HTR.AddEdge')
+      label = game.i18n.localize('WOD5E.HTR.SelectEdge')
     }
 
     // Define the template to be used
     const template = `
       <form>
           <div class="form-group">
-              <label>${game.i18n.localize('WOD5E.VTM.SelectDiscipline')}</label>
-              <select id="disciplineSelect">${options}</select>
+              <label>${label}</label>
+              <select id="powerSelect">${options}</select>
           </div>
       </form>`
 
@@ -256,10 +335,10 @@ export class SPCActorSheet extends WoDActor {
         label: game.i18n.localize('WOD5E.Add'),
         callback: async (html) => {
           // Define the selected discipline
-          const discipline = html.find('#disciplineSelect')[0].value
+          const power = html.find('#powerSelect')[0].value
 
           // If the discipline wasn't already visible, make it visible
-          actor.update({ [`system.disciplines.${discipline}.visible`]: true })
+          actor.update({ [`system.${powerType}s.${power}.visible`]: true })
         }
       },
       cancel: {
@@ -268,15 +347,42 @@ export class SPCActorSheet extends WoDActor {
       }
     }
 
+    // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
+    const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+
     // Display the dialog
     new Dialog({
-      title: game.i18n.localize('WOD5E.VTM.AddDiscipline'),
+      title: titleLabel,
       content: template,
       buttons,
       default: 'submit'
     },
     {
-      classes: ['wod5e', 'vampire-dialog', 'vampire-sheet']
+      classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
     }).render(true)
+  }
+
+  // Called to re-apply the CSS classes if the sheet type is changed
+  async _applyClasses () {
+    // Grab the default list of sheet classes
+    const sheetElement = $(this.document._sheet.element)
+
+    // Put the SPC type in a convenient variable
+    const spcType = this.actor.system.spcType
+
+    // Add a new sheet class depending on the type of sheet
+    if (spcType === 'vampire' || spcType === 'ghoul') {
+      sheetElement.removeClass('hunter-sheet werewolf-sheet')
+      sheetElement.addClass('vampire-sheet')
+    } else if (spcType === 'hunter') {
+      sheetElement.removeClass('vampire-sheet werewolf-sheet')
+      sheetElement.addClass('hunter-sheet')
+    } else if (spcType === 'werewolf') {
+      sheetElement.removeClass('hunter-sheet vampire-sheet')
+      sheetElement.addClass('werewolf-sheet')
+    } else {
+      // Default to a mortal sheet
+      sheetElement.removeClass('hunter-sheet vampire-sheet werewolf-sheet')
+    }
   }
 }

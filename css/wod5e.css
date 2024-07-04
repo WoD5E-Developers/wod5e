@@ -126,7 +126,6 @@
 .wod5e .window-content .resource-label {
     text-transform: initial;
     font-size: 1.2em;
-    text-align: left;
 }
 
 .wod5e .window-content .abilities .ability .resource-label {
@@ -198,14 +197,30 @@
     margin-top: 0.5em;
 }
 
-.wod5e .actor-header .resource.exp,
-.wod5e .actor-header .resource.generaldifficulty {
-    max-width: 100px;
-}
-
 .wod5e .actor-header select {
     max-width: 150px;
     float: right;
+}
+
+.wod5e .spc-sheet .spc-type-field {
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+.wod5e .spc-sheet .spc-type-field select {
+    height: 40px;
+}
+
+.wod5e .spc-sheet .spc-header-row-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.wod5e .actor-header .resource.exp,
+.wod5e .actor-header .resource.generaldifficulty {
+    max-width: 100px;
 }
 
 .wod5e .actor-header .level {
@@ -264,12 +279,21 @@
     display: flex;
 }
 
-.wod5e .item-header {
+.wod5e .item-header,
+.wod5e .spc-item-header {
     flex: 0 0 215px;
     overflow: hidden;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
+}
+
+.wod5e .spc-sheet .spc-item-header {
+    font-weight: 700;
+    min-height: 30px;
+    line-height: 24px;
+    justify-content: right;
 }
 
 .wod5e .item-header .profile-img {
@@ -392,15 +416,12 @@
     overflow-y: auto;
 }
 
-.items-list .item-header {
+.wod5e .items-list .item-header,
+.wod5e .items-list .spc-item-header {
     font-size: 1.1em;
-}
-
-.wod5e .items-list .item-header {
     font-weight: 700;
     min-height: 30px;
     line-height: 24px;
-    padding: 3px 0;
 }
 
 .wod5e .items-list .item-header .header-level {

@@ -51,7 +51,8 @@
   color: #cc0014;
 }
 
-.dark-theme .wod5e .items-list .item-header {
+.dark-theme .wod5e .items-list .item-header,
+.dark-theme .wod5e .items-list .spc-item-header {
   color: #fff6f7;
 }
 
@@ -236,7 +237,9 @@
 }
 
 .dark-theme .wod5e.werewolf-sheet .window-content .sheet-body .tab > .resource-label,
-.dark-theme .wod5e.werewolf-sheet .items-list .item-header {
+.dark-theme .wod5e.werewolf-sheet .items-list .item-header,
+.dark-theme .wod5e.werewolf-sheet .items-list .spc-item-header,
+.dark-theme .wod5e.werewolf-sheet .spc-pool-header {
   color: #cd7a3def;
   border-color: #cd7a3def;
 }

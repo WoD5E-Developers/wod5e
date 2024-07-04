@@ -25,7 +25,9 @@
 }
 
 .wod5e.hunter-sheet .window-content .sheet-body .tab > .resource-label,
-.wod5e.hunter-sheet .items-list .item-header {
+.wod5e.hunter-sheet .items-list .item-header,
+.wod5e.hunter-sheet .items-list .spc-item-header,
+.wod5e.hunter-sheet .spc-pool-header {
   color: var(--hunter-primary);
   border-color: var(--hunter-primary);
 }
