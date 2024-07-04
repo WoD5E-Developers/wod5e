@@ -197,6 +197,11 @@
     margin-top: 0.5em;
 }
 
+.wod5e .actor-header select {
+    max-width: 150px;
+    float: right;
+}
+
 .wod5e .spc-sheet .spc-type-field {
     margin-bottom: 0;
     display: flex;
@@ -213,21 +218,9 @@
     justify-content: center;
 }
 
-.wod5e .spc-sheet .spc-item-header {
-    font-weight: 700;
-    min-height: 30px;
-    line-height: 24px;
-    justify-content: right;
-}
-
 .wod5e .actor-header .resource.exp,
 .wod5e .actor-header .resource.generaldifficulty {
     max-width: 100px;
-}
-
-.wod5e .actor-header select {
-    max-width: 150px;
-    float: right;
 }
 
 .wod5e .actor-header .level {
@@ -294,6 +287,13 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+}
+
+.wod5e .spc-sheet .spc-item-header {
+    font-weight: 700;
+    min-height: 30px;
+    line-height: 24px;
+    justify-content: right;
 }
 
 .wod5e .item-header .profile-img {
@@ -419,10 +419,6 @@
 .wod5e .items-list .item-header,
 .wod5e .items-list .spc-item-header {
     font-size: 1.1em;
-}
-
-.wod5e .items-list .item-header,
-.wod5e .items-list .spc-item-header {
     font-weight: 700;
     min-height: 30px;
     line-height: 24px;
