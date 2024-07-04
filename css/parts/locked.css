@@ -5,7 +5,9 @@
 
 /* buttons.css */
 .locked .item-delete,
-.locked .discipline-delete {
+.locked .discipline-delete,
+.locked .exceptionalskill-delete,
+.locked .power-delete {
   display: none;
 }
 
@@ -14,6 +16,7 @@
 .locked a.item-control.edge-create,
 .locked .gift-create,
 .locked .rite-create,
+.locked .power-create,
 .locked .item-edit {
   display: none;
 }

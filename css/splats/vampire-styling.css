@@ -159,6 +159,7 @@
 
 /* inputs.css */
 .wod5e input,
-.wod5e select {
+.wod5e select,
+.wod5e input[type="number"] {
   border: 1px solid var(--vampire-primary);
 }
