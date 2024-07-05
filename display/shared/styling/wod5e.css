@@ -13,6 +13,7 @@
 @import url("./parts/locked.css");
 @import url("./parts/menus.css");
 @import url("./parts/group-sheet.css");
+
 /* Language-specific styling */
 @import url("./lang/pl.css");
 @import url("./lang/de.css");
