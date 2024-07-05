@@ -250,7 +250,7 @@ export class WoDActor extends ActorSheet {
     html.find('.item-chat').click(async event => {
       const li = $(event.currentTarget).parents('.item')
       const item = actor.getEmbeddedDocument('Item', li.data('itemId'))
-      renderTemplate('systems/vtm5e/templates/ui/chat/chat-message.hbs', {
+      renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
         name: item.name,
         img: item.img,
         description: item.system.description
@@ -341,7 +341,7 @@ export class WoDActor extends ActorSheet {
     const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
 
     // Render selecting a skill/attribute to roll
-    const skillTemplate = 'systems/vtm5e/templates/shared/actors/parts/skill-dialog.hbs'
+    const skillTemplate = 'systems/vtm5e/display/shared/actors/parts/skill-dialog.hbs'
     // Render the template
     const content = await renderTemplate(skillTemplate, {
       id: skill,

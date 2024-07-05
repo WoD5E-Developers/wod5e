@@ -17,7 +17,7 @@ export class WerewolfActorSheet extends WoDActor {
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
-      template: 'systems/vtm5e/templates/wta/actors/werewolf-sheet.hbs',
+      template: 'systems/vtm5e/display/wta/actors/werewolf-sheet.hbs',
       width: 1050,
       height: 700,
       tabs: [{
@@ -35,8 +35,8 @@ export class WerewolfActorSheet extends WoDActor {
 
   /** @override */
   get template () {
-    if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/templates/shared/actors/limited-sheet.hbs'
-    return 'systems/vtm5e/templates/wta/actors/werewolf-sheet.hbs'
+    if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/display/shared/actors/limited-sheet.hbs'
+    return 'systems/vtm5e/display/wta/actors/werewolf-sheet.hbs'
   }
 
   /* -------------------------------------------- */
@@ -152,7 +152,7 @@ export class WerewolfActorSheet extends WoDActor {
       const data = $(ev.currentTarget)[0].dataset
       const gift = actor.system.gifts[data.gift]
 
-      renderTemplate('systems/vtm5e/templates/ui/chat/chat-message.hbs', {
+      renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
         name: game.i18n.localize(gift.name),
         img: 'icons/svg/dice-target.svg',
         description: gift.description

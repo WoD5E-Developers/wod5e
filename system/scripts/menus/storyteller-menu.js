@@ -6,7 +6,7 @@ export class StorytellerMenu extends FormApplication {
       title: game.i18n.localize('WOD5E.Settings.StorytellerMenu'),
       id: 'wod5e-storyteller',
       classes: ['wod5e'],
-      template: 'systems/vtm5e/templates/ui/storyteller-menu.hbs',
+      template: 'systems/vtm5e/display/ui/storyteller-menu.hbs',
       width: 500,
       height: 450,
       resizable: true,
@@ -198,7 +198,7 @@ async function _onGenerateModPrompt (type) {
 // Function for rendering the dialog for adding a new modification
 async function _onRenderPromptDialog (type, list, title) {
   // Render the template
-  const template = 'systems/vtm5e/templates/ui/select-dialog.hbs'
+  const template = 'systems/vtm5e/display/ui/select-dialog.hbs'
   const content = await renderTemplate(template, { list })
 
   new Dialog(

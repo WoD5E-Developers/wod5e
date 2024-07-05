@@ -17,7 +17,7 @@ export class VampireActorSheet extends GhoulActorSheet {
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
-      template: 'systems/vtm5e/templates/vtm/actors/vampire-sheet.hbs',
+      template: 'systems/vtm5e/display/vtm/actors/vampire-sheet.hbs',
       width: 940,
       height: 700,
       tabs: [{
@@ -35,8 +35,8 @@ export class VampireActorSheet extends GhoulActorSheet {
 
   /** @override */
   get template () {
-    if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/templates/shared/actors/limited-sheet.hbs'
-    return 'systems/vtm5e/templates/vtm/actors/vampire-sheet.hbs'
+    if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/display/shared/actors/limited-sheet.hbs'
+    return 'systems/vtm5e/display/vtm/actors/vampire-sheet.hbs'
   }
 
   /* -------------------------------------------- */

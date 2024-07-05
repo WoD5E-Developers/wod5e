@@ -20,7 +20,7 @@ export const _onAddBonus = async function (event, actor, data, SkillEditDialog) 
   }
 
   // Render the template
-  const bonusTemplate = 'systems/vtm5e/templates/shared/actors/parts/specialty-display.hbs'
+  const bonusTemplate = 'systems/vtm5e/display/shared/actors/parts/specialty-display.hbs'
   const bonusContent = await renderTemplate(bonusTemplate, bonusData)
 
   new Dialog(
@@ -69,7 +69,7 @@ export const _onAddBonus = async function (event, actor, data, SkillEditDialog) 
             await actor.update({ [`system.${bonusPath}`]: actorBonuses })
 
             // Re-render the skill edit dialog
-            SkillEditDialog.data.content = await renderTemplate('systems/vtm5e/templates/shared/actors/parts/skill-dialog.hbs', {
+            SkillEditDialog.data.content = await renderTemplate('systems/vtm5e/display/shared/actors/parts/skill-dialog.hbs', {
               id: data.id,
               actor,
               system,
@@ -111,7 +111,7 @@ export const _onDeleteBonus = async function (event, actor, data, SkillEditDialo
   await actor.update({ [`system.${bonusPath}`]: actorBonuses })
 
   // Re-render the skill edit dialog
-  SkillEditDialog.data.content = await renderTemplate('systems/vtm5e/templates/shared/actors/parts/skill-dialog.hbs', {
+  SkillEditDialog.data.content = await renderTemplate('systems/vtm5e/display/shared/actors/parts/skill-dialog.hbs', {
     id: data.id,
     actor,
     system,
@@ -136,7 +136,7 @@ export const _onEditBonus = async function (event, actor, data, SkillEditDialog)
   const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
 
   // Render the template
-  const bonusTemplate = 'systems/vtm5e/templates/shared/actors/parts/specialty-display.hbs'
+  const bonusTemplate = 'systems/vtm5e/display/shared/actors/parts/specialty-display.hbs'
   const bonusContent = await renderTemplate(bonusTemplate, bonusData)
 
   new Dialog(
@@ -181,7 +181,7 @@ export const _onEditBonus = async function (event, actor, data, SkillEditDialog)
             await actor.update({ [`system.${bonusPath}`]: actorBonuses })
 
             // Re-render the skill edit dialog
-            SkillEditDialog.data.content = await renderTemplate('systems/vtm5e/templates/shared/actors/parts/skill-dialog.hbs', {
+            SkillEditDialog.data.content = await renderTemplate('systems/vtm5e/display/shared/actors/parts/skill-dialog.hbs', {
               id: data.id,
               actor,
               system,

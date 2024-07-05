@@ -33,7 +33,11 @@
     "system/main.js"
   ],
   "styles": [
-    "templates/shared/styling/wod5e.css"
+    "display/shared/styling/wod5e.css",
+    "display/shared/styling/themes/dark-theme.css",
+    "display/vtm/styling/vampire-styling.css",
+    "display/htr/styling/hunter-styling.css",
+    "display/wta/styling/werewolf-styling.css"
   ],
   "languages": [
     {
@@ -262,7 +266,7 @@
         "json"
       ],
       "paths": [
-        "templates",
+        "display",
         "lang"
       ]
     }

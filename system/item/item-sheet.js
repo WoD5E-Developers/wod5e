@@ -30,15 +30,15 @@ export class WoDItemSheet extends ItemSheet {
     let path = ''
 
     if (itemType === 'power') {
-      path = 'systems/vtm5e/templates/vtm/items'
+      path = 'systems/vtm5e/display/vtm/items'
 
       return `${path}/item-discipline-sheet.hbs`
     } else if (itemType === 'perk') {
-      path = 'systems/vtm5e/templates/htr/items'
+      path = 'systems/vtm5e/display/htr/items'
     } else if (itemType === 'gift') {
-      path = 'systems/vtm5e/templates/wta/items'
+      path = 'systems/vtm5e/display/wta/items'
     } else {
-      path = 'systems/vtm5e/templates/shared/items'
+      path = 'systems/vtm5e/display/shared/items'
     }
 
     return `${path}/item-${itemType}-sheet.hbs`

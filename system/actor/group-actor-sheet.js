@@ -42,20 +42,20 @@ export class GroupActorSheet extends WoDActor {
     switch (this.actor.system.groupType) {
       case 'cell':
         this.options.classes.push(...['hunter-sheet'])
-        return 'systems/vtm5e/templates/htr/actors/cell-sheet.hbs'
+        return 'systems/vtm5e/display/htr/actors/cell-sheet.hbs'
 
       case 'coterie':
         this.options.classes.push(...['coterie-sheet'])
-        return 'systems/vtm5e/templates/vtm/actors/coterie-sheet.hbs'
+        return 'systems/vtm5e/display/vtm/actors/coterie-sheet.hbs'
 
       case 'pack':
         this.options.classes.push(...['werewolf-sheet'])
-        return 'systems/vtm5e/templates/wta/actors/pack-sheet.hbs'
+        return 'systems/vtm5e/display/wta/actors/pack-sheet.hbs'
 
       default:
         console.log('Oops! Something broke...')
         this.options.classes.push(...['coterie-sheet'])
-        return 'systems/vtm5e/templates/vtm/actors/coterie-sheet.hbs'
+        return 'systems/vtm5e/display/vtm/actors/coterie-sheet.hbs'
     }
   }
 

@@ -104,7 +104,7 @@ export class wod5eAPI {
     const skillsList = WOD5E.Skills.getList({})
 
     // Render selecting a skill/attribute to roll
-    const dialogTemplate = 'systems/vtm5e/templates/ui/select-dice-dialog.hbs'
+    const dialogTemplate = 'systems/vtm5e/display/ui/select-dice-dialog.hbs'
     const dialogData = {
       system,
       skill,

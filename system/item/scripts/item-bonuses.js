@@ -16,7 +16,7 @@ export const _onAddBonus = async function (event, item) {
   }
 
   // Render the template
-  const bonusTemplate = 'systems/vtm5e/templates/shared/items/parts/bonus-display.hbs'
+  const bonusTemplate = 'systems/vtm5e/display/shared/items/parts/bonus-display.hbs'
   const bonusContent = await renderTemplate(bonusTemplate, bonusData)
 
   new Dialog(
@@ -125,7 +125,7 @@ export const _onEditBonus = async function (event, item) {
   }
 
   // Render the template
-  const bonusTemplate = 'systems/vtm5e/templates/shared/items/parts/bonus-display.hbs'
+  const bonusTemplate = 'systems/vtm5e/display/shared/items/parts/bonus-display.hbs'
   const bonusContent = await renderTemplate(bonusTemplate, bonusData)
 
   new Dialog(
