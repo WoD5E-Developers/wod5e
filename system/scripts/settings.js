@@ -2,7 +2,7 @@
 
 import { AutomationMenu } from './menus/automation-menu.js'
 import { StorytellerMenu } from './menus/storyteller-menu.js'
-import { resetActors } from './scripts/reset-actors.js'
+import { resetActors } from './reset-actors.js'
 
 /**
  * Define all game settings here

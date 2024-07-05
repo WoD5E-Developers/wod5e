@@ -1,7 +1,7 @@
 /* global Dialog, game, foundry, WOD5E */
 
 import { WoDActor } from './wod-v5-sheet.js'
-import { Skills } from '../def/skills.js'
+import { Skills } from '../api/def/skills.js'
 
 /**
  * Extend the basic ActorSheet with some very simple modifications

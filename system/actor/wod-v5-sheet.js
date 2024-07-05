@@ -3,8 +3,8 @@
 import { _onRoll } from './scripts/roll.js'
 import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange } from './scripts/counters.js'
 import { _onAddBonus, _onDeleteBonus, _onEditBonus } from './scripts/specialty-bonuses.js'
-import { Attributes } from '../def/attributes.js'
-import { Skills } from '../def/skills.js'
+import { Attributes } from '../api/def/attributes.js'
+import { Skills } from '../api/def/skills.js'
 import { WOD5eDice } from '../scripts/system-rolls.js'
 
 /**
