@@ -30,7 +30,7 @@
     }
   ],
   "esmodules": [
-    "module/main.js"
+    "system/main.js"
   ],
   "styles": [
     "css/wod5e.css"
