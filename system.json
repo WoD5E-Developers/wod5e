@@ -33,7 +33,7 @@
     "system/main.js"
   ],
   "styles": [
-    "css/wod5e.css"
+    "templates/shared/styling/wod5e.css"
   ],
   "languages": [
     {
@@ -262,7 +262,6 @@
         "json"
       ],
       "paths": [
-        "css",
         "templates",
         "lang"
       ]
