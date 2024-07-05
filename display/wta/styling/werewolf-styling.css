@@ -117,10 +117,11 @@
   background: #ff6400;
   color: #f7f3eb;
   transition-duration: 0.3s;
-  text-shadow: 0 0 10px red;
   cursor: pointer;
 }
 
+.wod5e.werewolf-sheet button:hover,
+.wod5e.werewolf-sheet button:focus,
 .wod5e.werewolf-sheet .rollable:hover,
 .wod5e.werewolf-sheet .rollable:focus,
 .wod5e.werewolf-sheet .system-rollable:hover,

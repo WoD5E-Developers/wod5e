@@ -468,7 +468,6 @@ p .collapsible-content{
 
 .wod5e .collapsible:hover,
 .wod5e .collapsible:focus {
-    color: #000;
     cursor: pointer;
 }
 
