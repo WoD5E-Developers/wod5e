@@ -121,6 +121,13 @@
   cursor: pointer;
 }
 
+.wod5e.werewolf-sheet .rollable:hover,
+.wod5e.werewolf-sheet .rollable:focus,
+.wod5e.werewolf-sheet .system-rollable:hover,
+.wod5e.werewolf-sheet .system-rollable:focus {
+  text-shadow: 0 0 10px var(--werewolf-primary);
+}
+
 .wod5e.werewolf-sheet button.werewolf-button.active,
 .wod5e.werewolf-sheet button.werewolf-button.active:hover {
   font-size: 20pt;

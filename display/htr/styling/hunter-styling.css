@@ -84,6 +84,13 @@
   cursor: pointer;
 }
 
+.wod5e.hunter-sheet .rollable:hover,
+.wod5e.hunter-sheet .rollable:focus,
+.wod5e.hunter-sheet .system-rollable:hover,
+.wod5e.hunter-sheet .system-rollable:focus {
+  text-shadow: 0 0 10px var(--hunter-primary);
+}
+
 .wod5e.hunter-sheet .item-image.edge-rollable img {
   box-shadow: inset 1px 1px 4px 0 orange;
   border: 1px solid var(--hunter-primary);

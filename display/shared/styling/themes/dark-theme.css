@@ -252,7 +252,7 @@
   background: #121212;
 }
 
-.dark-theme .actor.sheet textarea, .dark-theme .item.sheet textarea {
+.dark-theme .wod5e textarea {
   color: #FFF;
 }
 
@@ -269,4 +269,20 @@
 
 .dark-theme .wod5e-config-form .notes {
   color: #FFF;
+}
+
+.dark-theme .rollable:hover,
+.dark-theme .rollable:focus,
+.dark-theme .rollable:hover,
+.dark-theme .rollable:focus,
+.dark-theme .power-rollable:hover,
+.dark-theme .power-rollable:focus,
+.dark-theme .edge-rollable:hover,
+.dark-theme .edge-rollable:focus,
+.dark-theme .gift-rollable:hover,
+.dark-theme .gift-rollable:focus,
+.dark-theme .system-rollable:hover,
+.dark-theme .system-rollable:focus {
+  cursor: pointer;
+  text-shadow: 0 0 10px #000;
 }

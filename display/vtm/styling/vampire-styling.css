@@ -105,15 +105,11 @@
   cursor: pointer;
 }
 
-.rollable:hover,
-.rollable:focus,
-.power-rollable:hover,
-.power-rollable:focus,
-.edge-rollable:hover,
-.edge-rollable:focus,
-.gift-rollable:hover,
-.gift-rollable:focus {
-  text-shadow: 0 0 10px red;
+.wod5e.vampire-sheet .rollable:hover,
+.wod5e.vampire-sheet .rollable:focus,
+.wod5e.vampire-sheet .system-rollable:hover,
+.wod5e.vampire-sheet .system-rollable:focus {
+  text-shadow: 0 0 10px var(--vampire-primary);
 }
 
 /* dialog.css */
