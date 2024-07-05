@@ -3,6 +3,16 @@
         <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" alt="Item Image" />
         <div class="header-fields">
             <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+            <div class="grid grid-2col">
+                <div class="resource">
+                    <label class="resource-label">Quantity</label>
+                    <input type="text" name="system.quantity" value="{{item.system.quantity}}" data-dtype="Number" />
+                </div>
+                <div class="resource">
+                    <label class="resource-label">Weight</label>
+                    <input type="text" name="system.weight" value="{{item.system.weight}}" data-dtype="Number" />
+                </div>
+            </div>
         </div>
     </header>
 
@@ -22,9 +32,9 @@
         </div>
 
         {{!-- Macro Tab --}}
-        {{> "systems/vtm5e/templates/item/parts/macro.hbs"}}
+        {{> "systems/vtm5e/templates/shared/items/parts/macro.hbs"}}
 
         {{!-- Bonuses Tab --}}
-        {{> "systems/vtm5e/templates/item/parts/bonuses.hbs"}}
+        {{> "systems/vtm5e/templates/shared/items/parts/bonuses.hbs"}}
     </section>
 </form>

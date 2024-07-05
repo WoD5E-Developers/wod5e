@@ -14,7 +14,7 @@
                     <label class="flex-center">{{localize "WOD5E.WTA.Renown"}}</label>
                     <select name="system.renown" value="{{item.system.renown}}" data-type="String">
                         {{#select item.system.renown}}
-                        {{> "systems/vtm5e/templates/item/parts/renown.hbs"}}
+                        {{> "systems/vtm5e/templates/shared/items/parts/renown.hbs"}}
                         {{/select}}
                     </select>
                 </div>
@@ -23,7 +23,7 @@
                     <label class="flex-center">{{localize "WOD5E.WTA.GiftType"}}</label>
                     <select name="system.giftType" data-type="String">
                         {{#select item.system.giftType}}
-                        {{> "systems/vtm5e/templates/item/parts/gifts.hbs"}}
+                        {{> "systems/vtm5e/templates/shared/items/parts/gifts.hbs"}}
                         {{/select}}
                     </select>
                 </div>
@@ -54,7 +54,7 @@
                 <label class="resource-label">{{localize "WOD5E.System"}}: </label>
                 <select name="system.dice1" data-type="String">
                     {{#select item.system.dice1}}
-                    {{> "systems/vtm5e/templates/item/parts/attributes.hbs"}}
+                    {{> "systems/vtm5e/templates/shared/items/parts/attributes.hbs"}}
                     <option value="renown">{{generateLocalizedLabel item.system.renown}}</option>
                     {{/select}}
                 </select>
@@ -62,13 +62,13 @@
                 {{#if item.system.skill}}
                     <select name="system.dice2" data-type="String">
                         {{#select item.system.dice2}}
-                        {{> "systems/vtm5e/templates/item/parts/skills.hbs"}}
+                        {{> "systems/vtm5e/templates/shared/items/parts/skills.hbs"}}
                         {{/select}}
                     </select>
                 {{else}}
                     <select name="system.dice2" data-type="String">
                         {{#select item.system.dice2}}
-                        {{> "systems/vtm5e/templates/item/parts/attributes.hbs"}}
+                        {{> "systems/vtm5e/templates/shared/items/parts/attributes.hbs"}}
                         <option value="renown">{{generateLocalizedLabel item.system.renown}}</option>
                         {{/select}}
                     </select>
@@ -101,9 +101,9 @@
         </div>
 
         {{!-- Macro Tab --}}
-        {{> "systems/vtm5e/templates/item/parts/macro.hbs"}}
+        {{> "systems/vtm5e/templates/shared/items/parts/macro.hbs"}}
 
         {{!-- Bonuses Tab --}}
-        {{> "systems/vtm5e/templates/item/parts/bonuses.hbs"}}
+        {{> "systems/vtm5e/templates/shared/items/parts/bonuses.hbs"}}
     </section>
 </form>

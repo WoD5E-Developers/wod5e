@@ -17,7 +17,7 @@ export class HunterActorSheet extends WoDActor {
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
-      template: 'systems/vtm5e/templates/actor/hunter-sheet.hbs',
+      template: 'systems/vtm5e/templates/htr/actors/hunter-sheet.hbs',
       width: 940,
       height: 700,
       tabs: [{
@@ -37,8 +37,8 @@ export class HunterActorSheet extends WoDActor {
 
   /** @override */
   get template () {
-    if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/templates/actor/limited-sheet.hbs'
-    return 'systems/vtm5e/templates/actor/hunter-sheet.hbs'
+    if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/templates/shared/actors/limited-sheet.hbs'
+    return 'systems/vtm5e/templates/htr/actors/hunter-sheet.hbs'
   }
 
   /* -------------------------------------------- */
@@ -131,7 +131,7 @@ export class HunterActorSheet extends WoDActor {
       const data = $(event.currentTarget)[0].dataset
       const edge = actor.system.edges[data.edge]
 
-      renderTemplate('systems/vtm5e/templates/chat/chat-message.hbs', {
+      renderTemplate('systems/vtm5e/templates/ui/chat/chat-message.hbs', {
         name: game.i18n.localize(edge.name),
         img: 'icons/svg/dice-target.svg',
         description: edge.description

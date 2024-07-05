@@ -11,7 +11,7 @@
     <div class="header-fields-top">
         <div class="header-profile-img">
             {{!-- Actor image and sheet lock toggle button --}}
-            {{> "systems/vtm5e/templates/actor/parts/profile-img.hbs"}}
+            {{> "systems/vtm5e/templates/shared/actors/parts/profile-img.hbs"}}
         </div>
         <div class="header-rows-top">
             <div class="header-row-2">
@@ -19,11 +19,11 @@
                 <h1 class="charname"><input class="no-border" name="name" type="text" value="{{actor.name}}"
                 placeholder="{{localize 'WOD5E.Name'}}" /></h1>
 
-                {{> "systems/vtm5e/templates/actor/parts/exp.hbs"}}
+                {{> "systems/vtm5e/templates/shared/actors/parts/exp.hbs"}}
 
-                {{> "systems/vtm5e/templates/actor/parts/health.hbs"}}
+                {{> "systems/vtm5e/templates/shared/actors/parts/health.hbs"}}
 
-                {{> "systems/vtm5e/templates/actor/parts/willpower.hbs"}}
+                {{> "systems/vtm5e/templates/shared/actors/parts/willpower.hbs"}}
             </div>
         </div>
     </div>
@@ -40,15 +40,15 @@
 {{!-- Mortal Sheet Body --}}
 <section class="sheet-body">
     {{!-- Stats Tab --}}
-    {{> "systems/vtm5e/templates/actor/parts/stats.hbs"}}
+    {{> "systems/vtm5e/templates/shared/actors/parts/stats.hbs"}}
 
     {{!-- Owned Features Tab --}}
-    {{> "systems/vtm5e/templates/actor/parts/features.hbs"}}
+    {{> "systems/vtm5e/templates/shared/actors/parts/features.hbs"}}
 
     {{!-- Biography Tab --}}
-    {{> "systems/vtm5e/templates/actor/parts/biography.hbs"}}
+    {{> "systems/vtm5e/templates/shared/actors/parts/biography.hbs"}}
 
     {{!-- Other Tab --}}
-    {{> "systems/vtm5e/templates/actor/parts/other.hbs"}}
+    {{> "systems/vtm5e/templates/shared/actors/parts/other.hbs"}}
 </section>
 </form>

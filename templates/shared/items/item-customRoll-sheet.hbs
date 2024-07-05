@@ -28,13 +28,13 @@
                 <label class="resource-label">{{localize "WOD5E.AttributesList.Label"}}: </label>
                 <select name="system.dice1" data-type="String">
                     {{#select item.system.dice1}}
-                    {{> "systems/vtm5e/templates/item/parts/attributes.hbs"}}
+                    {{> "systems/vtm5e/templates/shared/items/parts/attributes.hbs"}}
                     {{/select}}
                 </select>
                 <label class="resource-label">{{localize "WOD5E.SkillsList.Label"}}: </label>
                 <select name="system.dice2" data-type="String">
                     {{#select item.system.dice2}}
-                    {{> "systems/vtm5e/templates/item/parts/skills.hbs"}}
+                    {{> "systems/vtm5e/templates/shared/items/parts/skills.hbs"}}
                     {{/select}}
                 </select>
                 <label class="resource-label">{{localize "WOD5E.RollList.Modifier"}}: </label>
@@ -43,9 +43,9 @@
         </div>
 
         {{!-- Macro Tab --}}
-        {{> "systems/vtm5e/templates/item/parts/macro.hbs"}}
+        {{> "systems/vtm5e/templates/shared/items/parts/macro.hbs"}}
 
         {{!-- Bonuses Tab --}}
-        {{> "systems/vtm5e/templates/item/parts/bonuses.hbs"}}
+        {{> "systems/vtm5e/templates/shared/items/parts/bonuses.hbs"}}
     </section>
 </form>

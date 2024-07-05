@@ -4,7 +4,7 @@
       <div class="header-fields-top">
       <div class="header-profile-img">
         {{!-- Actor image and sheet lock toggle button --}}
-        {{> "systems/vtm5e/templates/actor/parts/profile-img.hbs"}}
+        {{> "systems/vtm5e/templates/shared/actors/parts/profile-img.hbs"}}
       </div>
       <div class="header-rows-top">
         <div class="header-row-1">
@@ -14,7 +14,7 @@
               placeholder="{{localize 'WOD5E.Name'}}" />
           </h1>
             
-          {{> "systems/vtm5e/templates/actor/parts/group/type-selector.hbs"}}
+          {{> "systems/vtm5e/templates/shared/actors/parts/group/type-selector.hbs"}}
         </div>
       </div>
     </div>
@@ -31,15 +31,15 @@
   {{!-- Coterie Sheet Body --}}
   <section class="sheet-body">
     {{!-- Group Members Tab --}}
-    {{> "systems/vtm5e/templates/actor/parts/group/group-members.hbs"}}
+    {{> "systems/vtm5e/templates/shared/actors/parts/group/group-members.hbs"}}
 
     {{!-- Shared Features Tab --}}
-    {{> "systems/vtm5e/templates/actor/parts/features.hbs"}}
+    {{> "systems/vtm5e/templates/shared/actors/parts/features.hbs"}}
 
     {{!-- Description Tab --}}
-    {{> "systems/vtm5e/templates/actor/parts/group/description.hbs"}}
+    {{> "systems/vtm5e/templates/shared/actors/parts/group/description.hbs"}}
 
     {{!-- Other Tab --}}
-    {{> "systems/vtm5e/templates/actor/parts/other.hbs"}}
+    {{> "systems/vtm5e/templates/shared/actors/parts/other.hbs"}}
   </section>
 </form>

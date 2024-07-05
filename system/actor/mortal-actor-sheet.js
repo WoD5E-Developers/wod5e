@@ -16,7 +16,7 @@ export class MortalActorSheet extends WoDActor {
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
-      template: 'systems/vtm5e/templates/actor/mortal-sheet.hbs',
+      template: 'systems/vtm5e/templates/shared/actors/mortal-sheet.hbs',
       width: 940,
       height: 700,
       tabs: [{
@@ -35,8 +35,8 @@ export class MortalActorSheet extends WoDActor {
 
   /** @override */
   get template () {
-    if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/templates/actor/limited-sheet.hbs'
-    return 'systems/vtm5e/templates/actor/mortal-sheet.hbs'
+    if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/templates/shared/actors/limited-sheet.hbs'
+    return 'systems/vtm5e/templates/shared/actors/mortal-sheet.hbs'
   }
 
   /* -------------------------------------------- */

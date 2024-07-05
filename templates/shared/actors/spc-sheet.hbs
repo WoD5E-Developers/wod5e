@@ -10,19 +10,19 @@
       <div class="header-fields-top">
         <div class="header-profile-img">
             {{!-- Actor image and sheet lock toggle button --}}
-            {{> "systems/vtm5e/templates/actor/parts/profile-img.hbs"}}
+            {{> "systems/vtm5e/templates/shared/actors/parts/profile-img.hbs"}}
         </div>
         <div class="header-rows-top">
             <div class="header-row-1 grid-3col">
                 {{!-- Text input header fields --}}
                 <h1 class="charname"><input class="no-border" name="name" type="text" value="{{actor.name}}"
                   placeholder="{{localize 'WOD5E.Name'}}" /></h1>
-                {{> "systems/vtm5e/templates/actor/parts/spc/type-selector.hbs"}}
+                {{> "systems/vtm5e/templates/shared/actors/parts/spc/type-selector.hbs"}}
             </div>
             <div class="spc-header-row-2 grid-2col">
-                {{> "systems/vtm5e/templates/actor/parts/health.hbs"}}
-                {{> "systems/vtm5e/templates/actor/parts/willpower.hbs"}}
-                {{> "systems/vtm5e/templates/actor/parts/spc/generaldifficulty.hbs"}}
+                {{> "systems/vtm5e/templates/shared/actors/parts/health.hbs"}}
+                {{> "systems/vtm5e/templates/shared/actors/parts/willpower.hbs"}}
+                {{> "systems/vtm5e/templates/shared/actors/parts/spc/generaldifficulty.hbs"}}
             </div>
         </div>
     </div>
@@ -31,22 +31,22 @@
   {{!-- SPC Sheet Body --}}
   <section class="sheet-body">
       <div class="resource grid grid-2col flexrow">
-      {{> "systems/vtm5e/templates/actor/parts/spc/standard-dice-pools.hbs"}}
+      {{> "systems/vtm5e/templates/shared/actors/parts/spc/standard-dice-pools.hbs"}}
       
-      {{> "systems/vtm5e/templates/actor/parts/spc/exceptional-dice-pools.hbs"}}
+      {{> "systems/vtm5e/templates/shared/actors/parts/spc/exceptional-dice-pools.hbs"}}
       
-      {{> "systems/vtm5e/templates/actor/parts/notes.hbs"}}
+      {{> "systems/vtm5e/templates/shared/actors/parts/notes.hbs"}}
 
       {{#ifeq actor.system.gamesystem 'vampire'}}
-        {{> "systems/vtm5e/templates/actor/parts/spc/spc-disciplines.hbs"}}
+        {{> "systems/vtm5e/templates/shared/actors/parts/spc/spc-disciplines.hbs"}}
       {{/ifeq}}
 
       {{#ifeq actor.system.gamesystem 'werewolf'}}
-        {{> "systems/vtm5e/templates/actor/parts/spc/spc-gifts.hbs"}}
+        {{> "systems/vtm5e/templates/shared/actors/parts/spc/spc-gifts.hbs"}}
       {{/ifeq}}
 
       {{#ifeq actor.system.gamesystem 'hunter'}}
-        {{> "systems/vtm5e/templates/actor/parts/spc/spc-edges.hbs"}}
+        {{> "systems/vtm5e/templates/shared/actors/parts/spc/spc-edges.hbs"}}
       {{/ifeq}}
       </div>
   </section>

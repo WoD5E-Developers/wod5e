@@ -8,7 +8,7 @@ export async function _increaseHunger (actor, amount) {
   // If the actor is already at max hunger, send a message in the chat to warn them
   // that their hunger cannot be increased further
   if (amount > 0 && currentHunger === 5) {
-    renderTemplate('systems/vtm5e/templates/chat/chat-message.hbs', {
+    renderTemplate('systems/vtm5e/templates/ui/chat/chat-message.hbs', {
       name: game.i18n.localize('WOD5E.VTM.HungerFull1'),
       img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
       description: game.i18n.localize('WOD5E.VTM.HungerFull2')

@@ -26,9 +26,22 @@ export class WoDItemSheet extends ItemSheet {
 
   /** @override */
   get template () {
-    const path = 'systems/vtm5e/templates/item'
+    const itemType = this.item.type
+    let path = ''
 
-    return `${path}/item-${this.item.type}-sheet.hbs`
+    if (itemType === 'power') {
+      path = 'systems/vtm5e/templates/vtm/items'
+
+      return `${path}/item-discipline-sheet.hbs`
+    } else if (itemType === 'perk') {
+      path = 'systems/vtm5e/templates/htr/items'
+    } else if (itemType === 'gift') {
+      path = 'systems/vtm5e/templates/wta/items'
+    } else {
+      path = 'systems/vtm5e/templates/shared/items'
+    }
+
+    return `${path}/item-${itemType}-sheet.hbs`
   }
 
   /* -------------------------------------------- */

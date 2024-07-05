@@ -22,7 +22,7 @@ export async function _damageWillpower (actor, willpowerDamage) {
       // If the willpower boxes are fully ticked with aggravated damage
       // then tell the chat and don't increase any values.
 
-      renderTemplate('systems/vtm5e/templates/chat/chat-message.hbs', {
+      renderTemplate('systems/vtm5e/templates/ui/chat/chat-message.hbs', {
         name: game.i18n.localize('WOD5E.Chat.WillpowerFullTitle'),
         img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
         description: game.i18n.localize('WOD5E.Chat.WillpowerFull')
@@ -46,7 +46,7 @@ export async function _damageWillpower (actor, willpowerDamage) {
     })
   }
 
-  renderTemplate('systems/vtm5e/templates/chat/willpower-damage.hbs', {
+  renderTemplate('systems/vtm5e/templates/ui/chat/willpower-damage.hbs', {
     name: game.i18n.localize('WOD5E.Chat.WillpowerDamage'),
     img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
     description: `${game.i18n.format('WOD5E.Chat.HasReceivedWillpowerDamage', {

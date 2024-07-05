@@ -16,7 +16,7 @@ export class SPCActorSheet extends WoDActor {
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
-      template: 'systems/vtm5e/templates/actor/spc-sheet.hbs',
+      template: 'systems/vtm5e/templates/shared/actors/spc-sheet.hbs',
       width: 940,
       height: 700,
       tabs: [{
@@ -36,7 +36,7 @@ export class SPCActorSheet extends WoDActor {
 
   /** @override */
   get template () {
-    if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/templates/actor/limited-sheet.hbs'
+    if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/templates/shared/actors/limited-sheet.hbs'
 
     const spcType = this.actor.system.spcType
 
@@ -50,7 +50,7 @@ export class SPCActorSheet extends WoDActor {
       this.options.classes.push(...['werewolf-sheet'])
     }
 
-    return 'systems/vtm5e/templates/actor/spc-sheet.hbs'
+    return 'systems/vtm5e/templates/shared/actors/spc-sheet.hbs'
   }
 
   /* -------------------------------------------- */
