@@ -7,10 +7,10 @@ import { WOD5EActorDirectory } from './actor/actor-directory.js'
 import { ItemInfo } from './item/item.js'
 import { WoDItemSheet } from './item/item-sheet.js'
 // FVTT and module functionality
-import { preloadHandlebarsTemplates } from './templates.js'
+import { preloadHandlebarsTemplates } from './scripts/templates.js'
 import { loadDiceSoNice } from './dice/dice-so-nice.js'
-import { loadHelpers } from './helpers.js'
-import { loadSettings } from './settings.js'
+import { loadHelpers } from './scripts/helpers.js'
+import { loadSettings } from './scripts/settings.js'
 // WOD5E functions and classes
 import { MortalDie, VampireDie, VampireHungerDie, HunterDie, HunterDesperationDie, WerewolfDie, WerewolfRageDie } from './dice/splat-dice.js'
 import { migrateWorld } from './scripts/migration.js'
