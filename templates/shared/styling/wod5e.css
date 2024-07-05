@@ -72,6 +72,7 @@
     background: #f9f5ed;
     padding: 2px;
     cursor: pointer;
+    border-radius: 0;
 }
 
 .wod5e.window-app .window-resizable-handle i.fas {

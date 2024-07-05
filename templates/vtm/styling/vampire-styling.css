@@ -7,6 +7,18 @@
   border: 4px solid var(--vampire-primary);
 }
 
+.wod5e.window-app .window-header,
+.wod5e .actor-header .resource,
+.wod5e .flex-group-center,
+.wod5e .flex-group-left,
+.wod5e .flex-group-right,
+.wod5e .items-list .item,
+.wod5e .items-list .item-header,
+.wod5e .spc-pool-header,
+.wod5e .window-content nav.sheet-tabs .item.active {
+  border-bottom: 1px solid var(--vampire-primary);
+}
+
 .wod5e.window-app .window-header {
   border-bottom: 4px double var(--vampire-primary);
 }
@@ -16,7 +28,6 @@
   border-left: 3px double var(--vampire-primary);
   border-bottom: 1px solid var(--vampire-primary);
   border-right: 1px solid var(--vampire-primary);
-  border-radius: 0;
 }
 
 .fa-arrows-alt-h::before,
@@ -36,46 +47,19 @@
   background: var(--vampire-primary);
 }
 
-.wod5e .items-list .item {
-  border-bottom: 1px solid var(--vampire-primary);
-}
-
-.wod5e .window-content nav.sheet-tabs .item.active {
-	border-bottom: 2px solid var(--vampire-primary);
-}
-
-.wod5e .resource .resource-control:hover,
-.wod5e .resource .resource-control:focus {
-  text-shadow: 0 0 10px red;
-}
-
-.wod5e .actor-header .resource {
-  border: 1px solid var(--vampire-primary);
-}
-
-.wod5e .window-content .sheet-body .tab > .resource-label {
-  color: var(--vampire-primary);
-  border-bottom: 1px solid var(--vampire-primary);
-}
-
-.wod5e .actor-header .profile-img-zone h1 {
-  color: var(--vampire-primary);
-}
-
-.wod5e .items-list .item-header {
-  border-bottom: 1px solid var(--vampire-primary);
-  color: var(--vampire-primary);
-}
-
+.wod5e .window-content .sheet-body .tab > .resource-label,
+.wod5e .actor-header .profile-img-zone h1,
+.wod5e .items-list .item-header,
 .wod5e .items-list .spc-item-header {
   color: var(--vampire-primary);
 }
 
-.wod5e .spc-pool-header {
-  border-bottom: 1px solid var(--vampire-primary);
-  margin-top: -7px;
+.wod5e .window-content nav.sheet-tabs .item.active {
+  border-bottom: 2px solid var(--vampire-primary);
 }
 
+.wod5e .resource .resource-control:hover,
+.wod5e .resource .resource-control:focus,
 .wod5e .collapsible:hover,
 .wod5e .collapsible:focus {
   text-shadow: 0 0 10px red;
@@ -138,14 +122,8 @@
 }
 
 /* resource-counters.css */
-.wod5e .resource-value .resource-value-step.active {
-  background-color: var(--vampire-primary);
-}
-
-.wod5e .resource-value-static .resource-value-static-step.active {
-  background-color: var(--vampire-primary);
-}
-
+.wod5e .resource-value .resource-value-step.active,
+.wod5e .resource-value-static .resource-value-static-step.active,
 .wod5e .resource-counter .resource-counter-step[data-state="-"] {
   background-color: var(--vampire-primary);
 }
