@@ -1,7 +1,7 @@
 /* New Styles */
 .dark-theme .wod5e.window-app {
-    background: #faf5ed;
-    color: #121212;
+  background: #faf5ed;
+  color: #121212;
 }
 
 .dark-theme .wod5e.window-app .window-content {
@@ -65,13 +65,6 @@
 .dark-theme .gift-description {
   color: hwb(0deg 7% 98% / 100%);
   background: #eeece8;
-}
-
-.dark-theme .wod5e .rollable:hover,
-.dark-theme .wod5e .rollable:focus,
-.dark-theme .wod5e .power-rollable:hover,
-.dark-theme .wod5e .power-rollable:focus {
-    color: #f7f7f7;
 }
 
 /* Resource boxes CSS */
@@ -222,7 +215,7 @@
 }
 
 .wod5e.item.sheet .window-content input[type="number"] {
-    color: #000;
+  color: #000;
 }
 
 .dark-theme .wod5e .description-content {
@@ -252,7 +245,7 @@
   background: #121212;
 }
 
-.dark-theme .actor.sheet textarea, .dark-theme .item.sheet textarea {
+.dark-theme .wod5e textarea {
   color: #FFF;
 }
 
@@ -269,4 +262,19 @@
 
 .dark-theme .wod5e-config-form .notes {
   color: #FFF;
+}
+
+.dark-theme .rollable:hover,
+.dark-theme .rollable:focus,
+.dark-theme .power-rollable:hover,
+.dark-theme .power-rollable:focus,
+.dark-theme .edge-rollable:hover,
+.dark-theme .edge-rollable:focus,
+.dark-theme .gift-rollable:hover,
+.dark-theme .gift-rollable:focus,
+.dark-theme .system-rollable:hover,
+.dark-theme .system-rollable:focus {
+  cursor: pointer;
+  text-shadow: 0 0 10px #fff;
+  color: #f7f7f7;
 }

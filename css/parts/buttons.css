@@ -14,20 +14,6 @@ button:focus {
   transition-duration: 0.3s;
 }
 
-.rollable:hover,
-.rollable:focus,
-.power-rollable:hover,
-.power-rollable:focus,
-.edge-rollable:hover,
-.edge-rollable:focus,
-.gift-rollable:hover,
-.gift-rollable:focus,
-.system-rollable:hover,
-.system-rollable:focus {
-    color: #000;
-    cursor: pointer;
-}
-
 .wod5e button.rollable {
     color: #fff;
     font-family: cormorantLight, serif;
@@ -59,4 +45,18 @@ button:focus {
 
 button.lock-btn {
   border-radius: 0 0 3px 3px;
+}
+
+.rollable:hover,
+.rollable:focus,
+.power-rollable:hover,
+.power-rollable:focus,
+.edge-rollable:hover,
+.edge-rollable:focus,
+.gift-rollable:hover,
+.gift-rollable:focus,
+.system-rollable:hover,
+.system-rollable:focus {
+  cursor: pointer;
+  text-shadow: 0 0 10px #000;
 }

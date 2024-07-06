@@ -67,6 +67,7 @@
     background: #f9f5ed;
     padding: 2px;
     cursor: pointer;
+    border-radius: 0;
 }
 
 .wod5e.window-app .window-resizable-handle i.fas {
@@ -467,7 +468,6 @@ p .collapsible-content{
 
 .wod5e .collapsible:hover,
 .wod5e .collapsible:focus {
-    color: #000;
     cursor: pointer;
 }
 
