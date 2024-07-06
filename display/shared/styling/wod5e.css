@@ -39,7 +39,7 @@
 }
 
 .wod5e .symbol {
-    font-family: "wod5eSymbols", regular;
+    font-family: "wod5eSymbols", sans-serif;
     color: var(--vampire-primary);
     font-size: 16pt;
 }
