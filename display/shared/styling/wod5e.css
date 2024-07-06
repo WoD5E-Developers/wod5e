@@ -40,7 +40,7 @@
 
 .wod5e .symbol {
     font-family: wod5eSymbols;
-    color: var(--vampire-primary)
+    color: var(--vampire-primary);
     font-size: 16pt;
 }
 
