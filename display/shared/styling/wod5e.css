@@ -34,12 +34,12 @@
 }
 
 @font-face {
-    font-family: wod5eSymbols;
+    font-family: "wod5eSymbols";
     src: url("../../../assets/fonts/wod5e-symbols.ttf") format("truetype");
 }
 
 .wod5e .symbol {
-    font-family: wod5eSymbols;
+    font-family: "wod5eSymbols", regular;
     color: var(--vampire-primary);
     font-size: 16pt;
 }
