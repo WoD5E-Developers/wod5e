@@ -33,6 +33,17 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: wod5eSymbols;
+    src: url("../../../assets/fonts/wod5e-symbols.ttf") format("truetype");
+}
+
+.wod5e .symbol {
+    font-family: wod5eSymbols;
+    color: var(--vampire-primary)
+    font-size: 16pt;
+}
+
 .wod5e.window-app {
     font-family: Signika, sans-serif;
     background: #faf5ed;
@@ -48,6 +59,7 @@
 
 .wod5e.window-app .window-content {
     background: #faf5ed;
+    font-weight: 500;
 }
 
 .wod5e.window-app .window-header {
