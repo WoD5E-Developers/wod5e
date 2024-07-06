@@ -1,7 +1,7 @@
 /* New Styles */
 .dark-theme .wod5e.window-app {
-    background: #faf5ed;
-    color: #121212;
+  background: #faf5ed;
+  color: #121212;
 }
 
 .dark-theme .wod5e.window-app .window-content {
@@ -215,7 +215,7 @@
 }
 
 .wod5e.item.sheet .window-content input[type="number"] {
-    color: #000;
+  color: #000;
 }
 
 .dark-theme .wod5e .description-content {
