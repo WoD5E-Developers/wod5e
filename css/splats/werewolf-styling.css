@@ -7,6 +7,17 @@
   border: 4px solid var(--werewolf-primary);
 }
 
+.wod5e.werewolf-sheet.window-app .window-header,
+.wod5e.werewolf-sheet h1,
+.wod5e.werewolf-sheet .flex-group-center,
+.wod5e.werewolf-sheet .flex-group-left,
+.wod5e.werewolf-sheet .flex-group-right,
+.wod5e.werewolf-sheet .window-content nav.sheet-tabs .item.active,
+.wod5e.werewolf-sheet .actor-header .resource,
+.wod5e.werewolf-sheet .items-list .item {
+  border-color: var(--werewolf-primary);
+}
+
 .wod5e.werewolf-sheet.window-app .window-header {
   border-bottom: 4px double var(--werewolf-primary);
 }
@@ -15,33 +26,24 @@
   border-top: 3px double var(--werewolf-primary);
   border-left: 3px double var(--werewolf-primary);
   border-bottom: 1px solid var(--werewolf-primary);
-  border-right:1px solid var(--werewolf-primary);
-  border-radius: 0;
+  border-right: 1px solid var(--werewolf-primary);
 }
 
 .wod5e.werewolf-sheet.window-app .fa-arrows-alt-h::before,
 .wod5e.werewolf-sheet.window-app .fa-left-right::before {
-    color: #997018;
+  color: #997018;
 }
 
 .wod5e.werewolf-sheet .wolf .resource-label {
   margin-bottom: 5px;
 }
 
-.wod5e.werewolf-sheet .window-content .sheet-body .tab > .resource-label, .wod5e.werewolf-sheet .items-list .item-header {
+.wod5e.werewolf-sheet .window-content .sheet-body .tab > .resource-label,
+.wod5e.werewolf-sheet .items-list .item-header,
+.wod5e.werewolf-sheet .items-list .spc-item-header,
+.wod5e.werewolf-sheet .spc-pool-header,
+.wod5e.werewolf-sheet .actor-header .profile-img-zone h1 {
   color: var(--werewolf-primary);
-  border-color: var(--werewolf-primary);
-}
-
-.wod5e.werewolf-sheet h1,
-.wod5e.werewolf-sheet .flex-group-center,
-.wod5e.werewolf-sheet .flex-group-left,
-.wod5e.werewolf-sheet .flex-group-right,
-.wod5e.werewolf-sheet .window-content nav.sheet-tabs .item.active,
-.wod5e.werewolf-sheet .actor-header .resource,
-.wod5e.werewolf-sheet .items-list .item,
-.wod5e.werewolf-sheet.window-app,
-.wod5e.werewolf-sheet.window-app .window-header {
   border-color: var(--werewolf-primary);
 }
 
@@ -50,24 +52,20 @@
 }
 
 .wod5e.werewolf-sheet .profile-img,
-.wod5e.werewolf-sheet .item-image img {
+.wod5e.werewolf-sheet .item-image img,
+.wod5e.werewolf-sheet .sheet-banner {
   background: var(--werewolf-primary);
 }
 
 .wod5e.werewolf-sheet .item-image.gift-rollable img {
-    box-shadow: inset 1px 1px 4px 0 rosybrown;
-    border: 1px solid var(--werewolf-primary);
-    filter: drop-shadow(2px 2px 1px grey);
-    border-radius: 4px;
+  box-shadow: inset 1px 1px 4px 0 rosybrown;
+  border: 1px solid var(--werewolf-primary);
+  filter: drop-shadow(2px 2px 1px grey);
+  border-radius: 4px;
 }
 
 .wod5e.werewolf-sheet .sheet-banner {
-  background: var(--werewolf-primary);
   color: #CCC;
-}
-
-.wod5e.werewolf-sheet .actor-header .profile-img-zone h1 {
-  color: var(--werewolf-primary);
 }
 
 .wod5e.werewolf-sheet .harano {
@@ -119,8 +117,16 @@
   background: #ff6400;
   color: #f7f3eb;
   transition-duration: 0.3s;
-  text-shadow: 0 0 10px red;
   cursor: pointer;
+}
+
+.wod5e.werewolf-sheet button:hover,
+.wod5e.werewolf-sheet button:focus,
+.wod5e.werewolf-sheet .rollable:hover,
+.wod5e.werewolf-sheet .rollable:focus,
+.wod5e.werewolf-sheet .system-rollable:hover,
+.wod5e.werewolf-sheet .system-rollable:focus {
+  text-shadow: 0 0 10px var(--werewolf-primary);
 }
 
 .wod5e.werewolf-sheet button.werewolf-button.active,
@@ -148,7 +154,10 @@
 }
 
 /* resource-counters.css */
-.wod5e.werewolf-sheet .resource-value .resource-value-step.active {
+.wod5e.werewolf-sheet .resource-value .resource-value-step.active,
+.wod5e.werewolf-sheet .resource-value-static .resource-value-static-step.active,
+.wod5e.werewolf-sheet .resource-counter .resource-counter-step[data-state="-"],
+.wod5e.werewolf-sheet .cell-resource-counter .cell-resource-counter-step[data-state="-"] {
   background-color: var(--werewolf-primary);
 }
 
@@ -170,18 +179,6 @@
   border-radius: 0;
 }
 
-.wod5e.werewolf-sheet .resource-value-static .resource-value-static-step.active {
-  background-color: var(--werewolf-primary);
-}
-
-.wod5e.werewolf-sheet .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: var(--werewolf-primary);
-}
-
-.wod5e.werewolf-sheet .cell-resource-counter .cell-resource-counter-step[data-state="-"] {
-  background-color: var(--werewolf-primary);
-}
-
 .wod5e.werewolf-sheet .crinos-health .resource-counter-step {
   border: 1px solid #c11f1f;
 }
@@ -190,10 +187,11 @@
 .wod5e.werewolf-sheet .flex-group-center,
 .wod5e.werewolf-sheet .flex-group-left,
 .wod5e.werewolf-sheet .flex-group-right {
-    border: 1px solid var(--werewolf-primary);
+  border: 1px solid var(--werewolf-primary);
 }
 
 /* inputs.css */
-.wod5e.werewolf-sheet input, .wod5e select {
+.wod5e.werewolf-sheet input,
+.wod5e select {
   border: 1px solid var(--werewolf-primary);
 }

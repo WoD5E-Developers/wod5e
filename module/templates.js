@@ -50,6 +50,9 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/templates/actor/parts/spc/exceptional-dice-pools.hbs',
     'systems/vtm5e/templates/actor/parts/spc/generaldifficulty.hbs',
     'systems/vtm5e/templates/actor/parts/spc/spc-disciplines.hbs',
+    'systems/vtm5e/templates/actor/parts/spc/spc-gifts.hbs',
+    'systems/vtm5e/templates/actor/parts/spc/spc-edges.hbs',
+    'systems/vtm5e/templates/actor/parts/spc/type-selector.hbs',
 
     // Group Sheet Partials
     'systems/vtm5e/templates/actor/parts/group/type-selector.hbs',

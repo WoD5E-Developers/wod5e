@@ -1,8 +1,8 @@
 <form class="{{cssClass}} flexcol {{#if locked}}locked{{/if}} spc-sheet" autocomplete="off">
   {{#if displayBanner}}
-  <div class="sheet-banner">
-    <h1>{{localize "WOD5E.SPC.Label"}}</h1>
-  </div>
+    <div class="sheet-banner">
+      <h1>{{localize "WOD5E.SPC.Label"}}</h1>
+    </div>
   {{/if}}
 
   {{!-- SPC Sheet Header --}}
@@ -13,14 +13,16 @@
             {{> "systems/vtm5e/templates/actor/parts/profile-img.hbs"}}
         </div>
         <div class="header-rows-top">
-            <div class="header-row-1 grid-4col">
+            <div class="header-row-1 grid-3col">
                 {{!-- Text input header fields --}}
                 <h1 class="charname"><input class="no-border" name="name" type="text" value="{{actor.name}}"
                   placeholder="{{localize 'WOD5E.Name'}}" /></h1>
-                  
-                {{> "systems/vtm5e/templates/actor/parts/spc/generaldifficulty.hbs"}}
+                {{> "systems/vtm5e/templates/actor/parts/spc/type-selector.hbs"}}
+            </div>
+            <div class="spc-header-row-2 grid-2col">
                 {{> "systems/vtm5e/templates/actor/parts/health.hbs"}}
                 {{> "systems/vtm5e/templates/actor/parts/willpower.hbs"}}
+                {{> "systems/vtm5e/templates/actor/parts/spc/generaldifficulty.hbs"}}
             </div>
         </div>
     </div>
@@ -35,7 +37,17 @@
       
       {{> "systems/vtm5e/templates/actor/parts/notes.hbs"}}
 
-      {{> "systems/vtm5e/templates/actor/parts/spc/spc-disciplines.hbs"}}
+      {{#ifeq actor.system.gamesystem 'vampire'}}
+        {{> "systems/vtm5e/templates/actor/parts/spc/spc-disciplines.hbs"}}
+      {{/ifeq}}
+
+      {{#ifeq actor.system.gamesystem 'werewolf'}}
+        {{> "systems/vtm5e/templates/actor/parts/spc/spc-gifts.hbs"}}
+      {{/ifeq}}
+
+      {{#ifeq actor.system.gamesystem 'hunter'}}
+        {{> "systems/vtm5e/templates/actor/parts/spc/spc-edges.hbs"}}
+      {{/ifeq}}
       </div>
   </section>
 </form>

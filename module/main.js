@@ -281,7 +281,6 @@ Hooks.on('updateActor', (actor) => {
  * @returns {Promise}
  */
 async function createVampireMacro (data, slot) {
-  console.log(data)
   if (data.type !== 'Item') return
   if (!('data' in data)) return ui.notifications.warn('You can only create macro buttons for owned Items')
   const item = data.system

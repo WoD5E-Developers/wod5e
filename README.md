@@ -1,7 +1,7 @@
 
 # World of Darkness 5e System
 
-[![Foundry Shield 12]][Foundry URL]
+[![Foundry Version Support]][System URL]
 [![MIT License]][MIT URL]
 [![GitHub Super-Linter]][Super-Linter URL]
 
@@ -27,7 +27,7 @@ Replace the 1s with however many you want to roll for each type, and let the dic
 
 ## Feedback
 
-Bugs or feature requests created to this repository are greatly appreciate. Please use the [Issues](https://github.com/WoD5E-Developers/wod5e//issues) page for these!
+Bugs or feature requests created to this repository are greatly appreciate. Please use the [Issues](https://github.com/WoD5E-Developers/wod5e/issues) page for these!
 
 You can also reach out to "weinerdolphin" or "veilza" on Discord, or leave a message in the #wod channel in the official Foundry Discord server, with any issues. We'd love to help you get your game running smoothly!
 
@@ -37,7 +37,7 @@ Please check the issues list before suggesting new features.
 
 The lead system developer is [Veilza](https://github.com/Veilza), and the original creator of the system is [Rayji96](https://github.com/Rayji96).
 
-There's lots of other people who contribute to the system, too, and you can find the full list of them down [here](./contributors.md)!
+There's lots of other people who contribute to the system, too, and you can find the full list of them down [here](https://github.com/WoD5E-Developers/.github/blob/main/contributors.md)!
 
 ## Dark Pack
 
@@ -45,13 +45,13 @@ There's lots of other people who contribute to the system, too, and you can find
 
 Licensed WoD 5e materials will not be provided as this system is provided for public usage, for free. We have made every effort to keep the Dark Pack guidelines as posted at [Dark Pack Agreement].
 
-[Foundry Shield 12]: https://img.shields.io/badge/Foundry-12-informational
-[Foundry URL]: https://foundryvtt.com
+[Foundry Version Support]: https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dplastic%26url%3Dhttps%3A%2F%2Fgithub.com%2FWoD5E-Developers%2Fwod5e%2Freleases%2Flatest%2Fdownload%2Fsystem.json
+[System URL]: https://foundryvtt.com/packages/vtm5e/
 
 [MIT License]: https://img.shields.io/badge/License-MIT-green
-[MIT URL]: https://github.com/WoD5E-Developers/wod5e//blob/main/LICENSE
+[MIT URL]: https://github.com/WoD5E-Developers/wod5e/blob/main/LICENSE
 
-[GitHub Super-Linter]: https://github.com/WoD5E-Developers/wod5e//workflows/Super-Linter/badge.svg
+[GitHub Super-Linter]: https://github.com/WoD5E-Developers/wod5e/workflows/Super-Linter/badge.svg
 [Super-Linter URL]: https://github.com/marketplace/actions/super-linter
 
 [Dark Pack]: https://s3-eu-north-1.amazonaws.com/pdx-campaign-wp-data/uploads/sites/10/2021/10/05102936/darkpack_logo2-300x300.png
