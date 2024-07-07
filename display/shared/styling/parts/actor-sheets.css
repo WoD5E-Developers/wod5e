@@ -1,0 +1,11 @@
+:root {
+  --system-primary: #000000f0;
+}
+
+.sheet .window-header {
+  background: var(--system-primary);
+}
+
+.sheet .window-content {
+  background: var(--system-primary);
+}

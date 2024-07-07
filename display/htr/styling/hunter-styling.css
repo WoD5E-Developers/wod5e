@@ -2,6 +2,10 @@
   --hunter-primary: #cc6d28;
 }
 
-.hunter-sheet {
-  box-shadow: 0 0 20px var(--hunter-primary)
+.sheet.hunter .window-header {
+  background: var(--hunter-primary);
+}
+
+.sheet.hunter {
+  box-shadow: 0 0 20px var(--hunter-primary);
 }
