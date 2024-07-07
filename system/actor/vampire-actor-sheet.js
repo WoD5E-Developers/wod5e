@@ -18,7 +18,7 @@ export class VampireActorSheet extends GhoulActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
       template: 'systems/vtm5e/display/vtm/actors/vampire-sheet.hbs',
-      width: 940,
+      width: 1000,
       height: 700,
       tabs: [{
         navSelector: '.sheet-tabs',

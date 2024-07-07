@@ -2,6 +2,7 @@
 .actor.sheet {
   position: fixed;
   overflow: hidden;
+  min-width: 770px;
 }
 
 /* Increase z-index of the window handle to compensate for the actor banner*/
@@ -95,6 +96,7 @@
   display: flex;
   flex-flow: column;
   flex-grow: 1;
+  flex-shrink: 0;
 }
 
 .actor.sheet .attribute, .skill {
@@ -111,17 +113,17 @@
   background-color: #9d9d9d;
   top: 30px;
   left: -2px;
-  overflow: hidden; /* Ensure no overflow from this container */
+  overflow: hidden;
 }
 
 .actor.sheet .sheet-tabs {
   display: flex;
   flex-direction: column;
-  height: calc(100% - 30px); /* Adjust height to account for top offset */
+  height: calc(100% - 30px);
   align-items: flex-start;
   width: 50px;
   justify-content: flex-start;
-  overflow: hidden; /* Ensure no overflow from tabs */
+  overflow: hidden;
 }
 
 .actor.sheet .sheet-tabs > [data-tab] {
@@ -145,6 +147,22 @@
 }
 
 /* Stats Page */
-.actor.sheet .stats .custom-rolls {
-  max-width: 150px;
+.stats-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stats-content > .skills-attributes,
+.stats-content > .custom-rolls {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 600px) {
+  .stats-content {
+    flex-direction: column;
+  }
+
+  .stats-content > .custom-rolls {
+    margin-top: 10px;
+  }
 }

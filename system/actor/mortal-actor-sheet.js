@@ -17,7 +17,7 @@ export class MortalActorSheet extends WoDActor {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
       template: 'systems/vtm5e/display/shared/actors/mortal-sheet.hbs',
-      width: 940,
+      width: 1000,
       height: 700,
       tabs: [{
         navSelector: '.sheet-tabs',

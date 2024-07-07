@@ -18,7 +18,7 @@ export class WerewolfActorSheet extends WoDActor {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
       template: 'systems/vtm5e/display/wta/actors/werewolf-sheet.hbs',
-      width: 1050,
+      width: 1000,
       height: 700,
       tabs: [{
         navSelector: '.sheet-tabs',

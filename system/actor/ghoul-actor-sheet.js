@@ -18,7 +18,7 @@ export class GhoulActorSheet extends MortalActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
       template: 'systems/vtm5e/display/vtm/actors/ghoul-sheet.hbs',
-      width: 940,
+      width: 1000,
       height: 700,
       tabs: [{
         navSelector: '.sheet-tabs',
