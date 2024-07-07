@@ -1,3 +1,19 @@
+/* The actor sheet itself */
+.actor.sheet {
+  position: fixed;
+  overflow: hidden;
+}
+
+/* Increase z-index of the window handle to compensate for the actor banner*/
+.window-app .window-resizable-handle {
+  z-index: 2;
+}
+
+/* Sheet Header */
+.actor.sheet .sheet-body {
+  margin-left: 30px;
+}
+
 /* Sheet Banner */
 .actor.sheet .sheet-banner {
   text-align: center;
@@ -8,7 +24,64 @@
   position: absolute;
   bottom: -6px;
   width: 100%;
-  opacity: 0.8;
+  left: 10px;
+  z-index: 1;
+}
+
+/* Actor Header */
+.actor.sheet .actor-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  flex-grow: 0;
+}
+
+.actor.sheet .header-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  min-width: 315px;
+}
+
+.actor.sheet .header-profile-img {
+  margin-bottom: 10px;
+  max-width: 100px;
+}
+
+.actor.sheet .charname input {
+  width: 100%;
+  text-align: center;
+}
+
+.actor.sheet .header-fields {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-self: flex-end;
+  margin-bottom: 30px;
+}
+
+.actor.sheet .header-fields-left, .header-fields-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actor.sheet .header-fields-left {
+  flex: 1;
+  padding-right: 10px;
+}
+
+.actor.sheet .header-fields-right {
+  flex: 1;
+  padding-left: 10px;
+}
+
+.actor.sheet .lock-btn {
+  max-width: 35px;
+  align-self: center;
 }
 
 /* Statistics */
@@ -29,4 +102,49 @@
   justify-content: space-between;
   margin-left: 30px;
   margin-right: 30px;
+}
+
+/* Sheet tabs */
+.actor.sheet .tabs-container {
+  position: absolute;
+  height: 100%;
+  background-color: #9d9d9d;
+  top: 30px;
+  left: -2px;
+  overflow: hidden; /* Ensure no overflow from this container */
+}
+
+.actor.sheet .sheet-tabs {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 30px); /* Adjust height to account for top offset */
+  align-items: flex-start;
+  width: 50px;
+  justify-content: flex-start;
+  overflow: hidden; /* Ensure no overflow from tabs */
+}
+
+.actor.sheet .sheet-tabs > [data-tab] {
+  display: flex;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.actor.sheet .resource-header {
+  margin-bottom: 10px;
+  display: block;
+  font-weight: 200;
+  font-size: 16pt;
+  border-bottom: 1px solid black;
+  width: 90%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Stats Page */
+.actor.sheet .stats .custom-rolls {
+  max-width: 150px;
 }

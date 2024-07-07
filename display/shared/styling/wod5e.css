@@ -53,8 +53,5 @@
 /* Sheet Window Content */
 .sheet .window-content {
   box-shadow: 0 0 5px var(--system-primary);
-}
-
-.sheet .window-content input {
-  color: #CCC;
+  padding-bottom: 20px;
 }

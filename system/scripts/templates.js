@@ -13,7 +13,6 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/actors/parts/exp.hbs',
     'systems/vtm5e/display/shared/actors/parts/features.hbs',
     'systems/vtm5e/display/shared/actors/parts/health.hbs',
-    'systems/vtm5e/display/shared/actors/parts/profile-img.hbs',
     'systems/vtm5e/display/shared/actors/parts/other.hbs',
     'systems/vtm5e/display/shared/actors/parts/stats.hbs',
     'systems/vtm5e/display/shared/actors/parts/willpower.hbs',

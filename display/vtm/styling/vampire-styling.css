@@ -19,3 +19,10 @@
   background-color: var(--vampire-primary);
   color: #CCC;
 }
+
+/* Resource counters */
+.sheet.vampire .resource-value .resource-value-step.active,
+.sheet.vampire .resource-value-static .resource-value-static-step.active,
+.sheet.vampire .resource-counter .resource-counter-step[data-state="-"] {
+  background-color: var(--vampire-primary);
+}
