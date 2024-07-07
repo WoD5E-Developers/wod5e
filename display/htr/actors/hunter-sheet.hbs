@@ -1,11 +1,4 @@
 <form class="{{cssClass}} flexcol {{#if locked}}locked{{/if}}" autocomplete="off">
-    {{!-- Actor Type Banner --}}
-    {{#if displayBanner}}
-    <div class="sheet-banner">
-      {{localize "WOD5E.HTR.Label"}}
-    </div>
-    {{/if}}
-
     {{!-- Hunter Sheet Header --}}
     <header class="actor-header">
         <div class="header-fields">
@@ -53,7 +46,7 @@
                 <i class="fa-regular fa-chart-line"></i>
             </div>
             <div class="item" data-tab="edges" title="{{localize "WOD5E.HTR.Edges"}}">
-                <i class="fa-solid fa-bolt"></i>
+                <span class="symbol">e</span>
             </div>
             <div class="item" data-tab="features" title="{{localize "WOD5E.Tabs.Features"}}">
                 <i class="fas fa-gem"></i>
@@ -84,4 +77,11 @@
         {{!-- Other Tab --}}
         {{> "systems/vtm5e/display/shared/actors/parts/other.hbs"}}
     </section>
+
+    {{!-- Actor Type Banner --}}
+    {{#if displayBanner}}
+    <div class="sheet-banner">
+      {{localize "WOD5E.HTR.Label"}}
+    </div>
+    {{/if}}
 </form>

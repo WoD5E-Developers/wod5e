@@ -157,3 +157,8 @@ span.resource-counter-step:nth-child(5n) {
 span.resource-counter-step:last-child {
   margin-right: 0;
 }
+
+.actor.sheet .resource-value-empty {
+  position: absolute;
+  margin-left: -20px;
+}

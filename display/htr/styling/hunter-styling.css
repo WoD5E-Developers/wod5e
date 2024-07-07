@@ -1,5 +1,6 @@
 :root {
   --hunter-primary: #cc6d28;
+  --hunter-secondary: #ffb762;
 }
 
 /* Define splat-specific colours for the WOD5E Symbols */
@@ -7,6 +8,7 @@
   color: var(--hunter-primary);
 }
 
+/* Actor Sheet */
 .sheet.hunter .window-header {
   background: var(--hunter-primary);
 }
@@ -18,6 +20,10 @@
 .actor.sheet.hunter .sheet-banner {
   background-color: var(--hunter-primary);
   color: #CCC;
+}
+
+.actor.sheet.hunter .tabs-container {
+  background-color: var(--hunter-secondary);
 }
 
 /* Resource counters */

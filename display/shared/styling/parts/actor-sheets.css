@@ -10,9 +10,17 @@
   z-index: 2;
 }
 
+/* General Button Stuff */
+.actor.sheet .item-create,
+.actor.sheet .item-delete,
+.actor.sheet .item-edit {
+  position: absolute;
+  margin-left: -20px;
+}
+
 /* Sheet Header */
 .actor.sheet .sheet-body {
-  margin-left: 30px;
+  margin-left: 40px;
 }
 
 /* Sheet Banner */
@@ -85,27 +93,6 @@
   align-self: center;
 }
 
-/* Statistics */
-.actor.sheet .stats-container {
-  margin-top: 5px;
-  display: flex;
-  flex-flow: row;
-}
-
-.actor.sheet .stats-list {
-  display: flex;
-  flex-flow: column;
-  flex-grow: 1;
-  flex-shrink: 0;
-}
-
-.actor.sheet .attribute, .skill {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
 /* Sheet tabs */
 .actor.sheet .tabs-container {
   position: absolute;
@@ -132,8 +119,10 @@
   width: 50px;
   cursor: pointer;
   justify-content: center;
+  font-size: 15pt;
 }
 
+/* General Resources */
 .actor.sheet .resource-header {
   margin-bottom: 10px;
   display: block;
@@ -146,23 +135,48 @@
   margin-right: auto;
 }
 
-/* Stats Page */
-.stats-content {
+/* Statistics Page */
+.actor.sheet .stats-container {
+  margin-top: 5px;
+  display: flex;
+  flex-flow: row;
+}
+
+.actor.sheet .stats-list {
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.actor.sheet .attribute, .skill {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.actor.sheet .stats-content {
   display: flex;
   flex-wrap: wrap;
 }
 
-.stats-content > .skills-attributes,
-.stats-content > .custom-rolls {
+.actor.sheet .stats-content > .skills-attributes,
+.actor.sheet .stats-content > .custom-rolls {
   flex: 1 1 auto;
 }
 
 @media (max-width: 600px) {
-  .stats-content {
+  .actor.sheet .stats-content {
     flex-direction: column;
   }
 
-  .stats-content > .custom-rolls {
+  .actor.sheet .stats-content > .custom-rolls {
     margin-top: 10px;
   }
+}
+
+.actor.sheet .edit-skill {
+  position: absolute;
+  margin-left: -20px;
 }
