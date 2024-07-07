@@ -18,18 +18,6 @@ export const loadSettings = async function () {
     type: String
   })
 
-  game.settings.register('vtm5e', 'darkTheme', {
-    name: game.i18n.localize('WOD5E.Settings.DarkTheme'),
-    hint: game.i18n.localize('WOD5E.Settings.DarkThemeHint'),
-    scope: 'client',
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: (value) => {
-      document.body.classList.toggle('dark-theme', value)
-    }
-  })
-
   game.settings.register('vtm5e', 'actorBanner', {
     name: game.i18n.localize('WOD5E.Settings.ActorBanner'),
     hint: game.i18n.localize('WOD5E.Settings.ActorBannerHint'),

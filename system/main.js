@@ -83,9 +83,6 @@ Hooks.once('init', async function () {
 
 // Anything that needs to run once the world is ready
 Hooks.once('ready', async function () {
-  // After settings are loaded, check if we need to apply dark theme
-  document.body.classList.toggle('dark-theme', game.settings.get('vtm5e', 'darkTheme'))
-
   // Apply the currently selected language as a CSS class so we can
   // modify elements based on locale if needed
   document.body.classList.add(game.settings.get('core', 'language'))

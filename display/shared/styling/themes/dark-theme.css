@@ -1,0 +1,19 @@
+/* Variables */
+:root {
+  --system-dark-primary: #000000f0;
+}
+
+/* Sheet window Header */
+.theme-dark .sheet .window-header {
+  background: var(--system-dark-primary);
+}
+
+/* Sheet Window Content */
+.theme-dark .sheet .window-content {
+  background: #040404f0;
+  color: #CCC;
+}
+
+.theme-dark .sheet .window-content input {
+  color: #CCC;
+}
