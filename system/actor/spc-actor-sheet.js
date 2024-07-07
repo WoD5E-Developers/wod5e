@@ -12,7 +12,7 @@ export class SPCActorSheet extends WoDActor {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['wod5e', 'sheet', 'actor', 'spc']
+    const classList = ['wod5e', 'sheet', 'actor', 'spc-sheet']
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
@@ -43,11 +43,13 @@ export class SPCActorSheet extends WoDActor {
     // Push the appropriate CSS class depending on SPC type
     // Additionally, update the gamesystem
     if (spcType === 'vampire' || spcType === 'ghoul') {
-      this.options.classes.push(...['vampire-sheet'])
+      this.options.classes.push(...['vampire'])
     } else if (spcType === 'hunter') {
-      this.options.classes.push(...['hunter-sheet'])
+      this.options.classes.push(...['hunter'])
     } else if (spcType === 'werewolf') {
-      this.options.classes.push(...['werewolf-sheet'])
+      this.options.classes.push(...['werewolf'])
+    } else {
+      this.options.classes.push(...['mortal'])
     }
 
     return 'systems/vtm5e/display/shared/actors/spc-sheet.hbs'
@@ -358,7 +360,7 @@ export class SPCActorSheet extends WoDActor {
       default: 'submit'
     },
     {
-      classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+      classes: ['wod5e', `${system}-dialog`, `${system}`]
     }).render(true)
   }
 
@@ -372,17 +374,18 @@ export class SPCActorSheet extends WoDActor {
 
     // Add a new sheet class depending on the type of sheet
     if (spcType === 'vampire' || spcType === 'ghoul') {
-      sheetElement.removeClass('hunter-sheet werewolf-sheet')
-      sheetElement.addClass('vampire-sheet')
+      sheetElement.removeClass('hunter werewolf')
+      sheetElement.addClass('vampire')
     } else if (spcType === 'hunter') {
-      sheetElement.removeClass('vampire-sheet werewolf-sheet')
-      sheetElement.addClass('hunter-sheet')
+      sheetElement.removeClass('vampire werewolf')
+      sheetElement.addClass('hunter')
     } else if (spcType === 'werewolf') {
-      sheetElement.removeClass('hunter-sheet vampire-sheet')
-      sheetElement.addClass('werewolf-sheet')
+      sheetElement.removeClass('hunter vampire')
+      sheetElement.addClass('werewolf')
     } else {
       // Default to a mortal sheet
-      sheetElement.removeClass('hunter-sheet vampire-sheet werewolf-sheet')
+      sheetElement.removeClass('hunter vampire werewolf')
+      sheetElement.addClass('mortal')
     }
   }
 }

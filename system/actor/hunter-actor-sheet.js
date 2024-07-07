@@ -13,7 +13,7 @@ export class HunterActorSheet extends WoDActor {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['wod5e', 'hunter-sheet', 'sheet', 'actor', 'hunter']
+    const classList = ['wod5e', 'sheet', 'actor', 'hunter-sheet', 'hunter']
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,

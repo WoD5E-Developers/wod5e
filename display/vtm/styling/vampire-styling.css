@@ -1,3 +1,7 @@
 :root {
   --vampire-primary: #790813;
 }
+
+.vampire-sheet {
+  box-shadow: 0 0 20px var(--vampire-primary)
+}

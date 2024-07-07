@@ -11,7 +11,7 @@ export class GroupActorSheet extends WoDActor {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['wod5e', 'sheet', 'actor', 'group', 'group-sheet']
+    const classList = ['wod5e', 'sheet', 'actor', 'group-sheet']
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
@@ -41,20 +41,20 @@ export class GroupActorSheet extends WoDActor {
     // Includes initialization for the CSS classes
     switch (this.actor.system.groupType) {
       case 'cell':
-        this.options.classes.push(...['hunter-sheet'])
+        this.options.classes.push(...['hunter'])
         return 'systems/vtm5e/display/htr/actors/cell-sheet.hbs'
 
       case 'coterie':
-        this.options.classes.push(...['coterie-sheet'])
+        this.options.classes.push(...['vampire'])
         return 'systems/vtm5e/display/vtm/actors/coterie-sheet.hbs'
 
       case 'pack':
-        this.options.classes.push(...['werewolf-sheet'])
+        this.options.classes.push(...['werewolf'])
         return 'systems/vtm5e/display/wta/actors/pack-sheet.hbs'
 
       default:
         console.log('Oops! Something broke...')
-        this.options.classes.push(...['coterie-sheet'])
+        this.options.classes.push(...['mortal'])
         return 'systems/vtm5e/display/vtm/actors/coterie-sheet.hbs'
     }
   }
@@ -235,24 +235,23 @@ export class GroupActorSheet extends WoDActor {
     // Add a new sheet class depending on the type of sheet
     switch (this.actor.system.groupType) {
       case 'cell':
-        sheetElement.removeClass('coterie-sheet werewolf-sheet')
-        sheetElement.addClass('hunter-sheet')
+        sheetElement.removeClass('vampire werewolf')
+        sheetElement.addClass('hunter')
         break
 
       case 'coterie':
-        sheetElement.removeClass('hunter-sheet werewolf-sheet')
-        sheetElement.addClass('coterie-sheet')
+        sheetElement.removeClass('hunter werewolf')
+        sheetElement.addClass('vampire')
         break
 
       case 'pack':
-        sheetElement.removeClass('hunter-sheet coterie-sheet')
-        sheetElement.addClass('werewolf-sheet')
+        sheetElement.removeClass('hunter vampire')
+        sheetElement.addClass('werewolf')
         break
 
       default:
-        console.log('Oops! Something broke...')
-        sheetElement.removeClass('hunter-sheet werewolf-sheet')
-        sheetElement.addClass('coterie-sheet')
+        sheetElement.removeClass('hunter werewolf vampire')
+        sheetElement.addClass('mortal')
     }
   }
 }

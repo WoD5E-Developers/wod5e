@@ -13,7 +13,7 @@ export class GhoulActorSheet extends MortalActorSheet {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['wod5e', 'sheet', 'actor', 'ghoul', 'ghoul-sheet']
+    const classList = ['wod5e', 'sheet', 'actor', 'ghoul-sheet', 'vampire']
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,

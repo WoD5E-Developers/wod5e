@@ -1,3 +1,7 @@
 :root {
   --werewolf-primary: #4e2100ef;
 }
+
+.werewolf-sheet {
+  box-shadow: 0 0 20px var(--werewolf-primary)
+}

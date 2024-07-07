@@ -13,7 +13,7 @@ export class WerewolfActorSheet extends WoDActor {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['wod5e', 'werewolf-sheet', 'actor', 'sheet', 'werewolf']
+    const classList = ['wod5e', 'actor', 'sheet', 'werewolf-sheet', 'werewolf']
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
