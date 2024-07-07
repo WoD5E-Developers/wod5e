@@ -9,3 +9,8 @@
 .sheet.vampire {
   box-shadow: 0 0 20px var(--vampire-primary);
 }
+
+.actor.sheet.vampire .sheet-banner {
+  background-color: var(--vampire-primary);
+  color: #CCC;
+}

@@ -9,3 +9,8 @@
 .sheet.hunter {
   box-shadow: 0 0 20px var(--hunter-primary);
 }
+
+.actor.sheet.hunter .sheet-banner {
+  background-color: var(--hunter-primary);
+  color: #CCC;
+}

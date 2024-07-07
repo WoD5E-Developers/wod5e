@@ -7,5 +7,17 @@
 }
 
 .sheet .window-content {
-  background: var(--system-primary);
+  background: #040404f0;
+  box-shadow: 0 0 20px var(--system-primary);
+}
+
+.actor.sheet .sheet-banner {
+  display: flex;
+  flex-grow: 0;
+  flex-direction: column;
+  text-align: center;
+  margin: -10px -10px 5px;
+  background-color: var(--system-primary);
+  font-size: 20pt;
+  padding: 3px;
 }

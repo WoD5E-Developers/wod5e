@@ -9,3 +9,8 @@
 .sheet.werewolf {
   box-shadow: 0 0 20px var(--werewolf-primary);
 }
+
+.actor.sheet.werewolf .sheet-banner {
+  background-color: var(--werewolf-primary);
+  color: #CCC;
+}
