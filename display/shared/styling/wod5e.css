@@ -12,7 +12,7 @@
 @import url("./parts/chat.css");
 @import url("./parts/locked.css");
 @import url("./parts/menus.css");
-@import url("./parts/group-sheet.css");
+@import url("./parts/actors-sidebar.css");
 
 /* Language-specific styling */
 @import url("./lang/pl.css");
