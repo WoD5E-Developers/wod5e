@@ -2,6 +2,11 @@
   --werewolf-primary: #4e2100ef;
 }
 
+/* Define splat-specific colours for the WOD5E Symbols */
+.wod5e .symbol.werewolf {
+  color: var(--werewolf-primary);
+}
+
 .sheet.werewolf .window-header {
   background: var(--werewolf-primary);
 }

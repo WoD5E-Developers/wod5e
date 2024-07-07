@@ -2,6 +2,11 @@
   --vampire-primary: #650202f0;
 }
 
+/* Define splat-specific colours for the WOD5E Symbols */
+.wod5e .symbol.vampire {
+  color: var(--vampire-primary);
+}
+
 .sheet.vampire .window-header {
   background: var(--vampire-primary);
 }

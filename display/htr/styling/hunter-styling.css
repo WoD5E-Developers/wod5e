@@ -2,6 +2,11 @@
   --hunter-primary: #cc6d28;
 }
 
+/* Define splat-specific colours for the WOD5E Symbols */
+.wod5e .symbol.hunter {
+  color: var(--hunter-primary);
+}
+
 .sheet.hunter .window-header {
   background: var(--hunter-primary);
 }

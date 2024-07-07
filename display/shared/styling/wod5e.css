@@ -20,27 +20,41 @@
 @import url("./lang/de.css");
 @import url("./lang/ru.css");
 
+/* Variables */
 :root {
-    --color-text-light-highlight: #f9f5ed;
-    --color-text-light-heading: #f1ede6;
-    --color-border-light-1: var(--color-border-dark-1);
-    --color-border-light-2: var(--color-border-dark-2);
+  --system-primary: #fff4b7f0;
+}
+
+/* Fonts */
+@font-face {
+  font-family: cormorantLight;
+  src: url("../../../assets/fonts/Cormorant-Light-webfont.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: cormorantLight;
-    src: url("../../../assets/fonts/Cormorant-Light-webfont.woff") format("woff");
-    font-weight: 400;
-    font-style: normal;
+  font-family: "wod5eSymbols";
+  src: url("../../../assets/fonts/wod5e-symbols.ttf") format("truetype");
 }
 
-@font-face {
-    font-family: "wod5eSymbols";
-    src: url("../../../assets/fonts/wod5e-symbols.ttf") format("truetype");
-}
-
+/* Define the class that will be used for WOD5E symbols */
 .wod5e .symbol {
-    font-family: "wod5eSymbols", sans-serif;
-    color: var(--vampire-primary);
-    font-size: 16pt;
+  font-family: "wod5eSymbols", sans-serif;
+  color: var(--vampire-primary);
+  font-size: 16pt;
+}
+
+/* Sheet window Header */
+.sheet .window-header {
+  background: var(--system-primary);
+}
+
+/* Sheet Window Content */
+.sheet .window-content {
+  box-shadow: 0 0 5px var(--system-primary);
+}
+
+.sheet .window-content input {
+  color: #CCC;
 }
