@@ -1,0 +1,196 @@
+.chat-message .dice-result {
+  cursor: pointer;
+}
+
+.chat-message .modifiers {
+  margin-bottom: 2px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chat-message .modifiers .mod {
+  text-transform: uppercase;
+  font-size: 8pt;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 0 5px;
+  border: 1px solid #424242;
+  margin: 1px 3px;
+}
+
+.chat-message .total-and-difficulty {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #000;
+  border-bottom: 0;
+}
+
+.chat-message .roll-total,
+.chat-message .roll-difficulty {
+  display: flex;
+  flex-grow: 1;
+  text-align: center;
+  justify-content: space-evenly;
+}
+
+.chat-message .total-title,
+.chat-message .difficulty-title {
+  font-weight: bold;
+}
+
+.chat-message .roll-result-label {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #000;
+}
+
+.chat-message .roll-result-label.success,
+.chat-message .roll-result-label.critical-success {
+  background-color: #065200;
+  color: #dbd6d6;
+}
+
+.chat-message .roll-result-label.messy-critical {
+  background-color: #f10808;
+  color: #c5c3c3;
+}
+
+.chat-message .roll-result-label.failure,
+.chat-message .roll-result-label.critical-failure,
+.chat-message .roll-result-label.bestial-failure {
+  background-color: #900;
+  color: #dbdbdb;
+}
+
+.chat-message .roll-result-label.desperation-failure {
+  background-color: #e97c00;
+}
+
+.chat-message .roll-result-label.rage-failure {
+  background-color: #783b01;
+  color: #dbdbdb;
+}
+
+.roll-img {
+  max-width: 40px;
+  margin: 2px;
+  border-radius: 4px;
+}
+
+.roll-img.mortal-dice {
+  background: rgb(20, 20, 20);
+  border-color: rgb(15, 55, 5);
+}
+
+.roll-img.vampire-dice {
+  background: rgb(20, 20, 20);
+  border-color: rgb(200, 200, 200);
+}
+
+.roll-img.hunger-dice,
+.roll-img.rage-dice {
+  background: #9b0b00;
+  border-color: #330300;
+}
+
+.roll-img.hunter-dice {
+  background: #ee7e1f;
+  border-color: black;
+}
+
+.roll-img.desperation-dice {
+  background: black;
+  border-color: #cc6d28;
+}
+
+.roll-img.werewolf-dice {
+  background: #5d651a;
+  border-color: #131405;
+}
+
+.roll-img.rerolled {
+  background: #7b7b7b80;
+}
+
+.roll-img.hunger-dice.rerolled,
+.roll-img.rage-dice.rerolled {
+  border-color: #d3d3d3;
+  filter: invert(1);
+}
+
+.roll-label {
+  font-weight: 700;
+  font-family: Vollkorn, serif;
+  font-variant-caps: titling-caps;
+  font-size: 1.4em;
+  margin: 0.1em;
+  text-align: center;
+}
+
+.roll-label .danger {
+  color: #831515;
+}
+
+.roll-label .success {
+  color: #18520b;
+}
+
+.roll-content {
+  font-size: 120%;
+  font-family: Vollkorn, serif;
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+p.roll-label.uppercase {
+  letter-spacing: 0.03rem;
+  line-height: 1.4rem;
+}
+
+.willpower-reroll .die {
+  flex: 0;
+}
+
+.willpower-reroll .selected::after {
+  position: absolute;
+  font-size: 35px;
+  font-weight: 700;
+  margin-left: -38px;
+  margin-top: 0;
+  content: "⟳";
+}
+
+.roll-label:nth-of-type(1) {
+  line-height: 1em;
+  margin-top: 0.4em;
+  margin-bottom: 0.3em;
+}
+
+.chat-message .message-header .message-sender {
+  flex: 3;
+  margin: 0;
+  white-space: nowrap;
+  font-family: Amarante, serif;
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.chat-message {
+  margin: 3px;
+  padding: 5px 9px;
+  border-radius: 0;
+}
+
+h3.item-name {
+  border-bottom: 0;
+  margin: 0;
+  align-items: center;
+  font-family: Amarante, serif;
+  font-size: 1.4em;
+}

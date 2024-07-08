@@ -18,6 +18,45 @@
   margin-left: -20px;
 }
 
+/* Collapsible Descrptions */
+.actor.sheet .collapsible-content{
+  padding: 0 1em;
+}
+
+.actor.sheet .collapsible:hover,
+.actor.sheet .collapsible:focus {
+  cursor: pointer;
+}
+
+.actor.sheet .collapsible-content {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  font-family: Vollkorn, serif;
+  line-height: 1.6em;
+  word-spacing: 0.05em;
+  font-size: 1.1em;
+  color: hwb(0deg 7% 98% / 100%);
+  border-radius: 0.5em;
+  background: #eeece8;
+}
+
+.actor.sheet .discipline-description, .actor.sheet .edge-description, .actor.sheet .gift-description {
+  width: 100%;
+  resize: none;
+  font-family: Vollkorn, serif;
+  line-height: 1.6em;
+  word-spacing: 0.05em;
+  font-size: 1em;
+  border: 0;
+  border-radius: 0.5em;
+  height: auto;
+  font-weight: 500;
+  padding: 0 1em;
+  margin-bottom: -8px;
+}
+
 /* Sheet Header */
 .actor.sheet .sheet-body {
   margin-left: 40px;
@@ -119,7 +158,24 @@
   width: 50px;
   cursor: pointer;
   justify-content: center;
+  align-items: center;
   font-size: 15pt;
+  padding: 5px;
+}
+
+.actor.sheet .sheet-tabs > [data-tab] .navicon {
+  display: flex;
+  align-items: center;
+  background-color: #CCC;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+.actor.sheet .sheet-tabs > [data-tab] .navicon i,
+.actor.sheet .sheet-tabs > [data-tab] .navicon .symbol {
+  width: 100%;
 }
 
 /* General Resources */

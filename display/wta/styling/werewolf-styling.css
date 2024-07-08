@@ -26,3 +26,8 @@
 .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
   background-color: var(--werewolf-primary);
 }
+
+/* Group Sheets */
+.group-header.pack {
+  background-color: rgb(78 33 0 / 80%) !important;
+}

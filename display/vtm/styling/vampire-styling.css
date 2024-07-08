@@ -26,3 +26,8 @@
 .sheet.vampire .resource-counter .resource-counter-step[data-state="-"] {
   background-color: var(--vampire-primary);
 }
+
+/* Group Sheets */
+.group-header.coterie {
+  background-color: rgb(121 8 19 / 80%) !important;
+}

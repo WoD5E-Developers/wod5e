@@ -32,3 +32,8 @@
 .sheet.hunter .resource-counter .resource-counter-step[data-state="-"] {
   background-color: var(--hunter-primary);
 }
+
+/* Group Sheets */
+.group-header.cell {
+  background-color: rgb(204 109 40 / 80%) !important;
+}
