@@ -101,6 +101,7 @@
 .actor.sheet .charname input {
   width: 100%;
   text-align: center;
+  height: 34px;
 }
 
 .actor.sheet .header-fields {
