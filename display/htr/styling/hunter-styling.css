@@ -4,13 +4,20 @@
 }
 
 /* Define splat-specific colours for the WOD5E Symbols */
-.wod5e .symbol.hunter {
+ .symbol.hunter {
   color: var(--hunter-primary);
 }
 
 /* Actor Sheet */
 .sheet.hunter .window-header {
   background: var(--hunter-primary);
+}
+
+.hunter.sheet.window-app .window-resizable-handle {
+  border-top: 3px double var(--hunter-primary);
+  border-left: 3px double var(--hunter-primary);
+  border-bottom: 1px solid var(--hunter-primary);
+  border-right: 1px solid var(--hunter-primary);
 }
 
 .sheet.hunter {
@@ -36,4 +43,39 @@
 /* Group Sheets */
 .group-header.cell {
   background-color: rgb(204 109 40 / 80%) !important;
+}
+
+/* Dialogs */
+.hunter-dialog.window-app {
+  border: 4px solid var(--hunter-primary);
+}
+
+.hunter-dialog .window-header {
+  background: var(--hunter-primary);
+}
+
+.hunter-dialog.window-app .window-header {
+  border-bottom: 4px double #fff;
+}
+
+.hunter-dialog .window-content .sheet-body .tab > .resource-label,
+.hunter-dialog .items-list .item-header,
+.hunter-dialog .items-list .spc-item-header,
+.hunter-dialog .spc-pool-header,
+.hunter-dialog .actor-header .profile-img-zone h1 {
+  color: var(--hunter-primary);
+  border-color: var(--hunter-primary);
+}
+
+.hunter-dialog .dialog-contents .dice-group-header {
+  background-color: var(--hunter-primary);
+}
+
+.hunter-dialog input,
+.hunter-dialog select {
+  border: 1px solid var(--hunter-primary);
+}
+
+.hunter-dialog .base-dice-group {
+  border: 1px solid var(--hunter-secondary);
 }
