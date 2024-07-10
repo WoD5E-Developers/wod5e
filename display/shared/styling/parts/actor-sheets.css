@@ -213,6 +213,14 @@
   margin-right: 30px;
 }
 
+.actor.sheet .specialty {
+  position: relative;
+  top: -5px;
+  font-size: 10pt;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .actor.sheet .stats-content {
   display: flex;
   flex-wrap: wrap;
