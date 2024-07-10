@@ -3,6 +3,7 @@
   position: fixed;
   overflow: hidden;
   min-width: 770px;
+  min-height: 300px;
 }
 
 /* Increase z-index of the window handle to compensate for the actor banner*/
