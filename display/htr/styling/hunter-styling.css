@@ -18,6 +18,8 @@
   border-left: 3px double var(--hunter-primary);
   border-bottom: 1px solid var(--hunter-primary);
   border-right: 1px solid var(--hunter-primary);
+  background-color: var(--hunter-secondary);
+  color: #2b2b2b;
 }
 
 .sheet.hunter {
@@ -31,6 +33,15 @@
 
 .actor.sheet.hunter .tabs-container {
   background-color: var(--hunter-secondary);
+}
+
+.actor.sheet.hunter .tabs-container .active .navicon {
+  background-color: var(--hunter-primary);
+  color: #CCC;
+}
+
+.actor.sheet.hunter .tabs-container .active .navicon .symbol {
+  color: #CCC;
 }
 
 /* Resource counters */
