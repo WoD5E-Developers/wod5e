@@ -55,6 +55,7 @@
 .window-app .window-header {
   flex: 0 0 25px;
   line-height: 20px;
+  margin-top: 2px
 }
 
 /* Sheet Window Content */
