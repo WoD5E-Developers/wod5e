@@ -16,6 +16,8 @@
 @import url("../../ui/styling/roll-dialog.css");
 @import url("../../ui/styling/chat.css");
 @import url("../../ui/styling/menus.css");
+@import url("../../ui/styling/controls.css");
+@import url("../../ui/styling/sidebar.css");
 
 /* Language-specific styling */
 @import url("./lang/pl.css");
@@ -24,7 +26,7 @@
 
 /* Variables */
 :root {
-  --system-primary: #fff4b7f0;
+  --system-primary: #302d5bf0;
 }
 
 /* Fonts */
@@ -47,19 +49,49 @@
   font-size: 16pt;
 }
 
-/* Sheet window Header */
-.sheet .window-header {
+/* Application window Header */
+.application .window-header {
   background: var(--system-primary);
+  flex: 0 0 25px;
+  line-height: 20px;
+  padding-top: 2px;
 }
 
 .window-app .window-header {
   flex: 0 0 25px;
   line-height: 20px;
-  margin-top: 2px
+  padding-top: 2px;
 }
 
 /* Sheet Window Content */
 .sheet .window-content {
   box-shadow: 0 0 5px var(--system-primary);
   padding-bottom: 20px;
+  overflow-y: scroll;
+}
+
+/* Logo */
+#logo {
+  content: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
+  width: auto;
+}
+
+/* Adjust the UI top offset to compensate for the bigger logo */
+#ui-top.offset {
+  margin-left: 15px;
+}
+
+/* Pause Image */
+#pause {
+  background: none;
+}
+
+#pause img {
+  content: url(/systems/vtm5e/assets/ui/Pause.webp);
+  --fa-animation-duration: 0s;
+}
+
+#pause figcaption {
+  margin-top: 55px;
+  color: #000;
 }

@@ -1,19 +1,28 @@
 <form class="{{cssClass}} flexcol{{#if locked}} locked{{/if}}" autocomplete="off">
   {{!-- Coterie Sheet Header --}}
   <header class="actor-header">
-      <div class="header-fields-top">
-      <div class="header-profile-img">
-        {{!-- Actor image and sheet lock toggle button --}}
-        {{> "systems/vtm5e/display/shared/actors/parts/profile-img.hbs"}}
+    <div class="header-fields-top">
+      <div class="header-profile">
+          <div class="header-profile-img">
+              <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt="{{localize 'WOD5E.ActorImage'}}"/>
+          </div>
+          <div class="flexrow">
+              <h1 class="charname">
+                  <input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'WOD5E.Name'}}" />
+              </h1>
+              {{#if actor.isOwner}}
+                  <button type="button" class="lock-btn">
+                      {{#if locked}}
+                          <i class="fa fa-lock"></i>
+                      {{else}}
+                          <i class="fa fa-lock-open"></i>
+                      {{/if}}
+                  </button>
+              {{/if}}
+          </div>
       </div>
       <div class="header-rows-top">
         <div class="header-row-1">
-          {{!-- Text input header fields --}}
-          <h1 class="charname">
-            <input name="name" type="text" value="{{actor.name}}"
-              placeholder="{{localize 'WOD5E.Name'}}" />
-          </h1>
-            
           {{> "systems/vtm5e/display/shared/actors/parts/group/type-selector.hbs"}}
         </div>
       </div>

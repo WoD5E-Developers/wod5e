@@ -1,3 +1,19 @@
+#chat-log .message {
+  margin: 10px 5px 10px 10px;
+  border: 0;
+  border-top: 2px double #CCC;
+}
+
+.chat-message {
+  background-color: #4b4b4b;
+  background-blend-mode: multiply;
+  color: #DDD;
+}
+
+.chat-message .message-header {
+  color: #FFF;
+}
+
 .chat-message .dice-result {
   cursor: pointer;
 }
@@ -16,6 +32,7 @@
   padding: 0 5px;
   border: 1px solid #424242;
   margin: 1px 3px;
+  color: #000;
 }
 
 .chat-message .total-and-difficulty {
@@ -43,6 +60,7 @@
   font-weight: bold;
   text-align: center;
   border: 1px solid #000;
+  background: #222;
 }
 
 .chat-message .roll-result-label.success,

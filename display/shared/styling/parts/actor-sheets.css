@@ -6,6 +6,10 @@
   min-height: 300px;
 }
 
+.actor.sheet .window-content {
+  background: url(/systems/vtm5e/assets/actor/actor_background.webp) repeat;
+}
+
 /* Increase z-index of the window handle to compensate for the actor banner*/
 .window-app .window-resizable-handle {
   z-index: 2;
@@ -131,7 +135,7 @@
 
 .actor.sheet .lock-btn {
   max-width: 35px;
-  align-self: center;
+  align-self: baseline;
 }
 
 /* Sheet tabs */

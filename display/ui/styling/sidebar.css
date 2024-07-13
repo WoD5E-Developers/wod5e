@@ -1,0 +1,54 @@
+:root {
+  --primary-sidebar-color: #181818;
+}
+
+.directory .action-buttons button {
+  background: #2e2d77;
+  color: #fff;
+}
+
+#sidebar {
+  background: url(/systems/vtm5e/assets/ui/sidebar.webp) repeat;
+  border: 0;
+  margin: 0;
+  height: 100%;
+  border-radius: 0;
+}
+
+#sidebar-tabs {
+  background: #000;
+  margin: 0;
+  border-bottom: 1px solid #ffffff;
+}
+
+#sidebar-tabs > .item.active {
+  background: #690a0a;
+}
+
+.subdirectory {
+  background: var(--primary-sidebar-color);
+}
+
+.combat-sidebar .combat-tracker-header,
+.directory .directory-header,
+.settings-sidebar h2 {
+  border-bottom: 2px groove #CCC;
+  background: var(--primary-sidebar-color);
+}
+
+.settings-sidebar h2 {
+  margin-bottom: 0;
+}
+
+.settings-sidebar button {
+  margin: 3px 0;
+}
+
+.settings-sidebar #game-details,
+.settings-sidebar #settings-game,
+.settings-sidebar #settings-documentation,
+.settings-sidebar #settings-access {
+  background: #000000a6;
+  margin: 0;
+  padding: 10px;
+}
