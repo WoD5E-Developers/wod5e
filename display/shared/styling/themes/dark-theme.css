@@ -1,6 +1,7 @@
 /* Variables */
 :root {
   --system-dark-primary: #000000f0;
+  --ui-background-dark-texture: url("/systems/vtm5e/assets/ui/ui_background_dark_texture.webp");
 }
 
 /* Sheet window Header */
@@ -69,4 +70,41 @@
     transparent 57%,
     transparent 100%
   );
+}
+
+/* Actor Sheet */
+.actor.sheet .stats-container {
+  background-color: #1d1d1d;
+  border-color: #CCC;
+}
+
+/* Sidebar */
+.theme-dark #sidebar {
+  background: url(/systems/vtm5e/assets/ui/sidebar_dark.webp) repeat;
+}
+
+/* Foundry Controls UI */
+.theme-dark #controls ol.control-tools > li {
+  background: var(--ui-background-dark-texture);
+}
+
+.theme-dark #navigation #scene-list .scene,
+.theme-dark #navigation #scene-list .scene.view,
+.theme-dark #navigation #scene-list .scene.context,
+.theme-dark #navigation #scene-list .scene.gm,
+.theme-dark #navigation .nav-item,
+.theme-dark #navigation #nav-toggle {
+  background: var(--ui-background-dark-texture);
+}
+
+.theme-dark #hotbar .macro {
+  background: rgba(43, 43, 43, 0.5);
+}
+
+.theme-dark #hotbar .bar-controls {
+  background: var(--ui-background-dark-texture);
+}
+
+.theme-dark .app {
+  background: var(--ui-background-dark-texture);
 }
