@@ -79,6 +79,9 @@ Hooks.once('init', async function () {
 
   // Load settings into Foundry
   loadSettings()
+
+  // Initialize color scheme on game init
+  _updatePreferredColorScheme()
 })
 
 // Anything that needs to run once the world is ready
@@ -116,9 +119,6 @@ Hooks.once('ready', async function () {
 
   // Migration functions
   migrateWorld()
-
-  // Initialize color scheme on game ready
-  _updatePreferredColorScheme()
 })
 
 Hooks.once('setup', () => {

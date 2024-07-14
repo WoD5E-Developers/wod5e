@@ -5,41 +5,41 @@
 }
 
 /* Sheet window Header */
-.theme-dark .sheet .window-header {
+.dark-theme .sheet .window-header {
   background-color: var(--system-dark-primary);
 }
 
 /* Sheet Window Content */
-.theme-dark .sheet .window-content {
+.dark-theme .sheet .window-content {
   background-color: #000000f0;
   color: #CCC;
   background-blend-mode: hard-light;
 }
 
-.theme-dark .sheet .window-content input {
+.dark-theme .sheet .window-content input {
   color: #CCC;
 }
 
 /* Navbar */
-.theme-dark .actor.sheet .sheet-tabs > [data-tab] .navicon {
+.dark-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
   background-color: black;
   border: 1px solid #CCC;
 }
 
-.theme-dark .actor.sheet.hunter .tabs-container .active .navicon {
+.dark-theme .actor.sheet.hunter .tabs-container .active .navicon {
   color: black;
 }
 
-.theme-dark .actor.sheet.hunter .tabs-container .active .navicon .symbol {
+.dark-theme .actor.sheet.hunter .tabs-container .active .navicon .symbol {
   color: black;
 }
 
 /* Resource Counters */
-.theme-dark .resource-counter .resource-counter-step {
+.dark-theme .resource-counter .resource-counter-step {
   border: 1px solid #CCC;
 }
 
-.theme-dark .resource-counter .resource-counter-step[data-state="/"] {
+.dark-theme .resource-counter .resource-counter-step[data-state="/"] {
   background: linear-gradient(
     135deg,
     transparent 0%,
@@ -51,7 +51,7 @@
   );
 }
 
-.theme-dark .resource-counter .resource-counter-step[data-state="x"] {
+.dark-theme .resource-counter .resource-counter-step[data-state="x"] {
   background: linear-gradient(
     45deg,
     transparent 0%,
@@ -73,42 +73,42 @@
 }
 
 /* Actor Sheet */
-.actor.sheet .stats-container {
+.dark-theme .actor.sheet .stats-container {
   background-color: #1d1d1d;
   border-color: #CCC;
 }
 
 /* Sidebar */
-.theme-dark #sidebar {
+.dark-theme #sidebar {
   background: url(/systems/vtm5e/assets/ui/sidebar_dark.webp) repeat;
 }
 
 /* Foundry Controls UI */
-.theme-dark #controls ol.control-tools > li {
+.dark-theme #controls ol.control-tools > li {
   background: var(--ui-background-dark-texture);
 }
 
-.theme-dark #navigation #scene-list .scene,
-.theme-dark #navigation #scene-list .scene.view,
-.theme-dark #navigation #scene-list .scene.context,
-.theme-dark #navigation #scene-list .scene.gm,
-.theme-dark #navigation .nav-item,
-.theme-dark #navigation #nav-toggle {
+.dark-theme #navigation #scene-list .scene,
+.dark-theme #navigation #scene-list .scene.view,
+.dark-theme #navigation #scene-list .scene.context,
+.dark-theme #navigation #scene-list .scene.gm,
+.dark-theme #navigation .nav-item,
+.dark-theme #navigation #nav-toggle {
   background: var(--ui-background-dark-texture);
 }
 
-.theme-dark #navigation #scene-list .scene.active {
+.dark-theme #navigation #scene-list .scene.active {
   background: var(--ui-background-active-texture);
 }
 
-.theme-dark #hotbar .macro {
+.dark-theme #hotbar .macro {
   background: rgba(43, 43, 43, 0.5);
 }
 
-.theme-dark #hotbar .bar-controls {
+.dark-theme #hotbar .bar-controls {
   background: var(--ui-background-dark-texture);
 }
 
-.theme-dark .app {
+.dark-theme .app {
   background: var(--ui-background-dark-texture);
 }

@@ -1,0 +1,113 @@
+/* Variables */
+:root {
+  --ui-background-werewolf-texture: url("/systems/vtm5e/assets/ui/ui_background_werewolf_texture.webp");
+}
+
+/* Sheet window Header */
+.werewolf-theme .sheet .window-header {
+  background-color: var(--werewolf-primary);
+}
+
+/* Sheet Window Content */
+.werewolf-theme .sheet .window-content {
+  background-color: #000000f0;
+  color: #CCC;
+  background-blend-mode: hard-light;
+}
+
+.werewolf-theme .sheet .window-content input {
+  color: #CCC;
+}
+
+/* Navbar */
+.werewolf-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
+  background-color: black;
+  border: 1px solid #CCC;
+}
+
+.werewolf-theme .actor.sheet.hunter .tabs-container .active .navicon {
+  color: black;
+}
+
+.werewolf-theme .actor.sheet.hunter .tabs-container .active .navicon .symbol {
+  color: black;
+}
+
+/* Resource Counters */
+.werewolf-theme .resource-counter .resource-counter-step {
+  border: 1px solid #CCC;
+}
+
+.werewolf-theme .resource-counter .resource-counter-step[data-state="/"] {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 43%,
+    white 45%,
+    white 55%,
+    transparent 57%,
+    transparent 100%
+  );
+}
+
+.werewolf-theme .resource-counter .resource-counter-step[data-state="x"] {
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    transparent 43%,
+    white 45%,
+    white 55%,
+    transparent 57%,
+    transparent 100%
+  ),
+  linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 43%,
+    white 45%,
+    white 55%,
+    transparent 57%,
+    transparent 100%
+  );
+}
+
+/* Actor Sheet */
+.werewolf-theme .actor.sheet .stats-container {
+  background-color: #1d1d1d;
+  border-color: #CCC;
+}
+
+/* Sidebar */
+.werewolf-theme #sidebar {
+  background: url(/systems/vtm5e/assets/ui/sidebar_werewolf.webp) repeat;
+}
+
+/* Foundry Controls UI */
+.werewolf-theme #controls ol.control-tools > li {
+  background: var(--ui-background-werewolf-texture);
+}
+
+.werewolf-theme #navigation #scene-list .scene,
+.werewolf-theme #navigation #scene-list .scene.view,
+.werewolf-theme #navigation #scene-list .scene.context,
+.werewolf-theme #navigation #scene-list .scene.gm,
+.werewolf-theme #navigation .nav-item,
+.werewolf-theme #navigation #nav-toggle {
+  background: var(--ui-background-werewolf-texture);
+}
+
+.werewolf-theme #navigation #scene-list .scene.active {
+  background: var(--ui-background-active-texture);
+}
+
+.werewolf-theme #hotbar .macro {
+  background: rgba(136, 74, 3, 0.719);
+}
+
+.werewolf-theme #hotbar .bar-controls {
+  background: var(--ui-background-werewolf-texture);
+}
+
+.werewolf-theme .app {
+  background: var(--ui-background-werewolf-texture);
+}

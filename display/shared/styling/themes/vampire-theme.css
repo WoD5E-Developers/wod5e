@@ -1,0 +1,113 @@
+/* Variables */
+:root {
+  --ui-background-vampire-texture: url("/systems/vtm5e/assets/ui/ui_background_vampire_texture.webp");
+}
+
+/* Sheet window Header */
+.vampire-theme .sheet .window-header {
+  background-color: var(--vampire-primary);
+}
+
+/* Sheet Window Content */
+.vampire-theme .sheet .window-content {
+  background-color: #000000f0;
+  color: #CCC;
+  background-blend-mode: hard-light;
+}
+
+.vampire-theme .sheet .window-content input {
+  color: #CCC;
+}
+
+/* Navbar */
+.vampire-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
+  background-color: black;
+  border: 1px solid #CCC;
+}
+
+.vampire-theme .actor.sheet.hunter .tabs-container .active .navicon {
+  color: black;
+}
+
+.vampire-theme .actor.sheet.hunter .tabs-container .active .navicon .symbol {
+  color: black;
+}
+
+/* Resource Counters */
+.vampire-theme .resource-counter .resource-counter-step {
+  border: 1px solid #CCC;
+}
+
+.vampire-theme .resource-counter .resource-counter-step[data-state="/"] {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 43%,
+    white 45%,
+    white 55%,
+    transparent 57%,
+    transparent 100%
+  );
+}
+
+.vampire-theme .resource-counter .resource-counter-step[data-state="x"] {
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    transparent 43%,
+    white 45%,
+    white 55%,
+    transparent 57%,
+    transparent 100%
+  ),
+  linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 43%,
+    white 45%,
+    white 55%,
+    transparent 57%,
+    transparent 100%
+  );
+}
+
+/* Actor Sheet */
+.vampire-theme .actor.sheet .stats-container {
+  background-color: #1d1d1d;
+  border-color: #CCC;
+}
+
+/* Sidebar */
+.vampire-theme #sidebar {
+  background: url(/systems/vtm5e/assets/ui/sidebar_vampire.webp) repeat;
+}
+
+/* Foundry Controls UI */
+.vampire-theme #controls ol.control-tools > li {
+  background: var(--ui-background-vampire-texture);
+}
+
+.vampire-theme #navigation #scene-list .scene,
+.vampire-theme #navigation #scene-list .scene.view,
+.vampire-theme #navigation #scene-list .scene.context,
+.vampire-theme #navigation #scene-list .scene.gm,
+.vampire-theme #navigation .nav-item,
+.vampire-theme #navigation #nav-toggle {
+  background: var(--ui-background-vampire-texture);
+}
+
+.vampire-theme #navigation #scene-list .scene.active {
+  background: var(--ui-background-active-texture);
+}
+
+.vampire-theme #hotbar .macro {
+  background: rgba(255, 43, 43, 0.5);
+}
+
+.vampire-theme #hotbar .bar-controls {
+  background: var(--ui-background-vampire-texture);
+}
+
+.vampire-theme .app {
+  background: var(--ui-background-vampire-texture);
+}

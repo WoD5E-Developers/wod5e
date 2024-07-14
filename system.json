@@ -35,6 +35,9 @@
   "styles": [
     "display/shared/styling/wod5e.css",
     "display/shared/styling/themes/dark-theme.css",
+    "display/shared/styling/themes/vampire-theme.css",
+    "display/shared/styling/themes/hunter-theme.css",
+    "display/shared/styling/themes/werewolf-theme.css",
     "display/vtm/styling/vampire-styling.css",
     "display/htr/styling/hunter-styling.css",
     "display/wta/styling/werewolf-styling.css"

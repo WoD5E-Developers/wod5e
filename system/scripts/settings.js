@@ -278,12 +278,12 @@ export const _updatePreferredColorScheme = async function () {
 
   // Determine which theme we're using - if it's not set by the client, we base the theme
   // off of the browser's prefers-color-scheme
-  if ( clientSetting ) theme = `theme-${clientSetting}`
-  else if ( matchMedia("(prefers-color-scheme: dark)").matches ) theme = "theme-dark"
+  if ( clientSetting ) theme = `${clientSetting}-theme`
+  else if ( matchMedia("(prefers-color-scheme: dark)").matches ) theme = "dark-theme"
   else if ( matchMedia("(prefers-color-scheme: light)").matches ) theme = "theme-light"
 
   // Remove existing theme classes
-  document.body.classList.remove("theme-light", "theme-dark", "theme-vampire", "theme-hunter", "theme-werewolf")
+  document.body.classList.remove("theme-light", "dark-theme", "vampire-theme", "hunter-theme", "werewolf-theme")
 
   // Append the theme class to the document body
   if ( theme ) document.body.classList.add(theme)

@@ -1,0 +1,44 @@
+/* Variables */
+:root {
+  --ui-background-hunter-texture: url("/systems/vtm5e/assets/ui/ui_background_hunter_texture.webp");
+}
+
+/* Sheet window Header */
+.hunter-theme .sheet .window-header {
+  background-color: var(--hunter-primary);
+}
+
+/* Sidebar */
+.hunter-theme #sidebar {
+  background: url(/systems/vtm5e/assets/ui/sidebar_hunter.webp) repeat;
+}
+
+/* Foundry Controls UI */
+.hunter-theme #controls ol.control-tools > li {
+  background: var(--ui-background-hunter-texture);
+}
+
+.hunter-theme #navigation #scene-list .scene,
+.hunter-theme #navigation #scene-list .scene.view,
+.hunter-theme #navigation #scene-list .scene.context,
+.hunter-theme #navigation #scene-list .scene.gm,
+.hunter-theme #navigation .nav-item,
+.hunter-theme #navigation #nav-toggle {
+  background: var(--ui-background-hunter-texture);
+}
+
+.hunter-theme #navigation #scene-list .scene.active {
+  background: var(--ui-background-active-texture);
+}
+
+.hunter-theme #hotbar .macro {
+  background: rgba(255, 136, 0, 0.5);
+}
+
+.hunter-theme #hotbar .bar-controls {
+  background: var(--ui-background-hunter-texture);
+}
+
+.hunter-theme .app {
+  background: var(--ui-background-hunter-texture);
+}
