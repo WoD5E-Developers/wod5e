@@ -250,6 +250,9 @@
             "ColorSchemeHunter": "Hunter Theme",
             "ColorSchemeWerewolf": "Werewolf Theme",
 
+            "DisableVampireFont": "Disable Vampire Revised Font",
+            "DisableVampireFontHint": "Disables the Vampire Revised font, which can be hard to read for some people. This is mainly used in headers.",
+
             "ActorBanner": "Enable Character Type Banner",
             "ActorBannerHint": "Display a banner at the top of actor sheets to represent the character type.",
 

@@ -29,7 +29,6 @@
   --system-primary: #302d5bf0;
   --ui-background-texture: url("/systems/vtm5e/assets/ui/ui_background_texture.webp");
   --ui-background-active-texture: url("/systems/vtm5e/assets/ui/ui_background_active_texture.webp");
-  --header-label-font: "vampireRevised";
 }
 
 /* Fonts */
@@ -102,8 +101,11 @@
 #pause figcaption {
   margin-top: 55px;
   color: #000;
-  font-family: var(--header-label-font), sans-serif;
   font-weight: bold;
+}
+
+.vampire-font-headers #pause figcaption {
+  font-family: vampireRevised, sans-serif;
 }
 
 /* Hide the color scheme option in core Foundry settings

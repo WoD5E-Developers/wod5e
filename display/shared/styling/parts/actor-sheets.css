@@ -79,7 +79,10 @@
   width: 100%;
   left: 10px;
   z-index: 1;
-  font-family: var(--header-label-font), sans-serif;
+}
+
+.vampire-font-headers .actor.sheet .sheet-banner {
+  font-family: vampireRevised, sans-serif;
 }
 
 /* Actor Header */
@@ -145,6 +148,10 @@
   color: #CCC;
 }
 
+.actor.sheet .lock-btn i {
+  margin: auto;
+}
+
 /* Sheet tabs */
 .actor.sheet .tabs-container {
   position: absolute;
@@ -202,11 +209,11 @@
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  font-family: var(--header-label-font), sans-serif;
 }
 
-.actor.sheet .resource-label {
-  font-family: var(--header-label-font), sans-serif;
+.vampire-font-headers .actor.sheet .resource-label,
+.vampire-font-headers .actor.sheet .resource-header {
+  font-family: vampireRevised, sans-serif;
 }
 
 .actor.sheet .rollable:hover {
@@ -242,11 +249,14 @@
 .actor.sheet .specialty {
   position: relative;
   top: -5px;
-  right: 5px;
   text-shadow: 0 0 5px #e02b2b;
   font-size: 10pt;
   font-weight: bold;
   cursor: pointer;
+}
+
+.vampire-font-headers .actor.sheet .specialty {
+  right: 5px;
 }
 
 .actor.sheet .stats-content {
@@ -276,7 +286,10 @@
 
 /* Items */
 .actor.sheet .item-header {
-  font-family: var(--header-label-font), sans-serif;
   font-size: 16pt;
   font-weight: bold;
+}
+
+.vampire-font-headers .actor.sheet .item-header {
+  font-family: vampireRevised, sans-serif;
 }

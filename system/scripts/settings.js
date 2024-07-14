@@ -11,25 +11,36 @@ import { resetActors } from './reset-actors.js'
 export const loadSettings = async function () {
   // Color Scheme
   // Custom written to allow for usage of extra themes
-  game.settings.register("vtm5e", "colorScheme", {
-    name: "WOD5E.Settings.ColorScheme",
-    hint: "WOD5E.Settings.ColorSchemeHint",
-    scope: "client",
+  game.settings.register('vtm5e', 'colorScheme', {
+    name: 'WOD5E.Settings.ColorScheme',
+    hint: 'WOD5E.Settings.ColorSchemeHint',
+    scope: 'client',
     config: true,
     type: new foundry.data.fields.StringField({
       required: true,
       blank: true,
-      initial: "",
+      initial: '',
       choices: {
-        "": "WOD5E.Settings.ColorSchemeDefault",
-        light: "WOD5E.Settings.ColorSchemeLight",
-        dark: "WOD5E.Settings.ColorSchemeDark",
-        vampire: "WOD5E.Settings.ColorSchemeVampire",
-        hunter: "WOD5E.Settings.ColorSchemeHunter",
-        werewolf: "WOD5E.Settings.ColorSchemeWerewolf"
+        '': 'WOD5E.Settings.ColorSchemeDefault',
+        light: 'WOD5E.Settings.ColorSchemeLight',
+        dark: 'WOD5E.Settings.ColorSchemeDark',
+        vampire: 'WOD5E.Settings.ColorSchemeVampire',
+        hunter: 'WOD5E.Settings.ColorSchemeHunter',
+        werewolf: 'WOD5E.Settings.ColorSchemeWerewolf'
       }
     }),
     onChange: () => _updatePreferredColorScheme()
+  })
+
+  // Deactivate Vampire Revised Font
+  game.settings.register('vtm5e', 'disableVampireFont', {
+    name: game.i18n.localize('WOD5E.Settings.DisableVampireFont'),
+    hint: game.i18n.localize('WOD5E.Settings.DisableVampireFontHint'),
+    scope: 'client',
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: () => _updateHeaderFontPreference()
   })
 
   // Whether the actor banner will appear on sheets or not
@@ -274,17 +285,32 @@ function _rerenderStorytellerWindow () {
  */
 export const _updatePreferredColorScheme = async function () {
   let theme
-  const clientSetting = game.settings.get("vtm5e", "colorScheme")
+  const clientSetting = game.settings.get('vtm5e', 'colorScheme')
 
   // Determine which theme we're using - if it's not set by the client, we base the theme
   // off of the browser's prefers-color-scheme
-  if ( clientSetting ) theme = `${clientSetting}-theme`
-  else if ( matchMedia("(prefers-color-scheme: dark)").matches ) theme = "dark-theme"
-  else if ( matchMedia("(prefers-color-scheme: light)").matches ) theme = "theme-light"
+  if (clientSetting) theme = `${clientSetting}-theme`
+  else if (matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark-theme'
+  else if (matchMedia('(prefers-color-scheme: light)').matches) theme = 'theme-light'
 
   // Remove existing theme classes
-  document.body.classList.remove("theme-light", "dark-theme", "vampire-theme", "hunter-theme", "werewolf-theme")
+  document.body.classList.remove('theme-light', 'dark-theme', 'vampire-theme', 'hunter-theme', 'werewolf-theme')
 
   // Append the theme class to the document body
-  if ( theme ) document.body.classList.add(theme)
+  if (theme) document.body.classList.add(theme)
+}
+
+/**
+ * Set whether the system uses the vampireRevised font for headers or not
+ */
+export const _updateHeaderFontPreference = async function () {
+  const clientSetting = game.settings.get('vtm5e', 'disableVampireFont')
+
+  if (clientSetting) {
+    // Remove the class from the document body
+    document.body.classList.remove('vampire-font-headers')
+  } else {
+    // Append the class to the document body
+    document.body.classList.add('vampire-font-headers')
+  }
 }

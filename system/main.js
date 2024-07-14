@@ -10,7 +10,7 @@ import { WoDItemSheet } from './item/item-sheet.js'
 import { preloadHandlebarsTemplates } from './scripts/templates.js'
 import { loadDiceSoNice } from './dice/dice-so-nice.js'
 import { loadHelpers } from './scripts/helpers.js'
-import { loadSettings, _updatePreferredColorScheme } from './scripts/settings.js'
+import { loadSettings, _updatePreferredColorScheme, _updateHeaderFontPreference } from './scripts/settings.js'
 // WOD5E functions and classes
 import { MortalDie, VampireDie, VampireHungerDie, HunterDie, HunterDesperationDie, WerewolfDie, WerewolfRageDie } from './dice/splat-dice.js'
 import { migrateWorld } from './scripts/migration.js'
@@ -82,6 +82,9 @@ Hooks.once('init', async function () {
 
   // Initialize color scheme on game init
   _updatePreferredColorScheme()
+
+  // Initialize header font preference on game init
+  _updateHeaderFontPreference()
 })
 
 // Anything that needs to run once the world is ready
