@@ -97,6 +97,10 @@
   background: var(--ui-background-dark-texture);
 }
 
+.theme-dark #navigation #scene-list .scene.active {
+  background: var(--ui-background-active-texture);
+}
+
 .theme-dark #hotbar .macro {
   background: rgba(43, 43, 43, 0.5);
 }
