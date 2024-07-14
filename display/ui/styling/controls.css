@@ -1,12 +1,12 @@
 /* Foundry Controls UI */
 #controls ol.control-tools > li {
-  background: url(/systems/vtm5e/assets/ui/ui_background_texture.webp);
+  background: var(--ui-background-texture);
   border-radius: 0px;
 }
 
 #controls ol.control-tools > li.active,
 #controls ol.control-tools > li:hover {
-  background: url(/systems/vtm5e/assets/ui/sidebar_active_background.webp);
+  background: var(--ui-background-active-texture);
 }
 
 #navigation #scene-list .scene,
@@ -15,11 +15,11 @@
 #navigation #scene-list .scene.gm,
 #navigation .nav-item,
 #navigation #nav-toggle {
-  background: url(/systems/vtm5e/assets/ui/ui_background_texture.webp);
+  background: var(--ui-background-texture);
 }
 
 #navigation #scene-list .scene.active {
-  background: url(/systems/vtm5e/assets/ui/sidebar_active_background.webp);
+  background: var(--ui-background-active-texture);
 }
 
 #hotbar .macro {
@@ -27,8 +27,8 @@
 }
 
 #hotbar .bar-controls {
-  background: url(/systems/vtm5e/assets/ui/ui_background_texture.webp);
+  background: var(--ui-background-texture);
 }
 .app {
-  background: url(/systems/vtm5e/assets/ui/ui_background_texture.webp);
+  background: var(--ui-background-texture);
 }

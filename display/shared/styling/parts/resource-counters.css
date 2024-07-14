@@ -9,6 +9,7 @@
   display: inline-block;
   border-radius: 50%;
   cursor: pointer;
+  background-color: #00000047;
 }
 
 .resource-value-static .resource-value-static-step {
@@ -148,14 +149,6 @@
 .tab.features .resource-value-static {
   margin-top: 2px;
   text-align: center;
-}
-
-span.resource-counter-step:nth-child(5n) {
-  margin-right: 6px;
-}
-
-span.resource-counter-step:last-child {
-  margin-right: 0;
 }
 
 .actor.sheet .resource-value-empty {

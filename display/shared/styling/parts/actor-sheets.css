@@ -24,7 +24,7 @@
 }
 
 /* Collapsible Descrptions */
-.actor.sheet .collapsible-content{
+.actor.sheet .collapsible-content {
   padding: 0 1em;
 }
 
@@ -79,6 +79,7 @@
   width: 100%;
   left: 10px;
   z-index: 1;
+  font-family: var(--header-label-font), sans-serif;
 }
 
 /* Actor Header */
@@ -133,9 +134,15 @@
   padding-left: 10px;
 }
 
+.actor.sheet .header-fields-left .resource {
+  max-width: 200px;
+}
+
 .actor.sheet .lock-btn {
   max-width: 35px;
   align-self: baseline;
+  background: var(--ui-background-texture);
+  color: #CCC;
 }
 
 /* Sheet tabs */
@@ -189,19 +196,33 @@
   margin-bottom: 10px;
   display: block;
   font-weight: 200;
-  font-size: 16pt;
+  font-size: 20pt;
   border-bottom: 1px solid black;
   width: 90%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  font-family: var(--header-label-font), sans-serif;
+}
+
+.actor.sheet .resource-label {
+  font-family: var(--header-label-font), sans-serif;
+}
+
+.actor.sheet .rollable:hover {
+  cursor: pointer;
+  text-shadow: 0 0 5px #e02b2b;
 }
 
 /* Statistics Page */
 .actor.sheet .stats-container {
-  margin-top: 5px;
   display: flex;
   flex-flow: row;
+  background-color: #ededec;
+  border-radius: 10px;
+  border: 2px solid #1b1b1b;
+  margin: 5px;
+  padding: 5px;
 }
 
 .actor.sheet .stats-list {
@@ -211,16 +232,18 @@
   flex-shrink: 0;
 }
 
-.actor.sheet .attribute, .skill {
+.actor.sheet .attribute,
+.actor.sheet .skill {
   display: flex;
   justify-content: space-between;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 20px;
 }
 
 .actor.sheet .specialty {
   position: relative;
   top: -5px;
+  right: 5px;
+  text-shadow: 0 0 5px #e02b2b;
   font-size: 10pt;
   font-weight: bold;
   cursor: pointer;
@@ -248,5 +271,12 @@
 
 .actor.sheet .edit-skill {
   position: absolute;
-  margin-left: -20px;
+  margin-left: -15px;
+}
+
+/* Items */
+.actor.sheet .item-header {
+  font-family: var(--header-label-font), sans-serif;
+  font-size: 16pt;
+  font-weight: bold;
 }

@@ -5,15 +5,68 @@
 
 /* Sheet window Header */
 .theme-dark .sheet .window-header {
-  background: var(--system-dark-primary);
+  background-color: var(--system-dark-primary);
 }
 
 /* Sheet Window Content */
 .theme-dark .sheet .window-content {
-  background: #040404f0;
+  background-color: #000000f0;
   color: #CCC;
+  background-blend-mode: hard-light;
 }
 
 .theme-dark .sheet .window-content input {
   color: #CCC;
+}
+
+/* Navbar */
+.theme-dark .actor.sheet .sheet-tabs > [data-tab] .navicon {
+  background-color: black;
+  border: 1px solid #CCC;
+}
+
+.theme-dark .actor.sheet.hunter .tabs-container .active .navicon {
+  color: black;
+}
+
+.theme-dark .actor.sheet.hunter .tabs-container .active .navicon .symbol {
+  color: black;
+}
+
+/* Resource Counters */
+.theme-dark .resource-counter .resource-counter-step {
+  border: 1px solid #CCC;
+}
+
+.theme-dark .resource-counter .resource-counter-step[data-state="/"] {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 43%,
+    white 45%,
+    white 55%,
+    transparent 57%,
+    transparent 100%
+  );
+}
+
+.theme-dark .resource-counter .resource-counter-step[data-state="x"] {
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    transparent 43%,
+    white 45%,
+    white 55%,
+    transparent 57%,
+    transparent 100%
+  ),
+  linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 43%,
+    white 45%,
+    white 55%,
+    transparent 57%,
+    transparent 100%
+  );
 }

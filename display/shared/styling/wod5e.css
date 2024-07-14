@@ -27,6 +27,9 @@
 /* Variables */
 :root {
   --system-primary: #302d5bf0;
+  --ui-background-texture: url("/systems/vtm5e/assets/ui/ui_background_texture.webp");
+  --ui-background-active-texture: url("/systems/vtm5e/assets/ui/ui_background_active_texture.webp");
+  --header-label-font: "vampireRevised";
 }
 
 /* Fonts */
@@ -40,6 +43,11 @@
 @font-face {
   font-family: "wod5eSymbols";
   src: url("../../../assets/fonts/wod5e-symbols.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "vampireRevised";
+  src: url("../../../assets/fonts/vampire-revised.ttf") format("truetype");
 }
 
 /* Define the class that will be used for WOD5E symbols */
