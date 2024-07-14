@@ -9,15 +9,30 @@ import { resetActors } from './reset-actors.js'
  * @return {Promise}
  */
 export const loadSettings = async function () {
-  game.settings.register('vtm5e', 'worldVersion', {
-    name: game.i18n.localize('WOD5E.Settings.WorldVersion'),
-    hint: game.i18n.localize('WOD5E.Settings.WorldVersionHint'),
-    scope: 'world',
+  // Color Scheme
+  // Custom written to allow for usage of extra themes
+  game.settings.register("vtm5e", "colorScheme", {
+    name: "WOD5E.Settings.ColorScheme",
+    hint: "WOD5E.Settings.ColorSchemeHint",
+    scope: "client",
     config: true,
-    default: '1.5',
-    type: String
+    type: new foundry.data.fields.StringField({
+      required: true,
+      blank: true,
+      initial: "",
+      choices: {
+        "": "WOD5E.Settings.ColorSchemeDefault",
+        light: "WOD5E.Settings.ColorSchemeLight",
+        dark: "WOD5E.Settings.ColorSchemeDark",
+        vampire: "WOD5E.Settings.ColorSchemeVampire",
+        hunter: "WOD5E.Settings.ColorSchemeHunter",
+        werewolf: "WOD5E.Settings.ColorSchemeWerewolf"
+      }
+    }),
+    onChange: () => _updatePreferredColorScheme()
   })
 
+  // Whether the actor banner will appear on sheets or not
   game.settings.register('vtm5e', 'actorBanner', {
     name: game.i18n.localize('WOD5E.Settings.ActorBanner'),
     hint: game.i18n.localize('WOD5E.Settings.ActorBannerHint'),
@@ -55,6 +70,7 @@ export const loadSettings = async function () {
     Automation Settings
   */
 
+  // Automation Menu
   game.settings.registerMenu('vtm5e', 'automationMenu', {
     name: game.i18n.localize('WOD5E.Settings.AutomationSettings'),
     hint: game.i18n.localize('WOD5E.Settings.AutomationSettingsHint'),
@@ -64,6 +80,7 @@ export const loadSettings = async function () {
     restricted: true
   })
 
+  // Disable All Automation
   game.settings.register('vtm5e', 'disableAutomation', {
     name: game.i18n.localize('WOD5E.Settings.DisableAutomation'),
     hint: game.i18n.localize('WOD5E.Settings.DisableAutomationHint'),
@@ -92,6 +109,7 @@ export const loadSettings = async function () {
     }
   })
 
+  // Automated Willpower
   game.settings.register('vtm5e', 'automatedWillpower', {
     name: game.i18n.localize('WOD5E.Settings.AutomateWillpower'),
     hint: game.i18n.localize('WOD5E.Settings.AutomateWillpowerHint'),
@@ -101,6 +119,7 @@ export const loadSettings = async function () {
     type: Boolean
   })
 
+  // Automated Hunger
   game.settings.register('vtm5e', 'automatedHunger', {
     name: game.i18n.localize('WOD5E.Settings.AutomateHunger'),
     hint: game.i18n.localize('WOD5E.Settings.AutomateHungerHint'),
@@ -110,6 +129,7 @@ export const loadSettings = async function () {
     type: Boolean
   })
 
+  // Automated Oblivion Rolls
   game.settings.register('vtm5e', 'automatedOblivion', {
     name: game.i18n.localize('WOD5E.Settings.AutomateOblivion'),
     hint: game.i18n.localize('WOD5E.Settings.AutomateOblivionHint'),
@@ -119,6 +139,7 @@ export const loadSettings = async function () {
     type: Boolean
   })
 
+  // Automated Rage
   game.settings.register('vtm5e', 'automatedRage', {
     name: game.i18n.localize('WOD5E.Settings.AutomateRage'),
     hint: game.i18n.localize('WOD5E.Settings.AutomateRageHint'),
@@ -227,6 +248,16 @@ export const loadSettings = async function () {
       resetActors()
     }
   })
+
+  // World Version, only really needed by developers
+  game.settings.register('vtm5e', 'worldVersion', {
+    name: game.i18n.localize('WOD5E.Settings.WorldVersion'),
+    hint: game.i18n.localize('WOD5E.Settings.WorldVersionHint'),
+    scope: 'world',
+    config: true,
+    default: '1.5',
+    type: String
+  })
 }
 
 function _rerenderStorytellerWindow () {
@@ -235,4 +266,25 @@ function _rerenderStorytellerWindow () {
   if (storytellerWindow) {
     storytellerWindow.render()
   }
+}
+
+/**
+ * Set the global CSS theme according to the user's preferred color scheme settings.
+ * Custom written to allow for usage of extra themes
+ */
+export const _updatePreferredColorScheme = async function () {
+  let theme
+  const clientSetting = game.settings.get("vtm5e", "colorScheme")
+
+  // Determine which theme we're using - if it's not set by the client, we base the theme
+  // off of the browser's prefers-color-scheme
+  if ( clientSetting ) theme = `theme-${clientSetting}`
+  else if ( matchMedia("(prefers-color-scheme: dark)").matches ) theme = "theme-dark"
+  else if ( matchMedia("(prefers-color-scheme: light)").matches ) theme = "theme-light"
+
+  // Remove existing theme classes
+  document.body.classList.remove("theme-light", "theme-dark", "theme-vampire", "theme-hunter", "theme-werewolf")
+
+  // Append the theme class to the document body
+  if ( theme ) document.body.classList.add(theme)
 }

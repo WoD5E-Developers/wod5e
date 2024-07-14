@@ -241,8 +241,14 @@
             "WorldVersion": "World Version",
             "WorldVersionHint": "Automatically upgrades data when the system.json is upgraded.",
 
-            "DarkTheme": "Dark Theme",
-            "DarkThemeHint": "Display sheets using a darker theme on a per-user basis.",
+            "ColorScheme": "Color Scheme",
+            "ColorSchemeHint": "Determines the color scheme that the system will use.",
+            "ColorSchemeDark": "Dark Theme",
+            "ColorSchemeLight": "Light Theme",
+            "ColorSchemeDefault": "Browser Default",
+            "ColorSchemeVampire": "Vampire Theme",
+            "ColorSchemeHunter": "Hunter Theme",
+            "ColorSchemeWerewolf": "Werewolf Theme",
 
             "ActorBanner": "Enable Character Type Banner",
             "ActorBannerHint": "Display a banner at the top of actor sheets to represent the character type.",
