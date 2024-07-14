@@ -102,4 +102,6 @@
 #pause figcaption {
   margin-top: 55px;
   color: #000;
+  font-family: var(--header-label-font), sans-serif;
+  font-weight: bold;
 }
