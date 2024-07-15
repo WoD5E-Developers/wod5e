@@ -3,6 +3,11 @@
   --ui-background-werewolf-texture: url("/systems/vtm5e/assets/ui/ui_background_werewolf_texture.webp");
 }
 
+/* Logo */
+.werewolf-theme #logo {
+  content: url(/systems/vtm5e/assets/ui/WtA_Logo.png);
+}
+
 /* Sheet window Header */
 .werewolf-theme .sheet .window-header {
   background-color: var(--werewolf-primary);

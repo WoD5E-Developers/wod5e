@@ -3,6 +3,11 @@
   --ui-background-hunter-texture: url("/systems/vtm5e/assets/ui/ui_background_hunter_texture.webp");
 }
 
+/* Logo */
+.hunter-theme #logo {
+  content: url(/systems/vtm5e/assets/ui/HtR_Logo.png);
+}
+
 /* Sheet window Header */
 .hunter-theme .sheet .window-header {
   background-color: var(--hunter-primary);

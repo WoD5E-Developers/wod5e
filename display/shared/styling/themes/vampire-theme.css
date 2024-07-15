@@ -3,6 +3,11 @@
   --ui-background-vampire-texture: url("/systems/vtm5e/assets/ui/ui_background_vampire_texture.webp");
 }
 
+/* Logo */
+.vampire-theme #logo {
+  content: url(/systems/vtm5e/assets/ui/VtM_Logo.png);
+}
+
 /* Sheet window Header */
 .vampire-theme .sheet .window-header {
   background-color: var(--vampire-primary);
