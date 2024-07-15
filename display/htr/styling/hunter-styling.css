@@ -73,6 +73,11 @@
   background: var(--hunter-primary);
 }
 
+.actor.sheet.hunter .actor-header input,
+.actor.sheet.hunter .actor-header .resource {
+  border: 1px solid var(--hunter-primary);
+}
+
 .hunter-dialog.window-app .window-header {
   border-bottom: 4px double #fff;
 }

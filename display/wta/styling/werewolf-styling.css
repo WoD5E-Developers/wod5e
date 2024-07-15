@@ -17,6 +17,11 @@
   background: var(--werewolf-primary);
 }
 
+.actor.sheet.werewolf .actor-header input,
+.actor.sheet.werewolf .actor-header .resource {
+  border: 1px solid var(--werewolf-primary);
+}
+
 .sheet.werewolf .window-content {
   scrollbar-color: var(--werewolf-secondary) var(--werewolf-primary);
 }

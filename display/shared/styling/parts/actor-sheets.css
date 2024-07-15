@@ -92,6 +92,12 @@
   align-items: center;
   text-align: center;
   flex-grow: 0;
+  background: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp") center;
+}
+
+.actor.sheet .actor-header input,
+.actor.sheet .actor-header .resource {
+  background-color: #CCC;
 }
 
 .actor.sheet .header-profile {
@@ -137,12 +143,15 @@
   padding-left: 10px;
 }
 
-.actor.sheet .header-fields-left .resource {
-  max-width: 200px;
+.actor.sheet .actor-header input,
+.actor.sheet .actor-header .resource {
+  width: 200px;
   display: flex;
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 5px;
+  border: 1px solid black;
 }
 
 .actor.sheet .resource-plus,

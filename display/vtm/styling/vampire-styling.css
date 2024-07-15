@@ -18,6 +18,11 @@
   background: var(--vampire-primary);
 }
 
+.actor.sheet.vampire .actor-header input,
+.actor.sheet.vampire .actor-header .resource {
+  border: 1px solid var(--vampire-primary);
+}
+
 .sheet.vampire .window-content {
   scrollbar-color: var(--vampire-secondary) var(--vampire-primary);;
 }
