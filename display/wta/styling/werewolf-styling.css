@@ -1,6 +1,6 @@
 :root {
   --werewolf-primary: #4e2100;
-  --werewolf-secondary: #b45d1f;
+  --werewolf-secondary: #994101;
 }
 
 /* Define splat-specific colours for the WOD5E Symbols */
@@ -23,7 +23,7 @@
 
 .actor.sheet.werewolf .sheet-banner {
   background-color: var(--werewolf-primary);
-  color: #CCC;
+  color: #FFF;
 }
 
 .actor.sheet.werewolf .tabs-container {
@@ -32,11 +32,11 @@
 
 .actor.sheet.werewolf .tabs-container .active .navicon {
   background-color: var(--werewolf-primary);
-  color: #CCC;
+  color: #FFF;
 }
 
 .actor.sheet.werewolf .tabs-container .active .navicon .symbol {
-  color: #CCC;
+  color: #FFF;
 }
 
 .werewolf.sheet.window-app .window-resizable-handle {
@@ -56,7 +56,7 @@
 .sheet.werewolf .resource-value .resource-value-step.active,
 .sheet.werewolf .resource-value-static .resource-value-static-step.active,
 .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: var(--werewolf-primary);
+  background-color: var(--werewolf-secondary);
 }
 
 /* Group Sheets */

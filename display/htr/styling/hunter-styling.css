@@ -32,11 +32,11 @@
 
 .actor.sheet.hunter .tabs-container .active .navicon {
   background-color: var(--hunter-primary);
-  color: #CCC;
+  color: #FFF;
 }
 
 .actor.sheet.hunter .tabs-container .active .navicon .symbol {
-  color: #CCC;
+  color: #FFF;
 }
 
 .hunter.sheet.window-app .window-resizable-handle {

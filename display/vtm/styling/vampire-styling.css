@@ -1,6 +1,7 @@
 :root {
   --vampire-primary: #650202;
   --vampire-secondary: #d84343;
+  --vampire-tertiary: #f51f1f;
 }
 
 /* Define splat-specific colours for the WOD5E Symbols */
@@ -23,7 +24,7 @@
 
 .actor.sheet.vampire .sheet-banner {
   background-color: var(--vampire-primary);
-  color: #CCC;
+  color: #FFF;
 }
 
 .actor.sheet.vampire .tabs-container {
@@ -32,11 +33,11 @@
 
 .actor.sheet.vampire .tabs-container .active .navicon {
   background-color: var(--vampire-primary);
-  color: #CCC;
+  color: #FFF;
 }
 
 .actor.sheet.vampire .tabs-container .active .navicon .symbol {
-  color: #CCC;
+  color: #FFF;
 }
 
 .vampire.sheet.window-app .window-resizable-handle {
@@ -49,14 +50,15 @@
 }
 
 .actor.sheet.vampire .lock-btn {
-  background: var(--ui-background-vampire-texture);
+  background-color: var(--vampire-tertiary);
+  background-blend-mode: luminosity;
 }
 
 /* Resource counters */
 .sheet.vampire .resource-value .resource-value-step.active,
 .sheet.vampire .resource-value-static .resource-value-static-step.active,
 .sheet.vampire .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: var(--vampire-primary);
+  background-color: var(--vampire-tertiary);
 }
 
 /* Group Sheets */

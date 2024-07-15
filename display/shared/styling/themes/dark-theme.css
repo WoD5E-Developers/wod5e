@@ -12,31 +12,32 @@
 /* Sheet Window Content */
 .dark-theme .sheet .window-content {
   background-color: #000000f0;
-  color: #CCC;
+  color: #FFF;
   background-blend-mode: hard-light;
 }
 
 .dark-theme .sheet .window-content input {
-  color: #CCC;
+  color: #FFF;
 }
 
 /* Navbar */
 .dark-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
   background-color: black;
-  border: 1px solid #CCC;
+  border: 1px solid #FFF;
 }
 
-.dark-theme .actor.sheet.hunter .tabs-container .active .navicon {
-  color: black;
+.dark-theme .actor.sheet.vampire .tabs-container .navicon .symbol,
+.dark-theme .actor.sheet.werewolf .tabs-container .navicon .symbol {
+  color: #ff0000;
 }
 
-.dark-theme .actor.sheet.hunter .tabs-container .active .navicon .symbol {
-  color: black;
+.dark-theme .actor.sheet.hunter .tabs-container .navicon .symbol {
+  color: #ff8f00;
 }
 
 /* Resource Counters */
 .dark-theme .resource-counter .resource-counter-step {
-  border: 1px solid #CCC;
+  border: 1px solid #FFF;
 }
 
 .dark-theme .resource-counter .resource-counter-step[data-state="/"] {
@@ -75,7 +76,7 @@
 /* Actor Sheet */
 .dark-theme .actor.sheet .stats-container {
   background-color: #1d1d1d;
-  border-color: #CCC;
+  border-color: #FFF;
 }
 
 /* Sidebar */

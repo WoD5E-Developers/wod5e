@@ -16,18 +16,18 @@
 /* Sheet Window Content */
 .vampire-theme .sheet .window-content {
   background-color: #000000f0;
-  color: #CCC;
+  color: #ffffff;
   background-blend-mode: hard-light;
 }
 
 .vampire-theme .sheet .window-content input {
-  color: #CCC;
+  color: #FFF;
 }
 
 /* Navbar */
 .vampire-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
   background-color: black;
-  border: 1px solid #CCC;
+  border: 1px solid #FFF;
 }
 
 .vampire-theme .actor.sheet.hunter .tabs-container .active .navicon {
@@ -40,7 +40,7 @@
 
 /* Resource Counters */
 .vampire-theme .resource-counter .resource-counter-step {
-  border: 1px solid #CCC;
+  border: 1px solid #FFF;
 }
 
 .vampire-theme .resource-counter .resource-counter-step[data-state="/"] {
@@ -79,7 +79,7 @@
 /* Actor Sheet */
 .vampire-theme .actor.sheet .stats-container {
   background-color: #1d1d1d;
-  border-color: #CCC;
+  border-color: #FFF;
 }
 
 /* Sidebar */
