@@ -48,6 +48,10 @@
   color: #e9e9e9;
 }
 
+.actor.sheet.vampire .lock-btn {
+  background: var(--ui-background-vampire-texture);
+}
+
 /* Resource counters */
 .sheet.vampire .resource-value .resource-value-step.active,
 .sheet.vampire .resource-value-static .resource-value-static-step.active,

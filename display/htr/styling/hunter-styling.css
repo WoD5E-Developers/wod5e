@@ -23,7 +23,7 @@
 
 .actor.sheet.hunter .sheet-banner {
   background-color: var(--hunter-primary);
-  color: #CCC;
+  color: #ffffff;
 }
 
 .actor.sheet.hunter .tabs-container {
@@ -46,6 +46,10 @@
   border-right: 1px solid var(--hunter-primary);
   background-color: var(--hunter-secondary);
   color: #2b2b2b;
+}
+
+.actor.sheet.hunter .lock-btn {
+  background: var(--ui-background-hunter-texture);
 }
 
 /* Resource counters */

@@ -10,6 +10,10 @@
   background: url(/systems/vtm5e/assets/actor/actor_background.webp) repeat;
 }
 
+.actor.sheet .window-content form {
+  margin-left: 40px;
+}
+
 /* Increase z-index of the window handle to compensate for the actor banner*/
 .window-app .window-resizable-handle {
   z-index: 2;
@@ -60,11 +64,6 @@
   font-weight: 500;
   padding: 0 1em;
   margin-bottom: -8px;
-}
-
-/* Sheet Header */
-.actor.sheet .sheet-body {
-  margin-left: 40px;
 }
 
 /* Sheet Banner */
@@ -139,6 +138,23 @@
 
 .actor.sheet .header-fields-left .resource {
   max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.actor.sheet .resource-plus,
+.actor.sheet .resource-minus {
+  cursor: pointer;
+}
+
+.actor.sheet .resource-plus {
+  margin-left: 5px;
+}
+
+.actor.sheet .resource-minus {
+  margin-right: 5px;
 }
 
 .actor.sheet .lock-btn {
@@ -216,7 +232,8 @@
   font-family: vampireRevised, sans-serif;
 }
 
-.actor.sheet .rollable:hover {
+.actor.sheet .rollable:hover,
+.actor.sheet label.system-rollable:hover {
   cursor: pointer;
   text-shadow: 0 0 5px #e02b2b;
 }
