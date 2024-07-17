@@ -159,6 +159,7 @@
 
 .actor.sheet .actor-header input {
   min-height: 26px;
+  border-radius: 0;
 }
 
 .actor.sheet .actor-header .field-header {
