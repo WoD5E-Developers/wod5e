@@ -20,14 +20,6 @@
   z-index: 2;
 }
 
-/* General Button Stuff */
-.actor.sheet .item-create,
-.actor.sheet .item-delete,
-.actor.sheet .item-edit {
-  position: absolute;
-  margin-left: -20px;
-}
-
 /* Collapsible Descrptions */
 .actor.sheet .collapsible-content {
   padding: 0 1em;
@@ -269,6 +261,11 @@
   font-family: vampireRevised, sans-serif;
 }
 
+.actor.sheet.locked .resource-label {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .actor.sheet .rollable:hover,
 .actor.sheet label.system-rollable:hover {
   cursor: pointer;
@@ -321,6 +318,20 @@
 .actor.sheet .stats-content > .skills-attributes,
 .actor.sheet .stats-content > .custom-rolls {
   flex: 1 1 auto;
+}
+
+.actor.sheet .stats-content > .custom-rolls .item-image {
+  max-width: 30px;
+}
+
+.actor.sheet .stats-content > .custom-rolls .item-name {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.actor.sheet .stats-content > .custom-rolls .item-controls {
+  text-align-last: right;
+  max-width: 30px;
 }
 
 @media (max-width: 600px) {

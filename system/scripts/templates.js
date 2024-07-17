@@ -9,6 +9,7 @@ export const preloadHandlebarsTemplates = async function () {
   // Define template paths to load
   const templatePaths = [
     // Base Sheet Partials
+    'systems/vtm5e/display/shared/actors/parts/lock-button.hbs',
     'systems/vtm5e/display/shared/actors/parts/biography.hbs',
     'systems/vtm5e/display/shared/actors/parts/exp.hbs',
     'systems/vtm5e/display/shared/actors/parts/features.hbs',

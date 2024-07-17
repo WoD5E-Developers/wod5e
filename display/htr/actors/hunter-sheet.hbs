@@ -17,15 +17,7 @@
                 <h1 class="charname">
                     <input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'WOD5E.Name'}}" />
                 </h1>
-                {{#if actor.isOwner}}
-                    <button type="button" class="lock-btn">
-                        {{#if locked}}
-                            <i class="fa fa-lock"></i>
-                        {{else}}
-                            <i class="fa fa-lock-open"></i>
-                        {{/if}}
-                    </button>
-                {{/if}}
+                {{> "systems/vtm5e/display/shared/actors/parts/lock-button.hbs"}}
             </div>
         </div>
         <div class="header-fields">
