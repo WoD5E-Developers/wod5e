@@ -33,7 +33,7 @@
 
 /* Fonts */
 @font-face {
-  font-family: cormorantLight;
+  font-family: "cormorantLight";
   src: url("../../../assets/fonts/Cormorant-Light-webfont.woff") format("woff");
   font-weight: 400;
   font-style: normal;
@@ -51,7 +51,7 @@
 
 /* Define the class that will be used for WOD5E symbols */
 .wod5e-symbol {
-  font-family: "wod5eSymbols", sans-serif;
+  font-family: "wod5eSymbols", "sans-serif";
   color: var(--vampire-primary);
   font-size: 16pt;
 }
@@ -105,7 +105,7 @@
 }
 
 .vampire-font-headers #pause figcaption {
-  font-family: vampireRevised, sans-serif;
+  font-family: "vampireRevised", "sans-serif";
 }
 
 /* Hide the color scheme option in core Foundry settings
