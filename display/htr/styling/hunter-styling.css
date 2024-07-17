@@ -4,7 +4,7 @@
 }
 
 /* Define splat-specific colours for the WOD5E Symbols */
- .symbol.hunter {
+ .wod5e-symbol.hunter {
   color: var(--hunter-primary);
 }
 
@@ -15,6 +15,10 @@
 
 .sheet.hunter .window-header {
   background: var(--hunter-primary);
+}
+
+.actor.sheet.hunter .actor-header {
+  border-bottom: 2px solid var(--hunter-primary);
 }
 
 .sheet.hunter .window-content {
@@ -35,11 +39,11 @@
   color: #FFF;
 }
 
-.actor.sheet.hunter .tabs-container .active .navicon .symbol {
+.actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
   color: #FFF;
 }
 
-.hunter.sheet.window-app .window-resizable-handle {
+.sheet.hunter.window-app .window-resizable-handle {
   border-top: 3px double var(--hunter-primary);
   border-left: 3px double var(--hunter-primary);
   border-bottom: 1px solid var(--hunter-primary);
@@ -55,8 +59,21 @@
 /* Resource counters */
 .sheet.hunter .resource-value .resource-value-step.active,
 .sheet.hunter .resource-value-static .resource-value-static-step.active,
-.sheet.hunter .resource-counter .resource-counter-step[data-state="-"] {
+.sheet.hunter .resource-counter .resource-counter-step[data-state="-"],
+.wod5e.hunter-sheet .despair-box .despair-toggle.active {
   background-color: var(--hunter-primary);
+}
+
+.wod5e.hunter-sheet .despair-box,
+.wod5e.hunter-sheet .despair-box .despair-toggle {
+  height: 14px;
+  width: 14px;
+}
+
+.wod5e.hunter-sheet .despair-box .despair-toggle {
+  border: 1px solid #000;
+  display: inline-block;
+  cursor: pointer;
 }
 
 /* Group Sheets */

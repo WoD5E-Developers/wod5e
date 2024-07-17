@@ -7,7 +7,7 @@
 /* Resource counters */
 .locked .resource-plus,
 .locked .resource-minus,
-.locked .resource-value-empty:not(.hunger-value),
+.locked .resource-value-empty:not(.hunger-value, .rage-value),
 /* SPC Sheet */
 .locked a.item-control.exceptionalskill-create,
 .locked .exceptionalskill-delete,
@@ -19,8 +19,8 @@
 }
 
 /* Set resource counters to use the default cursor */
-.locked .resource-value-empty:not(.hunger-value),
-.locked .resource-value-step:not(.hunger-value),
+.locked .resource-value-empty:not(.hunger-value, .rage-value),
+.locked .resource-value-step:not(.hunger-value, .rage-value),
 .locked .resource-plus,
 .locked .resource-minus {
   cursor: default;

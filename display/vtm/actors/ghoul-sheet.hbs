@@ -30,8 +30,14 @@
         </div>
         <div class="header-fields">
             <div class="header-fields-right">
-                {{> "systems/vtm5e/display/vtm/actors/parts/humanity.hbs"}}
-                <input name="system.headers.domitor" type="text" value="{{actor.system.headers.domitor}}" placeholder="{{localize 'WOD5E.VTM.Domitor'}}" />
+                <div class="flexcol field-section">
+                    <label class="resource-label field-header">{{localize "WOD5E.VTM.Humanity"}}</label>
+                    {{> "systems/vtm5e/display/vtm/actors/parts/humanity.hbs"}}
+                </div>
+                <div class="flexcol field-section">
+                    <label class="resource-label field-header">{{localize 'WOD5E.VTM.Domitor'}}</label>
+                    <input name="system.headers.domitor" type="text" value="{{actor.system.headers.domitor}}" placeholder="{{localize 'WOD5E.VTM.Domitor'}}" />
+                </div>
             </div>
         </div>
     </header>
@@ -46,7 +52,7 @@
             </div>
             <div class="item" data-tab="disciplines" title="{{localize "WOD5E.VTM.Disciplines"}}">
                 <div class="navicon">
-                    <span class="symbol">b</span>
+                    <span class="wod5e-symbol">b</span>
                 </div>
             </div>
             <div class="item" data-tab="features" title="{{localize "WOD5E.Tabs.Features"}}">

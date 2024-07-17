@@ -23,7 +23,12 @@
                 {{/numLoop}}
             </div>
         </div>
-        {{> "systems/vtm5e/display/vtm/actors/parts/humanity.hbs"}}
+        <div class="flex-group-center">
+            <label for="actor.system.humanity.value" class="resource-label system-rollable remorse-roll" title="{{localize 'WOD5E.VTM.RollRemorse'}}">
+                {{localize "WOD5E.VTM.Humanity"}}
+            </label>
+            {{> "systems/vtm5e/display/vtm/actors/parts/humanity.hbs"}}
+        </div>
     </div>
     <div class="resource flexrow grid grid-2col">
         <div class="flex-group-center">

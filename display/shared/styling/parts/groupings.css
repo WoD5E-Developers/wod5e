@@ -60,3 +60,7 @@
 .wod5e .flex-between {
   justify-content: space-between;
 }
+
+.wod5e .nowrap {
+  flex-wrap: nowrap;
+}

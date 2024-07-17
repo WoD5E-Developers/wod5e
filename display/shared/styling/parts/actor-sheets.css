@@ -2,7 +2,7 @@
 .actor.sheet {
   position: fixed;
   overflow: hidden;
-  min-width: 770px;
+  min-width: 850px;
   min-height: 300px;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .actor.sheet .window-content form {
-  margin-left: 40px;
+  margin-left: 45px;
 }
 
 /* Increase z-index of the window handle to compensate for the actor banner*/
@@ -93,6 +93,9 @@
   text-align: center;
   flex-grow: 0;
   background: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp") center;
+  border-bottom: 2px solid var(--system-primary);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .actor.sheet .actor-header input,
@@ -121,10 +124,9 @@
 
 .actor.sheet .header-fields {
   display: flex;
-  justify-content: space-between;
   width: 100%;
   align-self: flex-end;
-  margin-bottom: 30px;
+  align-self: center;
 }
 
 .actor.sheet .header-fields-left, .header-fields-right {
@@ -143,15 +145,36 @@
   padding-left: 10px;
 }
 
+.actor.sheet .actor-header .field-section {
+  margin-bottom: 5px;
+}
+
+.actor.sheet .actor-header .header-fields-left .field-section {
+  margin-bottom: 5px;
+  width: 200px;
+}
+
+.actor.sheet .actor-header .header-fields-right .field-section {
+  margin-bottom: 5px;
+  width: 250px;
+}
+
 .actor.sheet .actor-header input,
 .actor.sheet .actor-header .resource {
-  width: 200px;
   display: flex;
   flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
   margin-bottom: 5px;
   border: 1px solid black;
+}
+
+.actor.sheet .actor-header input {
+  min-height: 26px;
+}
+
+.actor.sheet .actor-header .field-header {
+  color: #FFF;
+  justify-content: center;
+  margin-bottom: 0;
 }
 
 .actor.sheet .resource-plus,
@@ -224,7 +247,7 @@
 }
 
 .actor.sheet .sheet-tabs > [data-tab] .navicon i,
-.actor.sheet .sheet-tabs > [data-tab] .navicon .symbol {
+.actor.sheet .sheet-tabs > [data-tab] .navicon .wod5e-symbol {
   width: 100%;
 }
 

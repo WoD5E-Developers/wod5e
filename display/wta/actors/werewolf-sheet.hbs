@@ -7,7 +7,6 @@
                 {{> "systems/vtm5e/display/shared/actors/parts/health.hbs"}}
                 {{!-- Willpower Tracker --}}
                 {{> "systems/vtm5e/display/shared/actors/parts/willpower.hbs"}}
-                {{> "systems/vtm5e/display/wta/actors/parts/rage-value.hbs"}}
             </div>
         </div>
         <div class="header-profile">
@@ -31,10 +30,27 @@
         </div>
         <div class="header-fields">
             <div class="header-fields-right">
-                {{> "systems/vtm5e/display/wta/actors/parts/rage-button.hbs"}}
-                {{> "systems/vtm5e/display/wta/actors/parts/frenzy.hbs"}}
-                <input name="system.headers.tribe" type="text" value="{{actor.system.headers.tribe}}" placeholder="{{localize 'WOD5E.WTA.Tribe'}}"/>
-                <input name="system.headers.auspice" type="text" value="{{actor.system.headers.auspice}}" placeholder="{{localize 'WOD5E.WTA.Auspice'}}"/>
+                <div class="flexcol">
+                    <div class="field-section">
+                        <div class="flexrow nowrap">
+                            <div class="flexcol">
+                                <label class="resource-label field-header">{{localize 'WOD5E.WTA.Auspice'}}</label>
+                                <input name="system.headers.auspice" type="text" value="{{actor.system.headers.auspice}}" placeholder="{{localize 'WOD5E.WTA.Auspice'}}"/>
+                            </div>
+                            <div class="flexcol">
+                                <label class="resource-label field-header">{{localize 'WOD5E.WTA.Tribe'}}</label>
+                                <input name="system.headers.tribe" type="text" value="{{actor.system.headers.tribe}}" placeholder="{{localize 'WOD5E.WTA.Tribe'}}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flexcol field-section">
+                        <label class="resource-label field-header">{{localize "WOD5E.WTA.Rage"}}</label>
+                        <div class="flexrow">
+                            {{> "systems/vtm5e/display/wta/actors/parts/rage-value.hbs"}}
+                            {{> "systems/vtm5e/display/wta/actors/parts/rage-button.hbs"}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -49,7 +65,7 @@
             </div>
             <div class="item" data-tab="gifts-rites" title="{{localize "WOD5E.WTA.GiftsandRites"}}">
                 <div class="navicon">
-                    <span class="symbol">h</span>
+                    <span class="wod5e-symbol">h</span>
                 </div>
             </div>
             <div class="item" data-tab="features" title="{{localize "WOD5E.Tabs.Features"}}">

@@ -4,7 +4,7 @@
 }
 
 /* Define splat-specific colours for the WOD5E Symbols */
-.wod5e .symbol.werewolf {
+.wod5e .wod5e-symbol.werewolf {
   color: var(--werewolf-primary);
 }
 
@@ -17,6 +17,11 @@
   background: var(--werewolf-primary);
 }
 
+.actor.sheet.werewolf .actor-header {
+  border-bottom: 2px solid var(--werewolf-primary);
+}
+
+.actor.sheet.werewolf .profile-img,
 .actor.sheet.werewolf .actor-header input,
 .actor.sheet.werewolf .actor-header .resource {
   border: 1px solid var(--werewolf-primary);
@@ -40,7 +45,7 @@
   color: #FFF;
 }
 
-.actor.sheet.werewolf .tabs-container .active .navicon .symbol {
+.actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
   color: #FFF;
 }
 
@@ -102,4 +107,25 @@
 
 .werewolf-dialog .base-dice-group {
   border: 1px solid var(--werewolf-secondary);
+}
+
+/* Buttons */
+.sheet.werewolf button.rollable,
+.actor.sheet .werewolf-button {
+  background-color: var(--werewolf-secondary);
+  border: 1px solid var(var(--werewolf-primary));
+  border-radius: 5px;
+}
+
+.vampire-font-headers .werewolf-button {
+  font-family: vampireRevised, sans-serif;
+}
+
+.sheet.werewolf .rage-button {
+  max-width: 35px;
+  max-height: 35px;
+}
+
+.sheet.werewolf .rage-button .wod5e-symbol {
+  vertical-align: middle;
 }

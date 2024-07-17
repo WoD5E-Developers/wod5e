@@ -5,7 +5,7 @@
 }
 
 /* Define splat-specific colours for the WOD5E Symbols */
-.wod5e .symbol.vampire {
+.wod5e .wod5e-symbol.vampire {
   color: var(--vampire-primary);
 }
 
@@ -16,6 +16,10 @@
 
 .sheet.vampire .window-header {
   background: var(--vampire-primary);
+}
+
+.actor.sheet.vampire .actor-header {
+  border-bottom: 2px solid var(--vampire-primary);
 }
 
 .actor.sheet.vampire .actor-header input,
@@ -41,7 +45,7 @@
   color: #FFF;
 }
 
-.actor.sheet.vampire .tabs-container .active .navicon .symbol {
+.actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
   color: #FFF;
 }
 
@@ -104,4 +108,25 @@
 
 .vampire-dialog .base-dice-group {
   border: 1px solid var(--vampire-secondary);
+}
+
+/* Buttons */
+.sheet.vampire button.rollable,
+.actor.sheet .vampire-button {
+  background-color: var(--vampire-secondary);
+  border: 1px solid var(var(--vampire-primary));
+  border-radius: 5px;
+}
+
+.vampire-font-headers .vampire-button {
+  font-family: vampireRevised, sans-serif;
+}
+
+.sheet.vampire .rouse-button {
+  max-width: 35px;
+  max-height: 35px;
+}
+
+.sheet.vampire .rouse-button .wod5e-symbol {
+  vertical-align: middle;
 }

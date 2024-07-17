@@ -34,7 +34,7 @@
   color: black;
 }
 
-.vampire-theme .actor.sheet.hunter .tabs-container .active .navicon .symbol {
+.vampire-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
   color: black;
 }
 
@@ -77,6 +77,8 @@
 }
 
 /* Actor Sheet */
+.vampire-theme .actor.sheet .actor-header input,
+.vampire-theme .actor.sheet .actor-header .resource,
 .vampire-theme .actor.sheet .stats-container {
   background-color: #1d1d1d;
   border-color: #FFF;

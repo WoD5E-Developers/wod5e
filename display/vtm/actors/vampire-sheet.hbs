@@ -7,7 +7,6 @@
                 {{> "systems/vtm5e/display/shared/actors/parts/health.hbs"}}
                 {{!-- Willpower Tracker --}}
                 {{> "systems/vtm5e/display/shared/actors/parts/willpower.hbs"}}
-                {{> "systems/vtm5e/display/vtm/actors/parts/hunger.hbs"}}
             </div>
         </div>
         <div class="header-profile">
@@ -31,10 +30,27 @@
         </div>
         <div class="header-fields">
             <div class="header-fields-right">
-                {{> "systems/vtm5e/display/vtm/actors/parts/rouse.hbs"}}
-                {{> "systems/vtm5e/display/vtm/actors/parts/frenzy.hbs"}}
-                <input name="system.clan.value" type="text" value="{{actor.system.clan.value}}" placeholder="{{localize 'WOD5E.VTM.Clan'}}"/>
-                <input name="system.headers.predator" type="text" value="{{actor.system.headers.predator}}" placeholder="{{localize 'WOD5E.VTM.Predator'}}"/>
+                <div class="flexcol">
+                    <div class="field-section">
+                        <div class="flexrow nowrap">
+                            <div class="flexcol">
+                                <label class="resource-label field-header">{{localize 'WOD5E.VTM.PredatorType'}}</label>
+                                <input name="system.headers.predator" type="text" value="{{actor.system.headers.predator}}" placeholder="{{localize 'WOD5E.VTM.PredatorType'}}"/>
+                            </div>
+                            <div class="flexcol">
+                                <label class="resource-label field-header">{{localize 'WOD5E.VTM.Clan'}}</label>
+                                <input name="system.clan.value" type="text" value="{{actor.system.clan.value}}" placeholder="{{localize 'WOD5E.VTM.Clan'}}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flexcol field-section">
+                        <label class="resource-label field-header">{{localize "WOD5E.VTM.Hunger"}}</label>
+                        <div class="flexrow">
+                            {{> "systems/vtm5e/display/vtm/actors/parts/hunger.hbs"}}
+                            {{> "systems/vtm5e/display/vtm/actors/parts/rouse.hbs"}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -49,12 +65,12 @@
             </div>
             <div class="item" data-tab="disciplines" title="{{localize "WOD5E.VTM.Disciplines"}}">
                 <div class="navicon">
-                    <span class="symbol">b</span>
+                    <span class="wod5e-symbol">b</span>
                 </div>
             </div>
             <div class="item" data-tab="blood" title="{{localize "WOD5E.VTM.Blood"}}">
                 <div class="navicon">
-                    <span class="symbol">d</span>
+                    <span class="wod5e-symbol">d</span>
                 </div>
             </div>
             <div class="item" data-tab="features" title="{{localize "WOD5E.Tabs.Features"}}">

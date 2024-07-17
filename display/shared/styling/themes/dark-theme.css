@@ -26,12 +26,12 @@
   border: 1px solid #FFF;
 }
 
-.dark-theme .actor.sheet.vampire .tabs-container .navicon .symbol,
-.dark-theme .actor.sheet.werewolf .tabs-container .navicon .symbol {
+.dark-theme .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
+.dark-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol {
   color: #ff0000;
 }
 
-.dark-theme .actor.sheet.hunter .tabs-container .navicon .symbol {
+.dark-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
   color: #ff8f00;
 }
 
@@ -74,6 +74,8 @@
 }
 
 /* Actor Sheet */
+.dark-theme .actor.sheet .actor-header input,
+.dark-theme .actor.sheet .actor-header .resource,
 .dark-theme .actor.sheet .stats-container {
   background-color: #1d1d1d;
   border-color: #FFF;
