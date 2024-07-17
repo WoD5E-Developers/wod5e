@@ -21,6 +21,12 @@
   border-bottom: 2px solid var(--hunter-primary);
 }
 
+.actor.sheet.hunter .profile-img,
+.actor.sheet.hunter .actor-header input,
+.actor.sheet.hunter .actor-header .resource {
+  border: 1px solid var(--hunter-primary);
+}
+
 .sheet.hunter .window-content {
   scrollbar-color: var(--hunter-secondary) var(--hunter-primary);;
 }

@@ -22,6 +22,7 @@
   border-bottom: 2px solid var(--vampire-primary);
 }
 
+.actor.sheet.vampire .profile-img,
 .actor.sheet.vampire .actor-header input,
 .actor.sheet.vampire .actor-header .resource {
   border: 1px solid var(--vampire-primary);
