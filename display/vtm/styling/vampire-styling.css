@@ -116,7 +116,6 @@
 .actor.sheet .vampire-button {
   background-color: var(--vampire-secondary);
   border: 1px solid var(var(--vampire-primary));
-  border-radius: 5px;
 }
 
 .vampire-font-headers .vampire-button {

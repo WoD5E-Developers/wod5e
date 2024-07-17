@@ -40,7 +40,6 @@
   word-spacing: 0.05em;
   font-size: 1.1em;
   color: hwb(0deg 7% 98% / 100%);
-  border-radius: 0.5em;
   background: #eeece8;
 }
 
@@ -52,7 +51,6 @@
   word-spacing: 0.05em;
   font-size: 1em;
   border: 0;
-  border-radius: 0.5em;
   height: auto;
   font-weight: 500;
   padding: 0 1em;
@@ -234,7 +232,6 @@
   background-color: #CCC;
   width: 100%;
   height: 100%;
-  border-radius: 8px;
   border: 1px solid black;
 }
 
@@ -277,7 +274,6 @@
   display: flex;
   flex-flow: row;
   background-color: #ededec;
-  border-radius: 10px;
   border: 2px solid #1b1b1b;
   margin: 5px;
   padding: 5px;

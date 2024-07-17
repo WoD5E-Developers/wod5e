@@ -27,7 +27,6 @@
 .chat-message .modifiers .mod {
   text-transform: uppercase;
   font-size: 8pt;
-  border-radius: 5px;
   background-color: #fff;
   padding: 0 5px;
   border: 1px solid #424242;

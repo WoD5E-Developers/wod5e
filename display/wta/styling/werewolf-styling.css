@@ -114,7 +114,6 @@
 .actor.sheet .werewolf-button {
   background-color: var(--werewolf-secondary);
   border: 1px solid var(var(--werewolf-primary));
-  border-radius: 5px;
 }
 
 .vampire-font-headers .werewolf-button {
