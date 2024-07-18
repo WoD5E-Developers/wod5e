@@ -10,6 +10,7 @@ export const preloadHandlebarsTemplates = async function () {
   const templatePaths = [
     // Base Sheet Partials
     'systems/vtm5e/display/shared/actors/parts/lock-button.hbs',
+    'systems/vtm5e/display/shared/actors/parts/header-profile.hbs',
     'systems/vtm5e/display/shared/actors/parts/biography.hbs',
     'systems/vtm5e/display/shared/actors/parts/exp.hbs',
     'systems/vtm5e/display/shared/actors/parts/features.hbs',
@@ -21,6 +22,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/actors/parts/skill-dialog.hbs',
     'systems/vtm5e/display/shared/actors/parts/specialty-display.hbs',
     'systems/vtm5e/display/shared/actors/parts/navbar.hbs',
+    'systems/vtm5e/display/shared/actors/parts/actor-settings.hbs',
 
     // Hunter Sheet Partials
     'systems/vtm5e/display/htr/actors/parts/danger.hbs',

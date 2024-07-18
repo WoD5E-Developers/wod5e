@@ -9,7 +9,10 @@
         "appearance": "",
         "equipment": "",
         "notes": "",
-        "headers":{
+        "settings": {
+          "headerbg": ""
+        },
+        "headers": {
           "concept":"",
           "chronicle":"",
           "ambition":"",

@@ -7,7 +7,7 @@
   {{/if}}
 
   {{!-- SPC Sheet Header --}}
-  <header class="actor-header">
+  <header class="actor-header" {{#if actor.system.settings.headerbg}}style="background: url({{actor.system.settings.headerbg}}) center;"{{/if}}>
       <div class="header-fields-top">
         <div class="header-profile-img">
             {{!-- Actor image and sheet lock toggle button --}}
