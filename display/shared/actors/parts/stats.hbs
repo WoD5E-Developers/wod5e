@@ -6,52 +6,66 @@
                     {{localize "WOD5E.AttributesList.Attributes"}}
                 </label>
             </div>
-            <div class="stats-container">
-                {{#each actor.system.attributes_list as |type key|}}
-                    <div class="abilities stats-list">
-                        {{#each type as |attribute key|}}
-                            <div class="attribute">
-                                <label for="actor.system.abilities.{{attribute.id}}.value" class="resource-label rollable" data-value-paths="abilities.{{attribute.id}}.value" data-select-dialog="true"
-                                    data-label="{{attribute.displayName}}" data-selectors="abilities abilities.{{attribute.id}}" data-attribute="{{attribute.id}}">{{attribute.displayName}}</label>
-                                <div class="resource-value" data-value="{{attribute.value}}" data-name="system.abilities.{{attribute.id}}.value">
-                                    <span class="resource-value-empty"></span>
-                                    {{#numLoop 5}}
-                                        <span class="resource-value-step" data-index="{{this}}"></span>
-                                    {{/numLoop}}
+            <div class="stats-container attributes">
+                <div class="grid grid-3col stats-footer">
+                    <div class="field-header">{{localize "WOD5E.SPC.Physical"}}</div>
+                    <div class="field-header">{{localize "WOD5E.SPC.Social"}}</div>
+                    <div class="field-header">{{localize "WOD5E.SPC.Mental"}}</div>
+                </div>
+                <div class="stats-content">
+                    {{#each actor.system.attributes_list as |type key|}}
+                        <div class="abilities stats-list">
+                            {{#each type as |attribute key|}}
+                                <div class="attribute">
+                                    <label for="actor.system.abilities.{{attribute.id}}.value" class="resource-label rollable" data-value-paths="abilities.{{attribute.id}}.value" data-select-dialog="true"
+                                        data-label="{{attribute.displayName}}" data-selectors="abilities abilities.{{attribute.id}}" data-attribute="{{attribute.id}}">{{attribute.displayName}}</label>
+                                    <div class="resource-value" data-value="{{attribute.value}}" data-name="system.abilities.{{attribute.id}}.value">
+                                        <span class="resource-value-empty"></span>
+                                        {{#numLoop 5}}
+                                            <span class="resource-value-step" data-index="{{this}}"></span>
+                                        {{/numLoop}}
+                                    </div>
                                 </div>
-                            </div>
-                        {{/each}}
-                    </div>
-                {{/each}}
+                            {{/each}}
+                        </div>
+                    {{/each}}
+                </div>
             </div>
 
             <label class="resource-header">{{localize "WOD5E.SkillsList.Skills"}}</label>
-            <div class="stats-container">
-                {{#each actor.system.skills_list as |type key|}}
-                    <div class="skills stats-list">
-                        {{#each type as |skill key|}}
-                            <div class="skill">
-                                <div class="resource-label">
-                                    <a class="edit-skill" title="Edit skill" data-skill="{{skill.id}}">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <label for="actor.system.skills.{{skill.id}}.value" class="rollable{{#if skill.bonuses}} specialty-available{{/if}}" data-value-paths="skills.{{skill.id}}.value"
-                                    data-label="{{skill.displayName}}" data-selectors="skills skills.{{skill.id}}" data-skill="{{skill.id}}" data-select-dialog="true"
-                                    data-use-flavor-path="true" data-flavor-path="skills.{{skill.id}}.description" data-macroid="{{skill.macroid}}">{{skill.displayName}}</label>
-                                    {{#if hasSpecialties}}
-                                        <label class="specialty" title="{{localize "WOD5E.SkillsList.Specialties"}}:{{#each skill.specialtiesList as |bonus|}} {{bonus}}{{#unless @last}},{{/unless}}{{/each}}">S</label>
-                                    {{/if}}
+            <div class="stats-container skills">
+                <div class="stats-content">
+                    {{#each actor.system.skills_list as |type key|}}
+                        <div class="skills stats-list">
+                            {{#each type as |skill key|}}
+                                <div class="skill">
+                                    <div class="resource-label">
+                                        <a class="edit-skill" title="Edit skill" data-skill="{{skill.id}}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <label for="actor.system.skills.{{skill.id}}.value" class="rollable{{#if skill.bonuses}} specialty-available{{/if}}" data-value-paths="skills.{{skill.id}}.value"
+                                        data-label="{{skill.displayName}}" data-selectors="skills skills.{{skill.id}}" data-skill="{{skill.id}}" data-select-dialog="true"
+                                        data-use-flavor-path="true" data-flavor-path="skills.{{skill.id}}.description" data-macroid="{{skill.macroid}}">{{skill.displayName}}</label>
+                                        {{#if hasSpecialties}}
+                                            <label class="specialty" title="{{localize "WOD5E.SkillsList.Specialties"}}:{{#each skill.specialtiesList as |bonus|}} {{bonus}}{{#unless @last}},{{/unless}}{{/each}}">S</label>
+                                        {{/if}}
+                                    </div>
+                                    <div class="resource-value" data-value="{{skill.value}}" data-name="system.skills.{{skill.id}}.value">
+                                        <span class="resource-value-empty"></span>
+                                        {{#numLoop 5}}
+                                            <span class="resource-value-step" data-index="{{this}}"></span>
+                                        {{/numLoop}}
+                                    </div>
                                 </div>
-                                <div class="resource-value" data-value="{{skill.value}}" data-name="system.skills.{{skill.id}}.value">
-                                    <span class="resource-value-empty"></span>
-                                    {{#numLoop 5}}
-                                        <span class="resource-value-step" data-index="{{this}}"></span>
-                                    {{/numLoop}}
-                                </div>
-                            </div>
-                        {{/each}}
-                    </div>
-                {{/each}}
+                            {{/each}}
+                        </div>
+                    {{/each}}
+                </div>
+                <div class="grid grid-3col stats-footer">
+                    <div class="field-header">{{localize "WOD5E.SPC.Physical"}}</div>
+                    <div class="field-header">{{localize "WOD5E.SPC.Social"}}</div>
+                    <div class="field-header">{{localize "WOD5E.SPC.Mental"}}</div>
+                </div>
             </div>
         </div>
         <div class="custom-rolls">

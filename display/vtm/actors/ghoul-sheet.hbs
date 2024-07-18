@@ -35,35 +35,7 @@
     </header>
 
     {{!-- Tab Navigation --}}
-    <div class="tabs-container">
-        <nav class="sheet-tabs tabs" data-group="primary">
-            <div class="item" data-tab="stats" title="{{localize "WOD5E.Tabs.Stats"}}">
-                <div class="navicon">
-                    <i class="fa-regular fa-chart-line"></i>
-                </div>
-            </div>
-            <div class="item" data-tab="disciplines" title="{{localize "WOD5E.VTM.Disciplines"}}">
-                <div class="navicon">
-                    <span class="wod5e-symbol">b</span>
-                </div>
-            </div>
-            <div class="item" data-tab="features" title="{{localize "WOD5E.Tabs.Features"}}">
-                <div class="navicon">
-                    <i class="fas fa-gem"></i>
-                </div>
-            </div>
-            <div class="item" data-tab="description" title="{{localize "WOD5E.Tabs.Description"}}">
-                <div class="navicon">
-                    <i class="fas fa-id-card"></i>
-                </div>
-            </div>
-            <div class="item" data-tab="other" title="{{localize "WOD5E.Tabs.Other"}}">
-                <div class="navicon">
-                    <i class="fas fa-sticky-note"></i>
-                </div>
-            </div>
-        </nav>
-    </div>
+    {{> "systems/vtm5e/display/shared/actors/parts/navbar.hbs"}}
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">

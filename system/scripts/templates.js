@@ -20,6 +20,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/actors/parts/notes.hbs',
     'systems/vtm5e/display/shared/actors/parts/skill-dialog.hbs',
     'systems/vtm5e/display/shared/actors/parts/specialty-display.hbs',
+    'systems/vtm5e/display/shared/actors/parts/navbar.hbs',
 
     // Hunter Sheet Partials
     'systems/vtm5e/display/htr/actors/parts/danger.hbs',

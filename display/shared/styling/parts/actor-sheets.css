@@ -275,11 +275,10 @@
 /* Statistics Page */
 .actor.sheet .stats-container {
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
   background-color: #ededec;
   border: 2px solid #1b1b1b;
   margin: 5px;
-  padding: 5px;
 }
 
 .actor.sheet .stats-list {
@@ -318,6 +317,7 @@
 .actor.sheet .stats-content {
   display: flex;
   flex-wrap: wrap;
+  padding: 5px;
 }
 
 .actor.sheet .stats-content > .skills-attributes,
@@ -350,8 +350,20 @@
 }
 
 .actor.sheet .edit-skill {
-  position: absolute;
   margin-left: -15px;
+}
+
+.actor.sheet .stats-container .stats-footer {
+  background-color: #CCC;
+  text-align: center;
+}
+
+.actor.sheet .stats-container.attributes .stats-footer {
+  border-bottom: 1px solid black;
+}
+
+.actor.sheet .stats-container.skills .stats-footer {
+  border-top: 1px solid black;
 }
 
 /* Items */

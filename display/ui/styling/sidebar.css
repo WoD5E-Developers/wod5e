@@ -21,6 +21,10 @@
   border-bottom: 1px solid #ffffff;
 }
 
+#sidebar-tabs > .item {
+  border-radius: 0;
+}
+
 #sidebar-tabs > .item.active {
   background: #690a0a;
 }
@@ -51,4 +55,8 @@
   background: #000000a6;
   margin: 0;
   padding: 10px;
+}
+
+.directory .directory-footer:not(:empty) {
+  background: rgba(0, 0, 0, 0.836);
 }

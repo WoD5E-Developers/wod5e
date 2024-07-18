@@ -36,6 +36,10 @@
 }
 
 /* Resource Counters */
+.dark-theme .resource-value .resource-value-step {
+  background-color: #bdbdbd91;
+}
+
 .dark-theme .resource-counter .resource-counter-step {
   border: 1px solid #FFF;
 }
@@ -73,10 +77,33 @@
   );
 }
 
+.dark-theme .resource-value .resource-value-empty {
+  border: 1px solid #777777;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    transparent 43%,
+    rgb(165, 165, 165) 45%,
+    rgb(165, 165, 165) 55%,
+    transparent 57%,
+    transparent 100%
+  ),
+  linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 43%,
+    rgb(165, 165, 165) 45%,
+    rgb(165, 165, 165) 55%,
+    transparent 57%,
+    transparent 100%
+  );
+}
+
 /* Actor Sheet */
 .dark-theme .actor.sheet .actor-header input,
 .dark-theme .actor.sheet .actor-header .resource,
-.dark-theme .actor.sheet .stats-container {
+.dark-theme .actor.sheet .stats-container,
+.dark-theme .actor.sheet .stats-container .stats-footer {
   background-color: #1d1d1d;
   border-color: #FFF;
 }

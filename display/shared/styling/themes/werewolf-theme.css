@@ -39,6 +39,10 @@
 }
 
 /* Resource Counters */
+.werewolf-theme .resource-value .resource-value-step {
+  background-color: #bdbdbd91;
+}
+
 .werewolf-theme .resource-counter .resource-counter-step {
   border: 1px solid #FFF;
 }
@@ -76,10 +80,33 @@
   );
 }
 
+.werewolf-theme .resource-value .resource-value-empty {
+  border: 1px solid #777777;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    transparent 43%,
+    rgb(165, 165, 165) 45%,
+    rgb(165, 165, 165) 55%,
+    transparent 57%,
+    transparent 100%
+  ),
+  linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 43%,
+    rgb(165, 165, 165) 45%,
+    rgb(165, 165, 165) 55%,
+    transparent 57%,
+    transparent 100%
+  );
+}
+
 /* Actor Sheet */
 .werewolf-theme .actor.sheet .actor-header input,
 .werewolf-theme .actor.sheet .actor-header .resource,
-.werewolf-theme .actor.sheet .stats-container {
+.werewolf-theme .actor.sheet .stats-container,
+.werewolf-theme .actor.sheet .stats-container .stats-footer {
   background-color: #1d1d1d;
   border-color: #FFF;
 }
@@ -108,7 +135,7 @@
 }
 
 .werewolf-theme #hotbar .macro {
-  background: rgba(136, 74, 3, 0.719);
+  background: rgb(87 52 13);
 }
 
 .werewolf-theme #hotbar .bar-controls {
