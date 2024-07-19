@@ -732,82 +732,89 @@
             "powers": []
           }
         }
+      },
+      "vampire_traits": {
+        "headers":{
+          "predator":"",
+          "sire":"",
+          "generation":"",
+          "bane":""
+        },
+        "blood": {
+          "potency": 0,
+          "resonance": ""
+        },
+        "clan": {
+          "value": ""
+        },
+        "hunger": {
+          "value": 1,
+          "max": 5
+        }
+      },
+      "ghoul_traits": {
+        "headers":{
+          "domitor":"",
+          "creedfields":""
+        }
+      },
+      "werewolf_traits": {
+        "headers": {
+          "auspice": "",
+          "patron": "",
+          "favor": "",
+          "ban": "",
+          "tribe": ""
+        },
+        "balance": {
+          "hauglosk": {
+            "value": 0
+          },
+          "harano": {
+            "value": 0
+          }
+        },
+        "rites": [],
+        "talismans": [],
+        "rage": {
+          "value": 1,
+          "max": 5
+        },
+        "frenzyActive": false,
+        "crinosHealth": {
+          "aggravated": 0,
+          "superficial": 0,
+          "max": 4
+        },
+        "lostTheWolf": false
+      },
+      "hunter_traits": {
+        "headers":{
+          "cellname": "",
+          "creed": "",
+          "drive": ""
+        }
       }
     },
-   
     "mortal": {
       "templates": ["base"],
       "gamesystem": "mortal"
     },
     "vampire": {
-      "templates": ["base", "disciplines"],
-      "gamesystem": "vampire",
-      "headers":{
-        "predator":"",
-        "sire":"",
-        "generation":"",
-        "bane":""
-      },
-      "blood": {
-        "potency": 0,
-        "resonance": ""
-      },
-      "clan": {
-        "value": ""
-      },
-      "hunger": {
-        "value": 1,
-        "max": 5
-      }
+      "templates": ["base", "vampire_traits", "disciplines"],
+      "gamesystem": "vampire"
     },
     "werewolf": {
-      "templates": ["base", "renown", "werewolfForms", "gifts"],
-      "gamesystem": "werewolf",
-      "headers": {
-        "auspice": "",
-        "patron": "",
-        "favor": "",
-        "ban": "",
-        "tribe": ""
-      },
-      "balance": {
-        "hauglosk": {
-          "value": 0
-        },
-        "harano": {
-          "value": 0
-        }
-      },
-      "rites": [],
-      "talismans": [],
-      "rage": {
-        "value": 1,
-        "max": 5
-      },
-      "frenzyActive": false,
-      "crinosHealth": {
-        "aggravated": 0,
-        "superficial": 0,
-        "max": 4
-      },
-      "lostTheWolf": false
+      "templates": ["base", "werewolf_traits", "renown", "werewolfForms", "gifts"],
+      "gamesystem": "werewolf"
     },
     "hunter": {
-      "templates": ["base", "edges"],
-      "gamesystem": "hunter",
-      "headers":{
-        "cellname": "",
-        "creed": "",
-        "drive": ""
-      }
+      "templates": ["base", "hunter_traits", "edges"],
+      "gamesystem": "hunter"
     },
     "ghoul": {
-      "templates": ["base", "disciplines"],
-      "gamesystem": "vampire",
-      "headers":{
-        "domitor":"",
-        "creedfields":""
-      }
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines"],
+      "gamesystem": "vampire"
     },
     "group": {
       "groupType": "coterie",
@@ -836,7 +843,7 @@
       "collapsed": true
     },
     "spc": {
-      "templates": ["abbreviated", "disciplines", "gifts", "edges"],
+      "templates": ["abbreviated", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges"],
       "spcType": "mortal",
       "gamesystem": "mortal"
     }

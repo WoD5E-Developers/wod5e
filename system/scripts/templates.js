@@ -49,6 +49,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/wta/actors/parts/forms.hbs',
 
     // SPC Sheet Partials
+    'systems/vtm5e/display/shared/actors/parts/spc/stats.hbs',
     'systems/vtm5e/display/shared/actors/parts/spc/standard-dice-pools.hbs',
     'systems/vtm5e/display/shared/actors/parts/spc/exceptional-dice-pools.hbs',
     'systems/vtm5e/display/shared/actors/parts/spc/generaldifficulty.hbs',

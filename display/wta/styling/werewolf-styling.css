@@ -128,3 +128,19 @@
 .sheet.werewolf .rage-button .wod5e-symbol {
   vertical-align: middle;
 }
+
+.actor.sheet .resource.balance {
+  flex-direction: row;
+}
+
+.actor.sheet .balance .resource-value-empty {
+  margin-left: 0;
+}
+
+.actor.sheet .resource.balance .harano {
+  margin-right: auto;
+}
+
+.actor.sheet .resource.balance .hauglosk {
+  margin-left: auto;
+}
