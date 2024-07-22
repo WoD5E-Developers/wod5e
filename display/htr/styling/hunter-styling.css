@@ -4,7 +4,7 @@
 }
 
 /* Define splat-specific colours for the WOD5E Symbols */
- .wod5e-symbol.hunter {
+.wod5e-symbol.hunter {
   color: var(--hunter-primary);
 }
 

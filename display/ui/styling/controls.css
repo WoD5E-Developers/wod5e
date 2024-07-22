@@ -29,6 +29,12 @@
 #hotbar .bar-controls {
   background: var(--ui-background-texture);
 }
+
 .app {
   background: var(--ui-background-texture);
+}
+
+#players,
+.bar-controls {
+  border-radius: 0;
 }

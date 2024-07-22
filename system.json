@@ -34,6 +34,7 @@
   ],
   "styles": [
     "display/shared/styling/wod5e.css",
+    "display/shared/styling/mortal-styling.css",
     "display/shared/styling/themes/dark-theme.css",
     "display/shared/styling/themes/vampire-theme.css",
     "display/shared/styling/themes/hunter-theme.css",

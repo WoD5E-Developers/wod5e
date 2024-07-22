@@ -70,10 +70,25 @@
   width: 100%;
   left: 10px;
   z-index: 1;
+  justify-content: center;
 }
 
 .vampire-font-headers .actor.sheet .sheet-banner {
   font-family: "vampireRevised", "sans-serif";
+}
+
+.actor.sheet .sheet-banner .actor-type-field {
+  text-align: left;
+  padding-left: 5px;
+}
+
+.actor.sheet .sheet-banner .actor-type-field select {
+  background-color: #CCC;
+}
+
+.actor.sheet .sheet-banner .sheet-label {
+  text-align: right;
+  padding-right: 5px;
 }
 
 /* Actor Header */
