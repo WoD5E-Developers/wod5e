@@ -27,6 +27,8 @@
 /* Variables */
 :root {
   --system-primary: #302d5bf0;
+  --system-border: #d2dfebf0;
+  --system-shadow: #827dcaf0;
   --ui-background-texture: url("/systems/vtm5e/assets/ui/ui_background_texture.webp");
   --ui-background-active-texture: url("/systems/vtm5e/assets/ui/ui_background_active_texture.webp");
 }
