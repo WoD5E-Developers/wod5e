@@ -57,9 +57,10 @@ Hooks.once('init', async function () {
   // Loop through each entry in the actorTypesList and register their sheet classes
   const actorTypesList = ActorTypes.getList()
   for (const [, value] of Object.entries(actorTypesList)) {
-    const { types, sheetClass } = value
+    const { label, types, sheetClass } = value
 
     Actors.registerSheet('vtm5e', sheetClass, {
+      label,
       types,
       makeDefault: true
     })
