@@ -3,145 +3,147 @@
   --ui-background-vampire-texture: url("/systems/vtm5e/assets/ui/ui_background_vampire_texture.webp");
 }
 
-/* Logo */
-.vampire-theme #logo {
-  content: url(/systems/vtm5e/assets/ui/VtM_Logo.png);
-}
+.vampire-theme {
+  /* Logo */
+  #logo {
+    content: url(/systems/vtm5e/assets/ui/VtM_Logo.png);
+  }
 
-/* Sheet window Header */
-.vampire-theme .sheet .window-header {
-  background-color: var(--vampire-primary);
-}
+  /* Sheet window Header */
+  .sheet .window-header {
+    background-color: var(--vampire-primary);
+  }
 
-/* Sheet Window Content */
-.vampire-theme .sheet .window-content {
-  background-color: #000000f0;
-  color: #ffffff;
-  background-blend-mode: hard-light;
-}
+  /* Sheet Window Content */
+  .sheet .window-content {
+    background-color: #000000f0;
+    color: #ffffff;
+    background-blend-mode: hard-light;
+  }
 
-.vampire-theme .sheet .window-content input {
-  color: #FFF;
-}
+  .sheet .window-content input {
+    color: #FFF;
+  }
 
-/* Navbar */
-.vampire-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
-  background-color: black;
-  border: 1px solid #FFF;
-}
+  /* Navbar */
+  .actor.sheet .sheet-tabs > [data-tab] .navicon {
+    background-color: black;
+    border: 1px solid #FFF;
+  }
 
-.vampire-theme .actor.sheet.hunter .tabs-container .active .navicon {
-  color: black;
-}
+  .actor.sheet.hunter .tabs-container .active .navicon {
+    color: black;
+  }
 
-.vampire-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
-  color: black;
-}
+  .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
+    color: black;
+  }
 
-/* Resource Counters */
-.vampire-theme .resource-value .resource-value-step {
-  background-color: #bdbdbd91;
-}
+  /* Resource Counters */
+  .resource-value .resource-value-step {
+    background-color: #bdbdbd91;
+  }
 
-.vampire-theme .resource-counter .resource-counter-step {
-  border: 1px solid #FFF;
-}
+  .resource-counter .resource-counter-step {
+    border: 1px solid #FFF;
+  }
 
-.vampire-theme .resource-counter .resource-counter-step[data-state="/"] {
-  background: linear-gradient(
-    135deg,
-    transparent 0%,
-    transparent 43%,
-    white 45%,
-    white 55%,
-    transparent 57%,
-    transparent 100%
-  );
-}
+  .resource-counter .resource-counter-step[data-state="/"] {
+    background: linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 43%,
+      white 45%,
+      white 55%,
+      transparent 57%,
+      transparent 100%
+    );
+  }
 
-.vampire-theme .resource-counter .resource-counter-step[data-state="x"] {
-  background: linear-gradient(
-    45deg,
-    transparent 0%,
-    transparent 43%,
-    white 45%,
-    white 55%,
-    transparent 57%,
-    transparent 100%
-  ),
-  linear-gradient(
-    135deg,
-    transparent 0%,
-    transparent 43%,
-    white 45%,
-    white 55%,
-    transparent 57%,
-    transparent 100%
-  );
-}
+  .resource-counter .resource-counter-step[data-state="x"] {
+    background: linear-gradient(
+      45deg,
+      transparent 0%,
+      transparent 43%,
+      white 45%,
+      white 55%,
+      transparent 57%,
+      transparent 100%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 43%,
+      white 45%,
+      white 55%,
+      transparent 57%,
+      transparent 100%
+    );
+  }
 
-.vampire-theme .resource-value .resource-value-empty {
-  border: 1px solid #777777;
-  background: linear-gradient(
-    45deg,
-    transparent 0%,
-    transparent 43%,
-    rgb(165, 165, 165) 45%,
-    rgb(165, 165, 165) 55%,
-    transparent 57%,
-    transparent 100%
-  ),
-  linear-gradient(
-    135deg,
-    transparent 0%,
-    transparent 43%,
-    rgb(165, 165, 165) 45%,
-    rgb(165, 165, 165) 55%,
-    transparent 57%,
-    transparent 100%
-  );
-}
+  .resource-value .resource-value-empty {
+    border: 1px solid #777777;
+    background: linear-gradient(
+      45deg,
+      transparent 0%,
+      transparent 43%,
+      rgb(165, 165, 165) 45%,
+      rgb(165, 165, 165) 55%,
+      transparent 57%,
+      transparent 100%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 43%,
+      rgb(165, 165, 165) 45%,
+      rgb(165, 165, 165) 55%,
+      transparent 57%,
+      transparent 100%
+    );
+  }
 
-/* Actor Sheet */
-.vampire-theme .actor.sheet .actor-header input,
-.vampire-theme .actor.sheet .actor-header .resource,
-.vampire-theme .actor.sheet .stats-container,
-.vampire-theme .actor.sheet .stats-container .stats-footer {
-  background-color: #1d1d1d;
-  border-color: #FFF;
-}
+  /* Actor Sheet */
+  .actor.sheet .actor-header input,
+  .actor.sheet .actor-header .resource,
+  .actor.sheet .stats-container,
+  .actor.sheet .stats-container .stats-footer {
+    background-color: #1d1d1d;
+    border-color: #FFF;
+  }
 
-/* Sidebar */
-.vampire-theme #sidebar {
-  background: url(/systems/vtm5e/assets/ui/sidebar_vampire.webp) repeat;
-}
+  /* Sidebar */
+  #sidebar {
+    background: url(/systems/vtm5e/assets/ui/sidebar_vampire.webp) repeat;
+  }
 
-/* Foundry Controls UI */
-.vampire-theme #controls ol.control-tools > li {
-  background: var(--ui-background-vampire-texture);
-}
+  /* Foundry Controls UI */
+  #controls ol.control-tools > li {
+    background: var(--ui-background-vampire-texture);
+  }
 
-.vampire-theme #navigation #scene-list .scene,
-.vampire-theme #navigation #scene-list .scene.view,
-.vampire-theme #navigation #scene-list .scene.context,
-.vampire-theme #navigation #scene-list .scene.gm,
-.vampire-theme #navigation .nav-item,
-.vampire-theme #navigation #nav-toggle {
-  background: var(--ui-background-vampire-texture);
-}
+  #navigation #scene-list .scene,
+  #navigation #scene-list .scene.view,
+  #navigation #scene-list .scene.context,
+  #navigation #scene-list .scene.gm,
+  #navigation .nav-item,
+  #navigation #nav-toggle {
+    background: var(--ui-background-vampire-texture);
+  }
 
-.vampire-theme #navigation #scene-list .scene.active {
-  background: var(--ui-background-active-texture);
-}
+  #navigation #scene-list .scene.active {
+    background: var(--ui-background-active-texture);
+  }
 
-.vampire-theme #hotbar .macro {
-  background: rgba(255, 43, 43, 0.5);
-}
+  #hotbar .macro {
+    background: rgba(255, 43, 43, 0.5);
+  }
 
-.vampire-theme #hotbar .bar-controls {
-  background: var(--ui-background-vampire-texture);
-}
+  #hotbar .bar-controls {
+    background: var(--ui-background-vampire-texture);
+  }
 
-.vampire-theme .app {
-  background: var(--ui-background-vampire-texture);
+  .app {
+    background: var(--ui-background-vampire-texture);
+  }
 }

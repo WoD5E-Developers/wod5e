@@ -14,19 +14,19 @@
 /* Fonts */
 @font-face {
   font-family: "cormorantLight";
-  src: url("../../../assets/fonts/Cormorant-Light-webfont.woff") format("woff");
+  src: url("/systems/vtm5e/assets/fonts/Cormorant-Light-webfont.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "wod5eSymbols";
-  src: url("../../../assets/fonts/wod5e-symbols.ttf") format("truetype");
+  src: url("/systems/vtm5e/assets/fonts/wod5e-symbols.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "vampireRevised";
-  src: url("../../../assets/fonts/vampire-revised.ttf") format("truetype");
+  src: url("/systems/vtm5e/assets/fonts/vampire-revised.ttf") format("truetype");
 }
 
 /* Define the class that will be used for WOD5E symbols */
@@ -57,7 +57,7 @@
   overflow-y: scroll;
 }
 
-/* Logo */
+/* Top-left Logo */
 #logo {
   content: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
   width: auto;
@@ -68,28 +68,29 @@
   margin-left: 15px;
 }
 
-/* Pause Image */
-#pause {
-  background: none;
-}
-
-#pause img {
-  content: url(/systems/vtm5e/assets/ui/Pause.webp);
-  --fa-animation-duration: 0s;
-}
-
-#pause figcaption {
-  margin-top: 55px;
-  color: #000;
-  font-weight: bold;
-}
-
-.vampire-font-headers #pause figcaption {
-  font-family: "vampireRevised", "sans-serif";
-}
-
 /* Hide the color scheme option in core Foundry settings
 * because WOD5E defines its own for users to use */
 #client-settings .form-group[data-setting-id="core.colorScheme"] {
   display: none;
+}
+
+/* Pause */
+#pause {
+  background: none;
+
+  img {
+    content: url(/systems/vtm5e/assets/ui/Pause.webp);
+    --fa-animation-duration: 0s;
+  }
+
+  figcaption {
+    margin-top: 55px;
+    color: #000;
+    font-weight: bold;
+  }
+}
+
+/* Only use this font with the .vampire-font-headers class enabled */
+.vampire-font-headers #pause figcaption {
+  font-family: "vampireRevised", "sans-serif";
 }
