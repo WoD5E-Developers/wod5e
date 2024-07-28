@@ -389,63 +389,63 @@
   background-color: transparent !important;
   border-color: var(--color-border-highlight);
 }
-.actors-sidebar li.group-item > .group-header {
+.actors-sidebar li .group-item > .group-header {
   padding: 6px;
   line-height: 24px;
   background: rgba(255 255 255 20%);
-  border-top: 1px solid var(--color-border-dark);
-  border-bottom: 1px solid var(--color-border-dark);
+  border-top: 1px sod var(--color-border-dark);
+  border-bottom: 1px sod var(--color-border-dark);
 }
-.actors-sidebar li.group-item > .group-header h3 {
+.actors-sidebar li .group-item > .group-header h3 {
   margin: 0;
-  color: var(--color-text-light-highlight);
+  color: var(--color-text-ght-highght);
   font-size: var(--font-size-16);
   line-height: 24px;
 }
-.actors-sidebar li.group-item > .group-header h3 > i {
+.actors-sidebar li .group-item > .group-header h3 > i {
   margin-right: 10px;
 }
-.actors-sidebar li.group-item > .group-header .create-button {
+.actors-sidebar li .group-item > .group-header .create-button {
   position: relative;
   flex: 0 0 20px;
   margin-left: 3px;
   text-align: center;
 }
-.actors-sidebar li.group-item > .group-header .create-button.create-folder {
+.actors-sidebar li .group-item > .group-header .create-button.create-folder {
   font-size: 120%;
 }
-.actors-sidebar li.group-item > .group-header .create-button .fa-plus {
+.actors-sidebar li .group-item > .group-header .create-button .fa-plus {
   position: absolute;
   top: -2px;
   right: -2px;
   font-size: 0.5rem;
   background: black;
-  color: var(--color-text-light-highlight);
+  color: var(--color-text-ght-highght);
   padding: 1px;
 }
-.actors-sidebar li.group-item > .group-header .create-button:hover .fa-plus {
-  color: var(--color-text-hyperlink);
+.actors-sidebar li .group-item > .group-header .create-button:hover .fa-plus {
+  color: var(--color-text-hypernk);
 }
-.actors-sidebar li.group-item.collapsed .subdirectory {
+.actors-sidebar li .group-item.collapsed .subdirectory {
   display: none;
 }
-.actors-sidebar li.group-item.collapsed > .group-header {
+.actors-sidebar li .group-item.collapsed > .group-header {
   background: rgba(0 0 0 50%);
 }
-.actors-sidebar li.group-item.droptarget > header h3 {
+.actors-sidebar li .group-item.droptarget > header h3 {
   text-shadow: 1px 1px 3px var(--color-shadow-dark);
   font-size: 1.2em;
 }
-.actors-sidebar li.group-item.collapsed > .group-header h3 {
+.actors-sidebar li .group-item.collapsed > .group-header h3 {
   text-shadow: none;
 }
-.actors-sidebar li.group-item.collapsed > .group-header h3 > i::before {
+.actors-sidebar li .group-item.collapsed > .group-header h3 > i::before {
   content: "\f07b";
 }
-.actors-sidebar li.group-item.collapsed > .group-header .create-folder {
+.actors-sidebar li .group-item.collapsed > .group-header .create-folder {
   display: none;
 }
-.actors-sidebar li.group-item.droptarget > header h3 i {
+.actors-sidebar li .group-item.droptarget > header h3 i {
   text-shadow: 0 0 4px var(--color-shadow-primary);
   transform: scale(1.2);
 }
@@ -459,9 +459,20 @@
   background-color: #4b4b4b;
   background-blend-mode: multiply;
   color: #f5f5f5;
+  margin: 3px;
+  padding: 5px 9px;
+  border-radius: 0;
 }
 .chat-message .message-header {
   color: #FFF;
+}
+.chat-message .message-header .message-sender {
+  flex: 3;
+  margin: 0;
+  white-space: nowrap;
+  font-family: Amarante, serif;
+  font-size: 1.2em;
+  font-weight: 700;
 }
 .chat-message .dice-result {
   cursor: pointer;
@@ -578,6 +589,11 @@
 .roll-label .success {
   color: #18520b;
 }
+.roll-label:nth-of-type(1) {
+  line-height: 1em;
+  margin-top: 0.4em;
+  margin-bottom: 0.3em;
+}
 .roll-content {
   font-size: 120%;
   font-family: Vollkorn, serif;
@@ -603,24 +619,6 @@ p.roll-label.uppercase {
   margin-top: 0;
   content: "⟳";
 }
-.roll-label:nth-of-type(1) {
-  line-height: 1em;
-  margin-top: 0.4em;
-  margin-bottom: 0.3em;
-}
-.chat-message .message-header .message-sender {
-  flex: 3;
-  margin: 0;
-  white-space: nowrap;
-  font-family: Amarante, serif;
-  font-size: 1.2em;
-  font-weight: 700;
-}
-.chat-message {
-  margin: 3px;
-  padding: 5px 9px;
-  border-radius: 0;
-}
 h3.item-name {
   border-bottom: 0;
   margin: 0;
@@ -630,6 +628,13 @@ h3.item-name {
 }
 
 /* Foundry Controls UI */
+.app {
+  background: var(--ui-background-texture);
+}
+#players,
+.bar-controls {
+  border-radius: 0;
+}
 #controls ol.control-tools > li {
   background: var(--ui-background-texture);
   border-radius: 0px;
@@ -656,13 +661,6 @@ h3.item-name {
 }
 #hotbar .bar-controls {
   background: var(--ui-background-texture);
-}
-.app {
-  background: var(--ui-background-texture);
-}
-#players,
-.bar-controls {
-  border-radius: 0;
 }
 
 
@@ -698,11 +696,6 @@ h3.item-name {
 }
 .dialog-contents .dice-input img {
   background-color: #000;
-}
-.dialog-buttons {
-  display: flex;
-  flex-direction: row;
-  flex-grow: 0;
 }
 .dialog-contents .dialog-control {
   margin-top: 5px;
@@ -758,8 +751,7 @@ h3.item-name {
 .dialog-contents .selectors-group .middle {
   font-size: 20pt;
 }
-.dialog-contents .selectors-group .selector-title,
-.selector-content {
+.dialog-contents .selectors-group .selector-title {
   margin: auto;
 }
 .dialog-contents .secondary-selector {
@@ -770,14 +762,19 @@ h3.item-name {
   font-weight: bold;
   text-decoration: underline;
 }
+.selector-content {
+  margin: auto;
+}
+.dialog-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 0;
+}
 
 :root {
   --primary-sidebar-color: #181818;
 }
-.directory .action-buttons button {
-  background: #2e2d77;
-  color: #fff;
-}
+/* General Sidebar Styling */
 #sidebar {
   background: url(/systems/vtm5e/assets/ui/sidebar.webp) repeat;
   border: 0;
@@ -796,17 +793,28 @@ h3.item-name {
 #sidebar-tabs > .item.active {
   background: #690a0a;
 }
+.directory .action-buttons button {
+  background: #2e2d77;
+  color: #fff;
+}
 .subdirectory {
   background: var(--primary-sidebar-color);
 }
+/* Headers */
 .combat-sidebar .combat-tracker-header,
-.directory .directory-header,
-.settings-sidebar h2 {
+.directory .directory-header {
   border-bottom: 2px groove #CCC;
   background: var(--primary-sidebar-color);
 }
+/* Footers */
+.directory .directory-footer:not(:empty) {
+  background: rgba(0, 0, 0, 0.836);
+}
+/* Settings Sidebar */
 .settings-sidebar h2 {
   margin-bottom: 0;
+  border-bottom: 2px groove #CCC;
+  background: var(--primary-sidebar-color);
 }
 .settings-sidebar button {
   margin: 3px 0;
@@ -818,9 +826,6 @@ h3.item-name {
   background: #000000a6;
   margin: 0;
   padding: 10px;
-}
-.directory .directory-footer:not(:empty) {
-  background: rgba(0, 0, 0, 0.836);
 }
 
 :root {

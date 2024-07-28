@@ -2,11 +2,7 @@
   --primary-sidebar-color: #181818;
 }
 
-.directory .action-buttons button {
-  background: #2e2d77;
-  color: #fff;
-}
-
+/* General Sidebar Styling */
 #sidebar {
   background: url(/systems/vtm5e/assets/ui/sidebar.webp) repeat;
   border: 0;
@@ -29,34 +25,45 @@
   background: #690a0a;
 }
 
+.directory .action-buttons button {
+  background: #2e2d77;
+  color: #fff;
+}
+
 .subdirectory {
   background: var(--primary-sidebar-color);
 }
 
+/* Headers */
 .combat-sidebar .combat-tracker-header,
-.directory .directory-header,
-.settings-sidebar h2 {
+.directory .directory-header {
   border-bottom: 2px groove #CCC;
   background: var(--primary-sidebar-color);
 }
 
-.settings-sidebar h2 {
-  margin-bottom: 0;
-}
-
-.settings-sidebar button {
-  margin: 3px 0;
-}
-
-.settings-sidebar #game-details,
-.settings-sidebar #settings-game,
-.settings-sidebar #settings-documentation,
-.settings-sidebar #settings-access {
-  background: #000000a6;
-  margin: 0;
-  padding: 10px;
-}
-
+/* Footers */
 .directory .directory-footer:not(:empty) {
   background: rgba(0, 0, 0, 0.836);
+}
+
+/* Settings Sidebar */
+.settings-sidebar {
+  h2 {
+    margin-bottom: 0;
+    border-bottom: 2px groove #CCC;
+    background: var(--primary-sidebar-color);
+  }
+
+  button {
+    margin: 3px 0;
+  }
+
+  #game-details,
+  #settings-game,
+  #settings-documentation,
+  #settings-access {
+    background: #000000a6;
+    margin: 0;
+    padding: 10px;
+  }
 }

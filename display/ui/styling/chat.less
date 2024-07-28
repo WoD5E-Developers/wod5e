@@ -8,85 +8,97 @@
   background-color: #4b4b4b;
   background-blend-mode: multiply;
   color: #f5f5f5;
-}
+  margin: 3px;
+  padding: 5px 9px;
+  border-radius: 0;
 
-.chat-message .message-header {
-  color: #FFF;
-}
+  .message-header {
+    color: #FFF;
 
-.chat-message .dice-result {
-  cursor: pointer;
-}
-
-.chat-message .modifiers {
-  margin-bottom: 2px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.chat-message .modifiers .mod {
-  text-transform: uppercase;
-  font-size: 8pt;
-  background-color: #fff;
-  padding: 0 5px;
-  border: 1px solid #424242;
-  margin: 1px 3px;
-  color: #000;
-}
-
-.chat-message .total-and-difficulty {
-  display: flex;
-  flex-direction: row;
-  border: 1px solid #000;
-  border-bottom: 0;
-}
-
-.chat-message .roll-total,
-.chat-message .roll-difficulty {
-  display: flex;
-  flex-grow: 1;
-  text-align: center;
-  justify-content: space-evenly;
-}
-
-.chat-message .total-title,
-.chat-message .difficulty-title {
-  font-weight: bold;
-}
-
-.chat-message .roll-result-label {
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  border: 1px solid #000;
-  background: #222;
-}
-
-.chat-message .roll-result-label.success,
-.chat-message .roll-result-label.critical-success {
-  background-color: #065200;
-  color: #dbd6d6;
-}
-
-.chat-message .roll-result-label.messy-critical {
-  background-color: #f10808;
-  color: #c5c3c3;
-}
-
-.chat-message .roll-result-label.failure,
-.chat-message .roll-result-label.critical-failure,
-.chat-message .roll-result-label.bestial-failure {
-  background-color: #900;
-  color: #dbdbdb;
-}
-
-.chat-message .roll-result-label.desperation-failure {
-  background-color: #e97c00;
-}
-
-.chat-message .roll-result-label.rage-failure {
-  background-color: #783b01;
-  color: #dbdbdb;
+    .message-sender {
+      flex: 3;
+      margin: 0;
+      white-space: nowrap;
+      font-family: Amarante, serif;
+      font-size: 1.2em;
+      font-weight: 700;
+    }
+  }
+  
+  .dice-result {
+    cursor: pointer;
+  }
+  
+  .modifiers {
+    margin-bottom: 2px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .modifiers .mod {
+    text-transform: uppercase;
+    font-size: 8pt;
+    background-color: #fff;
+    padding: 0 5px;
+    border: 1px solid #424242;
+    margin: 1px 3px;
+    color: #000;
+  }
+  
+  .total-and-difficulty {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #000;
+    border-bottom: 0;
+  }
+  
+  .roll-total,
+  .roll-difficulty {
+    display: flex;
+    flex-grow: 1;
+    text-align: center;
+    justify-content: space-evenly;
+  }
+  
+  .total-title,
+  .difficulty-title {
+    font-weight: bold;
+  }
+  
+  .roll-result-label {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #000;
+    background: #222;
+  }
+  
+  .roll-result-label.success,
+  .roll-result-label.critical-success {
+    background-color: #065200;
+    color: #dbd6d6;
+  }
+  
+  .roll-result-label.messy-critical {
+    background-color: #f10808;
+    color: #c5c3c3;
+  }
+  
+  .roll-result-label.failure,
+  .roll-result-label.critical-failure,
+  .roll-result-label.bestial-failure {
+    background-color: #900;
+    color: #dbdbdb;
+  }
+  
+  .roll-result-label.desperation-failure {
+    background-color: #e97c00;
+  }
+  
+  .roll-result-label.rage-failure {
+    background-color: #783b01;
+    color: #dbdbdb;
+  }
 }
 
 .roll-img {
@@ -143,14 +155,20 @@
   font-size: 1.4em;
   margin: 0.1em;
   text-align: center;
+
+  .danger {
+    color: #831515;
+  }
+  
+  .success {
+    color: #18520b;
+  }
 }
 
-.roll-label .danger {
-  color: #831515;
-}
-
-.roll-label .success {
-  color: #18520b;
+.roll-label:nth-of-type(1) {
+  line-height: 1em;
+  margin-top: 0.4em;
+  margin-bottom: 0.3em;
 }
 
 .roll-content {
@@ -181,27 +199,6 @@ p.roll-label.uppercase {
   margin-left: -38px;
   margin-top: 0;
   content: "⟳";
-}
-
-.roll-label:nth-of-type(1) {
-  line-height: 1em;
-  margin-top: 0.4em;
-  margin-bottom: 0.3em;
-}
-
-.chat-message .message-header .message-sender {
-  flex: 3;
-  margin: 0;
-  white-space: nowrap;
-  font-family: Amarante, serif;
-  font-size: 1.2em;
-  font-weight: 700;
-}
-
-.chat-message {
-  margin: 3px;
-  padding: 5px 9px;
-  border-radius: 0;
 }
 
 h3.item-name {
