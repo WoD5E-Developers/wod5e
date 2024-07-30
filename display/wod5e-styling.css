@@ -58,8 +58,8 @@
 .sheet.hunter .resource-value .resource-value-step.active,
 .sheet.hunter .resource-value-static .resource-value-static-step.active,
 .sheet.hunter .resource-counter .resource-counter-step[data-state="-"],
-.sheet.hunter .wod5e.hunter-sheet .despair-box .despair-toggle.active {
-  background-color: var(--hunter-secondary);
+.sheet.hunter .despair-box .despair-toggle.active {
+  background-color: var(--hunter-primary);
 }
 .sheet.hunter button.rollable,
 .sheet.hunter .actor.sheet .hunter-button {
