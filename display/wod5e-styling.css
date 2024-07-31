@@ -47,7 +47,7 @@
 }
 /* All Sheets with the Werewolf styling, including itemsheets */
 .sheet.hunter {
-  box-shadow: 0 0 20px var(--hunter-primary);
+  box-shadow: 0 0 10px var(--hunter-primary);
 }
 .sheet.hunter .window-header {
   background: var(--hunter-primary);
@@ -118,7 +118,7 @@
 }
 /* All Mortal-styled Sheets, Including Itemsheets */
 .sheet.mortal {
-  box-shadow: 0 0 20px var(--mortal-primary);
+  box-shadow: 0 0 10px var(--mortal-primary);
   /* Resource counters */
 }
 .sheet.mortal .window-header {
@@ -716,7 +716,7 @@ h3.item-name {
   top: 0;
   left: 400px;
   background-color: #faf5ed;
-  box-shadow: 0 0 20px var(--color-shadow-dark);
+  box-shadow: 0 0 10px var(--color-shadow-dark);
   border-width: 3px;
 }
 .dialog-contents .situational-modifiers .list-title {
@@ -882,7 +882,7 @@ h3.item-name {
 }
 /* All Sheets with the Werewolf styling, including itemsheets */
 .sheet.vampire {
-  box-shadow: 0 0 20px var(--vampire-primary);
+  box-shadow: 0 0 10px var(--vampire-primary);
 }
 .sheet.vampire .window-header {
   background: var(--vampire-primary);
@@ -990,7 +990,7 @@ h3.item-name {
 }
 /* All Sheets with the Werewolf styling, including itemsheets */
 .sheet.werewolf {
-  box-shadow: 0 0 20px var(--werewolf-primary);
+  box-shadow: 0 0 10px var(--werewolf-primary);
 }
 .sheet.werewolf .window-header {
   background: var(--werewolf-primary);
