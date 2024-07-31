@@ -93,4 +93,18 @@ export const RenderActorSidebar = async () => {
       })
     }
   })
+
+  // Handle actor updates
+  Hooks.on('updateActor', (actor) => {
+    if (actor.type === 'group') {
+      // Re-render the actors directory
+      game.actors.render()
+    }
+  
+    // Only do this if the actor has an associated group with them
+    if (actor.system?.group) {
+      // Update the group sheet
+      game.actors.get(actor.system.group).sheet.render()
+    }
+  })
 }
