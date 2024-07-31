@@ -2,7 +2,8 @@
 
 // Actor sheets
 import { ActorInfo } from './actor/actor.js'
-import { WOD5EActorDirectory } from './actor/actor-directory.js'
+import { WOD5EActorDirectory } from './ui/actor-directory.js'
+import { RenderSettings } from './ui/settings-sidebar.js'
 // Item sheets
 import { ItemInfo } from './item/item.js'
 import { WoDItemSheet } from './item/item-sheet.js'
@@ -86,6 +87,9 @@ Hooks.once('init', async function () {
 
   // Initialize header font preference on game init
   _updateHeaderFontPreference()
+
+  // Initialize the alterations to the settings sidebar
+  RenderSettings()
 })
 
 // Anything that needs to run once the world is ready
@@ -169,6 +173,7 @@ Hooks.on('getChatLogEntryContext', (html, options) => {
 })
 
 Hooks.on('renderSidebarTab', async (object, html) => {
+  // Altering the ActorDirectory in order to support group sheet layouts
   if (object instanceof ActorDirectory) {
     // Define the list of groups we're going to be modifying
     const groups = object.groups
@@ -290,7 +295,7 @@ async function createVampireMacro (data, slot) {
   const item = data.system
 
   // Create the macro command
-  const command = `game.WOD5E.RollListItemMacro("${item.name}");`
+  const command = `game.WOD5E.RollListItemMacro("${item.name}")`
   let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command))
   if (!macro) {
     macro = await Macro.create({

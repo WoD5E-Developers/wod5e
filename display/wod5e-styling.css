@@ -826,10 +826,18 @@ h3.item-name {
 .settings-sidebar #game-details,
 .settings-sidebar #settings-game,
 .settings-sidebar #settings-documentation,
-.settings-sidebar #settings-access {
+.settings-sidebar #settings-access,
+.settings-sidebar #license-information {
   background: #000000a6;
   margin: 0;
   padding: 10px;
+}
+.settings-sidebar #game-details .system-title,
+.settings-sidebar #game-details .system-info {
+  flex-grow: 1;
+}
+.settings-sidebar #game-details .external-system-links {
+  text-align: right;
 }
 
 :root {

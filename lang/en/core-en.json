@@ -47,6 +47,11 @@
         "RemoveFromGroup": "Remove from group",
         "NoGroupMembers": "No group members added. Drag and drop from the actors sidebar to add some!",
 
+        "Changelog": "Changelog",
+        "Wiki": "Wiki",
+        "LicensedUnderDarkPack": "Licensed Under The Dark Pack",
+        "LicensedUnderDarkPackFulltext": "Portions of the materials are the copyrights and trademarks of Paradox Interactive AB, and are used with permission. All rights reserved. For more information please visit <a href='https://worldofdarkness.com'>worldofdarkness.com</a>.",
+
         "RollList": {
             "Label": "Roll",
             "RollMode": "Roll Mode",
