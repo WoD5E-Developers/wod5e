@@ -1014,6 +1014,7 @@ h3.item-name {
 }
 .sheet.werewolf .rage-button .wod5e-symbol {
   vertical-align: middle;
+  color: #CCC;
 }
 .werewolf.sheet.window-app .window-resizable-handle {
   border-top: 3px double var(--werewolf-primary);
