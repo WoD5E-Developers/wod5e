@@ -1,6 +1,7 @@
 :root {
   --hunter-primary: #cc6d28;
   --hunter-secondary: #ffb762;
+  --cell-group-header: rgb(204 109 40 / 80%);
 }
 
 /* Define splat-specific colours for the WOD5E Symbols */
@@ -8,7 +9,7 @@
   color: var(--hunter-primary);
 }
 
-/* Actor Sheet */
+/* Hunter Actor Sheet */
 .actor.sheet.hunter {
   .actor-header {
     border-bottom: 2px solid var(--hunter-primary);
@@ -59,7 +60,7 @@
   }
 }
 
-/* All Sheets with the Werewolf styling, including itemsheets */
+/* All Sheets with the Hunter styling, including itemsheets */
 .sheet.hunter {
   box-shadow: 0 0 10px var(--hunter-primary);
 
@@ -98,7 +99,7 @@
 
 /* Group Sheets */
 .group-header.cell {
-  background-color: rgb(204 109 40 / 80%) !important;
+  background-color: var(--cell-group-header) !important;
 }
 
 /* Dialogs Windows */

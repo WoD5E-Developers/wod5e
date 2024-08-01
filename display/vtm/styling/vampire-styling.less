@@ -2,6 +2,7 @@
   --vampire-primary: #650202;
   --vampire-secondary: #d84343;
   --vampire-tertiary: #f51f1f;
+  --coterie-group-header: rgb(121 8 19 / 80%);
 }
 
 /* Define splat-specific colours for the WOD5E Symbols */
@@ -9,7 +10,7 @@
   color: var(--vampire-primary);
 }
 
-/* Actor Sheet */
+/* Vampire Actor Sheet */
 .actor.sheet.vampire {
   .actor-header {
     border-bottom: 2px solid var(--vampire-primary);
@@ -50,7 +51,7 @@
   }
 }
 
-/* All Sheets with the Werewolf styling, including itemsheets */
+/* All Sheets with the Vampire styling, including itemsheets */
 .sheet.vampire {
   box-shadow: 0 0 10px var(--vampire-primary);
 
@@ -98,7 +99,7 @@
 
 /* Group Sheets */
 .group-header.coterie {
-  background-color: rgb(121 8 19 / 80%) !important;
+  background-color: var(--coterie-group-header) !important;
 }
 
 /* Dialogs Windows */

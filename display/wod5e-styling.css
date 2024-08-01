@@ -1,12 +1,13 @@
 :root {
   --hunter-primary: #cc6d28;
   --hunter-secondary: #ffb762;
+  --cell-group-header: rgba(204, 109, 40, 0.8);
 }
 /* Define splat-specific colours for the WOD5E Symbols */
 .wod5e .wod5e-symbol.hunter {
   color: var(--hunter-primary);
 }
-/* Actor Sheet */
+/* Hunter Actor Sheet */
 .actor.sheet.hunter .actor-header {
   border-bottom: 2px solid var(--hunter-primary);
 }
@@ -45,7 +46,7 @@
   display: inline-block;
   cursor: pointer;
 }
-/* All Sheets with the Werewolf styling, including itemsheets */
+/* All Sheets with the Hunter styling, including itemsheets */
 .sheet.hunter {
   box-shadow: 0 0 10px var(--hunter-primary);
 }
@@ -76,7 +77,7 @@
 }
 /* Group Sheets */
 .group-header.cell {
-  background-color: rgba(204, 109, 40, 0.8) !important;
+  background-color: var(--cell-group-header) !important;
 }
 /* Dialogs Windows */
 .hunter-dialog.window-app {
@@ -225,21 +226,21 @@
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5vAw.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmSU5vAw.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Me5Q.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v31/KFOmCnqEu92Fr1Me5Q.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9vAw.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmEU9vAw.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Amarante';
@@ -844,12 +845,13 @@ h3.item-name {
   --vampire-primary: #650202;
   --vampire-secondary: #d84343;
   --vampire-tertiary: #f51f1f;
+  --coterie-group-header: rgba(121, 8, 19, 0.8);
 }
 /* Define splat-specific colours for the WOD5E Symbols */
 .wod5e .wod5e-symbol.vampire {
   color: var(--vampire-primary);
 }
-/* Actor Sheet */
+/* Vampire Actor Sheet */
 .actor.sheet.vampire .actor-header {
   border-bottom: 2px solid var(--vampire-primary);
 }
@@ -880,7 +882,7 @@ h3.item-name {
   background-color: var(--vampire-tertiary);
   background-blend-mode: luminosity;
 }
-/* All Sheets with the Werewolf styling, including itemsheets */
+/* All Sheets with the Vampire styling, including itemsheets */
 .sheet.vampire {
   box-shadow: 0 0 10px var(--vampire-primary);
 }
@@ -918,7 +920,7 @@ h3.item-name {
 }
 /* Group Sheets */
 .group-header.coterie {
-  background-color: rgba(121, 8, 19, 0.8) !important;
+  background-color: var(--coterie-group-header) !important;
 }
 /* Dialogs Windows */
 .vampire-dialog.window-app {
@@ -953,6 +955,7 @@ h3.item-name {
 :root {
   --werewolf-primary: #4e2100;
   --werewolf-secondary: #994101;
+  --pack-group-header: rgba(78, 33, 0, 0.8);
 }
 /* Define splat-specific colours for the WOD5E Symbols */
 .wod5e .wod5e-symbol.werewolf {
@@ -1026,7 +1029,7 @@ h3.item-name {
 }
 /* Group Sheets */
 .group-header.pack {
-  background-color: rgba(78, 33, 0, 0.8) !important;
+  background-color: var(--pack-group-header) !important;
 }
 /* Dialogs Windows */
 .werewolf-dialog.window-app {
