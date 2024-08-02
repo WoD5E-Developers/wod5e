@@ -2,12 +2,14 @@
     <div class="flexrow">
         <div class="edges-list">
             <!-- Item control for adding new edge lists -->
-            <h2 class="item-controls flex-center">
+            <div class="item-controls flex-center">
                 <a class="item-control add-edge" title="{{localize 'WOD5E.HTR.AddEdge'}}">
-                    <i class="fas fa-plus"></i>
-                    {{localize "WOD5E.HTR.AddEdge"}}
+                    <h2>
+                        <i class="fas fa-plus"></i>
+                        {{localize "WOD5E.HTR.AddEdge"}}
+                    </h2>
                 </a>
-            </h2>
+            </div>
             <!-- Iterate through each of the edge lists -->
             {{#each actor.system.edges as |edge key|}}
                 {{#if edge.visible}}
@@ -15,7 +17,7 @@
                         <div class="flexcol">
                             <div class="flexrow item-header">
                                 <div class="item-name">
-                                    {{localize edge.name}}
+                                    {{edge.label}}
                                 </div>
                                 <!-- Item controls for Edge sections -->
                                 <div class="item-controls">
@@ -37,45 +39,58 @@
             {{/each}}
         </div>
         <div class="perks-list">
-            <h2 class="flex-center">Perks</h2>
             {{#each actor.system.edges as |edge key|}}
                 {{#if edge.visible}}
-                <div class="edge">
-                    <div class="flexrow item-header">
-                        <div class="item-name">
-                            {{localize edge.name}}
+                    <div class="edge">
+                        <div class="flexrow item-header">
+                            <div class="item-name">
+                                {{localize "WOD5E.HTR.StringPerks" string=edge.label}}
+                            </div>
+                            <!-- Item controls for Edge sections -->
+                            <div class="item-controls">
+                                <!-- Add new edge perk -->
+                                <a class="item-control item-create" title="{{localize 'WOD5E.HTR.AddPerk'}}" data-type="perk" data-subtype="{{key}}">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                            </div>
                         </div>
-                        <!-- Item controls for Edge sections -->
-                        <div class="item-controls">
-                            <!-- Add new edge perk -->
-                            <a class="item-control item-create" title="{{localize 'WOD5E.HTR.AddPerk'}}" data-type="perk" data-subtype="{{key}}">
+                        {{#each edge.perks as |perk key|}}
+                            <div class="flexrow perk item" data-item-id="{{perk._id}}">
+                                <div class="item-image">
+                                    <img src="{{perk.img}}">
+                                </div>
+                                <div class="item-name">{{perk.name}}</div>
+                                <div class="item-controls">
+                                    <!-- Icon to edit the perk-->
+                                    <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <!-- Icon to display the perk in chat -->
+                                    <a class="item-control item-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
+                                        <i class="fas fa-comment-alt"></i>
+                                    </a>
+                                    <!-- Icon to delete the perk -->
+                                    <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        {{/each}}
+                        <div class="edge-pools">
+                            {{#each edge.pools as |pool key|}}
+                                <div class="edge-pool flexrow">
+                                    {{#each pool.part as |part key|}}
+                                        <span>{{generateLabelAndLocalize part.id}}</span>
+                                    {{/each}}
+                                    <span class="rollable" value-paths="{{#each pool.part as |part key|}}part.path {{/each}}"></span>
+                                </div>
+                            {{/each}}
+                            <div class="flex-center add-edge-pool">
                                 <i class="fas fa-plus"></i>
-                            </a>
+                                {{localize "WOD5E.HTR.AddEdgePool"}}
+                            </div>
                         </div>
                     </div>
-                    {{#each edge.perks as |perk key|}}
-                        <div class="flexrow perk item" data-item-id="{{perk._id}}">
-                            <div class="item-image">
-                                <img src="{{perk.img}}">
-                            </div>
-                            <div class="item-name">{{perk.name}}</div>
-                            <div class="item-controls">
-                                <!-- Icon to edit the perk-->
-                                <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <!-- Icon to display the perk in chat -->
-                                <a class="item-control item-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
-                                    <i class="fas fa-comment-alt"></i>
-                                </a>
-                                <!-- Icon to delete the perk -->
-                                <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </div>
-                        </div>
-                    {{/each}}
-                </div>
                 {{/if}}
             {{/each}}
         </div>

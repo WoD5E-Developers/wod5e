@@ -75,6 +75,9 @@ export class HunterActorSheet extends WoDActor {
         })
       }
 
+      // Localize edge name
+      edges[edgeType].label = game.i18n.localize(edges[edgeType].name)
+
       // Enrich edge description
       if (edges[edgeType].description) {
         edges[edgeType].enrichedDescription = await TextEditor.enrichHTML(edges[edgeType].description)

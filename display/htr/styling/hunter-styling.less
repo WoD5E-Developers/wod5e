@@ -82,7 +82,7 @@
       display: flex;
       flex-direction: column;
       max-width: 300px;
-      margin: 10px;
+      margin: 0px 10px 10px 10px;
 
       .item-header {
         border-bottom: 1px solid black;
@@ -129,6 +129,16 @@
 
       .item-name {
         text-wrap: nowrap;
+      }
+
+      .edge {
+        .edge-pools {
+          border-top: 1px solid black;
+
+          .add-edge-pool:hover {
+            cursor: pointer;
+          }
+        }
       }
 
       .perk {

@@ -65,7 +65,7 @@
   display: flex;
   flex-direction: column;
   max-width: 300px;
-  margin: 10px;
+  margin: 0px 10px 10px 10px;
 }
 .actor.sheet.hunter .tab.edges .edges-list .item-header {
   border-bottom: 1px solid black;
@@ -101,6 +101,12 @@
 }
 .actor.sheet.hunter .tab.edges .perks-list .item-name {
   text-wrap: nowrap;
+}
+.actor.sheet.hunter .tab.edges .perks-list .edge .edge-pools {
+  border-top: 1px solid black;
+}
+.actor.sheet.hunter .tab.edges .perks-list .edge .edge-pools .add-edge-pool:hover {
+  cursor: pointer;
 }
 .actor.sheet.hunter .tab.edges .perks-list .perk .item-image {
   flex-grow: 0;
@@ -1642,6 +1648,8 @@ h3.item-name {
 .locked .item-delete,
 .locked .item-edit,
 .locked .edit-skill,
+.locked .add-edge,
+.locked .add-edge-pool,
 .locked .resource-plus,
 .locked .resource-minus,
 .locked .resource-value-empty:not(.hunger-value, .rage-value),
