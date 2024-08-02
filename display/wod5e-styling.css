@@ -61,9 +61,27 @@
 .actor.sheet.hunter .tab.edges .edges-list .item-name {
   text-wrap: nowrap;
 }
-.actor.sheet.hunter .tab.edges .edges-list .edge-description,
-.actor.sheet.hunter .tab.edges .edges-list .edge-description .editor {
-  min-height: 50px;
+.actor.sheet.hunter .tab.edges .edges-list .edge-description {
+  max-height: 150px;
+}
+.actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror .prosemirror menu {
+  height: 24px;
+  padding: 0;
+}
+.actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror .editor-menu button {
+  color: #CCC;
+}
+.actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror .editor-menu button:hover {
+  background-color: var(--hunter-primary);
+}
+.actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror .editor-container {
+  max-height: 80px;
+}
+.actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror li.text {
+  display: none;
+}
+.actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror .editor-content {
+  scrollbar-color: var(--hunter-secondary) var(--color-scrollbar-track);
 }
 .actor.sheet.hunter .tab.edges .edges-list .edge-description {
   margin-bottom: 5px;
@@ -1169,7 +1187,6 @@ h3.item-name {
   border: 0;
   height: auto;
   font-weight: 500;
-  padding: 0 1em;
   margin-bottom: -8px;
 }
 /* Sheet Banner */

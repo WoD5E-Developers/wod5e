@@ -26,7 +26,10 @@
                         </div>
                     </div>
                     <div class="edge-description">
-                        {{editor edge.enrichedDescription target=(concat "system.edges." @key ".description") button=true editable=editable}}
+                        <prose-mirror name="system.edges.{{key}}.description" data-document-u-u-i-d="{{../actor.uuid}}" value="{{edge.description}}"
+                            toggled="true">
+                            {{{edge.enrichedDescription}}}
+                        </prose-mirror>
                     </div>
                 {{/if}}
             {{/each}}

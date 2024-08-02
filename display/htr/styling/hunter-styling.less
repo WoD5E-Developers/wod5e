@@ -78,9 +78,35 @@
         text-wrap: nowrap;
       }
 
-      .edge-description,
-      .edge-description .editor {
-        min-height: 50px;
+      .edge-description {
+        max-height: 150px;
+
+        prose-mirror {
+          .prosemirror menu {
+            height: 24px;
+            padding: 0;
+          }
+
+          .editor-menu button {
+            color: #CCC;
+          }
+
+          .editor-menu button:hover {
+            background-color: var(--hunter-primary);
+          }
+
+          .editor-container {
+            max-height: 80px;
+          }
+
+          li.text {
+            display: none;
+          }
+
+          .editor-content {
+            scrollbar-color: var(--hunter-secondary) var(--color-scrollbar-track);
+          }
+        }
       }
 
       .edge-description {
