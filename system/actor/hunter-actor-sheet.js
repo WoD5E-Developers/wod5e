@@ -60,15 +60,20 @@ export class HunterActorSheet extends WoDActor {
     // Sort the edge containers by the level of the power instead of by creation date
     // and enrich any Edge/Perk descriptions
     for (const edgeType in edges) {
-      edges[edgeType].perks = edges[edgeType].perks.sort(function (power1, power2) {
-        // If the levels are the same, sort alphabetically instead
-        if (power1.system.level === power2.system.level) {
-          return power1.name.localeCompare(power2.name)
-        }
+      // If there's perks for this Edge, then make sure it's visible and sort them
+      if (edges[edgeType].perks.length > 0) {
+        if (!edges[edgeType].visible) edges[edgeType].visible = true
 
-        // Sort by level
-        return power1.system.level - power2.system.level
-      })
+        edges[edgeType].perks = edges[edgeType].perks.sort(function (power1, power2) {
+          // If the levels are the same, sort alphabetically instead
+          if (power1.system.level === power2.system.level) {
+            return power1.name.localeCompare(power2.name)
+          }
+  
+          // Sort by level
+          return power1.system.level - power2.system.level
+        })
+      }
 
       // Enrich edge description
       if (edges[edgeType].description) {
