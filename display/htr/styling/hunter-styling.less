@@ -68,11 +68,25 @@
   }
 
   .tab.edges {
+    .edges-list .edge,
+    .perks-list .edge {
+      display: flex;
+      flex-flow: column;
+      background-color: #ededec;
+      border: 2px solid #1b1b1b;
+      margin: 5px;
+      padding: 5px;
+    }
+
     .edges-list {
       display: flex;
       flex-direction: column;
       max-width: 300px;
       margin: 10px;
+
+      .item-header {
+        border-bottom: 1px solid black;
+      }
 
       .item-name {
         text-wrap: nowrap;
@@ -82,15 +96,6 @@
         max-height: 150px;
 
         prose-mirror {
-          .prosemirror menu {
-            height: 24px;
-            padding: 0;
-          }
-
-          .editor-menu button {
-            color: #CCC;
-          }
-
           .editor-menu button:hover {
             background-color: var(--hunter-primary);
           }
@@ -121,6 +126,10 @@
       margin-left: auto;
       margin-right: auto;
       max-width: 400px;
+
+      .item-name {
+        text-wrap: nowrap;
+      }
 
       .perk {
         .item-image {

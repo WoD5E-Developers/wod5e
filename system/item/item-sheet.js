@@ -14,8 +14,8 @@ export class WoDItemSheet extends ItemSheet {
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
-      width: 520,
-      height: 480,
+      width: 530,
+      height: 400,
       tabs: [{
         navSelector: '.sheet-tabs',
         contentSelector: '.sheet-body',

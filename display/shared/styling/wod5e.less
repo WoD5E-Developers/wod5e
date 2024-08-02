@@ -52,8 +52,6 @@
 /* Sheet Window Content */
 .sheet .window-content {
   box-shadow: 0 0 5px var(--system-primary);
-  padding-bottom: 20px;
-  overflow-y: scroll;
 }
 
 /* Top-left Logo */
@@ -92,4 +90,20 @@
 /* Only use this font with the .vampire-font-headers class enabled */
 .vampire-font-headers #pause figcaption {
   font-family: "vampireRevised", "sans-serif";
+}
+
+prose-mirror {
+  .editor-menu {
+    background: #333;
+    height: 30px;
+    padding: 2px;
+    
+    button {
+      color: #CCC;
+    }
+  }
+}
+
+.prosemirror menu .pm-dropdown {
+  background: transparent;
 }

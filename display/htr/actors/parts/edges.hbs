@@ -11,25 +11,27 @@
             <!-- Iterate through each of the edge lists -->
             {{#each actor.system.edges as |edge key|}}
                 {{#if edge.visible}}
-                    <div class="flexcol">
-                        <div class="flexrow item-header">
-                            <div class="item-name">
-                                {{localize edge.name}}
-                            </div>
-                            <!-- Item controls for Edge sections -->
-                            <div class="item-controls">
-                                <!-- Icon to show the edge description to the chat-->
-                                <a class="item-control edge-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-edge="{{key}}">
-                                    <i class="fas fa-comment-alt"></i>
-                                </a>
+                    <div class="edge">
+                        <div class="flexcol">
+                            <div class="flexrow item-header">
+                                <div class="item-name">
+                                    {{localize edge.name}}
+                                </div>
+                                <!-- Item controls for Edge sections -->
+                                <div class="item-controls">
+                                    <!-- Icon to show the edge description to the chat-->
+                                    <a class="item-control edge-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-edge="{{key}}">
+                                        <i class="fas fa-comment-alt"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="edge-description">
-                        <prose-mirror name="system.edges.{{key}}.description" data-document-u-u-i-d="{{../actor.uuid}}" value="{{edge.description}}"
-                            toggled="true">
-                            {{{edge.enrichedDescription}}}
-                        </prose-mirror>
+                        <div class="edge-description">
+                            <prose-mirror name="system.edges.{{key}}.description" data-document-u-u-i-d="{{../actor.uuid}}" value="{{edge.description}}"
+                                toggled="true">
+                                {{{edge.enrichedDescription}}}
+                            </prose-mirror>
+                        </div>
                     </div>
                 {{/if}}
             {{/each}}
@@ -38,6 +40,7 @@
             <h2 class="flex-center">Perks</h2>
             {{#each actor.system.edges as |edge key|}}
                 {{#if edge.visible}}
+                <div class="edge">
                     <div class="flexrow item-header">
                         <div class="item-name">
                             {{localize edge.name}}
@@ -72,6 +75,7 @@
                             </div>
                         </div>
                     {{/each}}
+                </div>
                 {{/if}}
             {{/each}}
         </div>

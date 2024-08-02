@@ -52,24 +52,29 @@
 .actor.sheet.hunter .item-image img {
   background: var(--ui-background-hunter-texture);
 }
+.actor.sheet.hunter .tab.edges .edges-list .edge,
+.actor.sheet.hunter .tab.edges .perks-list .edge {
+  display: flex;
+  flex-flow: column;
+  background-color: #ededec;
+  border: 2px solid #1b1b1b;
+  margin: 5px;
+  padding: 5px;
+}
 .actor.sheet.hunter .tab.edges .edges-list {
   display: flex;
   flex-direction: column;
   max-width: 300px;
   margin: 10px;
 }
+.actor.sheet.hunter .tab.edges .edges-list .item-header {
+  border-bottom: 1px solid black;
+}
 .actor.sheet.hunter .tab.edges .edges-list .item-name {
   text-wrap: nowrap;
 }
 .actor.sheet.hunter .tab.edges .edges-list .edge-description {
   max-height: 150px;
-}
-.actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror .prosemirror menu {
-  height: 24px;
-  padding: 0;
-}
-.actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror .editor-menu button {
-  color: #CCC;
 }
 .actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror .editor-menu button:hover {
   background-color: var(--hunter-primary);
@@ -93,6 +98,9 @@
   margin-left: auto;
   margin-right: auto;
   max-width: 400px;
+}
+.actor.sheet.hunter .tab.edges .perks-list .item-name {
+  text-wrap: nowrap;
 }
 .actor.sheet.hunter .tab.edges .perks-list .perk .item-image {
   flex-grow: 0;
@@ -407,8 +415,6 @@
 /* Sheet Window Content */
 .sheet .window-content {
   box-shadow: 0 0 5px var(--system-primary);
-  padding-bottom: 20px;
-  overflow-y: scroll;
 }
 /* Top-left Logo */
 #logo {
@@ -440,6 +446,17 @@
 /* Only use this font with the .vampire-font-headers class enabled */
 .vampire-font-headers #pause figcaption {
   font-family: "vampireRevised", "sans-serif";
+}
+prose-mirror .editor-menu {
+  background: #333;
+  height: 30px;
+  padding: 2px;
+}
+prose-mirror .editor-menu button {
+  color: #CCC;
+}
+.prosemirror menu .pm-dropdown {
+  background: transparent;
 }
 
 /* Actors Sidebar */
@@ -1147,6 +1164,8 @@ h3.item-name {
 .actor.sheet .window-content {
   background: url(/systems/vtm5e/assets/actor/actor_background.webp) repeat;
   padding: 0;
+  padding-bottom: 20px;
+  overflow-y: scroll;
 }
 .actor.sheet .window-content form {
   margin-left: 45px;
@@ -1595,6 +1614,26 @@ h3.item-name {
 }
 .wod5e .nowrap {
   flex-wrap: nowrap;
+}
+
+.item.sheet .item-header {
+  flex: 0 0 215px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.item.sheet .item-header .profile-img {
+  flex: 0 0 100px;
+  min-height: 50px;
+  max-height: 205px;
+  height: auto;
+  width: 100px;
+  margin-right: 0;
+}
+.item.sheet .item-header .header-fields {
+  flex: 1;
 }
 
 /* wod5e.css */
