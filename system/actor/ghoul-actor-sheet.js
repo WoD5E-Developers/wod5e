@@ -40,55 +40,38 @@ export class GhoulActorSheet extends MortalActorSheet {
   async getData () {
     // Top-level variables
     const data = await super.getData()
-    const actor = this.actor
 
-    // Prepare items.
-    if (actor.type === 'ghoul') {
-      this._prepareItems(data)
-    }
+    // Prepare items
+    this._prepareItems(data)
+
+    // Prepare discipline data
+    this._prepareDisciplineData(data)
 
     return data
   }
 
-  /**
-     * Organize and classify Disciplines for Vampire & Ghoul sheets.
-     *
-     * @param {Object} actorData The actor to prepare.
-     * @return {undefined}
-     * @override
-     */
+  /** Prepare item data for the Ghoul/Vampire actor */
   async _prepareItems (sheetData) {
     // Prepare items
     super._prepareItems(sheetData)
 
     // Top-level variables
-    const actorData = sheetData.actor
     const actor = this.actor
 
-    // Variables yet to be defined
-    const disciplines = {
-      animalism: [],
-      auspex: [],
-      celerity: [],
-      dominate: [],
-      fortitude: [],
-      obfuscate: [],
-      potence: [],
-      presence: [],
-      protean: [],
-      sorcery: [],
-      oblivion: [],
-      rituals: [],
-      ceremonies: [],
-      alchemy: []
+    // Secondary variables
+    const disciplines = actor.system.disciplines
+
+    // Wipe old discipline data so it doesn't duplicate
+    for (const disciplineType in disciplines) {
+      disciplines[disciplineType].powers = []
     }
 
     // Iterate through items, allocating to containers
     for (const i of sheetData.items) {
       // Make sure the item is a power and has a discipline
-      if (i.type === 'power' && i.system.discipline) {
+      if (i.type === 'power') {
         // Append to disciplines list
-        disciplines[i.system.discipline].push(i)
+        disciplines[i.system.discipline].powers.push(i)
 
         // If the discipline isn't already visible, make it visible
         if (!actor.system.disciplines[i.system.discipline].visible) {
@@ -96,10 +79,15 @@ export class GhoulActorSheet extends MortalActorSheet {
         }
       }
     }
+  }
+
+  // Handle discipline data so we can display it on the actor sheet
+  async _prepareDisciplineData (sheetData) {
+    const disciplines = sheetData.actor.system.disciplines
 
     // Sort the discipline containers by the level of the power instead of by creation date
-    for (const discipline in disciplines) {
-      disciplines[discipline] = disciplines[discipline].sort(function (power1, power2) {
+    for (const disciplineType in disciplines) {
+      disciplines[disciplineType].powers = disciplines[disciplineType].powers.sort(function (power1, power2) {
         // If the levels are the same, sort alphabetically instead
         if (power1.system.level === power2.system.level) {
           return power1.name.localeCompare(power2.name)
@@ -110,8 +98,7 @@ export class GhoulActorSheet extends MortalActorSheet {
       })
     }
 
-    // Assign and return the disciplines list
-    actorData.system.disciplines_list = disciplines
+    return disciplines
   }
 
   /* -------------------------------------------- */

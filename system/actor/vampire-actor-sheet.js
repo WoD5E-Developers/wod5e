@@ -45,7 +45,11 @@ export class VampireActorSheet extends GhoulActorSheet {
   async getData () {
     const data = await super.getData()
 
+    // Prepare items
     this._prepareItems(data)
+
+    // Prepare discipline data
+    this._prepareDisciplineData(data)
 
     return data
   }
