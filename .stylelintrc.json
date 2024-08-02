@@ -1,3 +1,6 @@
 {
-  "ignoreFiles": ["display/wod5e-styling.css"]
+  "extends": [
+    "stylelint-config-standard"
+  ],
+  "ignoreFiles": ["./display/wod5e-styling.css"]
 }
