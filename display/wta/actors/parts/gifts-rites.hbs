@@ -20,7 +20,7 @@
             </div>
         </li>
         <!-- Iterate through each of the gifts lists -->
-        {{#each actor.system.giftsList as |gift key|}}
+        {{#each actor.system.gifts as |gift key|}}
             {{#if gift.powers}}
                 <div class="collapsible-container">
                     <li class="flexrow item-header">
@@ -41,7 +41,7 @@
                     </li>
                     <!-- Gift description -->
                     <div class="collapsible-content">
-                        <textarea class="gift-description" name="system.giftsList.{{key}}.description">{{{gift.enrichedDescription}}}</textarea>
+                        <textarea class="gift-description" name="system.gifts.{{key}}.description">{{{gift.enrichedDescription}}}</textarea>
                     </div>
                 </div>
                 <!-- Iterate through each of the gift powers -->
@@ -114,7 +114,7 @@
             </div>
         </li>
         <!-- Iterate through each of the rites -->
-        {{#each actor.system.ritesList as |item id|}}
+        {{#each actor.system.rites as |item id|}}
             <li class="item flexcol collapsible-container" data-item-id="{{item._id}}">
                 <div class="flexrow">
                     <div class="flexrow">

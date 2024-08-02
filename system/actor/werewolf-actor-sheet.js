@@ -47,70 +47,95 @@ export class WerewolfActorSheet extends WoDActor {
 
     this._prepareItems(data)
 
+    // Prepare gifts and rites data
+    data.actor.system.gifts = await this._prepareGiftData(data)
+    data.actor.system.rites = await this._prepareRiteData(data)
+
+    // If the actor's rage is above 0, make sure they aren't in "lost the wolf" form
+    if (data.actor.system.rage.value > 0 && data.actor.system.lostTheWolf) {
+      this.actor.update({ 'system.lostTheWolf': false })
+    }
+
+    // Check if the actor's rage is 0, they're in a supernatural form, and they haven't already lost the wolf
+    const supernaturalForms = ['glabro', 'crinos', 'hispo']
+    if ((data.actor.system.rage.value === 0) && (supernaturalForms.indexOf(data.actor.system.activeForm) > -1)) {
+      this._onLostTheWolf()
+    }
+
     return data
   }
 
   /** Prepare important data for the werewolf actor */
   async _prepareItems (sheetData) {
+    // Prepare items
     super._prepareItems(sheetData)
 
-    const actorData = sheetData.actor
+    // Top-level variables
+    const actor = this.actor
 
-    const giftsList = structuredClone(actorData.system.gifts)
-    let ritesList = structuredClone(actorData.system.rites)
+    // Secondary variables
+    const gifts = actor.system.gifts
+
+    // Wipe old gift and rite data so it doesn't duplicate
+    for (const giftType in gifts) {
+      gifts[giftType].powers = []
+    }
+    actor.system.rites = []
 
     // Iterate through items, allocating to containers
     for (const i of sheetData.items) {
       if (i.type === 'gift') {
         if (i.system.giftType === 'rite') {
           // Append to the rites list.
-          ritesList.push(i)
+          actor.system.rites.push(i)
         } else {
           // Append to each of the gift types.
           if (i.system.giftType !== undefined) {
-            giftsList[i.system.giftType].powers.push(i)
+            gifts[i.system.giftType].powers.push(i)
           }
         }
       }
     }
+  }
 
-    // Sort the gift containers by the level of the power instead of by creation date
-    for (const giftType in giftsList) {
-      giftsList[giftType].powers = giftsList[giftType].powers.sort(function (power1, power2) {
+  // Handle gift data so we can display it on the actor sheet
+  async _prepareGiftData (sheetData) {
+    // Secondary variables
+    const gifts = sheetData.actor.system.gifts
+
+    // Sort the gift containers by the level of the gift instead of by creation date
+    for (const giftType in gifts) {
+      gifts[giftType].powers = gifts[giftType].powers.sort(function (gift1, gift2) {
         // If the levels are the same, sort alphabetically instead
-        if (power1.system.level === power2.system.level) {
-          return power1.name.localeCompare(power2.name)
+        if (gift1.system.level === gift2.system.level) {
+          return gift1.name.localeCompare(gift2.name)
         }
 
         // Sort by level
-        return power1.system.level - power2.system.level
+        return gift1.system.level - gift2.system.level
       })
     }
 
-    // Sort the rite containers by the level of the power instead of by creation date
-    ritesList = ritesList.sort(function (power1, power2) {
+    return gifts
+  }
+
+  // Handle rite data so we can display it on the actor sheet
+  async _prepareRiteData (sheetData) {
+    // Secondary variables
+    const rites = sheetData.actor.system.rites
+
+    // Sort the rite containers by the level of the rite instead of by creation date
+    rites.sort(function (rite1, rite2) {
       // If the levels are the same, sort alphabetically instead
-      if (power1.system.level === power2.system.level) {
-        return power1.name.localeCompare(power2.name)
+      if (rite1.system.level === rite2.system.level) {
+        return rite1.name.localeCompare(rite2.name)
       }
 
       // Sort by level
-      return power1.system.level - power2.system.level
+      return rite1.system.level - rite2.system.level
     })
 
-    actorData.system.giftsList = giftsList
-    actorData.system.ritesList = ritesList
-
-    // If the actor's rage is above 0, make sure they aren't in "lost the wolf" form
-    if (actorData.system.rage.value > 0 && actorData.system.lostTheWolf) {
-      this.actor.update({ 'system.lostTheWolf': false })
-    }
-
-    // Check if the actor's rage is 0, they're in a supernatural form, and they haven't already lost the wolf
-    const supernaturalForms = ['glabro', 'crinos', 'hispo']
-    if ((actorData.system.rage.value === 0) && (supernaturalForms.indexOf(actorData.system.activeForm) > -1)) {
-      this._onLostTheWolf()
-    }
+    return rites
   }
 
   /* -------------------------------------------- */
