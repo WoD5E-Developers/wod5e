@@ -145,30 +145,6 @@ export const loadHelpers = async function () {
     return value === test ? attr : ''
   })
 
-  Handlebars.registerHelper('visibleDisciplines', function (disciplines) {
-    return Object.keys(disciplines).reduce(
-      (obj, key) => {
-        if (disciplines[key].visible) {
-          obj[key] = disciplines[key]
-        }
-        return obj
-      },
-      {}
-    )
-  })
-
-  Handlebars.registerHelper('visibleEdges', function (edges) {
-    return Object.keys(edges).reduce(
-      (obj, key) => {
-        if (edges[key].visible) {
-          obj[key] = edges[key]
-        }
-        return obj
-      },
-      {}
-    )
-  })
-
   Handlebars.registerHelper('sortAbilities', function (unordered = {}) {
     if (!game.settings.get('vtm5e', 'chatRollerSortAbilities')) {
       return unordered
