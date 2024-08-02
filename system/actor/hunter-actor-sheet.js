@@ -1,4 +1,4 @@
-/* global game, foundry, renderTemplate, ChatMessage */
+/* global game, foundry, renderTemplate, ChatMessage, TextEditor, WOD5E, Dialog */
 
 import { WOD5eDice } from '../scripts/system-rolls.js'
 import { getActiveBonuses } from '../scripts/rolls/situational-modifiers.js'
@@ -69,7 +69,7 @@ export class HunterActorSheet extends WoDActor {
           if (power1.system.level === power2.system.level) {
             return power1.name.localeCompare(power2.name)
           }
-  
+
           // Sort by level
           return power1.system.level - power2.system.level
         })
@@ -173,55 +173,53 @@ export class HunterActorSheet extends WoDActor {
     // Secondary variables
     const selectLabel = game.i18n.localize('WOD5E.HTR.SelectEdge')
     const itemOptions = WOD5E.Edges.getList()
-    
+
     // Variables yet to be defined
     let options = []
     let edgeSelected
 
     // Prompt a dialog to determine which edge we're adding
-      // Build the options for the select dropdown
-      for (const [key, value] of Object.entries(itemOptions)) {
-        options += `<option value="${key}">${value.displayName}</option>`
-      }
+    // Build the options for the select dropdown
+    for (const [key, value] of Object.entries(itemOptions)) {
+      options += `<option value="${key}">${value.displayName}</option>`
+    }
 
-      // Template for the dialog form
-      const template = `
-        <form>
-          <div class="form-group">
-            <label>${selectLabel}</label>
-            <select id="edgeSelect">${options}</select>
-          </div>
-        </form>`
+    // Template for the dialog form
+    const template = `
+      <form>
+        <div class="form-group">
+          <label>${selectLabel}</label>
+          <select id="edgeSelect">${options}</select>
+        </div>
+      </form>`
 
-      // Define dialog buttons
-      const buttons = {
-        submit: {
-          icon: '<i class="fas fa-check"></i>',
-          label: game.i18n.localize('WOD5E.Add'),
-          callback: async (html) => {
-            edgeSelected = html.find('#edgeSelect')[0].value
+    // Define dialog buttons
+    const buttons = {
+      submit: {
+        icon: '<i class="fas fa-check"></i>',
+        label: game.i18n.localize('WOD5E.Add'),
+        callback: async (html) => {
+          edgeSelected = html.find('#edgeSelect')[0].value
 
-            // Make the edge visible
-            actor.update({ [`system.edges.${edgeSelected}.visible`]: true })
-          }
-        },
-        cancel: {
-          icon: '<i class="fas fa-times"></i>',
-          label: game.i18n.localize('WOD5E.Cancel')
+          // Make the edge visible
+          actor.update({ [`system.edges.${edgeSelected}.visible`]: true })
         }
+      },
+      cancel: {
+        icon: '<i class="fas fa-times"></i>',
+        label: game.i18n.localize('WOD5E.Cancel')
       }
+    }
 
-      // Display the dialog
-      new Dialog({
-        title: game.i18n.localize('WOD5E.Add'),
-        content: template,
-        buttons,
-        default: 'submit'
-      }, {
-        classes: ['wod5e', `hunter-dialog`, `hunter-sheet`]
-      }).render(true)
-
-    // Reveal the edge
+    // Display the dialog
+    new Dialog({
+      title: game.i18n.localize('WOD5E.Add'),
+      content: template,
+      buttons,
+      default: 'submit'
+    }, {
+      classes: ['wod5e', 'hunter-dialog', 'hunter-sheet']
+    }).render(true)
   }
 
   /** Handle toggling the depsair value */

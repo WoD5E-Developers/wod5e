@@ -1,4 +1,4 @@
-/* global game, Hooks */
+/* global game, Hooks, ActorDirectory, fromUuidSync */
 
 /* Various Support for group sheets injected as the actor sidebar rerenders */
 export const RenderActorSidebar = async () => {
@@ -100,7 +100,7 @@ export const RenderActorSidebar = async () => {
       // Re-render the actors directory
       game.actors.render()
     }
-  
+
     // Only do this if the actor has an associated group with them
     if (actor.system?.group) {
       // Update the group sheet

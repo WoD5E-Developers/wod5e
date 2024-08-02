@@ -1,4 +1,4 @@
-/* global foundry, game */
+/* global foundry, game, ui */
 
 // Handle all types of resource changes
 export const _onResourceChange = async function (event) {
