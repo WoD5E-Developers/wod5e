@@ -318,7 +318,7 @@ class WOD5eDice {
                 // Get the values of basic and advanced dice
                 const basicValue = basicDiceInput.val() ? parseInt(basicDiceInput.val()) : 0
                 const advancedValue = advancedDiceInput.val() ? parseInt(advancedDiceInput.val()) : 0
-                const aCDValue = parseInt(event.currentTarget.dataset.advancedCheckDice)
+                const aCDValue = event.currentTarget.dataset.advancedCheckDice ? parseInt(event.currentTarget.dataset.advancedCheckDice) : 0
 
                 // Determine whether any alterations need to be made to basic dice or advanced dice
                 let applyDiceTo = 'basic'

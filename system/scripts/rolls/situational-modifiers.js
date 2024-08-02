@@ -121,7 +121,10 @@ export async function getActiveBonuses ({
 
   activeModifiers.forEach((modifier) => {
     totalValue += parseInt(modifier.value)
-    totalACDValue += parseInt(modifier.advancedCheckDice)
+
+    if (modifier.advancedCheckDice) {
+      totalACDValue += parseInt(modifier.advancedCheckDice)
+    }
   })
 
   return {
