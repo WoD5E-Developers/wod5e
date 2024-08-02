@@ -41,3 +41,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JSCPD: false 
           VALIDATE_GITLEAKS: false
+          # System uses Less as a preprocessor and it doesn't play well with CSS linters
+          VALIDATE_CSS: false
