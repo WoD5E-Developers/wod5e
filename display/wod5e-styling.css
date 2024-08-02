@@ -46,6 +46,12 @@
   display: inline-block;
   cursor: pointer;
 }
+.actor.sheet.hunter .item-image {
+  flex-grow: 0;
+}
+.actor.sheet.hunter .item-image img {
+  background: var(--ui-background-hunter-texture);
+}
 .actor.sheet.hunter .tab.edges .edges-list {
   display: flex;
   flex-direction: column;
@@ -72,9 +78,6 @@
 }
 .actor.sheet.hunter .tab.edges .perks-list .perk .item-image {
   flex-grow: 0;
-}
-.actor.sheet.hunter .tab.edges .perks-list .perk .item-image img {
-  background: var(--ui-background-hunter-texture);
 }
 .actor.sheet.hunter .tab.edges .perks-list .perk .item-name {
   text-align: left;
