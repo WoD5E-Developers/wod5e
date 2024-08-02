@@ -47,42 +47,12 @@ export class HunterActorSheet extends WoDActor {
   async getData () {
     // Top-level variables
     const data = await super.getData()
-    const actor = this.actor
-
-    // Secondary variables
-    const edges = data.actor.system.edges
 
     // Prepare items
-    if (actor.type === 'hunter') {
-      this._prepareItems(data)
-    }
+    this._prepareItems(data)
 
-    // Sort the edge containers by the level of the power instead of by creation date
-    // and enrich any Edge/Perk descriptions
-    for (const edgeType in edges) {
-      // If there's perks for this Edge, then make sure it's visible and sort them
-      if (edges[edgeType].perks.length > 0) {
-        if (!edges[edgeType].visible) edges[edgeType].visible = true
-
-        edges[edgeType].perks = edges[edgeType].perks.sort(function (power1, power2) {
-          // If the levels are the same, sort alphabetically instead
-          if (power1.system.level === power2.system.level) {
-            return power1.name.localeCompare(power2.name)
-          }
-
-          // Sort by level
-          return power1.system.level - power2.system.level
-        })
-      }
-
-      // Localize edge name
-      edges[edgeType].label = game.i18n.localize(edges[edgeType].name)
-
-      // Enrich edge description
-      if (edges[edgeType].description) {
-        edges[edgeType].enrichedDescription = await TextEditor.enrichHTML(edges[edgeType].description)
-      }
-    }
+    // Prepare edge data
+    data.actor.system.edges = await this._prepareEdgeData(data)
 
     return data
   }
@@ -127,6 +97,42 @@ export class HunterActorSheet extends WoDActor {
 
     return sheetData
   }
+
+  // Handle edge data so we can display it on the actor sheet
+  async _prepareEdgeData (sheetData) {
+    // Secondary variables
+    const edges = sheetData.actor.system.edges
+
+    // Sort the edge containers by the level of the perk instead of by creation date
+    // and enrich any Edge/Perk descriptions
+    for (const edgeType in edges) {
+      // If there's perks for this Edge, then make sure it's visible and sort them
+      if (edges[edgeType].perks.length > 0) {
+        if (!edges[edgeType].visible) edges[edgeType].visible = true
+
+        edges[edgeType].perks = edges[edgeType].perks.sort(function (perk1, perk2) {
+          // If the levels are the same, sort alphabetically instead
+          if (perk1.system.level === perk2.system.level) {
+            return perk1.name.localeCompare(perk2.name)
+          }
+
+          // Sort by level
+          return perk1.system.level - perk2.system.level
+        })
+      }
+
+      // Localize edge name
+      edges[edgeType].label = game.i18n.localize(edges[edgeType].name)
+
+      // Enrich edge description
+      if (edges[edgeType].description) {
+        edges[edgeType].enrichedDescription = await TextEditor.enrichHTML(edges[edgeType].description)
+      }
+    }
+
+    return edges
+  }
+
   /* -------------------------------------------- */
 
   /** @override */
@@ -146,7 +152,7 @@ export class HunterActorSheet extends WoDActor {
     // Handle adding a new edge to the sheet
     html.find('.add-edge').click(this._onAddEdge.bind(this))
 
-    // Rollable Edge powers
+    // Rollable Edge perks
     html.find('.edge-rollable').click(this._onEdgeRoll.bind(this))
 
     // Post Edge description to the chat
