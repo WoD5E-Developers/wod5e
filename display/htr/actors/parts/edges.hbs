@@ -1,42 +1,58 @@
 <div class="tab edges" data-group="primary" data-tab="edges">
-    <div class="items-list grid grid-2col">
-        <!-- Iterate through each of the edge lists -->
-        {{#each actor.system.edgesList as |edge key|}}
-            {{#if edge.powers}}
-            <div>
-                <div class="flexrow item-header">
-                    <div class="item-name">
-                        {{localize edge.name}}
+    <div class="flexrow">
+        <div class="edges-list">
+            <!-- Item control for adding new edge lists -->
+            <h2 class="item-controls flex-center">
+                <a class="item-control add-edge" title="{{localize 'WOD5E.HTR.AddEdge'}}">
+                    <i class="fas fa-plus"></i>
+                    {{localize "WOD5E.HTR.AddEdge"}}
+                </a>
+            </h2>
+            <!-- Iterate through each of the edge lists -->
+            {{#each actor.system.edges as |edge key|}}
+                {{#if edge.visible}}
+                    <div class="flexcol">
+                        <div class="flexrow item-header">
+                            <div class="item-name">
+                                {{localize edge.name}}
+                            </div>
+                            <!-- Item controls for Edge sections -->
+                            <div class="item-controls">
+                                <!-- Icon to show the edge description to the chat-->
+                                <a class="item-control edge-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-edge="{{key}}">
+                                    <i class="fas fa-comment-alt"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Item controls for Edge sections -->
-                    <div class="item-controls">
-                        <!-- Add new edge perk -->
-                        <a class="item-control edge-create item-create" title="{{localize 'WOD5E.HTR.AddPerk'}}" data-type="perk" data-subtype="{{key}}">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                        <!-- Icon to show the edge description to the chat-->
-                        <a class="item-control edge-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-type="perk" data-edge="{{key}}">
-                            <i class="fas fa-comment-alt"></i>
-                        </a>
+                    <div class="edge-description">
+                        {{editor edge.enrichedDescription target=(concat "system.edges." @key ".description") button=true editable=editable}}
                     </div>
-                </div>
-                <!-- Iterate through each of the edge perks -->
-                {{#each edge.powers as |item id|}}
-                    <div class="item flexcol collapsible-container" data-item-id="{{item._id}}">
-                        <div class="flexrow">
-                            <!-- Whether the button is clickable or not to post the perk in chat -->
-                            {{#if item.system.rollable}}
-                                <div class="item-image edge-rollable" data-id="{{item._id}}">
-                                    <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" alt="{{item.name}}"/>
-                                </div>
-                            {{else}}
-                                <div class="item-image" data-id="{{item._id}}">
-                                    <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" alt="{{item.name}}"/>
-                                </div>
-                            {{/if}}
-                            <!-- Edge perk name -->
-                            <h4 class="item-name collapsible">{{item.name}}</h4>
-                            <!-- Item controls for edge perks -->
+                {{/if}}
+            {{/each}}
+        </div>
+        <div class="perks-list">
+            <h2 class="flex-center">Perks</h2>
+            {{#each actor.system.edges as |edge key|}}
+                {{#if edge.visible}}
+                    <div class="flexrow item-header">
+                        <div class="item-name">
+                            {{localize edge.name}}
+                        </div>
+                        <!-- Item controls for Edge sections -->
+                        <div class="item-controls">
+                            <!-- Add new edge perk -->
+                            <a class="item-control item-create" title="{{localize 'WOD5E.HTR.AddPerk'}}" data-type="perk" data-subtype="{{key}}">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {{#each edge.perks as |perk key|}}
+                        <div class="flexrow perk item" data-item-id="{{perk._id}}">
+                            <div class="item-image">
+                                <img src="{{perk.img}}">
+                            </div>
+                            <div class="item-name">{{perk.name}}</div>
                             <div class="item-controls">
                                 <!-- Icon to edit the perk-->
                                 <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
@@ -52,17 +68,9 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
-                {{/each}}
-            </div>
-            {{/if}}
-        {{/each}}
-    </div>
-    <!-- Item controls for adding new edge lists -->
-    <div class="item-controls flex-center">
-        <a class="item-control edge-create item-create" data-type="perk" title="{{localize 'WOD5E.HTR.AddEdge'}}">
-            <i class="fas fa-plus"></i>
-            {{localize "WOD5E.HTR.AddEdge"}}
-        </a>
+                    {{/each}}
+                {{/if}}
+            {{/each}}
+        </div>
     </div>
 </div>

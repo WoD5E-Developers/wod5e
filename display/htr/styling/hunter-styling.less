@@ -58,6 +58,53 @@
     display: inline-block;
     cursor: pointer;
   }
+
+  .tab.edges {
+    .edges-list {
+      display: flex;
+      flex-direction: column;
+      max-width: 300px;
+      margin: 10px;
+
+      .item-name {
+        text-wrap: nowrap;
+      }
+
+      .edge-description,
+      .edge-description .editor {
+        min-height: 50px;
+      }
+
+      .edge-description {
+        margin-bottom: 5px;
+      }
+    }
+
+    .perks-list {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 400px;
+
+      .perk {
+        .item-image {
+          flex-grow: 0;
+        }
+
+        .item-name {
+          text-align: left;
+          padding: 3px;
+          margin-left: 10px;
+        }
+
+        .item-controls {
+          text-align: right;
+        }
+      }
+    }
+  }
 }
 
 /* All Sheets with the Hunter styling, including itemsheets */

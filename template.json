@@ -438,73 +438,73 @@
           "arsenal": {
             "description": "",
             "value": 0,
-            "powers": [],
+            "perks": [],
             "visible": false
           },
           "fleet": {
             "description": "",
             "value": 0,
-            "powers": [],
+            "perks": [],
             "visible": false
           },
           "ordnance": {
             "description": "",
             "value": 0,
-            "powers": [],
+            "perks": [],
             "visible": false
           },
           "library": {
             "description": "",
             "value": 0,
-            "powers": [],
+            "perks": [],
             "visible": false
           },
           "improvisedgear": {
             "description": "",
             "value": 0,
-            "powers": [],
+            "perks": [],
             "visible": false
           },
           "globalaccess": {
             "description": "",
             "value": 0,
-            "powers": [],
+            "perks": [],
             "visible": false
           },
           "dronejockey": {
             "description": "",
             "value": 0,
-            "powers": [],
+            "perks": [],
             "visible": false
           },
           "beastwhisperer": {
             "description": "",
             "value": 0,
-            "powers": [],
+            "perks": [],
             "visible": false
           },
           "sensetheunnatural": {
             "description": "",
             "value": 0,
-            "powers": [],
+            "perks": [],
             "visible": false
           },
           "repeltheunnatural": {
             "description": "",
             "value": 0,
-            "powers": [],
+            "perks": [],
             "visible": false
           },
           "thwarttheunnatural": {
             "description": "",
             "value": 0,
-            "powers": [],
+            "perks": [],
             "visible": false
           },
           "artifact": {
             "description": "",
             "value": 0,
-            "powers": [],
+            "perks": [],
             "visible": false
           }
         }

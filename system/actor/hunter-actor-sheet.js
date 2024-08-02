@@ -49,9 +49,32 @@ export class HunterActorSheet extends WoDActor {
     const data = await super.getData()
     const actor = this.actor
 
+    // Secondary variables
+    const edges = data.actor.system.edges
+
     // Prepare items
     if (actor.type === 'hunter') {
       this._prepareItems(data)
+    }
+
+    // Sort the edge containers by the level of the power instead of by creation date
+    // and enrich any Edge/Perk descriptions
+    for (const edgeType in edges) {
+      edges[edgeType].perks = edges[edgeType].perks.sort(function (power1, power2) {
+        // If the levels are the same, sort alphabetically instead
+        if (power1.system.level === power2.system.level) {
+          return power1.name.localeCompare(power2.name)
+        }
+
+        // Sort by level
+        return power1.system.level - power2.system.level
+      })
+
+      // Enrich edge description
+      if (edges[edgeType].description) {
+        edges[edgeType].descriptionPath = `system.edges.${edgeType}.description`
+        edges[edgeType].enrichedDescription = await TextEditor.enrichHTML(edges[edgeType].description)
+      }
     }
 
     return data
@@ -72,40 +95,30 @@ export class HunterActorSheet extends WoDActor {
     const actorData = sheetData.actor
     const actor = this.actor
 
-    // Variables yet to be defined
-    const edgesList = structuredClone(actorData.system.edges)
+    // Secondary variables
+    const edges = actor.system.edges
 
     // Track whether despair is toggled on or not
     if (actor.system.despair.value > 0) {
       actorData.system.despairActive = true
     }
 
+    // Wipe old perk data so it doesn't duplicate
+    for (const edgeType in edges) {
+      edges[edgeType].perks = []
+    }
+
     // Iterate through items, allocating to containers
     for (const i of sheetData.items) {
       // Make sure the item is a perk and has an edge set
       if (i.type === 'perk') {
-        // Append to each of the perk types.
-        if (i.system.edge !== undefined && edgesList[i.system.edge]?.powers) {
-          edgesList[i.system.edge].powers.push(i)
+        if (i.system.edge !== undefined) {
+          edges[i.system.edge].perks.push(i)
         }
       }
     }
 
-    // Sort the edge containers by the level of the power instead of by creation date
-    for (const edgeType in edgesList) {
-      edgesList[edgeType].powers = edgesList[edgeType].powers.sort(function (power1, power2) {
-        // If the levels are the same, sort alphabetically instead
-        if (power1.system.level === power2.system.level) {
-          return power1.name.localeCompare(power2.name)
-        }
-
-        // Sort by level
-        return power1.system.level - power2.system.level
-      })
-    }
-
-    // Assign and return the edges list
-    actorData.system.edgesList = edgesList
+    return sheetData
   }
   /* -------------------------------------------- */
 
@@ -122,6 +135,9 @@ export class HunterActorSheet extends WoDActor {
 
     // Toggle despair
     html.find('.despair-toggle').click(this._onToggleDespair.bind(this))
+
+    // Handle adding a new edge to the sheet
+    html.find('.add-edge').click(this._onAddEdge.bind(this))
 
     // Rollable Edge powers
     html.find('.edge-rollable').click(this._onEdgeRoll.bind(this))
@@ -143,8 +159,69 @@ export class HunterActorSheet extends WoDActor {
     })
   }
 
+  /** Handle adding a new edge to the sheet */
+  async _onAddEdge (event) {
+    event.preventDefault()
+
+    // Top-level variables
+    const actor = this.actor
+
+    // Secondary variables
+    const selectLabel = game.i18n.localize('WOD5E.HTR.SelectEdge')
+    const itemOptions = WOD5E.Edges.getList()
+    
+    // Variables yet to be defined
+    let options = []
+    let edgeSelected
+
+    // Prompt a dialog to determine which edge we're adding
+      // Build the options for the select dropdown
+      for (const [key, value] of Object.entries(itemOptions)) {
+        options += `<option value="${key}">${value.displayName}</option>`
+      }
+
+      // Template for the dialog form
+      const template = `
+        <form>
+          <div class="form-group">
+            <label>${selectLabel}</label>
+            <select id="edgeSelect">${options}</select>
+          </div>
+        </form>`
+
+      // Define dialog buttons
+      const buttons = {
+        submit: {
+          icon: '<i class="fas fa-check"></i>',
+          label: game.i18n.localize('WOD5E.Add'),
+          callback: async (html) => {
+            edgeSelected = html.find('#edgeSelect')[0].value
+
+            // Make the edge visible
+            actor.update({ [`system.edges.${edgeSelected}.visible`]: true })
+          }
+        },
+        cancel: {
+          icon: '<i class="fas fa-times"></i>',
+          label: game.i18n.localize('WOD5E.Cancel')
+        }
+      }
+
+      // Display the dialog
+      new Dialog({
+        title: game.i18n.localize('WOD5E.Add'),
+        content: template,
+        buttons,
+        default: 'submit'
+      }, {
+        classes: ['wod5e', `hunter-dialog`, `hunter-sheet`]
+      }).render(true)
+
+    // Reveal the edge
+  }
+
   /** Handle toggling the depsair value */
-  _onToggleDespair (event) {
+  async _onToggleDespair (event) {
     event.preventDefault()
 
     // Top-level variables

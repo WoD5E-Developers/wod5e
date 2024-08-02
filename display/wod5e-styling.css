@@ -46,6 +46,41 @@
   display: inline-block;
   cursor: pointer;
 }
+.actor.sheet.hunter .tab.edges .edges-list {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 10px;
+}
+.actor.sheet.hunter .tab.edges .edges-list .item-name {
+  text-wrap: nowrap;
+}
+.actor.sheet.hunter .tab.edges .edges-list .edge-description,
+.actor.sheet.hunter .tab.edges .edges-list .edge-description .editor {
+  min-height: 50px;
+}
+.actor.sheet.hunter .tab.edges .edges-list .edge-description {
+  margin-bottom: 5px;
+}
+.actor.sheet.hunter .tab.edges .perks-list {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
+}
+.actor.sheet.hunter .tab.edges .perks-list .perk .item-image {
+  flex-grow: 0;
+}
+.actor.sheet.hunter .tab.edges .perks-list .perk .item-name {
+  text-align: left;
+  padding: 3px;
+  margin-left: 10px;
+}
+.actor.sheet.hunter .tab.edges .perks-list .perk .item-controls {
+  text-align: right;
+}
 /* All Sheets with the Hunter styling, including itemsheets */
 .sheet.hunter {
   box-shadow: 0 0 10px var(--hunter-primary);
@@ -226,21 +261,21 @@
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmSU5vAw.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmSU5vAw.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v31/KFOmCnqEu92Fr1Me5Q.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Me5Q.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmEU9vAw.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmEU9vAw.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Amarante';
@@ -1413,11 +1448,6 @@ h3.item-name {
   font-family: "vampireRevised", "sans-serif";
 }
 /* Powers */
-.actor.sheet .tab.edges,
-.actor.sheet .tab.disciplines,
-.actor.sheet .tab.gifts {
-  padding: 20px;
-}
 .actor.sheet .items-list {
   list-style: none;
   padding: 0;
@@ -1459,10 +1489,11 @@ h3.item-name {
   align-items: center;
   gap: 10px;
 }
-.actor.sheet .item-card .item-image img {
+.actor.sheet .item-image img {
   border-radius: 50%;
   border: 1px solid #ddd;
   padding: 2px;
+  max-width: 25px;
 }
 .actor.sheet .item-card .item-name {
   flex-grow: 1;
