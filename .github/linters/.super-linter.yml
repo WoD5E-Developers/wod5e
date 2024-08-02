@@ -1,0 +1,2 @@
+# Disable CSS linting
+FILTER_REGEX_EXCLUDE: '.*\.css$'
