@@ -57,13 +57,7 @@ export class HunterActorSheet extends WoDActor {
     return data
   }
 
-  /**
-     * Organize and classify Items for all sheets
-     *
-     * @param {Object} actorData The actor to prepare
-     * @return {undefined}
-     * @override
-     */
+  /** Prepare item data for the Hunter actor */
   async _prepareItems (sheetData) {
     // Prepare items
     super._prepareItems(sheetData)
@@ -100,7 +94,6 @@ export class HunterActorSheet extends WoDActor {
 
   // Handle edge data so we can display it on the actor sheet
   async _prepareEdgeData (sheetData) {
-    // Secondary variables
     const edges = sheetData.actor.system.edges
 
     // Sort the edge containers by the level of the perk instead of by creation date

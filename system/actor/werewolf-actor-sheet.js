@@ -43,8 +43,10 @@ export class WerewolfActorSheet extends WoDActor {
 
   /** @override */
   async getData () {
+    // Top-level variables
     const data = await super.getData()
 
+    // Prepare items
     this._prepareItems(data)
 
     // Prepare gifts and rites data
@@ -65,7 +67,7 @@ export class WerewolfActorSheet extends WoDActor {
     return data
   }
 
-  /** Prepare important data for the werewolf actor */
+  /** Prepare item data for the Werewolf actor */
   async _prepareItems (sheetData) {
     // Prepare items
     super._prepareItems(sheetData)
@@ -100,7 +102,6 @@ export class WerewolfActorSheet extends WoDActor {
 
   // Handle gift data so we can display it on the actor sheet
   async _prepareGiftData (sheetData) {
-    // Secondary variables
     const gifts = sheetData.actor.system.gifts
 
     // Sort the gift containers by the level of the gift instead of by creation date
