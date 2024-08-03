@@ -30,7 +30,7 @@ jobs:
                             "notes": "https://github.com/WoD5E-Developers/wod5e/releases/tag/${{ github.event.release.tag_name }}",
                             "compatibility": {
                                 "minimum": "11",
-                                "verified": "12.328",
+                                "verified": "12.330",
                                 "maximum": ""
                             }
                         }
