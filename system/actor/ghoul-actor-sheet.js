@@ -42,10 +42,10 @@ export class GhoulActorSheet extends MortalActorSheet {
     const data = await super.getData()
 
     // Prepare items
-    this._prepareItems(data)
+    await this._prepareItems(data)
 
     // Prepare discipline data
-    this._prepareDisciplineData(data)
+    data.actor.system.disciplines = await this._prepareDisciplineData(data)
 
     return data
   }
@@ -72,11 +72,6 @@ export class GhoulActorSheet extends MortalActorSheet {
       if (i.type === 'power') {
         // Append to disciplines list
         disciplines[i.system.discipline].powers.push(i)
-
-        // If the discipline isn't already visible, make it visible
-        if (!actor.system.disciplines[i.system.discipline].visible) {
-          actor.update({ [`system.disciplines.${i.system.discipline}.visible`]: true })
-        }
       }
     }
   }
@@ -87,15 +82,27 @@ export class GhoulActorSheet extends MortalActorSheet {
 
     // Sort the discipline containers by the level of the power instead of by creation date
     for (const disciplineType in disciplines) {
-      disciplines[disciplineType].powers = disciplines[disciplineType].powers.sort(function (power1, power2) {
-        // If the levels are the same, sort alphabetically instead
-        if (power1.system.level === power2.system.level) {
-          return power1.name.localeCompare(power2.name)
-        }
+      if (disciplines[disciplineType].powers.length > 0) {
+        if (!disciplines[disciplineType].visible) disciplines[disciplineType].visible = true
 
-        // Sort by level
-        return power1.system.level - power2.system.level
-      })
+        disciplines[disciplineType].powers = disciplines[disciplineType].powers.sort(function (power1, power2) {
+          // If the levels are the same, sort alphabetically instead
+          if (power1.system.level === power2.system.level) {
+            return power1.name.localeCompare(power2.name)
+          }
+  
+          // Sort by level
+          return power1.system.level - power2.system.level
+        })
+  
+        // Localize discipline name
+        disciplines[disciplineType].label = game.i18n.localize(disciplines[disciplineType].name)
+  
+        // Enrich discipline description
+        if (disciplines[disciplineType].description) {
+          disciplines[disciplineType].enrichedDescription = await TextEditor.enrichHTML(disciplines[disciplineType].description)
+        }
+      }
     }
 
     return disciplines

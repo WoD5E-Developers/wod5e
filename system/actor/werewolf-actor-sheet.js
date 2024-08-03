@@ -47,7 +47,7 @@ export class WerewolfActorSheet extends WoDActor {
     const data = await super.getData()
 
     // Prepare items
-    this._prepareItems(data)
+    await this._prepareItems(data)
 
     // Prepare gifts and rites data
     data.actor.system.gifts = await this._prepareGiftData(data)

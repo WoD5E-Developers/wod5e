@@ -90,8 +90,8 @@ export class GroupActorSheet extends WoDActor {
     const data = await super.getData()
     const actor = this.actor
 
-    // Prepare items.
-    this._prepareItems(data)
+    // Prepare items
+    await this._prepareItems(data)
 
     // Show boons on the sheet
     data.hasBoons = this.hasBoons
@@ -123,6 +123,14 @@ export class GroupActorSheet extends WoDActor {
     }
 
     return data
+  }
+
+  /** Prepare item data for the Group actor */
+  async _prepareItems (sheetData) {
+    // Prepare items
+    super._prepareItems(sheetData)
+
+    return sheetData
   }
 
   /* -------------------------------------------- */

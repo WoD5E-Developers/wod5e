@@ -45,17 +45,22 @@ export class MortalActorSheet extends WoDActor {
   async getData () {
     // Top-level variables
     const data = await super.getData()
-    const actor = this.actor
 
     // Define the type of sheet
     data.sheetType = `${game.i18n.localize('WOD5E.Mortal')}`
 
     // Prepare items
-    if (actor.type === 'mortal') {
-      this._prepareItems(data)
-    }
+    await this._prepareItems(data)
 
     return data
+  }
+
+  /** Prepare item data for the Mortal actor */
+  async _prepareItems (sheetData) {
+    // Prepare items
+    super._prepareItems(sheetData)
+
+    return sheetData
   }
 
   /* -------------------------------------------- */

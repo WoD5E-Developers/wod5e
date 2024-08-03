@@ -63,9 +63,7 @@ export class SPCActorSheet extends WoDActor {
     const data = await super.getData()
 
     // Prepare items
-    if (this.actor.type === 'spc') {
-      this._prepareItems(data)
-    }
+    await this._prepareItems(data)
 
     // Apply new CSS classes to the sheet, if necessary
     this._applyClasses()

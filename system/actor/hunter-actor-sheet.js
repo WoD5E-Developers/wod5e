@@ -49,7 +49,7 @@ export class HunterActorSheet extends WoDActor {
     const data = await super.getData()
 
     // Prepare items
-    this._prepareItems(data)
+    await this._prepareItems(data)
 
     // Prepare edge data
     data.actor.system.edges = await this._prepareEdgeData(data)
