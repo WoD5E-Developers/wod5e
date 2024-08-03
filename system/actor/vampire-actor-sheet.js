@@ -132,7 +132,7 @@ export class VampireActorSheet extends GhoulActorSheet {
     WOD5eDice.Roll({
       basicDice: dicePool,
       title: game.i18n.localize('WOD5E.VTM.RollingRemorse'),
-      paths: ['humanity'],
+      selectors: ['humanity'],
       actor,
       data: actor.system,
       quickRoll: true,
