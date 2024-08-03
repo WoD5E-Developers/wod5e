@@ -1,4 +1,4 @@
-/* global game, foundry, renderTemplate, ChatMessage, Dialog */
+/* global game, foundry, renderTemplate, ChatMessage, Dialog, WOD5E */
 
 import { WOD5eDice } from '../scripts/system-rolls.js'
 import { getActiveBonuses } from '../scripts/rolls/situational-modifiers.js'
@@ -45,7 +45,12 @@ export class WerewolfActorSheet extends WoDActor {
   async getData () {
     const data = await super.getData()
 
-    this._prepareItems(data)
+    await this._prepareItems(data)
+
+    for (const giftType in data.actor.system.giftsList) {
+      // Localize each gift
+      data.actor.system.giftsList[giftType].label = await WOD5E.api.generateLabelAndLocalize({ string: giftType })
+    }
 
     return data
   }

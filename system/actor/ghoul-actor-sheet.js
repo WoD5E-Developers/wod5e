@@ -43,8 +43,11 @@ export class GhoulActorSheet extends MortalActorSheet {
     const actor = this.actor
 
     // Prepare items.
-    if (actor.type === 'ghoul') {
-      this._prepareItems(data)
+    await this._prepareItems(data)
+
+    for (const disciplineType in data.actor.system.disciplines) {
+      // Localize each gift
+      data.actor.system.disciplines[disciplineType].label = await WOD5E.api.generateLabelAndLocalize({ string: disciplineType })
     }
 
     return data

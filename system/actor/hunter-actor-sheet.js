@@ -47,11 +47,13 @@ export class HunterActorSheet extends WoDActor {
   async getData () {
     // Top-level variables
     const data = await super.getData()
-    const actor = this.actor
 
     // Prepare items
-    if (actor.type === 'hunter') {
-      this._prepareItems(data)
+    await this._prepareItems(data)
+
+    for (const edgeType in data.actor.system.edgesList) {
+      // Localize each gift
+      data.actor.system.edgesList[edgeType].label = await WOD5E.api.generateLabelAndLocalize({ string: edgeType })
     }
 
     return data
