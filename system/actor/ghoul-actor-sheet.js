@@ -1,4 +1,4 @@
-/* global game, foundry, renderTemplate, ChatMessage */
+/* global game, foundry, renderTemplate, ChatMessage, TextEditor */
 
 import { WOD5eDice } from '../scripts/system-rolls.js'
 import { getActiveBonuses } from '../scripts/rolls/situational-modifiers.js'
@@ -90,14 +90,14 @@ export class GhoulActorSheet extends MortalActorSheet {
           if (power1.system.level === power2.system.level) {
             return power1.name.localeCompare(power2.name)
           }
-  
+
           // Sort by level
           return power1.system.level - power2.system.level
         })
-  
+
         // Localize discipline name
         disciplines[disciplineType].label = game.i18n.localize(disciplines[disciplineType].name)
-  
+
         // Enrich discipline description
         if (disciplines[disciplineType].description) {
           disciplines[disciplineType].enrichedDescription = await TextEditor.enrichHTML(disciplines[disciplineType].description)
