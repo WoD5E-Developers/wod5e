@@ -40,7 +40,6 @@ export class GhoulActorSheet extends MortalActorSheet {
   async getData () {
     // Top-level variables
     const data = await super.getData()
-    const actor = this.actor
 
     // Prepare items.
     await this._prepareItems(data)
