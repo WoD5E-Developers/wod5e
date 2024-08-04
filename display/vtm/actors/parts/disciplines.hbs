@@ -18,7 +18,7 @@
                 <div class="collapsible-container">
                     <li class="flexrow item-header">
                         <div class="item-name collapsible">
-                            {{localize discipline.name}}
+                            {{discipline.label}}
                         </div>
                         <!-- All non-ritual/ceremony powers need dots displayed in the middle -->
                         {{#if (and (ne key "rituals") (ne key "ceremonies"))}}
@@ -38,7 +38,7 @@
                             </a>
                             <!-- Icon to roll the discipline with an attribute -->
                             <a class="rollable discipline-dice" title="{{localize 'WOD5E.RollList.Label'}}" data-value-paths="disciplines.{{key}}.value"
-                                data-label="{{localize discipline.name}}" data-selectors="discipline disciplines.{{key}}" data-discipline="{{key}}" data-select-dialog="true">
+                                data-label="{{discipline.label}}" data-selectors="discipline disciplines.{{key}}" data-discipline="{{key}}" data-select-dialog="true">
                                 <i class="fas fa-dice-d20"></i>
                             </a>
                             <!-- Icon to show the discipline description to the chat-->

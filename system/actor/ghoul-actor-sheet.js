@@ -1,4 +1,4 @@
-/* global game, foundry, renderTemplate, ChatMessage */
+/* global game, foundry, renderTemplate, ChatMessage, WOD5E */
 
 import { WOD5eDice } from '../scripts/system-rolls.js'
 import { getActiveBonuses } from '../scripts/rolls/situational-modifiers.js'
@@ -40,11 +40,13 @@ export class GhoulActorSheet extends MortalActorSheet {
   async getData () {
     // Top-level variables
     const data = await super.getData()
-    const actor = this.actor
 
     // Prepare items.
-    if (actor.type === 'ghoul') {
-      this._prepareItems(data)
+    await this._prepareItems(data)
+
+    for (const disciplineType in data.actor.system.disciplines) {
+      // Localize each gift
+      data.actor.system.disciplines[disciplineType].label = await WOD5E.api.generateLabelAndLocalize({ string: disciplineType })
     }
 
     return data
