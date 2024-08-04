@@ -74,8 +74,11 @@ export class HunterActorSheet extends WoDActor {
       actorData.system.despairActive = true
     }
 
-    // Wipe old perk data so it doesn't duplicate
     for (const edgeType in edges) {
+      // Localize the edge name
+      edges[edgeType].label = await WOD5E.api.generateLabelAndLocalize({ string: edgeType })
+
+      // Wipe old perks so they doesn't duplicate
       edges[edgeType].perks = []
     }
 
@@ -113,9 +116,6 @@ export class HunterActorSheet extends WoDActor {
           return perk1.system.level - perk2.system.level
         })
       }
-
-      // Localize edge name
-      edges[edgeType].label = game.i18n.localize(edges[edgeType].name)
 
       // Enrich edge description
       if (edges[edgeType].description) {

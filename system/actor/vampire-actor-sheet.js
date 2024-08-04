@@ -48,16 +48,13 @@ export class VampireActorSheet extends GhoulActorSheet {
     // Prepare items
     await this._prepareItems(data)
 
+    // Prepare discipline data
+    data.actor.system.disciplines = await this._prepareDisciplineData(data)
+
     return data
   }
 
-  /**
-     * set Blood Potency for Vampire sheets.
-     *
-     * @param {Object} actorData The actor to prepare.
-     * @return {undefined}
-     * @override
-     */
+  /** Prepare item data for the Vampire actor */
   async _prepareItems (sheetData) {
     // Prepare items
     super._prepareItems(sheetData)

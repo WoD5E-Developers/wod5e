@@ -288,16 +288,11 @@ export class WoDActor extends ActorSheet {
       }
     })
 
-    /* -------------------------------------------- */
-    /*  Rollable Abilities                          */
-    /* -------------------------------------------- */
-    // Willpower
+    // Willpower Rolls
     html.find('.willpower-roll').click(this._onWillpowerRoll.bind(this))
   }
-  /* -------------------------------------------- */
-  /* TOOLS                                        */
-  /* -------------------------------------------- */
 
+  // Calculate the dice for a Willpower roll
   getWillpowerDicePool (actor) {
     const willpowerMax = actor.system.willpower.max
     const willpowerAgg = actor.system.willpower.aggravated
@@ -305,10 +300,6 @@ export class WoDActor extends ActorSheet {
 
     return Math.max((willpowerMax - willpowerAgg - willpowerSup), 0)
   }
-
-  /* -------------------------------------------- */
-  /* ACTIONS                                      */
-  /* -------------------------------------------- */
 
   /**
    * Handle locking and unlocking the actor sheet

@@ -61,8 +61,11 @@ export class GhoulActorSheet extends MortalActorSheet {
     // Secondary variables
     const disciplines = actor.system.disciplines
 
-    // Wipe old discipline data so it doesn't duplicate
     for (const disciplineType in disciplines) {
+      // Localize the discipline name
+      disciplines[disciplineType].label = await WOD5E.api.generateLabelAndLocalize({ string: disciplineType })
+
+      // Wipe old discipline powers so they doesn't duplicate
       disciplines[disciplineType].powers = []
     }
 
@@ -80,11 +83,12 @@ export class GhoulActorSheet extends MortalActorSheet {
   async _prepareDisciplineData (sheetData) {
     const disciplines = sheetData.actor.system.disciplines
 
-    // Sort the discipline containers by the level of the power instead of by creation date
     for (const disciplineType in disciplines) {
       if (disciplines[disciplineType].powers.length > 0) {
+        // If there are any discipline powers in the list, make them visible
         if (!disciplines[disciplineType].visible) disciplines[disciplineType].visible = true
 
+        // Sort the discipline containers by the level of the power instead of by creation date
         disciplines[disciplineType].powers = disciplines[disciplineType].powers.sort(function (power1, power2) {
           // If the levels are the same, sort alphabetically instead
           if (power1.system.level === power2.system.level) {
@@ -94,14 +98,11 @@ export class GhoulActorSheet extends MortalActorSheet {
           // Sort by level
           return power1.system.level - power2.system.level
         })
+      }
 
-        // Localize discipline name
-        disciplines[disciplineType].label = game.i18n.localize(disciplines[disciplineType].name)
-
-        // Enrich discipline description
-        if (disciplines[disciplineType].description) {
-          disciplines[disciplineType].enrichedDescription = await TextEditor.enrichHTML(disciplines[disciplineType].description)
-        }
+      // Enrich discipline description
+      if (disciplines[disciplineType].description) {
+        disciplines[disciplineType].enrichedDescription = await TextEditor.enrichHTML(disciplines[disciplineType].description)
       }
     }
 
@@ -133,7 +134,7 @@ export class GhoulActorSheet extends MortalActorSheet {
       const discipline = actor.system.disciplines[data.discipline]
 
       renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
-        name: game.i18n.localize(discipline.name),
+        name: game.i18n.localize(discipline.label),
         img: 'icons/svg/dice-target.svg',
         description: discipline.description
       }).then(html => {

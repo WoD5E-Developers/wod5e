@@ -78,8 +78,11 @@ export class WerewolfActorSheet extends WoDActor {
     // Secondary variables
     const gifts = actor.system.gifts
 
-    // Wipe old gift and rite data so it doesn't duplicate
     for (const giftType in gifts) {
+      // Localize the gift name
+      gifts[giftType].label = await WOD5E.api.generateLabelAndLocalize({ string: giftType })
+
+      // Wipe old gift powers so they doesn't duplicate
       gifts[giftType].powers = []
     }
     actor.system.rites = []
@@ -106,15 +109,22 @@ export class WerewolfActorSheet extends WoDActor {
 
     // Sort the gift containers by the level of the gift instead of by creation date
     for (const giftType in gifts) {
-      gifts[giftType].powers = gifts[giftType].powers.sort(function (gift1, gift2) {
-        // If the levels are the same, sort alphabetically instead
-        if (gift1.system.level === gift2.system.level) {
-          return gift1.name.localeCompare(gift2.name)
-        }
+      if (gifts[giftType].powers.length > 0) {
+        gifts[giftType].powers = gifts[giftType].powers.sort(function (gift1, gift2) {
+          // If the levels are the same, sort alphabetically instead
+          if (gift1.system.level === gift2.system.level) {
+            return gift1.name.localeCompare(gift2.name)
+          }
 
-        // Sort by level
-        return gift1.system.level - gift2.system.level
-      })
+          // Sort by level
+          return gift1.system.level - gift2.system.level
+        })
+      }
+
+      // Enrich gift description
+      if (gifts[giftType].description) {
+        gifts[giftType].enrichedDescription = await TextEditor.enrichHTML(gifts[giftType].description)
+      }
     }
 
     return gifts
