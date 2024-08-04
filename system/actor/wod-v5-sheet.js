@@ -280,9 +280,52 @@ export class WoDActor extends ActorSheet {
 
     // Delete Inventory Item
     html.find('.item-delete').click(async event => {
+      // Primary variables
       const li = $(event.currentTarget).parents('.item')
-      actor.deleteEmbeddedDocuments('Item', [li.data('itemId')])
-      li.slideUp(200, () => this.render(false))
+      const item = actor.getEmbeddedDocument('Item', li.data('itemId'))
+
+      // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
+      const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+
+      // Variables yet to be defined
+      let buttons = {}
+
+      // Define the template to be used
+      const template = `
+      <form>
+          <div class="form-group">
+              <label>${game.i18n.format('WOD5E.ConfirmDeleteDescription', {
+                string: item.name
+              })}</label>
+          </div>
+      </form>`
+
+      // Define the buttons and push them to the buttons variable
+      buttons = {
+        delete: {
+          label: game.i18n.localize('WOD5E.Delete'),
+          callback: async () => {
+            actor.deleteEmbeddedDocuments('Item', [li.data('itemId')])
+            li.slideUp(200, () => this.render(false))
+          }
+        },
+        cancel: {
+          label: game.i18n.localize('WOD5E.Cancel'),
+          callback: async () => {
+            actor.update({ 'system.activeForm': 'lupus' })
+          }
+        }
+      }
+
+      new Dialog({
+        title: game.i18n.localize('WOD5E.ConfirmDelete'),
+        content: template,
+        buttons,
+        default: 'cancel'
+      },
+      {
+        classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+      }).render(true)
     })
 
     // Collapsible items and other elements
