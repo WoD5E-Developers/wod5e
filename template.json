@@ -334,98 +334,84 @@
       "disciplines": {
         "disciplines": {
           "animalism": {
-            "name": "WOD5E.VTM.Animalism",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "auspex": {
-            "name": "WOD5E.VTM.Auspex",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "celerity": {
-            "name": "WOD5E.VTM.Celerity",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "dominate": {
-            "name": "WOD5E.VTM.Dominate",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "fortitude": {
-            "name": "WOD5E.VTM.Fortitude",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "obfuscate": {
-            "name": "WOD5E.VTM.Obfuscate",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "potence": {
-            "name": "WOD5E.VTM.Potence",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "presence": {
-            "name": "WOD5E.VTM.Presence",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "protean": {
-            "name": "WOD5E.VTM.Protean",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "sorcery": {
-            "name": "WOD5E.VTM.BloodSorcery",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "oblivion": {
-            "name": "WOD5E.VTM.Oblivion",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "alchemy": {
-            "name": "WOD5E.VTM.ThinBloodAlchemy",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "rituals": {
-            "name": "WOD5E.VTM.Rituals",
             "description": "",
             "value": 0,
             "powers": [],
             "visible": false
           },
           "ceremonies": {
-            "name": "WOD5E.VTM.Ceremonies",
             "description": "",
             "value": 0,
             "powers": [],
