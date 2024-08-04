@@ -13,7 +13,7 @@ import { WOD5eDice } from '../scripts/system-rolls.js'
  */
 export class WoDActor extends ActorSheet {
   /** @override */
-  async _render(...args) {
+  async _render (...args) {
     // Override _render so that we can save and restore the scroll position during rendering
     this._saveScrollPositions()
 
@@ -630,7 +630,7 @@ export class WoDActor extends ActorSheet {
   }
 
   // Save the current scroll position
-  async _saveScrollPositions() {
+  async _saveScrollPositions () {
     const activeList = this.findActiveList()
     if (activeList.length) {
       this._scroll = activeList.prop('scrollTop')
@@ -638,15 +638,15 @@ export class WoDActor extends ActorSheet {
   }
 
   // Restore the saved scroll position
-  async _restoreScrollPositions() {
-    const activeList = this.findActiveList();
+  async _restoreScrollPositions () {
+    const activeList = this.findActiveList()
     if (activeList.length && this._scroll != null) {
       activeList.prop('scrollTop', this._scroll)
     }
   }
 
   // Get the scroll area of the current window
-  findActiveList() {
+  findActiveList () {
     return $(this.element).find('.window-content')
   }
 }
