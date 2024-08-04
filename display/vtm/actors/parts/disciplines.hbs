@@ -34,10 +34,21 @@
                             {{/if}}
                             <!-- Item controls for discipline sections -->
                             <div class="item-controls">
+                                <!-- Icon to roll the discipline with an attribute and/or skill combination -->
+                                <a class="rollable discipline-dice" title="{{localize 'WOD5E.RollList.Label'}}" data-value-paths="disciplines.{{key}}.value"
+                                    data-label="{{localize discipline.name}}" data-selectors="discipline disciplines.{{key}}" data-discipline="{{key}}" data-select-dialog="true">
+                                    <i class="fa-solid fa-dice-d10"></i>
+                                </a>
                                 <!-- Icon to show the discipline description to the chat-->
                                 <a class="item-control discipline-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-discipline="{{key}}">
                                     <i class="fas fa-comment-alt"></i>
                                 </a>
+                                <!-- Icon to delete the discipline (as long as it doesn't have any powers) -->
+                                {{#if (eq discipline.powers.length 0)}}
+                                    <a class="item-control discipline-delete" title="{{localize 'WOD5E.Delete'}}" data-discipline="{{key}}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                {{/if}}
                             </div>
                         </div>
                         <div class="discipline-description">
@@ -77,10 +88,22 @@
                                 </div>
                                 <div class="item-name">{{power.name}}</div>
                                 <div class="item-controls">
-                                    <!-- Icon to edit the power-->
+                                    <!-- Icon to edit the power -->
                                     <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
                                         <i class="fas fa-edit"></i>
                                     </a>
+                                    <!-- Icon to roll the normal dice for a power -->
+                                    {{#if power.system.rollable}}
+                                        <a class="item-image power-rollable" data-id="{{power._id}}" data-use-hunger="1">
+                                            <i class="fa-solid fa-dice-d10"></i>
+                                        </a>
+                                    {{/if}}
+                                    <!-- Icon to roll the power's rouse check, if applicable -->
+                                    {{#if power.system.rouse}}
+                                        <a class="item-control item-rouse" title="{{localize 'WOD5E.VTM.RollRouse'}}" data-cost="{{discipline.cost}}">
+                                            <i class="fa-solid fa-dice-d10"></i>
+                                        </a>
+                                    {{/if}}
                                     <!-- Icon to display the power in chat -->
                                     <a class="item-control item-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
                                         <i class="fas fa-comment-alt"></i>

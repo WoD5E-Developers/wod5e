@@ -1720,6 +1720,7 @@ h3.item-name {
 .locked .add-edge,
 .locked .add-edge-pool,
 .locked .add-discipline,
+.locked .discipline-delete,
 .locked .resource-plus,
 .locked .resource-minus,
 .locked .resource-value-empty:not(.hunger-value, .rage-value),
