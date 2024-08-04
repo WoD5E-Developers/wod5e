@@ -11,6 +11,8 @@
   </div>
   <label class="resource-label flex-center">{{localize "WOD5E.BiographyList.History"}}</label>
   <div class="description-content">
-      {{editor enrichedBiography target="system.biography" button=true editable=editable}}
+    <prose-mirror name="system.biography" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.biography}}" toggled="true">
+        {{{enrichedBiography}}}
+    </prose-mirror>
   </div>
 </div>
