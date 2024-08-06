@@ -26,7 +26,6 @@ export class WoDActor extends ActorSheet {
   async getData () {
     const data = await super.getData()
     const actorData = this.object.system
-    const actorHeaders = actorData.headers
     data.isCharacter = this.isCharacter
     data.locked = actorData.locked
 
@@ -44,16 +43,13 @@ export class WoDActor extends ActorSheet {
     if (actorData.equipment) { data.enrichedEquipment = await TextEditor.enrichHTML(actorData.equipment) }
 
     // Enrich actor header editor fields
-    if (actorHeaders) {
-      if (actorHeaders.tenets) { data.enrichedTenets = await TextEditor.enrichHTML(actorHeaders.tenets) }
-      if (actorHeaders.touchstones) { data.enrichedTouchstones = await TextEditor.enrichHTML(actorHeaders.touchstones) }
-
-      // Vampire stuff
-      if (actorHeaders.bane) { data.enrichedBane = await TextEditor.enrichHTML(actorHeaders.bane) }
-
-      // Ghoul stuff
-      if (actorHeaders.creedfields) { data.enrichedCreedFields = await TextEditor.enrichHTML(actorHeaders.creedfields) }
-    }
+    const actorHeaders = actorData.headers
+    if (actorHeaders.tenets) { data.enrichedTenets = await TextEditor.enrichHTML(actorHeaders.tenets) }
+    if (actorHeaders.touchstones) { data.enrichedTouchstones = await TextEditor.enrichHTML(actorHeaders.touchstones) }
+    // Vampire stuff
+    if (actorHeaders.bane) { data.enrichedBane = await TextEditor.enrichHTML(actorHeaders.bane) }
+    // Ghoul stuff
+    if (actorHeaders.creedfields) { data.enrichedCreedFields = await TextEditor.enrichHTML(actorHeaders.creedfields) }
 
     // Enrich item descriptions
     for (const i of data.items) {
