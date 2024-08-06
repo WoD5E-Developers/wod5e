@@ -83,9 +83,9 @@
                                         </a>
                                     {{/if}}
                                     <!-- Icon to roll the power's rage check or willpower damage, if applicable -->
-                                    {{#if item.system.rage}}
+                                    {{#if power.system.rage}}
                                         <a class="item-control rollable" title="{{localize 'WOD5E.WTA.RollRageDamageWillpower'}}" data-disable-basic-dice="true" data-use-absolute-value="true"
-                                            data-absolute-value="{{item.system.cost}}" data-decrease-rage="true" data-label="{{localize 'WOD5E.WTA.RageDice'}}" data-willpower-damage="{{item.system.willpowercost}}">
+                                            data-absolute-value="{{power.system.cost}}" data-decrease-rage="true" data-label="{{localize 'WOD5E.WTA.RageDice'}}" data-willpower-damage="{{power.system.willpowercost}}">
                                             <i class="fa-solid fa-dice-d10"></i>
                                         </a>
                                     {{/if}}
@@ -135,9 +135,9 @@
                                 </a>
                             {{/if}}
                             <!-- Icon to roll the power's rage check or willpower damage, if applicable -->
-                            {{#if item.system.rage}}
+                            {{#if power.system.rage}}
                                 <a class="item-control rollable" title="{{localize 'WOD5E.WTA.RollRageDamageWillpower'}}" data-disable-basic-dice="true" data-use-absolute-value="true"
-                                    data-absolute-value="{{item.system.cost}}" data-decrease-rage="true" data-label="{{localize 'WOD5E.WTA.RageDice'}}" data-willpower-damage="{{item.system.willpowercost}}">
+                                    data-absolute-value="{{power.system.cost}}" data-decrease-rage="true" data-label="{{localize 'WOD5E.WTA.RageDice'}}" data-willpower-damage="{{power.system.willpowercost}}">
                                     <i class="fa-solid fa-dice-d10"></i>
                                 </a>
                             {{/if}}
