@@ -541,8 +541,6 @@ export class WoDActor extends ActorSheet {
     // Generate the item name
     itemName = subtype ? await WOD5E.api.generateLabelAndLocalize({ string: subtype }) : itemsList[type].label
 
-    console.log(type)
-
     // Generate item-specific data based on type
     switch (type) {
       case 'power':
@@ -569,8 +567,6 @@ export class WoDActor extends ActorSheet {
         itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
         break
     }
-
-    console.log(itemName)
 
     // Create item if subtype is already defined or not needed
     if (subtype || ['customRoll', 'boon'].includes(type)) {
