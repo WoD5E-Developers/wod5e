@@ -110,6 +110,9 @@ export class WerewolfActorSheet extends WoDActor {
     // Sort the gift containers by the level of the gift instead of by creation date
     for (const giftType in gifts) {
       if (gifts[giftType].powers.length > 0) {
+        // If there are any gift powers in the list, make them visible
+        if (!gifts[giftType].visible) gifts[giftType].visible = true
+
         gifts[giftType].powers = gifts[giftType].powers.sort(function (gift1, gift2) {
           // If the levels are the same, sort alphabetically instead
           if (gift1.system.level === gift2.system.level) {

@@ -47,6 +47,100 @@
   .lock-btn {
     background: var(--ui-background-werewolf-texture);
   }
+
+  .item-image {
+    flex-grow: 0;
+
+    img {
+      background: var(--ui-background-vampire-texture);
+    }
+  }
+
+  .tab.gifts {
+    .gifts-list .gift,
+    .powers-list .gift {
+      display: flex;
+      flex-flow: column;
+      background-color: #ededec;
+      border: 2px solid #1b1b1b;
+      margin: 5px;
+      padding: 5px;
+    }
+
+    .gifts-list {
+      display: flex;
+      flex-direction: column;
+      max-width: 300px;
+      margin: 0px 10px 10px 10px;
+
+      .item-header {
+        border-bottom: 1px solid black;
+      }
+
+      .item-controls {
+        text-align: right;
+      }
+
+      .controls {
+        border-bottom: 1px solid black;
+      }
+
+      .item-name {
+        text-wrap: nowrap;
+      }
+
+      .gift-description {
+        max-height: 100px;
+
+        prose-mirror {
+          .editor-menu button:hover {
+            background-color: var(--werewolf-primary);
+          }
+
+          li.text {
+            display: none;
+          }
+
+          .editor-content {
+            scrollbar-color: var(--werewolf-secondary) var(--color-scrollbar-track);
+          }
+        }
+      }
+
+      .gift-description {
+        margin-bottom: 5px;
+      }
+    }
+
+    .powers-list {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 400px;
+
+      .item-name {
+        text-wrap: nowrap;
+      }
+
+      .power {
+        .item-image {
+          flex-grow: 0;
+        }
+
+        .item-name {
+          text-align: left;
+          padding: 3px;
+          margin-left: 10px;
+        }
+
+        .item-controls {
+          text-align: right;
+        }
+      }
+    }
+  }
 }
 
 /* All Sheets with the Werewolf styling, including itemsheets */

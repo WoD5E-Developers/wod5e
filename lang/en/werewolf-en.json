@@ -23,9 +23,10 @@
       "AddGift": "Add Gift",
       "NewGift": "New Gift",
       "AddRite": "Add Rite",
-      "NewRite": "New Rite",
       "StringGifts": "{string} Gifts",
       "NewStringGift": "New {string} Gift",
+      "Rites": "Rites",
+      "NewRite": "New Rite",
 
       "TheWolf": "The Wolf",
       "Tribe": "Tribe",

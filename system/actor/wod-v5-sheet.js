@@ -556,7 +556,12 @@ export class WoDActor extends ActorSheet {
       case 'gift':
         selectLabel = game.i18n.localize('WOD5E.WTA.SelectGift')
         itemOptions = WOD5E.Gifts.getList()
-        itemName = game.i18n.format('WOD5E.WTA.NewStringGift', { string: itemName })
+
+        if (subtype && subtype === 'rite') {
+          itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
+        } else {
+          itemName = game.i18n.format('WOD5E.WTA.NewStringGift', { string: itemName })
+        }
         break
       case 'feature':
         selectLabel = game.i18n.localize('WOD5E.ItemsList.SelectFeature')
