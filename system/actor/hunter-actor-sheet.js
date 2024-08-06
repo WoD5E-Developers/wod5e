@@ -118,9 +118,7 @@ export class HunterActorSheet extends WoDActor {
       }
 
       // Enrich edge description
-      if (edges[edgeType].description) {
-        edges[edgeType].enrichedDescription = await TextEditor.enrichHTML(edges[edgeType].description)
-      }
+      edges[edgeType].enrichedDescription = await TextEditor.enrichHTML(edges[edgeType].description)
     }
 
     return edges

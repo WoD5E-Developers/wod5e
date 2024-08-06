@@ -101,9 +101,7 @@ export class GhoulActorSheet extends MortalActorSheet {
       }
 
       // Enrich discipline description
-      if (disciplines[disciplineType].description) {
-        disciplines[disciplineType].enrichedDescription = await TextEditor.enrichHTML(disciplines[disciplineType].description)
-      }
+      disciplines[disciplineType].enrichedDescription = await TextEditor.enrichHTML(disciplines[disciplineType].description)
     }
 
     return disciplines

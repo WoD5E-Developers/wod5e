@@ -125,9 +125,7 @@ export class WerewolfActorSheet extends WoDActor {
       }
 
       // Enrich gift description
-      if (gifts[giftType].description) {
-        gifts[giftType].enrichedDescription = await TextEditor.enrichHTML(gifts[giftType].description)
-      }
+      gifts[giftType].enrichedDescription = await TextEditor.enrichHTML(gifts[giftType].description)
     }
 
     return gifts
