@@ -19,6 +19,7 @@
       "AddEdgePool": "Add Edge Pool",
       "Perks": "Perks",
       "StringPerks": "{string} Perks",
+      "NewStringPerk": "New {string} Perk",
       "AddPerk": "Add Perk",
       "NewPerk": "New Perk",
       "Desperation": "Desperation",

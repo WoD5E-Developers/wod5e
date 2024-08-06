@@ -40,7 +40,7 @@
         "ConfirmDelete": "Confirm Delete",
         "ConfirmDeleteDescription": "Are you sure you want to delete <b>{string}</b>? This cannot be undone.",
 
-        "New": "New {string}",
+        "NewString": "New {string}",
 
         "Mortal": "Mortal",
         "GroupSheet": "Group Sheet",

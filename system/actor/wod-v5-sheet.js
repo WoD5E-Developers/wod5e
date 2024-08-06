@@ -535,40 +535,48 @@ export class WoDActor extends ActorSheet {
     // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
     const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
 
+    // Get the image for the item, if available
+    const itemImg = itemsList[type]?.img || 'systems/vtm5e/assets/icons/items/item-default.svg'
+
+    // Generate the item name
+    itemName = subtype ? await WOD5E.api.generateLabelAndLocalize({ string: subtype }) : itemsList[type].label
+
+    console.log(type)
+
     // Generate item-specific data based on type
     switch (type) {
       case 'power':
         selectLabel = game.i18n.localize('WOD5E.VTM.SelectDiscipline')
         itemOptions = WOD5E.Disciplines.getList()
+        itemName = game.i18n.format('WOD5E.VTM.NewStringPower', { string: itemName })
         break
       case 'perk':
         selectLabel = game.i18n.localize('WOD5E.HTR.SelectEdge')
         itemOptions = WOD5E.Edges.getList()
+        itemName = game.i18n.format('WOD5E.HTR.NewStringPerk', { string: itemName })
         break
       case 'gift':
         selectLabel = game.i18n.localize('WOD5E.WTA.SelectGift')
         itemOptions = WOD5E.Gifts.getList()
+        itemName = game.i18n.format('WOD5E.WTA.NewStringGift', { string: itemName })
         break
       case 'feature':
         selectLabel = game.i18n.localize('WOD5E.ItemsList.SelectFeature')
         itemOptions = WOD5E.Features.getList()
+        itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
         break
       default:
-        console.log('Error: Invalid type provided.')
+        itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
         break
     }
 
-    // Get the image for the item, if available
-    const itemImg = itemsList[type]?.img || 'systems/vtm5e/assets/icons/items/item-default.svg'
+    console.log(itemName)
 
     // Create item if subtype is already defined or not needed
     if (subtype || ['customRoll', 'boon'].includes(type)) {
       if (subtype) {
         itemData = await this.appendSubtypeData(type, subtype, itemData)
       }
-
-      // Generate item name
-      itemName = subtype ? await WOD5E.api.generateLabelAndLocalize({ string: subtype }) : itemsList[type].label
 
       // Create the item
       return this._createItem(actor, itemName, type, itemImg, itemData)
@@ -595,9 +603,6 @@ export class WoDActor extends ActorSheet {
           callback: async (html) => {
             subtype = html.find('#subtypeSelect')[0].value
             itemData = await this.appendSubtypeData(type, subtype, itemData)
-
-            // Generate the item name
-            itemName = subtype ? await WOD5E.api.generateLabelAndLocalize({ string: subtype }) : itemsList[type].label
 
             // Create the item
             return this._createItem(actor, itemName, type, itemImg, itemData)
@@ -659,9 +664,7 @@ export class WoDActor extends ActorSheet {
   */
   async _createItem (actor, itemName, type, itemImg, itemData) {
     return actor.createEmbeddedDocuments('Item', [{
-      name: `${game.i18n.format('WOD5E.New', {
-        string: itemName
-      })}`,
+      name: itemName,
       type,
       img: itemImg,
       system: itemData

@@ -30,6 +30,7 @@
       "Disciplines": "Disciplines",
       "DisciplineType": "Discipline Type",
       "StringPowers": "{string} Powers",
+      "NewStringPower": "New {string} Power",
       "Blood": "Blood",
       "BloodPotency": "Blood Potency",
       "BloodResonance": "Blood Resonance",
