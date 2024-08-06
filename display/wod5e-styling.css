@@ -1594,6 +1594,11 @@ h3.item-name {
 .actor.sheet .stats-content > .custom-rolls {
   flex: 1 1 auto;
 }
+.actor.sheet .stats-content > .custom-rolls .items-list {
+  flex: 1 1 auto;
+  margin-left: 20px;
+  margin-right: 20px;
+}
 .actor.sheet .stats-content > .custom-rolls .item-image {
   max-width: 30px;
 }
@@ -1791,6 +1796,7 @@ h3.item-name {
 .locked .add-edge-pool,
 .locked .add-discipline,
 .locked .discipline-delete,
+.locked .add-gift,
 .locked .resource-plus,
 .locked .resource-minus,
 .locked .resource-value-empty:not(.hunger-value, .rage-value),
