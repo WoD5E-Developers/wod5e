@@ -18,9 +18,9 @@ Hooks.on('preCreateItem', (document, data) => {
   if (!data.img) {
     const itemsList = WOD5E.ItemTypes.getList()
     const itemImg = itemsList[data.type]?.img || 'systems/vtm5e/assets/icons/items/item-default.svg'
-    
+
     // Set the img value to the icon we get back
-    alterations['img'] = itemImg
+    alterations.img = itemImg
   }
 
   // Update the source document
