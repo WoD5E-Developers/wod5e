@@ -1,4 +1,4 @@
-/* global Item */
+/* global Item, Hooks */
 
 /**
  * Extend the base ItemSheet document and put all our base functionality here
