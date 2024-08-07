@@ -1,4 +1,4 @@
-/* global Item, Hooks */
+/* global Item, Hooks, WOD5E */
 
 /**
  * Extend the base ItemSheet document and put all our base functionality here
@@ -11,7 +11,7 @@ export class ItemInfo extends Item {
 }
 
 // Handle setting default item data
-Hooks.on('preCreateItem', (document, data, options, userId) => {
+Hooks.on('preCreateItem', (document, data) => {
   const alterations = {}
 
   // Get default item image based on the item type
