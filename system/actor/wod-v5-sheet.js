@@ -535,9 +535,6 @@ export class WoDActor extends ActorSheet {
     // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
     const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
 
-    // Get the image for the item, if available
-    const itemImg = itemsList[type]?.img || 'systems/vtm5e/assets/icons/items/item-default.svg'
-
     // Generate the item name
     itemName = subtype ? await WOD5E.api.generateLabelAndLocalize({ string: subtype }) : itemsList[type].label
 
@@ -580,7 +577,7 @@ export class WoDActor extends ActorSheet {
       }
 
       // Create the item
-      return this._createItem(actor, itemName, type, itemImg, itemData)
+      return this._createItem(actor, itemName, type, itemData)
     } else {
       // Build the options for the select dropdown
       for (const [key, value] of Object.entries(itemOptions)) {
@@ -606,7 +603,7 @@ export class WoDActor extends ActorSheet {
             itemData = await this.appendSubtypeData(type, subtype, itemData)
 
             // Create the item
-            return this._createItem(actor, itemName, type, itemImg, itemData)
+            return this._createItem(actor, itemName, type, itemData)
           }
         },
         cancel: {
@@ -660,14 +657,12 @@ export class WoDActor extends ActorSheet {
   * @param {object} actor    The actor object
   * @param {string} itemName The name of the item
   * @param {string} type     The type of the item
-  * @param {string} itemImg  The image for the item
   * @param {object} itemData The data for the item
   */
-  async _createItem (actor, itemName, type, itemImg, itemData) {
+  async _createItem (actor, itemName, type, itemData) {
     return actor.createEmbeddedDocuments('Item', [{
       name: itemName,
       type,
-      img: itemImg,
       system: itemData
     }])
   }
