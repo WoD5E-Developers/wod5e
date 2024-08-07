@@ -203,7 +203,7 @@ export class GhoulActorSheet extends MortalActorSheet {
     html.find('.power-rollable').click(this._onVampireRoll.bind(this))
   }
 
-  /** Handle adding a new edge to the sheet */
+  /** Handle adding a new discipline to the sheet */
   async _onAddDiscipline (event) {
     event.preventDefault()
 
