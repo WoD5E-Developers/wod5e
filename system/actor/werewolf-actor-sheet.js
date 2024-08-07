@@ -157,11 +157,14 @@ export class WerewolfActorSheet extends WoDActor {
     // Activate listeners
     super.activateListeners(html)
 
+    // Everything below here is only needed if the sheet is editable
+    if (!this.options.editable) return
+
     // Top-level variables
     const actor = this.actor
 
-    // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) return
+    // Add a new gift type to the sheet
+    html.find('.add-gift').click(this._onAddGift.bind(this))
 
     // Rollable gift buttons
     html.find('.gift-rollable').click(this._onGiftRoll.bind(this))
@@ -199,6 +202,65 @@ export class WerewolfActorSheet extends WoDActor {
         })
       })
     })
+  }
+
+  /** Handle adding a new gift type to the sheet */
+  async _onAddGift (event) {
+    event.preventDefault()
+
+    // Top-level variables
+    const actor = this.actor
+
+    // Secondary variables
+    const selectLabel = game.i18n.localize('WOD5E.WTA.SelectGift')
+    const itemOptions = WOD5E.Gifts.getList()
+
+    // Variables yet to be defined
+    let options = []
+    let giftSelected
+
+    // Prompt a dialog to determine which edge we're adding
+    // Build the options for the select dropdown
+    for (const [key, value] of Object.entries(itemOptions)) {
+      options += `<option value="${key}">${value.displayName}</option>`
+    }
+
+    // Template for the dialog form
+    const template = `
+      <form>
+        <div class="form-group">
+          <label>${selectLabel}</label>
+          <select id="giftSelect">${options}</select>
+        </div>
+      </form>`
+
+    // Define dialog buttons
+    const buttons = {
+      submit: {
+        icon: '<i class="fas fa-check"></i>',
+        label: game.i18n.localize('WOD5E.Add'),
+        callback: async (html) => {
+          giftSelected = html.find('#giftSelect')[0].value
+
+          // Make the edge visible
+          await actor.update({ [`system.gifts.${giftSelected}.visible`]: true })
+        }
+      },
+      cancel: {
+        icon: '<i class="fas fa-times"></i>',
+        label: game.i18n.localize('WOD5E.Cancel')
+      }
+    }
+
+    // Display the dialog
+    new Dialog({
+      title: game.i18n.localize('WOD5E.Add'),
+      content: template,
+      buttons,
+      default: 'submit'
+    }, {
+      classes: ['wod5e', 'werewolf-dialog', 'werewolf-sheet']
+    }).render(true)
   }
 
   /**
