@@ -1216,6 +1216,17 @@ h3.item-name {
 .actor.sheet.werewolf .tab.gifts .powers-list .power .item-controls {
   text-align: right;
 }
+.actor.sheet.werewolf .tab.wolf .garou-forms-label {
+  font-size: 20pt;
+}
+.actor.sheet.werewolf .tab.wolf .forms .form {
+  border-radius: 0;
+  background-color: #CCC;
+  border: 1px solid black;
+}
+.actor.sheet.werewolf .tab.wolf .forms .form-active {
+  background: #d985359a;
+}
 /* All Sheets with the Werewolf styling, including itemsheets */
 .sheet.werewolf {
   box-shadow: 0 0 10px var(--werewolf-primary);
@@ -1243,6 +1254,28 @@ h3.item-name {
 .sheet.werewolf .rage-button .wod5e-symbol {
   vertical-align: middle;
   color: #CCC;
+}
+.sheet.werewolf button.werewolf-button {
+  background: var(--werewolf-primary);
+  color: #fff;
+  font-family: cormorantLight, serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border: none;
+  box-shadow: none;
+}
+.sheet.werewolf button.werewolf-button.active,
+.sheet.werewolf button.werewolf-button.active:hover {
+  font-size: 20pt;
+  color: #FFF;
+  cursor: default;
+  margin-bottom: 10px;
+}
+.sheet.werewolf button.werewolf-button.disabled,
+.sheet.werewolf button.werewolf-button.disabled:hover {
+  color: #000;
+  cursor: default;
+  background: #562f13ef;
 }
 .werewolf.sheet.window-app .window-resizable-handle {
   border-top: 3px double var(--werewolf-primary);
@@ -1295,7 +1328,9 @@ h3.item-name {
 .actor.sheet .resource.balance .balance .hauglosk {
   margin-left: auto;
 }
-.vampire-font-headers .werewolf-button {
+.vampire-font-headers .werewolf-button,
+.vampire-font-headers .garou-forms-label,
+.vampire-font-headers .forms .were-form-name {
   font-family: "vampireRevised", "sans-serif";
 }
 

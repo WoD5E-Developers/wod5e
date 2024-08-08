@@ -141,6 +141,24 @@
       }
     }
   }
+
+  .tab.wolf {
+    .garou-forms-label {
+      font-size: 20pt;
+    }
+
+    .forms {
+      .form {
+        border-radius: 0;
+        background-color: #CCC;
+        border: 1px solid black;
+      }
+
+      .form-active {
+        background: #d985359a;
+      }
+    }
+  }
 }
 
 /* All Sheets with the Werewolf styling, including itemsheets */
@@ -175,6 +193,31 @@
       vertical-align: middle;
       color: #CCC;
     }
+  }
+
+  button.werewolf-button {
+    background: var(--werewolf-primary);
+    color: #fff;
+    font-family: cormorantLight, serif;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border: none;
+    box-shadow: none;
+  }
+
+  button.werewolf-button.active,
+  button.werewolf-button.active:hover {
+    font-size: 20pt;
+    color: #FFF;
+    cursor: default;
+    margin-bottom: 10px;
+  }
+  
+  button.werewolf-button.disabled,
+  button.werewolf-button.disabled:hover {
+    color: #000;
+    cursor: default;
+    background: #562f13ef;
   }
 }
 
@@ -243,6 +286,8 @@
   }
 }
 
-.vampire-font-headers .werewolf-button {
+.vampire-font-headers .werewolf-button,
+.vampire-font-headers .garou-forms-label,
+.vampire-font-headers .forms .were-form-name {
   font-family: "vampireRevised", "sans-serif";
 }
