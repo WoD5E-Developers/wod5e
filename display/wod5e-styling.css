@@ -559,6 +559,10 @@ prose-mirror .editor-menu button {
   font-size: 1.2em;
   font-weight: 700;
 }
+.chat-message a.content-link,
+.chat-message a.inline-roll {
+  color: #000;
+}
 .chat-message .dice-result {
   cursor: pointer;
 }
