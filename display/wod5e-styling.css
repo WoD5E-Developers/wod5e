@@ -1344,6 +1344,31 @@ h3.item-name {
 
 
 
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://fonts.gstatic.com/s/googlesans/v58/4UaRrENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iq2vgCIhMl07v0x.woff2") format("woff2");
+}
+body.ru {
+  font-family: "Roboto", "Arial", sans-serif;
+}
+body.ru .actor.sheet {
+  min-width: 950px;
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://fonts.gstatic.com/s/googlesans/v58/4UaRrENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iq2vgCIhMl07v0x.woff2") format("woff2");
+}
+body.uk {
+  font-family: "Roboto", "Arial", sans-serif;
+}
+body.uk .actor.sheet {
+  min-width: 950px;
+}
 
 /* The actor sheet itself */
 .actor.sheet {
