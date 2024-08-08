@@ -13,6 +13,27 @@ import { WOD5eDice } from '../scripts/system-rolls.js'
  */
 export class WoDActor extends ActorSheet {
   /** @override */
+  static get defaultOptions () {
+    // Define the base list of CSS classes
+    const classList = ['wod5e', 'sheet', 'actor']
+
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      classes: classList,
+      width: 1000,
+      height: 700,
+      tabs: [{
+        navSelector: '.sheet-tabs',
+        contentSelector: '.sheet-body',
+        initial: 'stats'
+      }],
+      dragDrop: [{
+        dragSelector: '.item',
+        dropSelector: null
+      }]
+    })
+  }
+
+  /** @override */
   async _render (...args) {
     // Override _render so that we can save and restore the scroll position during rendering
     this._saveScrollPositions()
@@ -560,6 +581,8 @@ export class WoDActor extends ActorSheet {
           itemName = game.i18n.format('WOD5E.WTA.NewStringGift', { string: itemName })
         }
         break
+      case 'edgepool':
+        itemName = game.i18n.format('WOD5E.HTR.NewStringEdgePool', { string: itemName })
       case 'feature':
         selectLabel = game.i18n.localize('WOD5E.ItemsList.SelectFeature')
         itemOptions = WOD5E.Features.getList()

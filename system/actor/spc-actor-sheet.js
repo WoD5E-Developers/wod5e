@@ -12,18 +12,14 @@ export class SPCActorSheet extends WoDActor {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['wod5e', 'sheet', 'actor', 'spc-sheet']
+    const classList = ['spc-sheet']
+    classList.push(...super.defaultOptions.classes)
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
       template: 'systems/vtm5e/display/shared/actors/spc-sheet.hbs',
       width: 850,
-      height: 500,
-      tabs: [{
-        navSelector: '.sheet-tabs',
-        contentSelector: '.sheet-body',
-        initial: 'stats'
-      }]
+      height: 500
     })
   }
 

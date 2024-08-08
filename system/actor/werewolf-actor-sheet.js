@@ -13,18 +13,12 @@ export class WerewolfActorSheet extends WoDActor {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['wod5e', 'actor', 'sheet', 'werewolf-sheet', 'werewolf']
+    const classList = ['werewolf-sheet', 'werewolf']
+    classList.push(...super.defaultOptions.classes)
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
-      template: 'systems/vtm5e/display/wta/actors/werewolf-sheet.hbs',
-      width: 1000,
-      height: 700,
-      tabs: [{
-        navSelector: '.sheet-tabs',
-        contentSelector: '.sheet-body',
-        initial: 'stats'
-      }]
+      template: 'systems/vtm5e/display/wta/actors/werewolf-sheet.hbs'
     })
   }
 

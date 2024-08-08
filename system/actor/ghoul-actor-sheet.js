@@ -13,18 +13,11 @@ export class GhoulActorSheet extends MortalActorSheet {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['wod5e', 'sheet', 'actor', 'ghoul-sheet', 'vampire']
+    const classList = ['ghoul-sheet', 'vampire']
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
-      template: 'systems/vtm5e/display/vtm/actors/ghoul-sheet.hbs',
-      width: 1000,
-      height: 700,
-      tabs: [{
-        navSelector: '.sheet-tabs',
-        contentSelector: '.sheet-body',
-        initial: 'stats'
-      }]
+      template: 'systems/vtm5e/display/vtm/actors/ghoul-sheet.hbs'
     })
   }
 

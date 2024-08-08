@@ -11,12 +11,11 @@ export class GroupActorSheet extends WoDActor {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['wod5e', 'sheet', 'actor', 'group-sheet']
+    const classList = ['group-sheet']
+    classList.push(...super.defaultOptions.classes)
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
-      width: 700,
-      height: 700,
       tabs: [{
         navSelector: '.sheet-tabs',
         contentSelector: '.sheet-body',

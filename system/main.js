@@ -127,7 +127,7 @@ Hooks.once('ready', async function () {
   }
 
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on('hotbarDrop', (bar, data, slot) => createVampireMacro(data, slot))
+  Hooks.on('hotbarDrop', (bar, data, slot) => createRollableMacro(data, slot))
 
   // Migration functions
   migrateWorld()
@@ -187,25 +187,28 @@ Hooks.on('getChatLogEntryContext', (html, options) => {
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-async function createVampireMacro (data, slot) {
+async function createRollableMacro (data, slot) {
   if (data.type !== 'Item') return
-  if (!('data' in data)) return ui.notifications.warn('You can only create macro buttons for owned Items')
-  const item = data.system
 
-  // Create the macro command
-  const command = `game.WOD5E.RollListItemMacro("${item.name}")`
-  let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command))
-  if (!macro) {
-    macro = await Macro.create({
-      name: item.name,
-      type: 'script',
-      img: item.img,
-      command,
-      flags: { 'vtm5e.itemMacro': true }
-    })
+  // Create a rollable macro for this item
+  if (data.system.rollable) {
+    const item = data.system
+
+    // Create the macro command
+    const command = `game.WOD5E.RollListItemMacro("${item.name}")`
+    let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command))
+    if (!macro) {
+      macro = await Macro.create({
+        name: item.name,
+        type: 'script',
+        img: item.img,
+        command,
+        flags: { 'vtm5e.itemMacro': true }
+      })
+    }
+    game.user.assignHotbarMacro(macro, slot)
+    return false
   }
-  game.user.assignHotbarMacro(macro, slot)
-  return false
 }
 
 /**

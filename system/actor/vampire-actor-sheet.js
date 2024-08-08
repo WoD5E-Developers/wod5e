@@ -13,18 +13,12 @@ export class VampireActorSheet extends GhoulActorSheet {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['wod5e', 'sheet', 'actor', 'vampire-sheet', 'vampire']
+    const classList = ['vampire-sheet']
+    classList.push(...super.defaultOptions.classes)
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
-      template: 'systems/vtm5e/display/vtm/actors/vampire-sheet.hbs',
-      width: 1000,
-      height: 700,
-      tabs: [{
-        navSelector: '.sheet-tabs',
-        contentSelector: '.sheet-body',
-        initial: 'stats'
-      }]
+      template: 'systems/vtm5e/display/vtm/actors/vampire-sheet.hbs'
     })
   }
 
