@@ -1263,6 +1263,10 @@ h3.item-name {
   letter-spacing: 0.05em;
   border: none;
   box-shadow: none;
+  border: 1px solid black;
+}
+.sheet.werewolf button.werewolf-button:hover {
+  background: #bb6a30ef;
 }
 .sheet.werewolf button.werewolf-button.active,
 .sheet.werewolf button.werewolf-button.active:hover {
@@ -1270,6 +1274,7 @@ h3.item-name {
   color: #FFF;
   cursor: default;
   margin-bottom: 10px;
+  background: #a14503;
 }
 .sheet.werewolf button.werewolf-button.disabled,
 .sheet.werewolf button.werewolf-button.disabled:hover {
