@@ -14,6 +14,7 @@ export class GhoulActorSheet extends MortalActorSheet {
   static get defaultOptions () {
     // Define the base list of CSS classes
     const classList = ['ghoul-sheet', 'vampire']
+    classList.push(...super.defaultOptions.classes)
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
