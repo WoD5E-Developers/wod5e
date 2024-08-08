@@ -6,47 +6,31 @@
  * @param type
  */
 export const generateLocalizedLabel = (string, type) => {
-  // Actor Types
-  if (type === 'actortypes') {
+  if (type === 'actortypes') { // Actor Types
     const actortypes = WOD5E.ActorTypes.getList()
     return findLabel(actortypes, string)
-  } else
-  // Attributes
-  if (type === 'abilities') {
+  } else if (type === 'abilities') { // Attributes
     const attributes = WOD5E.Attributes.getList({})
     return findLabel(attributes, string)
-  } else
-  // Skills
-  if (type === 'skills') {
+  } else if (type === 'skills') { // Skills
     const skills = WOD5E.Skills.getList({})
     return findLabel(skills, string)
-  } else
-  // Features
-  if (type === 'features') {
+  } else if (type === 'features') { // Features
     const features = WOD5E.Features.getList()
     return findLabel(features, string)
-  } else
-  // Disciplines
-  if (type === 'disciplines') {
+  } else if (type === 'disciplines') { // Disciplines
     const disciplines = WOD5E.Disciplines.getList()
     return findLabel(disciplines, string)
-  } else
-  // Gifts
-  if (type === 'gifts') {
+  } else if (type === 'gifts') { // Gifts
     const gifts = WOD5E.Gifts.getList()
     return findLabel(gifts, string)
-  } else
-  // Renown
-  if (type === 'renown') {
+  } else if (type === 'renown') { // Renown
     const renown = WOD5E.Renown.getList()
     return findLabel(renown, string)
-  } else
-  // Edges
-  if (type === 'edges') {
+  } else if (type === 'edges') { // Edges
     const edges = WOD5E.Edges.getList()
     return findLabel(edges, string)
-  } else {
-    // Return the base localization if nothing else is found
+  } else { // Return the base localization if nothing else is found
     const otherLocalizationString = string.capitalize()
     return game.i18n.localize(`WOD5E.${otherLocalizationString}`)
   }
