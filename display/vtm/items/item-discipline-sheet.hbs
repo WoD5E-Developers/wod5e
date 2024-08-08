@@ -49,7 +49,7 @@
                 <select name="system.dice1" data-type="String">
                     {{#select item.system.dice1}}
                     {{> "systems/vtm5e/display/shared/items/parts/attributes.hbs"}}
-                    <option value="discipline">{{generateLocalizedLabel item.system.discipline}}</option>
+                    <option value="discipline">{{generateLocalizedLabel item.system.discipline 'disciplines'}}</option>
                     {{/select}}
                 </select>
                 <label class="resource-label">+</label>
@@ -69,7 +69,7 @@
                     <select name="system.dice2" data-type="String">
                         {{#select item.system.dice2}}
                         {{> "systems/vtm5e/display/shared/items/parts/attributes.hbs"}}
-                        <option value="discipline">{{generateLocalizedLabel item.system.discipline}}</option>
+                        <option value="discipline">{{generateLocalizedLabel item.system.discipline 'disciplines'}}</option>
                         {{/select}}
                     </select>
                 {{/if}}

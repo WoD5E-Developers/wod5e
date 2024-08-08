@@ -57,7 +57,7 @@ export class GhoulActorSheet extends MortalActorSheet {
 
     for (const disciplineType in disciplines) {
       // Localize the discipline name
-      disciplines[disciplineType].label = await WOD5E.api.generateLabelAndLocalize({ string: disciplineType })
+      disciplines[disciplineType].label = WOD5E.api.generateLabelAndLocalize({ string: disciplineType, type: 'disciplines' })
 
       // Wipe old discipline powers so they doesn't duplicate
       disciplines[disciplineType].powers = []
