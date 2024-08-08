@@ -17,7 +17,7 @@ export class MortalActorSheet extends WoDActor {
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
-      template: 'systems/vtm5e/display/shared/actors/mortal-sheet.hbs',
+      template: 'systems/vtm5e/display/shared/actors/mortal-sheet.hbs'
     })
   }
 

@@ -1,4 +1,4 @@
-/* global DEFAULT_TOKEN, ChatMessage, ActorSheet, game, renderTemplate, Dialog, TextEditor, WOD5E */
+/* global DEFAULT_TOKEN, ChatMessage, ActorSheet, game, renderTemplate, Dialog, TextEditor, WOD5E, foundry */
 
 import { _onRoll } from './scripts/roll.js'
 import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange } from './scripts/counters.js'
@@ -583,6 +583,7 @@ export class WoDActor extends ActorSheet {
         break
       case 'edgepool':
         itemName = game.i18n.format('WOD5E.HTR.NewStringEdgePool', { string: itemName })
+        break
       case 'feature':
         selectLabel = game.i18n.localize('WOD5E.ItemsList.SelectFeature')
         itemOptions = WOD5E.Features.getList()
