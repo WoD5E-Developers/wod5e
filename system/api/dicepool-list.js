@@ -1,4 +1,4 @@
-/* global WOD5E */
+/* global WOD5E, game */
 
 /**
  * Function to handle getting the list of available dice to add to a dicepool
@@ -48,8 +48,8 @@ export const getDicepoolList = async (document) => {
         group: game.i18n.localize('WOD5E.WTA.Renown')
       })
     }
-  }  
-  
+  }
+
   // Hunter
   if (gamesystem === 'hunter') {
     const edges = WOD5E.Edges.getList()
@@ -60,7 +60,7 @@ export const getDicepoolList = async (document) => {
         group: game.i18n.localize('WOD5E.HTR.Edges')
       })
     }
-  }  
+  }
 
   return masterList
 }

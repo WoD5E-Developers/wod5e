@@ -154,7 +154,6 @@ export class WoDItemSheet extends ItemSheet {
   // Handle adding a new section to a dicepool
 
   async _onAddDice (event) {
-    console.log("????????")
     event.preventDefault()
 
     // Top-level variables
