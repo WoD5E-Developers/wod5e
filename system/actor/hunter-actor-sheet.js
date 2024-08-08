@@ -70,7 +70,7 @@ export class HunterActorSheet extends WoDActor {
 
     for (const edgeType in edges) {
       // Localize the edge name
-      edges[edgeType].label = WOD5E.api.generateLabelAndLocalize({ string: edgeType, type: 'edges' })
+      edges[edgeType].label = WOD5E.api.generateLabelAndLocalize({ string: edgeType, type: 'edge' })
 
       // Wipe old perks so they doesn't duplicate
       edges[edgeType].perks = []

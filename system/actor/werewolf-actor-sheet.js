@@ -74,7 +74,7 @@ export class WerewolfActorSheet extends WoDActor {
 
     for (const giftType in gifts) {
       // Localize the gift name
-      gifts[giftType].label = WOD5E.api.generateLabelAndLocalize({ string: giftType, type: 'gifts' })
+      gifts[giftType].label = WOD5E.api.generateLabelAndLocalize({ string: giftType, type: 'gift' })
 
       // Wipe old gift powers so they doesn't duplicate
       gifts[giftType].powers = []

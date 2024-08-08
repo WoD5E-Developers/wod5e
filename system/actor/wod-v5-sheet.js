@@ -557,7 +557,7 @@ export class WoDActor extends ActorSheet {
     const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
 
     // Generate the item name
-    itemName = subtype ? await WOD5E.api.generateLabelAndLocalize({ string: subtype }) : itemsList[type].label
+    itemName = subtype ? await WOD5E.api.generateLabelAndLocalize({ string: subtype, type }) : itemsList[type].label
 
     // Generate item-specific data based on type
     switch (type) {

@@ -140,7 +140,7 @@ export class wod5eAPI {
               // Handle adding a skill to the dicepool
               if (skillSelect) {
                 // Add it to the label
-                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: skillSelect })}`
+                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: skillSelect, type: 'skills' })}`
 
                 // Add it to the value path if applicable
                 if (dataset.valuePaths) dataset.valuePaths += ` skills.${skillSelect}.value`
@@ -154,7 +154,7 @@ export class wod5eAPI {
               // Handle adding an attribute to the dicepool
               if (attributeSelect) {
                 // Add it to the label
-                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect })}`
+                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect, type: 'abilities' })}`
 
                 // Add it to the value path if applicable
                 if (dataset.valuePaths) dataset.valuePaths += ` abilities.${attributeSelect}.value`
@@ -168,7 +168,7 @@ export class wod5eAPI {
               // Handle adding a discipline to the dicepool
               if (disciplineSelect) {
                 // Add it to the label
-                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: disciplineSelect })}`
+                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: disciplineSelect, type: 'discipline' })}`
 
                 // Add it to the value path if applicable
                 if (dataset.valuePaths) dataset.valuePaths += ` disciplines.${disciplineSelect}.value`
@@ -186,7 +186,7 @@ export class wod5eAPI {
               // Handle adding a renown to the dicepool
               if (renownSelect) {
                 // Add it to the label
-                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: renownSelect })}`
+                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: renownSelect, type: 'renown' })}`
 
                 // Add it to the value path if applicable
                 if (dataset.valuePaths) dataset.valuePaths += ` renown.${renownSelect}.value`
