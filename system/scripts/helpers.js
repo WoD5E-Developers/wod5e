@@ -1,6 +1,6 @@
 /* global Handlebars, game, WOD5E */
 
-import { generateLocalizedLabel } from "../api/generate-localization.js"
+import { generateLocalizedLabel } from '../api/generate-localization.js'
 
 /**
  * Define any helpers necessary for working with Handlebars
