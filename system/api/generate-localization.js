@@ -18,7 +18,7 @@ export const generateLocalizedLabel = (string, type) => {
   } else if (type === 'features' || type === 'feature') { // Features
     const features = WOD5E.Features.getList()
     return findLabel(features, string)
-  } else if (type === 'disciplines' || type === 'discipline') { // Disciplines
+  } else if (type === 'disciplines' || type === 'discipline' || type === 'power') { // Disciplines
     const disciplines = WOD5E.Disciplines.getList()
     return findLabel(disciplines, string)
   } else if (type === 'gifts' || type === 'gift') { // Gifts
@@ -27,7 +27,7 @@ export const generateLocalizedLabel = (string, type) => {
   } else if (type === 'renown') { // Renown
     const renown = WOD5E.Renown.getList()
     return findLabel(renown, string)
-  } else if (type === 'edges' || type === 'edge') { // Edges
+  } else if (type === 'edges' || type === 'edge' || type === 'perk') { // Edges
     const edges = WOD5E.Edges.getList()
     return findLabel(edges, string)
   } else { // Return the base localization if nothing else is found
