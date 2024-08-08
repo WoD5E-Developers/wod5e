@@ -27,7 +27,7 @@ export const generateLocalizedLabel = (string, type) => {
   } else if (type === 'renown') { // Renown
     const renown = WOD5E.Renown.getList()
     return findLabel(renown, string)
-  } else if (type === 'edges' || type === 'edge' || type === 'perk') { // Edges
+  } else if (type === 'edges' || type === 'edge' || type === 'perk' || type === 'edgepool') { // Edges
     const edges = WOD5E.Edges.getList()
     return findLabel(edges, string)
   } else { // Return the base localization if nothing else is found

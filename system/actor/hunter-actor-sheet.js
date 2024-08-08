@@ -74,6 +74,9 @@ export class HunterActorSheet extends WoDActor {
 
       // Wipe old perks so they doesn't duplicate
       edges[edgeType].perks = []
+
+      // Wipe old edge pools so they doesn't duplicate
+      edges[edgeType].pools = []
     }
 
     // Iterate through items, allocating to containers
@@ -82,6 +85,10 @@ export class HunterActorSheet extends WoDActor {
       if (i.type === 'perk') {
         if (i.system.edge !== undefined) {
           edges[i.system.edge].perks.push(i)
+        }
+      } else if (i.type === 'edgepool') {
+        if (i.system.edge !== undefined) {
+          edges[i.system.edge].pools.push(i)
         }
       }
     }

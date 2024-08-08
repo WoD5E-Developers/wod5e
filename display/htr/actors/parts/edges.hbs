@@ -78,17 +78,27 @@
                         {{/each}}
                         <div class="edge-pools">
                             {{#each edge.pools as |pool key|}}
-                                <div class="edge-pool flexrow">
-                                    {{#each pool.part as |part key|}}
-                                        <span>{{generateLabelAndLocalize part.id}}</span>
-                                    {{/each}}
-                                    <span class="rollable" value-paths="{{#each pool.part as |part key|}}part.path {{/each}}"></span>
+                                <div class="edge-pool flexrow item" data-item-id="{{pool._id}}">
+                                    <div class="rollable" value-paths="{{#each pool.dicepool as |dice key|}}{{dice.path}} {{/each}}">
+                                        {{pool.name}}
+                                        <i class="fa-solid fa-dice-d10"></i>
+                                    </div>
+                                    <div class="item-controls">
+                                        <!-- Icon to edit the edge pool -->
+                                        <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <!-- Icon to delete the edge pool -->
+                                        <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             {{/each}}
-                            <div class="flex-center add-edge-pool">
-                                <i class="fas fa-plus"></i>
-                                {{localize "WOD5E.HTR.AddEdgePool"}}
-                            </div>
+                        </div>
+                        <div class="flex-center add-edge-pool item-create" data-type="edgepool" data-subtype="{{key}}">
+                            <i class="fas fa-plus"></i>
+                            {{localize "WOD5E.HTR.AddEdgePool"}}
                         </div>
                     </div>
                 {{/if}}

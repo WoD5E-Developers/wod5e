@@ -1,6 +1,7 @@
-/* global ItemSheet, foundry, TextEditor */
+/* global ItemSheet, foundry, TextEditor, WOD5E */
 
 import { _onAddBonus, _onDeleteBonus, _onEditBonus } from './scripts/item-bonuses.js'
+import { getDicepoolList } from '../api/dicepool-list.js'
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -33,7 +34,7 @@ export class WoDItemSheet extends ItemSheet {
       path = 'systems/vtm5e/display/vtm/items'
 
       return `${path}/item-discipline-sheet.hbs`
-    } else if (itemType === 'perk') {
+    } else if (itemType === 'perk' || itemType === 'edgepool') {
       path = 'systems/vtm5e/display/htr/items'
     } else if (itemType === 'gift') {
       path = 'systems/vtm5e/display/wta/items'
@@ -50,22 +51,47 @@ export class WoDItemSheet extends ItemSheet {
   async getData () {
     const data = super.getData()
 
+    const item = data.document
+    const itemData = item.system
+
     // Encrich editor content
-    data.enrichedDescription = await TextEditor.enrichHTML(this.object.system.description)
-    data.bonuses = this.object.system.bonuses
+    data.enrichedDescription = await TextEditor.enrichHTML(itemData.description)
+    data.bonuses = itemData.bonuses
+
+    if (!itemData.gamesystem && this.actor) {
+      switch (this.actor.system.gamesystem) {
+        case 'vampire':
+          itemData.gamesystem = 'vampire'
+          break
+        case 'werewolf':
+          itemData.gamesystem = 'werewolf'
+          break
+        case 'hunter':
+          itemData.gamesystem = 'hunter'
+          break
+        default:
+          itemData.gamesystem = 'mortal'
+          break
+      }
+    }
+
+    // Localize dicepool labels
+    const dicepool = itemData?.dicepool
+    if (dicepool) {
+      for (const [, value] of Object.entries(dicepool)) {
+        if (value.path) {
+          const dicePartials = value.path.split('.')
+          const diceCategory = dicePartials[0]
+          const diceKey = dicePartials[1]
+
+          value.label = WOD5E.api.generateLabelAndLocalize({ string: diceKey, type: diceCategory })
+        }
+      }
+    }
+
+    data.diceOptions = await getDicepoolList(item)
 
     return data
-  }
-
-  /* -------------------------------------------- */
-
-  /** @override */
-  setPosition (options = {}) {
-    const position = super.setPosition(options)
-    const sheetBody = this.element.find('.sheet-body')
-    const bodyHeight = position.height - 192
-    sheetBody.css('height', bodyHeight)
-    return position
   }
 
   /* -------------------------------------------- */
@@ -120,5 +146,28 @@ export class WoDItemSheet extends ItemSheet {
     html.find('.edit-bonus').click(async event => {
       _onEditBonus(event, item)
     })
+
+    // Add a new section to a dicepool
+    html.find('.add-dice').click(this._onAddDice.bind(this))
+  }
+
+  // Handle adding a new section to a dicepool
+
+  async _onAddDice (event) {
+    console.log("????????")
+    event.preventDefault()
+
+    // Top-level variables
+    const item = this.item
+
+    // Secondary variables
+    const randomID = foundry.utils.randomID(8)
+
+    // Append a new dice to the dicepool
+    const defaultData = {
+      path: 'skills.athletics'
+    }
+
+    await item.update({ [`system.dicepool.${randomID}`]: defaultData })
   }
 }

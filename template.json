@@ -425,24 +425,28 @@
             "description": "",
             "value": 0,
             "perks": [],
+            "pools": [],
             "visible": false
           },
           "fleet": {
             "description": "",
             "value": 0,
             "perks": [],
+            "pools": [],
             "visible": false
           },
           "ordnance": {
             "description": "",
             "value": 0,
             "perks": [],
+            "pools": [],
             "visible": false
           },
           "library": {
             "description": "",
             "value": 0,
             "perks": [],
+            "pools": [],
             "visible": false
           },
           "improvisedgear": {
@@ -455,42 +459,49 @@
             "description": "",
             "value": 0,
             "perks": [],
+            "pools": [],
             "visible": false
           },
           "dronejockey": {
             "description": "",
             "value": 0,
             "perks": [],
+            "pools": [],
             "visible": false
           },
           "beastwhisperer": {
             "description": "",
             "value": 0,
             "perks": [],
+            "pools": [],
             "visible": false
           },
           "sensetheunnatural": {
             "description": "",
             "value": 0,
             "perks": [],
+            "pools": [],
             "visible": false
           },
           "repeltheunnatural": {
             "description": "",
             "value": 0,
             "perks": [],
+            "pools": [],
             "visible": false
           },
           "thwarttheunnatural": {
             "description": "",
             "value": 0,
             "perks": [],
+            "pools": [],
             "visible": false
           },
           "artifact": {
             "description": "",
             "value": 0,
             "perks": [],
+            "pools": [],
             "visible": false
           }
         }
@@ -835,7 +846,7 @@
     }
   },
   "Item": {
-    "types": ["feature", "power", "boon", "customRoll", "perk", "gift"],
+    "types": ["feature", "power", "boon", "customRoll", "perk", "edgepool", "gift"],
     "templates": {
       "base": {
         "description": "",
@@ -858,7 +869,8 @@
       "rollable": false,
       "skill": false,
       "amalgam": false,
-      "rouse": false
+      "rouse": false,
+      "gamesystem": "vampire"
     },
     "boon": {
       "templates": ["base"],
@@ -879,7 +891,15 @@
       "cost": "",
       "rollable": false,
       "skill": false,
-      "amalgam": false
+      "amalgam": false,
+      "gamesystem": "hunter"
+    },
+    "edgepool": {
+      "templates": ["base"],
+      "edge": "arsenal",
+      "source": "self",
+      "dicepool": {},
+      "gamesystem": "hunter"
     },
     "gift": {
       "templates": ["base"],
@@ -893,7 +913,8 @@
       "action": "",
       "dice1": "strength",
       "dice2": "strength",
-      "duration": ""
+      "duration": "",
+      "gamesystem": "werewolf"
     }
   }
 }

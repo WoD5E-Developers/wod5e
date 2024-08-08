@@ -15,6 +15,7 @@
             "feature": "Feature",
             "gift": "Gift",
             "perk": "Perk",
+            "edgepool": "Edge Pool",
             "power": "Discipline"
         }
     },
@@ -117,7 +118,8 @@
             "Description": "Description",
             "Equipment": "Equipment",
             "Notes": "Notes",
-            "Other": "Other"
+            "Other": "Other",
+            "Dicepool": "Dicepool"
         },
 
         "AttributesList": {
