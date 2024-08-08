@@ -45,9 +45,8 @@ export const generateLocalizedLabel = (string, type) => {
 	if (type === 'edges') {
 		const edges = WOD5E.Edges.getList()
 		return findLabel(edges, string)
-	} else
+	} else {
 	// Return the base localization if nothing else is found
-	{
 		const otherLocalizationString = string.capitalize()
 		return game.i18n.localize(`WOD5E.${otherLocalizationString}`)
 	}
