@@ -113,7 +113,7 @@ export class WoDActor extends ActorSheet {
     // Initialize containers.
     const boons = []
     const customRolls = []
-    const gear = []
+    const equipment = []
 
     // Loop through each entry in the attributes list, get the data (if available), and then push to the containers
     const attributesList = Attributes.getList({})
@@ -215,17 +215,17 @@ export class WoDActor extends ActorSheet {
       i.img = i.img || DEFAULT_TOKEN
 
       // Sort the item into its appropriate place
-      if (i.type === 'item') {
-        // Append to gear.
-        gear.push(i)
+      if (i.type === 'equipment') {
+        // Append to equipment
+        equipment[i.system.equipmentType].push(i)
       } else if (i.type === 'feature') {
-        // Append to features.
+        // Append to features
         features[i.system.featuretype].push(i)
       } else if (i.type === 'boon') {
-        // Append to boons.
+        // Append to boons
         boons.push(i)
       } else if (i.type === 'customRoll') {
-        // Append to custom rolls.
+        // Append to custom rolls
         customRolls.push(i)
       }
     }
@@ -235,7 +235,7 @@ export class WoDActor extends ActorSheet {
     actorData.system.skills_list = skills
     actorData.system.boons = boons
     actorData.system.customRolls = customRolls
-    actorData.system.gear = gear
+    actorData.system.equipment = equipment
     actorData.system.features = features
   }
 
