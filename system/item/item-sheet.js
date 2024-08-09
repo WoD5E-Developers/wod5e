@@ -28,21 +28,32 @@ export class WoDItemSheet extends ItemSheet {
   /** @override */
   get template () {
     const itemType = this.item.type
+    const gamesystem = this.item.system.gamesystem
     let path = ''
 
-    if (itemType === 'power') {
-      path = 'systems/vtm5e/display/vtm/items'
-
-      return `${path}/item-discipline-sheet.hbs`
-    } else if (itemType === 'perk' || itemType === 'edgepool') {
-      path = 'systems/vtm5e/display/htr/items'
-    } else if (itemType === 'gift') {
-      path = 'systems/vtm5e/display/wta/items'
+    // Append gamesystem
+    if (gamesystem === 'vampire') {
+      this.options.classes.push(...['vampire'])
+    } else if (gamesystem === 'hunter') {
+      this.options.classes.push(...['hunter'])
+    } else if (gamesystem === 'werewolf') {
+      this.options.classes.push(...['werewolf'])
     } else {
-      path = 'systems/vtm5e/display/shared/items'
+      this.options.classes.push(...['mortal'])
     }
 
-    return `${path}/item-${itemType}-sheet.hbs`
+    // Handle which path to use to determine where the item template is
+    if (itemType === 'power') {
+      path = 'systems/vtm5e/display/vtm/items/item-discipline-sheet.hbs'
+    } else if (itemType === 'perk' || itemType === 'edgepool') {
+      path = `systems/vtm5e/display/htr/items/item-${itemType}-sheet.hbs`
+    } else if (itemType === 'gift') {
+      path = `systems/vtm5e/display/wta/items/item-${itemType}-sheet.hbs`
+    } else {
+      path = `systems/vtm5e/display/shared/items/item-${itemType}-sheet.hbs`
+    }
+
+    return path
   }
 
   /* -------------------------------------------- */

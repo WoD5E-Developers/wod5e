@@ -1861,6 +1861,9 @@ body.uk .actor.sheet {
 .item.sheet .item-header .header-fields {
   flex: 1;
 }
+.item.sheet .item-header input[type="number"] {
+  max-width: 35px;
+}
 
 /* wod5e.css */
 .locked .item-edit,
