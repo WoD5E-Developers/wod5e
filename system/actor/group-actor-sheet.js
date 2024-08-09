@@ -139,10 +139,13 @@ export class GroupActorSheet extends WoDActor {
     // Activate listeners
     super.activateListeners(html)
 
+    // Handle opening a sheet
     html.find('.open-sheet').click(this._openActorSheet.bind(this))
 
     // Only activate the below listeners for the storyteller
     if (!this.actor.isOwner) return
+
+    // Handle removing an actor
     html.find('.remove-actor').click(this._removeActor.bind(this))
   }
 
@@ -199,6 +202,7 @@ export class GroupActorSheet extends WoDActor {
     await game.actors.render()
   }
 
+  // Function to remove an actor from the group sheet
   async _removeActor (event) {
     event.preventDefault()
 
