@@ -665,6 +665,7 @@ export class WoDActor extends ActorSheet {
         break
       case 'edgepool':
         itemData.edge = subtype
+        break
       case 'gift':
         itemData.giftType = subtype
         break
