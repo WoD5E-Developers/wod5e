@@ -73,8 +73,12 @@ export class WoDActor extends ActorSheet {
     if (actorHeaders.creedfields) { data.enrichedCreedFields = await TextEditor.enrichHTML(actorHeaders.creedfields) }
 
     // Enrich item descriptions
-    for (const i of data.items) {
-      i.system.enrichedDescription = await TextEditor.enrichHTML(i.system.description)
+    for (const item in data.items) {
+      if (data.items[item].system?.description) {
+        const enrichedItemDescription = await TextEditor.enrichHTML(data.items[item].system.description)
+        
+        data.items[item].system.enrichedDescription = enrichedItemDescription
+      }
     }
 
     return data

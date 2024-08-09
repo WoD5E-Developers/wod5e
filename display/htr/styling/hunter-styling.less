@@ -128,17 +128,28 @@
         text-wrap: nowrap;
       }
 
+      .item-description {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
       .edge {
         .edge-pools {
           border-top: 1px solid black;
 
           .edge-pool-label {
             text-align: center;
+            padding: 2px;
           }
 
           .item-controls {
             text-align: right;
+            display: contents;
           }
+        }
+
+        .add-edge-pool {
+          font-weight: bold;
         }
 
         .add-edge-pool:hover {
@@ -155,10 +166,17 @@
           text-align: left;
           padding: 3px;
           margin-left: 10px;
+          text-overflow: ellipsis;
+          overflow-x: hidden;
         }
 
         .item-controls {
           text-align: right;
+          display: contents;
+
+          .item-control {
+            margin-left: 3px;
+          }
         }
       }
     }

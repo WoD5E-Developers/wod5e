@@ -82,36 +82,41 @@
                             </div>
                         </div>
                         {{#each discipline.powers as |power key|}}
-                            <div class="flexrow power item" data-item-id="{{power._id}}">
-                                <div class="item-image">
-                                    <img src="{{power.img}}">
+                            <div class="collapsible-container">
+                                <div class="flexrow power item" data-item-id="{{power._id}}">
+                                    <div class="item-image">
+                                        <img src="{{power.img}}">
+                                    </div>
+                                    <div class="item-name{{#if power.system.enrichedDescription}} collapsible{{/if}}">{{power.name}}</div>
+                                    <div class="item-controls">
+                                        <!-- Icon to edit the power -->
+                                        <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <!-- Icon to roll the normal dice for a power -->
+                                        {{#if power.system.rollable}}
+                                            <a class="item-image power-rollable" data-id="{{power._id}}" data-use-hunger="1">
+                                                <i class="fa-solid fa-dice-d10"></i>
+                                            </a>
+                                        {{/if}}
+                                        <!-- Icon to roll the power's rouse check, if applicable -->
+                                        {{#if power.system.rouse}}
+                                            <a class="item-control item-rouse" title="{{localize 'WOD5E.VTM.RollRouse'}}" data-cost="{{discipline.cost}}">
+                                                <i class="fa-solid fa-dice-d10"></i>
+                                            </a>
+                                        {{/if}}
+                                        <!-- Icon to display the power in chat -->
+                                        <a class="item-control item-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
+                                            <i class="fas fa-comment-alt"></i>
+                                        </a>
+                                        <!-- Icon to delete the power -->
+                                        <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="item-name">{{power.name}}</div>
-                                <div class="item-controls">
-                                    <!-- Icon to edit the power -->
-                                    <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <!-- Icon to roll the normal dice for a power -->
-                                    {{#if power.system.rollable}}
-                                        <a class="item-image power-rollable" data-id="{{power._id}}" data-use-hunger="1">
-                                            <i class="fa-solid fa-dice-d10"></i>
-                                        </a>
-                                    {{/if}}
-                                    <!-- Icon to roll the power's rouse check, if applicable -->
-                                    {{#if power.system.rouse}}
-                                        <a class="item-control item-rouse" title="{{localize 'WOD5E.VTM.RollRouse'}}" data-cost="{{discipline.cost}}">
-                                            <i class="fa-solid fa-dice-d10"></i>
-                                        </a>
-                                    {{/if}}
-                                    <!-- Icon to display the power in chat -->
-                                    <a class="item-control item-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
-                                        <i class="fas fa-comment-alt"></i>
-                                    </a>
-                                    <!-- Icon to delete the power -->
-                                    <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+                                <div class="collapsible-content item-description">
+                                    {{{power.system.enrichedDescription}}}
                                 </div>
                             </div>
                         {{/each}}

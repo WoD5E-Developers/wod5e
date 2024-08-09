@@ -100,14 +100,23 @@
 .actor.sheet.hunter .tab.edges .perks-list .item-name {
   text-wrap: nowrap;
 }
+.actor.sheet.hunter .tab.edges .perks-list .item-description {
+  margin-left: 10px;
+  margin-right: 10px;
+}
 .actor.sheet.hunter .tab.edges .perks-list .edge .edge-pools {
   border-top: 1px solid black;
 }
 .actor.sheet.hunter .tab.edges .perks-list .edge .edge-pools .edge-pool-label {
   text-align: center;
+  padding: 2px;
 }
 .actor.sheet.hunter .tab.edges .perks-list .edge .edge-pools .item-controls {
   text-align: right;
+  display: contents;
+}
+.actor.sheet.hunter .tab.edges .perks-list .edge .add-edge-pool {
+  font-weight: bold;
 }
 .actor.sheet.hunter .tab.edges .perks-list .edge .add-edge-pool:hover {
   cursor: pointer;
@@ -119,9 +128,15 @@
   text-align: left;
   padding: 3px;
   margin-left: 10px;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 .actor.sheet.hunter .tab.edges .perks-list .perk .item-controls {
   text-align: right;
+  display: contents;
+}
+.actor.sheet.hunter .tab.edges .perks-list .perk .item-controls .item-control {
+  margin-left: 3px;
 }
 /* All Sheets with the Hunter styling, including itemsheets */
 .sheet.hunter {
@@ -1033,6 +1048,10 @@ h3.item-name {
 .actor.sheet.vampire .tab.disciplines .powers-list .item-name {
   text-wrap: nowrap;
 }
+.actor.sheet.vampire .tab.disciplines .powers-list .item-description {
+  margin-left: 10px;
+  margin-right: 10px;
+}
 .actor.sheet.vampire .tab.disciplines .powers-list .power .item-image {
   flex-grow: 0;
 }
@@ -1040,9 +1059,15 @@ h3.item-name {
   text-align: left;
   padding: 3px;
   margin-left: 10px;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 .actor.sheet.vampire .tab.disciplines .powers-list .power .item-controls {
   text-align: right;
+  display: contents;
+}
+.actor.sheet.vampire .tab.disciplines .powers-list .power .item-controls .item-control {
+  margin-left: 3px;
 }
 /* All Sheets with the Vampire styling, including itemsheets */
 .sheet.vampire {
@@ -1212,6 +1237,10 @@ h3.item-name {
 .actor.sheet.werewolf .tab.gifts .powers-list .item-name {
   text-wrap: nowrap;
 }
+.actor.sheet.werewolf .tab.gifts .powers-list .item-description {
+  margin-left: 10px;
+  margin-right: 10px;
+}
 .actor.sheet.werewolf .tab.gifts .powers-list .power .item-image {
   flex-grow: 0;
 }
@@ -1219,9 +1248,15 @@ h3.item-name {
   text-align: left;
   padding: 3px;
   margin-left: 10px;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 .actor.sheet.werewolf .tab.gifts .powers-list .power .item-controls {
   text-align: right;
+  display: contents;
+}
+.actor.sheet.werewolf .tab.gifts .powers-list .power .item-controls .item-control {
+  margin-left: 3px;
 }
 .actor.sheet.werewolf .tab.wolf .garou-forms-label {
   font-size: 20pt;
