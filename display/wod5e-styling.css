@@ -35,6 +35,7 @@
 }
 .actor.sheet.hunter .lock-btn {
   background: var(--ui-background-hunter-texture);
+  color: #FFF;
 }
 .actor.sheet.hunter .despair-box,
 .actor.sheet.hunter .despair-box .despair-toggle {
