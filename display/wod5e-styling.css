@@ -103,6 +103,9 @@
 .actor.sheet.hunter .tab.edges .perks-list .edge .edge-pools {
   border-top: 1px solid black;
 }
+.actor.sheet.hunter .tab.edges .perks-list .edge .edge-pools .edge-pool-label {
+  text-align: center;
+}
 .actor.sheet.hunter .tab.edges .perks-list .edge .edge-pools .item-controls {
   text-align: right;
 }

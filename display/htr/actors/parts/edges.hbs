@@ -76,10 +76,11 @@
                                 </div>
                             </div>
                         {{/each}}
-                        <div class="edge-pools">
+                        <div class="edge-pools flexcol">
                             {{#each edge.pools as |pool key|}}
                                 <div class="edge-pool flexrow item" data-item-id="{{pool._id}}">
-                                    <div class="rollable" value-paths="{{#each pool.dicepool as |dice key|}}{{dice.path}} {{/each}}">
+                                    <div class="rollable edge-pool-label" data-value-paths="{{#each pool.system.dicepool as |dice key|}}{{dice.path}}.value {{/each}}"
+                                        data-label="{{pool.name}}" data-use-flavor-path="true" data-flavor-path="description" data-item-id="{{pool._id}}">
                                         {{pool.name}}
                                         <i class="fa-solid fa-dice-d10"></i>
                                     </div>
