@@ -1,117 +1,194 @@
 /* Variables */
 :root {
   --system-dark-primary: #000000f0;
+  --system-dark-secondary: #1d1d1d;
+  --system-dark-tertiary: #7a7a7a;
+  --system-dark-accent: #FFF;
   --ui-background-dark-texture: url("/systems/vtm5e/assets/ui/ui_background_dark_texture.webp");
 }
 
 .dark-theme {
-  /* Sheet window Header */
-  .sheet .window-header {
-    background-color: var(--system-dark-primary);
+  .actor.sheet {
+    .actor-header input,
+    .actor-header .resource,
+    .stats-container,
+    .stats-container .stats-footer {
+      background-color: var(--system-dark-secondary);
+      border-color: var(--system-dark-accent);
+    }
+
+    /* Navbar */
+    .sheet-tabs > [data-tab] .navicon {
+      background-color: var(--system-dark-primary);
+      border: 1px solid var(--system-dark-accent);
+    }
+
+    .sheet-tabs > [data-tab].active .navicon {
+      background: #777777;
+      border: 1px solid var(--system-dark-primary);
+    }
+
+    /* Resource Counters */
+    .resource-value {
+      .resource-value-step:not(.active) {
+        background-color: var(--system-dark-tertiary);
+      }
+
+      .resource-value-empty {
+        border: 1px solid var(--system-dark-tertiary);
+        background: linear-gradient(
+          45deg,
+          transparent 0%,
+          transparent 43%,
+          rgb(165, 165, 165) 45%,
+          rgb(165, 165, 165) 55%,
+          transparent 57%,
+          transparent 100%
+        ),
+        linear-gradient(
+          135deg,
+          transparent 0%,
+          transparent 43%,
+          rgb(165, 165, 165) 45%,
+          rgb(165, 165, 165) 55%,
+          transparent 57%,
+          transparent 100%
+        );
+      }
+    }
+
+    .resource-counter {
+      .resource-counter-step {
+        border: 1px solid var(--system-dark-accent);
+      }
+
+      .resource-counter-step[data-state="/"] {
+        background: linear-gradient(
+          135deg,
+          transparent 0%,
+          transparent 43%,
+          white 45%,
+          white 55%,
+          transparent 57%,
+          transparent 100%
+        );
+      }
+
+      .resource-counter-step[data-state="x"] {
+        background: linear-gradient(
+          45deg,
+          transparent 0%,
+          transparent 43%,
+          white 45%,
+          white 55%,
+          transparent 57%,
+          transparent 100%
+        ),
+        linear-gradient(
+          135deg,
+          transparent 0%,
+          transparent 43%,
+          white 45%,
+          white 55%,
+          transparent 57%,
+          transparent 100%
+        );
+      }
+    }
   }
 
-  /* Sheet Window Content */
-  .sheet .window-content {
-    background-color: #000000f0;
-    color: #FFF;
-    background-blend-mode: hard-light;
+  .sheet {
+    .window-header {
+      background-color: var(--system-dark-primary);
+    }
+
+    .window-content {
+      background-color: var(--system-dark-primary);
+      color: var(--system-dark-accent);
+      background-blend-mode: hard-light;
+
+      input {
+        color: var(--system-dark-accent);
+      }
+    }
   }
 
-  .sheet .window-content input {
-    color: #FFF;
+  /* Vampire Styling */
+  .actor.sheet.vampire {
+    .tabs-container {
+      .active.item[data-tab="blood"],
+      .active .navicon .wod5e-symbol {
+        color: var(--system-dark-accent);
+      }
+
+      .navicon .wod5e-symbol,
+      .item[data-tab="blood"] {
+        color: #ff0000;
+      }
+    }
+
+    .tab.disciplines {
+      .disciplines-list .discipline,
+      .powers-list .discipline {
+        background-color: var(--system-dark-secondary);
+        border-color: var(--system-dark-accent);
+      }
+    }
   }
 
-  /* Navbar */
-  .actor.sheet .sheet-tabs > [data-tab] .navicon {
-    background-color: black;
-    border: 1px solid #FFF;
+  /* Werewolf Styling */
+  .actor.sheet.werewolf {
+    .tabs-container {
+      .active.item[data-tab="wolf"],
+      .active .navicon .wod5e-symbol {
+        color: var(--system-dark-accent);
+      }
+
+      .navicon .wod5e-symbol,
+      .item[data-tab="wolf"] {
+        color: #e97244;
+      }
+    }
+
+    .tab.gifts-rites {
+      .gifts-list .gift,
+      .powers-list .gift {
+        background-color: var(--system-dark-secondary);
+        border-color: var(--system-dark-accent);
+      }
+    }
   }
 
-  .actor.sheet .sheet-tabs > [data-tab].active .navicon {
-    background-color: #a1a1a1;
-    border: 1px solid black;
+  /* Hunter Styling */
+  .actor.sheet.hunter {
+    .tabs-container {
+      .active .navicon .wod5e-symbol {
+        color: var(--system-dark-accent);
+      }
+
+      .navicon .wod5e-symbol {
+        color: #ff8f00;
+      }
+    }
+
+    .tab.edges {
+      .edges-list .edge,
+      .perks-list .edge {
+        background-color: var(--system-dark-secondary);
+        border-color: var(--system-dark-accent);
+
+        .content-link {
+          color: var(--system-dark-primary);
+        }
+      }
+    }
   }
 
-  .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
-  .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol {
-    color: #ff0000;
-  }
-
-  .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
-    color: #ff8f00;
-  }
-
-  /* Resource Counters */
-  .resource-value .resource-value-step {
-    background-color: #bdbdbd91;
-  }
-
-  .resource-counter .resource-counter-step {
-    border: 1px solid #FFF;
-  }
-
-  .resource-counter .resource-counter-step[data-state="/"] {
-    background: linear-gradient(
-      135deg,
-      transparent 0%,
-      transparent 43%,
-      white 45%,
-      white 55%,
-      transparent 57%,
-      transparent 100%
-    );
-  }
-
-  .resource-counter .resource-counter-step[data-state="x"] {
-    background: linear-gradient(
-      45deg,
-      transparent 0%,
-      transparent 43%,
-      white 45%,
-      white 55%,
-      transparent 57%,
-      transparent 100%
-    ),
-    linear-gradient(
-      135deg,
-      transparent 0%,
-      transparent 43%,
-      white 45%,
-      white 55%,
-      transparent 57%,
-      transparent 100%
-    );
-  }
-
-  .resource-value .resource-value-empty {
-    border: 1px solid #777777;
-    background: linear-gradient(
-      45deg,
-      transparent 0%,
-      transparent 43%,
-      rgb(165, 165, 165) 45%,
-      rgb(165, 165, 165) 55%,
-      transparent 57%,
-      transparent 100%
-    ),
-    linear-gradient(
-      135deg,
-      transparent 0%,
-      transparent 43%,
-      rgb(165, 165, 165) 45%,
-      rgb(165, 165, 165) 55%,
-      transparent 57%,
-      transparent 100%
-    );
-  }
-
-  /* Actor Sheet */
-  .actor.sheet .actor-header input,
-  .actor.sheet .actor-header .resource,
-  .actor.sheet .stats-container,
-  .actor.sheet .stats-container .stats-footer {
-    background-color: #1d1d1d;
-    border-color: #FFF;
+  prose-mirror {
+    button.icon.toggle {
+      color: var(--system-dark-accent);
+      background-color: var(--system-dark-primary);
+    }
   }
 
   /* Sidebar */

@@ -1966,65 +1966,108 @@ body.uk .actor.sheet {
 /* Variables */
 :root {
   --system-dark-primary: #000000f0;
+  --system-dark-secondary: #1d1d1d;
+  --system-dark-tertiary: #7a7a7a;
+  --system-dark-accent: #FFF;
   --ui-background-dark-texture: url("/systems/vtm5e/assets/ui/ui_background_dark_texture.webp");
 }
 .dark-theme {
-  /* Sheet window Header */
-  /* Sheet Window Content */
-  /* Navbar */
-  /* Resource Counters */
-  /* Actor Sheet */
+  /* Vampire Styling */
+  /* Werewolf Styling */
+  /* Hunter Styling */
   /* Sidebar */
   /* Foundry Controls UI */
 }
-.dark-theme .sheet .window-header {
-  background-color: var(--system-dark-primary);
-}
-.dark-theme .sheet .window-content {
-  background-color: #000000f0;
-  color: #FFF;
-  background-blend-mode: hard-light;
-}
-.dark-theme .sheet .window-content input {
-  color: #FFF;
-}
-.dark-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
-  background-color: black;
-  border: 1px solid #FFF;
-}
-.dark-theme .actor.sheet .sheet-tabs > [data-tab].active .navicon {
-  background-color: #a1a1a1;
-  border: 1px solid black;
-}
-.dark-theme .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
-.dark-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol {
-  color: #ff0000;
-}
-.dark-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
-  color: #ff8f00;
-}
-.dark-theme .resource-value .resource-value-step {
-  background-color: #bdbdbd91;
-}
-.dark-theme .resource-counter .resource-counter-step {
-  border: 1px solid #FFF;
-}
-.dark-theme .resource-counter .resource-counter-step[data-state="/"] {
-  background: linear-gradient(135deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%);
-}
-.dark-theme .resource-counter .resource-counter-step[data-state="x"] {
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%);
-}
-.dark-theme .resource-value .resource-value-empty {
-  border: 1px solid #777777;
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%);
+.dark-theme .actor.sheet {
+  /* Navbar */
+  /* Resource Counters */
 }
 .dark-theme .actor.sheet .actor-header input,
 .dark-theme .actor.sheet .actor-header .resource,
 .dark-theme .actor.sheet .stats-container,
 .dark-theme .actor.sheet .stats-container .stats-footer {
-  background-color: #1d1d1d;
-  border-color: #FFF;
+  background-color: var(--system-dark-secondary);
+  border-color: var(--system-dark-accent);
+}
+.dark-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
+  background-color: var(--system-dark-primary);
+  border: 1px solid var(--system-dark-accent);
+}
+.dark-theme .actor.sheet .sheet-tabs > [data-tab].active .navicon {
+  background: #777777;
+  border: 1px solid var(--system-dark-primary);
+}
+.dark-theme .actor.sheet .resource-value .resource-value-step:not(.active) {
+  background-color: var(--system-dark-tertiary);
+}
+.dark-theme .actor.sheet .resource-value .resource-value-empty {
+  border: 1px solid var(--system-dark-tertiary);
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%);
+}
+.dark-theme .actor.sheet .resource-counter .resource-counter-step {
+  border: 1px solid var(--system-dark-accent);
+}
+.dark-theme .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
+  background: linear-gradient(135deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%);
+}
+.dark-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%);
+}
+.dark-theme .sheet .window-header {
+  background-color: var(--system-dark-primary);
+}
+.dark-theme .sheet .window-content {
+  background-color: var(--system-dark-primary);
+  color: var(--system-dark-accent);
+  background-blend-mode: hard-light;
+}
+.dark-theme .sheet .window-content input {
+  color: var(--system-dark-accent);
+}
+.dark-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
+.dark-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
+  color: var(--system-dark-accent);
+}
+.dark-theme .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
+.dark-theme .actor.sheet.vampire .tabs-container .item[data-tab="blood"] {
+  color: #ff0000;
+}
+.dark-theme .actor.sheet.vampire .tab.disciplines .disciplines-list .discipline,
+.dark-theme .actor.sheet.vampire .tab.disciplines .powers-list .discipline {
+  background-color: var(--system-dark-secondary);
+  border-color: var(--system-dark-accent);
+}
+.dark-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
+.dark-theme .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
+  color: var(--system-dark-accent);
+}
+.dark-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
+.dark-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
+  color: #e97244;
+}
+.dark-theme .actor.sheet.werewolf .tab.gifts-rites .gifts-list .gift,
+.dark-theme .actor.sheet.werewolf .tab.gifts-rites .powers-list .gift {
+  background-color: var(--system-dark-secondary);
+  border-color: var(--system-dark-accent);
+}
+.dark-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
+  color: var(--system-dark-accent);
+}
+.dark-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
+  color: #ff8f00;
+}
+.dark-theme .actor.sheet.hunter .tab.edges .edges-list .edge,
+.dark-theme .actor.sheet.hunter .tab.edges .perks-list .edge {
+  background-color: var(--system-dark-secondary);
+  border-color: var(--system-dark-accent);
+}
+.dark-theme .actor.sheet.hunter .tab.edges .edges-list .edge .content-link,
+.dark-theme .actor.sheet.hunter .tab.edges .perks-list .edge .content-link {
+  color: var(--system-dark-primary);
+}
+.dark-theme prose-mirror button.icon.toggle {
+  color: var(--system-dark-accent);
+  background-color: var(--system-dark-primary);
 }
 .dark-theme #sidebar {
   background: url(/systems/vtm5e/assets/ui/sidebar_dark.webp) repeat;
