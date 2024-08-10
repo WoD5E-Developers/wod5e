@@ -6,10 +6,6 @@
 node_modules/
 npm-debug.log
 
-# Local Linter Configs
-/.htmlhintrc*
-/.eslintrc*
-
 # Pack files
 packs/*
 !*.db
