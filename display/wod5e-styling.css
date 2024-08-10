@@ -964,8 +964,27 @@ h3.item-name {
 }
 .actor.sheet.vampire .profile-img,
 .actor.sheet.vampire .actor-header input,
-.actor.sheet.vampire .actor-header .resource {
+.actor.sheet.vampire .actor-header .resource,
+.actor.sheet.vampire .tab.blood .resource input {
   border: 1px solid var(--vampire-primary);
+}
+.actor.sheet.vampire .tab.blood .resource {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.actor.sheet.vampire .tab.blood .resource input,
+.actor.sheet.vampire .tab.blood .resource .resource-contents {
+  background-color: #CCC;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+.actor.sheet.vampire .tab.blood .resource .resource-label {
+  font-size: 15pt;
+}
+.actor.sheet.vampire .tab.blood .resource .resource-contents:not(.prosemirror-resource) {
+  padding: 3px;
+  font-weight: bold;
 }
 .actor.sheet.vampire .sheet-banner {
   background-color: var(--vampire-primary);
@@ -1877,6 +1896,9 @@ body.uk .actor.sheet {
 }
 .wod5e .nowrap {
   flex-wrap: nowrap;
+}
+.wod5e .nogrow {
+  flex-grow: 0;
 }
 
 .item.sheet .item-header {

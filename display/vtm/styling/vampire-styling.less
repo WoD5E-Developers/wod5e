@@ -18,8 +18,31 @@
 
   .profile-img,
   .actor-header input,
-  .actor-header .resource {
+  .actor-header .resource,
+  .tab.blood .resource input {
     border: 1px solid var(--vampire-primary);
+  }
+
+  .tab.blood .resource {
+    margin-left: 10px;
+    margin-right: 10px;
+
+    input,
+    .resource-contents {
+      background-color: #CCC;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid black;
+    }
+
+    .resource-label {
+      font-size: 15pt;
+    }
+
+    .resource-contents:not(.prosemirror-resource) {
+      padding: 3px;
+      font-weight: bold;
+    }
   }
 
   .sheet-banner {
