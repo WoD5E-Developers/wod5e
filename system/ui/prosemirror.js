@@ -11,7 +11,7 @@ export const ProseMirrorSettings = async () => {
         children: [{
           action: 'wod5e-symbol',
           class: 'wod5e-symbol',
-          title: 'abcdefghijhij',
+          title: 'abcdefghij',
           mark: menu.schema.marks.span,
           attrs: {
             _preserve: {
