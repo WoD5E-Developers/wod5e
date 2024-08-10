@@ -48,9 +48,12 @@
         <div class="blood-details flexcol">
             <div class="flex-group-center nogrow">
                 <div class="flexcol resource">
-                    <label for="actor.system.humanity.value" class="resource-label field-header system-rollable remorse-roll" title="{{localize 'WOD5E.VTM.RollRemorse'}}">
-                        {{localize "WOD5E.VTM.Humanity"}}
-                    </label>
+                    <div class="system-rollable remorse-roll" title="{{localize 'WOD5E.VTM.RollRemorse'}}">
+                        <div class="resource-label field-header">
+                            {{localize "WOD5E.VTM.Humanity"}}
+                        </div>
+                        <i class="fa-solid fa-dice-d10"></i>
+                    </div>
                     {{> "systems/vtm5e/display/vtm/actors/parts/humanity.hbs"}}
                 </div>
             </div>

@@ -1,4 +1,4 @@
-/* global game, foundry */
+/* global game, foundry, renderTemplate, ChatMessage */
 
 import { WOD5eDice } from '../scripts/system-rolls.js'
 import { GhoulActorSheet } from './ghoul-actor-sheet.js'
@@ -134,6 +134,18 @@ export class VampireActorSheet extends GhoulActorSheet {
         } else {
           actor.update({ 'system.humanity.value': Math.max(humanity - 1, 0) })
           actor.update({ 'system.humanity.stains': 0 })
+
+          renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+            name: game.i18n.localize('WOD5E.VTM.RemorseFailed'),
+            img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+            description: game.i18n.format('WOD5E.VTM.RemorseFailedDescription', {
+              actor: actor.name
+            })
+          }).then(html => {
+            ChatMessage.create({
+              content: html
+            })
+          })
         }
       }
     })

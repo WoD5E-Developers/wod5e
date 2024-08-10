@@ -25,6 +25,8 @@
       "Rouse": "Rouse",
       "Frenzy": "Frenzy",
       "Remorse": "Remorse",
+      "RemorseFailed": "Remorse Failed",
+      "RemorseFailedDescription": "{actor} has failed their Remorse check. Their stains have been cleared and their humanity has been reduced by 1.",
 
       "Discipline": "Discipline",
       "Disciplines": "Disciplines",
