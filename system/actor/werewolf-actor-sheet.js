@@ -22,10 +22,6 @@ export class WerewolfActorSheet extends WoDActor {
     })
   }
 
-  constructor (actor, options) {
-    super(actor, options)
-  }
-
   /** @override */
   get template () {
     if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/display/shared/actors/limited-sheet.hbs'

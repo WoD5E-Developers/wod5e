@@ -28,10 +28,6 @@ export class GroupActorSheet extends WoDActor {
     })
   }
 
-  constructor (actor, options) {
-    super(actor, options)
-  }
-
   /** @override */
   get template () {
     // Switch-case for the sheet type to determine which template to display
