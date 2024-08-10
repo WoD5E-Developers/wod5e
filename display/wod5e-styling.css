@@ -80,7 +80,7 @@
 .actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror .editor-menu button:hover {
   background-color: var(--hunter-primary);
 }
-.actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror li.text {
+.actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror li.text:not(:has(.format)) {
   display: none;
 }
 .actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror .editor-content {
@@ -1049,9 +1049,9 @@ h3.item-name {
   max-height: 100px;
 }
 .actor.sheet.vampire .tab.disciplines .disciplines-list .discipline-description prose-mirror .editor-menu button:hover {
-  background-color: var(--vampire-primary);
+  background-color: var(--vampire-secondary);
 }
-.actor.sheet.vampire .tab.disciplines .disciplines-list .discipline-description prose-mirror li.text {
+.actor.sheet.vampire .tab.disciplines .disciplines-list .discipline-description prose-mirror li.text:not(:has(.format)) {
   display: none;
 }
 .actor.sheet.vampire .tab.disciplines .disciplines-list .discipline-description prose-mirror .editor-content {
@@ -1238,9 +1238,9 @@ h3.item-name {
   max-height: 100px;
 }
 .actor.sheet.werewolf .tab.gifts .gifts-list .gift-description prose-mirror .editor-menu button:hover {
-  background-color: var(--werewolf-primary);
+  background-color: var(--werewolf-secondary);
 }
-.actor.sheet.werewolf .tab.gifts .gifts-list .gift-description prose-mirror li.text {
+.actor.sheet.werewolf .tab.gifts .gifts-list .gift-description prose-mirror li.text:not(:has(.format)) {
   display: none;
 }
 .actor.sheet.werewolf .tab.gifts .gifts-list .gift-description prose-mirror .editor-content {

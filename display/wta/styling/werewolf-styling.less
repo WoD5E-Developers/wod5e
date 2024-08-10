@@ -94,10 +94,10 @@
 
         prose-mirror {
           .editor-menu button:hover {
-            background-color: var(--werewolf-primary);
+            background-color: var(--werewolf-secondary);
           }
 
-          li.text {
+          li.text:not(:has(.format)) {
             display: none;
           }
 

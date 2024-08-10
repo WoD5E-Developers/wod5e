@@ -124,10 +124,10 @@
 
         prose-mirror {
           .editor-menu button:hover {
-            background-color: var(--vampire-primary);
+            background-color: var(--vampire-secondary);
           }
 
-          li.text {
+          li.text:not(:has(.format)) {
             display: none;
           }
 
