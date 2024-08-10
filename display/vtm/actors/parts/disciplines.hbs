@@ -93,15 +93,9 @@
                                         <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <!-- Icon to roll the normal dice for a power -->
-                                        {{#if power.system.rollable}}
-                                            <a class="item-image power-rollable" data-id="{{power._id}}" data-use-hunger="1">
-                                                <i class="fa-solid fa-dice-d10"></i>
-                                            </a>
-                                        {{/if}}
-                                        <!-- Icon to roll the power's rouse check, if applicable -->
-                                        {{#if power.system.rouse}}
-                                            <a class="item-control item-rouse" title="{{localize 'WOD5E.VTM.RollRouse'}}" data-cost="{{discipline.cost}}">
+                                        <!-- Icon to roll a power's dicepool -->
+                                        {{#if (isNotEmpty power.system.dicepool)}}
+                                            <a class="item-image rollable-item" data-item-uuid="{{power.uuid}}">
                                                 <i class="fa-solid fa-dice-d10"></i>
                                             </a>
                                         {{/if}}

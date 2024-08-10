@@ -77,16 +77,9 @@
                                         <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <!-- Icon to roll the normal dice for a power -->
-                                        {{#if power.system.rollable}}
-                                            <a class="item-image gift-rollable" data-id="{{power._id}}">
-                                                <i class="fa-solid fa-dice-d10"></i>
-                                            </a>
-                                        {{/if}}
-                                        <!-- Icon to roll the power's rage check or willpower damage, if applicable -->
-                                        {{#if power.system.rage}}
-                                            <a class="item-control rollable" title="{{localize 'WOD5E.WTA.RollRageDamageWillpower'}}" data-disable-basic-dice="true" data-use-absolute-value="true"
-                                                data-absolute-value="{{power.system.cost}}" data-decrease-rage="true" data-label="{{localize 'WOD5E.WTA.RageDice'}}" data-willpower-damage="{{power.system.willpowercost}}">
+                                        <!-- Icon to roll the power's dicepool -->
+                                        {{#if (isNotEmpty power.system.dicepool)}}
+                                            <a class="item-control rollable-item" data-item-uuid="{{power.uuid}}">
                                                 <i class="fa-solid fa-dice-d10"></i>
                                             </a>
                                         {{/if}}
@@ -133,16 +126,9 @@
                             <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <!-- Icon to roll the normal dice for a power -->
-                            {{#if power.system.rollable}}
-                                <a class="item-image gift-rollable" data-id="{{power._id}}">
-                                    <i class="fa-solid fa-dice-d10"></i>
-                                </a>
-                            {{/if}}
-                            <!-- Icon to roll the power's rage check or willpower damage, if applicable -->
-                            {{#if power.system.rage}}
-                                <a class="item-control rollable" title="{{localize 'WOD5E.WTA.RollRageDamageWillpower'}}" data-disable-basic-dice="true" data-use-absolute-value="true"
-                                    data-absolute-value="{{power.system.cost}}" data-decrease-rage="true" data-label="{{localize 'WOD5E.WTA.RageDice'}}" data-willpower-damage="{{power.system.willpowercost}}">
+                            <!-- Icon to roll the power's dicepool -->
+                            {{#if (isNotEmpty power.system.dicepool)}}
+                                <a class="item-control rollable-item" data-item-uuid="{{power.uuid}}">
                                     <i class="fa-solid fa-dice-d10"></i>
                                 </a>
                             {{/if}}

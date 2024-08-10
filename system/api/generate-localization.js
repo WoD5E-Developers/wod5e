@@ -9,7 +9,7 @@ export const generateLocalizedLabel = (string, type) => {
   if (type === 'actortypes' || type === 'actortype') { // Actor Types
     const actortypes = WOD5E.ActorTypes.getList()
     return findLabel(actortypes, string)
-  } else if (type === 'abilities' || type === 'attribute') { // Attributes
+  } else if (type === 'attributes' || type === 'attribute') { // Attributes
     const attributes = WOD5E.Attributes.getList({})
     return findLabel(attributes, string)
   } else if (type === 'skills' || type === 'skill') { // Skills

@@ -38,21 +38,21 @@ export class WereForms {
     label: 'WOD5E.WTA.HomidName',
     nickname: 'WOD5E.WTA.HomidTitle',
     cost: 0,
-    abilities: ['Silver Immunity']
+    attributes: ['Silver Immunity']
   }
 
   static lupus = {
     label: 'WOD5E.WTA.LupusName',
     nickname: 'WOD5E.WTA.LupusTitle',
     cost: 0,
-    abilities: ['Silver Immunity', 'Social Tests: Limited to wolves and Garou']
+    attributes: ['Silver Immunity', 'Social Tests: Limited to wolves and Garou']
   }
 
   static hispo = {
     label: 'WOD5E.WTA.HispoName',
     nickname: 'WOD5E.WTA.HispoTitle',
     cost: 1,
-    abilities: [
+    attributes: [
       '(Non-Stealth) Physical Tests: +2',
       'Stealth Tests: -2',
       'Social Tests: Limited to wolves and Garou',
@@ -63,7 +63,7 @@ export class WereForms {
       {
         source: 'WOD5E.WTA.HispoName',
         value: 2,
-        paths: ['abilities.strength', 'abilities.dexterity', 'abilities.stamina'],
+        paths: ['attributes.strength', 'attributes.dexterity', 'attributes.stamina'],
         unless: ['skills.stealth'],
         activeWhen: {
           check: 'isEqual',
@@ -88,12 +88,12 @@ export class WereForms {
     label: 'WOD5E.WTA.GlabroName',
     nickname: 'WOD5E.WTA.GlabroTitle',
     cost: 1,
-    abilities: ['Physical Tests: +2', 'Social Tests: -2', 'Regenerate: 1/Rage Check'],
+    attributes: ['Physical Tests: +2', 'Social Tests: -2', 'Regenerate: 1/Rage Check'],
     bonuses: [
       {
         source: 'WOD5E.WTA.GlabroName',
         value: 2,
-        paths: ['abilities.strength', 'abilities.dexterity', 'abilities.stamina'],
+        paths: ['attributes.strength', 'attributes.dexterity', 'attributes.stamina'],
         activeWhen: {
           check: 'isEqual',
           path: 'activeForm',
@@ -103,7 +103,7 @@ export class WereForms {
       {
         source: 'WOD5E.WTA.GlabroName',
         value: -2,
-        paths: ['abilities.charisma', 'abilities.manipulation', 'abilities.composure'],
+        paths: ['attributes.charisma', 'attributes.manipulation', 'attributes.composure'],
         activeWhen: {
           check: 'isEqual',
           path: 'activeForm',
@@ -117,7 +117,7 @@ export class WereForms {
     label: 'WOD5E.WTA.CrinosName',
     nickname: 'WOD5E.WTA.CrinosTitle',
     cost: 2,
-    abilities: [
+    attributes: [
       'Frenzy Risk, 1 Willpower/turn',
       'Physical Tests: +4',
       'Health: +4',
@@ -132,7 +132,7 @@ export class WereForms {
       {
         source: 'WOD5E.WTA.CrinosName',
         value: 4,
-        paths: ['abilities.strength', 'abilities.dexterity', 'abilities.stamina'],
+        paths: ['attributes.strength', 'attributes.dexterity', 'attributes.stamina'],
         activeWhen: {
           check: 'isEqual',
           path: 'activeForm',

@@ -6,6 +6,7 @@ import { _onAddBonus, _onDeleteBonus, _onEditBonus } from './scripts/specialty-b
 import { Attributes } from '../api/def/attributes.js'
 import { Skills } from '../api/def/skills.js'
 import { WOD5eDice } from '../scripts/system-rolls.js'
+import { _onRollItem } from './scripts/item-roll.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -117,7 +118,7 @@ export class WoDActor extends ActorSheet {
 
     // Loop through each entry in the attributes list, get the data (if available), and then push to the containers
     const attributesList = Attributes.getList({})
-    const actorAttributes = actorData.system?.abilities
+    const actorAttributes = actorData.system?.attributes
 
     if (actorAttributes) {
       // Clean up non-existent attributes, such as custom ones that no longer exist
@@ -138,7 +139,7 @@ export class WoDActor extends ActorSheet {
             value: actorAttributes[id].value
           }, value)
         } else { // Otherwise, add it to the actor and set it as some default data
-          await this.actor.update({ [`system.abilities.${id}`]: { value: 1 } })
+          await this.actor.update({ [`system.attributes.${id}`]: { value: 1 } })
 
           attributeData = Object.assign({
             id,
@@ -214,6 +215,8 @@ export class WoDActor extends ActorSheet {
     for (const i of sheetData.items) {
       i.img = i.img || DEFAULT_TOKEN
 
+      i.uuid = `Actor.${this.actor._id}.Item.${i._id}`
+
       // Sort the item into its appropriate place
       if (i.type === 'equipment') {
         // Append to equipment
@@ -261,7 +264,7 @@ export class WoDActor extends ActorSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return
 
-    // Rollable abilities
+    // Rollable attributes
     html.find('.rollable').click(_onRoll.bind(this))
 
     // Lock button
@@ -271,8 +274,11 @@ export class WoDActor extends ActorSheet {
     html.find('.resource-value > .resource-value-step').click(_onDotCounterChange.bind(this))
     html.find('.resource-value > .resource-value-empty').click(_onDotCounterEmpty.bind(this))
 
-    // Add Inventory Item
+    // Create a new item on an actor sheet
     html.find('.item-create').click(this._onCreateItem.bind(this))
+
+    // Roll an item's dicepool
+    html.find('.rollable-item').click(_onRollItem.bind(this))
 
     // Edit a skill
     html.find('.edit-skill').click(this._onSkillEdit.bind(this))

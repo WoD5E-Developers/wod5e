@@ -9,6 +9,8 @@ import { MigrateLocalization2 } from './migration/migrate-localization2.js'
 import { MigrateItemImages } from './migration/migrate-item-images.js'
 import { MigrateAnimalKen } from './migration/migrate-animal-ken.js'
 import { MigrateGroupSheets } from './migration/migrate-group-sheets.js'
+import { MigrateAbilitiesToAttributes } from './migration/migrate-abilities-to-attributes.js'
+import { MigrateRolldataToDicepools } from './migration/migrate-rolldata-to-dicepools.js'
 
 let worldVersion
 
@@ -70,6 +72,14 @@ export const migrateWorld = async () => {
         // Unify Cell and Coterie sheets into one "Group" type
         const migrationIDs9 = await MigrateGroupSheets()
         updates.push(...migrationIDs9)
+
+        // Unify Cell and Coterie sheets into one "Group" type
+        const migrationIDs10 = await MigrateAbilitiesToAttributes()
+        updates.push(...migrationIDs10)
+
+        // Unify Cell and Coterie sheets into one "Group" type
+        const migrationIDs11 = await MigrateRolldataToDicepools()
+        updates.push(...migrationIDs11)
 
         // Only reload if there's 1 or more updates
         if (updates.length > 0) {

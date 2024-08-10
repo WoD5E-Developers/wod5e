@@ -160,9 +160,6 @@ export class WerewolfActorSheet extends WoDActor {
     // Add a new gift type to the sheet
     html.find('.add-gift').click(this._onAddGift.bind(this))
 
-    // Rollable gift buttons
-    html.find('.gift-rollable').click(this._onGiftRoll.bind(this))
-
     // Frenzy buttons
     html.find('.begin-frenzy').click(this._onBeginFrenzy.bind(this))
     html.find('.end-frenzy').click(this._onEndFrenzy.bind(this))
@@ -255,75 +252,6 @@ export class WerewolfActorSheet extends WoDActor {
     }, {
       classes: ['wod5e', 'werewolf-dialog', 'werewolf-sheet']
     }).render(true)
-  }
-
-  /**
-     * Handle rolling gifts
-     * @param {Event} event   The originating click event
-     * @private
-     */
-  async _onGiftRoll (event) {
-    event.preventDefault()
-
-    // Top-level variables
-    const actor = this.actor
-    const element = event.currentTarget
-    const dataset = Object.assign({}, element.dataset)
-    const item = actor.items.get(dataset.id)
-
-    // Secondary variables
-    const rageDice = Math.max(actor.system.rage.value, 0)
-    const itemRenown = item.system.renown
-    const renownValue = actor.system.renown[itemRenown].value
-    const macro = item.system.macroid
-
-    // Variables yet to be defined
-    const selectors = ['gift']
-
-    // Handle dice1 as either renown or an ability
-    const dice1 = item.system.dice1 === 'renown' ? renownValue : actor.system.abilities[item.system.dice1].value
-
-    // Add ability to selector if dice1 is not renown
-    if (item.system.dice1 !== 'renown') {
-      selectors.push(...['abilities', `abilities.${item.system.dice1}`])
-    }
-
-    // Add Renown to the list of selectors if dice1 or dice2 is renown
-    if (item.system.dice1 === 'renown' || item.system.dice2 === 'renown') {
-      selectors.push(...['renown', `renown.${itemRenown}`])
-    }
-
-    // Handle figuring out what dice2 is and push their selectors
-    let dice2
-    if (item.system.dice2 === 'renown') {
-      dice2 = renownValue
-    } else if (item.system.skill) {
-      dice2 = actor.system.skills[item.system.dice2].value
-      selectors.push(...['skills', `skills.${item.system.dice2}`])
-    } else {
-      dice2 = actor.system.abilities[item.system.dice2].value
-      selectors.push(...['abilities', `abilities.${item.system.dice2}`])
-    }
-
-    // Handle getting any situational modifiers
-    const activeBonuses = await getActiveBonuses({
-      actor,
-      selectors
-    })
-
-    // Add all values together
-    const dicePool = dice1 + dice2 + activeBonuses.totalValue
-
-    // Send the roll to the system
-    WOD5eDice.Roll({
-      basicDice: Math.max(dicePool - rageDice, 0),
-      advancedDice: Math.min(dicePool, rageDice),
-      title: item.name,
-      actor,
-      data: item.system,
-      selectors,
-      macro
-    })
   }
 
   // Handle when an actor goes into a frenzy
@@ -536,7 +464,7 @@ export class WerewolfActorSheet extends WoDActor {
     const formData = actor.system.forms[form]
     const formName = formData.name
     const formDescription = formData.description ? `<p>${formData.description}</p>` : ''
-    const formAbilities = formData.abilities
+    const formAbilities = formData.attributes
 
     // Define the chat message
     let chatMessage = `<p class="roll-label uppercase">${game.i18n.localize(formName)}</p>${formDescription}`

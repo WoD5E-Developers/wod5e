@@ -154,16 +154,16 @@ export class wod5eAPI {
               // Handle adding an attribute to the dicepool
               if (attributeSelect) {
                 // Add it to the label
-                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect, type: 'abilities' })}`
+                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect, type: 'attributes' })}`
 
                 // Add it to the value path if applicable
-                if (dataset.valuePaths) dataset.valuePaths += ` abilities.${attributeSelect}.value`
+                if (dataset.valuePaths) dataset.valuePaths += ` attributes.${attributeSelect}.value`
 
                 // If using absolute values instead of value paths, add the values together
-                if (dataset.useAbsoluteValue && dataset.absoluteValue) dataset.absoluteValue += actor.system.abilities[attributeSelect].value
+                if (dataset.useAbsoluteValue && dataset.absoluteValue) dataset.absoluteValue += actor.system.attributes[attributeSelect].value
 
                 // Add the attribute selectors to the roll
-                dataset.selectors += ` abilities abilities.${attributeSelect}`
+                dataset.selectors += ` attributes attributes.${attributeSelect}`
               }
               // Handle adding a discipline to the dicepool
               if (disciplineSelect) {
@@ -242,7 +242,8 @@ export class wod5eAPI {
     const actorData = actor.system
 
     // Secondary variables
-    const valueArray = valuePaths.split(' ')
+    // We check if we're receiving an array; if not, split it into one
+    const valueArray = valuePaths.constructor === Array ? valuePaths : valuePaths.split(' ')
     // Start with any flat modifiers or 0 if we have none
     let total = parseInt(flatMod) || 0
 

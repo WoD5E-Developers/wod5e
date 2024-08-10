@@ -144,9 +144,6 @@ export class HunterActorSheet extends WoDActor {
     // Handle adding a new edge to the sheet
     html.find('.add-edge').click(this._onAddEdge.bind(this))
 
-    // Rollable Edge perks
-    html.find('.edge-rollable').click(this._onEdgeRoll.bind(this))
-
     // Post Edge description to the chat
     html.find('.edge-chat').click(async event => {
       const data = $(event.currentTarget)[0].dataset
@@ -244,56 +241,5 @@ export class HunterActorSheet extends WoDActor {
     } else { // Set as "false"
       actor.update({ 'system.despair.value': 0 })
     }
-  }
-
-  async _onEdgeRoll (event) {
-    event.preventDefault()
-
-    // Top-level variables
-    const actor = this.actor
-    const element = event.currentTarget
-    const dataset = Object.assign({}, element.dataset)
-    const item = actor.items.get(dataset.id)
-
-    // Secondary variables
-    const edgeValue = 1
-    const macro = item.system.macroid
-
-    // Variables yet to be defined
-    let dice2
-    const selectors = []
-
-    // Determine the value of dice1
-    const dice1 = item.system.dice1 === 'edge' ? edgeValue : actor.system.abilities[item.system.dice1].value
-
-    // Determine the value of dice2
-    if (item.system.dice2 === 'edge') {
-      dice2 = edgeValue
-    } else if (item.system.skill) {
-      dice2 = actor.system.skills[item.system.dice2].value
-    } else if (item.system.amalgam) {
-      dice2 = actor.system.edges[item.system.dice2].value
-    } else {
-      dice2 = actor.system.abilities[item.system.dice2].value
-    }
-
-    // Handle getting any situational modifiers
-    const activeBonuses = await getActiveBonuses({
-      actor,
-      selectors
-    })
-
-    // Add it all together
-    const dicePool = dice1 + dice2 + activeBonuses.totalValue
-
-    // Send the roll to the system
-    WOD5eDice.Roll({
-      basicDice: dicePool,
-      actor,
-      data: item.system,
-      title: item.name,
-      selectors,
-      macro
-    })
   }
 }

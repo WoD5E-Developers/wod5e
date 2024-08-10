@@ -14,12 +14,12 @@
                 </div>
                 <div class="stats-content">
                     {{#each actor.system.attributes_list as |type key|}}
-                        <div class="abilities stats-list">
+                        <div class="attributes stats-list">
                             {{#each type as |attribute key|}}
                                 <div class="attribute">
-                                    <label for="actor.system.abilities.{{attribute.id}}.value" class="resource-label rollable" data-value-paths="abilities.{{attribute.id}}.value" data-select-dialog="true"
-                                        data-label="{{attribute.displayName}}" data-selectors="abilities abilities.{{attribute.id}}" data-attribute="{{attribute.id}}">{{attribute.displayName}}</label>
-                                    <div class="resource-value" data-value="{{attribute.value}}" data-name="system.abilities.{{attribute.id}}.value">
+                                    <label for="actor.system.attributes.{{attribute.id}}.value" class="resource-label rollable" data-value-paths="attributes.{{attribute.id}}.value" data-select-dialog="true"
+                                        data-label="{{attribute.displayName}}" data-selectors="attributes attributes.{{attribute.id}}" data-attribute="{{attribute.id}}">{{attribute.displayName}}</label>
+                                    <div class="resource-value" data-value="{{attribute.value}}" data-name="system.attributes.{{attribute.id}}.value">
                                         <span class="resource-value-empty"></span>
                                         {{#numLoop 5}}
                                             <span class="resource-value-step" data-index="{{this}}"></span>
@@ -73,10 +73,7 @@
             <ul class="items-list flex-left">
                 {{#each actor.system.customRolls as |roll id|}}
                     <li class="item flexrow" data-item-id="{{roll._id}}" draggable="true">
-                        <div class="item-image rollable" data-value-paths="abilities.{{roll.system.dice1}}.value skills.{{roll.system.dice2}}.value"
-                            data-name="{{roll.name}}" data-label="{{roll.name}}" data-use-flavor-path="true" data-flavor-path="description" data-item-id="{{roll._id}}"
-                            data-selectors="abilities abilities.{{roll.system.dice1}} skills skills.{{roll.system.dice2}}" data-skill="{{roll.system.dice2}}"
-                            data-attribute="{{roll.system.dice1}}" data-flat-mod="{{roll.system.modifier}}">
+                        <div class="item-image rollable-item" data-item-uuid="{{roll.uuid}}">
                             <img src="{{roll.img}}" title="{{roll.name}}" width="24" height="24" alt="{{roll.name}}" />
                         </div>
                         <h4 class="item-name">{{roll.name}}</h4>

@@ -117,32 +117,6 @@ export class WoDItemSheet extends ItemSheet {
     // Top-level Variables
     const item = this.item
 
-    // Rollable Checkbox Handler.
-    const rollCheckbox = document.querySelector('input[type="checkbox"][name="system.rollable"]')
-
-    if (rollCheckbox != null) {
-      rollCheckbox.addEventListener('change', () => {
-        if (rollCheckbox.checked) {
-          this.item.update({ 'system.rollable': true })
-        } else {
-          this.item.update({ 'system.rollable': false })
-        }
-      })
-    }
-
-    // Skill Checkbox Handler.
-    const skillCheckbox = document.querySelector('input[type="checkbox"][name="system.skill"]')
-
-    if (skillCheckbox != null) {
-      skillCheckbox.addEventListener('change', () => {
-        if (skillCheckbox.checked) {
-          this.item.update({ 'system.skill': true })
-        } else {
-          this.item.update({ 'system.skill': false })
-        }
-      })
-    }
-
     // Prompt the dialog to add a new bonus
     html.find('.add-bonus').click(async event => {
       _onAddBonus(event, item)

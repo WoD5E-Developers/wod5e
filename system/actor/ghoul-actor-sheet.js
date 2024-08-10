@@ -192,9 +192,6 @@ export class GhoulActorSheet extends MortalActorSheet {
         actor.update({ 'system.health.aggravated': newAggr })
       }
     })
-
-    // Rollable Vampire/Ghouls powers
-    html.find('.power-rollable').click(this._onVampireRoll.bind(this))
   }
 
   /** Handle adding a new discipline to the sheet */
@@ -254,101 +251,6 @@ export class GhoulActorSheet extends MortalActorSheet {
     }, {
       classes: ['wod5e', 'vampire-dialog', 'vampire-sheet']
     }).render(true)
-  }
-
-  async _onVampireRoll (event) {
-    event.preventDefault()
-
-    // Top-level variables
-    const actor = this.actor
-    const element = event.currentTarget
-    const dataset = Object.assign({}, element.dataset)
-    const item = actor.items.get(dataset.id)
-
-    // Secondary variables
-    const itemDiscipline = item.system.discipline
-    const hunger = actor.type === 'vampire' ? actor.system.hunger.value : 0
-    const macro = item.system.macroid
-
-    // Variables yet to be defined
-    let disciplineValue, dice1, dice2
-    const selectors = []
-
-    // Assign any rituals to use Blood Sorcery value
-    // and any ceremonies to use Oblivion value, otherwise
-    // just use the normal disciplines path and value
-    if (itemDiscipline === 'rituals') {
-      disciplineValue = actor.system.disciplines.sorcery.value
-    } else if (itemDiscipline === 'ceremonies') {
-      disciplineValue = actor.system.disciplines.oblivion.value
-    } else {
-      disciplineValue = actor.system.disciplines[itemDiscipline].value
-    }
-
-    // Handle the first set of dice and any logic that it needs
-    if (item.system.dice1 === 'discipline') {
-      dice1 = disciplineValue
-    } else {
-      dice1 = actor.system.abilities[item.system.dice1].value
-      selectors.push(...['abilities', `abilities.${item.system.dice1}`])
-    }
-
-    // If either set of dice are a discipline power, push the necessary selectors
-    if (item.system.dice1 === 'discipline' || item.system.dice2 === 'discipline') {
-      selectors.push('disciplines')
-
-      if (itemDiscipline === 'rituals') {
-        selectors.push('disciplines.sorcery')
-      } else if (itemDiscipline === 'ceremonies') {
-        selectors.push('disciplines.oblivion')
-      } else {
-        selectors.push(`disciplines.${itemDiscipline}`)
-      }
-    }
-
-    // Handle the second set of dice and logic that it needs
-    if (item.system.dice2 === 'discipline') {
-      // Use the previously declared disciplineValue
-      dice2 = disciplineValue
-    } else if (item.system.skill) {
-      // Get the skill value and push the skill selectors
-      dice2 = actor.system.skills[item.system.dice2].value
-      selectors.push(...['skills', `skills.${item.system.dice2}`])
-    } else if (item.system.amalgam) {
-      // Get the second discipline roll
-      dice2 = actor.system.disciplines[item.system.dice2].value
-
-      // Push the selector for the second discipline
-      if (item.system.dice2 === 'rituals') {
-        selectors.push('disciplines.sorcery')
-      } else if (item.system.dice2 === 'ceremonies') {
-        selectors.push('disciplines.oblivion')
-      } else {
-        selectors.push(`disciplines.${itemDiscipline}`)
-      }
-    } else {
-      // Get the ability value and push the selectors
-      dice2 = actor.system.abilities[item.system.dice2].value
-      selectors.push(...['abilities', `abilities.${item.system.dice2}`])
-    }
-
-    // Handle getting any situational modifiers
-    const activeBonuses = await getActiveBonuses({
-      actor,
-      selectors
-    })
-
-    const dicePool = dice1 + dice2 + activeBonuses.totalValue
-
-    WOD5eDice.Roll({
-      basicDice: Math.max(dicePool - hunger, 0),
-      advancedDice: Math.min(dicePool, hunger),
-      title: item.name,
-      actor,
-      data: item.system,
-      selectors,
-      macro
-    })
   }
 
   potencyToRouse (potency, level) {

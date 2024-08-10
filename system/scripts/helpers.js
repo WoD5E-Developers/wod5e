@@ -81,6 +81,11 @@ export const loadHelpers = async function () {
     return WOD5E.Skills.getList({})
   })
 
+  // Check whether an object is empty or not
+  Handlebars.registerHelper('isNotEmpty', function(obj) {
+    return Object.keys(obj).length > 0
+  })
+
   Handlebars.registerHelper('generateLocalizedLabel', function (string, type) {
     return generateLocalizedLabel(string, type)
   })

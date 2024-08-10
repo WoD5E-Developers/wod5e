@@ -49,7 +49,7 @@
           "max": 5,
           "value": 5
         },
-        "abilities": {
+        "attributes": {
           "strength": {
             "value": 1
           },
@@ -527,7 +527,7 @@
             "nickname": "WOD5E.WTA.HomidTitle",
             "cost": 0,
             "description": "",
-            "abilities": [
+            "attributes": [
               "Silver Immunity"
             ]
           },
@@ -536,7 +536,7 @@
             "nickname": "WOD5E.WTA.GlabroTitle",
             "cost": 1,
             "description": "",
-            "abilities": [
+            "attributes": [
               "Physical Tests: +2",
               "Social Tests: -2",
               "Regenerate: 1/Rage Check"
@@ -545,7 +545,7 @@
               {
                 "source": "WOD5E.WTA.GlabroName",
                 "value": 2,
-                "paths": ["abilities.strength", "abilities.dexterity", "abilities.stamina"],
+                "paths": ["attributes.strength", "attributes.dexterity", "attributes.stamina"],
                 "activeWhen": {
                   "check": "isEqual",
                   "path": "activeForm",
@@ -555,7 +555,7 @@
               {
                 "source": "WOD5E.WTA.GlabroName",
                 "value": -2,
-                "paths": ["abilities.charisma", "abilities.manipulation", "abilities.composure"],
+                "paths": ["attributes.charisma", "attributes.manipulation", "attributes.composure"],
                 "activeWhen": {
                   "check": "isEqual",
                   "path": "activeForm",
@@ -569,7 +569,7 @@
             "nickname": "WOD5E.WTA.CrinosTitle",
             "cost": 2,
             "description": "",
-            "abilities": [
+            "attributes": [
               "Frenzy Risk, 1 Willpower/turn",
               "Physical Tests: +4",
               "Health: +4",
@@ -584,7 +584,7 @@
               {
                 "source": "WOD5E.WTA.CrinosName",
                 "value": 4,
-                "paths": ["abilities.strength", "abilities.dexterity", "abilities.stamina"],
+                "paths": ["attributes.strength", "attributes.dexterity", "attributes.stamina"],
                 "activeWhen": {
                   "check": "isEqual",
                   "path": "activeForm",
@@ -598,7 +598,7 @@
             "nickname": "WOD5E.WTA.HispoTitle",
             "cost": 1,
             "description": "",
-            "abilities": [
+            "attributes": [
               "(Non-Stealth) Physical Tests: +2",
               "Stealth Tests: -2",
               "Social Tests: Limited to wolves and Garou",
@@ -609,7 +609,7 @@
               {
                 "source": "WOD5E.WTA.HispoName",
                 "value": 2,
-                "paths": ["abilities.strength", "abilities.dexterity", "abilities.stamina"],
+                "paths": ["attributes.strength", "attributes.dexterity", "attributes.stamina"],
                 "unless": ["skills.stealth"],
                 "activeWhen": {
                   "check": "isEqual",
@@ -634,7 +634,7 @@
             "nickname": "WOD5E.WTA.LupusTitle",
             "cost": 0,
             "description": "",
-            "abilities": [
+            "attributes": [
               "Silver Immunity",
               "Social Tests: Limited to wolves and Garou"
             ]
@@ -863,8 +863,7 @@
       "discipline": "rituals",
       "duration": "",
       "level": 1,
-      "dice1": "discipline",
-      "dice2": "discipline",
+      "dicepool": {},
       "cost": "",
       "rollable": false,
       "skill": false,
@@ -878,16 +877,14 @@
     },
     "customRoll": {
       "templates": ["base"],
-      "dice1": "strength",
-      "dice2": "athletics",
+      "dicepool": {},
       "modifier": 0
     },
     "perk": {
       "templates": ["base"],
       "edge": "arsenal",
       "duration": "",
-      "dice1": "edge",
-      "dice2": "edge",
+      "dicepool": {},
       "cost": "",
       "rollable": false,
       "skill": false,
@@ -911,8 +908,7 @@
       "rollable": false,
       "rage": false,
       "action": "",
-      "dice1": "strength",
-      "dice2": "strength",
+      "dicepool": {},
       "duration": "",
       "gamesystem": "werewolf"
     }

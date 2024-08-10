@@ -1,0 +1,21 @@
+<div class="tab dicepool" data-group="primary" data-tab="dicepool">
+        {{#if item.system.dicepool}}
+            <div class="resource grid grid-2col flex-center">
+                {{#each item.system.dicepool as |dice key|}}
+                    <select name="system.dicepool.{{key}}.path">
+                        {{selectOptions ../diceOptions selected=dice.path}}
+                    </select>
+                {{/each}}
+            </div>
+        {{else}}
+            <div class="flex-center">
+                No dicepools added. Click "Add Dice" to begin constructing a dicepool.
+            </div>
+        {{/if}}
+    <hr>
+    <div class="flex-center">
+        <a class="add-dice">
+            Add Dice
+        </a>
+    </div>
+</div>

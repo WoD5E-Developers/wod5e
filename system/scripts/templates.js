@@ -63,16 +63,20 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/actors/parts/group/group-members.hbs',
     'systems/vtm5e/display/shared/actors/parts/group/description.hbs',
 
-    // Item Sheet Partials
+    // Item Sheet Partials (Tabs)
+    'systems/vtm5e/display/shared/items/parts/description.hbs',
+    'systems/vtm5e/display/shared/items/parts/dicepool.hbs',
+    'systems/vtm5e/display/shared/items/parts/macro.hbs',
+    'systems/vtm5e/display/shared/items/parts/bonuses.hbs',
+    'systems/vtm5e/display/shared/items/parts/bonus-display.hbs',
+
+    // Item Sheet Partials (Dropdowns)
     'systems/vtm5e/display/shared/items/parts/skills.hbs',
     'systems/vtm5e/display/shared/items/parts/disciplines.hbs',
     'systems/vtm5e/display/shared/items/parts/edges.hbs',
     'systems/vtm5e/display/shared/items/parts/attributes.hbs',
     'systems/vtm5e/display/shared/items/parts/gifts.hbs',
     'systems/vtm5e/display/shared/items/parts/renown.hbs',
-    'systems/vtm5e/display/shared/items/parts/bonuses.hbs',
-    'systems/vtm5e/display/shared/items/parts/bonus-display.hbs',
-    'systems/vtm5e/display/shared/items/parts/macro.hbs',
 
     // Dice Tray Partials
     // 'systems/vtm5e/display/ui/parts/select-character.hbs',

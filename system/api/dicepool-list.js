@@ -12,7 +12,7 @@ export const getDicepoolList = async (document) => {
   const attributes = WOD5E.Attributes.getList({})
   for (const [key, value] of Object.entries(attributes)) {
     masterList.push({
-      value: `abilities.${key}`,
+      value: `attributes.${key}`,
       label: value.displayName,
       group: game.i18n.localize('WOD5E.AttributesList.Attributes')
     })
