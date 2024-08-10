@@ -5,6 +5,7 @@ import { ActorInfo } from './actor/actor.js'
 import { WOD5EActorDirectory } from './ui/actor-directory.js'
 import { RenderActorSidebar } from './ui/actors-sidebar.js'
 import { RenderSettings } from './ui/settings-sidebar.js'
+import { ProseMirrorSettings } from './ui/prosemirror.js'
 // Item sheets
 import { ItemInfo } from './item/item.js'
 import { WoDItemSheet } from './item/item-sheet.js'
@@ -94,6 +95,9 @@ Hooks.once('init', async function () {
 
   // Initialize the alterations to the settings sidebar
   RenderSettings()
+
+  // Initialize the alterations to ProseMirror
+  ProseMirrorSettings()
 })
 
 // Anything that needs to run once the world is ready
