@@ -22,7 +22,7 @@ export const MigrateAbilitiesToAttributes = async function () {
       await actor.update({ 'system.-=abilities': null })
 
       // Update the actor's data with the new attributes information
-      await actor.update({ 'system': actorData })
+      await actor.update({ system: actorData })
 
       // Send a notification and push the actor ID to the migration IDs list
       ui.notifications.info(`Fixing actor ${actor.name}: Migrating abilities data to attributes.`)

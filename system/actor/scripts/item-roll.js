@@ -32,7 +32,7 @@ export const _onRollItem = async function (event) {
   const decreaseRage = false
   const title = item.name
   const flavor = itemData.description
-  const flatMod =  0
+  const flatMod = 0
   const macro = itemData.macroid
   const selectors = []
 

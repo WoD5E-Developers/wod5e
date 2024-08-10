@@ -82,7 +82,7 @@ export const loadHelpers = async function () {
   })
 
   // Check whether an object is empty or not
-  Handlebars.registerHelper('isNotEmpty', function(obj) {
+  Handlebars.registerHelper('isNotEmpty', function (obj) {
     return Object.keys(obj).length > 0
   })
 

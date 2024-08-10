@@ -1,4 +1,4 @@
-/* global ui, game, WOD5E */
+/* global ui, game, WOD5E, foundry */
 
 export const MigrateRolldataToDicepools = async function () {
   const actorsList = game.actors
@@ -46,8 +46,11 @@ export const MigrateRolldataToDicepools = async function () {
         }
 
         // Remove unnecessary data
-        const { roll1, roll2, rollable, ...remainingSystem } = updatedItem.system;
-        updatedItem.system = remainingSystem;
+        const { roll1, roll2, rollable, ...remainingSystem } = updatedItem.system
+        roll1 = null
+        roll2 = null
+        rollable = null
+        updatedItem.system = remainingSystem
 
         // Push the updated item to the array
         updatedItems.push(updatedItem)
@@ -69,16 +72,16 @@ export const MigrateRolldataToDicepools = async function () {
 
     const skillsList = WOD5E.Skills.getList({})
     const attributesList = WOD5E.Attributes.getList({})
-    
+
     if (string in skillsList) {
       return `skills.${string}`
     } else if (string in attributesList) {
       return `attributes.${string}`
     } else if (string === 'discipline') {
       if (data.discipline === 'rituals') {
-        return `disciplines.sorcery`
+        return 'disciplines.sorcery'
       } else if (data.discipline === 'ceremonies') {
-        return `disciplines.oblivion`
+        return 'disciplines.oblivion'
       } else {
         return `disciplines.${data.discipline}`
       }
