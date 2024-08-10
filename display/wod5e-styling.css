@@ -625,6 +625,7 @@ prose-mirror .editor-menu button {
   text-align: center;
   border: 1px solid #000;
   background: #222;
+  text-shadow: 0 0 5px #000;
 }
 .chat-message .roll-result-label.success,
 .chat-message .roll-result-label.critical-success {
@@ -633,7 +634,7 @@ prose-mirror .editor-menu button {
 }
 .chat-message .roll-result-label.messy-critical {
   background-color: #f10808;
-  color: #c5c3c3;
+  color: #fff;
 }
 .chat-message .roll-result-label.failure,
 .chat-message .roll-result-label.critical-failure,
