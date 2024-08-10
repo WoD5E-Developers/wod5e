@@ -36,6 +36,7 @@ jobs:
       - name: Super-Linter
         uses: github/super-linter/slim@v6
         env:
+          ESLINT_USE_FLAT_CONFIG: true
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
