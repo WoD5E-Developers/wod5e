@@ -44,3 +44,5 @@ jobs:
           VALIDATE_GITLEAKS: false
           # System uses Less as a preprocessor and it doesn't play well with CSS linters
           VALIDATE_CSS: false
+          # Too many false positives
+          VALIDATE_JSON: false
