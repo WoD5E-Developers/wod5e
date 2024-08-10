@@ -18,7 +18,7 @@ export const MigrateRolldataToDicepools = async function () {
       // If the item was previously rollable, migrate the rolldata to the new format
       if (item.system?.rollable) {
         hasFixedItems = true
-        let dicepool = {}
+        const dicepool = {}
 
         if (item.system.dice1) {
           const randomID = foundry.utils.randomID(8)
@@ -46,11 +46,9 @@ export const MigrateRolldataToDicepools = async function () {
         }
 
         // Remove unnecessary data
-        const { roll1, roll2, rollable, ...remainingSystem } = updatedItem.system
-        roll1 = null
-        roll2 = null
-        rollable = null
-        updatedItem.system = remainingSystem
+        delete updatedItem.system.roll1
+        delete updatedItem.system.roll2
+        delete updatedItem.system.rollable
 
         // Push the updated item to the array
         updatedItems.push(updatedItem)
