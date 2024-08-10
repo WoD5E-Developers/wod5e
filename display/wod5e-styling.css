@@ -472,6 +472,7 @@
 .vampire-font-headers #pause figcaption {
   font-family: "vampireRevised", "sans-serif";
 }
+/* ProseMirror Alterations */
 prose-mirror .editor-menu {
   background: #333;
   height: 30px;
@@ -1439,6 +1440,14 @@ body.uk .actor.sheet {
   min-width: 850px;
   min-height: 300px;
   border-radius: 0;
+  /* Actor Header */
+  /* Collapsible Descriptions */
+  /* Power Descriptions */
+  /* Sheet Banner */
+  /* Sheet tabs */
+  /* General Resources */
+  /* Statistics Page */
+  /* Items */
 }
 .actor.sheet .window-content {
   background: url(/systems/vtm5e/assets/actor/actor_background.webp) repeat;
@@ -1449,73 +1458,6 @@ body.uk .actor.sheet {
 .actor.sheet .window-content form {
   margin-left: 45px;
 }
-/* Increase z-index of the window handle to compensate for the actor banner*/
-.window-app .window-resizable-handle {
-  z-index: 2;
-}
-/* Collapsible Descrptions */
-.actor.sheet .collapsible-content {
-  padding: 0 1em;
-}
-.actor.sheet .collapsible:hover,
-.actor.sheet .collapsible:focus {
-  cursor: pointer;
-}
-.actor.sheet .collapsible-content {
-  padding: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  font-family: Vollkorn, serif;
-  line-height: 1.6em;
-  word-spacing: 0.05em;
-  font-size: 1.1em;
-  color: hwb(0deg 7% 98% / 100%);
-  background: #eeece8;
-}
-.actor.sheet .discipline-description,
-.actor.sheet .edge-description,
-.actor.sheet .gift-description {
-  width: 100%;
-  resize: none;
-  font-family: Vollkorn, serif;
-  line-height: 1.6em;
-  word-spacing: 0.05em;
-  font-size: 1em;
-  border: 0;
-  height: auto;
-  font-weight: 500;
-  margin-bottom: -8px;
-}
-/* Sheet Banner */
-.actor.sheet .sheet-banner {
-  text-align: center;
-  margin: -10px -10px 5px;
-  background-color: var(--system-primary);
-  font-size: 14pt;
-  padding: 3px;
-  position: absolute;
-  bottom: -6px;
-  width: 100%;
-  left: 10px;
-  z-index: 1;
-  justify-content: center;
-}
-.vampire-font-headers .actor.sheet .sheet-banner {
-  font-family: "vampireRevised", "sans-serif";
-}
-.actor.sheet .sheet-banner .actor-type-field {
-  text-align: left;
-  padding-left: 5px;
-}
-.actor.sheet .sheet-banner .actor-type-field select {
-  background-color: #CCC;
-}
-.actor.sheet .sheet-banner .sheet-label {
-  text-align: right;
-  padding-right: 5px;
-}
-/* Actor Header */
 .actor.sheet .actor-header {
   display: flex;
   flex-direction: row;
@@ -1531,56 +1473,6 @@ body.uk .actor.sheet {
 .actor.sheet .actor-header input,
 .actor.sheet .actor-header .resource {
   background-color: #CCC;
-}
-.actor.sheet .header-profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-  min-width: 315px;
-}
-.actor.sheet .header-profile-img {
-  margin-bottom: 10px;
-  max-width: 100px;
-}
-.actor.sheet .charname input {
-  width: 100%;
-  text-align: center;
-  height: 34px;
-}
-.actor.sheet .header-fields {
-  display: flex;
-  width: 100%;
-  align-self: flex-end;
-  align-self: center;
-}
-.actor.sheet .header-fields-left,
-.header-fields-right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.actor.sheet .header-fields-left {
-  flex: 1;
-  padding-right: 10px;
-}
-.actor.sheet .header-fields-right {
-  flex: 1;
-  padding-left: 10px;
-}
-.actor.sheet .actor-header .field-section {
-  margin-bottom: 5px;
-}
-.actor.sheet .actor-header .header-fields-left .field-section {
-  margin-bottom: 5px;
-  width: 200px;
-}
-.actor.sheet .actor-header .header-fields-right .field-section {
-  margin-bottom: 5px;
-  width: 250px;
-}
-.actor.sheet .actor-header input,
-.actor.sheet .actor-header .resource {
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
@@ -1590,10 +1482,108 @@ body.uk .actor.sheet {
   min-height: 26px;
   border-radius: 0;
 }
+.actor.sheet .actor-header .header-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  min-width: 315px;
+}
+.actor.sheet .actor-header .header-profile-img {
+  margin-bottom: 10px;
+  max-width: 100px;
+}
+.actor.sheet .actor-header .charname input {
+  width: 100%;
+  text-align: center;
+  height: 34px;
+}
+.actor.sheet .actor-header .header-fields {
+  display: flex;
+  width: 100%;
+  align-self: flex-end;
+  align-self: center;
+}
+.actor.sheet .actor-header .header-fields .header-fields-left,
+.actor.sheet .actor-header .header-fields .header-fields-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.actor.sheet .actor-header .header-fields .header-fields-left {
+  flex: 1;
+  padding-right: 10px;
+}
+.actor.sheet .actor-header .header-fields .header-fields-left .field-section {
+  margin-bottom: 5px;
+  width: 200px;
+}
+.actor.sheet .actor-header .header-fields .header-fields-right {
+  flex: 1;
+  padding-left: 10px;
+}
+.actor.sheet .actor-header .header-fields .header-fields-right .field-section {
+  margin-bottom: 5px;
+  width: 250px;
+}
 .actor.sheet .actor-header .field-header {
   color: #FFF;
   justify-content: center;
   margin-bottom: 0;
+}
+.actor.sheet .collapsible-content {
+  padding: 0 1em;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  font-family: Vollkorn, serif;
+  line-height: 1.6em;
+  word-spacing: 0.05em;
+  font-size: 1.1em;
+  color: hwb(0deg 7% 98% / 100%);
+  background: #eeece8;
+}
+.actor.sheet .collapsible:hover,
+.actor.sheet .collapsible:focus {
+  cursor: pointer;
+}
+.actor.sheet .discipline-description,
+.actor.sheet .edge-description,
+.actor.sheet .gift-description {
+  width: 100%;
+  resize: none;
+  font-family: Vollkorn, serif;
+  line-height: 1.6em;
+  word-spacing: 0.05em;
+  font-size: 1em;
+  border: 0;
+  height: auto;
+  font-weight: 500;
+  margin-bottom: -8px;
+}
+.actor.sheet .sheet-banner {
+  text-align: center;
+  margin: -10px -10px 5px;
+  background-color: var(--system-primary);
+  font-size: 14pt;
+  padding: 3px;
+  position: absolute;
+  bottom: -6px;
+  width: 100%;
+  left: 10px;
+  z-index: 1;
+  justify-content: center;
+}
+.actor.sheet .sheet-banner .actor-type-field {
+  text-align: left;
+  padding-left: 5px;
+}
+.actor.sheet .sheet-banner .actor-type-field select {
+  background-color: #CCC;
+}
+.actor.sheet .sheet-banner .sheet-label {
+  text-align: right;
+  padding-right: 5px;
 }
 .actor.sheet .resource-plus,
 .actor.sheet .resource-minus {
@@ -1615,7 +1605,6 @@ body.uk .actor.sheet {
 .actor.sheet .lock-btn i {
   margin: auto;
 }
-/* Sheet tabs */
 .actor.sheet .sheet-body {
   padding: 8px;
 }
@@ -1658,7 +1647,6 @@ body.uk .actor.sheet {
 .actor.sheet .sheet-tabs > [data-tab] .navicon .wod5e-symbol {
   width: 100%;
 }
-/* General Resources */
 .actor.sheet .resource-header {
   display: block;
   font-weight: 200;
@@ -1670,21 +1658,12 @@ body.uk .actor.sheet {
   margin-right: auto;
   text-wrap: nowrap;
 }
-.vampire-font-headers .actor.sheet .field-header,
-.vampire-font-headers .actor.sheet .resource-header {
-  font-family: "vampireRevised", "sans-serif";
-}
-.actor.sheet.locked .resource-label {
-  padding-left: 20px;
-  padding-right: 20px;
-}
 .actor.sheet .rollable:hover,
 .actor.sheet .rollable-item:hover,
 .actor.sheet .system-rollable:hover {
   cursor: pointer;
   text-shadow: 0 0 5px #e02b2b;
 }
-/* Statistics Page */
 .actor.sheet .stats-container {
   display: flex;
   flex-flow: column;
@@ -1692,14 +1671,14 @@ body.uk .actor.sheet {
   border: 2px solid #1b1b1b;
   margin: 5px;
 }
-.actor.sheet .stats-list {
+.actor.sheet .stats-container .stats-list {
   display: flex;
   flex-flow: column;
   flex-grow: 1;
   flex-shrink: 0;
 }
-.actor.sheet .attribute,
-.actor.sheet .skill {
+.actor.sheet .stats-container .stats-list .attribute,
+.actor.sheet .stats-container .stats-list .skill {
   display: flex;
   justify-content: space-between;
   margin-left: 20px;
@@ -1716,9 +1695,6 @@ body.uk .actor.sheet {
   font-size: 10pt;
   font-weight: bold;
   cursor: pointer;
-}
-.vampire-font-headers .actor.sheet .specialty {
-  font-family: "vampireRevised", "sans-serif";
 }
 .actor.sheet .stats-content {
   display: flex;
@@ -1745,6 +1721,19 @@ body.uk .actor.sheet {
   text-align-last: right;
   max-width: 30px;
 }
+.actor.sheet .stats-content .edit-skill {
+  margin-left: -15px;
+}
+.actor.sheet .stats-content .stats-container .stats-footer {
+  background-color: #CCC;
+  text-align: center;
+}
+.actor.sheet .stats-content .stats-container.attributes .stats-footer {
+  border-bottom: 1px solid black;
+}
+.actor.sheet .stats-content .stats-container.skills .stats-footer {
+  border-top: 1px solid black;
+}
 @media (max-width: 600px) {
   .actor.sheet .stats-content {
     flex-direction: column;
@@ -1753,37 +1742,16 @@ body.uk .actor.sheet {
     margin-top: 10px;
   }
 }
-.actor.sheet .edit-skill {
-  margin-left: -15px;
-}
-.actor.sheet .stats-container .stats-footer {
-  background-color: #CCC;
-  text-align: center;
-}
-.actor.sheet .stats-container.attributes .stats-footer {
-  border-bottom: 1px solid black;
-}
-.actor.sheet .stats-container.skills .stats-footer {
-  border-top: 1px solid black;
-}
-/* Items */
 .actor.sheet .item-header {
   font-size: 16pt;
   font-weight: bold;
 }
-.vampire-font-headers .actor.sheet .item-header {
-  font-family: "vampireRevised", "sans-serif";
-}
-/* Powers */
 .actor.sheet .items-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.actor.sheet .item-header .item-controls {
-  text-align-last: right;
-}
-.items-list .item-header {
+.actor.sheet .items-list .item-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1793,28 +1761,13 @@ body.uk .actor.sheet {
   border-radius: 5px;
   margin-bottom: 10px;
 }
-.actor.sheet .items-list .edge-description {
-  margin: 10px 0;
-}
 .actor.sheet .items-list .list-contents {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.actor.sheet .item-card {
-  position: relative;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-.actor.sheet .item-card .item-content {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.actor.sheet .item-header .item-controls {
+  text-align-last: right;
 }
 .actor.sheet .item-image img {
   border-radius: 50%;
@@ -1822,27 +1775,30 @@ body.uk .actor.sheet {
   padding: 2px;
   max-width: 25px;
 }
-.actor.sheet .item-card .item-name {
-  flex-grow: 1;
-  margin-left: 10px;
-  font-size: 1.1em;
-  font-weight: bold;
+/* Increase z-index of the window handle to compensate for the actor banner*/
+.window-app .window-resizable-handle {
+  z-index: 2;
 }
-.actor.sheet .item-card .item-controls {
-  display: flex;
-  gap: 5px;
+/* Vampire Font in the sheet banners */
+.vampire-font-headers .actor.sheet .sheet-banner {
+  font-family: "vampireRevised", "sans-serif";
 }
-.actor.sheet .item-card .item-controls a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 5px;
-  border-radius: 50%;
-  transition: background-color 0.3s;
+/* Vampire Font in the headers */
+.vampire-font-headers .actor.sheet .field-header,
+.vampire-font-headers .actor.sheet .resource-header {
+  font-family: "vampireRevised", "sans-serif";
 }
-.actor.sheet .item-card .item-controls a:hover {
-  background-color: #ddd;
+.vampire-font-headers .actor.sheet .item-header {
+  font-family: "vampireRevised", "sans-serif";
+}
+/* Vampire Font for specialties */
+.vampire-font-headers .specialty {
+  font-family: "vampireRevised", "sans-serif";
+}
+/* When the sheet is locked, adjust padding of resource labels */
+.actor.sheet.locked .resource-label {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /* Grids */
