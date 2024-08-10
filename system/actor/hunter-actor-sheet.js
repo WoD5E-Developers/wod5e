@@ -22,8 +22,6 @@ export class HunterActorSheet extends WoDActor {
 
   constructor (actor, options) {
     super(actor, options)
-    this.isCharacter = true
-    this.hasBoons = false
     this.despairActive = false
   }
 

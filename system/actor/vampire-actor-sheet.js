@@ -24,7 +24,7 @@ export class VampireActorSheet extends GhoulActorSheet {
 
   constructor (actor, options) {
     super(actor, options)
-    this.isCharacter = true
+    this.hasBoons = true
   }
 
   /** @override */

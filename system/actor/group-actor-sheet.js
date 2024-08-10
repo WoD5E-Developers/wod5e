@@ -30,8 +30,6 @@ export class GroupActorSheet extends WoDActor {
 
   constructor (actor, options) {
     super(actor, options)
-
-    this.isCharacter = false
   }
 
   /** @override */
@@ -91,9 +89,6 @@ export class GroupActorSheet extends WoDActor {
 
     // Prepare items
     await this._prepareItems(data)
-
-    // Show boons on the sheet
-    data.hasBoons = this.hasBoons
 
     // Make a list of group members
     data.groupMembers = []

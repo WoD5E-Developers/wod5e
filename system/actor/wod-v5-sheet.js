@@ -49,6 +49,7 @@ export class WoDActor extends ActorSheet {
     const data = await super.getData()
     const actorData = this.object.system
     data.isCharacter = this.isCharacter
+    data.hasBoons = this.hasBoons
     data.locked = actorData.locked
 
     if (this.object.type !== 'group') {

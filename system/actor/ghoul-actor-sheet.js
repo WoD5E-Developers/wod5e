@@ -28,6 +28,11 @@ export class GhoulActorSheet extends MortalActorSheet {
     return 'systems/vtm5e/display/vtm/actors/ghoul-sheet.hbs'
   }
 
+  constructor (actor, options) {
+    super(actor, options)
+    this.hasBoons = true
+  }
+
   /* -------------------------------------------- */
 
   /** @override */

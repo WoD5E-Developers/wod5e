@@ -25,9 +25,7 @@ export class SPCActorSheet extends WoDActor {
 
   constructor (actor, options) {
     super(actor, options)
-    this.isCharacter = true
     this.hunger = false
-    this.hasBoons = true
   }
 
   /** @override */

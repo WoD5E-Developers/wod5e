@@ -23,8 +23,6 @@ export class MortalActorSheet extends WoDActor {
 
   constructor (actor, options) {
     super(actor, options)
-    this.isCharacter = true
-    this.hasBoons = true
   }
 
   /** @override */
