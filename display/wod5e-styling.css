@@ -1676,17 +1676,13 @@ body.uk .actor.sheet {
   flex-flow: column;
   flex-grow: 1;
   flex-shrink: 0;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .actor.sheet .stats-container .stats-list .attribute,
 .actor.sheet .stats-container .stats-list .skill {
   display: flex;
   justify-content: space-between;
-  margin-left: 20px;
-}
-.actor.sheet form:not(.locked) .attribute .resource-label,
-.actor.sheet form:not(.locked) .skill .resource-label {
-  padding-left: 15px;
-  padding-right: 15px;
 }
 .actor.sheet .specialty {
   position: relative;
@@ -1723,6 +1719,7 @@ body.uk .actor.sheet {
 }
 .actor.sheet .stats-content .edit-skill {
   margin-left: -15px;
+  position: absolute;
 }
 .actor.sheet .stats-content .stats-container .stats-footer {
   background-color: #CCC;
@@ -1794,11 +1791,6 @@ body.uk .actor.sheet {
 /* Vampire Font for specialties */
 .vampire-font-headers .specialty {
   font-family: "vampireRevised", "sans-serif";
-}
-/* When the sheet is locked, adjust padding of resource labels */
-.actor.sheet.locked .resource-label {
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 /* Grids */
@@ -1986,6 +1978,7 @@ body.uk .actor.sheet {
 }
 .actor.sheet .resource-value-empty {
   margin-left: -16px;
+  position: absolute;
 }
 
 /* Variables */

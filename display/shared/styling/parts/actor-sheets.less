@@ -275,21 +275,14 @@
       flex-flow: column;
       flex-grow: 1;
       flex-shrink: 0;
+      padding-left: 15px;
+      padding-right: 15px;
 
       .attribute,
       .skill {
         display: flex;
         justify-content: space-between;
-        margin-left: 20px;
       }
-    }
-  }
-
-  form:not(.locked) {
-    .attribute .resource-label,
-    .skill .resource-label{
-      padding-left: 15px;
-      padding-right: 15px;
     }
   }
 
@@ -336,6 +329,7 @@
 
     .edit-skill {
       margin-left: -15px;
+      position: absolute;
     }
 
     .stats-container {
@@ -427,10 +421,4 @@
 /* Vampire Font for specialties */
 .vampire-font-headers .specialty {
   font-family: "vampireRevised", "sans-serif";
-}
-
-/* When the sheet is locked, adjust padding of resource labels */
-.actor.sheet.locked .resource-label {
-  padding-left: 20px;
-  padding-right: 20px;
 }
