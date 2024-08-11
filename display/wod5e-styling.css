@@ -1282,17 +1282,22 @@ h3.item-name {
   border: 1px solid var(--werewolf-secondary);
 }
 /* Balance Trackers */
-.actor.sheet .resource.balance {
-  flex-direction: row;
+.balance-trackers {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
 }
-.actor.sheet .resource.balance .resource-value-empty {
-  margin-left: 0;
+.balance-trackers .field-header {
+  font-size: 16pt;
 }
-.actor.sheet .resource.balance .harano {
-  margin-right: auto;
+.balance-trackers .wolf-resource {
+  max-width: 200px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
-.actor.sheet .resource.balance .hauglosk {
-  margin-left: auto;
+.balance-trackers .wolf-resource .resource-value {
+  align-self: center;
+  padding: 3px;
 }
 .vampire-font-headers .werewolf-button,
 .vampire-font-headers .garou-forms-label,

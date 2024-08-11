@@ -257,19 +257,24 @@
 }
 
 /* Balance Trackers */
-.actor.sheet .resource.balance {
-  flex-direction: row;
+.balance-trackers {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
 
-  .resource-value-empty {
-    margin-left: 0;
+  .field-header {
+    font-size: 16pt;
   }
 
-  .harano {
-    margin-right: auto;
-  }
+  .wolf-resource {
+    max-width: 200px;
+    margin-left: 30px;
+    margin-right: 30px;
 
-  .hauglosk {
-    margin-left: auto;
+    .resource-value {
+      align-self: center;
+      padding: 3px;
+    }
   }
 }
 
