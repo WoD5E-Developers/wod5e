@@ -1,62 +1,48 @@
 <div class="tab biography" data-group="primary" data-tab="biography">
-    {{#ifeq actor.system.gamesystem 'hunter'}}
-        <div>
-            <div class="flex-group-left">
-                <div class="flex-center">
+    <div class="flexrow">
+        <div class="detailed-section flexcol">
+            These are where inputs go.
+        </div>
+        <div class="descriptive-section flexcol">
+            <div>
+                <div class="flex-center field-header">
+                    <label class="resource-label">{{localize "WOD5E.BiographyList.Label"}}</label>
+                </div>
+                <div class="description-content resource">
+                    <prose-mirror name="system.biography" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.biography}}" toggled="true">
+                        {{{enrichedBiography}}}
+                    </prose-mirror>
+                </div>
+            </div>
+            <div>
+                <div class="flex-center field-header">
+                    <label class="resource-label">{{localize "WOD5E.BiographyList.Appearance"}}</label>
+                </div>
+                <div class="description-content resource">
+                    <prose-mirror name="system.appearance" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.appearance}}" toggled="true">
+                        {{{enrichedAppearance}}}
+                    </prose-mirror>
+                </div>
+            </div>
+            <div>
+                <div class="flex-center field-header">
                     <label class="resource-label">{{localize "WOD5E.BiographyList.TouchstonesAndConvictions"}}</label>
                 </div>
-                <div class="description-content">
+                <div class="description-content resource">
                     <prose-mirror name="system.headers.touchstones" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.headers.touchstones}}" toggled="true">
                         {{{enrichedTouchstones}}}
                     </prose-mirror>
                 </div>
             </div>
-        </div>
-    {{else}}
-        <div class="resource flexrow grid grid-2col" style="min-height: 264px;">
-            <div class="flex-group-left">
-                <div class="flex-center">
-                    <label class="resource-label">{{localize "WOD5E.BiographyList.TouchstonesAndConvictions"}}</label>
+            <div>
+                <div class="flex-center field-header">
+                    <label class="resource-label">{{localize "WOD5E.BiographyList.ChronicleTenets"}}</label>
                 </div>
-                <div class="description-content">
-                    <prose-mirror name="system.headers.touchstones" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.headers.touchstones}}" toggled="true">
-                        {{{enrichedTouchstones}}}
+                <div class="description-content resource">
+                    <prose-mirror name="system.headers.tenets" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.headers.tenets}}" toggled="true">
+                        {{{enrichedTenets}}}
                     </prose-mirror>
                 </div>
-            </div>
-        </div>
-    {{/ifeq}}
-    <div>
-        <div class="flex-group-left">
-            <div class="flex-center">
-                <label class="resource-label field-header">{{localize "WOD5E.BiographyList.ChronicleTenets"}}</label>
-            </div>
-            <div class="description-content resource">
-                <prose-mirror name="system.headers.tenets" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.headers.tenets}}" toggled="true">
-                    {{{enrichedTenets}}}
-                </prose-mirror>
-            </div>
-        </div>
-    </div>
-    <div class="resource flexrow grid grid-2col" style="min-height: 264px;"> 
-        <div class="flex-group-left">
-            <div class="flex-center">
-                <label class="resource-label">{{localize "WOD5E.BiographyList.Label"}}</label>
-            </div>
-            <div class="description-content">
-                <prose-mirror name="system.biography" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.biography}}" toggled="true">
-                    {{{enrichedBiography}}}
-                </prose-mirror>
-            </div>
-        </div>
-        <div class="flex-group-left">
-            <div class="flex-center">
-                <label class="resource-label">{{localize "WOD5E.BiographyList.Appearance"}}</label>
-            </div>
-            <div class="description-content">
-                <prose-mirror name="system.appearance" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.appearance}}" toggled="true">
-                    {{{enrichedAppearance}}}
-                </prose-mirror>
             </div>
         </div>
     </div>
