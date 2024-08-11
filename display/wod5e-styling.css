@@ -85,24 +85,7 @@
 }
 .actor.sheet.hunter .tab.edges .edges-list .edge-description {
   max-height: 150px;
-}
-.actor.sheet.hunter .tab.edges .edges-list .edge-description {
   margin-bottom: 5px;
-}
-.actor.sheet.hunter .tab.edges .perks-list {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 400px;
-}
-.actor.sheet.hunter .tab.edges .perks-list .item-name {
-  text-wrap: nowrap;
-}
-.actor.sheet.hunter .tab.edges .perks-list .item-description {
-  margin-left: 10px;
-  margin-right: 10px;
 }
 .actor.sheet.hunter .tab.edges .perks-list .edge .edge-pools {
   border-top: 1px solid black;
@@ -120,23 +103,6 @@
 }
 .actor.sheet.hunter .tab.edges .perks-list .edge .add-edge-pool:hover {
   cursor: pointer;
-}
-.actor.sheet.hunter .tab.edges .perks-list .perk .item-image {
-  flex-grow: 0;
-}
-.actor.sheet.hunter .tab.edges .perks-list .perk .item-name {
-  text-align: left;
-  padding: 3px;
-  margin-left: 10px;
-  text-overflow: ellipsis;
-  overflow-x: hidden;
-}
-.actor.sheet.hunter .tab.edges .perks-list .perk .item-controls {
-  text-align: right;
-  display: contents;
-}
-.actor.sheet.hunter .tab.edges .perks-list .perk .item-controls .item-control {
-  margin-left: 3px;
 }
 /* All Sheets with the Hunter styling, including itemsheets */
 .sheet.hunter {
@@ -1057,41 +1023,7 @@ h3.item-name {
 }
 .actor.sheet.vampire .tab.disciplines .disciplines-list .discipline-description {
   max-height: 100px;
-}
-.actor.sheet.vampire .tab.disciplines .disciplines-list .discipline-description {
   margin-bottom: 5px;
-}
-.actor.sheet.vampire .tab.disciplines .powers-list {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 400px;
-}
-.actor.sheet.vampire .tab.disciplines .powers-list .item-name {
-  text-wrap: nowrap;
-}
-.actor.sheet.vampire .tab.disciplines .powers-list .item-description {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.actor.sheet.vampire .tab.disciplines .powers-list .power .item-image {
-  flex-grow: 0;
-}
-.actor.sheet.vampire .tab.disciplines .powers-list .power .item-name {
-  text-align: left;
-  padding: 3px;
-  margin-left: 10px;
-  text-overflow: ellipsis;
-  overflow-x: hidden;
-}
-.actor.sheet.vampire .tab.disciplines .powers-list .power .item-controls {
-  text-align: right;
-  display: contents;
-}
-.actor.sheet.vampire .tab.disciplines .powers-list .power .item-controls .item-control {
-  margin-left: 3px;
 }
 /* All Sheets with the Vampire styling, including itemsheets */
 .sheet.vampire {
@@ -1246,41 +1178,7 @@ h3.item-name {
 }
 .actor.sheet.werewolf .tab.gifts .gifts-list .gift-description {
   max-height: 100px;
-}
-.actor.sheet.werewolf .tab.gifts .gifts-list .gift-description {
   margin-bottom: 5px;
-}
-.actor.sheet.werewolf .tab.gifts .powers-list {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 400px;
-}
-.actor.sheet.werewolf .tab.gifts .powers-list .item-name {
-  text-wrap: nowrap;
-}
-.actor.sheet.werewolf .tab.gifts .powers-list .item-description {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.actor.sheet.werewolf .tab.gifts .powers-list .power .item-image {
-  flex-grow: 0;
-}
-.actor.sheet.werewolf .tab.gifts .powers-list .power .item-name {
-  text-align: left;
-  padding: 3px;
-  margin-left: 10px;
-  text-overflow: ellipsis;
-  overflow-x: hidden;
-}
-.actor.sheet.werewolf .tab.gifts .powers-list .power .item-controls {
-  text-align: right;
-  display: contents;
-}
-.actor.sheet.werewolf .tab.gifts .powers-list .power .item-controls .item-control {
-  margin-left: 3px;
 }
 .actor.sheet.werewolf .tab.wolf .resource input,
 .actor.sheet.werewolf .tab.wolf .resource .resource-contents,
@@ -1460,6 +1358,7 @@ body.uk .actor.sheet {
   /* Power Descriptions */
   /* Sheet Banner */
   /* Sheet tabs */
+  /* Basic Item List Layout */
   /* General Resources */
   /* Statistics Page */
   /* Items */
@@ -1661,6 +1560,38 @@ body.uk .actor.sheet {
 .actor.sheet .sheet-tabs > [data-tab] .navicon i,
 .actor.sheet .sheet-tabs > [data-tab] .navicon .wod5e-symbol {
   width: 100%;
+}
+.actor.sheet .item-list {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
+}
+.actor.sheet .item-list .item-name {
+  text-wrap: nowrap;
+}
+.actor.sheet .item-list .item-description {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.actor.sheet .item-list .item .item-image {
+  flex-grow: 0;
+}
+.actor.sheet .item-list .item .item-name {
+  text-align: left;
+  padding: 3px;
+  margin-left: 10px;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+.actor.sheet .item-list .item .item-controls {
+  text-align: right;
+  display: contents;
+}
+.actor.sheet .item-list .item .item-controls .item-control {
+  margin-left: 3px;
 }
 .actor.sheet .resource-header {
   display: block;
