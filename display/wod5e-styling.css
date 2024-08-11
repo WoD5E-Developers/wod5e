@@ -62,14 +62,9 @@
 .actor.sheet.hunter .item-image img {
   background: var(--ui-background-hunter-texture);
 }
-.actor.sheet.hunter .tab.edges .edges-list .edge,
 .actor.sheet.hunter .tab.edges .perks-list .edge {
-  display: flex;
-  flex-flow: column;
-  background-color: #ededec;
-  border: 2px solid #1b1b1b;
-  margin: 5px;
-  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .actor.sheet.hunter .tab.edges .edges-list {
   display: flex;
@@ -993,14 +988,9 @@ h3.item-name {
 .actor.sheet.vampire .item-image img {
   background: var(--ui-background-vampire-texture);
 }
-.actor.sheet.vampire .tab.disciplines .disciplines-list .discipline,
 .actor.sheet.vampire .tab.disciplines .powers-list .discipline {
-  display: flex;
-  flex-flow: column;
-  background-color: #ededec;
-  border: 2px solid #1b1b1b;
-  margin: 5px;
-  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .actor.sheet.vampire .tab.disciplines .disciplines-list {
   display: flex;
@@ -1149,14 +1139,9 @@ h3.item-name {
 .actor.sheet.werewolf .item-image img {
   background: var(--ui-background-vampire-texture);
 }
-.actor.sheet.werewolf .tab.gifts .gifts-list .gift,
 .actor.sheet.werewolf .tab.gifts .powers-list .gift {
-  display: flex;
-  flex-flow: column;
-  background-color: #ededec;
-  border: 2px solid #1b1b1b;
-  margin: 5px;
-  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .actor.sheet.werewolf .tab.gifts .gifts-list {
   display: flex;
@@ -1359,9 +1344,9 @@ body.uk .actor.sheet {
   /* Sheet Banner */
   /* Sheet tabs */
   /* Basic Item List Layout */
+  /* Apply these to all "items," even ones not in "item-list"s */
   /* General Resources */
   /* Statistics Page */
-  /* Items */
 }
 .actor.sheet .window-content {
   background: url(/systems/vtm5e/assets/actor/actor_background.webp) repeat;
@@ -1561,37 +1546,67 @@ body.uk .actor.sheet {
 .actor.sheet .sheet-tabs > [data-tab] .navicon .wod5e-symbol {
   width: 100%;
 }
-.actor.sheet .item-list {
+.actor.sheet .item-list .category {
+  background-color: #ededec;
+  border: 2px solid #1b1b1b;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   margin-left: auto;
   margin-right: auto;
   max-width: 400px;
+  margin: 5px;
+  padding: 5px;
 }
-.actor.sheet .item-list .item-name {
-  text-wrap: nowrap;
-}
-.actor.sheet .item-list .item-description {
+.actor.sheet .item-list .category .item-description {
   margin-left: 10px;
   margin-right: 10px;
 }
-.actor.sheet .item-list .item .item-image {
+.actor.sheet .item-list .category .item .item-image {
   flex-grow: 0;
 }
-.actor.sheet .item-list .item .item-name {
+.actor.sheet .item-list .category .item .item-image img {
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  padding: 2px;
+  max-width: 25px;
+}
+.actor.sheet .item-list .category .item .item-header {
+  font-size: 16pt;
+  font-weight: bold;
+}
+.actor.sheet .item-list .category .item .item-header .item-controls {
+  text-align-last: right;
+}
+.actor.sheet .item-list .category .item .item-name {
   text-align: left;
   padding: 3px;
   margin-left: 10px;
   text-overflow: ellipsis;
   overflow-x: hidden;
 }
-.actor.sheet .item-list .item .item-controls {
+.actor.sheet .item-list .category .item .item-controls {
   text-align: right;
   display: contents;
 }
-.actor.sheet .item-list .item .item-controls .item-control {
+.actor.sheet .item-list .category .item .item-controls .item-control {
   margin-left: 3px;
+}
+.actor.sheet .item-header {
+  font-size: 16pt;
+  font-weight: bold;
+}
+.actor.sheet .item-header .item-controls {
+  text-align-last: right;
+}
+.actor.sheet .item-name {
+  text-wrap: nowrap;
+}
+.actor.sheet .item-image img {
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  padding: 2px;
+  max-width: 25px;
 }
 .actor.sheet .resource-header {
   display: block;
@@ -1684,39 +1699,6 @@ body.uk .actor.sheet {
   .actor.sheet .stats-content > .custom-rolls {
     margin-top: 10px;
   }
-}
-.actor.sheet .item-header {
-  font-size: 16pt;
-  font-weight: bold;
-}
-.actor.sheet .items-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.actor.sheet .items-list .item-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-.actor.sheet .items-list .list-contents {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.actor.sheet .item-header .item-controls {
-  text-align-last: right;
-}
-.actor.sheet .item-image img {
-  border-radius: 50%;
-  border: 1px solid #ddd;
-  padding: 2px;
-  max-width: 25px;
 }
 /* Increase z-index of the window handle to compensate for the actor banner*/
 .window-app .window-resizable-handle {
@@ -2002,6 +1984,10 @@ body.uk .actor.sheet {
   background: #777777;
   border: 1px solid var(--system-dark-primary);
 }
+.dark-theme .actor.sheet .item-list .item {
+  background-color: var(--system-dark-secondary);
+  border-color: var(--system-dark-accent);
+}
 .dark-theme .actor.sheet .resource-value .resource-value-step:not(.active) {
   background-color: var(--system-dark-tertiary);
 }
@@ -2018,6 +2004,13 @@ body.uk .actor.sheet {
 .dark-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%);
 }
+.dark-theme .actor.sheet .item-list .category {
+  background-color: var(--system-dark-secondary);
+  border-color: var(--system-dark-accent);
+}
+.dark-theme .actor.sheet .item-list .category .content-link {
+  color: var(--system-dark-primary);
+}
 .dark-theme .item.sheet .window-content,
 .dark-theme .dialog .window-content {
   background: var(--system-dark-secondary);
@@ -2029,11 +2022,6 @@ body.uk .actor.sheet {
 .dark-theme .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
 .dark-theme .actor.sheet.vampire .tabs-container .item[data-tab="blood"] {
   color: #ff0000;
-}
-.dark-theme .actor.sheet.vampire .tab.disciplines .disciplines-list .discipline,
-.dark-theme .actor.sheet.vampire .tab.disciplines .powers-list .discipline {
-  background-color: var(--system-dark-secondary);
-  border-color: var(--system-dark-accent);
 }
 .dark-theme .actor.sheet.vampire .tab.blood .resource input,
 .dark-theme .actor.sheet.vampire .tab.blood .resource .resource-contents {
@@ -2059,11 +2047,6 @@ body.uk .actor.sheet {
 .dark-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
   color: #e97244;
 }
-.dark-theme .actor.sheet.werewolf .tab.gifts .gifts-list .gift,
-.dark-theme .actor.sheet.werewolf .tab.gifts .powers-list .gift {
-  background-color: var(--system-dark-secondary);
-  border-color: var(--system-dark-accent);
-}
 .dark-theme .actor.sheet.werewolf .tab.wolf .resource input,
 .dark-theme .actor.sheet.werewolf .tab.wolf .resource .resource-contents,
 .dark-theme .actor.sheet.werewolf .tab.wolf .resource.form {
@@ -2078,15 +2061,6 @@ body.uk .actor.sheet {
 }
 .dark-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
   color: #ff8f00;
-}
-.dark-theme .actor.sheet.hunter .tab.edges .edges-list .edge,
-.dark-theme .actor.sheet.hunter .tab.edges .perks-list .edge {
-  background-color: var(--system-dark-secondary);
-  border-color: var(--system-dark-accent);
-}
-.dark-theme .actor.sheet.hunter .tab.edges .edges-list .edge .content-link,
-.dark-theme .actor.sheet.hunter .tab.edges .perks-list .edge .content-link {
-  color: var(--system-dark-primary);
 }
 .dark-theme prose-mirror button.icon.toggle {
   color: var(--system-dark-accent);

@@ -243,17 +243,17 @@
   }
 
   /* Basic Item List Layout */
-  .item-list {
+  .item-list .category {
+    background-color: #ededec;
+    border: 2px solid #1b1b1b;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     margin-left: auto;
     margin-right: auto;
     max-width: 400px;
-
-    .item-name {
-      text-wrap: nowrap;
-    }
+    margin: 5px;
+    padding: 5px;
 
     .item-description {
       margin-left: 10px;
@@ -263,6 +263,22 @@
     .item {
       .item-image {
         flex-grow: 0;
+
+        img {
+          border-radius: 50%;
+          border: 1px solid #ddd;
+          padding: 2px;
+          max-width: 25px;
+        }
+      }
+
+      .item-header {
+        font-size: 16pt;
+        font-weight: bold;
+
+        .item-controls {
+          text-align-last: right;
+        }
       }
 
       .item-name {
@@ -282,6 +298,27 @@
         }
       }
     }
+  }
+
+  /* Apply these to all "items," even ones not in "item-list"s */
+  .item-header {
+    font-size: 16pt;
+    font-weight: bold;
+
+    .item-controls {
+      text-align-last: right;
+    }
+  }
+
+  .item-name {
+    text-wrap: nowrap;
+  }
+  
+  .item-image img {
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    padding: 2px;
+    max-width: 25px;
   }
 
   /* General Resources */
@@ -398,46 +435,6 @@
         margin-top: 10px;
       }
     }
-  }
-
-  /* Items */
-  .item-header {
-    font-size: 16pt;
-    font-weight: bold;
-  }
-
-  .items-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    .item-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      margin-bottom: 10px;
-    }
-  
-    .list-contents {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-  }
-
-  .item-header .item-controls {
-    text-align-last: right;
-  }
-  
-  .item-image img {
-    border-radius: 50%;
-    border: 1px solid #ddd;
-    padding: 2px;
-    max-width: 25px;
   }
 }
 

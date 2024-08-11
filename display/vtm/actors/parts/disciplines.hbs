@@ -1,6 +1,6 @@
 <div class="tab disciplines" data-group="primary" data-tab="disciplines">
     <div class="flexrow">
-        <div class="disciplines-list">
+        <div class="disciplines-list item-list">
             <!-- Item control for adding new discipline lists -->
             <div class="item-controls">
                 <a class="item-control add-discipline flex-center" title="{{localize 'WOD5E.VTM.AddDiscipline'}}">
@@ -13,7 +13,7 @@
             <!-- Iterate through each of the discipline lists -->
             {{#each actor.system.disciplines as |discipline key|}}
                 {{#if discipline.visible}}
-                    <div class="discipline">
+                    <div class="discipline category">
                         <div class="flex-center item-header">
                             <div class="item-name">
                                 {{discipline.label}}
@@ -64,7 +64,7 @@
         <div class="powers-list item-list">
             {{#each actor.system.disciplines as |discipline key|}}
                 {{#if discipline.visible}}
-                    <div class="discipline">
+                    <div class="discipline category">
                         <div class="flexrow item-header">
                             <div class="item-name">
                                 {{#if (and (ne key "rituals") (ne key "ceremonies"))}}

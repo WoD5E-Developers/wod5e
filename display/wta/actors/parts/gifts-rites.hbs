@@ -7,7 +7,7 @@
         </div>
     {{/if}}
     <div class="flexrow">
-        <div class="gifts-list">
+        <div class="gifts-list item-list">
             <!-- Item control for adding new gift lists -->
             <div class="item-controls">
                 <a class="item-control add-gift flex-center" title="{{localize 'WOD5E.WTA.AddGift'}}">
@@ -20,7 +20,7 @@
             <!-- Iterate through each of the gift lists -->
             {{#each actor.system.gifts as |gift key|}}
                 {{#if gift.visible}}
-                    <div class="gift">
+                    <div class="gift category">
                         <div class="flexrow item-header">
                             <div class="item-name">
                                 {{gift.label}}
@@ -52,7 +52,7 @@
         <div class="powers-list item-list">
             {{#each actor.system.gifts as |gift key|}}
                 {{#if gift.visible}}
-                    <div class="gift">
+                    <div class="gift category">
                         <div class="flexrow item-header">
                             <div class="item-name">
                                 {{localize "WOD5E.WTA.StringGifts" string=gift.label}}
@@ -102,7 +102,7 @@
                 {{/if}}
             {{/each}}
             <!-- Rites List -->
-            <div class="gift">
+            <div class="gift category">
                 <div class="flexrow item-header">
                     <div class="item-name">
                         {{localize "WOD5E.WTA.Rites"}}

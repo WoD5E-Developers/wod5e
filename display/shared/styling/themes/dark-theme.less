@@ -69,6 +69,11 @@
       border: 1px solid var(--system-dark-primary);
     }
 
+    .item-list .item {
+      background-color: var(--system-dark-secondary);
+      border-color: var(--system-dark-accent);
+    }
+
     /* Resource Counters */
     .resource-value {
       .resource-value-step:not(.active) {
@@ -136,6 +141,15 @@
         );
       }
     }
+
+    .item-list .category {
+      background-color: var(--system-dark-secondary);
+      border-color: var(--system-dark-accent);
+
+      .content-link {
+        color: var(--system-dark-primary);
+      }
+    }
   }
 
   .item.sheet,
@@ -156,14 +170,6 @@
       .navicon .wod5e-symbol,
       .item[data-tab="blood"] {
         color: #ff0000;
-      }
-    }
-
-    .tab.disciplines {
-      .disciplines-list .discipline,
-      .powers-list .discipline {
-        background-color: var(--system-dark-secondary);
-        border-color: var(--system-dark-accent);
       }
     }
 
@@ -204,14 +210,6 @@
       }
     }
 
-    .tab.gifts {
-      .gifts-list .gift,
-      .powers-list .gift {
-        background-color: var(--system-dark-secondary);
-        border-color: var(--system-dark-accent);
-      }
-    }
-
     .tab.wolf {
       .resource input,
       .resource .resource-contents,
@@ -235,18 +233,6 @@
 
       .navicon .wod5e-symbol {
         color: #ff8f00;
-      }
-    }
-
-    .tab.edges {
-      .edges-list .edge,
-      .perks-list .edge {
-        background-color: var(--system-dark-secondary);
-        border-color: var(--system-dark-accent);
-
-        .content-link {
-          color: var(--system-dark-primary);
-        }
       }
     }
   }

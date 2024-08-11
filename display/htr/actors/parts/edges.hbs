@@ -1,6 +1,6 @@
 <div class="tab edges" data-group="primary" data-tab="edges">
     <div class="flexrow">
-        <div class="edges-list">
+        <div class="edges-list item-list">
             <!-- Item control for adding new edge lists -->
             <div class="item-controls flex-center">
                 <a class="item-control add-edge" title="{{localize 'WOD5E.HTR.AddEdge'}}">
@@ -13,7 +13,7 @@
             <!-- Iterate through each of the edge lists -->
             {{#each actor.system.edges as |edge key|}}
                 {{#if edge.visible}}
-                    <div class="edge">
+                    <div class="edge category">
                         <div class="flexcol">
                             <div class="flexrow item-header">
                                 <div class="item-name">
@@ -41,7 +41,7 @@
         <div class="perks-list item-list">
             {{#each actor.system.edges as |edge key|}}
                 {{#if edge.visible}}
-                    <div class="edge">
+                    <div class="edge category">
                         <div class="flexrow item-header">
                             <div class="item-name">
                                 {{localize "WOD5E.HTR.StringPerks" string=edge.label}}
