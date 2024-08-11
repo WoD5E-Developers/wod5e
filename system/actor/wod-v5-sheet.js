@@ -63,6 +63,7 @@ export class WoDActor extends ActorSheet {
     if (actorData.biography) { data.enrichedBiography = await TextEditor.enrichHTML(actorData.biography) }
     if (actorData.appearance) { data.enrichedAppearance = await TextEditor.enrichHTML(actorData.appearance) }
     if (actorData.notes) { data.enrichedNotes = await TextEditor.enrichHTML(actorData.notes) }
+    if (actorData.privatenotes) { data.enrichedPrivateNotes = await TextEditor.enrichHTML(actorData.privatenotes) }
     if (actorData.equipment) { data.enrichedEquipment = await TextEditor.enrichHTML(actorData.equipment) }
 
     // Enrich actor header editor fields

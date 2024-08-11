@@ -134,10 +134,12 @@ export class WoDItemSheet extends ItemSheet {
 
     // Add a new section to a dicepool
     html.find('.add-dice').click(this._onAddDice.bind(this))
+
+    // Remove a section from a dicepool
+    html.find('.remove-dice').click(this._onRemoveDice.bind(this))
   }
 
   // Handle adding a new section to a dicepool
-
   async _onAddDice (event) {
     event.preventDefault()
 
@@ -153,5 +155,18 @@ export class WoDItemSheet extends ItemSheet {
     }
 
     await item.update({ [`system.dicepool.${randomID}`]: defaultData })
+  }
+
+  // Handle removing a section from a dicepool
+  async _onRemoveDice (event) {
+    event.preventDefault()
+
+    // Top-level variables
+    const item = this.item
+
+    // Secondary variables
+    const diceID = event.currentTarget.dataset.diceId
+
+    await item.update({ [`system.dicepool.-=${diceID}`]: null })
   }
 }

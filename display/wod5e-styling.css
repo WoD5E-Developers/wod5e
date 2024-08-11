@@ -434,6 +434,9 @@
   font-family: "vampireRevised", "sans-serif";
 }
 /* ProseMirror Alterations */
+prose-mirror button.icon.toggle {
+  background-color: #CCC;
+}
 prose-mirror .editor-menu {
   background: #333;
   height: 30px;
@@ -1343,6 +1346,7 @@ body.uk .actor.sheet {
   /* Input and resource fields */
   /* Actor Header */
   /* Features tab */
+  /* Notes Tab */
   /* Collapsible Descriptions */
   /* Power Descriptions */
   /* Sheet Banner */
@@ -1455,6 +1459,16 @@ body.uk .actor.sheet {
 .actor.sheet .tab.features .features-list .category {
   margin-left: auto;
   margin-right: auto;
+}
+.actor.sheet .tab.notepad .note-container {
+  padding: 3px;
+  margin: 5px;
+}
+.actor.sheet .tab.notepad .note-container .field-header {
+  font-size: 16pt;
+}
+.actor.sheet .tab.notepad .note-container prose-mirror {
+  height: 400px;
 }
 .actor.sheet .collapsible-content {
   padding: 0 1em;
@@ -1817,6 +1831,10 @@ body.uk .actor.sheet {
 }
 .item.sheet .item-header input[type="number"] {
   max-width: 35px;
+}
+.item.sheet .tab.dicepool .remove-dice {
+  flex-grow: 0;
+  padding: 4px;
 }
 
 /* wod5e.css */

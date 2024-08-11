@@ -119,7 +119,11 @@
             "Equipment": "Equipment",
             "Notes": "Notes",
             "Other": "Other",
-            "Dicepool": "Dicepool"
+            "Dicepool": "Dicepool",
+            "PrivateNotes": "Private Notes",
+            "PublicNotes": "Public Notes",
+            "Biography": "Biography",
+            "Settings": "Settings"
         },
 
         "AttributesList": {
@@ -191,7 +195,9 @@
             "Boon": "Boon",
             "Boons": "Boons",
             "Macro": "Macro",
-            "SelectFeature": "Select Feature"
+            "SelectFeature": "Select Feature",
+            "NoDiceSelectedHint": "No dicepools added. Click \"Add Dice\" to begin constructing a dicepool.",
+            "AddDice": "Add Dice"
         },
 
         "BiographyList": {

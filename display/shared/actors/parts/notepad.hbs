@@ -1,0 +1,24 @@
+<div class="tab notepad" data-group="primary" data-tab="notepad">
+    <div class="flexrow">
+        <div class="note-container public-notepad">
+            <div class="flex-center">
+                <label class="resource-label field-header">{{localize "WOD5E.Tabs.PublicNotes"}}</label>
+            </div>
+            <div class="resource">
+                <prose-mirror name="system.notes" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.notes}}" toggled="true">
+                    {{{enrichedNotes}}}
+                </prose-mirror>
+            </div>
+        </div>
+        <div class="note-container private-notepad">
+            <div class="flex-center">
+                <label class="resource-label field-header">{{localize "WOD5E.Tabs.PrivateNotes"}}</label>
+            </div>
+            <div class="resource">
+                <prose-mirror name="system.privatenotes" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.privatenotes}}" toggled="true">
+                    {{{enrichedPrivateNotes}}}
+                </prose-mirror>
+            </div>
+        </div>
+    </div>
+</div>

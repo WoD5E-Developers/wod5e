@@ -9,6 +9,7 @@
         "appearance": "",
         "equipment": "",
         "notes": "",
+        "privatenotes": "",
         "settings": {
           "headerbg": ""
         },
@@ -193,6 +194,7 @@
         "biography": "",
         "appearance": "",
         "notes": "",
+        "privatenotes": "",
         "generaldifficulty": {
           "strongest": 0,
           "normal": 0
@@ -818,6 +820,7 @@
       "biography": "",
       "equipment": "",
       "notes": "",
+      "privatenotes": "",
       "headers":{
         "concept": ""
       },
