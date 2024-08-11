@@ -8,6 +8,47 @@
 }
 
 .dark-theme {
+  .sheet,
+  .dialog {
+    .window-header {
+      background-color: var(--system-dark-primary);
+    }
+
+    .window-content {
+      background-color: var(--system-dark-primary);
+      color: var(--system-dark-accent);
+      background-blend-mode: hard-light;
+    }
+
+    select,
+    input {
+      color: var(--system-dark-accent);
+    }
+
+    select,
+    select optgroup {
+      background-color: var(--system-dark-secondary);
+    }
+
+    select option {
+      background-color: var(--system-dark-tertiary);
+    }
+
+    button {
+      background-color: var(--system-dark-tertiary);
+      color: #FFF;
+    }
+
+    button.default,
+    button:hover {
+      background-color: var(--system-dark-secondary);
+    }
+    
+    ::placeholder {
+      color: #ffffff9c;
+    }
+  }
+
   .actor.sheet {
     .actor-header input,
     .actor-header .resource,
@@ -97,19 +138,10 @@
     }
   }
 
-  .sheet {
-    .window-header {
-      background-color: var(--system-dark-primary);
-    }
-
+  .item.sheet,
+  .dialog {
     .window-content {
-      background-color: var(--system-dark-primary);
-      color: var(--system-dark-accent);
-      background-blend-mode: hard-light;
-
-      input {
-        color: var(--system-dark-accent);
-      }
+      background: var(--system-dark-secondary);
     }
   }
 
@@ -134,11 +166,33 @@
         border-color: var(--system-dark-accent);
       }
     }
+
+    .tab.blood {
+      .resource input,
+      .resource .resource-contents {
+        background-color: var(--system-dark-secondary);
+        border-color: var(--system-dark-accent);
+      }
+    }
   }
 
   /* Werewolf Styling */
+  .sheet.werewolf .resource-value .resource-value-step.active,
+  .sheet.werewolf .resource-value-static .resource-value-static-step.active,
+  .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
+    background-color: #e97244;
+  }
+
+  .sheet.werewolf button.rage-button:hover {
+    background-color: #752e11ea;
+  }
+
   .actor.sheet.werewolf {
     .tabs-container {
+      .active.item .navicon {
+        background-color: #752e11ea;
+      }
+
       .active.item[data-tab="wolf"],
       .active .navicon .wod5e-symbol {
         color: var(--system-dark-accent);
@@ -150,11 +204,24 @@
       }
     }
 
-    .tab.gifts-rites {
+    .tab.gifts {
       .gifts-list .gift,
       .powers-list .gift {
         background-color: var(--system-dark-secondary);
         border-color: var(--system-dark-accent);
+      }
+    }
+
+    .tab.wolf {
+      .resource input,
+      .resource .resource-contents,
+      .resource.form {
+        background-color: var(--system-dark-secondary);
+        border-color: var(--system-dark-accent);
+      }
+
+      .resource.form.form-active {
+        background-color: #833501e0;
       }
     }
   }

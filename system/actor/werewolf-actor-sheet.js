@@ -245,7 +245,7 @@ export class WerewolfActorSheet extends WoDActor {
       buttons,
       default: 'submit'
     }, {
-      classes: ['wod5e', 'werewolf-dialog', 'werewolf-sheet']
+      classes: ['wod5e', 'dialog', 'werewolf-dialog', 'werewolf-sheet']
     }).render(true)
   }
 
@@ -325,7 +325,7 @@ export class WerewolfActorSheet extends WoDActor {
       default: 'homid'
     },
     {
-      classes: ['wod5e', 'werewolf-dialog', 'werewolf-sheet']
+      classes: ['wod5e', 'dialog', 'werewolf-dialog', 'werewolf-sheet']
     }).render(true)
   }
 
@@ -531,7 +531,7 @@ export class WerewolfActorSheet extends WoDActor {
       default: 'submit'
     },
     {
-      classes: ['wod5e', 'werewolf-dialog', 'werewolf-sheet']
+      classes: ['wod5e', 'dialog', 'werewolf-dialog', 'werewolf-sheet']
     }).render(true)
   }
 
@@ -572,7 +572,7 @@ export class WerewolfActorSheet extends WoDActor {
       default: 'submit'
     },
     {
-      classes: ['wod5e', 'werewolf-dialog', 'werewolf-sheet']
+      classes: ['wod5e', 'dialog', 'werewolf-dialog', 'werewolf-sheet']
     }).render(true)
   }
 }

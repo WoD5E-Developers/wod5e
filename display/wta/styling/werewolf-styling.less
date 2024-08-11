@@ -26,6 +26,20 @@
     color: #FFF;
   }
 
+  prose-mirror {
+    .editor-menu button:hover {
+      background-color: var(--werewolf-secondary);
+    }
+
+    li.text:not(:has(.format)) {
+      display: none;
+    }
+
+    .editor-content {
+      scrollbar-color: var(--werewolf-secondary) var(--color-scrollbar-track);
+    }
+  }
+
   .tabs-container {
     background-color: var(--werewolf-secondary);
 
@@ -91,20 +105,6 @@
 
       .gift-description {
         max-height: 100px;
-
-        prose-mirror {
-          .editor-menu button:hover {
-            background-color: var(--werewolf-secondary);
-          }
-
-          li.text:not(:has(.format)) {
-            display: none;
-          }
-
-          .editor-content {
-            scrollbar-color: var(--werewolf-secondary) var(--color-scrollbar-track);
-          }
-        }
       }
 
       .gift-description {
@@ -155,6 +155,13 @@
   }
 
   .tab.wolf {
+    .resource input,
+    .resource .resource-contents,
+    .resource.form {
+      background-color: #CCC;
+      border: 1px solid var(--werewolf-primary);
+    }
+
     .garou-forms-label {
       font-size: 20pt;
     }
@@ -164,10 +171,19 @@
         border-radius: 0;
         background-color: #CCC;
         border: 1px solid black;
+
+        .form-attributes {
+          list-style: none;
+          padding: 0;
+
+          li {
+            padding: 1px;
+          }
+        }
       }
 
       .form-active {
-        background: #d985359a;
+        background: #eca0589a;
       }
     }
   }
@@ -216,6 +232,9 @@
     border: none;
     box-shadow: none;
     border: 1px solid black;
+    margin: 0;
+    border-radius: 0;
+    padding: 3px;
   }
 
   button.werewolf-button:hover {
@@ -227,7 +246,6 @@
     font-size: 20pt;
     color: #FFF;
     cursor: default;
-    margin-bottom: 10px;
     background: #a14503;
   }
   

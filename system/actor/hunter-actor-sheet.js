@@ -212,7 +212,7 @@ export class HunterActorSheet extends WoDActor {
       buttons,
       default: 'submit'
     }, {
-      classes: ['wod5e', 'hunter-dialog', 'hunter-sheet']
+      classes: ['wod5e', 'dialog', 'hunter-dialog', 'hunter-sheet']
     }).render(true)
   }
 

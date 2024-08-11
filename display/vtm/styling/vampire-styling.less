@@ -23,6 +23,20 @@
     border: 1px solid var(--vampire-primary);
   }
 
+  prose-mirror {
+    .editor-menu button:hover {
+      background-color: var(--vampire-secondary);
+    }
+
+    li.text:not(:has(.format)) {
+      display: none;
+    }
+
+    .editor-content {
+      scrollbar-color: var(--vampire-secondary) var(--color-scrollbar-track);
+    }
+  }
+
   .tab.blood .resource {
     margin-left: 10px;
     margin-right: 10px;
@@ -121,20 +135,6 @@
 
       .discipline-description {
         max-height: 100px;
-
-        prose-mirror {
-          .editor-menu button:hover {
-            background-color: var(--vampire-secondary);
-          }
-
-          li.text:not(:has(.format)) {
-            display: none;
-          }
-
-          .editor-content {
-            scrollbar-color: var(--vampire-secondary) var(--color-scrollbar-track);
-          }
-        }
       }
 
       .discipline-description {

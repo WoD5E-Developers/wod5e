@@ -20,6 +20,15 @@
   background-color: var(--hunter-primary);
   color: #FFF;
 }
+.actor.sheet.hunter prose-mirror .editor-menu button:hover {
+  background-color: var(--hunter-primary);
+}
+.actor.sheet.hunter prose-mirror li.text:not(:has(.format)) {
+  display: none;
+}
+.actor.sheet.hunter prose-mirror .editor-content {
+  scrollbar-color: var(--hunter-secondary) var(--color-scrollbar-track);
+}
 .actor.sheet.hunter .tabs-container {
   background-color: var(--hunter-secondary);
 }
@@ -76,15 +85,6 @@
 }
 .actor.sheet.hunter .tab.edges .edges-list .edge-description {
   max-height: 150px;
-}
-.actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror .editor-menu button:hover {
-  background-color: var(--hunter-primary);
-}
-.actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror li.text:not(:has(.format)) {
-  display: none;
-}
-.actor.sheet.hunter .tab.edges .edges-list .edge-description prose-mirror .editor-content {
-  scrollbar-color: var(--hunter-secondary) var(--color-scrollbar-track);
 }
 .actor.sheet.hunter .tab.edges .edges-list .edge-description {
   margin-bottom: 5px;
@@ -969,6 +969,15 @@ h3.item-name {
 .actor.sheet.vampire .tab.blood .resource input {
   border: 1px solid var(--vampire-primary);
 }
+.actor.sheet.vampire prose-mirror .editor-menu button:hover {
+  background-color: var(--vampire-secondary);
+}
+.actor.sheet.vampire prose-mirror li.text:not(:has(.format)) {
+  display: none;
+}
+.actor.sheet.vampire prose-mirror .editor-content {
+  scrollbar-color: var(--vampire-secondary) var(--color-scrollbar-track);
+}
 .actor.sheet.vampire .tab.blood .resource {
   margin-left: 10px;
   margin-right: 10px;
@@ -1048,15 +1057,6 @@ h3.item-name {
 }
 .actor.sheet.vampire .tab.disciplines .disciplines-list .discipline-description {
   max-height: 100px;
-}
-.actor.sheet.vampire .tab.disciplines .disciplines-list .discipline-description prose-mirror .editor-menu button:hover {
-  background-color: var(--vampire-secondary);
-}
-.actor.sheet.vampire .tab.disciplines .disciplines-list .discipline-description prose-mirror li.text:not(:has(.format)) {
-  display: none;
-}
-.actor.sheet.vampire .tab.disciplines .disciplines-list .discipline-description prose-mirror .editor-content {
-  scrollbar-color: var(--vampire-secondary) var(--color-scrollbar-track);
 }
 .actor.sheet.vampire .tab.disciplines .disciplines-list .discipline-description {
   margin-bottom: 5px;
@@ -1185,6 +1185,15 @@ h3.item-name {
   background-color: var(--werewolf-primary);
   color: #FFF;
 }
+.actor.sheet.werewolf prose-mirror .editor-menu button:hover {
+  background-color: var(--werewolf-secondary);
+}
+.actor.sheet.werewolf prose-mirror li.text:not(:has(.format)) {
+  display: none;
+}
+.actor.sheet.werewolf prose-mirror .editor-content {
+  scrollbar-color: var(--werewolf-secondary) var(--color-scrollbar-track);
+}
 .actor.sheet.werewolf .tabs-container {
   background-color: var(--werewolf-secondary);
 }
@@ -1238,15 +1247,6 @@ h3.item-name {
 .actor.sheet.werewolf .tab.gifts .gifts-list .gift-description {
   max-height: 100px;
 }
-.actor.sheet.werewolf .tab.gifts .gifts-list .gift-description prose-mirror .editor-menu button:hover {
-  background-color: var(--werewolf-secondary);
-}
-.actor.sheet.werewolf .tab.gifts .gifts-list .gift-description prose-mirror li.text:not(:has(.format)) {
-  display: none;
-}
-.actor.sheet.werewolf .tab.gifts .gifts-list .gift-description prose-mirror .editor-content {
-  scrollbar-color: var(--werewolf-secondary) var(--color-scrollbar-track);
-}
 .actor.sheet.werewolf .tab.gifts .gifts-list .gift-description {
   margin-bottom: 5px;
 }
@@ -1282,6 +1282,12 @@ h3.item-name {
 .actor.sheet.werewolf .tab.gifts .powers-list .power .item-controls .item-control {
   margin-left: 3px;
 }
+.actor.sheet.werewolf .tab.wolf .resource input,
+.actor.sheet.werewolf .tab.wolf .resource .resource-contents,
+.actor.sheet.werewolf .tab.wolf .resource.form {
+  background-color: #CCC;
+  border: 1px solid var(--werewolf-primary);
+}
 .actor.sheet.werewolf .tab.wolf .garou-forms-label {
   font-size: 20pt;
 }
@@ -1290,8 +1296,15 @@ h3.item-name {
   background-color: #CCC;
   border: 1px solid black;
 }
+.actor.sheet.werewolf .tab.wolf .forms .form .form-attributes {
+  list-style: none;
+  padding: 0;
+}
+.actor.sheet.werewolf .tab.wolf .forms .form .form-attributes li {
+  padding: 1px;
+}
 .actor.sheet.werewolf .tab.wolf .forms .form-active {
-  background: #d985359a;
+  background: #eca0589a;
 }
 /* All Sheets with the Werewolf styling, including itemsheets */
 .sheet.werewolf {
@@ -1330,6 +1343,9 @@ h3.item-name {
   border: none;
   box-shadow: none;
   border: 1px solid black;
+  margin: 0;
+  border-radius: 0;
+  padding: 3px;
 }
 .sheet.werewolf button.werewolf-button:hover {
   background: #bb6a30ef;
@@ -1339,7 +1355,6 @@ h3.item-name {
   font-size: 20pt;
   color: #FFF;
   cursor: default;
-  margin-bottom: 10px;
   background: #a14503;
 }
 .sheet.werewolf button.werewolf-button.disabled,
@@ -1996,6 +2011,47 @@ body.uk .actor.sheet {
   /* Sidebar */
   /* Foundry Controls UI */
 }
+.dark-theme .sheet .window-header,
+.dark-theme .dialog .window-header {
+  background-color: var(--system-dark-primary);
+}
+.dark-theme .sheet .window-content,
+.dark-theme .dialog .window-content {
+  background-color: var(--system-dark-primary);
+  color: var(--system-dark-accent);
+  background-blend-mode: hard-light;
+}
+.dark-theme .sheet select,
+.dark-theme .dialog select,
+.dark-theme .sheet input,
+.dark-theme .dialog input {
+  color: var(--system-dark-accent);
+}
+.dark-theme .sheet select,
+.dark-theme .dialog select,
+.dark-theme .sheet select optgroup,
+.dark-theme .dialog select optgroup {
+  background-color: var(--system-dark-secondary);
+}
+.dark-theme .sheet select option,
+.dark-theme .dialog select option {
+  background-color: var(--system-dark-tertiary);
+}
+.dark-theme .sheet button,
+.dark-theme .dialog button {
+  background-color: var(--system-dark-tertiary);
+  color: #FFF;
+}
+.dark-theme .sheet button.default,
+.dark-theme .dialog button.default,
+.dark-theme .sheet button:hover,
+.dark-theme .dialog button:hover {
+  background-color: var(--system-dark-secondary);
+}
+.dark-theme .sheet ::placeholder,
+.dark-theme .dialog ::placeholder {
+  color: #ffffff9c;
+}
 .dark-theme .actor.sheet {
   /* Navbar */
   /* Resource Counters */
@@ -2031,16 +2087,9 @@ body.uk .actor.sheet {
 .dark-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%);
 }
-.dark-theme .sheet .window-header {
-  background-color: var(--system-dark-primary);
-}
-.dark-theme .sheet .window-content {
-  background-color: var(--system-dark-primary);
-  color: var(--system-dark-accent);
-  background-blend-mode: hard-light;
-}
-.dark-theme .sheet .window-content input {
-  color: var(--system-dark-accent);
+.dark-theme .item.sheet .window-content,
+.dark-theme .dialog .window-content {
+  background: var(--system-dark-secondary);
 }
 .dark-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
 .dark-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
@@ -2055,6 +2104,22 @@ body.uk .actor.sheet {
   background-color: var(--system-dark-secondary);
   border-color: var(--system-dark-accent);
 }
+.dark-theme .actor.sheet.vampire .tab.blood .resource input,
+.dark-theme .actor.sheet.vampire .tab.blood .resource .resource-contents {
+  background-color: var(--system-dark-secondary);
+  border-color: var(--system-dark-accent);
+}
+.dark-theme .sheet.werewolf .resource-value .resource-value-step.active,
+.dark-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
+.dark-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
+  background-color: #e97244;
+}
+.dark-theme .sheet.werewolf button.rage-button:hover {
+  background-color: #752e11ea;
+}
+.dark-theme .actor.sheet.werewolf .tabs-container .active.item .navicon {
+  background-color: #752e11ea;
+}
 .dark-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
 .dark-theme .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-accent);
@@ -2063,10 +2128,19 @@ body.uk .actor.sheet {
 .dark-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
   color: #e97244;
 }
-.dark-theme .actor.sheet.werewolf .tab.gifts-rites .gifts-list .gift,
-.dark-theme .actor.sheet.werewolf .tab.gifts-rites .powers-list .gift {
+.dark-theme .actor.sheet.werewolf .tab.gifts .gifts-list .gift,
+.dark-theme .actor.sheet.werewolf .tab.gifts .powers-list .gift {
   background-color: var(--system-dark-secondary);
   border-color: var(--system-dark-accent);
+}
+.dark-theme .actor.sheet.werewolf .tab.wolf .resource input,
+.dark-theme .actor.sheet.werewolf .tab.wolf .resource .resource-contents,
+.dark-theme .actor.sheet.werewolf .tab.wolf .resource.form {
+  background-color: var(--system-dark-secondary);
+  border-color: var(--system-dark-accent);
+}
+.dark-theme .actor.sheet.werewolf .tab.wolf .resource.form.form-active {
+  background-color: #833501e0;
 }
 .dark-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-accent);

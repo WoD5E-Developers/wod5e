@@ -6,7 +6,7 @@
     <div class="were-form-title flexcol flex-center">
       <label class="were-form-nickname">{{localize form.nickname}}</label>
     </div>
-    <div class="form resource flex-group-center{{#ifeq ../actor.system.activeForm id}} form-active{{/ifeq}}">
+    <div class="form resource{{#ifeq ../actor.system.activeForm id}} form-active{{/ifeq}}">
       {{#ifeq ../actor.system.activeForm id}}
       <button class="werewolf-button active">{{localize "WOD5E.WTA.Active"}}</button>
       {{else}}
@@ -17,7 +17,6 @@
       </button>
       {{/ifeq}}
       <div class="resource-content">
-        <hr/>
         {{#if form.description}}
         <p class="flex-center">{{form.description}}</p>
         <hr>
@@ -27,10 +26,10 @@
           <li>{{ability}}</li>
           {{/each}}
         </ul>
-        <div class="flexrow">
-          <button class="werewolf-button were-form-chat" data-form="{{id}}">{{localize "WOD5E.WTA.PostFormToChat"}}</button>
-          <button class="werewolf-button were-form-edit lockable-button" data-form="{{id}}">{{localize "WOD5E.Edit"}}</button>
-        </div>
+      </div>
+      <div class="flexrow">
+        <button class="werewolf-button were-form-chat" data-form="{{id}}">{{localize "WOD5E.WTA.PostFormToChat"}}</button>
+        <button class="werewolf-button were-form-edit lockable-button" data-form="{{id}}">{{localize "WOD5E.Edit"}}</button>
       </div>
     </div>
   </div>
