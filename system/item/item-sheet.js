@@ -149,7 +149,7 @@ export class WoDItemSheet extends ItemSheet {
 
     // Append a new dice to the dicepool
     const defaultData = {
-      path: 'skills.athletics'
+      path: 'attributes.strength'
     }
 
     await item.update({ [`system.dicepool.${randomID}`]: defaultData })
