@@ -1876,7 +1876,8 @@ body.uk .actor.sheet {
 
 .resource-value {
   align-self: flex-end;
-  margin-left: 16px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .resource-value .resource-value-step {
   height: 14px;
