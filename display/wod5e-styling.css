@@ -1662,17 +1662,24 @@ body.uk .actor.sheet {
 .actor.sheet .stats-content > .custom-rolls {
   flex: 1 1 auto;
 }
+.actor.sheet .stats-content > .custom-rolls {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 300px;
+}
 .actor.sheet .stats-content > .custom-rolls .items-list {
   flex: 1 1 auto;
-  margin-left: 20px;
-  margin-right: 20px;
+  padding: 5px;
 }
 .actor.sheet .stats-content > .custom-rolls .item-image {
   max-width: 30px;
 }
 .actor.sheet .stats-content > .custom-rolls .item-name {
   flex-grow: 1;
-  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 .actor.sheet .stats-content > .custom-rolls .item-controls {
   text-align-last: right;
@@ -1691,14 +1698,6 @@ body.uk .actor.sheet {
 }
 .actor.sheet .stats-content .stats-container.skills .stats-footer {
   border-top: 1px solid black;
-}
-@media (max-width: 600px) {
-  .actor.sheet .stats-content {
-    flex-direction: column;
-  }
-  .actor.sheet .stats-content > .custom-rolls {
-    margin-top: 10px;
-  }
 }
 /* Increase z-index of the window handle to compensate for the actor banner*/
 .window-app .window-resizable-handle {
@@ -1834,6 +1833,7 @@ body.uk .actor.sheet {
 
 .resource-value {
   align-self: flex-end;
+  margin-left: 16px;
 }
 .resource-value .resource-value-step {
   height: 14px;
@@ -1976,6 +1976,11 @@ body.uk .actor.sheet {
   background-color: var(--system-dark-secondary);
   border-color: var(--system-dark-accent);
 }
+.dark-theme .actor.sheet .resource input,
+.dark-theme .actor.sheet .resource .resource-contents {
+  background-color: var(--system-dark-secondary);
+  border-color: var(--system-dark-accent);
+}
 .dark-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
   background-color: var(--system-dark-primary);
   border: 1px solid var(--system-dark-accent);
@@ -2023,11 +2028,6 @@ body.uk .actor.sheet {
 .dark-theme .actor.sheet.vampire .tabs-container .item[data-tab="blood"] {
   color: #ff0000;
 }
-.dark-theme .actor.sheet.vampire .tab.blood .resource input,
-.dark-theme .actor.sheet.vampire .tab.blood .resource .resource-contents {
-  background-color: var(--system-dark-secondary);
-  border-color: var(--system-dark-accent);
-}
 .dark-theme .sheet.werewolf .resource-value .resource-value-step.active,
 .dark-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
 .dark-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
@@ -2048,7 +2048,6 @@ body.uk .actor.sheet {
   color: #e97244;
 }
 .dark-theme .actor.sheet.werewolf .tab.wolf .resource input,
-.dark-theme .actor.sheet.werewolf .tab.wolf .resource .resource-contents,
 .dark-theme .actor.sheet.werewolf .tab.wolf .resource.form {
   background-color: var(--system-dark-secondary);
   border-color: var(--system-dark-accent);

@@ -70,26 +70,28 @@
         </div>
         <div class="custom-rolls">
             <label class="resource-header">{{localize "WOD5E.ItemsList.CustomRolls"}}</label>
-            <ul class="items-list flex-left">
-                {{#each actor.system.customRolls as |roll id|}}
-                    <li class="item flexrow" data-item-id="{{roll._id}}" draggable="true">
-                        <div class="item-image rollable-item" data-item-uuid="{{roll.uuid}}">
-                            <img src="{{roll.img}}" title="{{roll.name}}" width="24" height="24" alt="{{roll.name}}" />
+            <div class="stats-container">
+                <div class="items-list flexcol">
+                    {{#each actor.system.customRolls as |roll id|}}
+                        <div class="item flexrow" data-item-id="{{roll._id}}" draggable="true">
+                            <div class="item-image rollable-item" data-item-uuid="{{roll.uuid}}">
+                                <img src="{{roll.img}}" title="{{roll.name}}" width="24" height="24" alt="{{roll.name}}" />
+                            </div>
+                            <h4 class="item-name">{{roll.name}}</h4>
+                            <div class="item-controls">
+                                <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}"><i
+                                        class="fas fa-edit"></i></a>
+                                <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}"><i
+                                        class="fas fa-trash"></i></a>
+                            </div>
                         </div>
-                        <h4 class="item-name">{{roll.name}}</h4>
-                        <div class="item-controls">
-                            <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}"><i
-                                    class="fas fa-edit"></i></a>
-                            <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}"><i
-                                    class="fas fa-trash"></i></a>
-                        </div>
-                    </li>
-                {{/each}}
-            </ul>
-            <div class="flex-group-center">
-                <a class="item-control item-create" title="{{localize 'WOD5E.Add'}}" data-type="customRoll">
-                    <i class="fas fa-plus"></i> {{localize "WOD5E.Add"}}
-                </a>
+                    {{/each}}
+                </div>
+                <div class="flex-group-center">
+                    <a class="item-control item-create" title="{{localize 'WOD5E.Add'}}" data-type="customRoll">
+                        <i class="fas fa-plus"></i> {{localize "WOD5E.Add"}}
+                    </a>
+                </div>
             </div>
         </div>
     </div>

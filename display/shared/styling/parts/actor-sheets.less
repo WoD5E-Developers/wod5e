@@ -385,10 +385,13 @@
     }
 
     > .custom-rolls {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 300px;
+
       .items-list {
         flex: 1 1 auto;
-        margin-left: 20px;
-        margin-right: 20px;
+        padding: 5px;
       }
 
       .item-image {
@@ -397,7 +400,10 @@
 
       .item-name {
         flex-grow: 1;
-        text-align: center;
+        margin-left: 5px;
+        margin-right: 5px;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
       }
 
       .item-controls {
@@ -424,16 +430,6 @@
   
     .stats-container.skills .stats-footer {
       border-top: 1px solid black;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .stats-content {
-      flex-direction: column;
-
-      > .custom-rolls {
-        margin-top: 10px;
-      }
     }
   }
 }
