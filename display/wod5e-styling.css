@@ -1290,6 +1290,10 @@ h3.item-name {
   justify-content: center;
   margin-bottom: 10px;
 }
+.balance-trackers .harano,
+.balance-trackers .hauglosk {
+  color: #FFF;
+}
 .balance-trackers .field-header {
   font-size: 16pt;
 }
@@ -1301,6 +1305,10 @@ h3.item-name {
 .balance-trackers .wolf-resource .resource-value {
   align-self: center;
   padding: 3px;
+}
+.sheet.spc .balance-trackers .wolf-resource {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .vampire-font-headers .werewolf-button,
 .vampire-font-headers .garou-forms-label,

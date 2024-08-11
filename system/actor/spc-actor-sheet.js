@@ -12,7 +12,7 @@ export class SPCActorSheet extends WoDActor {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['spc-sheet']
+    const classList = ['spc', 'sheet']
     classList.push(...super.defaultOptions.classes)
 
     return foundry.utils.mergeObject(super.defaultOptions, {

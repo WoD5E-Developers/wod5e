@@ -18,7 +18,9 @@
                         <div class="field-section">
                             <div class="flexcol">
                                 <label class="resource-label field-header">{{localize 'WOD5E.VTM.Humanity'}}</label>
-                                {{> "systems/vtm5e/display/vtm/actors/parts/humanity.hbs"}}
+                                <div class="resource flex-group-center">
+                                    {{> "systems/vtm5e/display/vtm/actors/parts/humanity.hbs"}}
+                                </div>
                             </div>
                         </div>
                         <div class="field-section">
@@ -30,9 +32,6 @@
                     {{/ifeq}}
 
                     {{#ifeq actor.system.gamesystem 'werewolf'}}
-                        <div class="field-section">
-                            {{> "systems/vtm5e/display/wta/actors/parts/balance.hbs"}}
-                        </div>
                         <div class="field-section">
                             <div class="flexcol">
                                 <label class="resource-label field-header">{{localize 'WOD5E.WTA.Rage'}}</label>
