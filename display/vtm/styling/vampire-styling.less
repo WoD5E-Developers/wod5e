@@ -37,29 +37,28 @@
     }
   }
 
-  .tab.blood .resource {
-    margin-left: 10px;
-    margin-right: 10px;
-
-    input,
-    .resource-contents {
-      background-color: #CCC;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid black;
-    }
-
+  .tab.blood {
     .resource-label {
       font-size: 15pt;
     }
 
-    .resource-contents:not(.prosemirror-resource) {
-      padding: 3px;
+    .blood-details,
+    .blood-potency {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .resource-contents:not(.prosemirror-resource),
+    input.resource {
       font-weight: bold;
     }
 
-    .remorse-roll .field-header {
-      display: inline-flex;
+    .resource {
+      padding: 5px;
+  
+      .remorse-roll .field-header {
+        display: inline-flex;
+      }
     }
   }
 

@@ -1,0 +1,36 @@
+<div class="tab features" data-group="primary" data-tab="features">
+    <div class="flexrow">
+        <div class="character-details flexcol">
+            <div class="flexcol flex-group-center">
+                <!-- Core character details -->
+                {{> "systems/vtm5e/display/shared/actors/parts/core-details.hbs"}}
+
+                <!-- Hunter-specific details -->
+                <div class="flexrow detail-row">
+                    <div class="flexcol">
+                        <label class="resource-label field-header">{{localize 'WOD5E.HTR.Creed'}}</label>
+                        <input name="system.headers.creed" type="text" value="{{actor.system.headers.creed}}" placeholder="{{localize 'WOD5E.HTR.Creed'}}"/>
+                    </div>
+                    <div class="flexcold">
+                        <label class="resource-label field-header">{{localize "WOD5E.HTR.Redemption"}}</label>
+                        <input type="text" name="system.redemption.value" value="{{actor.system.redemption.value}}" placeholder="{{localize 'WOD5E.HTR.Redemption'}}" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex-group-left">
+                <div class="flex-center">
+                    <label class="resource-label field-header">{{localize "WOD5E.HTR.CreedFields"}}</label>
+                </div>
+                <div class="description-content resource">
+                    <prose-mirror name="system.headers.creedfields" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.headers.creedfields}}" toggled="true">
+                        {{{enrichedCreedFields}}}
+                    </prose-mirror>
+                </div>
+            </div>
+        </div>
+        <div class="features-list item-list">
+            <!-- Core features -->
+            {{> "systems/vtm5e/display/shared/actors/parts/core-features.hbs"}}
+        </div>
+    </div>
+</div>

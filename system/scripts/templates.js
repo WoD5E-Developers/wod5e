@@ -23,12 +23,15 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/actors/parts/specialty-display.hbs',
     'systems/vtm5e/display/shared/actors/parts/navbar.hbs',
     'systems/vtm5e/display/shared/actors/parts/actor-settings.hbs',
+    'systems/vtm5e/display/shared/actors/parts/core-features.hbs',
+    'systems/vtm5e/display/shared/actors/parts/core-details.hbs',
 
     // Hunter Sheet Partials
     'systems/vtm5e/display/htr/actors/parts/danger.hbs',
     'systems/vtm5e/display/htr/actors/parts/despair.hbs',
     'systems/vtm5e/display/htr/actors/parts/desperation.hbs',
     'systems/vtm5e/display/htr/actors/parts/edges.hbs',
+    'systems/vtm5e/display/htr/actors/parts/features.hbs',
 
     // Vampire Sheet Partials
     'systems/vtm5e/display/vtm/actors/parts/disciplines.hbs',
@@ -37,6 +40,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/vtm/actors/parts/humanity.hbs',
     'systems/vtm5e/display/vtm/actors/parts/hunger.hbs',
     'systems/vtm5e/display/vtm/actors/parts/rouse.hbs',
+    'systems/vtm5e/display/vtm/actors/parts/features.hbs',
 
     // Werewolf Sheet Partials
     'systems/vtm5e/display/wta/actors/parts/gifts-rites.hbs',
@@ -47,6 +51,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/wta/actors/parts/rage-value.hbs',
     'systems/vtm5e/display/wta/actors/parts/renown.hbs',
     'systems/vtm5e/display/wta/actors/parts/forms.hbs',
+    'systems/vtm5e/display/wta/actors/parts/features.hbs',
 
     // SPC Sheet Partials
     'systems/vtm5e/display/shared/actors/parts/spc/stats.hbs',

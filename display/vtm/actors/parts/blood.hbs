@@ -17,29 +17,29 @@
             </div>
 
             <div class="grid grid-2col">
-                <div class="flex-group-center resource">
+                <div class="flex-group-center">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.BloodSurge"}}</label>
-                    <div class="resource-contents">{{lookup blood_potency_text "surge"}}</div>
+                    <div class="resource-contents resource">{{lookup blood_potency_text "surge"}}</div>
                 </div>
-                <div class="flex-group-center resource">
+                <div class="flex-group-center">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.MendAmount"}}</label>
-                    <div class="resource-contents">{{lookup blood_potency_text "mend"}}</div>
+                    <div class="resource-contents resource">{{lookup blood_potency_text "mend"}}</div>
                 </div>
-                <div class="flex-group-center resource">
+                <div class="flex-group-center">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.PowerBonus"}}</label>
-                    <div class="resource-contents">{{lookup blood_potency_text "power"}}</div>
+                    <div class="resource-contents resource">{{lookup blood_potency_text "power"}}</div>
                 </div>
-                <div class="flex-group-center resource">
+                <div class="flex-group-center">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.RouseReRoll"}}</label>
-                    <div class="resource-contents">{{lookup blood_potency_text "rouse"}}</div>
+                    <div class="resource-contents resource">{{lookup blood_potency_text "rouse"}}</div>
                 </div>
-                <div class="flex-group-center resource">
+                <div class="flex-group-center">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.FeedingPenalty"}}</label>
-                    <div class="resource-contents">{{lookup blood_potency_text "feeding"}}</div>
+                    <div class="resource-contents resource">{{lookup blood_potency_text "feeding"}}</div>
                 </div>
-                <div class="flex-group-center resource">
+                <div class="flex-group-center">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.BaneSeverity"}}</label>
-                    <div class="resource-contents">{{lookup blood_potency_text "bane"}}</div>
+                    <div class="resource-contents resource">{{lookup blood_potency_text "bane"}}</div>
                 </div>
             </div>
         </div>
@@ -59,28 +59,32 @@
             </div>
 
             <div class="flexrow nowrap flex-group-center nogrow">
-                <div class="flexcol resource">
+                <div class="flexcol">
                     <label class="resource-label field-header">{{localize 'WOD5E.VTM.Sire'}}</label>
-                    <input type="text" name="system.headers.sire" value="{{actor.system.headers.sire}}" placeholder="{{localize 'WOD5E.VTM.Sire'}}"/>
+                    <input class="resource" type="text" name="system.headers.sire" value="{{actor.system.headers.sire}}" placeholder="{{localize 'WOD5E.VTM.Sire'}}"/>
                 </div>
-                <div class="flexcol resource">
+                <div class="flexcol">
                     <label class="resource-label field-header">{{localize 'WOD5E.VTM.Generation'}}</label>
-                    <input type="text" name="system.headers.generation" value="{{actor.system.headers.generation}}" placeholder="{{localize 'WOD5E.VTM.Generation'}}"/>
+                    <input class="resource" type="text" name="system.headers.generation" value="{{actor.system.headers.generation}}" placeholder="{{localize 'WOD5E.VTM.Generation'}}"/>
                 </div>
             </div>
 
             <div class="flexrow nowrap flex-group-center nogrow">
-                <div class="flexcol resource">
+                <div class="flexcol">
+                    <label class="resource-label field-header">{{localize 'WOD5E.VTM.PredatorType'}}</label>
+                    <input class="resource" name="system.headers.predator" type="text" value="{{actor.system.headers.predator}}" placeholder="{{localize 'WOD5E.VTM.PredatorType'}}"/>
+                </div>
+                <div class="flexcol">
                     <label class="resource-label field-header">{{localize 'WOD5E.VTM.BloodResonance'}}</label>
-                    <input type="text" name="system.blood.resonance" value="{{actor.system.blood.resonance}}" placeholder="{{localize 'WOD5E.VTM.BloodResonance'}}"/>
+                    <input class="resource" type="text" name="system.blood.resonance" value="{{actor.system.blood.resonance}}" placeholder="{{localize 'WOD5E.VTM.BloodResonance'}}"/>
                 </div>
             </div>
 
-            <div class="flex-group-center resource">
+            <div class="flex-group-center">
                 <div class="flex-center">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.ClanBane"}}</label>
                 </div>
-                <div class="resource-contents prosemirror-resource">
+                <div class="resource-contents prosemirror-resource resource">
                     <prose-mirror name="system.headers.bane" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.headers.bane}}" toggled="true">
                         {{{enrichedBane}}}
                     </prose-mirror>

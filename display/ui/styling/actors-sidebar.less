@@ -12,83 +12,82 @@
       border-color: var(--color-border-highlight);
     }
 
-    // All items
-    .group-item > {
-      .group-header {
-        padding: 6px;
+    > .group-header {
+      padding: 6px;
+      line-height: 24px;
+      background: rgba(255 255 255 20%);
+      border-top: 1px sod var(--color-border-dark);
+      border-bottom: 1px sod var(--color-border-dark);
+
+      h3 {
+        margin: 0;
+        color: var(--color-text-ght-highght);
+        font-size: var(--font-size-16);
         line-height: 24px;
-        background: rgba(255 255 255 20%);
-        border-top: 1px sod var(--color-border-dark);
-        border-bottom: 1px sod var(--color-border-dark);
 
-        h3 {
-          margin: 0;
+        > i {
+          margin-right: 10px;
+        }
+      }
+
+      .create-button {
+        position: relative;
+        flex: 0 0 20px;
+        margin-left: 3px;
+        text-align: center;
+
+        .fa-plus {
+          position: absolute;
+          top: -2px;
+          right: -2px;
+          font-size: 0.5rem;
+          background: black;
           color: var(--color-text-ght-highght);
-          font-size: var(--font-size-16);
-          line-height: 24px;
-
-          > i {
-            margin-right: 10px;
-          }
-        }
-
-        .create-button {
-          position: relative;
-          flex: 0 0 20px;
-          margin-left: 3px;
-          text-align: center;
-
-          .fa-plus {
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            font-size: 0.5rem;
-            background: black;
-            color: var(--color-text-ght-highght);
-            padding: 1px;
-          }
-        }
-
-        .create-button:hover {
-          .fa-plus {
-            color: var(--color-text-hypernk);
-          }
-        }
-
-        .create-button.create-folder {
-          font-size: 120%;
+          padding: 1px;
         }
       }
 
+      .create-button:hover .fa-plus {
+        color: var(--color-text-hypernk);
+      }
+
+      .create-button.create-folder {
+        font-size: 120%;
+      }
     }
-    
-    .group-item.collapsed {
-      > .group-header {
-        background: rgba(0 0 0 50%);
+  }
+  
+  .group-item.collapsed {
+    .subdirectory {
+      display: none;
+    }
 
-        h3 {
-          text-shadow: 1px 1px 3px var(--color-shadow-dark);
-          font-size: 1.2em;
-          text-shadow: none;
+    > .group-header {
+      background: rgba(0 0 0 50%);
 
-          > i::before {
-            content: "\f07b";
-          }
+      h3 {
+        text-shadow: none;
+
+        > i::before {
+          content: "\f07b";
         }
-      }
-
-      .subdirectory {
-        display: none;
       }
 
       .create-folder {
         display: none;
       }
     }
-    
-    .group-item.droptarget > header h3 i {
-      text-shadow: 0 0 4px var(--color-shadow-primary);
-      transform: scale(1.2);
+  }
+  
+  .group-item.droptarget > header {
+    h3 {
+      text-shadow: 1px 1px 3px var(--color-shadow-dark);
+      font-size: 1.2em;
+
+      i {
+        text-shadow: 0 0 4px var(--color-shadow-primary);
+        transform: scale(1.2);
+      }
     }
   }
 }

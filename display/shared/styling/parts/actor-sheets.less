@@ -17,6 +17,20 @@
     }
   }
 
+  /* Input and resource fields */
+  input,
+  .resource {
+    background-color: #ededec;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+  }
+
+  input {
+    min-height: 26px;
+    border-radius: 0;
+  }
+
   /* Actor Header */
   .actor-header {
     display: flex;
@@ -32,16 +46,7 @@
 
     input,
     .resource {
-      background-color: #CCC;
-      display: flex;
-      flex-direction: column;
       margin-bottom: 5px;
-      border: 1px solid black;
-    }
-
-    input {
-      min-height: 26px;
-      border-radius: 0;
     }
 
     .header-profile {
@@ -101,6 +106,33 @@
       color: #FFF;
       justify-content: center;
       margin-bottom: 0;
+    }
+  }
+
+  /* Features tab */
+  .tab.features {
+    .character-details {
+      max-width: 400px;
+      margin-left: 10px;
+      margin-right: 10px;
+      
+      > div {
+        flex-grow: 0;
+      }
+
+      .field-header {
+        font-size: 16pt;
+      }
+
+      .detail-row {
+        width: 100%;
+        margin-bottom: 5px;
+      }
+    }
+
+    .features-list .category {
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 
@@ -414,7 +446,6 @@
 
     .edit-skill {
       margin-left: -15px;
-      position: absolute;
     }
 
     .stats-container {

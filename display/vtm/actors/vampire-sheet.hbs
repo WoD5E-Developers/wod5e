@@ -17,10 +17,6 @@
                     <div class="field-section">
                         <div class="flexrow nowrap">
                             <div class="flexcol">
-                                <label class="resource-label field-header">{{localize 'WOD5E.VTM.PredatorType'}}</label>
-                                <input name="system.headers.predator" type="text" value="{{actor.system.headers.predator}}" placeholder="{{localize 'WOD5E.VTM.PredatorType'}}"/>
-                            </div>
-                            <div class="flexcol">
                                 <label class="resource-label field-header">{{localize 'WOD5E.VTM.Clan'}}</label>
                                 <input name="system.clan.value" type="text" value="{{actor.system.clan.value}}" placeholder="{{localize 'WOD5E.VTM.Clan'}}"/>
                             </div>
@@ -49,8 +45,8 @@
         {{!-- Owned Powers Tab --}}
         {{> "systems/vtm5e/display/vtm/actors/parts/disciplines.hbs"}}
 
-        {{!-- Owned Features Tab --}}
-        {{> "systems/vtm5e/display/shared/actors/parts/features.hbs"}}
+        {{!-- Features Tab --}}
+        {{> "systems/vtm5e/display/vtm/actors/parts/features.hbs"}}
 
         {{!-- Blood Tab --}}
         {{> "systems/vtm5e/display/vtm/actors/parts/blood.hbs"}}

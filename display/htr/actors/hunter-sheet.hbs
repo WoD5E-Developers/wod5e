@@ -17,20 +17,16 @@
                     <div class="field-section">
                         <div class="flexrow nowrap">
                             <div class="flexcol">
-                                <label class="resource-label field-header">{{localize 'WOD5E.HTR.Creed'}}</label>
-                                <input name="system.headers.creed" type="text" value="{{actor.system.headers.creed}}" placeholder="{{localize 'WOD5E.HTR.Creed'}}"/>
-                            </div>
-                            <div class="flexcol">
-                                <label class="resource-label field-header">{{localize 'WOD5E.HTR.Drive'}}</label>
-                                <input name="system.headers.drive" type="text" value="{{actor.system.headers.drive}}" placeholder="{{localize 'WOD5E.HTR.Drive'}}"/>
+                                <label class="resource-label field-header">{{localize 'WOD5E.HTR.Cell'}}</label>
+                                <input name="system.headers.cellname" type="text" value="{{actor.system.headers.cellname}}" placeholder="{{localize 'WOD5E.HTR.Cell'}}"/>
                             </div>
                         </div>
                     </div>
                     <div class="field-section">
                         <div class="flexrow nowrap">
                             <div class="flexcol">
-                                <label class="resource-label field-header">{{localize 'WOD5E.HTR.Cell'}}</label>
-                                <input name="system.headers.cellname" type="text" value="{{actor.system.headers.cellname}}" placeholder="{{localize 'WOD5E.HTR.Cell'}}"/>
+                                <label class="resource-label field-header">{{localize 'WOD5E.HTR.Drive'}}</label>
+                                <input name="system.headers.drive" type="text" value="{{actor.system.headers.drive}}" placeholder="{{localize 'WOD5E.HTR.Drive'}}"/>
                             </div>
                             <div class="flexcol">
                                 <label class="resource-label field-header">{{localize 'WOD5E.HTR.Despair'}}</label>
@@ -54,8 +50,8 @@
         {{!-- Edges Tab --}}
         {{> "systems/vtm5e/display/htr/actors/parts/edges.hbs"}}
 
-        {{!-- Owned Features Tab --}}
-        {{> "systems/vtm5e/display/shared/actors/parts/features.hbs"}}
+        {{!-- Features Tab --}}
+        {{> "systems/vtm5e/display/htr/actors/parts/features.hbs"}}
 
         {{!-- Biography Tab --}}
         {{> "systems/vtm5e/display/shared/actors/parts/biography.hbs"}}

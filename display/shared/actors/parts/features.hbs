@@ -1,88 +1,14 @@
 <div class="tab features" data-group="primary" data-tab="features">
-    <div class="features-list item-list">
-        {{#each actor.system.features as |feature key|}}
-        <div class="category">
-            <div class="feature">
-                <div class="flexrow item-header">
-                    <div class="item-name">
-                        {{localize (generateLocalizedLabel key 'features')}}
-                    </div>
-                    <!-- Item controls for gift item sections -->
-                    <div class="item-controls">
-                        <!-- Add new feature item -->
-                        <a class="item-control item-create" title="{{localize 'WOD5E.Add'}}" data-type="feature" data-subtype="{{key}}">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                    </div>
-                </div>
+    <div class="flexrow">
+        <div class="character-details flexcol">
+            <div class="flexcol flex-group-center">
+                <!-- Core character details -->
+                {{> "systems/vtm5e/display/shared/actors/parts/core-details.hbs"}}
             </div>
-            {{#each feature as |item key|}}
-                <div class="collapsible-container">
-                    <div class="flexrow item" data-item-id="{{item._id}}">
-                        <div class="item-image">
-                            <img src="{{item.img}}">
-                        </div>
-                        <div class="item-name{{#if item.system.enrichedDescription}} collapsible{{/if}}">{{item.name}}</div>
-                        <div class="item-controls">
-                            <!-- Icon to edit the item -->
-                            <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <!-- Icon to display the item in chat -->
-                            <a class="item-control item-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
-                                <i class="fas fa-comment-alt"></i>
-                            </a>
-                            <!-- Icon to delete the item -->
-                            <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="collapsible-content item-description">
-                        {{{item.system.enrichedDescription}}}
-                    </div>
-                </div>
-            {{/each}}
         </div>
-        {{/each}}
-        <!-- Boons List -->
-        {{#if hasBoons}}
-            <div class="boons">
-                <div class="flexrow item-header">
-                    <div class="item-name">
-                        {{localize "WOD5E.ItemsList.Boons"}}
-                    </div>
-                    <!-- Item controls for the whole boon section -->
-                    <div class="item-controls">
-                        <!-- Add new boon -->
-                        <a class="item-control item-create" title="{{localize 'WOD5E.Add'}}" data-type="feature" data-subtype="boon">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                    </div>
-                </div>
-                {{#each actor.system.boons as |boon key|}}
-                    <div class="flexrow boon item" data-item-id="{{boon._id}}">
-                        <div class="item-image">
-                            <img src="{{boon.img}}">
-                        </div>
-                        <div class="item-name">{{boon.name}}</div>
-                        <div class="item-controls">
-                            <!-- Icon to edit the boon -->
-                            <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <!-- Icon to display the boon in chat -->
-                            <a class="item-control item-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
-                                <i class="fas fa-comment-alt"></i>
-                            </a>
-                            <!-- Icon to delete the boon -->
-                            <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
-                    </div>
-                {{/each}}
-            </div>
-        {{/if}}
+        <div class="features-list item-list">
+            <!-- Core features -->
+            {{> "systems/vtm5e/display/shared/actors/parts/core-features.hbs"}}
+        </div>
     </div>
 </div>
