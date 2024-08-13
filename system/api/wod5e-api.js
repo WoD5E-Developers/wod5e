@@ -2,6 +2,7 @@
 
 import { WOD5eDice } from '../scripts/system-rolls.js'
 import { _onConfirmRoll } from '../actor/scripts/roll.js'
+import { generateLocalizedLabel } from './generate-localization.js'
 
 export class wod5eAPI {
   /**
@@ -48,7 +49,7 @@ export class wod5eAPI {
     macro = ''
   }) {
     if (!actor || !data) {
-      ui.notifications.error('Error: No actor defined.')
+      ui.notifications.error(game.i18n.localize('WOD5E.Notifications.NoActorDefined'))
 
       return
     }
@@ -139,7 +140,7 @@ export class wod5eAPI {
               // Handle adding a skill to the dicepool
               if (skillSelect) {
                 // Add it to the label
-                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: skillSelect })}`
+                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: skillSelect, type: 'skills' })}`
 
                 // Add it to the value path if applicable
                 if (dataset.valuePaths) dataset.valuePaths += ` skills.${skillSelect}.value`
@@ -153,21 +154,21 @@ export class wod5eAPI {
               // Handle adding an attribute to the dicepool
               if (attributeSelect) {
                 // Add it to the label
-                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect })}`
+                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect, type: 'attributes' })}`
 
                 // Add it to the value path if applicable
-                if (dataset.valuePaths) dataset.valuePaths += ` abilities.${attributeSelect}.value`
+                if (dataset.valuePaths) dataset.valuePaths += ` attributes.${attributeSelect}.value`
 
                 // If using absolute values instead of value paths, add the values together
-                if (dataset.useAbsoluteValue && dataset.absoluteValue) dataset.absoluteValue += actor.system.abilities[attributeSelect].value
+                if (dataset.useAbsoluteValue && dataset.absoluteValue) dataset.absoluteValue += actor.system.attributes[attributeSelect].value
 
                 // Add the attribute selectors to the roll
-                dataset.selectors += ` abilities abilities.${attributeSelect}`
+                dataset.selectors += ` attributes attributes.${attributeSelect}`
               }
               // Handle adding a discipline to the dicepool
               if (disciplineSelect) {
                 // Add it to the label
-                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: disciplineSelect })}`
+                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: disciplineSelect, type: 'discipline' })}`
 
                 // Add it to the value path if applicable
                 if (dataset.valuePaths) dataset.valuePaths += ` disciplines.${disciplineSelect}.value`
@@ -185,7 +186,7 @@ export class wod5eAPI {
               // Handle adding a renown to the dicepool
               if (renownSelect) {
                 // Add it to the label
-                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: renownSelect })}`
+                dataset.label += ` + ${await WOD5E.api.generateLabelAndLocalize({ string: renownSelect, type: 'renown' })}`
 
                 // Add it to the value path if applicable
                 if (dataset.valuePaths) dataset.valuePaths += ` renown.${renownSelect}.value`
@@ -241,7 +242,8 @@ export class wod5eAPI {
     const actorData = actor.system
 
     // Secondary variables
-    const valueArray = valuePaths.split(' ')
+    // We check if we're receiving an array; if not, split it into one
+    const valueArray = valuePaths.constructor === Array ? valuePaths : valuePaths.split(' ')
     // Start with any flat modifiers or 0 if we have none
     let total = parseInt(flatMod) || 0
 
@@ -290,36 +292,10 @@ export class wod5eAPI {
     }
   }
 
-  static async generateLabelAndLocalize ({
-    string = ''
+  static generateLabelAndLocalize ({
+    string = '',
+    type = ''
   }) {
-    // Lists
-    const lists = [
-      WOD5E.Attributes.getList({}),
-      WOD5E.Skills.getList({}),
-      WOD5E.Features.getList(),
-      WOD5E.ItemTypes.getList(),
-      WOD5E.Disciplines.getList(),
-      WOD5E.Renown.getList(),
-      WOD5E.Edges.getList(),
-      WOD5E.Gifts.getList()
-    ]
-
-    // Iterate through each list to find the label
-    for (const list of lists) {
-      const label = findLabel(list, string)
-
-      if (label) {
-        return label
-      }
-    }
-
-    // Return the base localization if nothing else is found
-    return game.i18n.localize(`WOD5E.${string}`)
-
-    // Function to actually grab the localized label
-    function findLabel (list, str) {
-      return str in list ? list[str].displayName : ''
-    }
+    return generateLocalizedLabel(string, type)
   }
 }

@@ -1,0 +1,26 @@
+<div class="tab dicepool" data-group="primary" data-tab="dicepool">
+        {{#if (isNotEmpty item.system.dicepool)}}
+            <div class="resource grid grid-2col flex-center">
+                {{#each item.system.dicepool as |dice key|}}
+                    <div class="flexrow">
+                        <select name="system.dicepool.{{key}}.path">
+                            {{selectOptions ../diceOptions selected=dice.path}}
+                        </select>
+                        <a class="remove-dice" data-dice-id="{{key}}" title="{{localize 'WOD5E.Delete'}}">
+                            <i class="fa-solid fa-x"></i>
+                        </a>
+                    </div>
+                {{/each}}
+            </div>
+        {{else}}
+            <div class="flex-center">
+                {{localize "WOD5E.ItemsList.NoDiceSelectedHint"}}
+            </div>
+        {{/if}}
+    <hr>
+    <div class="flex-center">
+        <a class="add-dice">
+            {{localize "WOD5E.ItemsList.AddDice"}}
+        </a>
+    </div>
+</div>

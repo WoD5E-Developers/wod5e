@@ -1,4 +1,4 @@
-/* global game, foundry */
+/* global game, foundry, renderTemplate, ChatMessage */
 
 import { WOD5eDice } from '../scripts/system-rolls.js'
 import { GhoulActorSheet } from './ghoul-actor-sheet.js'
@@ -13,24 +13,18 @@ export class VampireActorSheet extends GhoulActorSheet {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['wod5e', 'sheet', 'actor', 'vampire', 'vampire-sheet']
+    const classList = ['vampire-sheet']
+    classList.push(...super.defaultOptions.classes)
 
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
-      template: 'systems/vtm5e/display/vtm/actors/vampire-sheet.hbs',
-      width: 940,
-      height: 700,
-      tabs: [{
-        navSelector: '.sheet-tabs',
-        contentSelector: '.sheet-body',
-        initial: 'stats'
-      }]
+      template: 'systems/vtm5e/display/vtm/actors/vampire-sheet.hbs'
     })
   }
 
   constructor (actor, options) {
     super(actor, options)
-    this.isCharacter = true
+    this.hasBoons = true
   }
 
   /** @override */
@@ -45,18 +39,16 @@ export class VampireActorSheet extends GhoulActorSheet {
   async getData () {
     const data = await super.getData()
 
-    this._prepareItems(data)
+    // Prepare items
+    await this._prepareItems(data)
+
+    // Prepare discipline data
+    data.actor.system.disciplines = await this._prepareDisciplineData(data)
 
     return data
   }
 
-  /**
-     * set Blood Potency for Vampire sheets.
-     *
-     * @param {Object} actorData The actor to prepare.
-     * @return {undefined}
-     * @override
-     */
+  /** Prepare item data for the Vampire actor */
   async _prepareItems (sheetData) {
     // Prepare items
     super._prepareItems(sheetData)
@@ -142,6 +134,18 @@ export class VampireActorSheet extends GhoulActorSheet {
         } else {
           actor.update({ 'system.humanity.value': Math.max(humanity - 1, 0) })
           actor.update({ 'system.humanity.stains': 0 })
+
+          renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+            name: game.i18n.localize('WOD5E.VTM.RemorseFailed'),
+            img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+            description: game.i18n.format('WOD5E.VTM.RemorseFailedDescription', {
+              actor: actor.name
+            })
+          }).then(html => {
+            ChatMessage.create({
+              content: html
+            })
+          })
         }
       }
     })

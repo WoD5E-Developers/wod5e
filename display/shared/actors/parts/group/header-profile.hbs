@@ -1,0 +1,30 @@
+<div class="flexrow main-section">
+    <div class="group-core-details flex-group-center">
+        <div class="flexcol">
+            <div class="header-profile-img">
+                <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt="{{localize 'WOD5E.ActorImage'}}"/>
+            </div>
+            <div class="field-header">Group Name</div>
+            <div class="flexrow name-and-lock">
+                <div class="charname">
+                    <input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'WOD5E.Name'}}" />
+                </div>
+                {{> "systems/vtm5e/display/shared/actors/parts/lock-button.hbs"}}
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="flexcol flex-group-center">
+        <div class="field-header">Group Type</div>
+        <div class="group-type-container resource flex-group-center">
+            {{#if locked}}
+                <div class="group-type-label">
+                    {{generateLocalizedLabel actor.system.groupType 'grouptype'}}
+                </div>
+            {{else}}
+                {{> "systems/vtm5e/display/shared/actors/parts/group/type-selector.hbs"}}
+            {{/if}}
+        </div>
+    </div>
+</div>

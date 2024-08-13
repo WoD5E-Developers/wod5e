@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="item-header">
         <div class="header-fields">
-            <h1 class="charname">{{generateLocalizedLabel id}}</h1>
+            <h1 class="charname">{{generateLocalizedLabel id 'skills'}}</h1>
         </div>
     </header>
 
@@ -52,7 +52,7 @@
                             </div>
                             <div class="flexcol flex-center">
                                 <b>{{localize "WOD5E.Bonus.PathsSeparatedBySemicolons"}}</b>
-                                <input name="paths" type="text" value="{{splitArray bonus.paths}}" placeholder="skills.athletics; abilities.strength" disabled="true"/>
+                                <input name="paths" type="text" value="{{splitArray bonus.paths}}" placeholder="skills.athletics; attributes.strength" disabled="true"/>
                             </div>
                         </div>
                     </div>

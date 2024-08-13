@@ -1,6 +1,6 @@
 <div class="tab flex-center" data-group="primary">
     <div class="flexrow spc-pool-header">
-        <label class="resource-label">{{localize "WOD5E.HTR.Edges"}}</label>
+        <label class="resource-label field-header">{{localize "WOD5E.HTR.Edges"}}</label>
         <div class="item-controls spc-item-header">
             <a class="item-control power-create" title="{{localize 'WOD5E.VTM.AddEdge'}}" data-type="edge">
                 <i class="fas fa-plus"></i>
@@ -14,7 +14,7 @@
             {{#if edge.visible}}
                 <li class="flexrow spc-item-header">
                     <label for="{{edge.name}}" class="resource-label rollable" data-use-absolute-value="true"
-                      data-absolute-value="{{edge.value}}" data-label="{{generateLocalizedLabel key}}">{{generateLocalizedLabel key}}
+                      data-absolute-value="{{edge.value}}" data-label="{{generateLocalizedLabel key 'edges'}}">{{generateLocalizedLabel key 'edges'}}
                     </label>
                     <div class="resource-value">
                         <input type="number" name="system.edges.{{key}}.value" 
