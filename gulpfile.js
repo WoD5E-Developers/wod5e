@@ -23,7 +23,7 @@ gulp.task('localize', function (done) {
       const langFilePath = path.join(langDir, `${file}-${lang}.json`)
 
       const enKeys = readJsonFile(enFilePath)
-      let langKeys = readJsonFile(langFilePath)
+      const langKeys = readJsonFile(langFilePath)
 
       if (checkLocalizationKeys(enKeys, langKeys)) {
         writeJsonFile(langFilePath, langKeys)
@@ -59,9 +59,9 @@ gulp.task('default', gulp.series('less', 'localize', 'watch'))
 
 // Create directory if it doesn't exist
 function ensureDirectoryExistence (dirPath) {
-    if (!fs.existsSync(dirPath)) {
-      fs.mkdirSync(dirPath, { recursive: true })
-    }
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true })
+  }
 }
 
 // Read JSON file
@@ -76,7 +76,7 @@ function readJsonFile (filePath) {
 }
 
 // Write JSON data to file
-function writeJsonFile(filePath, data) {
+function writeJsonFile (filePath, data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8')
 }
 
@@ -95,6 +95,7 @@ function checkLocalizationKeys (enKeys, langKeys) {
     } else {
       // If the key is not present, add it with an underscore and an empty string
       if (!Object.prototype.hasOwnProperty.call(langKeys, key)) {
+        // eslint-disable-next-line quotes
         langKeys[`_${key}`] = ""
         updated = true
       }
