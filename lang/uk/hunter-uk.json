@@ -1,13 +1,9 @@
 {
   "WOD5E": {
     "HTR": {
-      "_COMMENT": "This localization file has missing translations, marked with an underscore before the string. If you have a translation, please submit a pull request!",
-
       "Label": "Мисливець",
-
       "_HunterDice": "",
       "DesperationDice": "Кубик Відчайдушності",
-        
       "Despair": "Відчай",
       "Creed": "Кредо",
       "CreedFields": "Області Кредо",
@@ -27,7 +23,6 @@
       "DespairFailure": "Провал з Відчаєм",
       "DesperationUnavailable": "Відчайдушність недоступна, перебуваючи у Відчаї",
       "_Drive": "",
-
       "Arsenal": "Арсенал",
       "Fleet": "Автопарк",
       "Ordnance": "Озброєння",
@@ -39,7 +34,13 @@
       "SenseTheUnnatural": "Відчуття Химерного",
       "RepelTheUnnatural": "Відлякування Химерного",
       "ThwartTheUnnatural": "Протидія Химерному",
-      "Artifact": "Артефакт"
+      "Artifact": "Артефакт",
+      "_EdgePool": "",
+      "_AddEdgePool": "",
+      "_NewStringEdgePool": "",
+      "_Perks": "",
+      "_StringPerks": "",
+      "_NewStringPerk": ""
     }
   }
 }

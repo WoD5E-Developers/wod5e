@@ -1,8 +1,6 @@
 {
   "WOD5E": {
     "HTR": {
-      "_COMMENT": "This localization file has missing translations, marked with an underscore before the string. If you have a translation, please submit a pull request!",
-
       "Label": "Łowca",
       "_HunterDice": "",
       "DesperationDice": "Kostki Desperacji",
@@ -36,7 +34,13 @@
       "SenseTheUnnatural": "Wyczucie nienaturalnego",
       "RepelTheUnnatural": "Odparcie nienaturalnego",
       "ThwartTheUnnatural": "Udaremnij nienaturalne",
-      "Artifact": "Artefakt"
+      "Artifact": "Artefakt",
+      "_EdgePool": "",
+      "_AddEdgePool": "",
+      "_NewStringEdgePool": "",
+      "_Perks": "",
+      "_StringPerks": "",
+      "_NewStringPerk": ""
     }
   }
 }

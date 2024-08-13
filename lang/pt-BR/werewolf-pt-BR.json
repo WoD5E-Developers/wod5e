@@ -1,8 +1,6 @@
 {
   "WOD5E": {
     "WTA": {
-      "_COMMENT": "This localization file has missing translations, marked with an underscore before the string. If you have a translation, please submit a pull request!",
-
       "_Label": "",
       "_Pack": "",
       "_WerewolfDice": "",
@@ -77,7 +75,10 @@
       "_ShadowLord": "",
       "_SilentStrider": "",
       "_SilverFang": "",
-      "_Rite": ""
+      "_Rite": "",
+      "_StringGifts": "",
+      "_NewStringGift": "",
+      "_Rites": ""
     }
   }
 }

@@ -5,7 +5,7 @@ const less = require('gulp-less')
 const concat = require('gulp-concat')
 
 // Define languages and files here
-const languages = ['template'] // Add more languages as needed
+const languages = ['template', 'de', 'es', 'fr', 'it', 'pl', 'pt-BR', 'ru', 'uk'] // Add more languages as needed
 const files = ['core', 'vampire', 'werewolf', 'hunter']
 
 // Ensure localization keys exist

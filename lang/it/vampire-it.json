@@ -85,7 +85,11 @@
       "PossibleBestialFailure": "Potenziale Fallimento Bestiale",
       "RollingRemorse": "Tirando rimorso",
       "RousingBlood": "Risvegliando il sangue",
-      "ResistingFrenzy": "Resistendo alla Frenesia"
+      "ResistingFrenzy": "Resistendo alla Frenesia",
+      "_RemorseFailed": "",
+      "_RemorseFailedDescription": "",
+      "_StringPowers": "",
+      "_NewStringPower": ""
     }
   }
 }

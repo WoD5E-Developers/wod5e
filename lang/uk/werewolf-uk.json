@@ -1,15 +1,10 @@
 {
   "WOD5E": {
     "WTA": {
-      "_COMMENT": "This localization file has missing translations, marked with an underscore before the string. If you have a translation, please submit a pull request!",
-
       "Label": "Перевертень",
-
       "_Pack": "",
-
       "_WerewolfDice": "",
       "RageDice": "Кубик Гніву",
-
       "Gifts": "Дари",
       "GiftsandRites": "Дари й Обряди",
       "Rage": "Гнів",
@@ -18,7 +13,6 @@
       "PossibleRageFailure": "Можливий Жорстокий наслідок",
       "RollRageDamageWillpower": "Кидок Гніву",
       "_HasCost": "",
-
       "Gift": "Дар",
       "SelectGift": "Виберіть Дар",
       "GiftType": "Тип Дару",
@@ -26,35 +20,29 @@
       "NewGift": "Новий Дар",
       "AddRite": "Додати Обряд",
       "NewRite": "Новий Обряд",
-
       "TheWolf": "Вовк",
       "Tribe": "Плем'я",
       "_Auspice": "",
-
       "_Harano": "",
       "HaranoTest": "Перевірка Harano",
       "_Hauglosk": "",
       "HaugloskTest": "Перевірка Hauglosk",
-
       "_Frenzy": "",
       "EnterFrenzy": "Увійти в Скаженість",
       "EndFrenzy": "Завершити Скаженість",
       "FrenzyActiveWarning": "Скаженість активована.",
       "Active": "Активно",
       "FrenzyActiveWarning2": "Ви не моежете використовувати Дари та Обряди під час Скаженості.",
-
       "_LostTheWolf": "",
       "_LostWolfWarning": "",
       "LostWolfFormChange": "Втратив вовка: ви не можете зараз перевтілитись у надприродню форму.",
       "_LostWolfShiftDown": "",
       "_LostWolfShiftAnyway": "",
-
       "Renown": "Репутація",
       "_AddRenown": "",
       "Wisdom": "Мудрість",
       "Glory": "Слава",
       "Honor": "Честь",
-
       "FormsOfGarou": "Форми",
       "_HomidName": "",
       "HomidTitle": "Людина",
@@ -67,11 +55,9 @@
       "_LupusName": "",
       "LupusTitle": "Вовк",
       "_PostFormToChat": "",
-
       "Patron": "Дух Покровитель",
       "Favor": "Схвалення",
       "Ban": "Засудження",
-
       "_Native": "",
       "_Ragabash": "",
       "_Theurge": "",
@@ -89,7 +75,10 @@
       "_ShadowLord": "",
       "_SilentStrider": "",
       "_SilverFang": "",
-      "Rite": "Обряд"
+      "Rite": "Обряд",
+      "_StringGifts": "",
+      "_NewStringGift": "",
+      "_Rites": ""
     }
   }
 }

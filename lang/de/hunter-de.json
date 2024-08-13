@@ -1,13 +1,9 @@
 {
   "WOD5E": {
     "HTR": {
-      "_COMMENT": "This localization file has missing translations, marked with an underscore before the string. If you have a translation, please submit a pull request!",
-
       "Label": "Jäger",
-
       "HunterDice": "Jäger-Würfel",
       "DesperationDice": "Verzweiflungs-Würfel",
-
       "Despair": "Hoffnungslosigkeit",
       "Creed": "Überzeugung",
       "CreedFields": "Einsatzgebiete der Überzeugungen",
@@ -27,7 +23,6 @@
       "DespairFailure": "Verzweifelter Fehlschlag",
       "DesperationUnavailable": "Verzweiflung ist während des Verzweiflens nicht möglich",
       "Drive": "Antrieb",
-      
       "Arsenal": "Arsenal",
       "Fleet": "Flotte",
       "Ordnance": "Sprengstoff",
@@ -39,7 +34,13 @@
       "SenseTheUnnatural": "Übernatürliches spüren",
       "RepelTheUnnatural": "Übernatürliches zurücktreiben",
       "ThwartTheUnnatural": "Übernatürliches vereiteln",
-      "Artifact": "Artefakt"
+      "Artifact": "Artefakt",
+      "_EdgePool": "",
+      "_AddEdgePool": "",
+      "_NewStringEdgePool": "",
+      "_Perks": "",
+      "_StringPerks": "",
+      "_NewStringPerk": ""
     }
   }
 }

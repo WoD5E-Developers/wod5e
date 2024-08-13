@@ -1,8 +1,6 @@
 {
   "WOD5E": {
     "VTM": {
-      "_COMMENT": "This localization file has missing translations, marked with an underscore before the string. If you have a translation, please submit a pull request!",
-
       "Label": "Vampiro",
       "Coterie": "Coterie",
       "Ghoul": "Carniçal",
@@ -87,7 +85,11 @@
       "PossibleBestialFailure": "Possível Falha Bestial",
       "RollingRemorse": "Rolando Remorso",
       "RousingBlood": "Inflamando o Sangue",
-      "ResistingFrenzy": "Resistindo ao Frenesi"
+      "ResistingFrenzy": "Resistindo ao Frenesi",
+      "_RemorseFailed": "",
+      "_RemorseFailedDescription": "",
+      "_StringPowers": "",
+      "_NewStringPower": ""
     }
   }
 }
