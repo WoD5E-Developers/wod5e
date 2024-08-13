@@ -30,6 +30,20 @@ export const generateLocalizedLabel = (string, type) => {
   } else if (type === 'edges' || type === 'edge' || type === 'perk' || type === 'edgepool') { // Edges
     const edges = WOD5E.Edges.getList()
     return findLabel(edges, string)
+  } else if (type === 'grouptype' || type === 'group'){
+    const grouptypes = {
+      cell: {
+        displayName: game.i18n.localize('WOD5E.HTR.Cell')
+      },
+      coterie: {
+        displayName: game.i18n.localize('WOD5E.VTM.Coterie')
+      },
+      pack: {
+        displayName: game.i18n.localize('WOD5E.WTA.Pack')
+      }
+    }
+
+    return findLabel(grouptypes, string)
   } else { // Return the base localization if nothing else is found
     const otherLocalizationString = string.capitalize()
     return game.i18n.localize(`WOD5E.${otherLocalizationString}`)

@@ -64,9 +64,11 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/actors/parts/spc/type-selector.hbs',
 
     // Group Sheet Partials
+    'systems/vtm5e/display/shared/actors/parts/group/navbar.hbs',
     'systems/vtm5e/display/shared/actors/parts/group/type-selector.hbs',
     'systems/vtm5e/display/shared/actors/parts/group/group-members.hbs',
     'systems/vtm5e/display/shared/actors/parts/group/description.hbs',
+    'systems/vtm5e/display/shared/actors/parts/group/header-profile.hbs',
 
     // Item Sheet Partials (Tabs)
     'systems/vtm5e/display/shared/items/parts/description.hbs',

@@ -12,7 +12,13 @@
         </div>
         <div class="note-container private-notepad">
             <div class="flex-center">
-                <label class="resource-label field-header">{{localize "WOD5E.Tabs.PrivateNotes"}}</label>
+                <label class="resource-label field-header">
+                    {{#ifeq actor.type 'group'}}
+                        {{localize "WOD5E.Tabs.StorytellerNotes"}}
+                    {{else}}
+                        {{localize "WOD5E.Tabs.PrivateNotes"}}
+                    {{/ifeq}}
+                </label>
             </div>
             <div class="resource">
                 <prose-mirror name="system.privatenotes" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.privatenotes}}" toggled="true">

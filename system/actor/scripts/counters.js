@@ -18,7 +18,9 @@ export const _onResourceChange = async function (event) {
 
   // Don't let things be edited if the sheet is locked
   if (this.actor.locked || actorData.locked) {
-    ui.notifications.warn(`This resource cannot be modified while the actor sheet "${actor.name}" is locked.`)
+    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
+      string: actor.name
+    }))
     return
   }
 
@@ -130,7 +132,9 @@ export const _onDotCounterChange = async function (event) {
   // Make sure that the dot counter can only be changed if the sheet is
   // unlocked or if it's the hunger/rage track.
   if (this.actor.system.locked && !parent.has('.hunger-value').length && !parent.has('.rage-value').length) {
-    ui.notifications.warn(`This resource cannot be modified while the actor sheet "${actor.name}" is locked.`)
+    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
+      string: actor.name
+    }))
     return
   }
 
@@ -173,7 +177,9 @@ export const _onDotCounterEmpty = async function (event) {
   // unlocked or if it's the hunger track.
   // Bypass this if this function is being called from a group sheet
   if (!(this.actor.type === 'group') && actor.system.locked && !parent.has('.hunger-value').length && !parent.has('.rage-value')) {
-    ui.notifications.warn(`This resource cannot be modified while the actor sheet "${actor.name}" is locked.`)
+    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
+      string: actor.name
+    }))
     return
   }
 

@@ -1759,6 +1759,97 @@ body.uk .actor.sheet {
   font-family: "vampireRevised", "sans-serif";
 }
 
+.group.sheet .actor-header {
+  margin-top: auto;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 5px;
+}
+.group.sheet .actor-header .resource {
+  min-height: 35px;
+}
+.group.sheet .actor-header .resource .resource-counter {
+  text-wrap: nowrap;
+}
+.group.sheet .actor-header .main-section {
+  flex-grow: 1;
+}
+.group.sheet .actor-header .main-section .header-profile-img {
+  margin-bottom: 0;
+  align-self: center;
+}
+.group.sheet .actor-header .main-section .group-core-details {
+  place-self: flex-end;
+}
+.group.sheet .actor-header .main-section .group-core-details .name-and-lock {
+  flex-wrap: nowrap;
+}
+.group.sheet .actor-header .main-section .group-core-details .name-and-lock .charname {
+  min-width: 300px;
+}
+.group.sheet .actor-header .group-type-container {
+  width: 100%;
+}
+.group.sheet .actor-header .group-type-container .group-type-label {
+  font-size: 16pt;
+  line-height: 0;
+}
+.group.sheet .actor-header .group-type-container select {
+  height: 100%;
+  font-weight: bold;
+}
+.group.sheet .actor-header .field-header {
+  font-size: 16pt;
+}
+.group.sheet .members .group-member .group-sheet .members .group-member {
+  padding: 5px 0;
+}
+.group.sheet .members .group-member .actor-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+.group.sheet .members .group-member .actor-image {
+  max-width: 60px;
+}
+.group.sheet .members .group-member .actor-image img {
+  margin: 0 3px;
+  cursor: pointer;
+}
+.group.sheet .members .group-member .sub-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.group.sheet .members .group-member .sub-item .sub-item-name {
+  font-weight: bold;
+}
+.group.sheet .members .group-member .sup-item {
+  flex-grow: 0;
+  display: flex;
+}
+.group.sheet .members .group-member .sup-item a {
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+}
+.group.sheet .members .group-member .sup-item.type {
+  text-transform: uppercase;
+  margin-right: 10px;
+  text-wrap: nowrap;
+}
+.group.sheet .coterie-features {
+  align-items: flex-end;
+}
+.group.sheet .coterie-features .resource-value {
+  margin-left: auto;
+  margin-right: auto;
+}
+.group.sheet .coterie-features .hunting-difficulty .resource-value {
+  font-size: 15pt;
+  font-weight: bold;
+}
+
 /* Grids */
 .wod5e .grid,
 .wod5e .grid-2col {
@@ -1863,7 +1954,7 @@ body.uk .actor.sheet {
 .locked .exceptionalskill-delete,
 .locked .power-create,
 .locked .power-delete,
-.group-sheet .locked .remove-actor {
+.locked .remove-actor {
   display: none;
 }
 /* Set resource counters to use the default cursor */

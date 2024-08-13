@@ -55,6 +55,13 @@
         "LicensedUnderDarkPack": "Licensed Under The Dark Pack",
         "LicensedUnderDarkPackFulltext": "Portions of the materials are the copyrights and trademarks of Paradox Interactive AB, and are used with permission. All rights reserved. For more information please visit <a href='https://worldofdarkness.com'>worldofdarkness.com</a>.",
 
+        "Notifications": {
+            "NoActorDefined": "No actor defined",
+            "CannotModifyResourceString": "This resource cannot be modified while the actor sheet \"{string}\" is locked.",
+            "StringAlreadyInCurrentGroup": "Actor {string} is already part of this group.",
+            "StringAlreadyInOtherGroup": "Actor {string} is already in an existing group."
+        },
+
         "RollList": {
             "Label": "Roll",
             "RollMode": "Roll Mode",
@@ -122,6 +129,7 @@
             "Dicepool": "Dicepool",
             "PrivateNotes": "Private Notes",
             "PublicNotes": "Public Notes",
+            "StorytellerNotes": "Storyteller Notes",
             "Biography": "Biography",
             "Settings": "Settings"
         },

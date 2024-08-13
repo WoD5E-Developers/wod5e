@@ -11,7 +11,7 @@ export class GroupActorSheet extends WoDActor {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['group-sheet']
+    const classList = ['group']
     classList.push(...super.defaultOptions.classes)
 
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -155,7 +155,9 @@ export class GroupActorSheet extends WoDActor {
     // Returns false if it's found, or true if it's not found
     const actorIsntUnique = group.system.members.find(players => players === actorUUID)
     if (actorIsntUnique) {
-      ui.notifications.warn(`Actor ${actor.name} is already part of this group.`)
+      ui.notifications.warn(game.i18n.format('WOD5E.Notifications.StringAlreadyInCurrentGroup', {
+        string: actor.name
+      }))
 
       return
     }
@@ -165,7 +167,9 @@ export class GroupActorSheet extends WoDActor {
     const groupExists = game.actors.get(actorHasGroup)
 
     if (actorHasGroup && groupExists) {
-      ui.notifications.warn(`Actor ${actor.name} is already in an existing group.`)
+      ui.notifications.warn(game.i18n.format('WOD5E.Notifications.StringAlreadyInOtherGroup', {
+        string: actor.name
+      }))
 
       return
     }

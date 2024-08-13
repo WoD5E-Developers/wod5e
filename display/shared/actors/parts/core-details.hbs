@@ -6,13 +6,15 @@
     <label class="resource-label field-header">{{localize "WOD5E.BiographyList.Chronicle"}}</label>
     <input type="text" name="system.headers.chronicle" value="{{actor.system.headers.chronicle}}" placeholder="{{localize 'WOD5E.BiographyList.Chronicle'}}" />
 </div>
-<div class="flexrow detail-row">
-    <div class="flexcol">
-        <label class="resource-label field-header">{{localize "WOD5E.BiographyList.Ambition"}}</label>
-        <input type="text" name="system.headers.ambition" value="{{actor.system.headers.ambition}}" placeholder="{{localize 'WOD5E.BiographyList.Ambition'}}" />
+{{#ifnoteq actor.type 'group'}}
+    <div class="flexrow detail-row">
+        <div class="flexcol">
+            <label class="resource-label field-header">{{localize "WOD5E.BiographyList.Ambition"}}</label>
+            <input type="text" name="system.headers.ambition" value="{{actor.system.headers.ambition}}" placeholder="{{localize 'WOD5E.BiographyList.Ambition'}}" />
+        </div>
+        <div class="flexcol">
+            <label class="resource-label field-header">{{localize "WOD5E.BiographyList.Desire"}}</label>
+            <input type="text" name="system.headers.desire" value="{{actor.system.headers.desire}}" placeholder="{{localize 'WOD5E.BiographyList.Desire'}}" />
+        </div>
     </div>
-    <div class="flexcol">
-        <label class="resource-label field-header">{{localize "WOD5E.BiographyList.Desire"}}</label>
-        <input type="text" name="system.headers.desire" value="{{actor.system.headers.desire}}" placeholder="{{localize 'WOD5E.BiographyList.Desire'}}" />
-    </div>
-</div>
+{{/ifnoteq}}

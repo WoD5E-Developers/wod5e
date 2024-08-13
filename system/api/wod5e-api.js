@@ -49,7 +49,7 @@ export class wod5eAPI {
     macro = ''
   }) {
     if (!actor || !data) {
-      ui.notifications.error('Error: No actor defined.')
+      ui.notifications.error(game.i18n.localize('WOD5E.Notifications.NoActorDefined'))
 
       return
     }

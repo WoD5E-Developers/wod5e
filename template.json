@@ -36,7 +36,8 @@
           "value": 0
         },
         "danger": {
-          "value": 0        
+          "value": 0,
+          "max": 5    
         },
         "health": {
           "aggravated": 0,
@@ -793,6 +794,26 @@
           "creed": "",
           "drive": ""
         }
+      },
+      "cell_traits": {
+        "desperation": {
+          "value": 0
+        },
+        "danger": {
+          "value": 0,
+          "max": 5    
+        }
+      },
+      "coterie_traits": {
+        "chasse": {
+          "value": 0
+        },
+        "lien": {
+          "value": 0
+        },
+        "portillon": {
+          "value": 0
+        }
       }
     },
     "mortal": {
@@ -816,6 +837,7 @@
       "gamesystem": "vampire"
     },
     "group": {
+      "templates": ["cell_traits", "coterie_traits"],
       "groupType": "coterie",
       "biography": "",
       "equipment": "",
@@ -823,21 +845,6 @@
       "privatenotes": "",
       "headers":{
         "concept": ""
-      },
-      "desperation": {
-        "value": 0
-      },
-      "danger": {
-        "value": 0
-      },
-      "chasse": {
-        "value": 0
-      },
-      "lien": {
-        "value": 0
-      },
-      "portillon": {
-        "value": 0
       },
       "members": [],
       "collapsed": true
