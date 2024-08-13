@@ -1404,7 +1404,6 @@ body.uk .actor.sheet {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
   min-width: 315px;
 }
 .actor.sheet .actor-header .header-profile-img {
@@ -1420,7 +1419,6 @@ body.uk .actor.sheet {
   display: flex;
   width: 100%;
   align-self: flex-end;
-  align-self: center;
 }
 .actor.sheet .actor-header .header-fields .header-fields-left,
 .actor.sheet .actor-header .header-fields .header-fields-right {
