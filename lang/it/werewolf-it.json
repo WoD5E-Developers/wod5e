@@ -1,7 +1,6 @@
 {
   "WOD5E": {
     "WTA": {
-     
       "Label": "Licantropo",
       "Pack": "Branco",
       "WerewolfDice": "Dadi Licantropo",
@@ -76,7 +75,10 @@
       "ShadowLord": "Signori dell'Ombra",
       "SilentStrider": "Viandanti Silenti",
       "SilverFang": "Zanne d'Argento",
-      "Rite": "Rito"
+      "Rite": "Rito",
+      "_StringGifts": "",
+      "_NewStringGift": "",
+      "_Rites": ""
     }
   }
 }

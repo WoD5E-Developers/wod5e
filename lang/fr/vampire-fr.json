@@ -1,21 +1,16 @@
 {
   "WOD5E": {
     "VTM": {
-      "_COMMENT": "This localization file has missing translations, marked with an underscore before the string. If you have a translation, please submit a pull request!",
-
       "Label": "Vampire",
-
       "Coterie": "Coterie",
       "Ghoul": "Goule",
       "Domitor": "Domitor",
       "Clan": "Clan",
       "Generation": "Génération",
-      
       "Chasse": "Viandis",
       "Lien": "Servage",
       "Portillon": "Rempart",
       "HuntingDifficulty": "Difficulté de la chasse",
-
       "VampireDice": "Dé de Vampire",
       "HungerDice": "Dé de Soif",
       "Humanity": "Humanité",
@@ -26,7 +21,6 @@
       "Rouse": "Exaltation",
       "Frenzy": "Frénésie",
       "Remorse": "Remords",
-
       "Discipline": "Discipline",
       "Disciplines": "Disciplines",
       "DisciplineType": "Type de discipline",
@@ -39,7 +33,6 @@
       "RouseReRoll": "Relance du test d'Exaltation",
       "FeedingPenalty": "Pénalité pour se nourrir",
       "BaneSeverity": "Score de Fléau",
-
       "AddPower": "Ajouter",
       "SelectDiscipline": "Choisir une discipline",
       "AddDiscipline": "Ajout de discipline",
@@ -57,7 +50,6 @@
       "ThinBloodAlchemy": "Alchimie du sang clair",
       "Rituals": "Rituels",
       "Ceremonies": "Cérémonies",
-
       "Add1Dice": "Ajouter 1 dé",
       "Add2Dice": "Ajouter 2 dés",
       "Add3Dice": "Ajouter 3 dés",
@@ -93,7 +85,11 @@
       "PossibleBestialFailure": "Potentiel Échec Bestial",
       "RollingRemorse": "Jet de Remords",
       "RousingBlood": "Exaltation du sang",
-      "ResistingFrenzy": "Résister à la frénésie"
+      "ResistingFrenzy": "Résister à la frénésie",
+      "_RemorseFailed": "",
+      "_RemorseFailedDescription": "",
+      "_StringPowers": "",
+      "_NewStringPower": ""
     }
   }
 }

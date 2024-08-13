@@ -1,27 +1,25 @@
 {
   "TYPES": {
-      "Actor": {
-          "vampire": "Vampiro",
-          "ghoul": "Carniçal",
-          "mortal": "Mortal",
-          "hunter": "Caçador",
-          "werewolf": "",
-          "spc": "Personagem do Narrador",
-          "_group": ""
-      },
-      "Item": {
-          "boon": "Favor",
-          "customRoll": "Rolagem Personalizada",
-          "feature": "Vantagem",
-          "_gift": "",
-          "perk": "Distinção",
-          "power": "Disciplina"
-      }
+    "Actor": {
+      "vampire": "Vampiro",
+      "ghoul": "Carniçal",
+      "mortal": "Mortal",
+      "hunter": "Caçador",
+      "werewolf": "",
+      "spc": "Personagem do Narrador",
+      "_group": ""
+    },
+    "Item": {
+      "boon": "Favor",
+      "customRoll": "Rolagem Personalizada",
+      "feature": "Vantagem",
+      "_gift": "",
+      "perk": "Distinção",
+      "power": "Disciplina",
+      "_edgepool": ""
+    }
   },
-
   "WOD5E": {
-    "_COMMENT": "This localization file has missing translations, marked with an underscore before the string. If you have a translation, please submit a pull request!",
-
     "Name": "Nome",
     "Confirm": "Confirmar",
     "Close": "Fechar",
@@ -39,16 +37,11 @@
     "None": "Nenhum",
     "Value": "Valor",
     "_Label": "",
-
-    "_New": "New {string}",
-    
     "Mortal": "Mortal",
     "_GroupSheet": "",
-
     "_OpenSheet": "",
     "_RemoveFromGroup": "",
     "_NoGroupMembers": "",
-
     "RollList": {
       "Label": "Rolagem",
       "RollMode": "Modo de Rolagem",
@@ -62,31 +55,28 @@
       "Difficulty": "Dificuldade",
       "_SelectableModifiers": "",
       "_Source": "",
-      "_Active": "",
       "_CustomModifiers": "",
       "_AddCustomModifier": "",
       "_Total": ""
     },
-
     "Bonus": {
-        "_NewSpecialty": "",
-        "_AddNewSpecialty": "",
-        "_NewBonus": "",
-        "_AddNewBonus": "",
-        "_Active": "",
-        "_ActiveWhen": "",
-        "_Always": "",
-        "_Never": "",
-        "_IfEquals": "",
-        "_Path": "",
-        "_PathsSeparatedBySemicolons": "",
-        "_DisplayWhenInactive": "",
-        "_Unless": "",
-        "_PathToCheck": "",
-        "_ValueToCheck": "",
-        "_IfPathIs": ""
+      "_NewSpecialty": "",
+      "_AddNewSpecialty": "",
+      "_NewBonus": "",
+      "_AddNewBonus": "",
+      "_Active": "",
+      "_ActiveWhen": "",
+      "_Always": "",
+      "_Never": "",
+      "_IfEquals": "",
+      "_Path": "",
+      "_PathsSeparatedBySemicolons": "",
+      "_DisplayWhenInactive": "",
+      "_Unless": "",
+      "_PathToCheck": "",
+      "_ValueToCheck": "",
+      "_IfPathIs": ""
     },
-
     "SPC": {
       "Label": "Personagem do Narrador",
       "GeneralDifficulty": "Dificuldade geral",
@@ -98,14 +88,12 @@
       "AddSkill": "Adicione habilidade",
       "SelectSkill": "Selecione Habilidade"
     },
-
     "Damage": {
       "Superficial": "Superficial",
       "Aggravated": "Agravado",
       "Stains": "Máculas",
       "Max": "Máx"
     },
-
     "Tabs": {
       "_Members": "",
       "Stats": "Características",
@@ -113,9 +101,14 @@
       "Description": "Descrição",
       "Equipment": "Equipamento",
       "Notes": "Notas",
-      "Other": "Outro"
+      "Other": "Outro",
+      "_Dicepool": "",
+      "_PrivateNotes": "",
+      "_PublicNotes": "",
+      "_StorytellerNotes": "",
+      "_Biography": "",
+      "_Settings": ""
     },
-
     "AttributesList": {
       "Label": "Atributos",
       "Attributes": "Atributos",
@@ -129,7 +122,6 @@
       "Composure": "Autocontrole",
       "Resolve": "Determinação"
     },
-
     "SkillsList": {
       "Label": "Habilidades",
       "Skills": "Habilidades",
@@ -163,7 +155,6 @@
       "Subterfuge": "Subterfúgio",
       "Technology": "Tecnologia"
     },
-
     "ItemsList": {
       "Label": "Items",
       "ShowToChat": "Mostrar no Chat",
@@ -184,9 +175,11 @@
       "Boon": "Favor",
       "Boons": "Favores",
       "_Macro": "",
-      "_SelectFeature": ""
+      "_SelectFeature": "",
+      "_Items": "",
+      "_NoDiceSelectedHint": "",
+      "_AddDice": ""
     },
-
     "BiographyList": {
       "Label": "Biografia",
       "Concept": "Conceito",
@@ -198,7 +191,6 @@
       "Appearance": "Aparência",
       "History": "História"
     },
-
     "DiceRoller": {
       "AttributeShortLabel": "A",
       "SkillShortLabel": "H",
@@ -206,7 +198,6 @@
       "NothingShortLabel": "⊘",
       "SelectAbility": "Escolher Atributo"
     },
-
     "Chat": {
       "RollingWillpower": "Rolando Força de Vontade",
       "Rolling": "Rolando",
@@ -217,70 +208,71 @@
       "_WillpowerDamage": "",
       "_HasReceivedWillpowerDamage": ""
     },
-
     "Macro": {
-        "_MacroID": "",
-        "_MacroNote": ""
+      "_MacroID": "",
+      "_MacroNote": ""
     },
-
     "Settings": {
-        "_SaveChanges": "",
-
-        "_Modifications": "",
-        "_Custom": "",
-
-        "_Rename": "",
-        "_Hidden": "",
-
-        "_AddAttributeModification": "",
-        "_AddSkillModification": "",
-        "_AddCustomAttribute": "",
-        "_AddCustomSkill": "",
-
-        "_AttributeType": "",
-        "_SkillType": "",
-
-        "_WorldVersion": "",
-        "_WorldVersionHint": "",
-
-        "_DarkTheme": "",
-        "_DarkThemeHint": "",
-
-        "_ActorBanner": "",
-        "_ActorBannerHint": "",
-
-        "_AutomationSettings": "",
-        "_AutomationSettingsHint": "",
-
-        "_DisableAutomation": "",
-        "_DisableAutomationHint": "",
-
-        "_AutomateWillpower": "",
-        "_AutomateWillpowerHint": "",
-
-        "_AutomateHunger": "",
-        "_AutomateHungerHint": "",
-
-        "_AutomateOblivion": "",
-        "_AutomateOblivionHint": "",
-
-        "_AutomateRage": "",
-        "_AutomateRageHint": "",
-
-        "_StorytellerMenu": "",
-        "_StorytellerMenuHint": "",
-
-        "_ModifiedAttributes": "",
-        "_ModifiedAttributesHint": "",
-
-        "_ModifiedSkills": "",
-        "_ModifiedSkillsHint": "",
-
-        "_CustomAttributes": "",
-        "_CustomAttributesHint": "",
-
-        "_CustomSkills": "",
-        "_CustomSkillsHint": ""
+      "_SaveChanges": "",
+      "_Modifications": "",
+      "_Custom": "",
+      "_Rename": "",
+      "_Hidden": "",
+      "_AddAttributeModification": "",
+      "_AddSkillModification": "",
+      "_AddCustomAttribute": "",
+      "_AddCustomSkill": "",
+      "_AttributeType": "",
+      "_SkillType": "",
+      "_WorldVersion": "",
+      "_WorldVersionHint": "",
+      "_ActorBanner": "",
+      "_ActorBannerHint": "",
+      "_AutomationSettings": "",
+      "_AutomationSettingsHint": "",
+      "_DisableAutomation": "",
+      "_DisableAutomationHint": "",
+      "_AutomateWillpower": "",
+      "_AutomateWillpowerHint": "",
+      "_AutomateHunger": "",
+      "_AutomateHungerHint": "",
+      "_AutomateOblivion": "",
+      "_AutomateOblivionHint": "",
+      "_AutomateRage": "",
+      "_AutomateRageHint": "",
+      "_StorytellerMenu": "",
+      "_StorytellerMenuHint": "",
+      "_ModifiedAttributes": "",
+      "_ModifiedAttributesHint": "",
+      "_ModifiedSkills": "",
+      "_ModifiedSkillsHint": "",
+      "_CustomAttributes": "",
+      "_CustomAttributesHint": "",
+      "_CustomSkills": "",
+      "_CustomSkillsHint": "",
+      "_ColorScheme": "",
+      "_ColorSchemeHint": "",
+      "_ColorSchemeDark": "",
+      "_ColorSchemeLight": "",
+      "_ColorSchemeDefault": "",
+      "_ColorSchemeVampire": "",
+      "_ColorSchemeHunter": "",
+      "_ColorSchemeWerewolf": "",
+      "_DisableVampireFont": "",
+      "_DisableVampireFontHint": ""
+    },
+    "_ConfirmDelete": "",
+    "_ConfirmDeleteDescription": "",
+    "_NewString": "",
+    "_Changelog": "",
+    "_Wiki": "",
+    "_LicensedUnderDarkPack": "",
+    "_LicensedUnderDarkPackFulltext": "",
+    "Notifications": {
+      "_NoActorDefined": "",
+      "_CannotModifyResourceString": "",
+      "_StringAlreadyInCurrentGroup": "",
+      "_StringAlreadyInOtherGroup": ""
     }
   }
 }

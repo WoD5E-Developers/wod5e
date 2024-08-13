@@ -2,12 +2,9 @@
   "WOD5E": {
     "WTA": {
       "Label": "Wilkołak",
-      
       "Pack": "Wataha",
-      
       "WerewolfDice": "Kości Wilkołaka",
       "RageDice": "Kości Szału",
-      
       "GiftsandRites": "Dary i Rytuały",
       "Rage": "Szał",
       "RageCost": "Sprawdzian Szału",
@@ -15,7 +12,6 @@
       "PossibleRageFailure": "Możliwy brutalny rezultat",
       "RollRageDamageWillpower": "Sprawdzian Szału, obrażenia Siły Woli",
       "HasCost": "Posiada koszt",
-      
       "Gift": "Dar",
       "SelectGift": "Wybierz Dar",
       "GiftType": "Rodzaj daru",
@@ -23,35 +19,29 @@
       "NewGift": "Nowy Dar",
       "AddRite": "Dodaj Rytuał",
       "NewRite": "Nowy Rytuał",
-      
       "TheWolf": "Wilk",
       "Tribe": "Plemię",
       "Auspice": "Patronat",
-      
       "Harano": "Harano",
       "HaranoTest": "Test Harano",
       "Hauglosk": "Hauglosk",
       "HaugloskTest": "Test Hauglosk",
-      
       "Frenzy": "Furia",
       "EnterFrenzy": "Wpadnij w furię",
       "EndFrenzy": "Zakończ furię",
       "FrenzyActiveWarning": "Znajdujesz się w furii.",
       "Active": "Aktywna",
       "FrenzyActiveWarning2": "Nie możesz korzystać darów ani rytuałów w trakcie trwania furii.",
-      
       "LostTheWolf": "Utracono wilka",
       "LostWolfWarning": "Ten aktor ma 0 Szału i utracił wilka.",
       "LostWolfFormChange": "Utracono wilka: nie możesz przybrać formy nadnaturalnej.",
       "LostWolfShiftDown": "Ten aktor utracił wilka i nie może utrzymać nadnaturalnej formy. Wybierz formę, którą chcesz przyjąć.",
       "LostWolfShiftAnyway": "Ten aktor utracił wilka i nie może przybrać nadnaturalnej formy z powodu niewystarczającej ilości szału. Czy mimo to nadal chcesz przyjąć tę formę?",
-      
       "Renown": "Reputacja",
       "AddRenown": "Dodaj reputację",
       "Wisdom": "Mądrość",
       "Glory": "Chwała",
       "Honor": "Honor",
-      
       "FormsOfGarou": "Formy Garou",
       "HomidName": "Homid",
       "HomidTitle": "Człowiek",
@@ -64,11 +54,9 @@
       "LupusName": "Lupus",
       "LupusTitle": "Wilk",
       "PostFormToChat": "Chat",
-      
       "Patron": "Duch Opiekuńczy",
       "Favor": "Łaska",
       "Ban": "Zakaz",
-      
       "Native": "Ogólne",
       "Ragabash": "Ragabash",
       "Theurge": "Teurg",
@@ -86,7 +74,11 @@
       "ShadowLord": "Władcy Cienia",
       "SilentStrider": "Milczący Wędrowcy",
       "SilverFang": "Srebne Kły",
-      "Rite": "Rytuał"
+      "Rite": "Rytuał",
+      "_Gifts": "",
+      "_StringGifts": "",
+      "_NewStringGift": "",
+      "_Rites": ""
     }
   }
 }

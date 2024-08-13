@@ -1,27 +1,25 @@
 {
   "TYPES": {
-      "Actor": {
-          "vampire": "Vampir",
-          "ghoul": "Ghoul",
-          "mortal": "Sterblicher",
-          "hunter": "Jäger",
-          "werewolf": "Werwolf",
-          "spc": "Erzähler-Charakter",
-          "group": "Gruppen-Bogen"
-      },
-      "Item": {
-          "boon": "Gefallen",
-          "customRoll": "Benutzerdefinierter Wurf",
-          "feature": "Merkmal",
-          "gift": "Gabe",
-          "perk": "Verstärkung",
-          "power": "Disziplin"
-      }
+    "Actor": {
+      "vampire": "Vampir",
+      "ghoul": "Ghoul",
+      "mortal": "Sterblicher",
+      "hunter": "Jäger",
+      "werewolf": "Werwolf",
+      "spc": "Erzähler-Charakter",
+      "group": "Gruppen-Bogen"
+    },
+    "Item": {
+      "boon": "Gefallen",
+      "customRoll": "Benutzerdefinierter Wurf",
+      "feature": "Merkmal",
+      "gift": "Gabe",
+      "perk": "Verstärkung",
+      "power": "Disziplin",
+      "_edgepool": ""
+    }
   },
-
   "WOD5E": {
-    "_COMMENT": "This localization file has missing translations, marked with an underscore before the string. If you have a translation, please submit a pull request!",
-
     "Name": "Name",
     "Confirm": "Bestätigen",
     "Close": "Schließen",
@@ -39,16 +37,11 @@
     "None": "Kein",
     "Value": "Wert",
     "Label": "Label",
-
-    "New": "Neuer {string}",
-
     "Mortal": "Sterblicher",
     "GroupSheet": "Gruppen-Bogen",
-
     "OpenSheet": "Bogen öffnen",
     "RemoveFromGroup": "Aus Gruppe entfernen",
     "NoGroupMembers": "Keine Gruppenmitglieder. Zum Hinzufügen aus der Akteur-Liste hierher ziehen.",
-
     "RollList": {
       "Label": "Wurf",
       "RollMode": "Wurf-Modus",
@@ -62,31 +55,28 @@
       "Difficulty": "Schwierigkeit",
       "SelectableModifiers": "Auswählbare Modifikatoren",
       "Source": "Quelle",
-      "Active": "Aktiv",
       "CustomModifiers": "Eigene Modifikatoren",
       "AddCustomModifier": "Eigene Modifikatoren hinzufügen",
       "Total": "Gesamt"
     },
-
     "Bonus": {
-        "NewSpecialty": "Neue Spezialisierung",
-        "AddNewSpecialty": "Neue Spezialisierung hinzufügen",
-        "NewBonus": "Neuer Bonus",
-        "AddNewBonus": "Neuen Bonus hinzufügen",
-        "Active": "Aktiv",
-        "ActiveWhen": "Aktiv, wenn",
-        "Always": "Immer",
-        "Never": "Nie",
-        "IfEquals": "Falls gleich …",
-        "Path": "Pfad",
-        "PathsSeparatedBySemicolons": "Pfade, getrennt mit Semikolons (;)",
-        "DisplayWhenInactive": "Anzeigen, wenn inaktiv",
-        "Unless": "Außer, wenn …",
-        "PathToCheck": "Pfad",
-        "ValueToCheck": "Wert",
-        "IfPathIs": "Wenn Pfad … ist"
+      "NewSpecialty": "Neue Spezialisierung",
+      "AddNewSpecialty": "Neue Spezialisierung hinzufügen",
+      "NewBonus": "Neuer Bonus",
+      "AddNewBonus": "Neuen Bonus hinzufügen",
+      "Active": "Aktiv",
+      "ActiveWhen": "Aktiv, wenn",
+      "Always": "Immer",
+      "Never": "Nie",
+      "IfEquals": "Falls gleich …",
+      "Path": "Pfad",
+      "PathsSeparatedBySemicolons": "Pfade, getrennt mit Semikolons (;)",
+      "DisplayWhenInactive": "Anzeigen, wenn inaktiv",
+      "Unless": "Außer, wenn …",
+      "PathToCheck": "Pfad",
+      "ValueToCheck": "Wert",
+      "IfPathIs": "Wenn Pfad … ist"
     },
-
     "SPC": {
       "Label": "Erzähler-Charakter (NSC)",
       "GeneralDifficulty": "Allg. SG",
@@ -98,14 +88,12 @@
       "AddSkill": "Fähigkeit hinzufügen",
       "SelectSkill": "Wähle Fähigkeit"
     },
-
     "Damage": {
       "Superficial": "Leichter",
       "Aggravated": "Schwerer",
       "Stains": "Makel",
       "Max": "Maximum"
     },
-
     "Tabs": {
       "Members": "Mitglieder",
       "Stats": "Werte",
@@ -113,9 +101,14 @@
       "Description": "Beschreibung",
       "Equipment": "Ausrüstung",
       "Notes": "Notizen",
-      "Other": "Sonstige"
+      "Other": "Sonstige",
+      "_Dicepool": "",
+      "_PrivateNotes": "",
+      "_PublicNotes": "",
+      "_StorytellerNotes": "",
+      "_Biography": "",
+      "_Settings": ""
     },
-
     "AttributesList": {
       "Label": "Attribute",
       "Attributes": "Attribute",
@@ -129,7 +122,6 @@
       "Composure": "Fassung",
       "Resolve": "Entschlossenheit"
     },
-
     "SkillsList": {
       "Label": "Fähigkeiten",
       "Skills": "Fähigkeiten",
@@ -163,7 +155,6 @@
       "Subterfuge": "Ausflüchte",
       "Technology": "Technologie"
     },
-
     "ItemsList": {
       "Label": "Gegenstände",
       "ShowToChat": "An Chat senden",
@@ -184,9 +175,11 @@
       "Boon": "Gefallen",
       "Boons": "Gefallen",
       "Macro": "Macro",
-      "SelectFeature": "Merkmal auswählen"
+      "SelectFeature": "Merkmal auswählen",
+      "_Items": "",
+      "_NoDiceSelectedHint": "",
+      "_AddDice": ""
     },
-
     "BiographyList": {
       "Label": "Geschichte",
       "Concept": "Konzept",
@@ -198,7 +191,6 @@
       "Appearance": "Aussehen",
       "History": "Geschichte"
     },
-
     "DiceRoller": {
       "AttributeShortLabel": "A",
       "SkillShortLabel": "F",
@@ -206,7 +198,6 @@
       "NothingShortLabel": "⊘",
       "SelectAbility": "Wähle Attribut"
     },
-
     "Chat": {
       "RollingWillpower": "Würfle Willenskraft",
       "Rolling": "Würfeln",
@@ -217,70 +208,71 @@
       "WillpowerDamage": "Willenskraft-Schaden",
       "HasReceivedWillpowerDamage": "{actor} hat {willpowerDamage} Punkte Willenskraft-Schaden erlitten"
     },
-
     "Macro": {
-        "MacroID": "Makro-ID",
-        "MacroNote": "Wenn ein Makro eingetragen ist, wird es sofort nach dem Klick auf das Item oder dem Wurf ausgeführt."
+      "MacroID": "Makro-ID",
+      "MacroNote": "Wenn ein Makro eingetragen ist, wird es sofort nach dem Klick auf das Item oder dem Wurf ausgeführt."
     },
-
     "Settings": {
-        "SaveChanges": "Änderungen speichern",
-
-        "Modifications": "Modifikationen",
-        "Custom": "Anpassungen",
-
-        "Rename": "Umbenennen",
-        "Hidden": "Versteckt",
-
-        "AddAttributeModification": "Attributs-Modifikation hinzufügen",
-        "AddSkillModification": "Fähigkeiten-Modifikation hinzufügen",
-        "AddCustomAttribute": "Eigenes Attribut hinzufügen",
-        "AddCustomSkill": "Eigene Fähigkeit hinzufügen",
-
-        "AttributeType": "Attributs-Typ",
-        "SkillType": "Fähigkeits-Typ",
-
-        "WorldVersion": "Welt-Versionsnummer",
-        "WorldVersionHint": "Updatet automatisch Daten, wenn die system.json geupdated wird.",
-
-        "DarkTheme": "Dunkles Aussehen",
-        "DarkThemeHint": "Zeigt Charakterbögen in dunklem Stil. (Einstellung gilt nur für diesen Benutzer)",
-
-        "ActorBanner": "Charakter-Typ-Banner anzeigen",
-        "ActorBannerHint": "Zeigt einen farbigen Banner oben am Charakterbogen, der den Typ von Wesen anzeigt.",
-
-        "AutomationSettings": "Automatisierungs-Einstellungen",
-        "AutomationSettingsHint": "Verändert verschiedene Einstellungen der Automatisierung.",
-
-        "DisableAutomation": "Jegliche Automatisierung ausschalten",
-        "DisableAutomationHint": "Schaltet jede Automatisierung aus, ohne alle untenstehenden Häkchen entfernen zu müssen.",
-
-        "AutomateWillpower": "Automatisierter Willenskraft-Schaden",
-        "AutomateWillpowerHint": "Wenn eingeschaltet tragen Willenskraft vebrauchende Features automatisch Willenskraft-Schaden im Bogen ein.",
-
-        "AutomateHunger": "Automatisierte Hunger-Steigerung",
-        "AutomateHungerHint": "Wenn eingeschaltet erhöhen fehlgeschlagene Wallungs-Würfe automatisch den Hunger im Charakterbogen.",
-
-        "AutomateOblivion": "Automatisierte Vergessens-Makel",
-        "AutomateOblivionHint": "Wenn eingeschaltet trägt das Würfeln einer 1 oder 10 bei Vergessens-Würfen automatisch einen Makel für die Menschlichkeit im Bogen ein.",
-
-        "AutomateRage": "Automatisierte Zorn-Würfel",
-        "AutomateRageHint": "Wenn eingeschaltet verringern fehlgeschlagene Zorn-Würfe automatisch den Zorn im Bogen.",
-
-        "StorytellerMenu": "Geschichtenerzähler-Menü",
-        "StorytellerMenuHint": "Passe das System durch Änderungen oder Umbenennung der Attribute und Fähigkeiten an.",
-
-        "ModifiedAttributes": "Attributs-Modifikationen",
-        "ModifiedAttributesHint": "Erlaubt Änderungen an den existierenden Attributen.",
-
-        "ModifiedSkills": "Fähigkeits-Modifikationen",
-        "ModifiedSkillsHint": "Erlaubt Änderungen an den existierenden Fähigkeiten.",
-
-        "CustomAttributes": "Eigene Attribute",
-        "CustomAttributesHint": "Erlaubt die Erstellung eigener Attribute.",
-
-        "CustomSkills": "Eigene Fähigkeiten",
-        "CustomSkillsHint": "Erlaubt die Erstellung eigener Fähigkeiten."
+      "SaveChanges": "Änderungen speichern",
+      "Modifications": "Modifikationen",
+      "Custom": "Anpassungen",
+      "Rename": "Umbenennen",
+      "Hidden": "Versteckt",
+      "AddAttributeModification": "Attributs-Modifikation hinzufügen",
+      "AddSkillModification": "Fähigkeiten-Modifikation hinzufügen",
+      "AddCustomAttribute": "Eigenes Attribut hinzufügen",
+      "AddCustomSkill": "Eigene Fähigkeit hinzufügen",
+      "AttributeType": "Attributs-Typ",
+      "SkillType": "Fähigkeits-Typ",
+      "WorldVersion": "Welt-Versionsnummer",
+      "WorldVersionHint": "Updatet automatisch Daten, wenn die system.json geupdated wird.",
+      "ActorBanner": "Charakter-Typ-Banner anzeigen",
+      "ActorBannerHint": "Zeigt einen farbigen Banner oben am Charakterbogen, der den Typ von Wesen anzeigt.",
+      "AutomationSettings": "Automatisierungs-Einstellungen",
+      "AutomationSettingsHint": "Verändert verschiedene Einstellungen der Automatisierung.",
+      "DisableAutomation": "Jegliche Automatisierung ausschalten",
+      "DisableAutomationHint": "Schaltet jede Automatisierung aus, ohne alle untenstehenden Häkchen entfernen zu müssen.",
+      "AutomateWillpower": "Automatisierter Willenskraft-Schaden",
+      "AutomateWillpowerHint": "Wenn eingeschaltet tragen Willenskraft vebrauchende Features automatisch Willenskraft-Schaden im Bogen ein.",
+      "AutomateHunger": "Automatisierte Hunger-Steigerung",
+      "AutomateHungerHint": "Wenn eingeschaltet erhöhen fehlgeschlagene Wallungs-Würfe automatisch den Hunger im Charakterbogen.",
+      "AutomateOblivion": "Automatisierte Vergessens-Makel",
+      "AutomateOblivionHint": "Wenn eingeschaltet trägt das Würfeln einer 1 oder 10 bei Vergessens-Würfen automatisch einen Makel für die Menschlichkeit im Bogen ein.",
+      "AutomateRage": "Automatisierte Zorn-Würfel",
+      "AutomateRageHint": "Wenn eingeschaltet verringern fehlgeschlagene Zorn-Würfe automatisch den Zorn im Bogen.",
+      "StorytellerMenu": "Geschichtenerzähler-Menü",
+      "StorytellerMenuHint": "Passe das System durch Änderungen oder Umbenennung der Attribute und Fähigkeiten an.",
+      "ModifiedAttributes": "Attributs-Modifikationen",
+      "ModifiedAttributesHint": "Erlaubt Änderungen an den existierenden Attributen.",
+      "ModifiedSkills": "Fähigkeits-Modifikationen",
+      "ModifiedSkillsHint": "Erlaubt Änderungen an den existierenden Fähigkeiten.",
+      "CustomAttributes": "Eigene Attribute",
+      "CustomAttributesHint": "Erlaubt die Erstellung eigener Attribute.",
+      "CustomSkills": "Eigene Fähigkeiten",
+      "CustomSkillsHint": "Erlaubt die Erstellung eigener Fähigkeiten.",
+      "_ColorScheme": "",
+      "_ColorSchemeHint": "",
+      "_ColorSchemeDark": "",
+      "_ColorSchemeLight": "",
+      "_ColorSchemeDefault": "",
+      "_ColorSchemeVampire": "",
+      "_ColorSchemeHunter": "",
+      "_ColorSchemeWerewolf": "",
+      "_DisableVampireFont": "",
+      "_DisableVampireFontHint": ""
+    },
+    "_ConfirmDelete": "",
+    "_ConfirmDeleteDescription": "",
+    "_NewString": "",
+    "_Changelog": "",
+    "_Wiki": "",
+    "_LicensedUnderDarkPack": "",
+    "_LicensedUnderDarkPackFulltext": "",
+    "Notifications": {
+      "_NoActorDefined": "",
+      "_CannotModifyResourceString": "",
+      "_StringAlreadyInCurrentGroup": "",
+      "_StringAlreadyInOtherGroup": ""
     }
   }
 }

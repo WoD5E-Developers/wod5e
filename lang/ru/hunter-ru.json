@@ -2,10 +2,8 @@
   "WOD5E": {
     "HTR": {
       "Label": "Охотник",
-
       "_HunterDice": "",
       "DesperationDice": "Кости Отчаяния",
-        
       "Despair": "Безысходность",
       "Creed": "Кредо",
       "CreedFields": "Поля Кредо",
@@ -25,7 +23,6 @@
       "DespairFailure": "Безысходный провал",
       "DesperationUnavailable": "Отчаяние недоступно при Безысходности",
       "Drive": "Мотивация",
-
       "Arsenal": "Арсенал",
       "Fleet": "Автопарк",
       "Ordnance": "Взрывчатка",
@@ -37,7 +34,13 @@
       "SenseTheUnnatural": "Чутьё на сверхъестественное",
       "RepelTheUnnatural": "Отринуть сверхъестественное",
       "ThwartTheUnnatural": "Воспротивиться сверхъестественному",
-      "Artifact": "Артефакт"
+      "Artifact": "Артефакт",
+      "_EdgePool": "",
+      "_AddEdgePool": "",
+      "_NewStringEdgePool": "",
+      "_Perks": "",
+      "_StringPerks": "",
+      "_NewStringPerk": ""
     }
   }
 }

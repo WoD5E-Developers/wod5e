@@ -1,24 +1,18 @@
 {
   "WOD5E": {
     "VTM": {
-      "_COMMENT": "This localization file has missing translations, marked with an underscore before the string. If you have a translation, please submit a pull request!",
-
       "Label": "Вампір",
-      
       "Coterie": "Котерія",
       "Ghoul": "Упир",
       "Domitor": "Господар",
       "Clan": "Клан",
       "Generation": "Покоління",
-
       "_Chasse": "",
       "_Lien": "",
       "_Portillon": "",
       "_HuntingDifficulty": "",
-
       "_VampireDice": "",
       "_HungerDice": "",
-
       "Humanity": "Людяність",
       "PredatorType": "Хижак",
       "Hunger": "Голод",
@@ -27,7 +21,6 @@
       "Rouse": "Пробудження",
       "Frenzy": "Скаженість",
       "Remorse": "Каяття",
-
       "Discipline": "Дисципліна",
       "Disciplines": "Дисципліни",
       "DisciplineType": "",
@@ -40,7 +33,6 @@
       "RouseReRoll": "Повторна перевірка Пробудження",
       "FeedingPenalty": "Штраф харчування",
       "BaneSeverity": "Тяжкість прокляття",
-
       "AddPower": "Додати Силу",
       "SelectDiscipline": "Вибрати Дисципліну",
       "AddDiscipline": "Додати Дисципліну",
@@ -58,7 +50,6 @@
       "ThinBloodAlchemy": "Алхімія малокровок",
       "Rituals": "Ритуали",
       "Ceremonies": "Церемонії",
-      
       "Add1Dice": "Додати 1 кубик",
       "Add2Dice": "Додати 2 кубика",
       "Add3Dice": "Додати 3 кубика",
@@ -83,11 +74,9 @@
       "FeedingPenalty5": "Тваринна та пакетована кров не знижує голод. Втамовує Голод на 2 менше за людину. Потрібно висушити та вбити людину, щоб зменшити Голод нижче 2.",
       "FeedingPenalty6": "Тваринна та пакетована кров не знижує голод. Втамовує Голод на 2 менше за людину. Потрібно висушити та вбити людину, щоб зменшити Голод нижче 3.",
       "FeedingPenalty7": "Тваринна та пакетована кров не знижує голод. Втамовує Голод на 3 менше за людину. Потрібно висушити та вбити людину, щоб зменшити Голод нижче 3.",
-
       "Sire": "Сір",
       "ClanBane": "Прокляття Клану",
       "Amalgam": "Амальгама",
-
       "RollRouse": "Пройти перевірку Пробудження",
       "RollFrenzy": "Пройти перевірку Скаженість",
       "RollRemorse": "Пройти перевірку Каяття",
@@ -96,7 +85,11 @@
       "PossibleBestialFailure": "Можливий Звіриний провал",
       "RollingRemorse": "Перевірити Каяття",
       "RousingBlood": "Пробудження Крові",
-      "ResistingFrenzy": "Опиратися Скаженості"
+      "ResistingFrenzy": "Опиратися Скаженості",
+      "_RemorseFailed": "",
+      "_RemorseFailedDescription": "",
+      "_StringPowers": "",
+      "_NewStringPower": ""
     }
   }
 }

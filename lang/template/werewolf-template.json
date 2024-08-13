@@ -19,6 +19,9 @@
       "_AddGift": "",
       "_NewGift": "",
       "_AddRite": "",
+      "_StringGifts": "",
+      "_NewStringGift": "",
+      "_Rites": "",
       "_NewRite": "",
       "_TheWolf": "",
       "_Tribe": "",
@@ -27,7 +30,7 @@
       "_HaranoTest": "",
       "_Hauglosk": "",
       "_HaugloskTest": "",
-      "Frenzy": "Frénésie",
+      "_Frenzy": "",
       "_EnterFrenzy": "",
       "_EndFrenzy": "",
       "_FrenzyActiveWarning": "",
@@ -75,10 +78,7 @@
       "_ShadowLord": "",
       "_SilentStrider": "",
       "_SilverFang": "",
-      "_Rite": "",
-      "_StringGifts": "",
-      "_NewStringGift": "",
-      "_Rites": ""
+      "_Rite": ""
     }
   }
 }

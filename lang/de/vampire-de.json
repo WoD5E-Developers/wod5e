@@ -1,24 +1,18 @@
 {
   "WOD5E": {
     "VTM": {
-      "_COMMENT": "This localization file has missing translations, marked with an underscore before the string. If you have a translation, please submit a pull request!",
-
       "Label": "Vampir",
-
       "Coterie": "Klüngel",
       "Ghoul": "Ghoul",
       "Domitor": "Domitor",
       "Clan": "Clan",
       "Generation": "Generation",
-
       "Chasse": "Revier",
       "Lien": "Einbindung",
       "Portillon": "Absicherung",
       "HuntingDifficulty": "Jagd-Schwierigkeit",
-
       "VampireDice": "Vampir-Würfel",
       "HungerDice": "Hunger-Würfel",
-
       "Humanity": "Menschlichkeit",
       "PredatorType": "Jagdverhalten",
       "Hunger": "Hunger",
@@ -27,7 +21,6 @@
       "Rouse": "Wallung",
       "Frenzy": "Raserei",
       "Remorse": "Reue",
-
       "Discipline": "Disziplin",
       "Disciplines": "Disziplinen",
       "DisciplineType": "Disziplins-Typ",
@@ -40,7 +33,6 @@
       "RouseReRoll": "Wiederholung Wallungs-Check Disziplin",
       "FeedingPenalty": "Beuteausschluss",
       "BaneSeverity": "Schwere des Fluchs",
-
       "AddPower": "Kraft hinzufügen",
       "SelectDiscipline": "Wähle Disziplin",
       "AddDiscipline": "Disziplin hinzufügen",
@@ -58,7 +50,6 @@
       "ThinBloodAlchemy": "Dünnblütige Alchemie",
       "Rituals": "Rituale",
       "Ceremonies": "Zeremonien",
-
       "Add1Dice": "1 zusätzlicher Würfel",
       "Add2Dice": "2 zusätzliche Würfel",
       "Add3Dice": "3 zusätzliche Würfel",
@@ -83,11 +74,9 @@
       "FeedingPenalty5": "Tierblut und Blutkonserven stillen keinen Hunger. Stillt pro Mensch 2 Punkte Hunger weniger. Muss einen Menschen ausbluten und töten, um den Hunger unter 2 senken zu können.",
       "FeedingPenalty6": "Tierblut und Blutkonserven stillen keinen Hunger. Stillt pro Mensch 2 Punkte Hunger weniger. Muss einen Menschen ausbluten und töten, um den Hunger unter 3 senken zu können.",
       "FeedingPenalty7": "Tierblut und Blutkonserven stillen keinen Hunger. Stillt pro Mensch 3 Punkte Hunger weniger. Muss einen Menschen ausbluten und töten, um den Hunger unter 3 senken zu können.",
-
       "Sire": "Erzeuger/in",
       "ClanBane": "Clansfluch",
       "Amalgam": "Amalgam",
-      
       "RollRouse": "Würfle Wallung",
       "RollFrenzy": "Würfle Raserei",
       "RollRemorse": "Würfle Reue",
@@ -96,7 +85,11 @@
       "PossibleBestialFailure": "Möglicher Bestialischer Fehlschlag",
       "RollingRemorse": "Würfle Reue",
       "RousingBlood": "Blut in Wallung bringen",
-      "ResistingFrenzy": "Raserei widerstehen"
+      "ResistingFrenzy": "Raserei widerstehen",
+      "_RemorseFailed": "",
+      "_RemorseFailedDescription": "",
+      "_StringPowers": "",
+      "_NewStringPower": ""
     }
   }
 }
