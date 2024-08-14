@@ -1,9 +1,10 @@
 /* Variables */
 :root {
-  --system-dark-primary: #000000f0;
-  --system-dark-secondary: #1d1d1d;
-  --system-dark-tertiary: #7a7a7a;
-  --system-dark-accent: #FFF;
+  --system-dark-color-1: #000000f0;
+  --system-dark-color-2: #1d1d1d;
+  --system-dark-color-3: #7a7a7a;
+  --system-dark-color-4: #fff;
+  --system-dark-accent: var(--system-color-6);
   --ui-background-dark-texture: url("/systems/vtm5e/assets/ui/ui_background_dark_texture.webp");
 }
 
@@ -11,11 +12,11 @@
   .sheet,
   .dialog {
     .window-header {
-      background-color: var(--system-dark-primary);
+      background-color: var(--system-dark-color-1);
     }
 
     .window-content {
-      background-color: var(--system-dark-primary);
+      background-color: var(--system-dark-color-1);
       color: var(--system-dark-accent);
       background-blend-mode: hard-light;
     }
@@ -27,21 +28,21 @@
 
     select,
     select optgroup {
-      background-color: var(--system-dark-secondary);
+      background-color: var(--system-dark-color-2);
     }
 
     select option {
-      background-color: var(--system-dark-tertiary);
+      background-color: var(--system-dark-color-3);
     }
 
     button {
-      background-color: var(--system-dark-tertiary);
-      color: #FFF;
+      background-color: var(--system-dark-color-3);
+      color: var(--system-color-6);
     }
 
     button.default,
     button:hover {
-      background-color: var(--system-dark-secondary);
+      background-color: var(--system-dark-color-2);
     }
     
     ::placeholder {
@@ -54,40 +55,40 @@
     .actor-header .resource,
     .stats-container,
     .stats-container .stats-footer {
-      background-color: var(--system-dark-secondary);
+      background-color: var(--system-dark-color-2);
       border-color: var(--system-dark-accent);
     }
 
     .resource input,
     .resource .resource-contents {
-      background-color: var(--system-dark-secondary);
+      background-color: var(--system-dark-color-2);
       border-color: var(--system-dark-accent);
     }
 
     /* Navbar */
     .sheet-tabs > [data-tab] .navicon {
-      background-color: var(--system-dark-primary);
+      background-color: var(--system-dark-color-1);
       border: 1px solid var(--system-dark-accent);
     }
 
     .sheet-tabs > [data-tab].active .navicon {
-      background: #777777;
-      border: 1px solid var(--system-dark-primary);
+      background: var(--system-dark-color-3);
+      border: 1px solid var(--system-dark-color-1);
     }
 
     .item-list .item {
-      background-color: var(--system-dark-secondary);
+      background-color: var(--system-dark-color-2);
       border-color: var(--system-dark-accent);
     }
 
     /* Resource Counters */
     .resource-value {
       .resource-value-step:not(.active) {
-        background-color: var(--system-dark-tertiary);
+        background-color: var(--system-dark-color-3);
       }
 
       .resource-value-empty {
-        border: 1px solid var(--system-dark-tertiary);
+        border: 1px solid var(--system-dark-color-3);
         background: linear-gradient(
           45deg,
           transparent 0%,
@@ -119,8 +120,8 @@
           135deg,
           transparent 0%,
           transparent 43%,
-          white 45%,
-          white 55%,
+          var(--system-dark-color-4) 45%,
+          var(--system-dark-color-4) 55%,
           transparent 57%,
           transparent 100%
         );
@@ -131,8 +132,8 @@
           45deg,
           transparent 0%,
           transparent 43%,
-          white 45%,
-          white 55%,
+          var(--system-dark-color-4) 45%,
+          var(--system-dark-color-4) 55%,
           transparent 57%,
           transparent 100%
         ),
@@ -140,8 +141,8 @@
           135deg,
           transparent 0%,
           transparent 43%,
-          white 45%,
-          white 55%,
+          var(--system-dark-color-4) 45%,
+          var(--system-dark-color-4) 55%,
           transparent 57%,
           transparent 100%
         );
@@ -149,11 +150,11 @@
     }
 
     .item-list .category {
-      background-color: var(--system-dark-secondary);
+      background-color: var(--system-dark-color-2);
       border-color: var(--system-dark-accent);
 
       .content-link {
-        color: var(--system-dark-primary);
+        color: var(--system-dark-color-1);
       }
     }
   }
@@ -161,7 +162,7 @@
   .item.sheet,
   .dialog {
     .window-content {
-      background: var(--system-dark-secondary);
+      background: var(--system-dark-color-2);
     }
   }
 
@@ -212,7 +213,7 @@
 
       .resource input,
       .resource.form {
-        background-color: var(--system-dark-secondary);
+        background-color: var(--system-dark-color-2);
         border-color: var(--system-dark-accent);
       }
 
@@ -238,7 +239,7 @@
   prose-mirror {
     button.icon.toggle {
       color: var(--system-dark-accent);
-      background-color: var(--system-dark-primary);
+      background-color: var(--system-dark-color-1);
     }
   }
 

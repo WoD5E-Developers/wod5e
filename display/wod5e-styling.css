@@ -1,50 +1,50 @@
 :root {
-  --hunter-primary: #cc6d28;
-  --hunter-secondary: #ffb762;
+  --hunter-color-1: #cc6d28;
+  --hunter-color-2: #ffb762;
   --cell-group-header: rgba(204, 109, 40, 0.8);
 }
 /* Define splat-specific colours for the WOD5E Symbols */
 .wod5e .wod5e-symbol.hunter {
-  color: var(--hunter-primary);
+  color: var(--hunter-color-1);
 }
 /* Hunter Actor Sheet */
 .actor.sheet.hunter .actor-header {
-  border-bottom: 2px solid var(--hunter-primary);
+  border-bottom: 2px solid var(--hunter-color-1);
 }
 .actor.sheet.hunter .profile-img,
 .actor.sheet.hunter .actor-header input,
 .actor.sheet.hunter .actor-header .resource {
-  border: 1px solid var(--hunter-primary);
+  border: 1px solid var(--hunter-color-1);
 }
 .actor.sheet.hunter .sheet-banner {
-  background-color: var(--hunter-primary);
-  color: #FFF;
+  background-color: var(--hunter-color-1);
+  color: var(--system-color-6);
 }
 .actor.sheet.hunter prose-mirror .editor-menu button:hover {
-  background-color: var(--hunter-primary);
+  background-color: var(--hunter-color-1);
 }
 .actor.sheet.hunter prose-mirror li.text:not(:has(.format)) {
   display: none;
 }
 .actor.sheet.hunter prose-mirror .editor-content {
-  scrollbar-color: var(--hunter-secondary) var(--color-scrollbar-track);
+  scrollbar-color: var(--hunter-color-2) var(--color-scrollbar-track);
 }
 .actor.sheet.hunter .tabs-container {
-  background-color: var(--hunter-secondary);
+  background-color: var(--hunter-color-2);
 }
 .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
-  color: var(--hunter-primary);
+  color: var(--hunter-color-1);
 }
 .actor.sheet.hunter .tabs-container .active .navicon {
-  background-color: var(--hunter-primary);
-  color: #FFF;
+  background-color: var(--hunter-color-1);
+  color: var(--system-color-6);
 }
 .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
-  color: #FFF;
+  color: var(--system-color-6);
 }
 .actor.sheet.hunter .lock-btn {
   background: var(--ui-background-hunter-texture);
-  color: #FFF;
+  color: var(--system-color-6);
 }
 .actor.sheet.hunter .despair-box,
 .actor.sheet.hunter .despair-box .despair-toggle {
@@ -52,7 +52,7 @@
   width: 14px;
 }
 .actor.sheet.hunter .despair-box .despair-toggle {
-  border: 1px solid #000;
+  border: 1px solid var(--system-color-5);
   display: inline-block;
   cursor: pointer;
 }
@@ -73,7 +73,7 @@
   margin: 0px 10px 10px 10px;
 }
 .actor.sheet.hunter .tab.edges .edges-list .item-header {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--system-color-5);
 }
 .actor.sheet.hunter .tab.edges .edges-list .item-name {
   text-wrap: nowrap;
@@ -83,7 +83,7 @@
   margin-bottom: 5px;
 }
 .actor.sheet.hunter .tab.edges .perks-list .edge .edge-pools {
-  border-top: 1px solid black;
+  border-top: 1px solid var(--system-color-5);
 }
 .actor.sheet.hunter .tab.edges .perks-list .edge .edge-pools .edge-pool-label {
   text-align: center;
@@ -101,32 +101,32 @@
 }
 /* All Sheets with the Hunter styling, including itemsheets */
 .sheet.hunter {
-  box-shadow: 0 0 10px var(--hunter-primary);
+  box-shadow: 0 0 10px var(--hunter-color-1);
 }
 .sheet.hunter .window-header {
-  background: var(--hunter-primary);
+  background: var(--hunter-color-1);
 }
 .sheet.hunter .window-content {
-  scrollbar-color: var(--hunter-secondary) var(--hunter-primary);
+  scrollbar-color: var(--hunter-color-2) var(--hunter-color-1);
 }
 .sheet.hunter .resource-value .resource-value-step.active,
 .sheet.hunter .resource-value-static .resource-value-static-step.active,
 .sheet.hunter .resource-counter .resource-counter-step[data-state="-"],
 .sheet.hunter .despair-box .despair-toggle.active {
-  background-color: var(--hunter-primary);
+  background-color: var(--hunter-color-1);
 }
 .sheet.hunter button.rollable,
 .sheet.hunter .actor.sheet .hunter-button {
-  background-color: var(--hunter-secondary);
-  border: 1px solid var(--hunter-primary);
+  background-color: var(--hunter-color-2);
+  border: 1px solid var(--hunter-color-1);
 }
 .hunter.sheet.window-app .window-resizable-handle {
-  border-top: 3px double var(--hunter-primary);
-  border-left: 3px double var(--hunter-primary);
-  border-bottom: 1px solid var(--hunter-primary);
-  border-right: 1px solid var(--hunter-primary);
-  background-color: var(--hunter-secondary);
-  color: #2b2b2b;
+  border-top: 3px double var(--hunter-color-1);
+  border-left: 3px double var(--hunter-color-1);
+  border-bottom: 1px solid var(--hunter-color-1);
+  border-right: 1px solid var(--hunter-color-1);
+  background-color: var(--hunter-color-2);
+  color: var(--system-color-7);
 }
 /* Group Sheets */
 .group-header.cell {
@@ -134,130 +134,128 @@
 }
 /* Dialogs Windows */
 .hunter-dialog.window-app {
-  border: 4px solid var(--hunter-primary);
+  border: 4px solid var(--hunter-color-1);
 }
 .hunter-dialog.window-app .window-header {
-  background: var(--hunter-primary);
-  border-bottom: 4px double #fff;
+  background: var(--hunter-color-1);
+  border-bottom: 4px double var(--system-color-6);
 }
 .hunter-dialog.window-app .window-content .sheet-body .tab > .resource-label,
 .hunter-dialog.window-app .items-list .item-header,
 .hunter-dialog.window-app .items-list .spc-item-header,
 .hunter-dialog.window-app .spc-pool-header,
 .hunter-dialog.window-app .actor-header .profile-img-zone h1 {
-  color: var(--hunter-primary);
-  border-color: var(--hunter-primary);
+  color: var(--hunter-color-1);
+  border-color: var(--hunter-color-1);
 }
 .hunter-dialog.window-app .dialog-contents .dice-group-header {
-  background-color: var(--hunter-primary);
+  background-color: var(--hunter-color-1);
 }
 .hunter-dialog.window-app input,
 .hunter-dialog.window-app select {
-  border: 1px solid var(--hunter-primary);
+  border: 1px solid var(--hunter-color-1);
 }
 .hunter-dialog.window-app .base-dice-group {
-  border: 1px solid var(--hunter-secondary);
+  border: 1px solid var(--hunter-color-2);
 }
 .vampire-font-headers .hunter-button {
   font-family: "vampireRevised", "sans-serif";
 }
 
 :root {
-  --mortal-primary: #302d5bf0;
-  --mortal-secondary: #706ca5f0;
+  --mortal-color-1: #302d5bf0;
+  --mortal-color-2: #706ca5f0;
+  --mortal-color-3: var(--system-color-6);
+  --mortal-color-4: #2b2b2b;
 }
 /* Define splat-specific colours for the WOD5E Symbols */
 .wod5e-symbol.mortal {
-  color: var(--mortal-primary);
+  color: var(--mortal-color-1);
 }
 /* All Mortal-styled Sheets, Including Itemsheets */
 .sheet.mortal {
-  box-shadow: 0 0 10px var(--mortal-primary);
+  box-shadow: 0 0 10px var(--mortal-color-1);
   /* Resource counters */
 }
 .sheet.mortal .window-header {
-  background: var(--mortal-primary);
+  background: var(--mortal-color-1);
 }
 .sheet.mortal .window-content {
-  scrollbar-color: var(--mortal-secondary) var(--mortal-primary);
+  scrollbar-color: var(--mortal-color-2) var(--mortal-color-1);
 }
 .sheet.mortal .window-app .window-resizable-handle {
-  border-top: 3px double var(--mortal-primary);
-  border-left: 3px double var(--mortal-primary);
-  border-bottom: 1px solid var(--mortal-primary);
-  border-right: 1px solid var(--mortal-primary);
-  background-color: var(--mortal-secondary);
-  color: #2b2b2b;
+  border-top: 3px double var(--mortal-color-1);
+  border-left: 3px double var(--mortal-color-1);
+  border-bottom: 1px solid var(--mortal-color-1);
+  border-right: 1px solid var(--mortal-color-1);
+  background-color: var(--mortal-color-2);
+  color: var(--mortal-color-4);
 }
 .sheet.mortal .resource-value .resource-value-step.active,
 .sheet.mortal .resource-value-static .resource-value-static-step.active,
 .sheet.mortal .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: var(--mortal-primary);
+  background-color: var(--mortal-color-1);
 }
 /* Dialog Windows */
 .mortal-dialog .window-app {
-  border: 4px solid var(--mortal-primary);
+  border: 4px solid var(--mortal-color-1);
 }
 .mortal-dialog .window-app .window-header {
-  border-bottom: 4px double #fff;
+  border-bottom: 4px double var(--mortal-color-3);
 }
 .mortal-dialog .window-header {
-  background: var(--mortal-primary);
+  background: var(--mortal-color-1);
 }
 .mortal-dialog .window-content .sheet-body .tab > .resource-label,
 .mortal-dialog .items-list .item-header,
 .mortal-dialog .items-list .spc-item-header,
 .mortal-dialog .spc-pool-header,
 .mortal-dialog .actor-header .profile-img-zone h1 {
-  color: var(--mortal-primary);
-  border-color: var(--mortal-primary);
+  color: var(--mortal-color-1);
+  border-color: var(--mortal-color-1);
 }
 .mortal-dialog .dialog-contents .dice-group-header {
-  background-color: var(--mortal-primary);
+  background-color: var(--mortal-color-1);
 }
 .mortal-dialog input,
 .mortal-dialog select {
-  border: 1px solid var(--mortal-primary);
+  border: 1px solid var(--mortal-color-1);
 }
 .mortal-dialog .base-dice-group {
-  border: 1px solid var(--mortal-secondary);
+  border: 1px solid var(--mortal-color-2);
 }
 /* Mortal Actor Sheet */
 .actor.sheet.mortal .actor-header {
-  border-bottom: 2px solid var(--mortal-primary);
+  border-bottom: 2px solid var(--mortal-color-1);
 }
 .actor.sheet.mortal .profile-img,
 .actor.sheet.mortal .actor-header input,
 .actor.sheet.mortal .actor-header .resource {
-  border: 1px solid var(--mortal-primary);
+  border: 1px solid var(--mortal-color-1);
 }
 .actor.sheet.mortal .sheet-banner {
-  background-color: var(--mortal-primary);
-  color: #ffffff;
+  background-color: var(--mortal-color-1);
+  color: var(--mortal-color-3);
 }
 .actor.sheet.mortal .tabs-container {
-  background-color: var(--mortal-secondary);
+  background-color: var(--mortal-color-2);
 }
 .actor.sheet.mortal .tabs-container .active .navicon {
-  background-color: var(--mortal-primary);
-  color: #FFF;
+  background-color: var(--mortal-color-1);
+  color: var(--system-color-6);
 }
 .actor.sheet.mortal .tabs-container .active .navicon .wod5e-symbol {
-  color: #FFF;
+  color: var(--system-color-6);
 }
 .actor.sheet.mortal .lock-btn {
   background: var(--ui-background-texture);
 }
 .actor.sheet.mortal .sheet-banner .sheet-label {
-  color: #CCC;
+  color: var(--mortal-color-3);
 }
 .actor.sheet.mortal .actor-header input,
 .actor.sheet.mortal .actor-header .resource {
-  border: 1px solid var(--mortal-primary);
-}
-/* Group Sheets */
-.group-header.cell {
-  background-color: rgba(204, 109, 40, 0.8) !important;
+  border: 1px solid var(--mortal-color-1);
 }
 
 @font-face {
@@ -360,9 +358,13 @@
 }
 /* Variables */
 :root {
-  --system-primary: #302d5bf0;
-  --system-border: #d2dfebf0;
-  --system-shadow: #827dcaf0;
+  --system-color-1: #302d5bf0;
+  --system-color-2: #d2dfebf0;
+  --system-color-3: #827dcaf0;
+  --system-color-4: #ededec;
+  --system-color-5: #000;
+  --system-color-6: #fff;
+  --system-color-7: #333;
   --ui-background-texture: url("/systems/vtm5e/assets/ui/ui_background_texture.webp");
   --ui-background-active-texture: url("/systems/vtm5e/assets/ui/ui_background_active_texture.webp");
 }
@@ -388,7 +390,7 @@
 }
 /* Application window Header */
 .application .window-header {
-  background: var(--system-primary);
+  background: var(--system-color-1);
   flex: 0 0 25px;
   line-height: 20px;
   padding-top: 2px;
@@ -400,7 +402,7 @@
 }
 /* Sheet Window Content */
 .sheet .window-content {
-  box-shadow: 0 0 5px var(--system-primary);
+  box-shadow: 0 0 5px var(--system-color-1);
 }
 /* Top-left Logo */
 #logo {
@@ -426,7 +428,7 @@
 }
 #pause figcaption {
   margin-top: 55px;
-  color: #000;
+  color: var(--system-color-5);
   font-weight: bold;
 }
 /* Only use this font with the .vampire-font-headers class enabled */
@@ -435,16 +437,16 @@
 }
 /* ProseMirror Alterations */
 prose-mirror button.icon.toggle {
-  background-color: #CCC;
+  background-color: var(--system-color-6);
 }
 prose-mirror .editor-menu {
-  background: #333;
+  background: var(--system-color-7);
   height: 30px;
   padding: 2px;
   border-radius: 0;
 }
 prose-mirror .editor-menu button {
-  color: #CCC;
+  color: var(--system-color-6);
 }
 .prosemirror menu .pm-dropdown {
   background: transparent;
@@ -488,7 +490,7 @@ prose-mirror .editor-menu button {
   top: -2px;
   right: -2px;
   font-size: 0.5rem;
-  background: black;
+  background: var(--system-color-5);
   color: var(--color-text-ght-highght);
   padding: 1px;
 }
@@ -518,7 +520,7 @@ prose-mirror .editor-menu button {
   font-size: 1.2em;
 }
 .actors-sidebar .group-item.droptarget > header h3 i {
-  text-shadow: 0 0 4px var(--color-shadow-primary);
+  text-shadow: 0 0 4px var(--color-shadow-color-1);
   transform: scale(1.2);
 }
 
@@ -536,7 +538,7 @@ prose-mirror .editor-menu button {
   border-radius: 0;
 }
 .chat-message .message-header {
-  color: #FFF;
+  color: var(--system-color-6);
 }
 .chat-message .message-header .message-sender {
   flex: 3;
@@ -548,7 +550,7 @@ prose-mirror .editor-menu button {
 }
 .chat-message a.content-link,
 .chat-message a.inline-roll {
-  color: #000;
+  color: var(--system-color-5);
 }
 .chat-message .dice-result {
   cursor: pointer;
@@ -561,16 +563,16 @@ prose-mirror .editor-menu button {
 .chat-message .modifiers .mod {
   text-transform: uppercase;
   font-size: 8pt;
-  background-color: #fff;
+  background-color: var(--system-color-6);
   padding: 0 5px;
   border: 1px solid #424242;
   margin: 1px 3px;
-  color: #000;
+  color: var(--system-color-5);
 }
 .chat-message .total-and-difficulty {
   display: flex;
   flex-direction: row;
-  border: 1px solid #000;
+  border: 1px solid var(--system-color-5);
   border-bottom: 0;
 }
 .chat-message .roll-total,
@@ -588,9 +590,9 @@ prose-mirror .editor-menu button {
   font-size: 18px;
   font-weight: bold;
   text-align: center;
-  border: 1px solid #000;
+  border: 1px solid var(--system-color-5);
   background: #222;
-  text-shadow: 0 0 5px #000;
+  text-shadow: 0 0 5px var(--system-color-5);
 }
 .chat-message .roll-result-label.success,
 .chat-message .roll-result-label.critical-success {
@@ -599,7 +601,7 @@ prose-mirror .editor-menu button {
 }
 .chat-message .roll-result-label.messy-critical {
   background-color: #f10808;
-  color: #fff;
+  color: var(--system-color-6);
 }
 .chat-message .roll-result-label.failure,
 .chat-message .roll-result-label.critical-failure,
@@ -634,10 +636,10 @@ prose-mirror .editor-menu button {
 }
 .roll-img.hunter-dice {
   background: #ee7e1f;
-  border-color: black;
+  border-color: var(--system-color-5);
 }
 .roll-img.desperation-dice {
-  background: black;
+  background: var(--system-color-5);
   border-color: #cc6d28;
 }
 .roll-img.werewolf-dice {
@@ -715,8 +717,8 @@ h3.item-name {
 #controls ol.control-tools > li {
   background: var(--ui-background-texture);
   border-radius: 0px;
-  box-shadow: 0 0 10px var(--system-shadow);
-  border: 1px solid var(--system-border);
+  box-shadow: 0 0 10px var(--system-color-3);
+  border: 1px solid var(--system-color-2);
 }
 #controls ol.control-tools > li.active,
 #controls ol.control-tools > li:hover {
@@ -772,14 +774,14 @@ h3.item-name {
   align-items: center;
 }
 .dialog-contents .dice-input img {
-  background-color: #000;
+  background-color: var(--system-color-5);
 }
 .dialog-contents .dialog-control {
   margin-top: 5px;
 }
 .dialog-contents .dialog-control:hover,
 .dialog-contents .dialog-control:focus {
-  color: #000;
+  color: var(--system-color-5);
   cursor: pointer;
 }
 .dialog-contents .situational-modifiers {
@@ -849,7 +851,7 @@ h3.item-name {
 }
 
 :root {
-  --primary-sidebar-color: #181818;
+  --color-1-sidebar-color: #181818;
 }
 /* General Sidebar Styling */
 #sidebar {
@@ -860,9 +862,9 @@ h3.item-name {
   border-radius: 0;
 }
 #sidebar-tabs {
-  background: #000;
+  background: var(--system-color-5);
   margin: 0;
-  border-bottom: 1px solid #ffffff;
+  border-bottom: 1px solid var(--system-color-6);
 }
 #sidebar-tabs > .item {
   border-radius: 0;
@@ -872,16 +874,16 @@ h3.item-name {
 }
 .directory .action-buttons button {
   background: #2e2d77;
-  color: #fff;
+  color: var(--system-color-6);
 }
 .subdirectory {
-  background: var(--primary-sidebar-color);
+  background: var(--color-1-sidebar-color);
 }
 /* Headers */
 .combat-sidebar .combat-tracker-header,
 .directory .directory-header {
   border-bottom: 2px groove #CCC;
-  background: var(--primary-sidebar-color);
+  background: var(--color-1-sidebar-color);
 }
 /* Footers */
 .directory .directory-footer:not(:empty) {
@@ -891,7 +893,7 @@ h3.item-name {
 .settings-sidebar h2 {
   margin-bottom: 0;
   border-bottom: 2px groove #CCC;
-  background: var(--primary-sidebar-color);
+  background: var(--color-1-sidebar-color);
 }
 .settings-sidebar button {
   margin: 3px 0;
@@ -914,33 +916,33 @@ h3.item-name {
 }
 
 :root {
-  --vampire-primary: #650202;
-  --vampire-secondary: #d84343;
-  --vampire-tertiary: #f51f1f;
+  --vampire-color-1: #650202;
+  --vampire-color-2: #d84343;
+  --vampire-color-3: #f51f1f;
   --coterie-group-header: rgba(121, 8, 19, 0.8);
 }
 /* Define splat-specific colours for the WOD5E Symbols */
 .wod5e .wod5e-symbol.vampire {
-  color: var(--vampire-primary);
+  color: var(--vampire-color-1);
 }
 /* Vampire Actor Sheet */
 .actor.sheet.vampire .actor-header {
-  border-bottom: 2px solid var(--vampire-primary);
+  border-bottom: 2px solid var(--vampire-color-1);
 }
 .actor.sheet.vampire .profile-img,
 .actor.sheet.vampire .actor-header input,
 .actor.sheet.vampire .actor-header .resource,
 .actor.sheet.vampire .tab.blood .resource input {
-  border: 1px solid var(--vampire-primary);
+  border: 1px solid var(--vampire-color-1);
 }
 .actor.sheet.vampire prose-mirror .editor-menu button:hover {
-  background-color: var(--vampire-secondary);
+  background-color: var(--vampire-color-2);
 }
 .actor.sheet.vampire prose-mirror li.text:not(:has(.format)) {
   display: none;
 }
 .actor.sheet.vampire prose-mirror .editor-content {
-  scrollbar-color: var(--vampire-secondary) var(--color-scrollbar-track);
+  scrollbar-color: var(--vampire-color-2) var(--color-scrollbar-track);
 }
 .actor.sheet.vampire .tab.blood .resource-label {
   font-size: 15pt;
@@ -961,25 +963,25 @@ h3.item-name {
   display: inline-flex;
 }
 .actor.sheet.vampire .sheet-banner {
-  background-color: var(--vampire-primary);
-  color: #FFF;
+  background-color: var(--vampire-color-1);
+  color: var(--system-color-6);
 }
 .actor.sheet.vampire .tabs-container {
-  background-color: var(--vampire-secondary);
+  background-color: var(--vampire-color-2);
 }
 .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
 .actor.sheet.vampire .tabs-container .item[data-tab="blood"] {
-  color: var(--vampire-primary);
+  color: var(--vampire-color-1);
 }
 .actor.sheet.vampire .tabs-container .active .navicon {
-  background-color: var(--vampire-primary);
-  color: #FFF;
+  background-color: var(--vampire-color-1);
+  color: var(--system-color-6);
 }
 .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
-  color: #FFF;
+  color: var(--system-color-6);
 }
 .actor.sheet.vampire .lock-btn {
-  background-color: var(--vampire-tertiary);
+  background-color: var(--vampire-color-3);
   background-blend-mode: luminosity;
 }
 .actor.sheet.vampire .item-image {
@@ -999,14 +1001,14 @@ h3.item-name {
   margin: 0px 10px 10px 10px;
 }
 .actor.sheet.vampire .tab.disciplines .disciplines-list .item-header {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--system-color-5);
 }
 .actor.sheet.vampire .tab.disciplines .disciplines-list .item-controls {
   text-align: right;
   padding: 5px;
 }
 .actor.sheet.vampire .tab.disciplines .disciplines-list .controls {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--system-color-5);
 }
 .actor.sheet.vampire .tab.disciplines .disciplines-list .item-name {
   text-wrap: nowrap;
@@ -1017,22 +1019,22 @@ h3.item-name {
 }
 /* All Sheets with the Vampire styling, including itemsheets */
 .sheet.vampire {
-  box-shadow: 0 0 10px var(--vampire-primary);
+  box-shadow: 0 0 10px var(--vampire-color-1);
 }
 .sheet.vampire .window-header {
-  background: var(--vampire-primary);
+  background: var(--vampire-color-1);
 }
 .sheet.vampire .window-content {
-  scrollbar-color: var(--vampire-secondary) var(--vampire-primary);
+  scrollbar-color: var(--vampire-color-2) var(--vampire-color-1);
 }
 .sheet.vampire .resource-value .resource-value-step.active,
 .sheet.vampire .resource-value-static .resource-value-static-step.active,
 .sheet.vampire .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: var(--vampire-tertiary);
+  background-color: var(--vampire-color-3);
 }
 .sheet.vampire button.rollable,
 .sheet.vampire .vampire-button {
-  background-color: var(--vampire-primary);
+  background-color: var(--vampire-color-1);
   background-blend-mode: luminosity;
   color: #CCC;
 }
@@ -1044,11 +1046,11 @@ h3.item-name {
   vertical-align: middle;
 }
 .vampire.sheet.window-app .window-resizable-handle {
-  border-top: 3px double var(--vampire-primary);
-  border-left: 3px double var(--vampire-primary);
-  border-bottom: 1px solid var(--vampire-primary);
-  border-right: 1px solid var(--vampire-primary);
-  background-color: var(--vampire-secondary);
+  border-top: 3px double var(--vampire-color-1);
+  border-left: 3px double var(--vampire-color-1);
+  border-bottom: 1px solid var(--vampire-color-1);
+  border-right: 1px solid var(--vampire-color-1);
+  background-color: var(--vampire-color-2);
   color: #e9e9e9;
 }
 /* Group Sheets */
@@ -1057,78 +1059,78 @@ h3.item-name {
 }
 /* Dialogs Windows */
 .vampire-dialog.window-app {
-  border: 4px solid var(--vampire-primary);
+  border: 4px solid var(--vampire-color-1);
 }
 .vampire-dialog.window-app .window-header {
-  background: var(--vampire-primary);
-  border-bottom: 4px double #fff;
+  background: var(--vampire-color-1);
+  border-bottom: 4px double var(--system-color-6);
 }
 .vampire-dialog.window-app .window-content .sheet-body .tab .resource-label,
 .vampire-dialog.window-app .items-list .item-header,
 .vampire-dialog.window-app .items-list .spc-item-header,
 .vampire-dialog.window-app .spc-pool-header,
 .vampire-dialog.window-app .actor-header .profile-img-zone h1 {
-  color: var(--vampire-primary);
-  border-color: var(--vampire-primary);
+  color: var(--vampire-color-1);
+  border-color: var(--vampire-color-1);
 }
 .vampire-dialog.window-app .dialog-contents .dice-group-header {
-  background-color: var(--vampire-primary);
+  background-color: var(--vampire-color-1);
 }
 .vampire-dialog.window-app input,
 .vampire-dialog.window-app select {
-  border: 1px solid var(--vampire-primary);
+  border: 1px solid var(--vampire-color-1);
 }
 .vampire-dialog.window-app .base-dice-group {
-  border: 1px solid var(--vampire-secondary);
+  border: 1px solid var(--vampire-color-2);
 }
 .vampire-font-headers .vampire-button {
   font-family: "vampireRevised", "sans-serif";
 }
 
 :root {
-  --werewolf-primary: #4e2100;
-  --werewolf-secondary: #994101;
+  --werewolf-color-1: #4e2100;
+  --werewolf-color-2: #994101;
   --pack-group-header: rgba(78, 33, 0, 0.8);
 }
 /* Define splat-specific colours for the WOD5E Symbols */
 .wod5e .wod5e-symbol.werewolf {
-  color: var(--werewolf-primary);
+  color: var(--werewolf-color-1);
 }
 /* Actor Sheet */
 .actor.sheet.werewolf .actor-header {
-  border-bottom: 2px solid var(--werewolf-primary);
+  border-bottom: 2px solid var(--werewolf-color-1);
 }
 .actor.sheet.werewolf .profile-img,
 .actor.sheet.werewolf .actor-header input,
 .actor.sheet.werewolf .actor-header .resource {
-  border: 1px solid var(--werewolf-primary);
+  border: 1px solid var(--werewolf-color-1);
 }
 .actor.sheet.werewolf .sheet-banner {
-  background-color: var(--werewolf-primary);
-  color: #FFF;
+  background-color: var(--werewolf-color-1);
+  color: var(--system-color-6);
 }
 .actor.sheet.werewolf prose-mirror .editor-menu button:hover {
-  background-color: var(--werewolf-secondary);
+  background-color: var(--werewolf-color-2);
 }
 .actor.sheet.werewolf prose-mirror li.text:not(:has(.format)) {
   display: none;
 }
 .actor.sheet.werewolf prose-mirror .editor-content {
-  scrollbar-color: var(--werewolf-secondary) var(--color-scrollbar-track);
+  scrollbar-color: var(--werewolf-color-2) var(--color-scrollbar-track);
 }
 .actor.sheet.werewolf .tabs-container {
-  background-color: var(--werewolf-secondary);
+  background-color: var(--werewolf-color-2);
 }
 .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
 .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
-  color: var(--werewolf-secondary);
+  color: var(--werewolf-color-2);
 }
 .actor.sheet.werewolf .tabs-container .active .navicon {
-  background-color: var(--werewolf-primary);
-  color: #FFF;
+  background-color: var(--werewolf-color-1);
+  color: var(--system-color-6);
 }
 .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
-  color: #FFF;
+  color: var(--system-color-6);
 }
 .actor.sheet.werewolf .lock-btn {
   background: var(--ui-background-werewolf-texture);
@@ -1150,13 +1152,13 @@ h3.item-name {
   margin: 0px 10px 10px 10px;
 }
 .actor.sheet.werewolf .tab.gifts .gifts-list .item-header {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--system-color-5);
 }
 .actor.sheet.werewolf .tab.gifts .gifts-list .item-controls {
   text-align: right;
 }
 .actor.sheet.werewolf .tab.gifts .gifts-list .controls {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--system-color-5);
 }
 .actor.sheet.werewolf .tab.gifts .gifts-list .item-name {
   text-wrap: nowrap;
@@ -1169,7 +1171,7 @@ h3.item-name {
 .actor.sheet.werewolf .tab.wolf .resource .resource-contents,
 .actor.sheet.werewolf .tab.wolf .resource.form {
   background-color: #CCC;
-  border: 1px solid var(--werewolf-primary);
+  border: 1px solid var(--werewolf-color-1);
 }
 .actor.sheet.werewolf .tab.wolf .garou-forms-label {
   font-size: 20pt;
@@ -1177,7 +1179,7 @@ h3.item-name {
 .actor.sheet.werewolf .tab.wolf .forms .form {
   border-radius: 0;
   background-color: #CCC;
-  border: 1px solid black;
+  border: 1px solid var(--system-color-5);
 }
 .actor.sheet.werewolf .tab.wolf .forms .form .form-attributes {
   list-style: none;
@@ -1191,23 +1193,23 @@ h3.item-name {
 }
 /* All Sheets with the Werewolf styling, including itemsheets */
 .sheet.werewolf {
-  box-shadow: 0 0 10px var(--werewolf-primary);
+  box-shadow: 0 0 10px var(--werewolf-color-1);
 }
 .sheet.werewolf .window-header {
-  background: var(--werewolf-primary);
+  background: var(--werewolf-color-1);
 }
 .sheet.werewolf .window-content {
-  scrollbar-color: var(--werewolf-secondary) var(--werewolf-primary);
+  scrollbar-color: var(--werewolf-color-2) var(--werewolf-color-1);
 }
 .sheet.werewolf .resource-value .resource-value-step.active,
 .sheet.werewolf .resource-value-static .resource-value-static-step.active,
 .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: var(--werewolf-secondary);
+  background-color: var(--werewolf-color-2);
 }
 .sheet.werewolf button.rollable,
 .sheet.werewolf .actor.sheet .werewolf-button {
-  background-color: var(--werewolf-secondary);
-  border: 1px solid var(--werewolf-primary);
+  background-color: var(--werewolf-color-2);
+  border: 1px solid var(--werewolf-color-1);
 }
 .sheet.werewolf .rage-button {
   max-width: 35px;
@@ -1218,14 +1220,14 @@ h3.item-name {
   color: #CCC;
 }
 .sheet.werewolf button.werewolf-button {
-  background: var(--werewolf-primary);
-  color: #fff;
+  background: var(--werewolf-color-1);
+  color: var(--system-color-6);
   font-family: cormorantLight, serif;
   font-weight: 700;
   letter-spacing: 0.05em;
   border: none;
   box-shadow: none;
-  border: 1px solid black;
+  border: 1px solid var(--system-color-5);
   margin: 0;
   border-radius: 0;
   padding: 3px;
@@ -1236,22 +1238,22 @@ h3.item-name {
 .sheet.werewolf button.werewolf-button.active,
 .sheet.werewolf button.werewolf-button.active:hover {
   font-size: 20pt;
-  color: #FFF;
+  color: var(--system-color-6);
   cursor: default;
   background: #a14503;
 }
 .sheet.werewolf button.werewolf-button.disabled,
 .sheet.werewolf button.werewolf-button.disabled:hover {
-  color: #000;
+  color: var(--system-color-5);
   cursor: default;
   background: #562f13ef;
 }
 .werewolf.sheet.window-app .window-resizable-handle {
-  border-top: 3px double var(--werewolf-primary);
-  border-left: 3px double var(--werewolf-primary);
-  border-bottom: 1px solid var(--werewolf-primary);
-  border-right: 1px solid var(--werewolf-primary);
-  background-color: var(--werewolf-secondary);
+  border-top: 3px double var(--werewolf-color-1);
+  border-left: 3px double var(--werewolf-color-1);
+  border-bottom: 1px solid var(--werewolf-color-1);
+  border-right: 1px solid var(--werewolf-color-1);
+  background-color: var(--werewolf-color-2);
   color: #e9e9e9;
 }
 /* Group Sheets */
@@ -1260,29 +1262,29 @@ h3.item-name {
 }
 /* Dialogs Windows */
 .werewolf-dialog.window-app {
-  border: 4px solid var(--werewolf-primary);
+  border: 4px solid var(--werewolf-color-1);
 }
 .werewolf-dialog.window-app .window-header {
-  background: var(--werewolf-primary);
-  border-bottom: 4px double #fff;
+  background: var(--werewolf-color-1);
+  border-bottom: 4px double var(--system-color-6);
 }
 .werewolf-dialog.window-app .window-content .sheet-body .tab .resource-label,
 .werewolf-dialog.window-app .items-list .item-header,
 .werewolf-dialog.window-app .items-list .spc-item-header,
 .werewolf-dialog.window-app .spc-pool-header,
 .werewolf-dialog.window-app .actor-header .profile-img-zone h1 {
-  color: var(--werewolf-primary);
-  border-color: var(--werewolf-primary);
+  color: var(--werewolf-color-1);
+  border-color: var(--werewolf-color-1);
 }
 .werewolf-dialog.window-app .dialog-contents .dice-group-header {
-  background-color: var(--werewolf-primary);
+  background-color: var(--werewolf-color-1);
 }
 .werewolf-dialog.window-app input,
 .werewolf-dialog.window-app select {
-  border: 1px solid var(--werewolf-primary);
+  border: 1px solid var(--werewolf-color-1);
 }
 .werewolf-dialog.window-app .base-dice-group {
-  border: 1px solid var(--werewolf-secondary);
+  border: 1px solid var(--werewolf-color-2);
 }
 /* Balance Trackers */
 .balance-trackers {
@@ -1292,7 +1294,7 @@ h3.item-name {
 }
 .balance-trackers .harano,
 .balance-trackers .hauglosk {
-  color: #FFF;
+  color: var(--system-color-6);
 }
 .balance-trackers .field-header {
   font-size: 16pt;
@@ -1375,8 +1377,8 @@ body.uk .actor.sheet {
 }
 .actor.sheet input,
 .actor.sheet .resource {
-  background-color: #ededec;
-  border: 1px solid black;
+  background-color: var(--system-color-4);
+  border: 1px solid var(--system-color-5);
   display: flex;
   flex-direction: column;
 }
@@ -1391,7 +1393,7 @@ body.uk .actor.sheet {
   text-align: center;
   flex-grow: 0;
   background: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp") center;
-  border-bottom: 2px solid var(--system-primary);
+  border-bottom: 2px solid var(--system-color-1);
   background-repeat: no-repeat;
   background-size: cover;
   padding: 0 5px 0 5px;
@@ -1443,7 +1445,7 @@ body.uk .actor.sheet {
   width: 250px;
 }
 .actor.sheet .actor-header .field-header {
-  color: #FFF;
+  color: var(--system-color-6);
   justify-content: center;
   margin-bottom: 0;
 }
@@ -1486,7 +1488,7 @@ body.uk .actor.sheet {
   word-spacing: 0.05em;
   font-size: 1.1em;
   color: hwb(0deg 7% 98% / 100%);
-  background: #eeece8;
+  background: var(--system-color-4);
 }
 .actor.sheet .collapsible:hover,
 .actor.sheet .collapsible:focus {
@@ -1509,7 +1511,7 @@ body.uk .actor.sheet {
 .actor.sheet .sheet-banner {
   text-align: center;
   margin: -10px -10px 5px;
-  background-color: var(--system-primary);
+  background-color: var(--system-color-1);
   font-size: 14pt;
   padding: 3px;
   position: absolute;
@@ -1524,7 +1526,7 @@ body.uk .actor.sheet {
   padding-left: 5px;
 }
 .actor.sheet .sheet-banner .actor-type-field select {
-  background-color: #CCC;
+  background-color: var(--system-color-4);
 }
 .actor.sheet .sheet-banner .sheet-label {
   text-align: right;
@@ -1545,7 +1547,7 @@ body.uk .actor.sheet {
   max-width: 35px;
   align-self: baseline;
   background: var(--ui-background-texture);
-  color: #CCC;
+  color: var(--system-color-4);
 }
 .actor.sheet .lock-btn i {
   margin: auto;
@@ -1586,14 +1588,14 @@ body.uk .actor.sheet {
   background-color: #CCC;
   width: 100%;
   height: 100%;
-  border: 1px solid black;
+  border: 1px solid var(--system-color-5);
 }
 .actor.sheet .sheet-tabs > [data-tab] .navicon i,
 .actor.sheet .sheet-tabs > [data-tab] .navicon .wod5e-symbol {
   width: 100%;
 }
 .actor.sheet .item-list .category {
-  background-color: #ededec;
+  background-color: var(--system-color-4);
   border: 2px solid #1b1b1b;
   display: flex;
   flex-direction: column;
@@ -1658,7 +1660,7 @@ body.uk .actor.sheet {
   display: block;
   font-weight: 200;
   font-size: 20pt;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--system-color-5);
   width: 90%;
   text-align: center;
   margin-left: auto;
@@ -1674,7 +1676,7 @@ body.uk .actor.sheet {
 .actor.sheet .stats-container {
   display: flex;
   flex-flow: column;
-  background-color: #ededec;
+  background-color: var(--system-color-4);
   border: 2px solid #1b1b1b;
   margin: 5px;
 }
@@ -1720,6 +1722,10 @@ body.uk .actor.sheet {
 .actor.sheet .stats-content .custom-rolls .item-image {
   max-width: 30px;
 }
+.actor.sheet .stats-content .custom-rolls .item-image img {
+  border-radius: 0;
+  border: 1px inset var(--system-color-5);
+}
 .actor.sheet .stats-content .custom-rolls .item-name {
   flex-grow: 1;
   margin-left: 5px;
@@ -1739,10 +1745,10 @@ body.uk .actor.sheet {
   text-align: center;
 }
 .actor.sheet .stats-content .stats-container.attributes .stats-footer {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--system-color-5);
 }
 .actor.sheet .stats-content .stats-container.skills .stats-footer {
-  border-top: 1px solid black;
+  border-top: 1px solid var(--system-color-5);
 }
 /* Increase z-index of the window handle to compensate for the actor banner*/
 .window-app .window-resizable-handle {
@@ -1971,7 +1977,7 @@ body.uk .actor.sheet {
 .resource-value .resource-value-step {
   height: 14px;
   width: 14px;
-  border: 1px solid #000;
+  border: 1px solid var(--system-color-5);
   display: inline-block;
   border-radius: 50%;
   cursor: pointer;
@@ -1980,31 +1986,31 @@ body.uk .actor.sheet {
 .resource-value-static .resource-value-static-step {
   height: 14px;
   width: 14px;
-  border: 1px solid #000;
+  border: 1px solid var(--system-color-5);
   display: inline-block;
   border-radius: 50%;
 }
 .resource-value .resource-value-empty {
   height: 14px;
   width: 14px;
-  border: 1px solid #000;
+  border: 1px solid var(--system-color-5);
   display: inline-block;
   border-radius: 50%;
   cursor: pointer;
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, black 45%, black 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, black 45%, black 55%, transparent 57%, transparent 100%);
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
 }
 .resource-counter .resource-counter-step {
   height: 14px;
   width: 14px;
-  border: 1px solid #000;
+  border: 1px solid var(--system-color-5);
   display: inline-block;
   cursor: pointer;
 }
 .resource-counter .resource-counter-step[data-state="/"] {
-  background: linear-gradient(135deg, transparent 0%, transparent 43%, black 45%, black 55%, transparent 57%, transparent 100%);
+  background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
 }
 .resource-counter .resource-counter-step[data-state="x"] {
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, black 45%, black 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, black 45%, black 55%, transparent 57%, transparent 100%);
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
 }
 .flex-group-center:not(.flexrow) .resource-value,
 .flex-group-center:not(.flexrow) .resource-counter {
@@ -2013,15 +2019,15 @@ body.uk .actor.sheet {
 .cell-resource-counter .cell-resource-counter-step {
   height: 14px;
   width: 14px;
-  border: 1px solid #000;
+  border: 1px solid var(--system-color-5);
   display: inline-block;
   cursor: pointer;
 }
 .cell-resource-counter .cell-resource-counter-step[data-state="/"] {
-  background: linear-gradient(135deg, transparent 0%, transparent 43%, black 45%, black 55%, transparent 57%, transparent 100%);
+  background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
 }
 .cell-resource-counter .cell-resource-counter-step[data-state="x"] {
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, black 45%, black 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, black 45%, black 55%, transparent 57%, transparent 100%);
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
 }
 .flex-group-center:not(.flexrow) .resource-value,
 .flex-group-center:not(.flexrow) .cell-resource-counter {
@@ -2043,10 +2049,11 @@ body.uk .actor.sheet {
 
 /* Variables */
 :root {
-  --system-dark-primary: #000000f0;
-  --system-dark-secondary: #1d1d1d;
-  --system-dark-tertiary: #7a7a7a;
-  --system-dark-accent: #FFF;
+  --system-dark-color-1: #000000f0;
+  --system-dark-color-2: #1d1d1d;
+  --system-dark-color-3: #7a7a7a;
+  --system-dark-color-4: #fff;
+  --system-dark-accent: var(--system-color-6);
   --ui-background-dark-texture: url("/systems/vtm5e/assets/ui/ui_background_dark_texture.webp");
 }
 .dark-theme {
@@ -2058,11 +2065,11 @@ body.uk .actor.sheet {
 }
 .dark-theme .sheet .window-header,
 .dark-theme .dialog .window-header {
-  background-color: var(--system-dark-primary);
+  background-color: var(--system-dark-color-1);
 }
 .dark-theme .sheet .window-content,
 .dark-theme .dialog .window-content {
-  background-color: var(--system-dark-primary);
+  background-color: var(--system-dark-color-1);
   color: var(--system-dark-accent);
   background-blend-mode: hard-light;
 }
@@ -2076,22 +2083,22 @@ body.uk .actor.sheet {
 .dark-theme .dialog select,
 .dark-theme .sheet select optgroup,
 .dark-theme .dialog select optgroup {
-  background-color: var(--system-dark-secondary);
+  background-color: var(--system-dark-color-2);
 }
 .dark-theme .sheet select option,
 .dark-theme .dialog select option {
-  background-color: var(--system-dark-tertiary);
+  background-color: var(--system-dark-color-3);
 }
 .dark-theme .sheet button,
 .dark-theme .dialog button {
-  background-color: var(--system-dark-tertiary);
-  color: #FFF;
+  background-color: var(--system-dark-color-3);
+  color: var(--system-color-6);
 }
 .dark-theme .sheet button.default,
 .dark-theme .dialog button.default,
 .dark-theme .sheet button:hover,
 .dark-theme .dialog button:hover {
-  background-color: var(--system-dark-secondary);
+  background-color: var(--system-dark-color-2);
 }
 .dark-theme .sheet ::placeholder,
 .dark-theme .dialog ::placeholder {
@@ -2105,52 +2112,52 @@ body.uk .actor.sheet {
 .dark-theme .actor.sheet .actor-header .resource,
 .dark-theme .actor.sheet .stats-container,
 .dark-theme .actor.sheet .stats-container .stats-footer {
-  background-color: var(--system-dark-secondary);
+  background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-accent);
 }
 .dark-theme .actor.sheet .resource input,
 .dark-theme .actor.sheet .resource .resource-contents {
-  background-color: var(--system-dark-secondary);
+  background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-accent);
 }
 .dark-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
-  background-color: var(--system-dark-primary);
+  background-color: var(--system-dark-color-1);
   border: 1px solid var(--system-dark-accent);
 }
 .dark-theme .actor.sheet .sheet-tabs > [data-tab].active .navicon {
-  background: #777777;
-  border: 1px solid var(--system-dark-primary);
+  background: var(--system-dark-color-3);
+  border: 1px solid var(--system-dark-color-1);
 }
 .dark-theme .actor.sheet .item-list .item {
-  background-color: var(--system-dark-secondary);
+  background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-accent);
 }
 .dark-theme .actor.sheet .resource-value .resource-value-step:not(.active) {
-  background-color: var(--system-dark-tertiary);
+  background-color: var(--system-dark-color-3);
 }
 .dark-theme .actor.sheet .resource-value .resource-value-empty {
-  border: 1px solid var(--system-dark-tertiary);
+  border: 1px solid var(--system-dark-color-3);
   background: linear-gradient(45deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%);
 }
 .dark-theme .actor.sheet .resource-counter .resource-counter-step {
   border: 1px solid var(--system-dark-accent);
 }
 .dark-theme .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
-  background: linear-gradient(135deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%);
+  background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
 .dark-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%);
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
 .dark-theme .actor.sheet .item-list .category {
-  background-color: var(--system-dark-secondary);
+  background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-accent);
 }
 .dark-theme .actor.sheet .item-list .category .content-link {
-  color: var(--system-dark-primary);
+  color: var(--system-dark-color-1);
 }
 .dark-theme .item.sheet .window-content,
 .dark-theme .dialog .window-content {
-  background: var(--system-dark-secondary);
+  background: var(--system-dark-color-2);
 }
 .dark-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
 .dark-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
@@ -2181,7 +2188,7 @@ body.uk .actor.sheet {
 }
 .dark-theme .actor.sheet.werewolf .tab.wolf .resource input,
 .dark-theme .actor.sheet.werewolf .tab.wolf .resource.form {
-  background-color: var(--system-dark-secondary);
+  background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-accent);
 }
 .dark-theme .actor.sheet.werewolf .tab.wolf .resource.form.form-active {
@@ -2195,7 +2202,7 @@ body.uk .actor.sheet {
 }
 .dark-theme prose-mirror button.icon.toggle {
   color: var(--system-dark-accent);
-  background-color: var(--system-dark-primary);
+  background-color: var(--system-dark-color-1);
 }
 .dark-theme #sidebar {
   background: url(/systems/vtm5e/assets/ui/sidebar_dark.webp) repeat;
@@ -2238,7 +2245,7 @@ body.uk .actor.sheet {
   content: url(/systems/vtm5e/assets/ui/HtR_Logo.png);
 }
 .hunter-theme .sheet .window-header {
-  background-color: var(--hunter-primary);
+  background-color: var(--hunter-color-1);
 }
 .hunter-theme #sidebar {
   background: url(/systems/vtm5e/assets/ui/sidebar_hunter.webp) repeat;
@@ -2285,37 +2292,37 @@ body.uk .actor.sheet {
   content: url(/systems/vtm5e/assets/ui/VtM_Logo.png);
 }
 .vampire-theme .sheet .window-header {
-  background-color: var(--vampire-primary);
+  background-color: var(--vampire-color-1);
 }
 .vampire-theme .sheet .window-content {
   background-color: #000000f0;
-  color: #ffffff;
+  color: var(--system-color-6);
   background-blend-mode: hard-light;
 }
 .vampire-theme .sheet .window-content input {
-  color: #FFF;
+  color: var(--system-color-6);
 }
 .vampire-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
-  background-color: black;
-  border: 1px solid #FFF;
+  background-color: var(--system-color-5);
+  border: 1px solid var(--system-color-6);
 }
 .vampire-theme .actor.sheet.hunter .tabs-container .active .navicon {
-  color: black;
+  color: var(--system-color-5);
 }
 .vampire-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
-  color: black;
+  color: var(--system-color-5);
 }
 .vampire-theme .resource-value .resource-value-step {
   background-color: #bdbdbd91;
 }
 .vampire-theme .resource-counter .resource-counter-step {
-  border: 1px solid #FFF;
+  border: 1px solid var(--system-color-6);
 }
 .vampire-theme .resource-counter .resource-counter-step[data-state="/"] {
-  background: linear-gradient(135deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%);
+  background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
 .vampire-theme .resource-counter .resource-counter-step[data-state="x"] {
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%);
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
 .vampire-theme .resource-value .resource-value-empty {
   border: 1px solid #777777;
@@ -2326,7 +2333,7 @@ body.uk .actor.sheet {
 .vampire-theme .actor.sheet .stats-container,
 .vampire-theme .actor.sheet .stats-container .stats-footer {
   background-color: #1d1d1d;
-  border-color: #FFF;
+  border-color: var(--system-color-6);
 }
 .vampire-theme #sidebar {
   background: url(/systems/vtm5e/assets/ui/sidebar_vampire.webp) repeat;
@@ -2373,37 +2380,37 @@ body.uk .actor.sheet {
   content: url(/systems/vtm5e/assets/ui/WtA_Logo.png);
 }
 .werewolf-theme .sheet .window-header {
-  background-color: var(--werewolf-primary);
+  background-color: var(--werewolf-color-1);
 }
 .werewolf-theme .sheet .window-content {
   background-color: #000000f0;
-  color: #FFF;
+  color: var(--system-color-6);
   background-blend-mode: hard-light;
 }
 .werewolf-theme .sheet .window-content input {
-  color: #FFF;
+  color: var(--system-color-6);
 }
 .werewolf-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
-  background-color: black;
-  border: 1px solid #FFF;
+  background-color: var(--system-color-5);
+  border: 1px solid var(--system-color-6);
 }
 .werewolf-theme .actor.sheet.hunter .tabs-container .active .navicon {
-  color: black;
+  color: var(--system-color-5);
 }
 .werewolf-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
-  color: black;
+  color: var(--system-color-5);
 }
 .werewolf-theme .resource-value .resource-value-step {
   background-color: #bdbdbd91;
 }
 .werewolf-theme .resource-counter .resource-counter-step {
-  border: 1px solid #FFF;
+  border: 1px solid var(--system-color-6);
 }
 .werewolf-theme .resource-counter .resource-counter-step[data-state="/"] {
-  background: linear-gradient(135deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%);
+  background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
 .werewolf-theme .resource-counter .resource-counter-step[data-state="x"] {
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, white 45%, white 55%, transparent 57%, transparent 100%);
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
 .werewolf-theme .resource-value .resource-value-empty {
   border: 1px solid #777777;
@@ -2414,7 +2421,7 @@ body.uk .actor.sheet {
 .werewolf-theme .actor.sheet .stats-container,
 .werewolf-theme .actor.sheet .stats-container .stats-footer {
   background-color: #1d1d1d;
-  border-color: #FFF;
+  border-color: var(--system-color-6);
 }
 .werewolf-theme #sidebar {
   background: url(/systems/vtm5e/assets/ui/sidebar_werewolf.webp) repeat;

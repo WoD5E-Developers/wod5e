@@ -1,5 +1,5 @@
 :root {
-  --primary-sidebar-color: #181818;
+  --color-1-sidebar-color: #181818;
 }
 
 /* General Sidebar Styling */
@@ -12,9 +12,9 @@
 }
 
 #sidebar-tabs {
-  background: #000;
+  background: var(--system-color-5);
   margin: 0;
-  border-bottom: 1px solid #ffffff;
+  border-bottom: 1px solid var(--system-color-6);
 }
 
 #sidebar-tabs > .item {
@@ -27,18 +27,18 @@
 
 .directory .action-buttons button {
   background: #2e2d77;
-  color: #fff;
+  color: var(--system-color-6);
 }
 
 .subdirectory {
-  background: var(--primary-sidebar-color);
+  background: var(--color-1-sidebar-color);
 }
 
 /* Headers */
 .combat-sidebar .combat-tracker-header,
 .directory .directory-header {
   border-bottom: 2px groove #CCC;
-  background: var(--primary-sidebar-color);
+  background: var(--color-1-sidebar-color);
 }
 
 /* Footers */
@@ -51,7 +51,7 @@
   h2 {
     margin-bottom: 0;
     border-bottom: 2px groove #CCC;
-    background: var(--primary-sidebar-color);
+    background: var(--color-1-sidebar-color);
   }
 
   button {

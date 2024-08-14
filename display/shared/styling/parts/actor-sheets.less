@@ -20,8 +20,8 @@
   /* Input and resource fields */
   input,
   .resource {
-    background-color: #ededec;
-    border: 1px solid black;
+    background-color: var(--system-color-4);
+    border: 1px solid var(--system-color-5);
     display: flex;
     flex-direction: column;
   }
@@ -39,7 +39,7 @@
     text-align: center;
     flex-grow: 0;
     background: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp") center;
-    border-bottom: 2px solid var(--system-primary);
+    border-bottom: 2px solid var(--system-color-1);
     background-repeat: no-repeat;
     background-size: cover;
     padding: 0 5px 0 5px;
@@ -101,7 +101,7 @@
     }
 
     .field-header {
-      color: #FFF;
+      color: var(--system-color-6);
       justify-content: center;
       margin-bottom: 0;
     }
@@ -161,7 +161,7 @@
     word-spacing: 0.05em;
     font-size: 1.1em;
     color: hwb(0deg 7% 98% / 100%);
-    background: #eeece8;
+    background: var(--system-color-4);
   }
 
   .collapsible:hover,
@@ -189,7 +189,7 @@
   .sheet-banner {
     text-align: center;
     margin: -10px -10px 5px;
-    background-color: var(--system-primary);
+    background-color: var(--system-color-1);
     font-size: 14pt;
     padding: 3px;
     position: absolute;
@@ -204,7 +204,7 @@
       padding-left: 5px;
 
       select {
-        background-color: #CCC;
+        background-color: var(--system-color-4);
       }
     }
 
@@ -232,7 +232,7 @@
     max-width: 35px;
     align-self: baseline;
     background: var(--ui-background-texture);
-    color: #CCC;
+    color: var(--system-color-4);
   }
   
   .lock-btn i {
@@ -279,7 +279,7 @@
       background-color: #CCC;
       width: 100%;
       height: 100%;
-      border: 1px solid black;
+      border: 1px solid var(--system-color-5);
     }
 
     > [data-tab] .navicon i,
@@ -290,7 +290,7 @@
 
   /* Basic Item List Layout */
   .item-list .category {
-    background-color: #ededec;
+    background-color: var(--system-color-4);
     border: 2px solid #1b1b1b;
     display: flex;
     flex-direction: column;
@@ -372,7 +372,7 @@
     display: block;
     font-weight: 200;
     font-size: 20pt;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--system-color-5);
     width: 90%;
     text-align: center;
     margin-left: auto;
@@ -391,7 +391,7 @@
   .stats-container {
     display: flex;
     flex-flow: column;
-    background-color: #ededec;
+    background-color: var(--system-color-4);
     border: 2px solid #1b1b1b;
     margin: 5px;
 
@@ -442,6 +442,11 @@
 
       .item-image {
         max-width: 30px;
+
+        img {
+          border-radius: 0;
+          border: 1px inset var(--system-color-5);
+        }
       }
 
       .item-name {
@@ -470,11 +475,11 @@
     }
   
     .stats-container.attributes .stats-footer {
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid var(--system-color-5);
     }
   
     .stats-container.skills .stats-footer {
-      border-top: 1px solid black;
+      border-top: 1px solid var(--system-color-5);
     }
   }
 }

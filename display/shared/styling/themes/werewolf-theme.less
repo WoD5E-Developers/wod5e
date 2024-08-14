@@ -11,32 +11,32 @@
 
   /* Sheet window Header */
   .sheet .window-header {
-    background-color: var(--werewolf-primary);
+    background-color: var(--werewolf-color-1);
   }
 
   /* Sheet Window Content */
   .sheet .window-content {
     background-color: #000000f0;
-    color: #FFF;
+    color: var(--system-color-6);
     background-blend-mode: hard-light;
   }
 
   .sheet .window-content input {
-    color: #FFF;
+    color: var(--system-color-6);
   }
 
   /* Navbar */
   .actor.sheet .sheet-tabs > [data-tab] .navicon {
-    background-color: black;
-    border: 1px solid #FFF;
+    background-color: var(--system-color-5);
+    border: 1px solid var(--system-color-6);
   }
 
   .actor.sheet.hunter .tabs-container .active .navicon {
-    color: black;
+    color: var(--system-color-5);
   }
 
   .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
-    color: black;
+    color: var(--system-color-5);
   }
 
   /* Resource Counters */
@@ -45,7 +45,7 @@
   }
 
   .resource-counter .resource-counter-step {
-    border: 1px solid #FFF;
+    border: 1px solid var(--system-color-6);
   }
 
   .resource-counter .resource-counter-step[data-state="/"] {
@@ -53,8 +53,8 @@
       135deg,
       transparent 0%,
       transparent 43%,
-      white 45%,
-      white 55%,
+      var(--system-dark-color-4) 45%,
+      var(--system-dark-color-4) 55%,
       transparent 57%,
       transparent 100%
     );
@@ -65,8 +65,8 @@
       45deg,
       transparent 0%,
       transparent 43%,
-      white 45%,
-      white 55%,
+      var(--system-dark-color-4) 45%,
+      var(--system-dark-color-4) 55%,
       transparent 57%,
       transparent 100%
     ),
@@ -74,8 +74,8 @@
       135deg,
       transparent 0%,
       transparent 43%,
-      white 45%,
-      white 55%,
+      var(--system-dark-color-4) 45%,
+      var(--system-dark-color-4) 55%,
       transparent 57%,
       transparent 100%
     );
@@ -109,7 +109,7 @@
   .actor.sheet .stats-container,
   .actor.sheet .stats-container .stats-footer {
     background-color: #1d1d1d;
-    border-color: #FFF;
+    border-color: var(--system-color-6);
   }
 
   /* Sidebar */

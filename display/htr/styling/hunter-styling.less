@@ -1,34 +1,34 @@
 :root {
-  --hunter-primary: #cc6d28;
-  --hunter-secondary: #ffb762;
+  --hunter-color-1: #cc6d28;
+  --hunter-color-2: #ffb762;
   --cell-group-header: rgb(204 109 40 / 80%);
 }
 
 /* Define splat-specific colours for the WOD5E Symbols */
 .wod5e .wod5e-symbol.hunter {
-  color: var(--hunter-primary);
+  color: var(--hunter-color-1);
 }
 
 /* Hunter Actor Sheet */
 .actor.sheet.hunter {
   .actor-header {
-    border-bottom: 2px solid var(--hunter-primary);
+    border-bottom: 2px solid var(--hunter-color-1);
   }
 
   .profile-img,
   .actor-header input,
   .actor-header .resource {
-    border: 1px solid var(--hunter-primary);
+    border: 1px solid var(--hunter-color-1);
   }
 
   .sheet-banner {
-    background-color: var(--hunter-primary);
-    color: #FFF;
+    background-color: var(--hunter-color-1);
+    color: var(--system-color-6);
   }
 
   prose-mirror {
     .editor-menu button:hover {
-      background-color: var(--hunter-primary);
+      background-color: var(--hunter-color-1);
     }
 
     li.text:not(:has(.format)) {
@@ -36,30 +36,30 @@
     }
 
     .editor-content {
-      scrollbar-color: var(--hunter-secondary) var(--color-scrollbar-track);
+      scrollbar-color: var(--hunter-color-2) var(--color-scrollbar-track);
     }
   }
 
   .tabs-container {
-    background-color: var(--hunter-secondary);
+    background-color: var(--hunter-color-2);
 
     .navicon .wod5e-symbol {
-        color: var(--hunter-primary);
+        color: var(--hunter-color-1);
     }
 
     .active .navicon {
-      background-color: var(--hunter-primary);
-      color: #FFF;
+      background-color: var(--hunter-color-1);
+      color: var(--system-color-6);
 
       .wod5e-symbol {
-        color: #FFF;
+        color: var(--system-color-6);
       }
     }
   }
 
   .lock-btn {
     background: var(--ui-background-hunter-texture);
-    color: #FFF;
+    color: var(--system-color-6);
   }
 
   .despair-box,
@@ -69,7 +69,7 @@
   }
 
   .despair-box .despair-toggle {
-    border: 1px solid #000;
+    border: 1px solid var(--system-color-5);
     display: inline-block;
     cursor: pointer;
   }
@@ -95,7 +95,7 @@
       margin: 0px 10px 10px 10px;
 
       .item-header {
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid var(--system-color-5);
       }
 
       .item-name {
@@ -111,7 +111,7 @@
     .perks-list {
       .edge {
         .edge-pools {
-          border-top: 1px solid black;
+          border-top: 1px solid var(--system-color-5);
 
           .edge-pool-label {
             text-align: center;
@@ -138,38 +138,38 @@
 
 /* All Sheets with the Hunter styling, including itemsheets */
 .sheet.hunter {
-  box-shadow: 0 0 10px var(--hunter-primary);
+  box-shadow: 0 0 10px var(--hunter-color-1);
 
   .window-header {
-    background: var(--hunter-primary);
+    background: var(--hunter-color-1);
   }
 
   .window-content {
-    scrollbar-color: var(--hunter-secondary) var(--hunter-primary);
+    scrollbar-color: var(--hunter-color-2) var(--hunter-color-1);
   }
 
   .resource-value .resource-value-step.active,
   .resource-value-static .resource-value-static-step.active,
   .resource-counter .resource-counter-step[data-state="-"],
   .despair-box .despair-toggle.active {
-    background-color: var(--hunter-primary);
+    background-color: var(--hunter-color-1);
   }
 
   button.rollable,
   .actor.sheet .hunter-button {
-    background-color: var(--hunter-secondary);
-    border: 1px solid var(--hunter-primary);
+    background-color: var(--hunter-color-2);
+    border: 1px solid var(--hunter-color-1);
   }
 }
 
 .hunter.sheet.window-app {
   .window-resizable-handle {
-    border-top: 3px double var(--hunter-primary);
-    border-left: 3px double var(--hunter-primary);
-    border-bottom: 1px solid var(--hunter-primary);
-    border-right: 1px solid var(--hunter-primary);
-    background-color: var(--hunter-secondary);
-    color: #2b2b2b;
+    border-top: 3px double var(--hunter-color-1);
+    border-left: 3px double var(--hunter-color-1);
+    border-bottom: 1px solid var(--hunter-color-1);
+    border-right: 1px solid var(--hunter-color-1);
+    background-color: var(--hunter-color-2);
+    color: var(--system-color-7);
   }
 }
 
@@ -180,11 +180,11 @@
 
 /* Dialogs Windows */
 .hunter-dialog.window-app {
-  border: 4px solid var(--hunter-primary);
+  border: 4px solid var(--hunter-color-1);
 
   .window-header {
-    background: var(--hunter-primary);
-    border-bottom: 4px double #fff;
+    background: var(--hunter-color-1);
+    border-bottom: 4px double var(--system-color-6);
   }
 
   .window-content .sheet-body .tab > .resource-label,
@@ -192,21 +192,21 @@
   .items-list .spc-item-header,
   .spc-pool-header,
   .actor-header .profile-img-zone h1 {
-    color: var(--hunter-primary);
-    border-color: var(--hunter-primary);
+    color: var(--hunter-color-1);
+    border-color: var(--hunter-color-1);
   }
 
   .dialog-contents .dice-group-header {
-    background-color: var(--hunter-primary);
+    background-color: var(--hunter-color-1);
   }
 
   input,
   select {
-    border: 1px solid var(--hunter-primary);
+    border: 1px solid var(--hunter-color-1);
   }
 
   .base-dice-group {
-    border: 1px solid var(--hunter-secondary);
+    border: 1px solid var(--hunter-color-2);
   }
 }
 

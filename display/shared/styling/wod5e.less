@@ -4,9 +4,13 @@
 
 /* Variables */
 :root {
-  --system-primary: #302d5bf0;
-  --system-border: #d2dfebf0;
-  --system-shadow: #827dcaf0;
+  --system-color-1: #302d5bf0;
+  --system-color-2: #d2dfebf0;
+  --system-color-3: #827dcaf0;
+  --system-color-4: #ededec;
+  --system-color-5: #000;
+  --system-color-6: #fff;
+  --system-color-7: #333;
   --ui-background-texture: url("/systems/vtm5e/assets/ui/ui_background_texture.webp");
   --ui-background-active-texture: url("/systems/vtm5e/assets/ui/ui_background_active_texture.webp");
 }
@@ -37,7 +41,7 @@
 
 /* Application window Header */
 .application .window-header {
-  background: var(--system-primary);
+  background: var(--system-color-1);
   flex: 0 0 25px;
   line-height: 20px;
   padding-top: 2px;
@@ -51,7 +55,7 @@
 
 /* Sheet Window Content */
 .sheet .window-content {
-  box-shadow: 0 0 5px var(--system-primary);
+  box-shadow: 0 0 5px var(--system-color-1);
 }
 
 /* Top-left Logo */
@@ -82,7 +86,7 @@
 
   figcaption {
     margin-top: 55px;
-    color: #000;
+    color: var(--system-color-5);
     font-weight: bold;
   }
 }
@@ -95,17 +99,17 @@
 /* ProseMirror Alterations */
 prose-mirror {
   button.icon.toggle {
-    background-color: #CCC;
+    background-color: var(--system-color-6);
   }
 
   .editor-menu {
-    background: #333;
+    background: var(--system-color-7);
     height: 30px;
     padding: 2px;
     border-radius: 0;
     
     button {
-      color: #CCC;
+      color: var(--system-color-6);
     }
   }
 }
