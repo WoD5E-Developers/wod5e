@@ -5,13 +5,25 @@ const less = require('gulp-less')
 const concat = require('gulp-concat')
 
 // Define languages and files here
+const enDir = path.join(__dirname, 'lang', 'en')
 const languages = ['template', 'de', 'es', 'fr', 'it', 'pl', 'pt-BR', 'ru', 'uk'] // Add more languages as needed
 const files = ['core', 'vampire', 'werewolf', 'hunter']
 
+// Sort the English localization keys by the same algorithm as the other language files
+gulp.task('sortEnglishKeys', function (done) {
+  // Loop through each file (core, vampire, etc.)
+  files.forEach((file) => {
+    const enFilePath = path.join(enDir, `${file}-en.json`)
+    const enKeys = readJsonFile(enFilePath)
+    const sortedEnKeys = sortKeys(enKeys)
+    writeJsonFile(enFilePath, sortedEnKeys)
+  })
+
+  done()
+})
+
 // Ensure localization keys exist
 gulp.task('localize', function (done) {
-  const enDir = path.join(__dirname, 'lang', 'en')
-
   // Loop through each language
   languages.forEach((lang) => {
     const langDir = path.join(__dirname, 'lang', lang)
@@ -26,7 +38,8 @@ gulp.task('localize', function (done) {
       const langKeys = readJsonFile(langFilePath)
 
       if (checkLocalizationKeys(enKeys, langKeys)) {
-        writeJsonFile(langFilePath, langKeys)
+        const sortedLangKeys = sortKeys(langKeys)
+        writeJsonFile(langFilePath, sortedLangKeys)
       }
     })
   })
@@ -51,11 +64,11 @@ gulp.task('watch', function () {
   gulp.watch('./display/**/styling/**/*.less', gulp.series('less'))
 
   // Watch English JSON files
-  gulp.watch('./lang/en/*.json', gulp.series('localize'))
+  gulp.watch('./lang/en/*.json', gulp.series('sortEnglishKeys', 'localize'))
 })
 
 // Default task
-gulp.task('default', gulp.series('less', 'localize', 'watch'))
+gulp.task('default', gulp.series('less', 'sortEnglishKeys', 'localize', 'watch'))
 
 // Create directory if it doesn't exist
 function ensureDirectoryExistence (dirPath) {
@@ -116,4 +129,28 @@ function checkLocalizationKeys (enKeys, langKeys) {
   }
 
   return updated
+}
+
+// Function to sort the localization keys
+function sortKeys (obj) {
+  const sortedObj = {}
+  const keys = Object.keys(obj)
+
+  // Handle all keys outside of an object
+  keys
+    .filter(key => typeof obj[key] !== 'object' || obj[key] === null)
+    .sort((a, b) => a.replace(/^_/, '').localeCompare(b.replace(/^_/, '')))
+    .forEach(key => {
+      sortedObj[key] = obj[key]
+    })
+
+  // All object keys
+  keys
+    .filter(key => typeof obj[key] === 'object' && obj[key] !== null)
+    .sort((a, b) => a.replace(/^_/, '').localeCompare(b.replace(/^_/, '')))
+    .forEach(key => {
+      sortedObj[key] = sortKeys(obj[key])
+    })
+
+  return sortedObj
 }
