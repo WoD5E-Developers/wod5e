@@ -1354,6 +1354,7 @@ body.uk .actor.sheet {
   min-height: 300px;
   border-radius: 0;
   /* Input and resource fields */
+  /* Limited Sheet */
   /* Actor Header */
   /* Features tab */
   /* Biography Tab */
@@ -1386,6 +1387,21 @@ body.uk .actor.sheet {
 .actor.sheet input {
   min-height: 26px;
   border-radius: 0;
+}
+.actor.sheet .limited-actor-header {
+  display: flex;
+  flex-grow: 0;
+}
+.actor.sheet .limited-actor-header .header-content {
+  flex-grow: 1;
+  text-align: center;
+  margin-top: auto;
+}
+.actor.sheet .limited-description-body {
+  background-color: var(--system-color-4);
+  border: 1px solid var(--system-color-5);
+  color: var(--system-color-7);
+  padding: 10px;
 }
 .actor.sheet .actor-header {
   display: flex;
@@ -1472,11 +1488,19 @@ body.uk .actor.sheet {
 .actor.sheet .tab.biography .field-header {
   font-size: 16pt;
 }
-.actor.sheet .tab.biography .visible-toggle {
-  color: var(--system-color-5);
+.actor.sheet .tab.biography .descriptive-section .resource-label {
+  flex-wrap: nowrap;
+  display: inline-flex;
 }
-.actor.sheet .tab.biography .visible-toggle.visible {
-  color: var(--system-color-3);
+.actor.sheet .tab.biography .toggle-limited {
+  color: var(--system-color-5);
+  font-size: 13pt;
+  margin-left: 5px;
+  margin-top: 3px;
+  cursor: pointer;
+}
+.actor.sheet .tab.biography .toggle-limited:not(.visible) {
+  color: var(--system-color-7);
 }
 .actor.sheet .tab.notepad .note-container {
   padding: 3px;

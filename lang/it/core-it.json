@@ -265,6 +265,8 @@
       "_Dicepool": "",
       "Equipment": "Equipaggiamento",
       "Features": "Caratteristiche",
+      "_IsNotVisible": "",
+      "_IsVisible": "",
       "Members": "Membri",
       "Notes": "Note",
       "Other": "Altro",

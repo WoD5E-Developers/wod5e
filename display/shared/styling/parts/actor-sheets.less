@@ -31,6 +31,25 @@
     border-radius: 0;
   }
 
+  /* Limited Sheet */
+  .limited-actor-header {
+    display: flex;
+    flex-grow: 0;
+
+    .header-content {
+      flex-grow: 1;
+      text-align: center;
+      margin-top: auto;
+    }
+  }
+
+  .limited-description-body {
+    background-color: var(--system-color-4);
+    border: 1px solid var(--system-color-5);
+    color: var(--system-color-7);
+    padding: 10px;
+  }
+
   /* Actor Header */
   .actor-header {
     display: flex;
@@ -140,12 +159,23 @@
       font-size: 16pt;
     }
 
-    .visible-toggle {
-      color: var(--system-color-5);
+    .descriptive-section {
+      .resource-label {
+        flex-wrap: nowrap;
+        display: inline-flex;
+      }
     }
 
-    .visible-toggle.visible {
-      color: var(--system-color-3);
+    .toggle-limited {
+      color: var(--system-color-5);
+      font-size: 13pt;
+      margin-left: 5px;
+      margin-top: 3px;
+      cursor: pointer;
+    }
+
+    .toggle-limited:not(.visible) {
+      color: var(--system-color-7);
     }
   }
   

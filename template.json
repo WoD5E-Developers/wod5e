@@ -15,7 +15,9 @@
 
           "limited": {
             "biography": true,
-            "appearance": true
+            "appearance": true,
+            "touchstones": false,
+            "tenets": false
           }
         },
         "headers": {
@@ -203,7 +205,9 @@
         "privatenotes": "",
         "limited": {
           "biography": true,
-          "appearance": true
+          "appearance": true,
+          "touchstones": false,
+          "tenets": false
         },
         "generaldifficulty": {
           "strongest": 0,

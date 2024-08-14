@@ -265,6 +265,8 @@
       "Dicepool": "Dicepool",
       "Equipment": "Equipment",
       "Features": "Features",
+      "IsNotVisible": "This field is not publicly visible.",
+      "IsVisible": "This field is publicly visible.",
       "Members": "Members",
       "Notes": "Notes",
       "Other": "Other",
