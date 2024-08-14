@@ -155,11 +155,39 @@
 
   /* Biography Tab */
   .tab.biography {
-    .field-header {
-      font-size: 16pt;
+    .detailed-section {
+      display: inline-flex;
+      align-self: flex-start;
+
+      .details-header {
+        text-align: center;
+      }
+
+      .detail {
+        width: 50%;
+        margin-bottom: 5px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      input {
+        text-align: center;
+      }
+
+      input.number {
+        min-width: 100px;
+      }
     }
 
     .descriptive-section {
+      .field-header {
+        font-size: 16pt;
+      }
+
+      .description-field {
+        margin-bottom: 5px;
+      }
+
       .resource-label {
         flex-wrap: nowrap;
         display: inline-flex;

@@ -1485,8 +1485,30 @@ body.uk .actor.sheet {
   margin-left: auto;
   margin-right: auto;
 }
-.actor.sheet .tab.biography .field-header {
+.actor.sheet .tab.biography .detailed-section {
+  display: inline-flex;
+  align-self: flex-start;
+}
+.actor.sheet .tab.biography .detailed-section .details-header {
+  text-align: center;
+}
+.actor.sheet .tab.biography .detailed-section .detail {
+  width: 50%;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.actor.sheet .tab.biography .detailed-section input {
+  text-align: center;
+}
+.actor.sheet .tab.biography .detailed-section input.number {
+  min-width: 100px;
+}
+.actor.sheet .tab.biography .descriptive-section .field-header {
   font-size: 16pt;
+}
+.actor.sheet .tab.biography .descriptive-section .description-field {
+  margin-bottom: 5px;
 }
 .actor.sheet .tab.biography .descriptive-section .resource-label {
   flex-wrap: nowrap;

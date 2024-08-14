@@ -10,9 +10,17 @@
         "equipment": "",
         "notes": "",
         "privatenotes": "",
+        "bio": {
+          "age": {
+            "trueage": ""
+          },
+          "dateof": {
+            "birth": ""
+          },
+          "history": ""
+        },
         "settings": {
           "headerbg": "",
-
           "limited": {
             "biography": true,
             "appearance": true,
@@ -747,6 +755,14 @@
         }
       },
       "vampire_traits": {
+        "bio": {
+          "age": {
+            "apparent": ""
+          },
+          "dateof": {
+            "death": ""
+          }
+        },
         "headers":{
           "predator":"",
           "sire":"",

@@ -1,10 +1,38 @@
 <div class="tab biography" data-group="primary" data-tab="biography">
     <div class="flexrow">
         <div class="detailed-section flexcol">
-            These are where inputs go.
+            <h2 class="details-header field-header">Personal Information</h2>
+            <div class="detail flexrow">
+                <label>
+                    <b>Age:</b>
+                </label>
+                <input type="text" class="number" name="system.bio.age.trueage" value="{{actor.system.bio.age.trueage}}"{{#if locked}} disabled="true"{{/if}}/>
+            </div>
+            {{#ifeq actor.type 'vampire'}}
+                <div class="detail flexrow">
+                    <label>
+                        <b>Apparent Age:</b>
+                    </label>
+                    <input type="text" class="number" name="system.bio.age.apparent" value="{{actor.system.bio.age.apparent}}"{{#if locked}} disabled="true"{{/if}}/>
+                </div>
+            {{/ifeq}}
+            <div class="detail flexrow">
+                <label>
+                    <b>Date of Birth:</b>
+                </label>
+                <input type="text" class="number" name="system.bio.dateof.birth" value="{{actor.system.bio.dateof.birth}}"{{#if locked}} disabled="true"{{/if}}/>
+            </div>
+            {{#ifeq actor.type 'vampire'}}
+                <div class="detail flexrow">
+                    <label>
+                        <b>Date of Death:</b>
+                    </label>
+                    <input type="text" class="number" name="system.bio.dateof.death" value="{{actor.system.bio.dateof.death}}"{{#if locked}} disabled="true"{{/if}}/>
+                </div>
+            {{/ifeq}}
         </div>
         <div class="descriptive-section flexcol">
-            <div>
+            <div class="description-field">
                 <div class="flex-center field-header">
                     <label class="resource-label">
                         {{localize "WOD5E.BiographyList.Label"}}
@@ -24,7 +52,7 @@
                     </prose-mirror>
                 </div>
             </div>
-            <div>
+            <div class="description-field">
                 <div class="flex-center field-header">
                     <label class="resource-label">
                         {{localize "WOD5E.BiographyList.Appearance"}}
@@ -44,7 +72,7 @@
                     </prose-mirror>
                 </div>
             </div>
-            <div>
+            <div class="description-field">
                 <div class="flex-center field-header">
                     <label class="resource-label">
                         {{localize "WOD5E.BiographyList.TouchstonesAndConvictions"}}
@@ -64,7 +92,7 @@
                     </prose-mirror>
                 </div>
             </div>
-            <div>
+            <div class="description-field">
                 <div class="flex-center field-header">
                     <label class="resource-label">
                         {{localize "WOD5E.BiographyList.ChronicleTenets"}}
