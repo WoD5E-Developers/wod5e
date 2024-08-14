@@ -11,7 +11,12 @@
         "notes": "",
         "privatenotes": "",
         "settings": {
-          "headerbg": ""
+          "headerbg": "",
+
+          "limited": {
+            "biography": true,
+            "appearance": true
+          }
         },
         "headers": {
           "concept":"",
@@ -196,6 +201,10 @@
         "appearance": "",
         "notes": "",
         "privatenotes": "",
+        "limited": {
+          "biography": true,
+          "appearance": true
+        },
         "generaldifficulty": {
           "strongest": 0,
           "normal": 0
