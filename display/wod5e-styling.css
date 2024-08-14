@@ -165,7 +165,7 @@
 :root {
   --mortal-color-1: #302d5bf0;
   --mortal-color-2: #706ca5f0;
-  --mortal-color-3: var(--system-color-6);
+  --mortal-color-3: #fff;
   --mortal-color-4: #2b2b2b;
 }
 /* Define splat-specific colours for the WOD5E Symbols */
@@ -1356,6 +1356,7 @@ body.uk .actor.sheet {
   /* Input and resource fields */
   /* Actor Header */
   /* Features tab */
+  /* Biography Tab */
   /* Notes Tab */
   /* Collapsible Descriptions */
   /* Power Descriptions */
@@ -1468,6 +1469,15 @@ body.uk .actor.sheet {
   margin-left: auto;
   margin-right: auto;
 }
+.actor.sheet .tab.biography .field-header {
+  font-size: 16pt;
+}
+.actor.sheet .tab.biography .visible-toggle {
+  color: var(--system-color-5);
+}
+.actor.sheet .tab.biography .visible-toggle.visible {
+  color: var(--system-color-3);
+}
 .actor.sheet .tab.notepad .note-container {
   padding: 3px;
   margin: 5px;
@@ -1558,7 +1568,7 @@ body.uk .actor.sheet {
 .actor.sheet .tabs-container {
   position: absolute;
   height: 100%;
-  background-color: #9d9d9d;
+  background-color: var(--system-color-4);
   top: 25px;
   left: -2px;
   overflow: hidden;
@@ -1585,7 +1595,7 @@ body.uk .actor.sheet {
 .actor.sheet .sheet-tabs > [data-tab] .navicon {
   display: flex;
   align-items: center;
-  background-color: #CCC;
+  background-color: var(--system-color-6);
   width: 100%;
   height: 100%;
   border: 1px solid var(--system-color-5);
@@ -1615,7 +1625,7 @@ body.uk .actor.sheet {
 }
 .actor.sheet .item-list .category .item .item-image img {
   border-radius: 50%;
-  border: 1px solid #ddd;
+  border: 1px solid var(--system-color-6);
   padding: 2px;
   max-width: 25px;
 }
@@ -1652,7 +1662,7 @@ body.uk .actor.sheet {
 }
 .actor.sheet .item-image img {
   border-radius: 50%;
-  border: 1px solid #ddd;
+  border: 1px solid var(--system-color-6);
   padding: 2px;
   max-width: 25px;
 }
@@ -1741,7 +1751,7 @@ body.uk .actor.sheet {
   margin-left: -15px;
 }
 .actor.sheet .stats-content .stats-container .stats-footer {
-  background-color: #CCC;
+  background-color: var(--system-color-6);
   text-align: center;
 }
 .actor.sheet .stats-content .stats-container.attributes .stats-footer {
