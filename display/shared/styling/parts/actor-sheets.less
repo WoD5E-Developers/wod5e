@@ -132,10 +132,6 @@
       max-width: 400px;
       margin-left: 10px;
       margin-right: 10px;
-      
-      > div {
-        flex-grow: 0;
-      }
 
       .field-header {
         font-size: 16pt;
@@ -144,6 +140,20 @@
       .detail-row {
         width: 100%;
         margin-bottom: 5px;
+      }
+
+      .description-field {
+        width: -webkit-fill-available;
+        width: -moz-available;
+
+        .resource-label {
+          flex-wrap: nowrap;
+          display: inline-flex;
+        }
+
+        .description-content {
+          text-align: initial;
+        }
       }
     }
 
@@ -193,18 +203,6 @@
         display: inline-flex;
       }
     }
-
-    .toggle-limited {
-      color: var(--system-color-5);
-      font-size: 13pt;
-      margin-left: 5px;
-      margin-top: 3px;
-      cursor: pointer;
-    }
-
-    .toggle-limited:not(.visible) {
-      color: var(--system-color-7);
-    }
   }
   
   /* Notes Tab */
@@ -240,6 +238,19 @@
   .collapsible:hover,
   .collapsible:focus {
     cursor: pointer;
+  }
+
+  /* Limited View Toggle Button */
+  .toggle-limited {
+    color: var(--system-color-5);
+    font-size: 13pt;
+    margin-left: 5px;
+    margin-top: 3px;
+    cursor: pointer;
+  }
+
+  .toggle-limited:not(.visible) {
+    color: var(--system-color-7);
   }
 
   /* Power Descriptions */
@@ -385,7 +396,7 @@
 
         img {
           border-radius: 50%;
-          border: 1px solid var(--system-color-6);
+          border: 1px solid var(--system-color-5);
           padding: 2px;
           max-width: 25px;
         }
@@ -520,6 +531,10 @@
           border-radius: 0;
           border: 1px inset var(--system-color-5);
         }
+      }
+
+      .rollable-item img:hover {
+        filter: grayscale(80%);
       }
 
       .item-name {

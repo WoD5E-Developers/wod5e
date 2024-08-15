@@ -1014,7 +1014,6 @@ h3.item-name {
   text-wrap: nowrap;
 }
 .actor.sheet.vampire .tab.disciplines .disciplines-list .discipline-description {
-  max-height: 100px;
   margin-bottom: 5px;
 }
 /* All Sheets with the Vampire styling, including itemsheets */
@@ -1164,7 +1163,6 @@ h3.item-name {
   text-wrap: nowrap;
 }
 .actor.sheet.werewolf .tab.gifts .gifts-list .gift-description {
-  max-height: 100px;
   margin-bottom: 5px;
 }
 .actor.sheet.werewolf .tab.wolf .resource input,
@@ -1308,6 +1306,13 @@ h3.item-name {
   align-self: center;
   padding: 3px;
 }
+.renown .resource-content {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 .sheet.spc .balance-trackers .wolf-resource {
   margin-left: 5px;
   margin-right: 5px;
@@ -1360,6 +1365,7 @@ body.uk .actor.sheet {
   /* Biography Tab */
   /* Notes Tab */
   /* Collapsible Descriptions */
+  /* Limited View Toggle Button */
   /* Power Descriptions */
   /* Sheet Banner */
   /* Sheet tabs */
@@ -1471,15 +1477,23 @@ body.uk .actor.sheet {
   margin-left: 10px;
   margin-right: 10px;
 }
-.actor.sheet .tab.features .character-details > div {
-  flex-grow: 0;
-}
 .actor.sheet .tab.features .character-details .field-header {
   font-size: 16pt;
 }
 .actor.sheet .tab.features .character-details .detail-row {
   width: 100%;
   margin-bottom: 5px;
+}
+.actor.sheet .tab.features .character-details .description-field {
+  width: -webkit-fill-available;
+  width: -moz-available;
+}
+.actor.sheet .tab.features .character-details .description-field .resource-label {
+  flex-wrap: nowrap;
+  display: inline-flex;
+}
+.actor.sheet .tab.features .character-details .description-field .description-content {
+  text-align: initial;
 }
 .actor.sheet .tab.features .features-list .category {
   margin-left: auto;
@@ -1514,16 +1528,6 @@ body.uk .actor.sheet {
   flex-wrap: nowrap;
   display: inline-flex;
 }
-.actor.sheet .tab.biography .toggle-limited {
-  color: var(--system-color-5);
-  font-size: 13pt;
-  margin-left: 5px;
-  margin-top: 3px;
-  cursor: pointer;
-}
-.actor.sheet .tab.biography .toggle-limited:not(.visible) {
-  color: var(--system-color-7);
-}
 .actor.sheet .tab.notepad .note-container {
   padding: 3px;
   margin: 5px;
@@ -1549,6 +1553,16 @@ body.uk .actor.sheet {
 .actor.sheet .collapsible:hover,
 .actor.sheet .collapsible:focus {
   cursor: pointer;
+}
+.actor.sheet .toggle-limited {
+  color: var(--system-color-5);
+  font-size: 13pt;
+  margin-left: 5px;
+  margin-top: 3px;
+  cursor: pointer;
+}
+.actor.sheet .toggle-limited:not(.visible) {
+  color: var(--system-color-7);
 }
 .actor.sheet .discipline-description,
 .actor.sheet .edge-description,
@@ -1671,7 +1685,7 @@ body.uk .actor.sheet {
 }
 .actor.sheet .item-list .category .item .item-image img {
   border-radius: 50%;
-  border: 1px solid var(--system-color-6);
+  border: 1px solid var(--system-color-5);
   padding: 2px;
   max-width: 25px;
 }
@@ -1781,6 +1795,9 @@ body.uk .actor.sheet {
 .actor.sheet .stats-content .custom-rolls .item-image img {
   border-radius: 0;
   border: 1px inset var(--system-color-5);
+}
+.actor.sheet .stats-content .custom-rolls .rollable-item img:hover {
+  filter: grayscale(80%);
 }
 .actor.sheet .stats-content .custom-rolls .item-name {
   flex-grow: 1;
@@ -2171,8 +2188,9 @@ body.uk .actor.sheet {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-accent);
 }
-.dark-theme .actor.sheet .resource input,
-.dark-theme .actor.sheet .resource .resource-contents {
+.dark-theme .actor.sheet .resource .resource-contents,
+.dark-theme .actor.sheet input,
+.dark-theme .actor.sheet prose-mirror .editor-content {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-accent);
 }
