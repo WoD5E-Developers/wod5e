@@ -365,6 +365,7 @@
   --system-color-5: #000;
   --system-color-6: #fff;
   --system-color-7: #333;
+  --system-color-8: #c4c4c4;
   --ui-background-texture: url("/systems/vtm5e/assets/ui/ui_background_texture.webp");
   --ui-background-active-texture: url("/systems/vtm5e/assets/ui/ui_background_active_texture.webp");
 }
@@ -790,7 +791,7 @@ h3.item-name {
   width: 250px;
   top: 0;
   left: 400px;
-  background-color: #faf5ed;
+  background-color: var(--system-color-6);
   box-shadow: 0 0 10px var(--color-shadow-dark);
   border-width: 3px;
 }
@@ -1035,7 +1036,7 @@ h3.item-name {
 .sheet.vampire .vampire-button {
   background-color: var(--vampire-color-1);
   background-blend-mode: luminosity;
-  color: #CCC;
+  color: var(--system-color-6);
 }
 .sheet.vampire .rouse-button {
   max-width: 35px;
@@ -1050,7 +1051,7 @@ h3.item-name {
   border-bottom: 1px solid var(--vampire-color-1);
   border-right: 1px solid var(--vampire-color-1);
   background-color: var(--vampire-color-2);
-  color: #e9e9e9;
+  color: var(--system-color-8);
 }
 /* Group Sheets */
 .group-header.coterie {
@@ -1168,7 +1169,7 @@ h3.item-name {
 .actor.sheet.werewolf .tab.wolf .resource input,
 .actor.sheet.werewolf .tab.wolf .resource .resource-contents,
 .actor.sheet.werewolf .tab.wolf .resource.form {
-  background-color: #CCC;
+  background-color: var(--system-color-6);
   border: 1px solid var(--werewolf-color-1);
 }
 .actor.sheet.werewolf .tab.wolf .garou-forms-label {
@@ -1176,7 +1177,7 @@ h3.item-name {
 }
 .actor.sheet.werewolf .tab.wolf .forms .form {
   border-radius: 0;
-  background-color: #CCC;
+  background-color: var(--system-color-6);
   border: 1px solid var(--system-color-5);
 }
 .actor.sheet.werewolf .tab.wolf .forms .form .form-attributes {
@@ -1216,7 +1217,7 @@ h3.item-name {
 }
 .sheet.werewolf .rage-button .wod5e-symbol {
   vertical-align: middle;
-  color: #CCC;
+  color: var(--system-color-6);
 }
 .sheet.werewolf button.werewolf-button {
   background: var(--werewolf-color-1);
@@ -1279,6 +1280,7 @@ h3.item-name {
 }
 .sheet.werewolf .frenzy .field-header .frenzy-status.active {
   color: #c70f0f;
+  text-shadow: 0 0 10px var(--system-color-4);
 }
 .sheet.werewolf .frenzy button {
   width: fit-content;
@@ -1289,7 +1291,7 @@ h3.item-name {
   border-bottom: 1px solid var(--werewolf-color-1);
   border-right: 1px solid var(--werewolf-color-1);
   background-color: var(--werewolf-color-2);
-  color: #e9e9e9;
+  color: var(--system-color-8);
 }
 /* Group Sheets */
 .group-header.pack {
@@ -1822,7 +1824,7 @@ body.uk .actor.sheet {
   margin-left: -15px;
 }
 .actor.sheet .stats-content .stats-container .stats-footer {
-  background-color: var(--system-color-6);
+  background-color: var(--system-color-8);
   text-align: center;
 }
 .actor.sheet .stats-content .stats-container.attributes .stats-footer {
@@ -2502,7 +2504,6 @@ body.uk .actor.sheet {
 .werewolf-theme .actor.sheet .actor-header .resource,
 .werewolf-theme .actor.sheet .stats-container,
 .werewolf-theme .actor.sheet .stats-container .stats-footer {
-  background-color: #1d1d1d;
   border-color: var(--system-color-6);
 }
 .werewolf-theme #sidebar {
