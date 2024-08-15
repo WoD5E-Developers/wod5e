@@ -146,8 +146,9 @@
     "Notifications": {
       "CannotModifyResourceString": "This resource cannot be modified while the actor sheet \"{string}\" is locked.",
       "NoActorDefined": "No actor defined",
-      "StringAlreadyInCurrentGroup": "Actor {string} is already part of this group.",
-      "StringAlreadyInOtherGroup": "Actor {string} is already in an existing group."
+      "NoSufficientPermission": "You do not have sufficient permissions to modify actor \"{string}.\"",
+      "StringAlreadyInCurrentGroup": "Actor \"{string}\" is already part of this group.",
+      "StringAlreadyInOtherGroup": "Actor \"{string}\" is already in an existing group."
     },
     "RollList": {
       "AddCustomModifier": "Add Custom Modifier",
