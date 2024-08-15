@@ -65,19 +65,26 @@ gulp.task('watch-styling', function () {
 })
 
 gulp.task('watch-localization', function () {
-  // Watch English JSON files
-  let watcher = gulp.watch('./lang/en/*.json')
+  // Function to start the watcher
+  function startWatcher() {
+    // Watch English JSON files
+    let watcher = gulp.watch('./lang/en/*.json')
 
-  watcher.on('change', function() {
-    // Close the watcher before running tasks
-    watcher.close()
+    watcher.on('change', function () {
+      // Close the watcher before running tasks
+      watcher.close()
 
-    gulp.series('sortEnglishKeys', 'localize')(function() {
-      // Restart the watcher after the tasks are finished
-      watcher = gulp.watch('./lang/en/*.json') 
+      // Run the tasks
+      gulp.series('sortEnglishKeys', 'localize')(function () {
+        // Restart the watcher after the tasks are finished
+        startWatcher()
+      })
     })
-  })
-})
+  }
+
+  // Start the watcher for the first time
+  startWatcher()
+});
 
 // Default task
 gulp.task('default', gulp.series(
