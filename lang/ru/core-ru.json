@@ -20,6 +20,7 @@
     }
   },
   "WOD5E": {
+    "_Active": "",
     "Add": "Добавить",
     "Cancel": "Отмена",
     "_Changelog": "",
@@ -32,6 +33,7 @@
     "Exp": "Опыт",
     "GroupSheet": "Лист Котерии",
     "Health": "Здоровье",
+    "_Inactive": "",
     "_Label": "",
     "Level": "Уровень",
     "_LicensedUnderDarkPack": "",
@@ -63,14 +65,19 @@
       "Wits": "Смекалка"
     },
     "BiographyList": {
+      "_Age": "",
       "Ambition": "Цель",
+      "_ApparentAge": "",
       "Appearance": "Внешность",
       "Chronicle": "Хроника",
       "ChronicleTenets": "Тема хроники",
       "Concept": "Концепция",
+      "_DateOfBirth": "",
+      "_DateOfDeath": "",
       "Desire": "Прихоть",
       "History": "История",
       "Label": "Биография",
+      "_PersonalInformation": "",
       "TouchstonesAndConvictions": "Опоры и принципы"
     },
     "Bonus": {

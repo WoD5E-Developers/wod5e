@@ -1192,6 +1192,7 @@ h3.item-name {
 /* All Sheets with the Werewolf styling, including itemsheets */
 .sheet.werewolf {
   box-shadow: 0 0 10px var(--werewolf-color-1);
+  /* Balance Trackers */
 }
 .sheet.werewolf .window-header {
   background: var(--werewolf-color-1);
@@ -1246,6 +1247,42 @@ h3.item-name {
   cursor: default;
   background: #562f13ef;
 }
+.sheet.werewolf .balance-trackers {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.sheet.werewolf .balance-trackers .field-header {
+  font-size: 16pt;
+}
+.sheet.werewolf .balance-trackers .wolf-resource {
+  max-width: 200px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.sheet.werewolf .balance-trackers .wolf-resource .resource-value {
+  align-self: center;
+  padding: 3px;
+}
+.sheet.werewolf .renown .resource-content {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.sheet.werewolf .frenzy .field-header {
+  font-size: 16pt;
+}
+.sheet.werewolf .frenzy .field-header .frenzy-status {
+  font-weight: bold;
+}
+.sheet.werewolf .frenzy .field-header .frenzy-status.active {
+  color: #c70f0f;
+}
+.sheet.werewolf .frenzy button {
+  width: fit-content;
+}
 .werewolf.sheet.window-app .window-resizable-handle {
   border-top: 3px double var(--werewolf-color-1);
   border-left: 3px double var(--werewolf-color-1);
@@ -1283,31 +1320,6 @@ h3.item-name {
 }
 .werewolf-dialog.window-app .base-dice-group {
   border: 1px solid var(--werewolf-color-2);
-}
-/* Balance Trackers */
-.balance-trackers {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-.balance-trackers .field-header {
-  font-size: 16pt;
-}
-.balance-trackers .wolf-resource {
-  max-width: 200px;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-.balance-trackers .wolf-resource .resource-value {
-  align-self: center;
-  padding: 3px;
-}
-.renown .resource-content {
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 10px;
-  padding-right: 10px;
 }
 .sheet.spc .balance-trackers .wolf-resource {
   margin-left: 5px;

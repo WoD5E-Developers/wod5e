@@ -20,6 +20,7 @@
     }
   },
   "WOD5E": {
+    "_Active": "",
     "Add": "Додати",
     "Cancel": "Скасувати",
     "_Changelog": "",
@@ -32,6 +33,7 @@
     "Exp": "Досвід",
     "_GroupSheet": "",
     "Health": "Здоров'я",
+    "_Inactive": "",
     "_Label": "",
     "Level": "Рівень",
     "_LicensedUnderDarkPack": "",
@@ -63,14 +65,19 @@
       "Wits": "Кмітливість"
     },
     "BiographyList": {
+      "_Age": "",
       "Ambition": "Амбіція",
+      "_ApparentAge": "",
       "Appearance": "Зовнішність",
       "Chronicle": "Хроніка",
       "ChronicleTenets": "Принципи Хроніки",
       "Concept": "Концепт",
+      "_DateOfBirth": "",
+      "_DateOfDeath": "",
       "Desire": "Бажання",
       "History": "Історія",
       "Label": "Передісторія",
+      "_PersonalInformation": "",
       "TouchstonesAndConvictions": "Цінності та Переконання"
     },
     "Bonus": {

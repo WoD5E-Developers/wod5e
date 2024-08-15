@@ -20,6 +20,7 @@
     }
   },
   "WOD5E": {
+    "_Active": "",
     "_Add": "",
     "_Cancel": "",
     "_Changelog": "",
@@ -32,6 +33,7 @@
     "_Exp": "",
     "_GroupSheet": "",
     "_Health": "",
+    "_Inactive": "",
     "_Label": "",
     "_Level": "",
     "_LicensedUnderDarkPack": "",
@@ -63,14 +65,19 @@
       "_Wits": ""
     },
     "BiographyList": {
+      "_Age": "",
       "_Ambition": "",
+      "_ApparentAge": "",
       "_Appearance": "",
       "_Chronicle": "",
       "_ChronicleTenets": "",
       "_Concept": "",
+      "_DateOfBirth": "",
+      "_DateOfDeath": "",
       "_Desire": "",
       "_History": "",
       "_Label": "",
+      "_PersonalInformation": "",
       "_TouchstonesAndConvictions": ""
     },
     "Bonus": {

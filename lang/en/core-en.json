@@ -20,6 +20,7 @@
     }
   },
   "WOD5E": {
+    "Active": "Active",
     "Add": "Add",
     "Cancel": "Cancel",
     "Changelog": "Changelog",
@@ -32,6 +33,7 @@
     "Exp": "Exp",
     "GroupSheet": "Group Sheet",
     "Health": "Health",
+    "Inactive": "Inactive",
     "Label": "Label",
     "Level": "Level",
     "LicensedUnderDarkPack": "Licensed Under The Dark Pack",
@@ -63,14 +65,19 @@
       "Wits": "Wits"
     },
     "BiographyList": {
+      "Age": "Age",
       "Ambition": "Ambition",
+      "ApparentAge": "Apparent Age",
       "Appearance": "Appearance",
       "Chronicle": "Chronicle",
       "ChronicleTenets": "Chronicle Tenets",
       "Concept": "Concept",
+      "DateOfBirth": "Date of Birth",
+      "DateOfDeath": "Date of Death",
       "Desire": "Desire",
       "History": "History",
       "Label": "Biography",
+      "PersonalInformation": "Personal Information",
       "TouchstonesAndConvictions": "Touchstones & Convictions"
     },
     "Bonus": {
