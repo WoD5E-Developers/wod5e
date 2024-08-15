@@ -84,11 +84,12 @@ gulp.task('watch-localization', function () {
 
   // Start the watcher for the first time
   startWatcher()
-});
+})
 
 // Default task
 gulp.task('default', gulp.series(
-  gulp.parallel('less', 'sortEnglishKeys', 'localize'),
+  gulp.parallel('less', 'sortEnglishKeys'),
+  'localize',
   gulp.parallel('watch-localization', 'watch-styling')
 ))
 
