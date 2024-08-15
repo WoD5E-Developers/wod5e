@@ -59,16 +59,31 @@ gulp.task('less', function () {
 })
 
 // Watch tasks
-gulp.task('watch', function () {
+gulp.task('watch-styling', function () {
   // Watch all less files for updates to CSS
   gulp.watch('./display/**/styling/**/*.less', gulp.series('less'))
+})
 
+gulp.task('watch-localization', function () {
   // Watch English JSON files
-  gulp.watch('./lang/en/*.json', gulp.series('sortEnglishKeys', 'localize'))
+  let watcher = gulp.watch('./lang/en/*.json')
+
+  watcher.on('change', function() {
+    // Close the watcher before running tasks
+    watcher.close()
+
+    gulp.series('sortEnglishKeys', 'localize')(function() {
+      // Restart the watcher after the tasks are finished
+      watcher = gulp.watch('./lang/en/*.json') 
+    })
+  })
 })
 
 // Default task
-gulp.task('default', gulp.series('less', 'sortEnglishKeys', 'localize', 'watch'))
+gulp.task('default', gulp.series(
+  gulp.parallel('less', 'sortEnglishKeys', 'localize'),
+  gulp.parallel('watch-localization', 'watch-styling')
+))
 
 // Create directory if it doesn't exist
 function ensureDirectoryExistence (dirPath) {
