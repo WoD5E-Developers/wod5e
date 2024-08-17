@@ -103,6 +103,7 @@ export class VampireActorSheet extends GhoulActorSheet {
     // Rollable gift buttons
     html.find('.remorse-roll').click(this._onRemorseRoll.bind(this))
     html.find('.frenzy-roll').click(this._onFrenzyRoll.bind(this))
+    html.find('.end-frenzy').click(this._onEndFrenzy.bind(this))
   }
 
   // Roll Handlers
@@ -151,6 +152,15 @@ export class VampireActorSheet extends GhoulActorSheet {
     })
   }
 
+  async _onEndFrenzy (event) {
+    event.preventDefault()
+
+    // Top-level variables
+    const actor = this.actor
+
+    await actor.update({ 'system.frenzyActive': false })
+  }
+
   async _onFrenzyRoll (event) {
     event.preventDefault()
 
@@ -167,7 +177,12 @@ export class VampireActorSheet extends GhoulActorSheet {
       title: game.i18n.localize('WOD5E.VTM.ResistingFrenzy'),
       actor,
       data: actor.system,
-      disableAdvancedDice: true
+      disableAdvancedDice: true,
+      callback: (result) => {
+        if (!result.rollSuccessful) {
+          actor.update({ 'system.frenzyActive': true })
+        }
+      }
     })
   }
 }

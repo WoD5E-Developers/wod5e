@@ -167,6 +167,45 @@
       vertical-align: middle;
     }
   }
+
+  button.vampire-button {
+    background: var(--vampire-color-1);
+    color: var(--system-color-6);
+    font-family: cormorantLight, serif;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border: none;
+    box-shadow: none;
+    border: 1px solid var(--system-color-5);
+    margin: 0;
+    border-radius: 0;
+    padding: 3px;
+  }
+
+  button.vampire-button:hover {
+    background: #bb3030ef;
+  }
+
+  button.vampire-button.active,
+  button.vampire-button.active:hover {
+    font-size: 20pt;
+    color: var(--system-color-6);
+    cursor: default;
+    background: #be1818;
+  }
+
+  .frenzy {
+    margin-bottom: 3px;
+    
+    .frenzy-status {
+      font-weight: bold;
+    }
+  
+    .frenzy-status.active {
+      color: rgb(245, 73, 73);
+      text-shadow: 0 0 10px var(--system-color-5);
+    }
+  }
 }
 
 .vampire.sheet.window-app {

@@ -1045,6 +1045,39 @@ h3.item-name {
 .sheet.vampire .rouse-button .wod5e-symbol {
   vertical-align: middle;
 }
+.sheet.vampire button.vampire-button {
+  background: var(--vampire-color-1);
+  color: var(--system-color-6);
+  font-family: cormorantLight, serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border: none;
+  box-shadow: none;
+  border: 1px solid var(--system-color-5);
+  margin: 0;
+  border-radius: 0;
+  padding: 3px;
+}
+.sheet.vampire button.vampire-button:hover {
+  background: #bb3030ef;
+}
+.sheet.vampire button.vampire-button.active,
+.sheet.vampire button.vampire-button.active:hover {
+  font-size: 20pt;
+  color: var(--system-color-6);
+  cursor: default;
+  background: #be1818;
+}
+.sheet.vampire .frenzy {
+  margin-bottom: 3px;
+}
+.sheet.vampire .frenzy .frenzy-status {
+  font-weight: bold;
+}
+.sheet.vampire .frenzy .frenzy-status.active {
+  color: #f54949;
+  text-shadow: 0 0 10px var(--system-color-5);
+}
 .vampire.sheet.window-app .window-resizable-handle {
   border-top: 3px double var(--vampire-color-1);
   border-left: 3px double var(--vampire-color-1);
@@ -1206,8 +1239,7 @@ h3.item-name {
 .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
   background-color: var(--werewolf-color-2);
 }
-.sheet.werewolf button.rollable,
-.sheet.werewolf .actor.sheet .werewolf-button {
+.sheet.werewolf button.rollable {
   background-color: var(--werewolf-color-2);
   border: 1px solid var(--werewolf-color-1);
 }
@@ -1460,22 +1492,18 @@ body.uk .actor.sheet {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.actor.sheet .actor-header .header-fields .header-fields-left {
   flex: 1;
-  padding-right: 10px;
 }
-.actor.sheet .actor-header .header-fields .header-fields-left .field-section {
-  margin-bottom: 5px;
-  width: 200px;
-}
-.actor.sheet .actor-header .header-fields .header-fields-right {
-  flex: 1;
-  padding-left: 10px;
-}
+.actor.sheet .actor-header .header-fields .header-fields-left .field-section,
 .actor.sheet .actor-header .header-fields .header-fields-right .field-section {
   margin-bottom: 5px;
   width: 250px;
+}
+.actor.sheet .actor-header .header-fields .header-fields-left {
+  padding-right: 10px;
+}
+.actor.sheet .actor-header .header-fields .header-fields-right {
+  padding-left: 10px;
 }
 .actor.sheet .actor-header .field-header {
   color: var(--system-color-6);
