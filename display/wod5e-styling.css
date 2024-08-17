@@ -356,19 +356,6 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/vollkorn/v23/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df213auGQ.ttf) format('truetype');
 }
-/* Variables */
-:root {
-  --system-color-1: #302d5bf0;
-  --system-color-2: #d2dfebf0;
-  --system-color-3: #827dcaf0;
-  --system-color-4: #ededec;
-  --system-color-5: #000;
-  --system-color-6: #fff;
-  --system-color-7: #333;
-  --system-color-8: #c4c4c4;
-  --ui-background-texture: url("/systems/vtm5e/assets/ui/ui_background_texture.webp");
-  --ui-background-active-texture: url("/systems/vtm5e/assets/ui/ui_background_active_texture.webp");
-}
 /* Fonts */
 @font-face {
   font-family: "cormorantLight";
@@ -391,7 +378,6 @@
 }
 /* Application window Header */
 .application .window-header {
-  background: var(--system-color-1);
   flex: 0 0 25px;
   line-height: 20px;
   padding-top: 2px;
@@ -401,13 +387,8 @@
   line-height: 20px;
   padding-top: 2px;
 }
-/* Sheet Window Content */
-.sheet .window-content {
-  box-shadow: 0 0 5px var(--system-color-1);
-}
 /* Top-left Logo */
 #logo {
-  content: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
   width: auto;
 }
 /* Adjust the UI top offset to compensate for the bigger logo */
@@ -423,13 +404,8 @@
 #pause {
   background: none;
 }
-#pause img {
-  content: url(/systems/vtm5e/assets/ui/Pause.webp);
-  --fa-animation-duration: 0s;
-}
 #pause figcaption {
   margin-top: 55px;
-  color: var(--system-color-5);
   font-weight: bold;
 }
 /* Only use this font with the .vampire-font-headers class enabled */
@@ -437,17 +413,10 @@
   font-family: "vampireRevised", "sans-serif";
 }
 /* ProseMirror Alterations */
-prose-mirror button.icon.toggle {
-  background-color: var(--system-color-6);
-}
 prose-mirror .editor-menu {
-  background: var(--system-color-7);
   height: 30px;
   padding: 2px;
   border-radius: 0;
-}
-prose-mirror .editor-menu button {
-  color: var(--system-color-6);
 }
 .prosemirror menu .pm-dropdown {
   background: transparent;
@@ -456,25 +425,15 @@ prose-mirror .editor-menu button {
 /* Actors Sidebar */
 .actors-sidebar .group-item {
   border: none;
-  border-left: 1px solid var(--color-border-dark-1);
   border-top: 0 !important;
   border-bottom: 0 !important;
-}
-.actors-sidebar .group-item .context {
-  background-color: transparent !important;
-  border-color: var(--color-border-highlight);
 }
 .actors-sidebar .group-item > .group-header {
   padding: 6px;
   line-height: 24px;
-  background: rgba(255 255 255 20%);
-  border-top: 1px sod var(--color-border-dark);
-  border-bottom: 1px sod var(--color-border-dark);
 }
 .actors-sidebar .group-item > .group-header h3 {
   margin: 0;
-  color: var(--color-text-ght-highght);
-  font-size: var(--font-size-16);
   line-height: 24px;
 }
 .actors-sidebar .group-item > .group-header h3 > i {
@@ -491,21 +450,13 @@ prose-mirror .editor-menu button {
   top: -2px;
   right: -2px;
   font-size: 0.5rem;
-  background: var(--system-color-5);
-  color: var(--color-text-ght-highght);
   padding: 1px;
-}
-.actors-sidebar .group-item > .group-header .create-button:hover .fa-plus {
-  color: var(--color-text-hypernk);
 }
 .actors-sidebar .group-item > .group-header .create-button.create-folder {
   font-size: 120%;
 }
 .actors-sidebar .group-item.collapsed .subdirectory {
   display: none;
-}
-.actors-sidebar .group-item.collapsed > .group-header {
-  background: rgba(0 0 0 50%);
 }
 .actors-sidebar .group-item.collapsed > .group-header h3 {
   text-shadow: none;
@@ -517,29 +468,21 @@ prose-mirror .editor-menu button {
   display: none;
 }
 .actors-sidebar .group-item.droptarget > header h3 {
-  text-shadow: 1px 1px 3px var(--color-shadow-dark);
   font-size: 1.2em;
 }
 .actors-sidebar .group-item.droptarget > header h3 i {
-  text-shadow: 0 0 4px var(--color-shadow-color-1);
   transform: scale(1.2);
 }
 
 #chat-log .message {
   margin: 10px 5px 10px 10px;
   border: 0;
-  border-top: 2px double #CCC;
 }
 .chat-message {
-  background-color: #4b4b4b;
   background-blend-mode: multiply;
-  color: #f5f5f5;
   margin: 3px;
   padding: 5px 9px;
   border-radius: 0;
-}
-.chat-message .message-header {
-  color: var(--system-color-6);
 }
 .chat-message .message-header .message-sender {
   flex: 3;
@@ -548,10 +491,6 @@ prose-mirror .editor-menu button {
   font-family: Amarante, serif;
   font-size: 1.2em;
   font-weight: 700;
-}
-.chat-message a.content-link,
-.chat-message a.inline-roll {
-  color: var(--system-color-5);
 }
 .chat-message .dice-result {
   cursor: pointer;
@@ -564,16 +503,12 @@ prose-mirror .editor-menu button {
 .chat-message .modifiers .mod {
   text-transform: uppercase;
   font-size: 8pt;
-  background-color: var(--system-color-6);
   padding: 0 5px;
-  border: 1px solid #424242;
   margin: 1px 3px;
-  color: var(--system-color-5);
 }
 .chat-message .total-and-difficulty {
   display: flex;
   flex-direction: row;
-  border: 1px solid var(--system-color-5);
   border-bottom: 0;
 }
 .chat-message .roll-total,
@@ -591,68 +526,14 @@ prose-mirror .editor-menu button {
   font-size: 18px;
   font-weight: bold;
   text-align: center;
-  border: 1px solid var(--system-color-5);
-  background: #222;
-  text-shadow: 0 0 5px var(--system-color-5);
-}
-.chat-message .roll-result-label.success,
-.chat-message .roll-result-label.critical-success {
-  background-color: #065200;
-  color: #dbd6d6;
-}
-.chat-message .roll-result-label.messy-critical {
-  background-color: #f10808;
-  color: var(--system-color-6);
-}
-.chat-message .roll-result-label.failure,
-.chat-message .roll-result-label.critical-failure,
-.chat-message .roll-result-label.bestial-failure {
-  background-color: #900;
-  color: #dbdbdb;
-}
-.chat-message .roll-result-label.desperation-failure {
-  background-color: #e97c00;
-}
-.chat-message .roll-result-label.rage-failure {
-  background-color: #783b01;
-  color: #dbdbdb;
 }
 .roll-img {
   max-width: 40px;
   margin: 2px;
   border-radius: 4px;
 }
-.roll-img.mortal-dice {
-  background: #141414;
-  border-color: #0f3705;
-}
-.roll-img.vampire-dice {
-  background: #141414;
-  border-color: #c8c8c8;
-}
-.roll-img.hunger-dice,
-.roll-img.rage-dice {
-  background: #9b0b00;
-  border-color: #330300;
-}
-.roll-img.hunter-dice {
-  background: #ee7e1f;
-  border-color: var(--system-color-5);
-}
-.roll-img.desperation-dice {
-  background: var(--system-color-5);
-  border-color: #cc6d28;
-}
-.roll-img.werewolf-dice {
-  background: #5d651a;
-  border-color: #131405;
-}
-.roll-img.rerolled {
-  background: #7b7b7b80;
-}
 .roll-img.hunger-dice.rerolled,
 .roll-img.rage-dice.rerolled {
-  border-color: #d3d3d3;
   filter: invert(1);
 }
 .roll-label {
@@ -662,12 +543,6 @@ prose-mirror .editor-menu button {
   font-size: 1.4em;
   margin: 0.1em;
   text-align: center;
-}
-.roll-label .danger {
-  color: #831515;
-}
-.roll-label .success {
-  color: #18520b;
 }
 .roll-label:nth-of-type(1) {
   line-height: 1em;
@@ -708,46 +583,18 @@ h3.item-name {
 }
 
 /* Foundry Controls UI */
-.app {
-  background: var(--ui-background-texture);
-}
 #players,
 .bar-controls {
   border-radius: 0;
 }
 #controls ol.control-tools > li {
-  background: var(--ui-background-texture);
   border-radius: 0px;
-  box-shadow: 0 0 10px var(--system-color-3);
-  border: 1px solid var(--system-color-2);
-}
-#controls ol.control-tools > li.active,
-#controls ol.control-tools > li:hover {
-  background: var(--ui-background-active-texture);
-}
-#navigation #scene-list .scene,
-#navigation #scene-list .scene.view,
-#navigation #scene-list .scene.context,
-#navigation #scene-list .scene.gm,
-#navigation .nav-item,
-#navigation #nav-toggle {
-  background: var(--ui-background-texture);
-}
-#navigation #scene-list .scene.active {
-  background: var(--ui-background-active-texture);
-}
-#hotbar .macro {
-  background: rgba(24, 51, 103, 0.5);
-}
-#hotbar .bar-controls {
-  background: var(--ui-background-texture);
 }
 
 
 .dialog-contents .dice-group-header {
   border-bottom: 0;
   font-weight: bold;
-  color: #e5e5e5;
   display: flex;
   flex-direction: row;
 }
@@ -774,15 +621,11 @@ h3.item-name {
   flex-direction: column;
   align-items: center;
 }
-.dialog-contents .dice-input img {
-  background-color: var(--system-color-5);
-}
 .dialog-contents .dialog-control {
   margin-top: 5px;
 }
 .dialog-contents .dialog-control:hover,
 .dialog-contents .dialog-control:focus {
-  color: var(--system-color-5);
   cursor: pointer;
 }
 .dialog-contents .situational-modifiers {
@@ -791,8 +634,6 @@ h3.item-name {
   width: 250px;
   top: 0;
   left: 400px;
-  background-color: var(--system-color-6);
-  box-shadow: 0 0 10px var(--color-shadow-dark);
   border-width: 3px;
 }
 .dialog-contents .situational-modifiers .list-title {
@@ -851,50 +692,22 @@ h3.item-name {
   flex-grow: 0;
 }
 
-:root {
-  --color-1-sidebar-color: #181818;
-}
 /* General Sidebar Styling */
 #sidebar {
-  background: url(/systems/vtm5e/assets/ui/sidebar.webp) repeat;
   border: 0;
   margin: 0;
   height: 100%;
   border-radius: 0;
 }
 #sidebar-tabs {
-  background: var(--system-color-5);
   margin: 0;
-  border-bottom: 1px solid var(--system-color-6);
 }
 #sidebar-tabs > .item {
   border-radius: 0;
 }
-#sidebar-tabs > .item.active {
-  background: #690a0a;
-}
-.directory .action-buttons button {
-  background: #2e2d77;
-  color: var(--system-color-6);
-}
-.subdirectory {
-  background: var(--color-1-sidebar-color);
-}
-/* Headers */
-.combat-sidebar .combat-tracker-header,
-.directory .directory-header {
-  border-bottom: 2px groove #CCC;
-  background: var(--color-1-sidebar-color);
-}
-/* Footers */
-.directory .directory-footer:not(:empty) {
-  background: rgba(0, 0, 0, 0.836);
-}
 /* Settings Sidebar */
 .settings-sidebar h2 {
   margin-bottom: 0;
-  border-bottom: 2px groove #CCC;
-  background: var(--color-1-sidebar-color);
 }
 .settings-sidebar button {
   margin: 3px 0;
@@ -904,7 +717,6 @@ h3.item-name {
 .settings-sidebar #settings-documentation,
 .settings-sidebar #settings-access,
 .settings-sidebar #license-information {
-  background: #000000a6;
   margin: 0;
   padding: 10px;
 }
@@ -1417,7 +1229,6 @@ body.uk .actor.sheet {
   /* Statistics Page */
 }
 .actor.sheet .window-content {
-  background: url(/systems/vtm5e/assets/actor/actor_background.webp) repeat;
   padding: 0;
   padding-bottom: 20px;
   overflow-y: scroll;
@@ -1427,8 +1238,6 @@ body.uk .actor.sheet {
 }
 .actor.sheet input,
 .actor.sheet .resource {
-  background-color: var(--system-color-4);
-  border: 1px solid var(--system-color-5);
   display: flex;
   flex-direction: column;
 }
@@ -1446,9 +1255,6 @@ body.uk .actor.sheet {
   margin-top: auto;
 }
 .actor.sheet .limited-description-body {
-  background-color: var(--system-color-4);
-  border: 1px solid var(--system-color-5);
-  color: var(--system-color-7);
   padding: 10px;
 }
 .actor.sheet .actor-header {
@@ -1457,8 +1263,6 @@ body.uk .actor.sheet {
   align-items: center;
   text-align: center;
   flex-grow: 0;
-  background: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp") center;
-  border-bottom: 2px solid var(--system-color-1);
   background-repeat: no-repeat;
   background-size: cover;
   padding: 0 5px 0 5px;
@@ -1506,7 +1310,6 @@ body.uk .actor.sheet {
   padding-left: 10px;
 }
 .actor.sheet .actor-header .field-header {
-  color: var(--system-color-6);
   justify-content: center;
   margin-bottom: 0;
 }
@@ -1585,22 +1388,16 @@ body.uk .actor.sheet {
   line-height: 1.6em;
   word-spacing: 0.05em;
   font-size: 1.1em;
-  color: hwb(0deg 7% 98% / 100%);
-  background: var(--system-color-4);
 }
 .actor.sheet .collapsible:hover,
 .actor.sheet .collapsible:focus {
   cursor: pointer;
 }
 .actor.sheet .toggle-limited {
-  color: var(--system-color-5);
   font-size: 13pt;
   margin-left: 5px;
   margin-top: 3px;
   cursor: pointer;
-}
-.actor.sheet .toggle-limited:not(.visible) {
-  color: var(--system-color-7);
 }
 .actor.sheet .discipline-description,
 .actor.sheet .edge-description,
@@ -1619,7 +1416,6 @@ body.uk .actor.sheet {
 .actor.sheet .sheet-banner {
   text-align: center;
   margin: -10px -10px 5px;
-  background-color: var(--system-color-1);
   font-size: 14pt;
   padding: 3px;
   position: absolute;
@@ -1632,9 +1428,6 @@ body.uk .actor.sheet {
 .actor.sheet .sheet-banner .actor-type-field {
   text-align: left;
   padding-left: 5px;
-}
-.actor.sheet .sheet-banner .actor-type-field select {
-  background-color: var(--system-color-4);
 }
 .actor.sheet .sheet-banner .sheet-label {
   text-align: right;
@@ -1654,8 +1447,6 @@ body.uk .actor.sheet {
 .actor.sheet .lock-btn {
   max-width: 35px;
   align-self: baseline;
-  background: var(--ui-background-texture);
-  color: var(--system-color-4);
 }
 .actor.sheet .lock-btn i {
   margin: auto;
@@ -1666,7 +1457,6 @@ body.uk .actor.sheet {
 .actor.sheet .tabs-container {
   position: absolute;
   height: 100%;
-  background-color: var(--system-color-4);
   top: 25px;
   left: -2px;
   overflow: hidden;
@@ -1693,18 +1483,14 @@ body.uk .actor.sheet {
 .actor.sheet .sheet-tabs > [data-tab] .navicon {
   display: flex;
   align-items: center;
-  background-color: var(--system-color-6);
   width: 100%;
   height: 100%;
-  border: 1px solid var(--system-color-5);
 }
 .actor.sheet .sheet-tabs > [data-tab] .navicon i,
 .actor.sheet .sheet-tabs > [data-tab] .navicon .wod5e-symbol {
   width: 100%;
 }
 .actor.sheet .item-list .category {
-  background-color: var(--system-color-4);
-  border: 2px solid #1b1b1b;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -1723,7 +1509,6 @@ body.uk .actor.sheet {
 }
 .actor.sheet .item-list .category .item .item-image img {
   border-radius: 50%;
-  border: 1px solid var(--system-color-5);
   padding: 2px;
   max-width: 25px;
 }
@@ -1760,7 +1545,6 @@ body.uk .actor.sheet {
 }
 .actor.sheet .item-image img {
   border-radius: 50%;
-  border: 1px solid var(--system-color-6);
   padding: 2px;
   max-width: 25px;
 }
@@ -1768,7 +1552,6 @@ body.uk .actor.sheet {
   display: block;
   font-weight: 200;
   font-size: 20pt;
-  border-bottom: 1px solid var(--system-color-5);
   width: 90%;
   text-align: center;
   margin-left: auto;
@@ -1779,13 +1562,10 @@ body.uk .actor.sheet {
 .actor.sheet .rollable-item:hover,
 .actor.sheet .system-rollable:hover {
   cursor: pointer;
-  text-shadow: 0 0 5px #e02b2b;
 }
 .actor.sheet .stats-container {
   display: flex;
   flex-flow: column;
-  background-color: var(--system-color-4);
-  border: 2px solid #1b1b1b;
   margin: 5px;
 }
 .actor.sheet .stats-container .stats-list {
@@ -1804,7 +1584,6 @@ body.uk .actor.sheet {
 .actor.sheet .specialty {
   position: relative;
   top: -5px;
-  text-shadow: 0 0 5px #e02b2b;
   font-size: 10pt;
   font-weight: bold;
   cursor: pointer;
@@ -1832,10 +1611,6 @@ body.uk .actor.sheet {
 }
 .actor.sheet .stats-content .custom-rolls .item-image img {
   border-radius: 0;
-  border: 1px inset var(--system-color-5);
-}
-.actor.sheet .stats-content .custom-rolls .rollable-item img:hover {
-  filter: grayscale(80%);
 }
 .actor.sheet .stats-content .custom-rolls .item-name {
   flex-grow: 1;
@@ -1852,14 +1627,7 @@ body.uk .actor.sheet {
   margin-left: -15px;
 }
 .actor.sheet .stats-content .stats-container .stats-footer {
-  background-color: var(--system-color-8);
   text-align: center;
-}
-.actor.sheet .stats-content .stats-container.attributes .stats-footer {
-  border-bottom: 1px solid var(--system-color-5);
-}
-.actor.sheet .stats-content .stats-container.skills .stats-footer {
-  border-top: 1px solid var(--system-color-5);
 }
 /* Increase z-index of the window handle to compensate for the actor banner*/
 .window-app .window-resizable-handle {
@@ -2088,40 +1856,28 @@ body.uk .actor.sheet {
 .resource-value .resource-value-step {
   height: 14px;
   width: 14px;
-  border: 1px solid var(--system-color-5);
   display: inline-block;
   border-radius: 50%;
   cursor: pointer;
-  background-color: #00000047;
 }
 .resource-value-static .resource-value-static-step {
   height: 14px;
   width: 14px;
-  border: 1px solid var(--system-color-5);
   display: inline-block;
   border-radius: 50%;
 }
 .resource-value .resource-value-empty {
   height: 14px;
   width: 14px;
-  border: 1px solid var(--system-color-5);
   display: inline-block;
   border-radius: 50%;
   cursor: pointer;
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
 }
 .resource-counter .resource-counter-step {
   height: 14px;
   width: 14px;
-  border: 1px solid var(--system-color-5);
   display: inline-block;
   cursor: pointer;
-}
-.resource-counter .resource-counter-step[data-state="/"] {
-  background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
-}
-.resource-counter .resource-counter-step[data-state="x"] {
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
 }
 .flex-group-center:not(.flexrow) .resource-value,
 .flex-group-center:not(.flexrow) .resource-counter {
@@ -2130,15 +1886,8 @@ body.uk .actor.sheet {
 .cell-resource-counter .cell-resource-counter-step {
   height: 14px;
   width: 14px;
-  border: 1px solid var(--system-color-5);
   display: inline-block;
   cursor: pointer;
-}
-.cell-resource-counter .cell-resource-counter-step[data-state="/"] {
-  background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
-}
-.cell-resource-counter .cell-resource-counter-step[data-state="x"] {
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
 }
 .flex-group-center:not(.flexrow) .resource-value,
 .flex-group-center:not(.flexrow) .cell-resource-counter {
@@ -2156,6 +1905,382 @@ body.uk .actor.sheet {
 }
 .actor.sheet .resource-value-empty {
   margin-left: -16px;
+}
+
+/* Variables */
+:root {
+  --color-1-sidebar-color: #181818;
+  --system-color-1: #302d5bf0;
+  --system-color-2: #d2dfebf0;
+  --system-color-3: #827dcaf0;
+  --system-color-4: #ededec;
+  --system-color-5: #000;
+  --system-color-6: #fff;
+  --system-color-7: #333;
+  --system-color-8: #c4c4c4;
+  --ui-background-texture: url("/systems/vtm5e/assets/ui/ui_background_texture.webp");
+  --ui-background-active-texture: url("/systems/vtm5e/assets/ui/ui_background_active_texture.webp");
+}
+.application .window-header {
+  background: var(--system-color-1);
+}
+.sheet .window-content {
+  box-shadow: 0 0 5px var(--system-color-1);
+}
+#logo {
+  content: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
+}
+#pause img {
+  content: url(/systems/vtm5e/assets/ui/Pause.webp);
+  --fa-animation-duration: 0s;
+}
+#pause figcaption {
+  color: var(--system-color-5);
+}
+prose-mirror button.icon.toggle {
+  background-color: var(--system-color-6);
+}
+prose-mirror .editor-menu {
+  background: var(--system-color-7);
+}
+prose-mirror .editor-menu button {
+  color: var(--system-color-6);
+}
+/* Actor Sheets */
+.actor.sheet {
+  /* Input and resource fields */
+  /* Actor Header */
+  /* Collapsible Descriptions */
+  /* Limited View Toggle Button */
+  /* Sheet Banner */
+  /* Basic Item List Layout */
+  /* General Resources */
+  /* Statistics Page */
+}
+.actor.sheet .window-content {
+  background: url(/systems/vtm5e/assets/actor/actor_background.webp) repeat;
+}
+.actor.sheet input,
+.actor.sheet .resource {
+  background-color: var(--system-color-4);
+  border: 1px solid var(--system-color-5);
+}
+.actor.sheet .limited-description-body {
+  background-color: var(--system-color-4);
+  border: 1px solid var(--system-color-5);
+  color: var(--system-color-7);
+}
+.actor.sheet .actor-header {
+  background: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp") center;
+  border-bottom: 2px solid var(--system-color-1);
+}
+.actor.sheet .actor-header .field-header {
+  color: var(--system-color-6);
+}
+.actor.sheet .collapsible-content {
+  color: hwb(0deg 7% 98% / 100%);
+  background: var(--system-color-4);
+}
+.actor.sheet .toggle-limited {
+  color: var(--system-color-5);
+}
+.actor.sheet .toggle-limited:not(.visible) {
+  color: var(--system-color-7);
+}
+.actor.sheet .sheet-banner {
+  background-color: var(--system-color-1);
+}
+.actor.sheet .sheet-banner .actor-type-field select {
+  background-color: var(--system-color-4);
+}
+.actor.sheet .lock-btn {
+  background: var(--ui-background-texture);
+  color: var(--system-color-4);
+}
+.actor.sheet .tabs-container {
+  background-color: var(--system-color-4);
+}
+.actor.sheet .sheet-tabs > [data-tab] .navicon {
+  background-color: var(--system-color-6);
+  border: 1px solid var(--system-color-5);
+}
+.actor.sheet .item-list .category {
+  background-color: var(--system-color-4);
+  border: 2px solid #1b1b1b;
+}
+.actor.sheet .item-list .category .item .item-image img {
+  border: 1px solid var(--system-color-5);
+}
+.actor.sheet .item-image img {
+  border: 1px solid var(--system-color-6);
+}
+.actor.sheet .resource-header {
+  border-bottom: 1px solid var(--system-color-5);
+}
+.actor.sheet .rollable:hover,
+.actor.sheet .rollable-item:hover,
+.actor.sheet .system-rollable:hover {
+  text-shadow: 0 0 5px #e02b2b;
+}
+.actor.sheet .stats-container {
+  background-color: var(--system-color-4);
+  border: 2px solid #1b1b1b;
+}
+.actor.sheet .specialty {
+  text-shadow: 0 0 5px #e02b2b;
+}
+.actor.sheet .stats-content .custom-rolls .item-image img {
+  border: 1px inset var(--system-color-5);
+}
+.actor.sheet .stats-content .custom-rolls .rollable-item img:hover {
+  filter: grayscale(80%);
+}
+.actor.sheet .stats-content .stats-container .stats-footer {
+  background-color: var(--system-color-8);
+}
+.actor.sheet .stats-content .stats-container.attributes .stats-footer {
+  border-bottom: 1px solid var(--system-color-5);
+}
+.actor.sheet .stats-content .stats-container.skills .stats-footer {
+  border-top: 1px solid var(--system-color-5);
+}
+/* Resource Counters */
+.resource-value .resource-value-step {
+  border: 1px solid var(--system-color-5);
+  background-color: #00000047;
+}
+.resource-value-static .resource-value-static-step {
+  border: 1px solid var(--system-color-5);
+}
+.resource-value .resource-value-empty {
+  border: 1px solid var(--system-color-5);
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
+}
+.resource-counter .resource-counter-step {
+  border: 1px solid var(--system-color-5);
+}
+.resource-counter .resource-counter-step[data-state="/"] {
+  background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
+}
+.resource-counter .resource-counter-step[data-state="x"] {
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
+}
+.cell-resource-counter .cell-resource-counter-step {
+  border: 1px solid var(--system-color-5);
+}
+.cell-resource-counter .cell-resource-counter-step[data-state="/"] {
+  background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
+}
+.cell-resource-counter .cell-resource-counter-step[data-state="x"] {
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
+}
+/* Sidebar */
+/* General Sidebar Styling */
+#sidebar {
+  background: url(/systems/vtm5e/assets/ui/sidebar.webp) repeat;
+}
+#sidebar-tabs {
+  background: var(--system-color-5);
+  border-bottom: 1px solid var(--system-color-6);
+}
+#sidebar-tabs > .item.active {
+  background: #690a0a;
+}
+.directory .action-buttons button {
+  background: #2e2d77;
+  color: var(--system-color-6);
+}
+.subdirectory {
+  background: var(--color-1-sidebar-color);
+}
+/* Headers */
+.combat-sidebar .combat-tracker-header,
+.directory .directory-header {
+  border-bottom: 2px groove #CCC;
+  background: var(--color-1-sidebar-color);
+}
+/* Footers */
+.directory .directory-footer:not(:empty) {
+  background: rgba(0, 0, 0, 0.836);
+}
+/* Settings Sidebar */
+.settings-sidebar h2 {
+  border-bottom: 2px groove #CCC;
+  background: var(--color-1-sidebar-color);
+}
+.settings-sidebar #game-details,
+.settings-sidebar #settings-game,
+.settings-sidebar #settings-documentation,
+.settings-sidebar #settings-access,
+.settings-sidebar #license-information {
+  background: #000000a6;
+}
+/* Roll Dialogs */
+.dialog-contents .dice-group-header {
+  color: #e5e5e5;
+}
+.dialog-contents .dice-input img {
+  background-color: var(--system-color-5);
+}
+.dialog-contents .dialog-control:hover,
+.dialog-contents .dialog-control:focus {
+  color: var(--system-color-5);
+}
+.dialog-contents .situational-modifiers {
+  background-color: var(--system-color-6);
+  box-shadow: 0 0 10px var(--color-shadow-dark);
+}
+/* Actors Sidebar */
+.actors-sidebar .group-item {
+  border-left: 1px solid var(--color-border-dark-1);
+}
+.actors-sidebar .group-item .context {
+  background-color: transparent !important;
+  border-color: var(--color-border-highlight);
+}
+.actors-sidebar .group-item > .group-header {
+  background: rgba(255 255 255 20%);
+  border-top: 1px sod var(--color-border-dark);
+  border-bottom: 1px sod var(--color-border-dark);
+}
+.actors-sidebar .group-item > .group-header h3 {
+  color: var(--color-text-ght-highght);
+  font-size: var(--font-size-16);
+}
+.actors-sidebar .group-item > .group-header .create-button .fa-plus {
+  background: var(--system-color-5);
+  color: var(--color-text-ght-highght);
+}
+.actors-sidebar .group-item > .group-header .create-button:hover .fa-plus {
+  color: var(--color-text-hypernk);
+}
+.actors-sidebar .group-item.collapsed > .group-header {
+  background: rgba(0 0 0 50%);
+}
+.actors-sidebar .group-item.droptarget > header h3 {
+  text-shadow: 1px 1px 3px var(--color-shadow-dark);
+}
+.actors-sidebar .group-item.droptarget > header h3 i {
+  text-shadow: 0 0 4px var(--color-shadow-color-1);
+}
+/* Chat */
+#chat-log .message {
+  border-top: 2px double #CCC;
+}
+.chat-message {
+  background-color: #4b4b4b;
+  background-blend-mode: multiply;
+  color: #f5f5f5;
+}
+.chat-message .message-header {
+  color: var(--system-color-6);
+}
+.chat-message a.content-link,
+.chat-message a.inline-roll {
+  color: var(--system-color-5);
+}
+.chat-message .modifiers .mod {
+  background-color: var(--system-color-6);
+  border: 1px solid #424242;
+  color: var(--system-color-5);
+}
+.chat-message .total-and-difficulty {
+  border: 1px solid var(--system-color-5);
+}
+.chat-message .roll-result-label {
+  border: 1px solid var(--system-color-5);
+  background: #222;
+  text-shadow: 0 0 5px var(--system-color-5);
+}
+.chat-message .roll-result-label.success,
+.chat-message .roll-result-label.critical-success {
+  background-color: #065200;
+  color: #dbd6d6;
+}
+.chat-message .roll-result-label.messy-critical {
+  background-color: #f10808;
+  color: var(--system-color-6);
+}
+.chat-message .roll-result-label.failure,
+.chat-message .roll-result-label.critical-failure,
+.chat-message .roll-result-label.bestial-failure {
+  background-color: #900;
+  color: #dbdbdb;
+}
+.chat-message .roll-result-label.desperation-failure {
+  background-color: #e97c00;
+}
+.chat-message .roll-result-label.rage-failure {
+  background-color: #783b01;
+  color: #dbdbdb;
+}
+.roll-img.mortal-dice {
+  background: #141414;
+  border-color: #0f3705;
+}
+.roll-img.vampire-dice {
+  background: #141414;
+  border-color: #c8c8c8;
+}
+.roll-img.hunger-dice,
+.roll-img.rage-dice {
+  background: #9b0b00;
+  border-color: #330300;
+}
+.roll-img.hunter-dice {
+  background: #ee7e1f;
+  border-color: var(--system-color-5);
+}
+.roll-img.desperation-dice {
+  background: var(--system-color-5);
+  border-color: #cc6d28;
+}
+.roll-img.werewolf-dice {
+  background: #5d651a;
+  border-color: #131405;
+}
+.roll-img.rerolled {
+  background: #7b7b7b80;
+}
+.roll-img.hunger-dice.rerolled,
+.roll-img.rage-dice.rerolled {
+  border-color: #d3d3d3;
+}
+.roll-label .danger {
+  color: #831515;
+}
+.roll-label .success {
+  color: #18520b;
+}
+/* Foundry Controls UI */
+.app {
+  background: var(--ui-background-texture);
+}
+#controls ol.control-tools > li {
+  background: var(--ui-background-texture);
+  box-shadow: 0 0 10px var(--system-color-3);
+  border: 1px solid var(--system-color-2);
+}
+#controls ol.control-tools > li.active,
+#controls ol.control-tools > li:hover {
+  background: var(--ui-background-active-texture);
+}
+#navigation #scene-list .scene,
+#navigation #scene-list .scene.view,
+#navigation #scene-list .scene.context,
+#navigation #scene-list .scene.gm,
+#navigation .nav-item,
+#navigation #nav-toggle {
+  background: var(--ui-background-texture);
+}
+#navigation #scene-list .scene.active {
+  background: var(--ui-background-active-texture);
+}
+#hotbar .macro {
+  background: rgba(24, 51, 103, 0.5);
+}
+#hotbar .bar-controls {
+  background: var(--ui-background-texture);
 }
 
 /* Variables */
