@@ -1,0 +1,188 @@
+/* Variables */
+:root {
+  --system-color-1: #302d5bf0;
+  --system-color-2: #d2dfebf0;
+  --system-color-3: #827dcaf0;
+  --system-color-4: #ededec;
+  --system-color-5: #000;
+  --system-color-6: #fff;
+  --system-color-7: #333;
+  --system-color-8: #c4c4c4;
+  --ui-background-texture: url("/systems/vtm5e/assets/ui/ui_background_texture.webp");
+  --ui-background-active-texture: url("/systems/vtm5e/assets/ui/ui_background_active_texture.webp");
+}
+
+.application .window-header {
+  background: var(--system-color-1);
+}
+.sheet .window-content {
+  box-shadow: 0 0 5px var(--system-color-1);
+}
+
+#logo {
+  content: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
+}
+
+#pause {
+  img {
+    content: url(/systems/vtm5e/assets/ui/Pause.webp);
+    --fa-animation-duration: 0s;
+  }
+
+  figcaption {
+    color: var(--system-color-5);
+  }
+}
+
+prose-mirror {
+  button.icon.toggle {
+    background-color: var(--system-color-6);
+  }
+
+  .editor-menu {
+    background: var(--system-color-7);
+    
+    button {
+      color: var(--system-color-6);
+    }
+  }
+}
+
+/* Actor Sheets */
+.actor.sheet {
+  .window-content {
+    background: url(/systems/vtm5e/assets/actor/actor_background.webp) repeat;
+  }
+
+  /* Input and resource fields */
+  input,
+  .resource {
+    background-color: var(--system-color-4);
+    border: 1px solid var(--system-color-5);
+  }
+
+  .limited-description-body {
+    background-color: var(--system-color-4);
+    border: 1px solid var(--system-color-5);
+    color: var(--system-color-7);
+  }
+
+  /* Actor Header */
+  .actor-header {
+    background: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp") center;
+    border-bottom: 2px solid var(--system-color-1);
+
+    .field-header {
+      color: var(--system-color-6);
+    }
+  }
+
+  /* Collapsible Descriptions */
+  .collapsible-content {
+    color: hwb(0deg 7% 98% / 100%);
+    background: var(--system-color-4);
+  }
+
+  /* Limited View Toggle Button */
+  .toggle-limited {
+    color: var(--system-color-5);
+  }
+
+  .toggle-limited:not(.visible) {
+    color: var(--system-color-7);
+  }
+
+  /* Sheet Banner */
+  .sheet-banner {
+    background-color: var(--system-color-1);
+
+    .actor-type-field {
+      select {
+        background-color: var(--system-color-4);
+      }
+    }
+  }
+  
+  .lock-btn {
+    background: var(--ui-background-texture);
+    color: var(--system-color-4);
+  }
+
+  .tabs-container {
+    background-color: var(--system-color-4);
+  }
+
+  .sheet-tabs {
+    > [data-tab] .navicon {
+      background-color: var(--system-color-6);
+      border: 1px solid var(--system-color-5);
+    }
+  }
+
+  /* Basic Item List Layout */
+  .item-list .category {
+    background-color: var(--system-color-4);
+    border: 2px solid #1b1b1b;
+
+    .item {
+      .item-image {
+        img {
+          border: 1px solid var(--system-color-5);
+        }
+      }
+    }
+  }
+  
+  .item-image img {
+    border: 1px solid var(--system-color-6);
+  }
+
+  /* General Resources */
+  .resource-header {
+    border-bottom: 1px solid var(--system-color-5);
+  }
+
+  .rollable:hover,
+  .rollable-item:hover,
+  .system-rollable:hover {
+    text-shadow: 0 0 5px #e02b2b;
+  }
+
+  /* Statistics Page */
+  .stats-container {
+    background-color: var(--system-color-4);
+    border: 2px solid #1b1b1b;
+  }
+
+  .specialty {
+    text-shadow: 0 0 5px #e02b2b;
+  }
+
+  .stats-content {
+    .custom-rolls {
+      .item-image {
+        img {
+          border: 1px inset var(--system-color-5);
+        }
+      }
+
+      .rollable-item img:hover {
+        filter: grayscale(80%);
+      }
+    }
+
+    .stats-container {
+      .stats-footer {
+        background-color: var(--system-color-8);
+      }
+    }
+  
+    .stats-container.attributes .stats-footer {
+      border-bottom: 1px solid var(--system-color-5);
+    }
+  
+    .stats-container.skills .stats-footer {
+      border-top: 1px solid var(--system-color-5);
+    }
+  }
+}

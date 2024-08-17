@@ -7,7 +7,6 @@
   border-radius: 0;
 
   .window-content {
-    background: url(/systems/vtm5e/assets/actor/actor_background.webp) repeat;
     padding: 0;
     padding-bottom: 20px;
     overflow-y: scroll;
@@ -20,8 +19,6 @@
   /* Input and resource fields */
   input,
   .resource {
-    background-color: var(--system-color-4);
-    border: 1px solid var(--system-color-5);
     display: flex;
     flex-direction: column;
   }
@@ -44,9 +41,6 @@
   }
 
   .limited-description-body {
-    background-color: var(--system-color-4);
-    border: 1px solid var(--system-color-5);
-    color: var(--system-color-7);
     padding: 10px;
   }
 
@@ -57,8 +51,6 @@
     align-items: center;
     text-align: center;
     flex-grow: 0;
-    background: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp") center;
-    border-bottom: 2px solid var(--system-color-1);
     background-repeat: no-repeat;
     background-size: cover;
     padding: 0 5px 0 5px;
@@ -114,7 +106,6 @@
     }
 
     .field-header {
-      color: var(--system-color-6);
       justify-content: center;
       margin-bottom: 0;
     }
@@ -225,8 +216,6 @@
     line-height: 1.6em;
     word-spacing: 0.05em;
     font-size: 1.1em;
-    color: hwb(0deg 7% 98% / 100%);
-    background: var(--system-color-4);
   }
 
   .collapsible:hover,
@@ -236,15 +225,10 @@
 
   /* Limited View Toggle Button */
   .toggle-limited {
-    color: var(--system-color-5);
     font-size: 13pt;
     margin-left: 5px;
     margin-top: 3px;
     cursor: pointer;
-  }
-
-  .toggle-limited:not(.visible) {
-    color: var(--system-color-7);
   }
 
   /* Power Descriptions */
@@ -267,7 +251,6 @@
   .sheet-banner {
     text-align: center;
     margin: -10px -10px 5px;
-    background-color: var(--system-color-1);
     font-size: 14pt;
     padding: 3px;
     position: absolute;
@@ -280,10 +263,6 @@
     .actor-type-field {
       text-align: left;
       padding-left: 5px;
-
-      select {
-        background-color: var(--system-color-4);
-      }
     }
 
     .sheet-label {
@@ -309,8 +288,6 @@
   .lock-btn {
     max-width: 35px;
     align-self: baseline;
-    background: var(--ui-background-texture);
-    color: var(--system-color-4);
   }
   
   .lock-btn i {
@@ -325,7 +302,6 @@
   .tabs-container {
     position: absolute;
     height: 100%;
-    background-color: var(--system-color-4);
     top: 25px;
     left: -2px;
     overflow: hidden;
@@ -354,10 +330,8 @@
     > [data-tab] .navicon {
       display: flex;
       align-items: center;
-      background-color: var(--system-color-6);
       width: 100%;
       height: 100%;
-      border: 1px solid var(--system-color-5);
     }
 
     > [data-tab] .navicon i,
@@ -368,8 +342,6 @@
 
   /* Basic Item List Layout */
   .item-list .category {
-    background-color: var(--system-color-4);
-    border: 2px solid #1b1b1b;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -390,7 +362,6 @@
 
         img {
           border-radius: 50%;
-          border: 1px solid var(--system-color-5);
           padding: 2px;
           max-width: 25px;
         }
@@ -440,7 +411,6 @@
   
   .item-image img {
     border-radius: 50%;
-    border: 1px solid var(--system-color-6);
     padding: 2px;
     max-width: 25px;
   }
@@ -450,7 +420,6 @@
     display: block;
     font-weight: 200;
     font-size: 20pt;
-    border-bottom: 1px solid var(--system-color-5);
     width: 90%;
     text-align: center;
     margin-left: auto;
@@ -462,15 +431,12 @@
   .rollable-item:hover,
   .system-rollable:hover {
     cursor: pointer;
-    text-shadow: 0 0 5px #e02b2b;
   }
 
   /* Statistics Page */
   .stats-container {
     display: flex;
     flex-flow: column;
-    background-color: var(--system-color-4);
-    border: 2px solid #1b1b1b;
     margin: 5px;
 
     .stats-list {
@@ -492,7 +458,6 @@
   .specialty {
     position: relative;
     top: -5px;
-    text-shadow: 0 0 5px #e02b2b;
     font-size: 10pt;
     font-weight: bold;
     cursor: pointer;
@@ -523,12 +488,7 @@
 
         img {
           border-radius: 0;
-          border: 1px inset var(--system-color-5);
         }
-      }
-
-      .rollable-item img:hover {
-        filter: grayscale(80%);
       }
 
       .item-name {
@@ -551,17 +511,8 @@
 
     .stats-container {
       .stats-footer {
-        background-color: var(--system-color-8);
         text-align: center;
       }
-    }
-  
-    .stats-container.attributes .stats-footer {
-      border-bottom: 1px solid var(--system-color-5);
-    }
-  
-    .stats-container.skills .stats-footer {
-      border-top: 1px solid var(--system-color-5);
     }
   }
 }
