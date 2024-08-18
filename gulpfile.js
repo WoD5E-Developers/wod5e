@@ -66,9 +66,9 @@ gulp.task('watch-styling', function () {
 
 gulp.task('watch-localization', function () {
   // Function to start the watcher
-  function startWatcher() {
+  function startWatcher () {
     // Watch English JSON files
-    let watcher = gulp.watch('./lang/en/*.json')
+    const watcher = gulp.watch('./lang/en/*.json')
 
     watcher.on('change', function () {
       // Close the watcher before running tasks
