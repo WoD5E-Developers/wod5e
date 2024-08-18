@@ -7,6 +7,7 @@ import { Attributes } from '../api/def/attributes.js'
 import { Skills } from '../api/def/skills.js'
 import { WOD5eDice } from '../scripts/system-rolls.js'
 import { _onRollItem } from './scripts/item-roll.js'
+import { _onAddExperience } from './scripts/experience.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -284,6 +285,9 @@ export class WoDActor extends ActorSheet {
 
     // Edit a skill
     html.find('.edit-skill').click(this._onSkillEdit.bind(this))
+
+    // Add an experience
+    html.find('.add-experience').click(_onAddExperience.bind(this, actor))
 
     // Send Inventory Item to Chat
     html.find('.item-chat').click(async event => {

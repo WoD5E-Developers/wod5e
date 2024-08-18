@@ -121,6 +121,13 @@
       "SelectAbility": "Escolher Atributo",
       "SkillShortLabel": "H"
     },
+    "Experience": {
+      "_AddExperience": "",
+      "_History": "",
+      "_NewExperience": "",
+      "_Remaining": "",
+      "_Total": ""
+    },
     "ItemsList": {
       "_AddDice": "",
       "Background": "Antecedente",
@@ -272,6 +279,7 @@
       "Description": "Descrição",
       "_Dicepool": "",
       "Equipment": "Equipamento",
+      "_Experience": "",
       "Features": "Vantagens",
       "_IsNotVisible": "",
       "_IsVisible": "",

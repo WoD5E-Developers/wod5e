@@ -1,0 +1,35 @@
+<div class="tab experience" data-group="primary" data-tab="experience">
+    <div class="grid grid-2col">
+        <div class="experience-trackers">
+            <div class="tracker flexcol">
+                <div class="field-header">
+                    {{localize "WOD5E.Experience.Remaining"}}
+                </div>
+                <input name="system.exp.value" value="{{actor.system.exp.value}}"/>
+            </div>
+            <div class="tracker flexcol">
+                <div class="field-header">
+                    {{localize "WOD5E.Experience.Total"}}
+                </div>
+                <input name="system.exp.max" value="{{actor.system.exp.max}}"/>
+            </div>
+        </div>
+        <div class="flexcol">
+            <div>
+                <h1 class="field-header flexrow">
+                    {{localize "WOD5E.Experience.History"}}
+                </h1>
+            </div>
+            {{#each actor.system.experiences as |experience key|}}
+                <div>
+                    {{experience.name}} ({{experience.value}} {{localize "WOD5E.Exp"}})
+                </div>
+            {{/each}}
+            <div class="flex-center">
+                <a class="add-experience">
+                    {{localize "WOD5E.Experience.AddExperience"}}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

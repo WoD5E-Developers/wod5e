@@ -121,6 +121,13 @@
       "SelectAbility": "Selectionner un attribut",
       "SkillShortLabel": "C"
     },
+    "Experience": {
+      "_AddExperience": "",
+      "_History": "",
+      "_NewExperience": "",
+      "_Remaining": "",
+      "_Total": ""
+    },
     "ItemsList": {
       "_AddDice": "",
       "Background": "Historique",
@@ -272,6 +279,7 @@
       "Description": "Description",
       "_Dicepool": "",
       "Equipment": "Équipement",
+      "_Experience": "",
       "Features": "Atouts",
       "_IsNotVisible": "",
       "_IsVisible": "",

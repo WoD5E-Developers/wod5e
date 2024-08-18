@@ -1215,6 +1215,7 @@ body.uk .actor.sheet {
   /* Input and resource fields */
   /* Limited Sheet */
   /* Actor Header */
+  /* Experience Tab */
   /* Features tab */
   /* Biography Tab */
   /* Notes Tab */
@@ -1312,6 +1313,27 @@ body.uk .actor.sheet {
 .actor.sheet .actor-header .field-header {
   justify-content: center;
   margin-bottom: 0;
+}
+.actor.sheet .tab.experience .experience-trackers {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.actor.sheet .tab.experience .experience-trackers .tracker {
+  margin-bottom: 10px;
+}
+.actor.sheet .tab.experience .experience-trackers .tracker input {
+  max-width: 50px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.actor.sheet .tab.experience .experience-trackers .tracker .field-header {
+  font-size: 15pt;
+}
+.actor.sheet .tab.experience .add-experience {
+  font-size: 13pt;
+  margin-left: auto;
 }
 .actor.sheet .tab.features .character-details {
   max-width: 400px;
@@ -1926,7 +1948,6 @@ body.uk .actor.sheet {
   --actor-background-default: url(/systems/vtm5e/assets/actor/actor_background.webp);
   --actor-header-default: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp");
   --logo-default: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
-  --pause-button-default: url(/systems/vtm5e/assets/ui/Pause.webp);
 }
 .application .window-header {
   background: var(--system-color-1);
@@ -1936,10 +1957,6 @@ body.uk .actor.sheet {
 }
 #logo {
   content: var(--logo-default);
-}
-#pause img {
-  content: var(--pause-button-default);
-  --fa-animation-duration: 0s;
 }
 #pause figcaption {
   color: var(--system-color-5);

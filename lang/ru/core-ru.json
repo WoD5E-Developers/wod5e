@@ -121,6 +121,13 @@
       "SelectAbility": "Выбор Характеристики",
       "SkillShortLabel": "Н"
     },
+    "Experience": {
+      "_AddExperience": "",
+      "_History": "",
+      "_NewExperience": "",
+      "_Remaining": "",
+      "_Total": ""
+    },
     "ItemsList": {
       "_AddDice": "",
       "Background": "Факты биографии",
@@ -272,6 +279,7 @@
       "Description": "Описание",
       "_Dicepool": "",
       "Equipment": "Снаряжение",
+      "_Experience": "",
       "Features": "Преимущества",
       "_IsNotVisible": "",
       "_IsVisible": "",

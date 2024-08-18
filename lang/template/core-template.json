@@ -121,6 +121,13 @@
       "_SelectAbility": "",
       "_SkillShortLabel": ""
     },
+    "Experience": {
+      "_AddExperience": "",
+      "_History": "",
+      "_NewExperience": "",
+      "_Remaining": "",
+      "_Total": ""
+    },
     "ItemsList": {
       "_AddDice": "",
       "_Background": "",
@@ -272,6 +279,7 @@
       "_Description": "",
       "_Dicepool": "",
       "_Equipment": "",
+      "_Experience": "",
       "_Features": "",
       "_IsNotVisible": "",
       "_IsVisible": "",
