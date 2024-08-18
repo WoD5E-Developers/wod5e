@@ -3,12 +3,12 @@
 // Mortal
 import { MortalActorSheet } from '../../actor/mortal-actor-sheet.js'
 // Vampire system
-import { VampireActorSheet } from '../../actor/vampire-actor-sheet.js'
-import { GhoulActorSheet } from '../../actor/ghoul-actor-sheet.js'
+import { VampireActorSheet } from '../../actor/vtm/vampire-actor-sheet.js'
+import { GhoulActorSheet } from '../../actor/vtm/ghoul-actor-sheet.js'
 // Hunter system
-import { HunterActorSheet } from '../../actor/hunter-actor-sheet.js'
+import { HunterActorSheet } from '../../actor/htr/hunter-actor-sheet.js'
 // Werewolf system
-import { WerewolfActorSheet } from '../../actor/werewolf-actor-sheet.js'
+import { WerewolfActorSheet } from '../../actor/wta/werewolf-actor-sheet.js'
 // All systems
 import { SPCActorSheet } from '../../actor/spc-actor-sheet.js'
 import { GroupActorSheet } from '../../actor/group-actor-sheet.js'

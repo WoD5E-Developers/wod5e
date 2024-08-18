@@ -1,8 +1,8 @@
 /* global game, foundry, renderTemplate, ChatMessage, TextEditor, WOD5E, Dialog */
 
-import { WOD5eDice } from '../scripts/system-rolls.js'
-import { getActiveBonuses } from '../scripts/rolls/situational-modifiers.js'
-import { MortalActorSheet } from './mortal-actor-sheet.js'
+import { WOD5eDice } from '../../scripts/system-rolls.js'
+import { getActiveBonuses } from '../../scripts/rolls/situational-modifiers.js'
+import { MortalActorSheet } from '../mortal-actor-sheet.js'
 
 /**
  * Extend the basic ActorSheet with some very simple modifications

@@ -1,6 +1,6 @@
 /* global game, foundry, renderTemplate, ChatMessage, TextEditor, WOD5E, Dialog, WOD5E */
 
-import { WoDActor } from './wod-v5-sheet.js'
+import { WoDActor } from '../wod-v5-sheet.js'
 
 /**
  * Extend the WOD5E ActorSheet with some very simple modifications
