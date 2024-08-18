@@ -1,13 +1,11 @@
 /* global game */
 
-// NOTE: The blood potency table uses the updated rules from the v5 Companion
-
-// surge: Amount of dice added on a blood surge
-// mend: Amount mended on expenditure of vitae
-// power: Bonus to discipline powers
-// rouse: Max level of powers that can be rouse-rerolled
-// bane: Bane severity number
-export function getBloodPotencyValues (level) {
+// Surge: Amount of dice added on a blood surge
+// Mend: Amount mended on expenditure of vitae
+// Power: Bonus to discipline powers
+// Rouse: Max level of powers that can be rouse-rerolled
+// Bane: Bane severity number
+export const getBloodPotencyValues = async function (level) {
   const BLOOD_POTENCY_VALUES = [
     // Potency 0
     {
@@ -195,4 +193,31 @@ export function getBloodPotencyText (level) {
   ]
 
   return BLOOD_POTENCY_TEXT[level]
+}
+
+export const potencyToRouse = async function (potency, level) {
+  // Define whether to reroll dice based on the user's blood potency
+  // and the power's level
+  if (potency === 0) {
+    // Potency 0 never rolls additional rouse dice for disciplines
+    return false
+  } else if (potency > 8) {
+    // Potency of 9 and 10 always roll additional rouse dice for disciplines
+    return true
+  } else if (potency > 6 && level < 5) {
+    // Potency 7 and 8 roll additional rouse dice on discipline powers below 5
+    return true
+  } else if (potency > 4 && level < 4) {
+    // Potency 5 and 6 roll additional rouse dice on discipline powers below 4
+    return true
+  } else if (potency > 2 && level < 3) {
+    // Potency 3 and 4 roll additional rouse dice on discipline powers below 3
+    return true
+  } else if (potency > 0 && level < 2) {
+    // Potency 1 and 2 roll additional rouse dice on discipline powers below 2
+    return true
+  }
+
+  // If none of the above are true, just roll 1 dice for the rouse check
+  return false
 }

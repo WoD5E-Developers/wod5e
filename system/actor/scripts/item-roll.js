@@ -2,6 +2,8 @@
 
 import { WOD5eDice } from '../../scripts/system-rolls.js'
 import { getActiveBonuses } from '../../scripts/rolls/situational-modifiers.js'
+import { _onRouseCheck } from '../vtm/scripts/rouse.js'
+import { _onGiftCost } from '../wta/scripts/gifts.js'
 
 /**
    * Handle rolling dicepools from items
@@ -100,6 +102,13 @@ export const _onRollItem = async function (event) {
     decreaseRage,
     selectors,
     macro,
-    advancedCheckDice
+    advancedCheckDice,
+    callback: async () => {
+      if (system === 'vampire' && itemData.cost > 0) {
+        _onRouseCheck(actor, item)
+      } else if (system === 'werewolf' && (itemData.cost > 0 || itemData.willpowercost > 0)) {
+        _onGiftCost(actor, item)
+      }
+    }
   })
 }

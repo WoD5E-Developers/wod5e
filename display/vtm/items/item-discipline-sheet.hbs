@@ -5,14 +5,32 @@
             <h1 class="charname"><input name="name" type="text" value="{{item.name}}"
                     placeholder="{{localize 'WOD5E.Name'}}" /></h1>
             <div class="flexrow grid-2row">
-                <!-- Input the level of the discipline -->
-                <div class="flexcol level flex-center">
-                    <label>{{localize "WOD5E.Level"}}</label>
-                    <input name="system.level" value="{{item.system.level}}" type="number" min="0" max="5"/>
+                <div class="flexrow">
+                    <!-- Input the level of the discipline -->
+                    <div class="flexcol level flex-center">
+                        <div>
+                            <b>
+                                {{localize "WOD5E.Level"}}
+                            </b>
+                        </div>
+                        <input name="system.level" value="{{item.system.level}}" type="number" min="0" max="5"/>
+                    </div>
+                    <div class="flexcol flex-center">
+                        <div>
+                            <b>
+                                {{localize 'WOD5E.ItemsList.Cost'}}
+                            </b>
+                        </div>
+                        <input name="system.cost" type="number" value="{{item.system.cost}}" placeholder="0"/>
+                    </div>
                 </div>
                 <!-- Select the discipline this power belongs to -->
                 <div class="flexcol discipline flex-center">
-                    <label>{{localize "WOD5E.VTM.DisciplineType"}}</label>
+                    <label>
+                        <b>
+                            {{localize "WOD5E.VTM.DisciplineType"}}
+                        </b>
+                    </label>
                     <select name="system.discipline" data-type="String">
                         {{#select item.system.discipline}}
                         {{> "systems/vtm5e/display/shared/items/parts/disciplines.hbs"}}
