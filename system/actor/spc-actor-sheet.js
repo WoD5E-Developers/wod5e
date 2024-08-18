@@ -18,7 +18,7 @@ export class SPCActorSheet extends WoDActor {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
       template: 'systems/vtm5e/display/shared/actors/spc-sheet.hbs',
-      width: 850,
+      width: 950,
       height: 500
     })
   }

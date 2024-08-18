@@ -85,7 +85,7 @@ export class GhoulActorSheet extends MortalActorSheet {
           visible: false,
           description: '',
           powers: []
-        }})
+        } })
 
         disciplineData = Object.assign({
           value: 0,
@@ -95,13 +95,16 @@ export class GhoulActorSheet extends MortalActorSheet {
         }, value)
       }
 
-      // Add the discipline as long as it isn't "hidden"
-      if (!disciplineData.hidden) {
-        if (!disciplines[id]) disciplines[id] = {} // Ensure the type exists
+      // Ensure the discipline exists
+      if (!disciplines[id]) disciplines[id] = {}
+      // Apply the discipline's data
+      disciplines[id] = disciplineData
 
-        disciplines[id] = disciplineData
+      // Make it forced invisible if it's set to hidden
+      if (disciplineData.hidden) {
+        disciplines[id].visible = false
       }
-      
+
       // Localize the discipline name
       disciplines[id].label = WOD5E.api.generateLabelAndLocalize({ string: id, type: 'discipline' })
 
@@ -126,7 +129,7 @@ export class GhoulActorSheet extends MortalActorSheet {
     for (const disciplineType in disciplines) {
       if (disciplines[disciplineType].powers.length > 0) {
         // If there are any discipline powers in the list, make them visible
-        if (!disciplines[disciplineType].visible) disciplines[disciplineType].visible = true
+        if (!disciplines[disciplineType].visible && !disciplines[disciplineType].hidden) disciplines[disciplineType].visible = true
 
         // Sort the discipline containers by the level of the power instead of by creation date
         disciplines[disciplineType].powers = disciplines[disciplineType].powers.sort(function (power1, power2) {
@@ -204,7 +207,9 @@ export class GhoulActorSheet extends MortalActorSheet {
     // Prompt a dialog to determine which edge we're adding
     // Build the options for the select dropdown
     for (const [key, value] of Object.entries(itemOptions)) {
-      options += `<option value="${key}">${value.displayName}</option>`
+      if (!value.hidden) {
+        options += `<option value="${key}">${value.displayName}</option>`
+      }
     }
 
     // Template for the dialog form
