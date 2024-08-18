@@ -2054,6 +2054,9 @@ prose-mirror .editor-menu button {
 .sheet .stats-content .stats-container.skills .stats-footer {
   border-top: 1px solid var(--system-color-5);
 }
+.sheet select {
+  background-color: var(--system-color-4);
+}
 /* Resource Counters */
 .resource-value .resource-value-step {
   border: 1px solid var(--system-color-5);

@@ -1,6 +1,6 @@
 <div class="tab dicepool" data-group="primary" data-tab="dicepool">
         {{#if (isNotEmpty item.system.dicepool)}}
-            <div class="resource grid grid-2col flex-center">
+            <div class="grid grid-2col flex-center">
                 {{#each item.system.dicepool as |dice key|}}
                     <div class="flexrow">
                         <select name="system.dicepool.{{key}}.path">
