@@ -18,7 +18,7 @@ export class SPCActorSheet extends WoDActor {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: classList,
       template: 'systems/vtm5e/display/shared/actors/spc-sheet.hbs',
-      width: 850,
+      width: 950,
       height: 500
     })
   }
@@ -288,7 +288,7 @@ export class SPCActorSheet extends WoDActor {
 
     // Gather and push the list of options to the 'options' variable
     if (powerType === 'discipline') {
-      const disciplinesList = WOD5E.Disciplines.getList()
+      const disciplinesList = WOD5E.Disciplines.getList({})
       for (const [key, value] of Object.entries(disciplinesList)) {
         options = options.concat(`<option value="${key}">${value.displayName}</option>`)
       }

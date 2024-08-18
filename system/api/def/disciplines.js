@@ -3,20 +3,52 @@
 export class Disciplines {
   // Function to help with quickly grabbing all the listed values;
   // Will only retrieve objects (definitions)
-  static getList () {
+  static getList ({
+    custom = false
+  }) {
     return Object.entries(this)
-      .filter(([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value))
+      // Filter out any entries with improper formats
+      .filter(([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value) &&
+        // Filter based on given filters provided with the function, if any
+        (!custom || value.custom === custom))
+      // Reduce into a format the system can work with
       .reduce((accumulator, [key, value]) => {
         accumulator[key] = value
         return accumulator
       }, {})
   }
 
+  // Method to add extra disciplines
+  static addCustom (customDisciplines) {
+    for (const [, value] of Object.entries(customDisciplines)) {
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        // Note this feature as being a custom feature
+        value.custom = true
+
+        this[value.id] = value
+      }
+    }
+  }
+
   // Localize the labels
   static initializeLabels () {
-    for (const [, value] of Object.entries(this)) {
+    const modifications = game.settings.get('vtm5e', 'modifiedDisciplines')
+
+    for (const [key, value] of Object.entries(this)) {
       if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        const checkModification = modifications.filter(discipline => discipline.id === key)
+
         value.label = game.i18n.localize(value.label)
+
+        // If there are modifications, update the attribute
+        if (checkModification.length > 0) {
+          value.rename = checkModification[0].rename
+          value.hidden = checkModification[0].hidden
+        } else {
+          // If there are no modifications, use default values
+          value.rename = ''
+          value.hidden = false
+        }
       }
 
       // Handle which label to display
@@ -30,6 +62,12 @@ export class Disciplines {
 
   // Run any necessary compilation on ready
   static onReady () {
+    const customDisciplines = game.settings.get('vtm5e', 'customDisciplines')
+
+    if (customDisciplines) {
+      Disciplines.addCustom(customDisciplines)
+    }
+
     Disciplines.initializeLabels()
   }
 

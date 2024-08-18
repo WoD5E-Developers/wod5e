@@ -28,7 +28,7 @@ export const getDicepoolList = async (document) => {
   }
   // Vampire
   if (gamesystem === 'vampire') {
-    const disciplines = WOD5E.Disciplines.getList()
+    const disciplines = WOD5E.Disciplines.getList({})
     for (const [key, value] of Object.entries(disciplines)) {
       masterList.push({
         value: `disciplines.${key}`,

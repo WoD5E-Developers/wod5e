@@ -260,6 +260,49 @@ export const loadSettings = async function () {
     }
   })
 
+  // Register the modified disciplines
+  game.settings.register('vtm5e', 'modifiedDisciplines', {
+    name: game.i18n.localize('WOD5E.Settings.ModifiedDisciplines'),
+    hint: game.i18n.localize('WOD5E.Settings.ModifiedDisciplinesHint'),
+    scope: 'world',
+    config: false,
+    default: [],
+    type: Array,
+    onChange: async () => {
+      // Re-render the storyteller menu window once settings are updated
+      _rerenderStorytellerWindow()
+
+      // Re-init labels
+      WOD5E.Disciplines.initializeLabels()
+
+      // Reload actorsheets
+      resetActors()
+    }
+  })
+
+  // Register the custom attributes
+  game.settings.register('vtm5e', 'customDisciplines', {
+    name: game.i18n.localize('WOD5E.Settings.CustomDisciplines'),
+    hint: game.i18n.localize('WOD5E.Settings.CustomDisciplinesHint'),
+    scope: 'world',
+    config: false,
+    default: [],
+    type: Array,
+    onChange: async (customDisciplines) => {
+      // Re-render the storyteller menu window once settings are updated
+      _rerenderStorytellerWindow()
+
+      // Grab the custom disciplines and send them to the function to update the list
+      WOD5E.Disciplines.addCustom(customDisciplines)
+
+      // Re-init labels
+      WOD5E.Disciplines.initializeLabels()
+
+      // Reload actorsheets
+      resetActors()
+    }
+  })
+
   // World Version, only really needed by developers
   game.settings.register('vtm5e', 'worldVersion', {
     name: game.i18n.localize('WOD5E.Settings.WorldVersion'),

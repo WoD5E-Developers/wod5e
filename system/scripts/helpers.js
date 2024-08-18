@@ -81,6 +81,11 @@ export const loadHelpers = async function () {
     return WOD5E.Skills.getList({})
   })
 
+  // Helper to define disciplines lists
+  Handlebars.registerHelper('getDisciplinesList', function () {
+    return WOD5E.Disciplines.getList({})
+  })
+
   // Check whether an object is empty or not
   Handlebars.registerHelper('isNotEmpty', function (obj) {
     return Object.keys(obj).length > 0

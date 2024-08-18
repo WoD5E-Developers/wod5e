@@ -24,6 +24,7 @@
       </div>
     </div>
   </div>
+
   <div class="config-category">
     <h2>{{localize 'WOD5E.Settings.ModifiedSkills'}}</h2>
     <div class="subcategory">
@@ -46,6 +47,32 @@
       <div class="mod-footer">
         <hr>
         <div class="add-mod-button addition-button" data-type="skill">{{localize 'WOD5E.Settings.AddSkillModification'}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="config-category">
+    <h2>{{localize 'WOD5E.Settings.ModifiedDisciplines'}}</h2>
+    <div class="subcategory">
+      <p class="notes">{{localize 'WOD5E.Settings.ModifiedDisciplinesHint'}}</p>
+      <div class="grid grid-3col">
+        <div class="mod-header">{{localize 'WOD5E.VTM.Discipline'}}</div>
+        <div class="mod-header">{{localize 'WOD5E.Settings.Rename'}}</div>
+        <div class="mod-header">{{localize 'WOD5E.Settings.Hidden'}}</div>
+      </div>
+      {{#each disciplineModifications as |discipline id|}}
+        <div class="modification-row grid grid-3col" data-type="discipline" data-id="{{discipline.id}}" data-label="{{discipline.label}}">
+          <div class="mod-label">
+            <i class="fas fa-trash remove-mod-button" data-type="discipline" data-id="{{discipline.id}}"></i>
+            {{discipline.label}}
+          </div>
+          <input type="text" class="mod-rename" placeholder="{{discipline.label}}" value="{{discipline.rename}}">
+          <input type="checkbox" data-type="discipline" class="mod-hidden"{{#if discipline.hidden}} checked{{/if}}/>
+        </div>
+      {{/each}}
+      <div class="mod-footer">
+        <hr>
+        <div class="add-mod-button addition-button" data-type="discipline">{{localize 'WOD5E.Settings.AddDisciplineModification'}}</div>
       </div>
     </div>
   </div>

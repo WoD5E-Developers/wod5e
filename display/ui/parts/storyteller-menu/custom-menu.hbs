@@ -50,4 +50,26 @@
       </div>
     </div>
   </div>
+
+  <div class="config-category">
+    <h2>{{localize 'WOD5E.Settings.CustomDisciplines'}}</h2>
+    <div class="subcategory">
+      <p class="notes">{{localize 'WOD5E.Settings.CustomDisciplinesHint'}}</p>
+      <div class="grid grid-2col">
+        <div class="mod-header">{{localize 'WOD5E.Label'}}</div>
+      </div>
+      {{#each customDisciplines as |discipline id|}}
+        <div class="customization-row grid grid-2col" data-type="discipline" data-id="{{discipline.id}}">
+          <div class="mod-label">
+            <i class="fas fa-trash remove-custom-button" data-type="discipline" data-id="{{discipline.id}}"></i>
+            <input type="text" class="label" placeholder="New Discipline" value="{{discipline.label}}">
+          </div>
+        </div>
+      {{/each}}
+      <div class="mod-footer">
+        <hr>
+        <div class="add-custom-button addition-button" data-type="discipline">{{localize 'WOD5E.Settings.AddCustomDiscipline'}}</div>
+      </div>
+    </div>
+  </div>
 </div>

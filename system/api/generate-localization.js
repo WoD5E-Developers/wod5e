@@ -19,7 +19,7 @@ export const generateLocalizedLabel = (string, type) => {
     const features = WOD5E.Features.getList()
     return findLabel(features, string)
   } else if (type === 'disciplines' || type === 'discipline' || type === 'power') { // Disciplines
-    const disciplines = WOD5E.Disciplines.getList()
+    const disciplines = WOD5E.Disciplines.getList({})
     return findLabel(disciplines, string)
   } else if (type === 'gifts' || type === 'gift') { // Gifts
     const gifts = WOD5E.Gifts.getList()
