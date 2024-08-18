@@ -2,10 +2,13 @@
 :root {
   --system-dark-color-1: #000000f0;
   --system-dark-color-2: #1d1d1d;
-  --system-dark-color-3: #7a7a7a;
+  --system-dark-color-3: #686767;
   --system-dark-color-4: #fff;
-  --system-dark-accent: var(--system-color-6);
+  --system-dark-color-5: #ffffff9c;
+  --system-dark-color-6: #ff0000;
+  --system-dark-color-7: #505050;
   --ui-background-dark-texture: url("/systems/vtm5e/assets/ui/ui_background_dark_texture.webp");
+  --sidebar-background-dark: url(/systems/vtm5e/assets/ui/sidebar_dark.webp);
 }
 
 .dark-theme {
@@ -15,15 +18,18 @@
       background-color: var(--system-dark-color-1);
     }
 
+    .journal-entry-content,
     .window-content {
       background-color: var(--system-dark-color-1);
-      color: var(--system-dark-accent);
+      color: var(--system-dark-color-4);
       background-blend-mode: hard-light;
     }
 
     select,
     input {
-      color: var(--system-dark-accent);
+      color: var(--system-dark-color-4);
+      background-color: var(--system-dark-color-2);
+      border-color: var(--system-dark-color-4);
     }
 
     select,
@@ -46,40 +52,36 @@
     }
     
     ::placeholder {
-      color: #ffffff9c;
+      color: var(--system-dark-color-5);
     }
   }
 
+  .situational-modifiers {
+    background-color: var(--system-dark-color-2);
+    border-color: var(--system-dark-color-4);
+  }
+
   .actor.sheet {
+    .item-list .item,
+    .resource,
+    prose-mirror .editor-content,
     .actor-header input,
     .actor-header .resource,
     .stats-container,
     .stats-container .stats-footer {
       background-color: var(--system-dark-color-2);
-      border-color: var(--system-dark-accent);
-    }
-
-    .resource,
-    input,
-    prose-mirror .editor-content {
-      background-color: var(--system-dark-color-2);
-      border-color: var(--system-dark-accent);
+      border-color: var(--system-dark-color-4);
     }
 
     /* Navbar */
     .sheet-tabs > [data-tab] .navicon {
       background-color: var(--system-dark-color-1);
-      border: 1px solid var(--system-dark-accent);
+      border: 1px solid var(--system-dark-color-4);
     }
 
     .sheet-tabs > [data-tab].active .navicon {
-      background: var(--system-dark-color-3);
+      background: var(--system-dark-color-7);
       border: 1px solid var(--system-dark-color-1);
-    }
-
-    .item-list .item {
-      background-color: var(--system-dark-color-2);
-      border-color: var(--system-dark-accent);
     }
 
     /* Resource Counters */
@@ -113,7 +115,7 @@
 
     .resource-counter {
       .resource-counter-step {
-        border: 1px solid var(--system-dark-accent);
+        border: 1px solid var(--system-dark-color-4);
       }
 
       .resource-counter-step[data-state="/"] {
@@ -152,7 +154,7 @@
 
     .item-list .category {
       background-color: var(--system-dark-color-2);
-      border-color: var(--system-dark-accent);
+      border-color: var(--system-dark-color-4);
 
       .content-link {
         color: var(--system-dark-color-1);
@@ -165,6 +167,11 @@
     .window-content {
       background: var(--system-dark-color-2);
     }
+
+    input {
+      background-color: var(--system-dark-color-2);
+      border-color: var(--system-dark-color-4);
+    }
   }
 
   /* Vampire Styling */
@@ -172,25 +179,27 @@
     .tabs-container {
       .active.item[data-tab="blood"],
       .active .navicon .wod5e-symbol {
-        color: var(--system-dark-accent);
+        color: var(--system-dark-color-4);
       }
 
       .navicon .wod5e-symbol,
       .item[data-tab="blood"] {
-        color: #ff0000;
+        color: var(--system-dark-color-6);
       }
     }
   }
 
   /* Werewolf Styling */
-  .sheet.werewolf .resource-value .resource-value-step.active,
-  .sheet.werewolf .resource-value-static .resource-value-static-step.active,
-  .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
-    background-color: #e97244;
-  }
+  .sheet.werewolf {
+    .resource-value .resource-value-step.active,
+    .resource-value-static .resource-value-static-step.active,
+    .resource-counter .resource-counter-step[data-state="-"] {
+      background-color: #e97244;
+    }
 
-  .sheet.werewolf button.rage-button:hover {
-    background-color: #752e11ea;
+    button.rage-button:hover {
+      background-color: #752e11ea;
+    }
   }
 
   .actor.sheet.werewolf {
@@ -201,7 +210,7 @@
 
       .active.item[data-tab="wolf"],
       .active .navicon .wod5e-symbol {
-        color: var(--system-dark-accent);
+        color: var(--system-dark-color-4);
       }
 
       .navicon .wod5e-symbol,
@@ -211,11 +220,10 @@
     }
 
     .tab.wolf {
-
       .resource input,
       .resource.form {
         background-color: var(--system-dark-color-2);
-        border-color: var(--system-dark-accent);
+        border-color: var(--system-dark-color-4);
       }
 
       .resource.form.form-active {
@@ -228,7 +236,7 @@
   .actor.sheet.hunter {
     .tabs-container {
       .active .navicon .wod5e-symbol {
-        color: var(--system-dark-accent);
+        color: var(--system-dark-color-4);
       }
 
       .navicon .wod5e-symbol {
@@ -239,14 +247,14 @@
 
   prose-mirror {
     button.icon.toggle {
-      color: var(--system-dark-accent);
+      color: var(--system-dark-color-4);
       background-color: var(--system-dark-color-1);
     }
   }
 
   /* Sidebar */
   #sidebar {
-    background: url(/systems/vtm5e/assets/ui/sidebar_dark.webp) repeat;
+    background: var(--sidebar-background-dark) repeat;
   }
 
   /* Foundry Controls UI */
@@ -261,10 +269,6 @@
   #navigation .nav-item,
   #navigation #nav-toggle {
     background: var(--ui-background-dark-texture);
-  }
-
-  #navigation #scene-list .scene.active {
-    background: var(--ui-background-active-texture);
   }
 
   #hotbar .macro {

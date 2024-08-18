@@ -67,7 +67,7 @@ export const willpowerReroll = async (roll) => {
     default: 'submit'
   },
   {
-    classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+    classes: ['wod5e', system, 'dialog']
   }).render(true)
 
   // Handles selecting and de-selecting the die

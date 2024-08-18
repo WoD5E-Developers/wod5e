@@ -12,7 +12,7 @@ export class MortalActorSheet extends WoDActor {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['mortal-sheet', 'mortal']
+    const classList = ['mortal']
     classList.push(...super.defaultOptions.classes)
 
     return foundry.utils.mergeObject(super.defaultOptions, {

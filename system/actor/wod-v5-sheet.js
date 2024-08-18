@@ -353,7 +353,7 @@ export class WoDActor extends ActorSheet {
         default: 'cancel'
       },
       {
-        classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+        classes: ['wod5e', system, 'dialog']
       }).render(true)
     })
 
@@ -470,7 +470,7 @@ export class WoDActor extends ActorSheet {
         }
       },
       {
-        classes: ['wod5e', `${system}-dialog`, `${system}-sheet`],
+        classes: ['wod5e', system, 'dialog'],
         tabs: [
           {
             navSelector: '.sheet-tabs',
@@ -680,7 +680,7 @@ export class WoDActor extends ActorSheet {
         buttons,
         default: 'submit'
       }, {
-        classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+        classes: ['wod5e', system, 'dialog']
       }).render(true)
     }
   }

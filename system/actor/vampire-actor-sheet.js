@@ -12,12 +12,7 @@ import { getBloodPotencyValues, getBloodPotencyText } from './scripts/blood-pote
 export class VampireActorSheet extends GhoulActorSheet {
   /** @override */
   static get defaultOptions () {
-    // Define the base list of CSS classes
-    const classList = ['vampire-sheet']
-    classList.push(...super.defaultOptions.classes)
-
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: classList,
       template: 'systems/vtm5e/display/vtm/actors/vampire-sheet.hbs'
     })
   }

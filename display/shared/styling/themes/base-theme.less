@@ -1,6 +1,5 @@
 /* Variables */
 :root {
-  --color-1-sidebar-color: #181818;
   --system-color-1: #302d5bf0;
   --system-color-2: #d2dfebf0;
   --system-color-3: #827dcaf0;
@@ -9,24 +8,33 @@
   --system-color-6: #fff;
   --system-color-7: #333;
   --system-color-8: #c4c4c4;
+  --system-color-9: #e02b2b;
+  --system-color-10: #4b4b4b;
+  --system-color-11: #181818;
   --ui-background-texture: url("/systems/vtm5e/assets/ui/ui_background_texture.webp");
   --ui-background-active-texture: url("/systems/vtm5e/assets/ui/ui_background_active_texture.webp");
+  --sidebar-background-default: url(/systems/vtm5e/assets/ui/sidebar.webp);
+  --actor-background-default: url(/systems/vtm5e/assets/actor/actor_background.webp);
+  --actor-header-default: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp");
+  --logo-default: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
+  --pause-button-default: url(/systems/vtm5e/assets/ui/Pause.webp);
 }
 
 .application .window-header {
   background: var(--system-color-1);
 }
-.sheet .window-content {
+
+.window-content {
   box-shadow: 0 0 5px var(--system-color-1);
 }
 
 #logo {
-  content: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
+  content: var(--logo-default);
 }
 
 #pause {
   img {
-    content: url(/systems/vtm5e/assets/ui/Pause.webp);
+    content: var(--pause-button-default);
     --fa-animation-duration: 0s;
   }
 
@@ -50,13 +58,18 @@ prose-mirror {
 }
 
 /* Actor Sheets */
-.actor.sheet {
+.sheet.journal-entry {
+  .journal-entry-content {
+    background: var(--actor-background-default) repeat;
+  }
+}
+.sheet {
   .window-content {
-    background: url(/systems/vtm5e/assets/actor/actor_background.webp) repeat;
+    background: var(--actor-background-default) repeat;
   }
 
   /* Input and resource fields */
-  input,
+  input:not(.sound-volume),
   .resource {
     background-color: var(--system-color-4);
     border: 1px solid var(--system-color-5);
@@ -70,7 +83,7 @@ prose-mirror {
 
   /* Actor Header */
   .actor-header {
-    background: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp") center;
+    background: var(--actor-header-default) center;
     border-bottom: 2px solid var(--system-color-1);
 
     .field-header {
@@ -146,7 +159,7 @@ prose-mirror {
   .rollable:hover,
   .rollable-item:hover,
   .system-rollable:hover {
-    text-shadow: 0 0 5px #e02b2b;
+    text-shadow: 0 0 5px var(--system-color-9);
   }
 
   /* Statistics Page */
@@ -156,7 +169,7 @@ prose-mirror {
   }
 
   .specialty {
-    text-shadow: 0 0 5px #e02b2b;
+    text-shadow: 0 0 5px var(--system-color-9);
   }
 
   .stats-content {
@@ -297,7 +310,7 @@ prose-mirror {
 /* Sidebar */
 /* General Sidebar Styling */
 #sidebar {
-  background: url(/systems/vtm5e/assets/ui/sidebar.webp) repeat;
+  background: var(--sidebar-background-default) repeat;
 }
 
 #sidebar-tabs {
@@ -315,14 +328,14 @@ prose-mirror {
 }
 
 .subdirectory {
-  background: var(--color-1-sidebar-color);
+  background: var(--system-color-11);
 }
 
 /* Headers */
 .combat-sidebar .combat-tracker-header,
 .directory .directory-header {
   border-bottom: 2px groove #CCC;
-  background: var(--color-1-sidebar-color);
+  background: var(--system-color-11);
 }
 
 /* Footers */
@@ -334,7 +347,7 @@ prose-mirror {
 .settings-sidebar {
   h2 {
     border-bottom: 2px groove #CCC;
-    background: var(--color-1-sidebar-color);
+    background: var(--system-color-11);
   }
 
   #game-details,
@@ -349,7 +362,7 @@ prose-mirror {
 /* Roll Dialogs */
 .dialog-contents {
   .dice-group-header {
-    color: #e5e5e5;
+    color: var(--system-color-4);
   }
   
   .dice-input img {
@@ -420,13 +433,13 @@ prose-mirror {
 
 /* Chat */
 #chat-log .message {
-  border-top: 2px double #CCC;
+  border-top: 2px double var(--system-color-6);
 }
 
 .chat-message {
-  background-color: #4b4b4b;
+  background-color: var(--system-color-10);
   background-blend-mode: multiply;
-  color: #f5f5f5;
+  color: var(--system-color-6);
 
   .message-header {
     color: var(--system-color-6);

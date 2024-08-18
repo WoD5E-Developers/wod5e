@@ -254,7 +254,7 @@ export class GhoulActorSheet extends MortalActorSheet {
       buttons,
       default: 'submit'
     }, {
-      classes: ['wod5e', 'dialog', 'vampire-dialog', 'vampire-sheet']
+      classes: ['wod5e', 'dialog', 'vampire', 'dialog']
     }).render(true)
   }
 

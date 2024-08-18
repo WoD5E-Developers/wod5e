@@ -424,7 +424,7 @@ class WOD5eDice {
             }
           },
           {
-            classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+            classes: ['wod5e', system, 'dialog']
           }
         ).render(true)
       })

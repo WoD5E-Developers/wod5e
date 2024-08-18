@@ -133,29 +133,29 @@
   background-color: var(--cell-group-header) !important;
 }
 /* Dialogs Windows */
-.hunter-dialog.window-app {
+.hunter.dialog.window-app {
   border: 4px solid var(--hunter-color-1);
 }
-.hunter-dialog.window-app .window-header {
+.hunter.dialog.window-app .window-header {
   background: var(--hunter-color-1);
   border-bottom: 4px double var(--system-color-6);
 }
-.hunter-dialog.window-app .window-content .sheet-body .tab > .resource-label,
-.hunter-dialog.window-app .items-list .item-header,
-.hunter-dialog.window-app .items-list .spc-item-header,
-.hunter-dialog.window-app .spc-pool-header,
-.hunter-dialog.window-app .actor-header .profile-img-zone h1 {
+.hunter.dialog.window-app .window-content .sheet-body .tab > .resource-label,
+.hunter.dialog.window-app .items-list .item-header,
+.hunter.dialog.window-app .items-list .spc-item-header,
+.hunter.dialog.window-app .spc-pool-header,
+.hunter.dialog.window-app .actor-header .profile-img-zone h1 {
   color: var(--hunter-color-1);
   border-color: var(--hunter-color-1);
 }
-.hunter-dialog.window-app .dialog-contents .dice-group-header {
+.hunter.dialog.window-app .dialog-contents .dice-group-header {
   background-color: var(--hunter-color-1);
 }
-.hunter-dialog.window-app input,
-.hunter-dialog.window-app select {
+.hunter.dialog.window-app input,
+.hunter.dialog.window-app select {
   border: 1px solid var(--hunter-color-1);
 }
-.hunter-dialog.window-app .base-dice-group {
+.hunter.dialog.window-app .base-dice-group {
   border: 1px solid var(--hunter-color-2);
 }
 .vampire-font-headers .hunter-button {
@@ -197,31 +197,31 @@
   background-color: var(--mortal-color-1);
 }
 /* Dialog Windows */
-.mortal-dialog .window-app {
+.mortal.dialog .window-app {
   border: 4px solid var(--mortal-color-1);
 }
-.mortal-dialog .window-app .window-header {
+.mortal.dialog .window-app .window-header {
   border-bottom: 4px double var(--mortal-color-3);
 }
-.mortal-dialog .window-header {
+.mortal.dialog .window-header {
   background: var(--mortal-color-1);
 }
-.mortal-dialog .window-content .sheet-body .tab > .resource-label,
-.mortal-dialog .items-list .item-header,
-.mortal-dialog .items-list .spc-item-header,
-.mortal-dialog .spc-pool-header,
-.mortal-dialog .actor-header .profile-img-zone h1 {
+.mortal.dialog .window-content .sheet-body .tab > .resource-label,
+.mortal.dialog .items-list .item-header,
+.mortal.dialog .items-list .spc-item-header,
+.mortal.dialog .spc-pool-header,
+.mortal.dialog .actor-header .profile-img-zone h1 {
   color: var(--mortal-color-1);
   border-color: var(--mortal-color-1);
 }
-.mortal-dialog .dialog-contents .dice-group-header {
+.mortal.dialog .dialog-contents .dice-group-header {
   background-color: var(--mortal-color-1);
 }
-.mortal-dialog input,
-.mortal-dialog select {
+.mortal.dialog input,
+.mortal.dialog select {
   border: 1px solid var(--mortal-color-1);
 }
-.mortal-dialog .base-dice-group {
+.mortal.dialog .base-dice-group {
   border: 1px solid var(--mortal-color-2);
 }
 /* Mortal Actor Sheet */
@@ -1142,29 +1142,29 @@ h3.item-name {
   background-color: var(--pack-group-header) !important;
 }
 /* Dialogs Windows */
-.werewolf-dialog.window-app {
+.werewolf.dialog.window-app {
   border: 4px solid var(--werewolf-color-1);
 }
-.werewolf-dialog.window-app .window-header {
+.werewolf.dialog.window-app .window-header {
   background: var(--werewolf-color-1);
   border-bottom: 4px double var(--system-color-6);
 }
-.werewolf-dialog.window-app .window-content .sheet-body .tab .resource-label,
-.werewolf-dialog.window-app .items-list .item-header,
-.werewolf-dialog.window-app .items-list .spc-item-header,
-.werewolf-dialog.window-app .spc-pool-header,
-.werewolf-dialog.window-app .actor-header .profile-img-zone h1 {
+.werewolf.dialog.window-app .window-content .sheet-body .tab .resource-label,
+.werewolf.dialog.window-app .items-list .item-header,
+.werewolf.dialog.window-app .items-list .spc-item-header,
+.werewolf.dialog.window-app .spc-pool-header,
+.werewolf.dialog.window-app .actor-header .profile-img-zone h1 {
   color: var(--werewolf-color-1);
   border-color: var(--werewolf-color-1);
 }
-.werewolf-dialog.window-app .dialog-contents .dice-group-header {
+.werewolf.dialog.window-app .dialog-contents .dice-group-header {
   background-color: var(--werewolf-color-1);
 }
-.werewolf-dialog.window-app input,
-.werewolf-dialog.window-app select {
+.werewolf.dialog.window-app input,
+.werewolf.dialog.window-app select {
   border: 1px solid var(--werewolf-color-1);
 }
-.werewolf-dialog.window-app .base-dice-group {
+.werewolf.dialog.window-app .base-dice-group {
   border: 1px solid var(--werewolf-color-2);
 }
 .sheet.spc .balance-trackers .wolf-resource {
@@ -1909,7 +1909,6 @@ body.uk .actor.sheet {
 
 /* Variables */
 :root {
-  --color-1-sidebar-color: #181818;
   --system-color-1: #302d5bf0;
   --system-color-2: #d2dfebf0;
   --system-color-3: #827dcaf0;
@@ -1918,20 +1917,28 @@ body.uk .actor.sheet {
   --system-color-6: #fff;
   --system-color-7: #333;
   --system-color-8: #c4c4c4;
+  --system-color-9: #e02b2b;
+  --system-color-10: #4b4b4b;
+  --system-color-11: #181818;
   --ui-background-texture: url("/systems/vtm5e/assets/ui/ui_background_texture.webp");
   --ui-background-active-texture: url("/systems/vtm5e/assets/ui/ui_background_active_texture.webp");
+  --sidebar-background-default: url(/systems/vtm5e/assets/ui/sidebar.webp);
+  --actor-background-default: url(/systems/vtm5e/assets/actor/actor_background.webp);
+  --actor-header-default: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp");
+  --logo-default: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
+  --pause-button-default: url(/systems/vtm5e/assets/ui/Pause.webp);
 }
 .application .window-header {
   background: var(--system-color-1);
 }
-.sheet .window-content {
+.window-content {
   box-shadow: 0 0 5px var(--system-color-1);
 }
 #logo {
-  content: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
+  content: var(--logo-default);
 }
 #pause img {
-  content: url(/systems/vtm5e/assets/ui/Pause.webp);
+  content: var(--pause-button-default);
   --fa-animation-duration: 0s;
 }
 #pause figcaption {
@@ -1947,7 +1954,10 @@ prose-mirror .editor-menu button {
   color: var(--system-color-6);
 }
 /* Actor Sheets */
-.actor.sheet {
+.sheet.journal-entry .journal-entry-content {
+  background: var(--actor-background-default) repeat;
+}
+.sheet {
   /* Input and resource fields */
   /* Actor Header */
   /* Collapsible Descriptions */
@@ -1957,91 +1967,91 @@ prose-mirror .editor-menu button {
   /* General Resources */
   /* Statistics Page */
 }
-.actor.sheet .window-content {
-  background: url(/systems/vtm5e/assets/actor/actor_background.webp) repeat;
+.sheet .window-content {
+  background: var(--actor-background-default) repeat;
 }
-.actor.sheet input,
-.actor.sheet .resource {
+.sheet input:not(.sound-volume),
+.sheet .resource {
   background-color: var(--system-color-4);
   border: 1px solid var(--system-color-5);
 }
-.actor.sheet .limited-description-body {
+.sheet .limited-description-body {
   background-color: var(--system-color-4);
   border: 1px solid var(--system-color-5);
   color: var(--system-color-7);
 }
-.actor.sheet .actor-header {
-  background: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp") center;
+.sheet .actor-header {
+  background: var(--actor-header-default) center;
   border-bottom: 2px solid var(--system-color-1);
 }
-.actor.sheet .actor-header .field-header {
+.sheet .actor-header .field-header {
   color: var(--system-color-6);
 }
-.actor.sheet .collapsible-content {
+.sheet .collapsible-content {
   color: hwb(0deg 7% 98% / 100%);
   background: var(--system-color-4);
 }
-.actor.sheet .toggle-limited {
+.sheet .toggle-limited {
   color: var(--system-color-5);
 }
-.actor.sheet .toggle-limited:not(.visible) {
+.sheet .toggle-limited:not(.visible) {
   color: var(--system-color-7);
 }
-.actor.sheet .sheet-banner {
+.sheet .sheet-banner {
   background-color: var(--system-color-1);
 }
-.actor.sheet .sheet-banner .actor-type-field select {
+.sheet .sheet-banner .actor-type-field select {
   background-color: var(--system-color-4);
 }
-.actor.sheet .lock-btn {
+.sheet .lock-btn {
   background: var(--ui-background-texture);
   color: var(--system-color-4);
 }
-.actor.sheet .tabs-container {
+.sheet .tabs-container {
   background-color: var(--system-color-4);
 }
-.actor.sheet .sheet-tabs > [data-tab] .navicon {
+.sheet .sheet-tabs > [data-tab] .navicon {
   background-color: var(--system-color-6);
   border: 1px solid var(--system-color-5);
 }
-.actor.sheet .item-list .category {
+.sheet .item-list .category {
   background-color: var(--system-color-4);
   border: 2px solid #1b1b1b;
 }
-.actor.sheet .item-list .category .item .item-image img {
+.sheet .item-list .category .item .item-image img {
   border: 1px solid var(--system-color-5);
 }
-.actor.sheet .item-image img {
+.sheet .item-image img {
   border: 1px solid var(--system-color-6);
 }
-.actor.sheet .resource-header {
+.sheet .resource-header {
   border-bottom: 1px solid var(--system-color-5);
 }
-.actor.sheet .rollable:hover,
-.actor.sheet .rollable-item:hover,
-.actor.sheet .system-rollable:hover {
-  text-shadow: 0 0 5px #e02b2b;
+.sheet .rollable:hover,
+.sheet .rollable-item:hover,
+.sheet .system-rollable:hover {
+  text-shadow: 0 0 5px var(--system-color-9);
 }
-.actor.sheet .stats-container {
+.sheet .stats-container {
   background-color: var(--system-color-4);
   border: 2px solid #1b1b1b;
 }
-.actor.sheet .specialty {
-  text-shadow: 0 0 5px #e02b2b;
+.sheet .specialty {
+  text-shadow: 0 0 5px var(--system-color-9);
 }
-.actor.sheet .stats-content .custom-rolls .item-image img {
+.sheet .stats-content .custom-rolls .item-image img {
   border: 1px inset var(--system-color-5);
 }
-.actor.sheet .stats-content .custom-rolls .rollable-item img:hover {
+.sheet .stats-content .custom-rolls .rollable-item img:hover {
   filter: grayscale(80%);
 }
-.actor.sheet .stats-content .stats-container .stats-footer {
+.sheet .stats-content .stats-container .stats-footer {
   background-color: var(--system-color-8);
 }
-.actor.sheet .stats-content .stats-container.attributes .stats-footer {
+.sheet .stats-content .stats-container.attributes .stats-footer {
   border-bottom: 1px solid var(--system-color-5);
 }
-.actor.sheet .stats-content .stats-container.skills .stats-footer {
+.sheet .stats-content .stats-container.skills .stats-footer {
   border-top: 1px solid var(--system-color-5);
 }
 /* Resource Counters */
@@ -2077,7 +2087,7 @@ prose-mirror .editor-menu button {
 /* Sidebar */
 /* General Sidebar Styling */
 #sidebar {
-  background: url(/systems/vtm5e/assets/ui/sidebar.webp) repeat;
+  background: var(--sidebar-background-default) repeat;
 }
 #sidebar-tabs {
   background: var(--system-color-5);
@@ -2091,13 +2101,13 @@ prose-mirror .editor-menu button {
   color: var(--system-color-6);
 }
 .subdirectory {
-  background: var(--color-1-sidebar-color);
+  background: var(--system-color-11);
 }
 /* Headers */
 .combat-sidebar .combat-tracker-header,
 .directory .directory-header {
   border-bottom: 2px groove #CCC;
-  background: var(--color-1-sidebar-color);
+  background: var(--system-color-11);
 }
 /* Footers */
 .directory .directory-footer:not(:empty) {
@@ -2106,7 +2116,7 @@ prose-mirror .editor-menu button {
 /* Settings Sidebar */
 .settings-sidebar h2 {
   border-bottom: 2px groove #CCC;
-  background: var(--color-1-sidebar-color);
+  background: var(--system-color-11);
 }
 .settings-sidebar #game-details,
 .settings-sidebar #settings-game,
@@ -2117,7 +2127,7 @@ prose-mirror .editor-menu button {
 }
 /* Roll Dialogs */
 .dialog-contents .dice-group-header {
-  color: #e5e5e5;
+  color: var(--system-color-4);
 }
 .dialog-contents .dice-input img {
   background-color: var(--system-color-5);
@@ -2165,12 +2175,12 @@ prose-mirror .editor-menu button {
 }
 /* Chat */
 #chat-log .message {
-  border-top: 2px double #CCC;
+  border-top: 2px double var(--system-color-6);
 }
 .chat-message {
-  background-color: #4b4b4b;
+  background-color: var(--system-color-10);
   background-blend-mode: multiply;
-  color: #f5f5f5;
+  color: var(--system-color-6);
 }
 .chat-message .message-header {
   color: var(--system-color-6);
@@ -2287,10 +2297,13 @@ prose-mirror .editor-menu button {
 :root {
   --system-dark-color-1: #000000f0;
   --system-dark-color-2: #1d1d1d;
-  --system-dark-color-3: #7a7a7a;
+  --system-dark-color-3: #686767;
   --system-dark-color-4: #fff;
-  --system-dark-accent: var(--system-color-6);
+  --system-dark-color-5: #ffffff9c;
+  --system-dark-color-6: #ff0000;
+  --system-dark-color-7: #505050;
   --ui-background-dark-texture: url("/systems/vtm5e/assets/ui/ui_background_dark_texture.webp");
+  --sidebar-background-dark: url(/systems/vtm5e/assets/ui/sidebar_dark.webp);
 }
 .dark-theme {
   /* Vampire Styling */
@@ -2303,17 +2316,21 @@ prose-mirror .editor-menu button {
 .dark-theme .dialog .window-header {
   background-color: var(--system-dark-color-1);
 }
+.dark-theme .sheet .journal-entry-content,
+.dark-theme .dialog .journal-entry-content,
 .dark-theme .sheet .window-content,
 .dark-theme .dialog .window-content {
   background-color: var(--system-dark-color-1);
-  color: var(--system-dark-accent);
+  color: var(--system-dark-color-4);
   background-blend-mode: hard-light;
 }
 .dark-theme .sheet select,
 .dark-theme .dialog select,
 .dark-theme .sheet input,
 .dark-theme .dialog input {
-  color: var(--system-dark-accent);
+  color: var(--system-dark-color-4);
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
 }
 .dark-theme .sheet select,
 .dark-theme .dialog select,
@@ -2338,36 +2355,33 @@ prose-mirror .editor-menu button {
 }
 .dark-theme .sheet ::placeholder,
 .dark-theme .dialog ::placeholder {
-  color: #ffffff9c;
+  color: var(--system-dark-color-5);
+}
+.dark-theme .situational-modifiers {
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
 }
 .dark-theme .actor.sheet {
   /* Navbar */
   /* Resource Counters */
 }
+.dark-theme .actor.sheet .item-list .item,
+.dark-theme .actor.sheet .resource,
+.dark-theme .actor.sheet prose-mirror .editor-content,
 .dark-theme .actor.sheet .actor-header input,
 .dark-theme .actor.sheet .actor-header .resource,
 .dark-theme .actor.sheet .stats-container,
 .dark-theme .actor.sheet .stats-container .stats-footer {
   background-color: var(--system-dark-color-2);
-  border-color: var(--system-dark-accent);
-}
-.dark-theme .actor.sheet .resource,
-.dark-theme .actor.sheet input,
-.dark-theme .actor.sheet prose-mirror .editor-content {
-  background-color: var(--system-dark-color-2);
-  border-color: var(--system-dark-accent);
+  border-color: var(--system-dark-color-4);
 }
 .dark-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
   background-color: var(--system-dark-color-1);
-  border: 1px solid var(--system-dark-accent);
+  border: 1px solid var(--system-dark-color-4);
 }
 .dark-theme .actor.sheet .sheet-tabs > [data-tab].active .navicon {
-  background: var(--system-dark-color-3);
+  background: var(--system-dark-color-7);
   border: 1px solid var(--system-dark-color-1);
-}
-.dark-theme .actor.sheet .item-list .item {
-  background-color: var(--system-dark-color-2);
-  border-color: var(--system-dark-accent);
 }
 .dark-theme .actor.sheet .resource-value .resource-value-step:not(.active) {
   background-color: var(--system-dark-color-3);
@@ -2377,7 +2391,7 @@ prose-mirror .editor-menu button {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%);
 }
 .dark-theme .actor.sheet .resource-counter .resource-counter-step {
-  border: 1px solid var(--system-dark-accent);
+  border: 1px solid var(--system-dark-color-4);
 }
 .dark-theme .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
   background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
@@ -2387,7 +2401,7 @@ prose-mirror .editor-menu button {
 }
 .dark-theme .actor.sheet .item-list .category {
   background-color: var(--system-dark-color-2);
-  border-color: var(--system-dark-accent);
+  border-color: var(--system-dark-color-4);
 }
 .dark-theme .actor.sheet .item-list .category .content-link {
   color: var(--system-dark-color-1);
@@ -2396,13 +2410,18 @@ prose-mirror .editor-menu button {
 .dark-theme .dialog .window-content {
   background: var(--system-dark-color-2);
 }
+.dark-theme .item.sheet input,
+.dark-theme .dialog input {
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
+}
 .dark-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
 .dark-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
-  color: var(--system-dark-accent);
+  color: var(--system-dark-color-4);
 }
 .dark-theme .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
 .dark-theme .actor.sheet.vampire .tabs-container .item[data-tab="blood"] {
-  color: #ff0000;
+  color: var(--system-dark-color-6);
 }
 .dark-theme .sheet.werewolf .resource-value .resource-value-step.active,
 .dark-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
@@ -2417,7 +2436,7 @@ prose-mirror .editor-menu button {
 }
 .dark-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
 .dark-theme .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
-  color: var(--system-dark-accent);
+  color: var(--system-dark-color-4);
 }
 .dark-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
 .dark-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
@@ -2426,23 +2445,23 @@ prose-mirror .editor-menu button {
 .dark-theme .actor.sheet.werewolf .tab.wolf .resource input,
 .dark-theme .actor.sheet.werewolf .tab.wolf .resource.form {
   background-color: var(--system-dark-color-2);
-  border-color: var(--system-dark-accent);
+  border-color: var(--system-dark-color-4);
 }
 .dark-theme .actor.sheet.werewolf .tab.wolf .resource.form.form-active {
   background-color: #833501e0;
 }
 .dark-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
-  color: var(--system-dark-accent);
+  color: var(--system-dark-color-4);
 }
 .dark-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
   color: #ff8f00;
 }
 .dark-theme prose-mirror button.icon.toggle {
-  color: var(--system-dark-accent);
+  color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-1);
 }
 .dark-theme #sidebar {
-  background: url(/systems/vtm5e/assets/ui/sidebar_dark.webp) repeat;
+  background: var(--sidebar-background-dark) repeat;
 }
 .dark-theme #controls ol.control-tools > li {
   background: var(--ui-background-dark-texture);
@@ -2454,9 +2473,6 @@ prose-mirror .editor-menu button {
 .dark-theme #navigation .nav-item,
 .dark-theme #navigation #nav-toggle {
   background: var(--ui-background-dark-texture);
-}
-.dark-theme #navigation #scene-list .scene.active {
-  background: var(--ui-background-active-texture);
 }
 .dark-theme #hotbar .macro {
   background: rgba(43, 43, 43, 0.5);
@@ -2471,21 +2487,23 @@ prose-mirror .editor-menu button {
 /* Variables */
 :root {
   --ui-background-hunter-texture: url("/systems/vtm5e/assets/ui/ui_background_hunter_texture.webp");
+  --sidebar-background-hunter: url(/systems/vtm5e/assets/ui/sidebar_hunter.webp);
+  --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.png);
 }
 .hunter-theme {
   /* Logo */
-  /* Sheet window Header */
   /* Sidebar */
   /* Foundry Controls UI */
 }
 .hunter-theme #logo {
-  content: url(/systems/vtm5e/assets/ui/HtR_Logo.png);
+  content: var(--logo-hunter);
 }
-.hunter-theme .sheet .window-header {
+.hunter-theme .sheet .window-header,
+.hunter-theme .dialog .window-header {
   background-color: var(--hunter-color-1);
 }
 .hunter-theme #sidebar {
-  background: url(/systems/vtm5e/assets/ui/sidebar_hunter.webp) repeat;
+  background: var(--sidebar-background-hunter) repeat;
 }
 .hunter-theme #controls ol.control-tools > li {
   background: var(--ui-background-hunter-texture);
@@ -2497,9 +2515,6 @@ prose-mirror .editor-menu button {
 .hunter-theme #navigation .nav-item,
 .hunter-theme #navigation #nav-toggle {
   background: var(--ui-background-hunter-texture);
-}
-.hunter-theme #navigation #scene-list .scene.active {
-  background: var(--ui-background-active-texture);
 }
 .hunter-theme #hotbar .macro {
   background: rgba(255, 136, 0, 0.5);

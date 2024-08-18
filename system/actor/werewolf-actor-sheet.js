@@ -13,7 +13,7 @@ export class WerewolfActorSheet extends WoDActor {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['werewolf-sheet', 'werewolf']
+    const classList = ['werewolf']
     classList.push(...super.defaultOptions.classes)
 
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -245,7 +245,7 @@ export class WerewolfActorSheet extends WoDActor {
       buttons,
       default: 'submit'
     }, {
-      classes: ['wod5e', 'dialog', 'werewolf-dialog', 'werewolf-sheet']
+      classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
     }).render(true)
   }
 
@@ -325,7 +325,7 @@ export class WerewolfActorSheet extends WoDActor {
       default: 'homid'
     },
     {
-      classes: ['wod5e', 'dialog', 'werewolf-dialog', 'werewolf-sheet']
+      classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
     }).render(true)
   }
 
@@ -531,7 +531,7 @@ export class WerewolfActorSheet extends WoDActor {
       default: 'submit'
     },
     {
-      classes: ['wod5e', 'dialog', 'werewolf-dialog', 'werewolf-sheet']
+      classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
     }).render(true)
   }
 
@@ -572,7 +572,7 @@ export class WerewolfActorSheet extends WoDActor {
       default: 'submit'
     },
     {
-      classes: ['wod5e', 'dialog', 'werewolf-dialog', 'werewolf-sheet']
+      classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
     }).render(true)
   }
 }
