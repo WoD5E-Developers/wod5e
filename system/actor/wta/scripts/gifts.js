@@ -61,7 +61,7 @@ export const _onAddGift = async function (actor, event) {
 export const _onGiftCost = async function (actor, item) {
   // Secondary variables
   const cost = item.system.cost
-  const willpowerCost = item.system.willpowercost 
+  const willpowerCost = item.system.willpowercost
   let selectors = []
 
   if (cost > 0) {
