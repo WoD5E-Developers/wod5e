@@ -2,7 +2,7 @@
 
 import { WOD5eDice } from '../../scripts/system-rolls.js'
 import { GhoulActorSheet } from './ghoul-actor-sheet.js'
-import { getBloodPotencyValues, getBloodPotencyText } from '../scripts/blood-potency.js'
+import { getBloodPotencyValues, getBloodPotencyText } from './scripts/blood-potency.js'
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
