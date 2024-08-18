@@ -903,29 +903,29 @@ h3.item-name {
   background-color: var(--coterie-group-header) !important;
 }
 /* Dialogs Windows */
-.vampire-dialog.window-app {
+.vampire.dialog.window-app {
   border: 4px solid var(--vampire-color-1);
 }
-.vampire-dialog.window-app .window-header {
+.vampire.dialog.window-app .window-header {
   background: var(--vampire-color-1);
   border-bottom: 4px double var(--system-color-6);
 }
-.vampire-dialog.window-app .window-content .sheet-body .tab .resource-label,
-.vampire-dialog.window-app .items-list .item-header,
-.vampire-dialog.window-app .items-list .spc-item-header,
-.vampire-dialog.window-app .spc-pool-header,
-.vampire-dialog.window-app .actor-header .profile-img-zone h1 {
+.vampire.dialog.window-app .window-content .sheet-body .tab .resource-label,
+.vampire.dialog.window-app .items-list .item-header,
+.vampire.dialog.window-app .items-list .spc-item-header,
+.vampire.dialog.window-app .spc-pool-header,
+.vampire.dialog.window-app .actor-header .profile-img-zone h1 {
   color: var(--vampire-color-1);
   border-color: var(--vampire-color-1);
 }
-.vampire-dialog.window-app .dialog-contents .dice-group-header {
+.vampire.dialog.window-app .dialog-contents .dice-group-header {
   background-color: var(--vampire-color-1);
 }
-.vampire-dialog.window-app input,
-.vampire-dialog.window-app select {
+.vampire.dialog.window-app input,
+.vampire.dialog.window-app select {
   border: 1px solid var(--vampire-color-1);
 }
-.vampire-dialog.window-app .base-dice-group {
+.vampire.dialog.window-app .base-dice-group {
   border: 1px solid var(--vampire-color-2);
 }
 .vampire-font-headers .vampire-button {
