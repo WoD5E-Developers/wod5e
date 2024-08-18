@@ -121,6 +121,13 @@
       "SelectAbility": "Wybierz Umiejętność",
       "SkillShortLabel": "U"
     },
+    "Experience": {
+      "_AddExperience": "",
+      "_History": "",
+      "_NewExperience": "",
+      "_Remaining": "",
+      "_Total": ""
+    },
     "ItemsList": {
       "_AddDice": "",
       "Background": "Zaplecze",
@@ -272,6 +279,7 @@
       "Description": "Opis",
       "_Dicepool": "",
       "Equipment": "Ekwipunek",
+      "_Experience": "",
       "Features": "Atuty",
       "_IsNotVisible": "",
       "_IsVisible": "",

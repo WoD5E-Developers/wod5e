@@ -121,6 +121,13 @@
       "SelectAbility": "Elegir Atributo",
       "SkillShortLabel": "H"
     },
+    "Experience": {
+      "_AddExperience": "",
+      "_History": "",
+      "_NewExperience": "",
+      "_Remaining": "",
+      "_Total": ""
+    },
     "ItemsList": {
       "_AddDice": "",
       "Background": "Transfondo",
@@ -272,6 +279,7 @@
       "Description": "Descripción",
       "_Dicepool": "",
       "Equipment": "Equipo",
+      "_Experience": "",
       "Features": "Rasgos",
       "_IsNotVisible": "",
       "_IsVisible": "",

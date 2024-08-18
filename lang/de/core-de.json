@@ -121,6 +121,13 @@
       "SelectAbility": "Wähle Attribut",
       "SkillShortLabel": "F"
     },
+    "Experience": {
+      "_AddExperience": "",
+      "_History": "",
+      "_NewExperience": "",
+      "_Remaining": "",
+      "_Total": ""
+    },
     "ItemsList": {
       "_AddDice": "",
       "Background": "Hintergrund",
@@ -272,6 +279,7 @@
       "Description": "Beschreibung",
       "_Dicepool": "",
       "Equipment": "Ausrüstung",
+      "_Experience": "",
       "Features": "Merkmale",
       "_IsNotVisible": "",
       "_IsVisible": "",

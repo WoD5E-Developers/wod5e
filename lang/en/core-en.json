@@ -121,6 +121,13 @@
       "SelectAbility": "Select Ability",
       "SkillShortLabel": "S"
     },
+    "Experience": {
+      "AddExperience": "Add Experience",
+      "History": "Experience History",
+      "NewExperience": "New Experience",
+      "Remaining": "Remaining EXP",
+      "Total": "Total EXP"
+    },
     "ItemsList": {
       "AddDice": "Add Dice",
       "Background": "Background",
@@ -272,6 +279,7 @@
       "Description": "Description",
       "Dicepool": "Dicepool",
       "Equipment": "Equipment",
+      "Experience": "Experience",
       "Features": "Features",
       "IsNotVisible": "This field is not publicly visible.",
       "IsVisible": "This field is publicly visible.",

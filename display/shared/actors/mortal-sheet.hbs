@@ -22,6 +22,9 @@
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
+        {{!-- Experience Tab --}}
+        {{> "systems/vtm5e/display/shared/actors/parts/experience.hbs"}}
+
         {{!-- Stats Tab --}}
         {{> "systems/vtm5e/display/shared/actors/parts/stats.hbs"}}
 
@@ -40,8 +43,8 @@
 
     {{!-- Actor Type Banner --}}
     {{#if displayBanner}}
-    <div class="sheet-banner">
-      {{localize "WOD5E.Mortal"}}
-    </div>
+        <div class="sheet-banner">
+        {{localize "WOD5E.Mortal"}}
+        </div>
     {{/if}}
 </form>

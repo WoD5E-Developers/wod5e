@@ -121,6 +121,13 @@
       "SelectAbility": "Seleziona Attributo",
       "SkillShortLabel": "Ab"
     },
+    "Experience": {
+      "_AddExperience": "",
+      "_History": "",
+      "_NewExperience": "",
+      "_Remaining": "",
+      "_Total": ""
+    },
     "ItemsList": {
       "_AddDice": "",
       "Background": "Background",
@@ -272,6 +279,7 @@
       "Description": "Descrizioni",
       "_Dicepool": "",
       "Equipment": "Equipaggiamento",
+      "_Experience": "",
       "Features": "Caratteristiche",
       "_IsNotVisible": "",
       "_IsVisible": "",
