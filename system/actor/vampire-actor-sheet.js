@@ -121,7 +121,9 @@ export class VampireActorSheet extends GhoulActorSheet {
       data: actor.system,
       quickRoll: true,
       disableAdvancedDice: true,
-      callback: (rollData) => {
+      callback: (err, rollData) => {
+        if (err) console.log(err)
+
         const hasSuccess = rollData.terms[0].results.some(result => result.success)
 
         // Reduce humanity by 1 if the roll fails, otherwise reset stain to 0 in any other cases
@@ -173,7 +175,9 @@ export class VampireActorSheet extends GhoulActorSheet {
       actor,
       data: actor.system,
       disableAdvancedDice: true,
-      callback: (result) => {
+      callback: (err, result) => {
+        if (err) console.log(err)
+
         if (!result.rollSuccessful) {
           actor.update({ 'system.frenzyActive': true })
         }

@@ -392,7 +392,9 @@ export class WerewolfActorSheet extends WoDActor {
         disableBasicDice: true,
         decreaseRage: true,
         selectors,
-        callback: (rollData) => {
+        callback: (err, rollData) => {
+          if (err) console.log(err)
+
           // Calculate the number of rage dice the actor has left
           const failures = rollData.terms[2].results.filter(result => !result.success).length
           const newRageAmount = Math.max(actor.system.rage.value - failures, 0)

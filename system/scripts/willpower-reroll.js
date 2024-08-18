@@ -106,7 +106,9 @@ export const willpowerReroll = async (roll) => {
         quickRoll: true,
         selectors,
         disableMessageOutput: true,
-        callback: async (reroll) => {
+        callback: async (err, reroll) => {
+          if (err) console.log(err)
+
           const messageRolls = message.rolls
 
           diceSelected.each(function (index) {
