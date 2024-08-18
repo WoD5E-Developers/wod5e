@@ -1,6 +1,7 @@
 /* global game, foundry, renderTemplate, ChatMessage, TextEditor, WOD5E, Dialog */
 
 import { MortalActorSheet } from '../mortal-actor-sheet.js'
+import { Disciplines } from '../../api/def/disciplines.js'
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -56,14 +57,56 @@ export class GhoulActorSheet extends MortalActorSheet {
     const actor = this.actor
 
     // Secondary variables
-    const disciplines = actor.system.disciplines
+    const disciplinesList = Disciplines.getList({})
+    const disciplines = actor.system?.disciplines
 
-    for (const disciplineType in disciplines) {
+    // Clean up non-existent disciplines, such as custom ones that no longer exist
+    const validDisciplines = new Set(Object.keys(disciplinesList))
+    for (const id of Object.keys(disciplines)) {
+      if (!validDisciplines.has(id)) {
+        delete disciplines[id]
+      }
+    }
+
+    for (const [id, value] of Object.entries(disciplinesList)) {
+      let disciplineData = {}
+
+      // If the actor has a discipline with the key, grab its current values
+      if (Object.prototype.hasOwnProperty.call(disciplines, id)) {
+        disciplineData = Object.assign({
+          value: disciplines[id].value,
+          powers: [],
+          description: disciplines[id].description,
+          visible: disciplines[id].visible
+        }, value)
+      } else { // Otherwise, add it to the actor and set it as some default data
+        await actor.update({ [`system.disciplines.${id}`]: {
+          value: 0,
+          visible: false,
+          description: '',
+          powers: []
+        }})
+
+        disciplineData = Object.assign({
+          value: 0,
+          visible: false,
+          description: '',
+          powers: []
+        }, value)
+      }
+
+      // Add the discipline as long as it isn't "hidden"
+      if (!disciplineData.hidden) {
+        if (!disciplines[id]) disciplines[id] = {} // Ensure the type exists
+
+        disciplines[id] = disciplineData
+      }
+      
       // Localize the discipline name
-      disciplines[disciplineType].label = WOD5E.api.generateLabelAndLocalize({ string: disciplineType, type: 'discipline' })
+      disciplines[id].label = WOD5E.api.generateLabelAndLocalize({ string: id, type: 'discipline' })
 
       // Wipe old discipline powers so they doesn't duplicate
-      disciplines[disciplineType].powers = []
+      disciplines[id].powers = []
     }
 
     // Iterate through items, allocating to containers
