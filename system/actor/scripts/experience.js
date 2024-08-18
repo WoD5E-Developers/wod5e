@@ -40,7 +40,7 @@ export const _onAddExperience = async function (actor) {
             actorExperiences.push(newExperience)
 
             // Update the actor
-            await actor.update({ ['system.experiences']: actorExperiences })
+            await actor.update({ 'system.experiences': actorExperiences })
           }
         },
         cancel: {
