@@ -1,7 +1,5 @@
 /* global game, foundry, renderTemplate, ChatMessage, TextEditor, WOD5E, Dialog */
 
-import { WOD5eDice } from '../../scripts/system-rolls.js'
-import { getActiveBonuses } from '../../scripts/rolls/situational-modifiers.js'
 import { MortalActorSheet } from '../mortal-actor-sheet.js'
 
 /**
@@ -143,60 +141,6 @@ export class GhoulActorSheet extends MortalActorSheet {
         })
       })
     })
-
-    // Roll a rouse check for an item
-    html.find('.item-rouse').click(async event => {
-      event.preventDefault()
-
-      // Top-level variables
-      const actor = this.actor
-      const li = $(event.currentTarget).parents('.item')
-      const item = actor.getEmbeddedDocument('Item', li.data('itemId'))
-
-      // Secondary variables
-      const level = item.system.level
-      const cost = item.system.cost > 0 ? item.system.cost : 1
-      const selectors = ['rouse']
-      const macro = item.system.macroid
-
-      // Vampires roll rouse checks
-      if (actor.type === 'vampire') {
-        const potency = actor.type === 'vampire' ? actor.system.blood.potency : 0
-        const rouseRerolls = this.potencyToRouse(potency, level)
-
-        // Handle getting any situational modifiers
-        const activeBonuses = await getActiveBonuses({
-          actor,
-          selectors
-        })
-
-        // Send the roll to the system
-        WOD5eDice.Roll({
-          advancedDice: cost + activeBonuses.totalValue,
-          title: game.i18n.localize('WOD5E.VTM.RousingBlood'),
-          actor,
-          disableBasicDice: true,
-          rerollHunger: rouseRerolls,
-          increaseHunger: true,
-          selectors,
-          macro
-        })
-      } else if (actor.type === 'ghoul' && level > 1) {
-        // Ghouls take aggravated damage for using powers above level 1 instead of rolling rouse checks
-        const actorHealth = actor.system.health
-        const actorHealthMax = actorHealth.max
-        const currentAggr = actorHealth.aggravated
-        let newAggr = parseInt(currentAggr) + 1
-
-        // Make sure aggravated can't go over the max
-        if (newAggr > actorHealthMax) {
-          newAggr = actorHealthMax
-        }
-
-        // Update the actor with the new health
-        actor.update({ 'system.health.aggravated': newAggr })
-      }
-    })
   }
 
   /** Handle adding a new discipline to the sheet */
@@ -256,32 +200,5 @@ export class GhoulActorSheet extends MortalActorSheet {
     }, {
       classes: ['wod5e', 'dialog', 'vampire', 'dialog']
     }).render(true)
-  }
-
-  potencyToRouse (potency, level) {
-    // Define whether to reroll dice based on the user's blood potency
-    // and the power's level
-    if (potency === 0) {
-      // Potency 0 never rolls additional rouse dice for disciplines
-      return false
-    } else if (potency > 8) {
-      // Potency of 9 and 10 always roll additional rouse dice for disciplines
-      return true
-    } else if (potency > 6 && level < 5) {
-      // Potency 7 and 8 roll additional rouse dice on discipline powers below 5
-      return true
-    } else if (potency > 4 && level < 4) {
-      // Potency 5 and 6 roll additional rouse dice on discipline powers below 4
-      return true
-    } else if (potency > 2 && level < 3) {
-      // Potency 3 and 4 roll additional rouse dice on discipline powers below 3
-      return true
-    } else if (potency > 0 && level < 2) {
-      // Potency 1 and 2 roll additional rouse dice on discipline powers below 2
-      return true
-    }
-
-    // If none of the above are true, just roll 1 dice for the rouse check
-    return false
   }
 }

@@ -1,5 +1,8 @@
 /* global game, Dialog, WOD5E */
 
+import { WOD5eDice } from '../../../scripts/system-rolls.js'
+import { getActiveBonuses } from '../../../scripts/rolls/situational-modifiers.js'
+
 export const _onAddGift = async function (actor, event) {
   event.preventDefault()
 
@@ -53,4 +56,33 @@ export const _onAddGift = async function (actor, event) {
   }, {
     classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
   }).render(true)
+}
+
+export const _onGiftCost = async function (actor, item) {
+  // Secondary variables
+  const cost = item.system.cost
+  const willpowerCost = item.system.willpowercost 
+  let selectors = []
+
+  if (cost > 0) {
+    selectors = ['rage']
+  }
+
+  // Handle getting any situational modifiers
+  const activeBonuses = await getActiveBonuses({
+    actor,
+    selectors
+  })
+
+  // Send the roll to the system
+  WOD5eDice.Roll({
+    advancedDice: cost + activeBonuses.totalValue,
+    title: `${game.i18n.localize('WOD5E.WTA.RageDice')} - ${item.name}`,
+    actor,
+    disableBasicDice: true,
+    decreaseRage: true,
+    selectors,
+    quickRoll: true,
+    willpowerDamage: willpowerCost
+  })
 }
