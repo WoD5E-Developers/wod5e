@@ -138,7 +138,17 @@ class WOD5eDice {
       if (willpowerDamage > 0 && game.settings.get('vtm5e', 'automatedWillpower')) _damageWillpower(actor, willpowerDamage)
 
       // Send the results of the roll back to any functions that need it
-      if (callback) callback(roll)
+      if (callback) {
+        callback(
+          null,
+          {
+            ...roll,
+            system,
+            difficulty,
+            rollSuccessful: (roll.total >= difficulty) || (roll.total > 0 && difficulty === 0)
+          }
+        )
+      }
 
       // Run any macros that need to be ran
       if (macro && game.macros.get(macro)) {
@@ -419,7 +429,7 @@ class WOD5eDice {
             }
           },
           {
-            classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+            classes: ['wod5e', system, 'dialog']
           }
         ).render(true)
       })

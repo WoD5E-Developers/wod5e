@@ -20,6 +20,7 @@
     }
   },
   "WOD5E": {
+    "_Active": "",
     "Add": "Adicionar",
     "Cancel": "Cancelar",
     "_Changelog": "",
@@ -32,6 +33,7 @@
     "Exp": "Experiência",
     "_GroupSheet": "",
     "Health": "Vitalidade",
+    "_Inactive": "",
     "_Label": "",
     "Level": "Nível",
     "_LicensedUnderDarkPack": "",
@@ -63,14 +65,19 @@
       "Wits": "Raciocínio"
     },
     "BiographyList": {
+      "_Age": "",
       "Ambition": "Ambição",
+      "_ApparentAge": "",
       "Appearance": "Aparência",
       "Chronicle": "Crônica",
       "ChronicleTenets": "Princípios da Crônica",
       "Concept": "Conceito",
+      "_DateOfBirth": "",
+      "_DateOfDeath": "",
       "Desire": "Desejo",
       "History": "História",
       "Label": "Biografia",
+      "_PersonalInformation": "",
       "TouchstonesAndConvictions": "Pilares & Convicções"
     },
     "Bonus": {
@@ -146,6 +153,7 @@
     "Notifications": {
       "_CannotModifyResourceString": "",
       "_NoActorDefined": "",
+      "_NoSufficientPermission": "",
       "_StringAlreadyInCurrentGroup": "",
       "_StringAlreadyInOtherGroup": ""
     },
@@ -265,6 +273,8 @@
       "_Dicepool": "",
       "Equipment": "Equipamento",
       "Features": "Vantagens",
+      "_IsNotVisible": "",
+      "_IsVisible": "",
       "_Members": "",
       "Notes": "Notas",
       "Other": "Outro",

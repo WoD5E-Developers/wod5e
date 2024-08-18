@@ -1,45 +1,67 @@
 <form class="{{cssClass}} flexcol limited" autocomplete="off">
     {{!-- Sheet Header --}}
     <header class="limited-actor-header">
-        <div style="flex-grow: 0;">
-            <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" width="100"
-                alt="Profile Image" />
-        </div>
-        <div style="flex-grow: 1;">
-            <h2 class="limited-charname">{{actor.name}}</h2>
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" width="100" alt="Profile Image"/>
+        <div class="header-content">
+            <h1 class="limited-charname">
+                {{actor.name}}
+            </h1>
         </div>
     </header>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-        {{#ifeq actor.type "spc"}}
-            <div class="tab appearance description-content">
-                <div class="flex-center">
-                    <label class="resource-label"><h2>{{localize "WOD5E.Tabs.Notes"}}</h2></label>
-                </div>                  
-                <prose-mirror name="system.notes" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.notes}}" toggled="true">
-                    {{{enrichedNotes}}}
-                </prose-mirror>
+        <div class="tab description-content">
+            <div class="flex-center">
+                <label class="resource-label">
+                    <h2>{{localize "WOD5E.Tabs.PublicNotes"}}</h2>
+                </label>
             </div>
-        {{else}}
-            <div class="grid grid-2col flexrow">                    
-                <div class="tab appearance description-content">
+            <div class="limited-description-body">
+                {{{enrichedNotes}}}
+            </div>
+        </div>
+        <div class="grid grid-2col flexrow">
+            {{#if actor.system.settings.limited.biography}}
+                <div class="tab description-content">
                     <div class="flex-center">
                         <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.Label"}}</h2></label>
-                    </div>              
-                    <prose-mirror name="system.biography" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.biography}}" toggled="true">
+                    </div>
+                    <div class="limited-description-body">
                         {{{enrichedBiography}}}
-                    </prose-mirror>
-                </div>              
-                <div class="tab appearance description-content">
+                    </div>
+                </div>
+            {{/if}}
+            {{#if actor.system.settings.limited.appearance}}
+                <div class="tab description-content">
                     <div class="flex-center">
                         <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.Appearance"}}</h2></label>
-                    </div>              
-                    <prose-mirror name="system.appearance" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.appearance}}" toggled="true">
+                    </div>
+                    <div class="limited-description-body">
                         {{{enrichedAppearance}}}
-                    </prose-mirror>
+                    </div>
                 </div>
-            </div>
-        {{/ifeq}}
+            {{/if}}
+            {{#if actor.system.settings.limited.touchstones}}
+                <div class="tab description-content">
+                    <div class="flex-center">
+                        <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.TouchstonesAndConvictions"}}</h2></label>
+                    </div>
+                    <div class="limited-description-body">
+                        {{{enrichedTouchstones}}}
+                    </div>
+                </div>
+            {{/if}}
+            {{#if actor.system.settings.limited.tenets}}
+                <div class="tab description-content">
+                    <div class="flex-center">
+                        <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.ChronicleTenets"}}</h2></label>
+                    </div>
+                    <div class="limited-description-body">
+                        {{{enrichedTenets}}}
+                    </div>
+                </div>
+            {{/if}}
+        </div>
     </section>
 </form>

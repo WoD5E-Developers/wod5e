@@ -20,6 +20,7 @@
     }
   },
   "WOD5E": {
+    "_Active": "",
     "Add": "Dodaj",
     "Cancel": "Anuluj",
     "_Changelog": "",
@@ -32,6 +33,7 @@
     "Exp": "PD",
     "_GroupSheet": "",
     "Health": "Zdrowie",
+    "_Inactive": "",
     "_Label": "",
     "Level": "Poziom",
     "_LicensedUnderDarkPack": "",
@@ -63,14 +65,19 @@
       "Wits": "Spryt"
     },
     "BiographyList": {
+      "_Age": "",
       "Ambition": "Ambicja",
+      "_ApparentAge": "",
       "Appearance": "Wygląd",
       "Chronicle": "Kronika",
       "ChronicleTenets": "Założenia Kroniki",
       "Concept": "Koncept",
+      "_DateOfBirth": "",
+      "_DateOfDeath": "",
       "Desire": "Pragnienie",
       "History": "Historia",
       "Label": "Biografia",
+      "_PersonalInformation": "",
       "TouchstonesAndConvictions": "Probierze i Przekonania"
     },
     "Bonus": {
@@ -146,6 +153,7 @@
     "Notifications": {
       "_CannotModifyResourceString": "",
       "_NoActorDefined": "",
+      "_NoSufficientPermission": "",
       "_StringAlreadyInCurrentGroup": "",
       "_StringAlreadyInOtherGroup": ""
     },
@@ -265,6 +273,8 @@
       "_Dicepool": "",
       "Equipment": "Ekwipunek",
       "Features": "Atuty",
+      "_IsNotVisible": "",
+      "_IsVisible": "",
       "_Members": "",
       "Notes": "Notatki",
       "Other": "Inne",

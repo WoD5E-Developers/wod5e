@@ -209,7 +209,7 @@ export class wod5eAPI {
         default: 'confirm'
       },
       {
-        classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+        classes: ['wod5e', system, 'dialog']
       }
     ).render(true)
   }

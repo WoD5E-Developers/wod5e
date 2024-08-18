@@ -20,6 +20,7 @@
     }
   },
   "WOD5E": {
+    "Active": "Active",
     "Add": "Add",
     "Cancel": "Cancel",
     "Changelog": "Changelog",
@@ -32,6 +33,7 @@
     "Exp": "Exp",
     "GroupSheet": "Group Sheet",
     "Health": "Health",
+    "Inactive": "Inactive",
     "Label": "Label",
     "Level": "Level",
     "LicensedUnderDarkPack": "Licensed Under The Dark Pack",
@@ -63,14 +65,19 @@
       "Wits": "Wits"
     },
     "BiographyList": {
+      "Age": "Age",
       "Ambition": "Ambition",
+      "ApparentAge": "Apparent Age",
       "Appearance": "Appearance",
       "Chronicle": "Chronicle",
       "ChronicleTenets": "Chronicle Tenets",
       "Concept": "Concept",
+      "DateOfBirth": "Date of Birth",
+      "DateOfDeath": "Date of Death",
       "Desire": "Desire",
       "History": "History",
       "Label": "Biography",
+      "PersonalInformation": "Personal Information",
       "TouchstonesAndConvictions": "Touchstones & Convictions"
     },
     "Bonus": {
@@ -146,8 +153,9 @@
     "Notifications": {
       "CannotModifyResourceString": "This resource cannot be modified while the actor sheet \"{string}\" is locked.",
       "NoActorDefined": "No actor defined",
-      "StringAlreadyInCurrentGroup": "Actor {string} is already part of this group.",
-      "StringAlreadyInOtherGroup": "Actor {string} is already in an existing group."
+      "NoSufficientPermission": "You do not have sufficient permissions to modify actor \"{string}.\"",
+      "StringAlreadyInCurrentGroup": "Actor \"{string}\" is already part of this group.",
+      "StringAlreadyInOtherGroup": "Actor \"{string}\" is already in an existing group."
     },
     "RollList": {
       "AddCustomModifier": "Add Custom Modifier",
@@ -265,6 +273,8 @@
       "Dicepool": "Dicepool",
       "Equipment": "Equipment",
       "Features": "Features",
+      "IsNotVisible": "This field is not publicly visible.",
+      "IsVisible": "This field is publicly visible.",
       "Members": "Members",
       "Notes": "Notes",
       "Other": "Other",

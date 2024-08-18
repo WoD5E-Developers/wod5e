@@ -353,7 +353,7 @@ export class WoDActor extends ActorSheet {
         default: 'cancel'
       },
       {
-        classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+        classes: ['wod5e', system, 'dialog']
       }).render(true)
     })
 
@@ -372,6 +372,8 @@ export class WoDActor extends ActorSheet {
 
     // Willpower Rolls
     html.find('.willpower-roll').click(this._onWillpowerRoll.bind(this))
+
+    html.find('.toggle-limited').click(this._onToggleLimited.bind(this))
   }
 
   // Calculate the dice for a Willpower roll
@@ -468,7 +470,7 @@ export class WoDActor extends ActorSheet {
         }
       },
       {
-        classes: ['wod5e', `${system}-dialog`, `${system}-sheet`],
+        classes: ['wod5e', system, 'dialog'],
         tabs: [
           {
             navSelector: '.sheet-tabs',
@@ -542,6 +544,29 @@ export class WoDActor extends ActorSheet {
       quickRoll: false,
       disableAdvancedDice: true
     })
+  }
+
+  // Handle toggling a field between visible and not visible
+  async _onToggleLimited (event) {
+    event.preventDefault()
+
+    // Top-level variables
+    const actor = this.actor
+    const dataset = event.currentTarget.dataset
+    const field = dataset.name
+
+    // Secondary variables
+    let currentValue = actor
+    const fieldParts = field.split('.')
+
+    // Iterate through the fieldParts to get the current value
+    for (const part of fieldParts) {
+      currentValue = currentValue[part]
+    }
+
+    if (field) {
+      await actor.update({ [field]: !currentValue })
+    }
   }
 
   /**
@@ -655,7 +680,7 @@ export class WoDActor extends ActorSheet {
         buttons,
         default: 'submit'
       }, {
-        classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+        classes: ['wod5e', system, 'dialog']
       }).render(true)
     }
   }

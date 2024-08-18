@@ -12,12 +12,7 @@ import { getBloodPotencyValues, getBloodPotencyText } from './scripts/blood-pote
 export class VampireActorSheet extends GhoulActorSheet {
   /** @override */
   static get defaultOptions () {
-    // Define the base list of CSS classes
-    const classList = ['vampire-sheet']
-    classList.push(...super.defaultOptions.classes)
-
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: classList,
       template: 'systems/vtm5e/display/vtm/actors/vampire-sheet.hbs'
     })
   }
@@ -103,6 +98,7 @@ export class VampireActorSheet extends GhoulActorSheet {
     // Rollable gift buttons
     html.find('.remorse-roll').click(this._onRemorseRoll.bind(this))
     html.find('.frenzy-roll').click(this._onFrenzyRoll.bind(this))
+    html.find('.end-frenzy').click(this._onEndFrenzy.bind(this))
   }
 
   // Roll Handlers
@@ -125,7 +121,9 @@ export class VampireActorSheet extends GhoulActorSheet {
       data: actor.system,
       quickRoll: true,
       disableAdvancedDice: true,
-      callback: (rollData) => {
+      callback: (err, rollData) => {
+        if (err) console.log(err)
+
         const hasSuccess = rollData.terms[0].results.some(result => result.success)
 
         // Reduce humanity by 1 if the roll fails, otherwise reset stain to 0 in any other cases
@@ -151,6 +149,15 @@ export class VampireActorSheet extends GhoulActorSheet {
     })
   }
 
+  async _onEndFrenzy (event) {
+    event.preventDefault()
+
+    // Top-level variables
+    const actor = this.actor
+
+    await actor.update({ 'system.frenzyActive': false })
+  }
+
   async _onFrenzyRoll (event) {
     event.preventDefault()
 
@@ -167,7 +174,14 @@ export class VampireActorSheet extends GhoulActorSheet {
       title: game.i18n.localize('WOD5E.VTM.ResistingFrenzy'),
       actor,
       data: actor.system,
-      disableAdvancedDice: true
+      disableAdvancedDice: true,
+      callback: (err, result) => {
+        if (err) console.log(err)
+
+        if (!result.rollSuccessful) {
+          actor.update({ 'system.frenzyActive': true })
+        }
+      }
     })
   }
 }

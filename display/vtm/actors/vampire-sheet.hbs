@@ -14,13 +14,14 @@
         <div class="header-fields">
             <div class="header-fields-right">
                 <div class="flexcol">
-                    <div class="field-section">
+                    <div class="field-section flexrow">
                         <div class="flexrow nowrap">
                             <div class="flexcol">
                                 <label class="resource-label field-header">{{localize 'WOD5E.VTM.Clan'}}</label>
                                 <input name="system.clan.value" type="text" value="{{actor.system.clan.value}}" placeholder="{{localize 'WOD5E.VTM.Clan'}}"/>
                             </div>
                         </div>
+                        {{> "systems/vtm5e/display/vtm/actors/parts/frenzy.hbs"}}
                     </div>
                     <div class="flexcol field-section">
                         <label class="resource-label field-header">{{localize "WOD5E.VTM.Hunger"}}</label>

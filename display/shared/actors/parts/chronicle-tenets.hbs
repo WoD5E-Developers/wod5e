@@ -1,0 +1,20 @@
+<div class="description-field">
+    <div class="flex-center field-header">
+        <label class="resource-label">
+            {{localize "WOD5E.BiographyList.ChronicleTenets"}}
+            <div class="toggle-limited{{#if actor.system.settings.limited.tenets}} visible{{/if}}" data-name="system.settings.limited.tenets"
+                title="{{#if actor.system.settings.limited.tenets}}{{localize "WOD5E.Tabs.IsVisible"}}{{else}}{{localize "WOD5E.Tabs.IsNotVisible"}}{{/if}}">
+                {{#if actor.system.settings.limited.tenets}}
+                    <i class="fa-solid fa-eye"></i>
+                {{else}}
+                    <i class="fa-solid fa-eye-slash"></i>
+                {{/if}}
+            </div>
+        </label>
+    </div>
+    <div class="description-content resource">
+        <prose-mirror name="system.headers.tenets" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.headers.tenets}}" toggled="true">
+            {{{enrichedTenets}}}
+        </prose-mirror>
+    </div>
+</div>

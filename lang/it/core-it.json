@@ -20,6 +20,7 @@
     }
   },
   "WOD5E": {
+    "_Active": "",
     "Add": "Aggiungi",
     "Cancel": "Cancella",
     "_Changelog": "",
@@ -32,6 +33,7 @@
     "Exp": "Esp",
     "GroupSheet": "Scheda di gruppo",
     "Health": "Salute",
+    "_Inactive": "",
     "Label": "Etichetta",
     "Level": "Livello",
     "_LicensedUnderDarkPack": "",
@@ -63,14 +65,19 @@
       "Wits": "Prontezza"
     },
     "BiographyList": {
+      "_Age": "",
       "Ambition": "Ambizione",
+      "_ApparentAge": "",
       "Appearance": "Aspetto esteriore",
       "Chronicle": "Cronaca",
       "ChronicleTenets": "Precetti della cronaca",
       "Concept": "Concetto",
+      "_DateOfBirth": "",
+      "_DateOfDeath": "",
       "Desire": "Desiderio",
       "History": "Storia",
       "Label": "Biografia",
+      "_PersonalInformation": "",
       "TouchstonesAndConvictions": "Punti di riferimento e convinzioni"
     },
     "Bonus": {
@@ -146,6 +153,7 @@
     "Notifications": {
       "_CannotModifyResourceString": "",
       "_NoActorDefined": "",
+      "_NoSufficientPermission": "",
       "_StringAlreadyInCurrentGroup": "",
       "_StringAlreadyInOtherGroup": ""
     },
@@ -265,6 +273,8 @@
       "_Dicepool": "",
       "Equipment": "Equipaggiamento",
       "Features": "Caratteristiche",
+      "_IsNotVisible": "",
+      "_IsVisible": "",
       "Members": "Membri",
       "Notes": "Note",
       "Other": "Altro",

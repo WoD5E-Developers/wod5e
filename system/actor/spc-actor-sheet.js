@@ -263,7 +263,7 @@ export class SPCActorSheet extends WoDActor {
       default: 'submit'
     },
     {
-      classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+      classes: ['wod5e', system, 'dialog']
     }).render(true)
   }
 
@@ -352,7 +352,7 @@ export class SPCActorSheet extends WoDActor {
       default: 'submit'
     },
     {
-      classes: ['wod5e', `${system}-dialog`, `${system}`]
+      classes: ['wod5e', system, 'dialog']
     }).render(true)
   }
 

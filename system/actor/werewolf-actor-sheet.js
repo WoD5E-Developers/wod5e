@@ -13,7 +13,7 @@ export class WerewolfActorSheet extends WoDActor {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['werewolf-sheet', 'werewolf']
+    const classList = ['werewolf']
     classList.push(...super.defaultOptions.classes)
 
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -245,7 +245,7 @@ export class WerewolfActorSheet extends WoDActor {
       buttons,
       default: 'submit'
     }, {
-      classes: ['wod5e', 'dialog', 'werewolf-dialog', 'werewolf-sheet']
+      classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
     }).render(true)
   }
 
@@ -325,7 +325,7 @@ export class WerewolfActorSheet extends WoDActor {
       default: 'homid'
     },
     {
-      classes: ['wod5e', 'dialog', 'werewolf-dialog', 'werewolf-sheet']
+      classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
     }).render(true)
   }
 
@@ -392,7 +392,9 @@ export class WerewolfActorSheet extends WoDActor {
         disableBasicDice: true,
         decreaseRage: true,
         selectors,
-        callback: (rollData) => {
+        callback: (err, rollData) => {
+          if (err) console.log(err)
+
           // Calculate the number of rage dice the actor has left
           const failures = rollData.terms[2].results.filter(result => !result.success).length
           const newRageAmount = Math.max(actor.system.rage.value - failures, 0)
@@ -531,7 +533,7 @@ export class WerewolfActorSheet extends WoDActor {
       default: 'submit'
     },
     {
-      classes: ['wod5e', 'dialog', 'werewolf-dialog', 'werewolf-sheet']
+      classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
     }).render(true)
   }
 
@@ -572,7 +574,7 @@ export class WerewolfActorSheet extends WoDActor {
       default: 'submit'
     },
     {
-      classes: ['wod5e', 'dialog', 'werewolf-dialog', 'werewolf-sheet']
+      classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
     }).render(true)
   }
 }

@@ -7,7 +7,6 @@
   border-radius: 0;
 
   .window-content {
-    background: url(/systems/vtm5e/assets/actor/actor_background.webp) repeat;
     padding: 0;
     padding-bottom: 20px;
     overflow-y: scroll;
@@ -20,8 +19,6 @@
   /* Input and resource fields */
   input,
   .resource {
-    background-color: #ededec;
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
   }
@@ -31,6 +28,22 @@
     border-radius: 0;
   }
 
+  /* Limited Sheet */
+  .limited-actor-header {
+    display: flex;
+    flex-grow: 0;
+
+    .header-content {
+      flex-grow: 1;
+      text-align: center;
+      margin-top: auto;
+    }
+  }
+
+  .limited-description-body {
+    padding: 10px;
+  }
+
   /* Actor Header */
   .actor-header {
     display: flex;
@@ -38,8 +51,6 @@
     align-items: center;
     text-align: center;
     flex-grow: 0;
-    background: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp") center;
-    border-bottom: 2px solid var(--system-primary);
     background-repeat: no-repeat;
     background-size: cover;
     padding: 0 5px 0 5px;
@@ -77,31 +88,24 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-      }
-
-      .header-fields-left {
         flex: 1;
-        padding-right: 10px;
-
-        .field-section {
-          margin-bottom: 5px;
-          width: 200px;
-        }
-      }
-
-      .header-fields-right {
-        flex: 1;
-        padding-left: 10px;
 
         .field-section {
           margin-bottom: 5px;
           width: 250px;
         }
       }
+
+      .header-fields-left {
+        padding-right: 10px;
+      }
+
+      .header-fields-right {
+        padding-left: 10px;
+      }
     }
 
     .field-header {
-      color: #FFF;
       justify-content: center;
       margin-bottom: 0;
     }
@@ -113,10 +117,6 @@
       max-width: 400px;
       margin-left: 10px;
       margin-right: 10px;
-      
-      > div {
-        flex-grow: 0;
-      }
 
       .field-header {
         font-size: 16pt;
@@ -126,11 +126,67 @@
         width: 100%;
         margin-bottom: 5px;
       }
+
+      .description-field {
+        width: -webkit-fill-available;
+        width: -moz-available;
+
+        .resource-label {
+          flex-wrap: nowrap;
+          display: inline-flex;
+        }
+
+        .description-content {
+          text-align: initial;
+        }
+      }
     }
 
     .features-list .category {
       margin-left: auto;
       margin-right: auto;
+    }
+  }
+
+  /* Biography Tab */
+  .tab.biography {
+    .detailed-section {
+      display: inline-flex;
+      align-self: flex-start;
+
+      .details-header {
+        text-align: center;
+      }
+
+      .detail {
+        width: 50%;
+        margin-bottom: 5px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      input {
+        text-align: center;
+      }
+
+      input.number {
+        min-width: 100px;
+      }
+    }
+
+    .descriptive-section {
+      .field-header {
+        font-size: 16pt;
+      }
+
+      .description-field {
+        margin-bottom: 5px;
+      }
+
+      .resource-label {
+        flex-wrap: nowrap;
+        display: inline-flex;
+      }
     }
   }
   
@@ -160,12 +216,18 @@
     line-height: 1.6em;
     word-spacing: 0.05em;
     font-size: 1.1em;
-    color: hwb(0deg 7% 98% / 100%);
-    background: #eeece8;
   }
 
   .collapsible:hover,
   .collapsible:focus {
+    cursor: pointer;
+  }
+
+  /* Limited View Toggle Button */
+  .toggle-limited {
+    font-size: 13pt;
+    margin-left: 5px;
+    margin-top: 3px;
     cursor: pointer;
   }
 
@@ -189,7 +251,6 @@
   .sheet-banner {
     text-align: center;
     margin: -10px -10px 5px;
-    background-color: var(--system-primary);
     font-size: 14pt;
     padding: 3px;
     position: absolute;
@@ -202,10 +263,6 @@
     .actor-type-field {
       text-align: left;
       padding-left: 5px;
-
-      select {
-        background-color: #CCC;
-      }
     }
 
     .sheet-label {
@@ -231,8 +288,6 @@
   .lock-btn {
     max-width: 35px;
     align-self: baseline;
-    background: var(--ui-background-texture);
-    color: #CCC;
   }
   
   .lock-btn i {
@@ -247,7 +302,6 @@
   .tabs-container {
     position: absolute;
     height: 100%;
-    background-color: #9d9d9d;
     top: 25px;
     left: -2px;
     overflow: hidden;
@@ -276,10 +330,8 @@
     > [data-tab] .navicon {
       display: flex;
       align-items: center;
-      background-color: #CCC;
       width: 100%;
       height: 100%;
-      border: 1px solid black;
     }
 
     > [data-tab] .navicon i,
@@ -290,8 +342,6 @@
 
   /* Basic Item List Layout */
   .item-list .category {
-    background-color: #ededec;
-    border: 2px solid #1b1b1b;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -312,7 +362,6 @@
 
         img {
           border-radius: 50%;
-          border: 1px solid #ddd;
           padding: 2px;
           max-width: 25px;
         }
@@ -362,7 +411,6 @@
   
   .item-image img {
     border-radius: 50%;
-    border: 1px solid #ddd;
     padding: 2px;
     max-width: 25px;
   }
@@ -372,7 +420,6 @@
     display: block;
     font-weight: 200;
     font-size: 20pt;
-    border-bottom: 1px solid black;
     width: 90%;
     text-align: center;
     margin-left: auto;
@@ -384,15 +431,12 @@
   .rollable-item:hover,
   .system-rollable:hover {
     cursor: pointer;
-    text-shadow: 0 0 5px #e02b2b;
   }
 
   /* Statistics Page */
   .stats-container {
     display: flex;
     flex-flow: column;
-    background-color: #ededec;
-    border: 2px solid #1b1b1b;
     margin: 5px;
 
     .stats-list {
@@ -414,7 +458,6 @@
   .specialty {
     position: relative;
     top: -5px;
-    text-shadow: 0 0 5px #e02b2b;
     font-size: 10pt;
     font-weight: bold;
     cursor: pointer;
@@ -442,6 +485,10 @@
 
       .item-image {
         max-width: 30px;
+
+        img {
+          border-radius: 0;
+        }
       }
 
       .item-name {
@@ -464,17 +511,8 @@
 
     .stats-container {
       .stats-footer {
-        background-color: #CCC;
         text-align: center;
       }
-    }
-  
-    .stats-container.attributes .stats-footer {
-      border-bottom: 1px solid black;
-    }
-  
-    .stats-container.skills .stats-footer {
-      border-top: 1px solid black;
     }
   }
 }

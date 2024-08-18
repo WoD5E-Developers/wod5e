@@ -67,7 +67,7 @@ export const willpowerReroll = async (roll) => {
     default: 'submit'
   },
   {
-    classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+    classes: ['wod5e', system, 'dialog']
   }).render(true)
 
   // Handles selecting and de-selecting the die
@@ -106,7 +106,9 @@ export const willpowerReroll = async (roll) => {
         quickRoll: true,
         selectors,
         disableMessageOutput: true,
-        callback: async (reroll) => {
+        callback: async (err, reroll) => {
+          if (err) console.log(err)
+
           const messageRolls = message.rolls
 
           diceSelected.each(function (index) {

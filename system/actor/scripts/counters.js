@@ -129,6 +129,14 @@ export const _onDotCounterChange = async function (event) {
   const fields = fieldStrings.split('.')
   const steps = parent.find('.resource-value-step')
 
+  // Make sure that the dot counter can only be changed if the user has permission
+  if (this.actor.permission < 3) {
+    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.NoSufficientPermission', {
+      string: this.actor.name
+    }))
+    return
+  }
+
   // Make sure that the dot counter can only be changed if the sheet is
   // unlocked or if it's the hunger/rage track.
   if (this.actor.system.locked && !parent.has('.hunger-value').length && !parent.has('.rage-value').length) {
@@ -201,6 +209,14 @@ export const _onSquareCounterChange = async function (event) {
     actor = game.actors.get(dataset.actorId)
   } else {
     actor = this.actor
+  }
+
+  // Make sure that the square counter can only be changed if the user has permission
+  if (this.actor.permission < 3) {
+    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.NoSufficientPermission', {
+      string: this.actor.name
+    }))
+    return
   }
 
   // Secondary variables

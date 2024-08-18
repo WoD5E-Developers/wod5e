@@ -1,12 +1,50 @@
 <div class="tab biography" data-group="primary" data-tab="biography">
     <div class="flexrow">
         <div class="detailed-section flexcol">
-            These are where inputs go.
+            <h2 class="details-header field-header">{{localize "WOD5E.BiographyList.PersonalInformation"}}</h2>
+            <div class="detail flexrow">
+                <label>
+                    <b>{{localize "WOD5E.BiographyList.Age"}}:</b>
+                </label>
+                <input type="text" class="number" name="system.bio.age.trueage" value="{{actor.system.bio.age.trueage}}"{{#if locked}} disabled="true"{{/if}}/>
+            </div>
+            {{#ifeq actor.type 'vampire'}}
+                <div class="detail flexrow">
+                    <label>
+                        <b>{{localize "WOD5E.BiographyList.ApparentAge"}}:</b>
+                    </label>
+                    <input type="text" class="number" name="system.bio.age.apparent" value="{{actor.system.bio.age.apparent}}"{{#if locked}} disabled="true"{{/if}}/>
+                </div>
+            {{/ifeq}}
+            <div class="detail flexrow">
+                <label>
+                    <b>{{localize "WOD5E.BiographyList.DateOfBirth"}}:</b>
+                </label>
+                <input type="text" class="number" name="system.bio.dateof.birth" value="{{actor.system.bio.dateof.birth}}"{{#if locked}} disabled="true"{{/if}}/>
+            </div>
+            {{#ifeq actor.type 'vampire'}}
+                <div class="detail flexrow">
+                    <label>
+                        <b>{{localize "WOD5E.BiographyList.DateOfDeath"}}:</b>
+                    </label>
+                    <input type="text" class="number" name="system.bio.dateof.death" value="{{actor.system.bio.dateof.death}}"{{#if locked}} disabled="true"{{/if}}/>
+                </div>
+            {{/ifeq}}
         </div>
         <div class="descriptive-section flexcol">
-            <div>
+            <div class="description-field">
                 <div class="flex-center field-header">
-                    <label class="resource-label">{{localize "WOD5E.BiographyList.Label"}}</label>
+                    <label class="resource-label">
+                        {{localize "WOD5E.BiographyList.Label"}}
+                        <div class="toggle-limited{{#if actor.system.settings.limited.biography}} visible{{/if}}" data-name="system.settings.limited.biography"
+                            title="{{#if actor.system.settings.limited.biography}}{{localize "WOD5E.Tabs.IsVisible"}}{{else}}{{localize "WOD5E.Tabs.IsNotVisible"}}{{/if}}">
+                            {{#if actor.system.settings.limited.biography}}
+                                <i class="fa-solid fa-eye"></i>
+                            {{else}}
+                                <i class="fa-solid fa-eye-slash"></i>
+                            {{/if}}
+                        </div>
+                    </label>
                 </div>
                 <div class="description-content resource">
                     <prose-mirror name="system.biography" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.biography}}" toggled="true">
@@ -14,9 +52,19 @@
                     </prose-mirror>
                 </div>
             </div>
-            <div>
+            <div class="description-field">
                 <div class="flex-center field-header">
-                    <label class="resource-label">{{localize "WOD5E.BiographyList.Appearance"}}</label>
+                    <label class="resource-label">
+                        {{localize "WOD5E.BiographyList.Appearance"}}
+                        <div class="toggle-limited{{#if actor.system.settings.limited.appearance}} visible{{/if}}" data-name="system.settings.limited.appearance"
+                            title="{{#if actor.system.settings.limited.appearance}}{{localize "WOD5E.Tabs.IsVisible"}}{{else}}{{localize "WOD5E.Tabs.IsNotVisible"}}{{/if}}">
+                            {{#if actor.system.settings.limited.appearance}}
+                                <i class="fa-solid fa-eye"></i>
+                            {{else}}
+                                <i class="fa-solid fa-eye-slash"></i>
+                            {{/if}}
+                        </div>
+                    </label>
                 </div>
                 <div class="description-content resource">
                     <prose-mirror name="system.appearance" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.appearance}}" toggled="true">
@@ -24,23 +72,23 @@
                     </prose-mirror>
                 </div>
             </div>
-            <div>
+            <div class="description-field">
                 <div class="flex-center field-header">
-                    <label class="resource-label">{{localize "WOD5E.BiographyList.TouchstonesAndConvictions"}}</label>
+                    <label class="resource-label">
+                        {{localize "WOD5E.BiographyList.TouchstonesAndConvictions"}}
+                        <div class="toggle-limited{{#if actor.system.settings.limited.touchstones}} visible{{/if}}" data-name="system.settings.limited.touchstones"
+                            title="{{#if actor.system.settings.limited.touchstones}}{{localize "WOD5E.Tabs.IsVisible"}}{{else}}{{localize "WOD5E.Tabs.IsNotVisible"}}{{/if}}">
+                            {{#if actor.system.settings.limited.touchstones}}
+                                <i class="fa-solid fa-eye"></i>
+                            {{else}}
+                                <i class="fa-solid fa-eye-slash"></i>
+                            {{/if}}
+                        </div>
+                    </label>
                 </div>
                 <div class="description-content resource">
                     <prose-mirror name="system.headers.touchstones" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.headers.touchstones}}" toggled="true">
                         {{{enrichedTouchstones}}}
-                    </prose-mirror>
-                </div>
-            </div>
-            <div>
-                <div class="flex-center field-header">
-                    <label class="resource-label">{{localize "WOD5E.BiographyList.ChronicleTenets"}}</label>
-                </div>
-                <div class="description-content resource">
-                    <prose-mirror name="system.headers.tenets" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.headers.tenets}}" toggled="true">
-                        {{{enrichedTenets}}}
                     </prose-mirror>
                 </div>
             </div>

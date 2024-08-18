@@ -10,8 +10,23 @@
         "equipment": "",
         "notes": "",
         "privatenotes": "",
+        "bio": {
+          "age": {
+            "trueage": ""
+          },
+          "dateof": {
+            "birth": ""
+          },
+          "history": ""
+        },
         "settings": {
-          "headerbg": ""
+          "headerbg": "",
+          "limited": {
+            "biography": true,
+            "appearance": true,
+            "touchstones": false,
+            "tenets": false
+          }
         },
         "headers": {
           "concept":"",
@@ -196,6 +211,12 @@
         "appearance": "",
         "notes": "",
         "privatenotes": "",
+        "limited": {
+          "biography": true,
+          "appearance": true,
+          "touchstones": false,
+          "tenets": false
+        },
         "generaldifficulty": {
           "strongest": 0,
           "normal": 0
@@ -734,6 +755,14 @@
         }
       },
       "vampire_traits": {
+        "bio": {
+          "age": {
+            "apparent": ""
+          },
+          "dateof": {
+            "death": ""
+          }
+        },
         "headers":{
           "predator":"",
           "sire":"",

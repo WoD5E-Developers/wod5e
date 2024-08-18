@@ -11,7 +11,7 @@ export class HunterActorSheet extends WoDActor {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['hunter-sheet', 'hunter']
+    const classList = ['hunter']
     classList.push(...super.defaultOptions.classes)
 
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -212,7 +212,7 @@ export class HunterActorSheet extends WoDActor {
       buttons,
       default: 'submit'
     }, {
-      classes: ['wod5e', 'dialog', 'hunter-dialog', 'hunter-sheet']
+      classes: ['wod5e', 'dialog', 'hunter', 'dialog']
     }).render(true)
   }
 

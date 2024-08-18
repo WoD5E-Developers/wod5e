@@ -3,26 +3,15 @@
   // Groups
   .group-item {
     border: none;
-    border-left: 1px solid var(--color-border-dark-1);
     border-top: 0 !important;
     border-bottom: 0 !important;
-
-    .context {
-      background-color: transparent !important;
-      border-color: var(--color-border-highlight);
-    }
 
     > .group-header {
       padding: 6px;
       line-height: 24px;
-      background: rgba(255 255 255 20%);
-      border-top: 1px sod var(--color-border-dark);
-      border-bottom: 1px sod var(--color-border-dark);
 
       h3 {
         margin: 0;
-        color: var(--color-text-ght-highght);
-        font-size: var(--font-size-16);
         line-height: 24px;
 
         > i {
@@ -41,14 +30,8 @@
           top: -2px;
           right: -2px;
           font-size: 0.5rem;
-          background: black;
-          color: var(--color-text-ght-highght);
           padding: 1px;
         }
-      }
-
-      .create-button:hover .fa-plus {
-        color: var(--color-text-hypernk);
       }
 
       .create-button.create-folder {
@@ -63,8 +46,6 @@
     }
 
     > .group-header {
-      background: rgba(0 0 0 50%);
-
       h3 {
         text-shadow: none;
 
@@ -81,11 +62,9 @@
   
   .group-item.droptarget > header {
     h3 {
-      text-shadow: 1px 1px 3px var(--color-shadow-dark);
       font-size: 1.2em;
 
       i {
-        text-shadow: 0 0 4px var(--color-shadow-primary);
         transform: scale(1.2);
       }
     }

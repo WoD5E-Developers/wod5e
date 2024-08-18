@@ -86,7 +86,7 @@ export const _onAddBonus = async function (event, actor, data, SkillEditDialog) 
       default: 'add'
     },
     {
-      classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+      classes: ['wod5e', system, 'dialog']
     }
   ).render(true)
 }
@@ -198,7 +198,7 @@ export const _onEditBonus = async function (event, actor, data, SkillEditDialog)
       default: 'save'
     },
     {
-      classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+      classes: ['wod5e', system, 'dialog']
     }
   ).render(true)
 }

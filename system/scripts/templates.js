@@ -25,6 +25,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/actors/parts/actor-settings.hbs',
     'systems/vtm5e/display/shared/actors/parts/core-features.hbs',
     'systems/vtm5e/display/shared/actors/parts/core-details.hbs',
+    'systems/vtm5e/display/shared/actors/parts/chronicle-tenets.hbs',
 
     // Hunter Sheet Partials
     'systems/vtm5e/display/htr/actors/parts/danger.hbs',
