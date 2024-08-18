@@ -14,6 +14,7 @@ import { preloadHandlebarsTemplates } from './scripts/templates.js'
 import { loadDiceSoNice } from './dice/dice-so-nice.js'
 import { loadHelpers } from './scripts/helpers.js'
 import { loadSettings, _updatePreferredColorScheme, _updateHeaderFontPreference } from './scripts/settings.js'
+import { PauseChanges } from './ui/pause.js'
 // WOD5E functions and classes
 import { MortalDie, VampireDie, VampireHungerDie, HunterDie, HunterDesperationDie, WerewolfDie, WerewolfRageDie } from './dice/splat-dice.js'
 import { migrateWorld } from './scripts/migration.js'
@@ -98,6 +99,9 @@ Hooks.once('init', async function () {
 
   // Initialize the alterations to ProseMirror
   ProseMirrorSettings()
+
+  // Initialize the alterations to the Paused
+  PauseChanges()
 })
 
 // Anything that needs to run once the world is ready

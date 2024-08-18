@@ -1926,7 +1926,6 @@ body.uk .actor.sheet {
   --actor-background-default: url(/systems/vtm5e/assets/actor/actor_background.webp);
   --actor-header-default: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp");
   --logo-default: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
-  --pause-button-default: url(/systems/vtm5e/assets/ui/Pause.webp);
 }
 .application .window-header {
   background: var(--system-color-1);
@@ -1936,10 +1935,6 @@ body.uk .actor.sheet {
 }
 #logo {
   content: var(--logo-default);
-}
-#pause img {
-  content: var(--pause-button-default);
-  --fa-animation-duration: 0s;
 }
 #pause figcaption {
   color: var(--system-color-5);
