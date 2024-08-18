@@ -2,7 +2,7 @@
 
 // Update the pause image
 export const PauseChanges = async () => {
-  Hooks.on("renderPause", (app, html) => {
+  Hooks.on('renderPause', (app, html) => {
     const updatedPauseImage = `
         <img class="fa-spin pause-border" src="/systems/vtm5e/assets/ui/Pause_Border.webp">
         <img class="pause-overlay" src="/systems/vtm5e/assets/ui/Pause_Overlay.webp">
