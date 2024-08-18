@@ -604,7 +604,7 @@ export class WoDActor extends ActorSheet {
     switch (type) {
       case 'power':
         selectLabel = game.i18n.localize('WOD5E.VTM.SelectDiscipline')
-        itemOptions = WOD5E.Disciplines.getList()
+        itemOptions = WOD5E.Disciplines.getList({})
         itemName = game.i18n.format('WOD5E.VTM.NewStringPower', { string: itemName })
         break
       case 'perk':

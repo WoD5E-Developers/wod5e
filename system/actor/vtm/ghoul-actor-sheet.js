@@ -152,7 +152,7 @@ export class GhoulActorSheet extends MortalActorSheet {
 
     // Secondary variables
     const selectLabel = game.i18n.localize('WOD5E.VTM.SelectDiscipline')
-    const itemOptions = WOD5E.Disciplines.getList()
+    const itemOptions = WOD5E.Disciplines.getList({})
 
     // Variables yet to be defined
     let options = []

@@ -34,10 +34,12 @@ export class StorytellerMenu extends FormApplication {
     // Grab the modifications from the game settings and add them to the application data
     data.attributeModifications = game.settings.get('vtm5e', 'modifiedAttributes')
     data.skillModifications = game.settings.get('vtm5e', 'modifiedSkills')
+    data.disciplineModifications = game.settings.get('vtm5e', 'modifiedDisciplines')
 
     // Grab the custom features from the game settings and add them to the application data
     data.customAttributes = game.settings.get('vtm5e', 'customAttributes')
     data.customSkills = game.settings.get('vtm5e', 'customSkills')
+    data.customDisciplines = game.settings.get('vtm5e', 'customDisciplines')
 
     return data
   }
@@ -99,6 +101,20 @@ export class StorytellerMenu extends FormApplication {
 
         // Set the new list of attributes
         game.settings.set('vtm5e', 'customSkills', customSkills)
+      } if (type === 'discipline') {
+        // Get the list of custom disciplines
+        const customDisciplines = game.settings.get('vtm5e', 'customDisciplines')
+
+        // Define the new discipline and push it to the list
+        const newDiscipline = {
+          id: foundry.utils.randomID(8),
+          label: 'New Discipline',
+          type: 'physical'
+        }
+        customDisciplines.push(newDiscipline)
+
+        // Set the new list of attributes
+        game.settings.set('vtm5e', 'customDisciplines', customDisciplines)
       }
     })
 
@@ -119,6 +135,8 @@ export class StorytellerMenu extends FormApplication {
       const customAttributes = []
       const skillModifications = []
       const customSkills = []
+      const disciplineModifications = []
+      const customDisciplines = []
 
       // Modifications to existing features
       html.find('.modification-row').each(function () {
@@ -144,6 +162,13 @@ export class StorytellerMenu extends FormApplication {
             label,
             hidden
           })
+        } else if (type === 'discipline') {
+          disciplineModifications.push({
+            id,
+            rename,
+            label,
+            hidden
+          })
         }
       })
 
@@ -154,7 +179,7 @@ export class StorytellerMenu extends FormApplication {
         const type = customFeature.dataset.type
 
         const label = $(this).find('.label')[0].value
-        const attrType = $(this).find('.attr-type')[0].value
+        const attrType = $(this).find('.attr-type')[0]?.value || ''
 
         if (type === 'attribute') {
           customAttributes.push({
@@ -168,6 +193,11 @@ export class StorytellerMenu extends FormApplication {
             type: attrType,
             label
           })
+        } else if (type === 'discipline') {
+          customDisciplines.push({
+            id,
+            label
+          })
         }
       })
 
@@ -176,6 +206,8 @@ export class StorytellerMenu extends FormApplication {
       game.settings.set('vtm5e', 'customAttributes', customAttributes)
       game.settings.set('vtm5e', 'modifiedSkills', skillModifications)
       game.settings.set('vtm5e', 'customSkills', customSkills)
+      game.settings.set('vtm5e', 'modifiedDisciplines', disciplineModifications)
+      game.settings.set('vtm5e', 'customDisciplines', customDisciplines)
     })
   }
 }
@@ -192,6 +224,11 @@ async function _onGenerateModPrompt (type) {
 
     // Render the dialog
     _onRenderPromptDialog('skill', skillsList, game.i18n.localize('WOD5E.SkillsList.Label'))
+  } else if (type === 'discipline') {
+    const disciplinesList = WOD5E.Disciplines.getList({})
+
+    // Render the dialog
+    _onRenderPromptDialog('discipline', disciplinesList, game.i18n.localize('WOD5E.DisciplinesList.Label'))
   }
 }
 
@@ -245,6 +282,21 @@ async function _onRenderPromptDialog (type, list, title) {
 
               // Set the new list of skills
               game.settings.set('vtm5e', 'modifiedSkills', modifiedSkills)
+            } else if (type === 'discipline') {
+              // Get the list of modified disciplines
+              const modifiedDisciplines = game.settings.get('vtm5e', 'modifiedDisciplines')
+
+              // Define the new discipline and push it to the list
+              const newDiscipline = {
+                id,
+                label,
+                rename: '',
+                hidden: false
+              }
+              modifiedDisciplines.push(newDiscipline)
+
+              // Set the new list of disciplines
+              game.settings.set('vtm5e', 'modifiedDisciplines', modifiedDisciplines)
             }
           }
         },
@@ -274,6 +326,13 @@ async function _onRemoveChange (type, id) {
     // Remove the skill by id then update the game settings
     modifiedSkills = modifiedSkills.filter(skill => (skill.id !== id))
     game.settings.set('vtm5e', 'modifiedSkills', modifiedSkills)
+  } else if (type === 'discipline') {
+    // Get the list of modified disciplines
+    let modifiedDisciplines = game.settings.get('vtm5e', 'modifiedDisciplines')
+
+    // Remove the discipline by id then update the game settings
+    modifiedDisciplines = modifiedDisciplines.filter(discipline => (discipline.id !== id))
+    game.settings.set('vtm5e', 'modifiedDisciplines', modifiedDisciplines)
   }
 }
 
@@ -293,5 +352,12 @@ async function _onRemoveCustom (type, id) {
     // Remove the skill by id then update the game settings
     customSkills = customSkills.filter(skill => (skill.id !== id))
     game.settings.set('vtm5e', 'customSkills', customSkills)
+  } else if (type === 'discipline') {
+    // Get the list of custom disciplines
+    let customDisciplines = game.settings.get('vtm5e', 'customDisciplines')
+
+    // Remove the discipline by id then update the game settings
+    customDisciplines = customDisciplines.filter(discipline => (discipline.id !== id))
+    game.settings.set('vtm5e', 'customDisciplines', customDisciplines)
   }
 }
