@@ -54,8 +54,8 @@ export class VampireActorSheet extends GhoulActorSheet {
 
     // Define various blood potency values
     actorData.system.bloodPotencyValue = parseInt(actor.system.blood.potency)
-    sheetData.blood_potency_text = getBloodPotencyText(actorData.system.bloodPotencyValue)
-    actorData.system.bloodPotency = getBloodPotencyValues(actorData.system.bloodPotencyValue)
+    sheetData.blood_potency_text = await getBloodPotencyText(actorData.system.bloodPotencyValue)
+    actorData.system.bloodPotency = await getBloodPotencyValues(actorData.system.bloodPotencyValue)
 
     // Handle adding blood potency bonuses
     actorData.system.blood.bonuses = [
