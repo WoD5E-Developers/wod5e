@@ -2251,9 +2251,14 @@ prose-mirror .editor-menu button {
 #chat-log .message {
   border-top: 2px double var(--system-color-6);
 }
-.chat-message {
+.chat-message.whisper {
+  background-color: var(--system-color-11);
+}
+.chat-message.blind {
   background-color: var(--system-color-10);
-  background-blend-mode: multiply;
+}
+.chat-message {
+  background-color: var(--system-color-7);
   color: var(--system-color-6);
 }
 .chat-message .message-header {
