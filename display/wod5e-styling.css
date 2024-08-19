@@ -805,6 +805,8 @@ h3.item-name {
 }
 .actor.sheet.vampire prose-mirror .editor-content {
   scrollbar-color: var(--vampire-color-2) var(--color-scrollbar-track);
+  max-height: 150px;
+  font-size: 10pt;
 }
 .actor.sheet.vampire .tab.blood .resource-label {
   font-size: 15pt;
@@ -859,8 +861,11 @@ h3.item-name {
 .actor.sheet.vampire .tab.disciplines .disciplines-list {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  max-width: 350px;
   margin: 0px 10px 10px 10px;
+}
+.actor.sheet.vampire .tab.disciplines .disciplines-list .category.discipline {
+  max-width: 500px;
 }
 .actor.sheet.vampire .tab.disciplines .disciplines-list .item-header {
   border-bottom: 1px solid var(--system-color-5);
