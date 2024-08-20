@@ -211,11 +211,14 @@
         "appearance": "",
         "notes": "",
         "privatenotes": "",
-        "limited": {
-          "biography": true,
-          "appearance": true,
-          "touchstones": false,
-          "tenets": false
+        "settings": {
+          "headerbg": "",
+          "limited": {
+            "biography": true,
+            "appearance": true,
+            "touchstones": false,
+            "tenets": false
+          }
         },
         "generaldifficulty": {
           "strongest": 0,
