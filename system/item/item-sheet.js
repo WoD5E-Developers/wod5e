@@ -102,6 +102,13 @@ export class WoDItemSheet extends ItemSheet {
 
     data.diceOptions = await getDicepoolList(item)
 
+    data.featureTypes = {
+      merit: 'WOD5E.ItemsList.Merit',
+      flaw: 'WOD5E.ItemsList.Flaw',
+      background: 'WOD5E.ItemsList.Background',
+      boon: 'WOD5E.ItemsList.Boon',
+    }
+
     return data
   }
 
