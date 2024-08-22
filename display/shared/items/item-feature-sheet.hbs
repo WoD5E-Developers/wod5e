@@ -26,12 +26,20 @@
 
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
-            <div class="resource grid grid-4col flex-center">
-                <label class="resource-label">{{localize "WOD5E.ItemsList.FeatureType"}}: </label>
+            <div class="grid grid-4col flex-center">
+                <label class="resource-label">
+                    <b>
+                        {{localize "WOD5E.ItemsList.FeatureType"}}:
+                    </b>
+                </label>
                 <select name="system.featuretype" data-type="String">
                     {{selectOptions featureTypes selected=item.system.featuretype localize=true}}
                 </select>
-                <label class="resource-label">{{localize "WOD5E.ItemsList.Points"}}: </label>
+                <label class="resource-label">
+                    <b>
+                        {{localize "WOD5E.ItemsList.Points"}}:
+                    </b>
+                </label>
                 <input type="number" name="system.points" value="{{item.system.points}}" />
             </div>
         </div>
