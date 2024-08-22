@@ -107,7 +107,7 @@ export class SPCActorSheet extends WoDActor {
     const exceptionaldicepools = []
 
     // Prepare items
-    super._prepareItems(sheetData)
+    await super._prepareItems(sheetData)
 
     // Loop through each entry in the skills list, get the data (if available), and then push to the containers
     const skillsList = Skills.getList({})

@@ -50,7 +50,7 @@ export class HunterActorSheet extends WoDActor {
   /** Prepare item data for the Hunter actor */
   async _prepareItems (sheetData) {
     // Prepare items
-    super._prepareItems(sheetData)
+    await super._prepareItems(sheetData)
 
     // Top-level variables
     const actorData = sheetData.actor

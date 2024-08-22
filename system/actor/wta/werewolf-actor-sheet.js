@@ -61,10 +61,10 @@ export class WerewolfActorSheet extends WoDActor {
 
   async _prepareItems (sheetData) {
     // Prepare items
-    super._prepareItems(sheetData)
+    await super._prepareItems(sheetData)
 
     // Prepare Werewolf-specific items
-    _prepareWerewolfItems(this.actor, sheetData)
+    await _prepareWerewolfItems(this.actor, sheetData)
   }
 
   /* -------------------------------------------- */

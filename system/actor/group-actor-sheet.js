@@ -118,7 +118,7 @@ export class GroupActorSheet extends WoDActor {
   /** Prepare item data for the Group actor */
   async _prepareItems (sheetData) {
     // Prepare items
-    super._prepareItems(sheetData)
+    await super._prepareItems(sheetData)
 
     return sheetData
   }
