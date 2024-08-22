@@ -111,11 +111,11 @@ export class WoDActor extends ActorSheet {
     const features = {
       background: [],
       merit: [],
-      flaw: []
+      flaw: [],
+      boon: []
     }
 
     // Initialize containers.
-    const boons = []
     const customRolls = []
     const equipment = []
 
@@ -225,11 +225,11 @@ export class WoDActor extends ActorSheet {
         // Append to equipment
         equipment[i.system.equipmentType].push(i)
       } else if (i.type === 'feature') {
+        // Check the featuretype field and set a default
+        const featuretype = i.system.featuretype in WOD5E.Features.getList() ? i.system.featuretype : 'background'
+
         // Append to features
-        features[i.system.featuretype].push(i)
-      } else if (i.type === 'boon') {
-        // Append to boons
-        boons.push(i)
+        features[featuretype].push(i)
       } else if (i.type === 'customRoll') {
         // Append to custom rolls
         customRolls.push(i)
@@ -239,7 +239,6 @@ export class WoDActor extends ActorSheet {
     // Assign and return
     actorData.system.attributes_list = attributes
     actorData.system.skills_list = skills
-    actorData.system.boons = boons
     actorData.system.customRolls = customRolls
     actorData.system.equipment = equipment
     actorData.system.features = features

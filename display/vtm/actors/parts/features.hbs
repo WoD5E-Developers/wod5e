@@ -12,46 +12,6 @@
         <div class="features-list item-list">
             <!-- Core features -->
             {{> "systems/vtm5e/display/shared/actors/parts/core-features.hbs"}}
-
-            <!-- Boons List -->
-            {{#if hasBoons}}
-                <div class="boons category">
-                    <div class="flexrow item-header">
-                        <div class="item-name">
-                            {{localize "WOD5E.ItemsList.Boons"}}
-                        </div>
-                        <!-- Item controls for the whole boon section -->
-                        <div class="item-controls">
-                            <!-- Add new boon -->
-                            <a class="item-control item-create" title="{{localize 'WOD5E.Add'}}" data-type="feature" data-subtype="boon">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                        </div>
-                    </div>
-                    {{#each actor.system.boons as |boon key|}}
-                        <div class="flexrow boon item" data-item-id="{{boon._id}}">
-                            <div class="item-image">
-                                <img src="{{boon.img}}">
-                            </div>
-                            <div class="item-name">{{boon.name}}</div>
-                            <div class="item-controls">
-                                <!-- Icon to edit the boon -->
-                                <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <!-- Icon to display the boon in chat -->
-                                <a class="item-control item-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
-                                    <i class="fas fa-comment-alt"></i>
-                                </a>
-                                <!-- Icon to delete the boon -->
-                                <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </div>
-                        </div>
-                    {{/each}}
-                </div>
-            {{/if}}
         </div>
     </div>
 </div>
