@@ -57,8 +57,8 @@ export class WoDActor extends ActorSheet {
     data.locked = actorData.locked
 
     if (this.object.type !== 'group') {
-      _onHealthChange(actor)
-      _onWillpowerChange(actor)
+      await _onHealthChange(actor)
+      await _onWillpowerChange(actor)
     }
 
     data.displayBanner = game.settings.get('vtm5e', 'actorBanner')
