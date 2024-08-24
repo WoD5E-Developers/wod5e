@@ -44,14 +44,14 @@ export class ActorInfo extends Actor {
         await actor.update({
           // Set the overrideOwnership to false if the default is anything but limited
           // Set to false when ownership default is limited
-          'flags.overrideOwnership': data.ownership.default !== 1
+          'flags.overrideOwnership': data.ownership.default !== CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED
         })
       }
 
       // If we're allowed to override ownership or it's not already set, set default ownership to limited
       if (actor?.flags?.overrideOwnership || actor?.flags?.overrideOwnership === undefined) {
         await actor.update({
-          'ownership.default': 1
+          'ownership.default': CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED
         })
       }
     }
