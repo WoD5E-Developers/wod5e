@@ -37,7 +37,9 @@ export class ActorInfo extends Actor {
       // Update things here
       actor.update({
         'prototypeToken.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-        ownership: { default: 1 }
+        ownership: {
+          default: data.ownership.default !== 1 ? data.ownership.default : 1
+        }
       })
     }
 
