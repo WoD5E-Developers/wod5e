@@ -13,7 +13,7 @@ export const _onRouseCheck = async function (actor, item) {
   // Vampires roll rouse checks
   if (actor.type === 'vampire') {
     const potency = actor.type === 'vampire' ? actor.system.blood.potency : 0
-    const rouseRerolls = potencyToRouse(potency, level)
+    const rouseRerolls = await potencyToRouse(potency, level)
 
     // Handle getting any situational modifiers
     const activeBonuses = await getActiveBonuses({
