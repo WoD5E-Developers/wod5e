@@ -32,15 +32,28 @@ export class ActorInfo extends Actor {
     // Only run through this for the storyteller
     if (!game.user.isGM) return
 
-    // If the character is a player, update disposition to friendly
+    // If the character is a player...
     if (actor?.hasPlayerOwner && actor.type !== 'group') {
-      // Update things here
-      actor.update({
-        'prototypeToken.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-        ownership: {
-          default: data.ownership.default !== 1 ? data.ownership.default : 1
-        }
+      // Update disposition to friendly
+      await actor.update({
+        'prototypeToken.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY
       })
+
+      // If this includes a change to ownership, set overrideOwnership
+      if (data?.ownership?.default) {
+        await actor.update({
+          // Set the overrideOwnership to false if the default is anything but limited
+          // Set to false when ownership default is limited
+          'flags.overrideOwnership': data.ownership.default !== 1
+        })
+      }
+
+      // If we're allowed to override ownership or it's not already set, set default ownership to limited
+      if (actor?.flags?.overrideOwnership || actor?.flags?.overrideOwnership === undefined) {
+        await actor.update({
+          'ownership.default': 1
+        })
+      }
     }
 
     return data
