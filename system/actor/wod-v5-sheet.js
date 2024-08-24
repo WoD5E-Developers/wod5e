@@ -8,6 +8,8 @@ import { Skills } from '../api/def/skills.js'
 import { WOD5eDice } from '../scripts/system-rolls.js'
 import { _onRollItem } from './scripts/item-roll.js'
 import { _onAddExperience } from './scripts/experience.js'
+import { _onHealthChange } from './scripts/on-health-change.js'
+import { _onWillpowerChange } from './scripts/on-willpower-change.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -48,14 +50,15 @@ export class WoDActor extends ActorSheet {
   /** @override */
   async getData () {
     const data = await super.getData()
+    const actor = this.actor
     const actorData = this.object.system
     data.isCharacter = this.isCharacter
     data.hasBoons = this.hasBoons
     data.locked = actorData.locked
 
     if (this.object.type !== 'group') {
-      this._onHealthChange()
-      this._onWillpowerChange()
+      _onHealthChange(actor)
+      _onWillpowerChange(actor)
     }
 
     data.displayBanner = game.settings.get('vtm5e', 'actorBanner')
@@ -488,44 +491,6 @@ export class WoDActor extends ActorSheet {
     // Add the dialog to the list of apps on the actor
     // This re-renders the dialog every actor update
     actor.apps[SkillEditDialog.appId] = SkillEditDialog
-  }
-
-  // Handle changes to health
-  _onHealthChange () {
-    // Top-level variables
-    const actor = this.actor
-
-    // Define the healthData
-    const healthData = actor.system.health
-
-    // Derive the character's "health value" by taking
-    // the sum of the current aggravated and superficial
-    // damage taken and subtracting the max by that;
-    // superficial damage is reduced by half to represent
-    // its lesser effect
-    const derivedHealth = healthData.max - (healthData.aggravated + (healthData.superficial / 2))
-
-    // Update the actor's health.value
-    actor.update({ 'system.health.value': derivedHealth })
-  }
-
-  // Handle changes to willpower
-  _onWillpowerChange () {
-    // Top-level variables
-    const actor = this.actor
-
-    // Define the healthData
-    const willpowerData = actor.system.willpower
-
-    // Derive the character's "willpower value" by taking
-    // the sum of the current aggravated and superficial
-    // damage taken and subtracting the max by that;
-    // superficial damage is reduced by half to represent
-    // its lesser effect
-    const derivedWillpower = willpowerData.max - (willpowerData.aggravated + (willpowerData.superficial / 2))
-
-    // Update the actor's health.value
-    actor.update({ 'system.willpower.value': derivedWillpower })
   }
 
   // Roll Handlers
