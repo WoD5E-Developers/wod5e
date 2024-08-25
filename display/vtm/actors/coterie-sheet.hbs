@@ -3,8 +3,7 @@
     <header class="actor-header" {{#if actor.system.settings.headerbg}}style="background: url({{actor.system.settings.headerbg}}) center;"{{/if}}>
         {{> "systems/vtm5e/display/shared/actors/parts/group/header-profile.hbs"}}
         <div>
-            <div class="flexrow coterie-features">
-                <div class="flexcol">
+            <div class="flexrow coterie-features grid-2col">
                     <div class="flex-group-center chasse">
                         <div class="flexrow field-header">
                             <label for="system.chasse.value" class="resource-label">{{localize "WOD5E.VTM.Chasse"}}</label>
@@ -31,8 +30,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="flexcol">
                     {{#ifgr actor.system.chasse.value 0}}
                         <div class="flex-group-center hunting-difficulty">
                             <div class="flexrow field-header">
@@ -58,7 +55,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </header>
