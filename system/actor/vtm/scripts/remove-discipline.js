@@ -1,4 +1,4 @@
-/** Handle adding a new discipline to the sheet */
+/** Handle removing a discipline from an actor */
 export const _onRemoveDiscipline = async function (event) {
   event.preventDefault()
 
