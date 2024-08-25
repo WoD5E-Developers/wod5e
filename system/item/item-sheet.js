@@ -106,7 +106,7 @@ export class WoDItemSheet extends ItemSheet {
       merit: 'WOD5E.ItemsList.Merit',
       flaw: 'WOD5E.ItemsList.Flaw',
       background: 'WOD5E.ItemsList.Background',
-      boon: 'WOD5E.ItemsList.Boon',
+      boon: 'WOD5E.ItemsList.Boon'
     }
 
     return data

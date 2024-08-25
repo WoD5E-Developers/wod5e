@@ -14,9 +14,9 @@ export const _onPlayerUpdate = async function (actor, data) {
 
     // If this includes a change to ownership, set overrideOwnership
     if (data?.ownership?.default) {
-        // Set the overrideOwnership to false if the default is anything but limited
-        // Set to false when ownership default is limited
-        playerUpdates.flags.overrideOwnership = data.ownership.default !== CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED
+      // Set the overrideOwnership to false if the default is anything but limited
+      // Set to false when ownership default is limited
+      playerUpdates.flags.overrideOwnership = data.ownership.default !== CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED
     }
 
     // If we're allowed to override ownership or it's not already set, set default ownership to limited
@@ -69,7 +69,7 @@ export const _onGroupUpdate = async function (group, data) {
 
               // If the override flag is true or not defined AND the ownership isn't already set to Limited
               // Then update the ownership for this player to Limited
-              if (overrideFlag === undefined || overrideFlag === true && member.ownership[key] !== CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED) {
+              if ((overrideFlag === undefined || overrideFlag === true) && (member.ownership[key] !== CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED)) {
                 console.log(`Setting ownership for ${user.name} to limited`)
                 groupUpdates.ownership[key] = CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED
               }

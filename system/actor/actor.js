@@ -1,7 +1,6 @@
 /* global Actor, game, foundry */
 
-import { _onPlayerUpdate } from './scripts/ownership-updates.js'
-import { _onGroupUpdate } from './scripts/ownership-updates.js'
+import { _onPlayerUpdate, _onGroupUpdate } from './scripts/ownership-updates.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
