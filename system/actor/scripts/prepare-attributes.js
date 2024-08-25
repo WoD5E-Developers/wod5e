@@ -1,6 +1,6 @@
 import { Attributes } from '../../api/def/attributes.js'
 
-export const prepareAttributes = async function (actor, actorData) {
+export const prepareAttributes = async function (actor) {
   const attributes = {
     physical: [],
     social: [],
@@ -9,7 +9,7 @@ export const prepareAttributes = async function (actor, actorData) {
 
   // Loop through each entry in the attributes list, get the data (if available), and then push to the containers
   const attributesList = Attributes.getList({})
-  const actorAttributes = actorData.system?.attributes
+  const actorAttributes = actor.system?.attributes
 
   if (actorAttributes) {
     // Clean up non-existent attributes, such as custom ones that no longer exist

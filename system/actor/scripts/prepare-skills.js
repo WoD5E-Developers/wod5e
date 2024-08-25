@@ -1,6 +1,6 @@
 import { Skills } from '../../api/def/skills.js'
 
-export const prepareSkills = async function (actor, actorData) {
+export const prepareSkills = async function (actor) {
   const skills = {
     physical: [],
     social: [],
@@ -9,7 +9,7 @@ export const prepareSkills = async function (actor, actorData) {
 
   // Loop through each entry in the skills list, get the data (if available), and then push to the containers
   const skillsList = Skills.getList({})
-  const actorSkills = actorData.system?.skills
+  const actorSkills = actor.system?.skills
 
   if (actorSkills) {
     // Clean up non-existent skills, such as custom ones that no longer exist

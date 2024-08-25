@@ -140,8 +140,8 @@ export class WoDActor extends ActorSheet {
     }
 
     // Assign and return
-    actorData.system.attributes_list = await prepareAttributes(actor, actorData)
-    actorData.system.skills_list = await prepareSkills(actor, actorData)
+    actorData.system.attributes = await prepareAttributes(actor)
+    actorData.system.skills = await prepareSkills(actor)
     actorData.system.customRolls = customRolls
     actorData.system.equipment = equipment
     actorData.system.features = features
