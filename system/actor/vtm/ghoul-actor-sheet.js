@@ -1,10 +1,8 @@
 /* global game, foundry */
 
 import { MortalActorSheet } from '../mortal-actor-sheet.js'
-import { prepareDisciplines } from './scripts/prepare-disciplines.js'
-import { _onAddDiscipline } from './scripts/add-discipline.js'
-import { _onRemoveDiscipline } from './scripts/remove-discipline.js'
-import { _onDisciplineToChat } from './scripts/discipline-to-chat.js'
+import { prepareDisciplines } from './scripts/prepare-data.js'
+import { _onAddDiscipline, _onRemoveDiscipline, _onDisciplineToChat } from './scripts/disciplines.js'
 
 /**
  * Extend the basic ActorSheet with some very simple modifications

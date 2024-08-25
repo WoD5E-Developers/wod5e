@@ -1,4 +1,4 @@
-/* global game, Dialog, WOD5E */
+/* global game, Dialog, WOD5E, renderTemplate, ChatMessage */
 
 /** Handle adding a new edge to the sheet */
 export const _onAddEdge = async function (event) {
@@ -57,4 +57,40 @@ export const _onAddEdge = async function (event) {
   }, {
     classes: ['wod5e', 'dialog', 'hunter', 'dialog']
   }).render(true)
+}
+
+/** Handle removing an Edge from an actor */
+export const _onRemoveEdge = async function (event) {
+  event.preventDefault()
+
+  // Top-level variables
+  const actor = this.actor
+  const element = event.currentTarget
+  const dataset = Object.assign({}, element.dataset)
+  const edge = dataset.edge
+
+  await actor.update({
+    [`system.edges.${edge}.visible`]: false
+  })
+}
+
+/** Post an Edge description to the chat */
+export const _onEdgeToChat = async function (event) {
+  event.preventDefault()
+
+  // Top-level variables
+  const actor = this.actor
+  const element = event.currentTarget
+  const dataset = Object.assign({}, element.dataset)
+  const edge = actor.system.edges[dataset.edge]
+
+  await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+    name: game.i18n.localize(edge.name),
+    img: 'icons/svg/dice-target.svg',
+    description: edge.description
+  }).then(html => {
+    ChatMessage.create({
+      content: html
+    })
+  })
 }

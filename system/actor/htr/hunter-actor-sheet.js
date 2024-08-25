@@ -1,9 +1,7 @@
 /* global game, foundry, TextEditor, WOD5E, WOD5E */
 
 import { WoDActor } from '../wod-v5-sheet.js'
-import { _onAddEdge } from './scripts/add-edge.js'
-import { _onRemoveEdge } from './scripts/remove-edge.js'
-import { _onEdgeToChat } from './scripts/edge-to-chat.js'
+import { _onAddEdge, _onRemoveEdge, _onEdgeToChat } from './scripts/edges.js'
 import { _onToggleDespair } from './scripts/toggle-despair.js'
 
 /**
