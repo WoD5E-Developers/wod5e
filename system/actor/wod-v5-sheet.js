@@ -106,6 +106,16 @@ export class WoDActor extends ActorSheet {
     const actor = this.actor
     const actorData = sheetData.actor
 
+    // Handle attribute preparation
+    const { attributes, sortedAttributes } = await prepareAttributes(actor)
+    actorData.system.attributes = attributes
+    actorData.system.sortedAttributes = sortedAttributes
+
+    // Handle skill preparation
+    const { skills, sortedSkills } = await prepareSkills(actor)
+    actorData.system.skills = skills
+    actorData.system.sortedSkills = sortedSkills
+
     const features = {
       background: [],
       merit: [],
@@ -139,9 +149,7 @@ export class WoDActor extends ActorSheet {
       }
     }
 
-    // Assign and return
-    actorData.system.attributes = await prepareAttributes(actor)
-    actorData.system.skills = await prepareSkills(actor)
+    // Assign items to their containers in the actor data
     actorData.system.customRolls = customRolls
     actorData.system.equipment = equipment
     actorData.system.features = features
