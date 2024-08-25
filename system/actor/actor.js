@@ -1,4 +1,7 @@
-/* global Actor, game, foundry, CONST */
+/* global Actor, game, foundry */
+
+import { _onPlayerUpdate } from './scripts/ownership-updates.js'
+import { _onGroupUpdate } from './scripts/ownership-updates.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -32,29 +35,11 @@ export class ActorInfo extends Actor {
     // Only run through this for the storyteller
     if (!game.user.isGM) return
 
-    // If the character is a player...
-    if (actor?.hasPlayerOwner && actor.type !== 'group') {
-      // Update disposition to friendly
-      await actor.update({
-        'prototypeToken.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY
-      })
+    // Handle data updates
+    await _onPlayerUpdate(actor, data)
+    await _onGroupUpdate(actor, data)
 
-      // If this includes a change to ownership, set overrideOwnership
-      if (data?.ownership?.default) {
-        await actor.update({
-          // Set the overrideOwnership to false if the default is anything but limited
-          // Set to false when ownership default is limited
-          'flags.overrideOwnership': data.ownership.default !== CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED
-        })
-      }
-
-      // If we're allowed to override ownership or it's not already set, set default ownership to limited
-      if (actor?.flags?.overrideOwnership || actor?.flags?.overrideOwnership === undefined) {
-        await actor.update({
-          'ownership.default': CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED
-        })
-      }
-    }
+    await actor.update(data)
 
     return data
   }
