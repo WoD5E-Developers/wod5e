@@ -51,10 +51,11 @@ export const _onLostTheWolf = async function (actor) {
   }).render(true)
 }
 
-export const _onShiftForm = async function (actor, event) {
+export const _onShiftForm = async function (event) {
   event.preventDefault()
 
   // Top-level variables
+  const actor = this.actor
   const element = event.currentTarget
   const dataset = Object.assign({}, element.dataset)
   const form = dataset.form
@@ -124,12 +125,14 @@ export const handleFormChange = async function (actor, form, diceCount) {
   }
 }
 
-export const _onFormToChat = async function (actor, event) {
+export const _onFormToChat = async function (event) {
   event.preventDefault()
 
   // Top-level variables
-  const header = event.currentTarget
-  const form = header.dataset.form
+  const actor = this.actor
+  const element = event.currentTarget
+  const dataset = Object.assign({}, element.dataset)
+  const form = dataset.form
 
   // Secondary variables
   const formData = actor.system.forms[form]
@@ -157,12 +160,14 @@ export const _onFormToChat = async function (actor, event) {
   event.currentTarget.blur()
 }
 
-export const _onFormEdit = async function (actor, event) {
+export const _onFormEdit = async function (event) {
   event.preventDefault()
 
   // Top-level variables
-  const header = event.currentTarget
-  const form = header.dataset.form
+  const actor = this.actor
+  const element = event.currentTarget
+  const dataset = Object.assign({}, element.dataset)
+  const form = dataset.form
 
   // Secondary variables
   const formData = actor.system.forms[form]

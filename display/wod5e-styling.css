@@ -23,9 +23,6 @@
 .actor.sheet.hunter prose-mirror .editor-menu button:hover {
   background-color: var(--hunter-color-1);
 }
-.actor.sheet.hunter prose-mirror li.text:not(:has(.format)) {
-  display: none;
-}
 .actor.sheet.hunter prose-mirror .editor-content {
   scrollbar-color: var(--hunter-color-2) var(--color-scrollbar-track);
 }
@@ -414,9 +411,13 @@
 }
 /* ProseMirror Alterations */
 prose-mirror .editor-menu {
-  height: 30px;
+  height: 35px;
   padding: 2px;
   border-radius: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: flex;
+  flex-flow: nowrap;
 }
 .prosemirror menu .pm-dropdown {
   background: transparent;
@@ -566,13 +567,9 @@ p.roll-label.uppercase {
 .willpower-reroll .die {
   flex: 0;
 }
-.willpower-reroll .selected::after {
-  position: absolute;
-  font-size: 35px;
-  font-weight: 700;
-  margin-left: -38px;
-  margin-top: 0;
-  content: "⟳";
+.willpower-reroll .selected img {
+  border: 2px solid var(--system-color-3);
+  filter: invert(1);
 }
 h3.item-name {
   border-bottom: 0;
@@ -800,11 +797,10 @@ h3.item-name {
 .actor.sheet.vampire prose-mirror .editor-menu button:hover {
   background-color: var(--vampire-color-2);
 }
-.actor.sheet.vampire prose-mirror li.text:not(:has(.format)) {
-  display: none;
-}
 .actor.sheet.vampire prose-mirror .editor-content {
   scrollbar-color: var(--vampire-color-2) var(--color-scrollbar-track);
+  max-height: 150px;
+  font-size: 10pt;
 }
 .actor.sheet.vampire .tab.blood .resource-label {
   font-size: 15pt;
@@ -859,8 +855,11 @@ h3.item-name {
 .actor.sheet.vampire .tab.disciplines .disciplines-list {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  max-width: 350px;
   margin: 0px 10px 10px 10px;
+}
+.actor.sheet.vampire .tab.disciplines .disciplines-list .category.discipline {
+  max-width: 500px;
 }
 .actor.sheet.vampire .tab.disciplines .disciplines-list .item-header {
   border-bottom: 1px solid var(--system-color-5);
@@ -1005,9 +1004,6 @@ h3.item-name {
 }
 .actor.sheet.werewolf prose-mirror .editor-menu button:hover {
   background-color: var(--werewolf-color-2);
-}
-.actor.sheet.werewolf prose-mirror li.text:not(:has(.format)) {
-  display: none;
 }
 .actor.sheet.werewolf prose-mirror .editor-content {
   scrollbar-color: var(--werewolf-color-2) var(--color-scrollbar-track);
@@ -1443,6 +1439,7 @@ body.uk .actor.sheet {
 .actor.sheet .tab.notepad .note-container {
   padding: 3px;
   margin: 5px;
+  width: 50%;
 }
 .actor.sheet .tab.notepad .note-container .field-header {
   font-size: 16pt;
@@ -1581,7 +1578,6 @@ body.uk .actor.sheet {
 .actor.sheet .item-list .category .item .item-image img {
   border-radius: 50%;
   padding: 2px;
-  max-width: 25px;
 }
 .actor.sheet .item-list .category .item .item-header {
   font-size: 16pt;
@@ -1617,7 +1613,10 @@ body.uk .actor.sheet {
 .actor.sheet .item-image img {
   border-radius: 50%;
   padding: 2px;
+  min-width: 25px;
+  min-height: 25px;
   max-width: 25px;
+  max-height: 25px;
 }
 .actor.sheet .resource-header {
   display: block;
@@ -1803,6 +1802,12 @@ body.uk .actor.sheet {
   font-size: 15pt;
   font-weight: bold;
 }
+.group.sheet .coterie-features .hunting-difficulty,
+.group.sheet .coterie-features .lien,
+.group.sheet .coterie-features .chasse,
+.group.sheet .coterie-features .portilion {
+  width: 200px;
+}
 
 /* Grids */
 .wod5e .grid,
@@ -1884,6 +1889,9 @@ body.uk .actor.sheet {
 }
 .item.sheet .item-header input[type="number"] {
   max-width: 35px;
+}
+.item.sheet .tabs .item {
+  font-weight: bold;
 }
 .item.sheet .tab.dicepool .remove-dice {
   flex-grow: 0;
@@ -2246,9 +2254,14 @@ prose-mirror .editor-menu button {
 #chat-log .message {
   border-top: 2px double var(--system-color-6);
 }
-.chat-message {
+.chat-message.whisper {
+  background-color: var(--system-color-11);
+}
+.chat-message.blind {
   background-color: var(--system-color-10);
-  background-blend-mode: multiply;
+}
+.chat-message {
+  background-color: var(--system-color-7);
   color: var(--system-color-6);
 }
 .chat-message .message-header {

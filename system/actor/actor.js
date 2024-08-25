@@ -1,4 +1,6 @@
-/* global Actor, game, foundry, CONST */
+/* global Actor, game, foundry */
+
+import { _onPlayerUpdate, _onGroupUpdate } from './scripts/ownership-updates.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -32,14 +34,11 @@ export class ActorInfo extends Actor {
     // Only run through this for the storyteller
     if (!game.user.isGM) return
 
-    // If the character is a player, update disposition to friendly
-    if (actor?.hasPlayerOwner && actor.type !== 'group') {
-      // Update things here
-      actor.update({
-        'prototypeToken.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-        ownership: { default: 1 }
-      })
-    }
+    // Handle data updates
+    await _onPlayerUpdate(actor, data)
+    await _onGroupUpdate(actor, data)
+
+    await actor.update(data)
 
     return data
   }

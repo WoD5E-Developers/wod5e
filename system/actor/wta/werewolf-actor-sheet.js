@@ -1,8 +1,8 @@
-/* global game, foundry, renderTemplate, ChatMessage */
+/* global game, foundry */
 
 import { WoDActor } from '../wod-v5-sheet.js'
 import { _prepareWerewolfItems, prepareGiftData, prepareRiteData } from './scripts/prepare-data.js'
-import { _onAddGift } from './scripts/gifts.js'
+import { _onAddGift, _onRemoveGift, _onGiftToChat } from './scripts/gifts.js'
 import { _onBeginFrenzy, _onEndFrenzy } from './scripts/frenzy.js'
 import { _onShiftForm, _onFormToChat, _onFormEdit } from './scripts/forms.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './scripts/balance.js'
@@ -61,10 +61,10 @@ export class WerewolfActorSheet extends WoDActor {
 
   async _prepareItems (sheetData) {
     // Prepare items
-    super._prepareItems(sheetData)
+    await super._prepareItems(sheetData)
 
     // Prepare Werewolf-specific items
-    _prepareWerewolfItems(this.actor, sheetData)
+    await _prepareWerewolfItems(this.actor, sheetData)
   }
 
   /* -------------------------------------------- */
@@ -77,44 +77,31 @@ export class WerewolfActorSheet extends WoDActor {
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return
 
-    // Top-level variables
-    const actor = this.actor
-
     // Add a new gift type to the sheet
-    html.find('.add-gift').click(_onAddGift.bind(actor, this))
+    html.find('.add-gift').click(_onAddGift.bind(this))
+
+    // Remove a gift type from the sheet
+    html.find('.gift-delete').click(_onRemoveGift.bind(this))
 
     // Frenzy buttons
-    html.find('.begin-frenzy').click(_onBeginFrenzy.bind(actor, this))
-    html.find('.end-frenzy').click(_onEndFrenzy.bind(actor, this))
+    html.find('.begin-frenzy').click(_onBeginFrenzy.bind(this))
+    html.find('.end-frenzy').click(_onEndFrenzy.bind(this))
 
     // Form change buttons
-    html.find('.change-form').click(_onShiftForm.bind(actor, this))
+    html.find('.change-form').click(_onShiftForm.bind(this))
 
     // Harano buttons
-    html.find('.harano-roll').click(_onHaranoRoll.bind(actor, this))
+    html.find('.harano-roll').click(_onHaranoRoll.bind(this))
     // Hauglosk buttons
-    html.find('.hauglosk-roll').click(_onHaugloskRoll.bind(actor, this))
+    html.find('.hauglosk-roll').click(_onHaugloskRoll.bind(this))
 
     // Form to chat buttons
-    html.find('.were-form-chat').click(_onFormToChat.bind(actor, this))
+    html.find('.were-form-chat').click(_onFormToChat.bind(this))
 
     // Form edit buttons
-    html.find('.were-form-edit').click(_onFormEdit.bind(actor, this))
+    html.find('.were-form-edit').click(_onFormEdit.bind(this))
 
     // Post Gift description to the chat
-    html.find('.gift-chat').click(ev => {
-      const data = $(ev.currentTarget)[0].dataset
-      const gift = actor.system.gifts[data.gift]
-
-      renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
-        name: game.i18n.localize(gift.name),
-        img: 'icons/svg/dice-target.svg',
-        description: gift.description
-      }).then(html => {
-        ChatMessage.create({
-          content: html
-        })
-      })
-    })
+    html.find('.gift-chat').click(_onGiftToChat.bind(this))
   }
 }

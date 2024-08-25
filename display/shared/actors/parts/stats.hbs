@@ -13,7 +13,7 @@
                     <div class="field-header">{{localize "WOD5E.SPC.Mental"}}</div>
                 </div>
                 <div class="stats-content">
-                    {{#each actor.system.attributes_list as |type key|}}
+                    {{#each actor.system.sortedAttributes as |type key|}}
                         <div class="attributes stats-list">
                             {{#each type as |attribute key|}}
                                 <div class="attribute">
@@ -35,7 +35,7 @@
             <label class="resource-header">{{localize "WOD5E.SkillsList.Skills"}}</label>
             <div class="stats-container skills">
                 <div class="stats-content">
-                    {{#each actor.system.skills_list as |type key|}}
+                    {{#each actor.system.sortedSkills as |type key|}}
                         <div class="skills stats-list">
                             {{#each type as |skill key|}}
                                 <div class="skill">

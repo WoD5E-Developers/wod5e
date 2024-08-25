@@ -42,7 +42,6 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/vtm/actors/parts/humanity.hbs',
     'systems/vtm5e/display/vtm/actors/parts/hunger.hbs',
     'systems/vtm5e/display/vtm/actors/parts/rouse.hbs',
-    'systems/vtm5e/display/vtm/actors/parts/features.hbs',
 
     // Werewolf Sheet Partials
     'systems/vtm5e/display/wta/actors/parts/gifts-rites.hbs',

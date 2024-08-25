@@ -1,6 +1,8 @@
-/* global game, foundry, renderTemplate, ChatMessage, TextEditor, WOD5E, Dialog, WOD5E */
+/* global game, foundry, TextEditor, WOD5E, WOD5E */
 
 import { WoDActor } from '../wod-v5-sheet.js'
+import { _onAddEdge, _onRemoveEdge, _onEdgeToChat } from './scripts/edges.js'
+import { _onToggleDespair } from './scripts/toggle-despair.js'
 
 /**
  * Extend the WOD5E ActorSheet with some very simple modifications
@@ -50,7 +52,7 @@ export class HunterActorSheet extends WoDActor {
   /** Prepare item data for the Hunter actor */
   async _prepareItems (sheetData) {
     // Prepare items
-    super._prepareItems(sheetData)
+    await super._prepareItems(sheetData)
 
     // Top-level variables
     const actorData = sheetData.actor
@@ -131,111 +133,16 @@ export class HunterActorSheet extends WoDActor {
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return
 
-    // Top-level variables
-    const actor = this.actor
-
     // Toggle despair
-    html.find('.despair-toggle').click(this._onToggleDespair.bind(this))
+    html.find('.despair-toggle').click(_onToggleDespair.bind(this))
 
     // Handle adding a new edge to the sheet
-    html.find('.add-edge').click(this._onAddEdge.bind(this))
+    html.find('.add-edge').click(_onAddEdge.bind(this))
+
+    // Handle removing an edge from the sheet
+    html.find('.remove-edge').click(_onRemoveEdge.bind(this))
 
     // Post Edge description to the chat
-    html.find('.edge-chat').click(async event => {
-      const data = $(event.currentTarget)[0].dataset
-      const edge = actor.system.edges[data.edge]
-
-      renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
-        name: game.i18n.localize(edge.name),
-        img: 'icons/svg/dice-target.svg',
-        description: edge.description
-      }).then(html => {
-        ChatMessage.create({
-          content: html
-        })
-      })
-    })
-  }
-
-  /** Handle adding a new edge to the sheet */
-  async _onAddEdge (event) {
-    event.preventDefault()
-
-    // Top-level variables
-    const actor = this.actor
-
-    // Secondary variables
-    const selectLabel = game.i18n.localize('WOD5E.HTR.SelectEdge')
-    const itemOptions = WOD5E.Edges.getList()
-
-    // Variables yet to be defined
-    let options = []
-    let edgeSelected
-
-    // Prompt a dialog to determine which edge we're adding
-    // Build the options for the select dropdown
-    for (const [key, value] of Object.entries(itemOptions)) {
-      options += `<option value="${key}">${value.displayName}</option>`
-    }
-
-    // Template for the dialog form
-    const template = `
-      <form>
-        <div class="form-group">
-          <label>${selectLabel}</label>
-          <select id="edgeSelect">${options}</select>
-        </div>
-      </form>`
-
-    // Define dialog buttons
-    const buttons = {
-      submit: {
-        icon: '<i class="fas fa-check"></i>',
-        label: game.i18n.localize('WOD5E.Add'),
-        callback: async (html) => {
-          edgeSelected = html.find('#edgeSelect')[0].value
-
-          // Make the edge visible
-          actor.update({ [`system.edges.${edgeSelected}.visible`]: true })
-        }
-      },
-      cancel: {
-        icon: '<i class="fas fa-times"></i>',
-        label: game.i18n.localize('WOD5E.Cancel')
-      }
-    }
-
-    // Display the dialog
-    new Dialog({
-      title: game.i18n.localize('WOD5E.Add'),
-      content: template,
-      buttons,
-      default: 'submit'
-    }, {
-      classes: ['wod5e', 'dialog', 'hunter', 'dialog']
-    }).render(true)
-  }
-
-  /** Handle toggling the depsair value */
-  async _onToggleDespair (event) {
-    event.preventDefault()
-
-    // Top-level variables
-    const actor = this.actor
-
-    // I really only do this so it's clear what we're doing here
-    const currentDespair = actor.system.despairActive
-    const newDespair = !currentDespair
-
-    // Have to do this silly thing in order to prevent old versions of the Hunter sheet from freaking out
-    // Basically we're tracking the boolean of true/false in the sheet code but making sure that
-    // old versions of the sheet continue to track it in binary 1 or 0.
-    // It's dumb, I know, and I hope to set up a migration function to fix it sometime
-    // but I don't want to delay this release more than I already had to-
-    if (newDespair) { // Set as "true"
-      actor.update({ 'system.despair.value': 1 })
-    } else { // Set as "false"
-      actor.update({ 'system.despair.value': 0 })
-    }
+    html.find('.edge-chat').click(_onEdgeToChat.bind(this))
   }
 }

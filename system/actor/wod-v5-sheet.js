@@ -1,11 +1,17 @@
 /* global DEFAULT_TOKEN, ChatMessage, ActorSheet, game, renderTemplate, Dialog, TextEditor, WOD5E, foundry */
 
+// Data preparation functions
+import { prepareSkills } from './scripts/prepare-skills.js'
+import { prepareAttributes } from './scripts/prepare-attributes.js'
+import { _onHealthChange } from './scripts/on-health-change.js'
+import { _onWillpowerChange } from './scripts/on-willpower-change.js'
+// Roll function
+import { WOD5eDice } from '../scripts/system-rolls.js'
 import { _onRoll } from './scripts/roll.js'
+// Resource functions
 import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange } from './scripts/counters.js'
 import { _onAddBonus, _onDeleteBonus, _onEditBonus } from './scripts/specialty-bonuses.js'
-import { Attributes } from '../api/def/attributes.js'
-import { Skills } from '../api/def/skills.js'
-import { WOD5eDice } from '../scripts/system-rolls.js'
+// Various button functions
 import { _onRollItem } from './scripts/item-roll.js'
 import { _onAddExperience } from './scripts/experience.js'
 
@@ -48,14 +54,15 @@ export class WoDActor extends ActorSheet {
   /** @override */
   async getData () {
     const data = await super.getData()
+    const actor = this.actor
     const actorData = this.object.system
     data.isCharacter = this.isCharacter
     data.hasBoons = this.hasBoons
     data.locked = actorData.locked
 
     if (this.object.type !== 'group') {
-      this._onHealthChange()
-      this._onWillpowerChange()
+      await _onHealthChange(actor)
+      await _onWillpowerChange(actor)
     }
 
     data.displayBanner = game.settings.get('vtm5e', 'actorBanner')
@@ -96,123 +103,29 @@ export class WoDActor extends ActorSheet {
      * @override
      */
   async _prepareItems (sheetData) {
+    const actor = this.actor
     const actorData = sheetData.actor
 
-    const attributes = {
-      physical: [],
-      social: [],
-      mental: []
-    }
-    const skills = {
-      physical: [],
-      social: [],
-      mental: []
-    }
+    // Handle attribute preparation
+    const { attributes, sortedAttributes } = await prepareAttributes(actor)
+    actorData.system.attributes = attributes
+    actorData.system.sortedAttributes = sortedAttributes
+
+    // Handle skill preparation
+    const { skills, sortedSkills } = await prepareSkills(actor)
+    actorData.system.skills = skills
+    actorData.system.sortedSkills = sortedSkills
+
     const features = {
       background: [],
       merit: [],
-      flaw: []
+      flaw: [],
+      boon: []
     }
 
     // Initialize containers.
-    const boons = []
     const customRolls = []
     const equipment = []
-
-    // Loop through each entry in the attributes list, get the data (if available), and then push to the containers
-    const attributesList = Attributes.getList({})
-    const actorAttributes = actorData.system?.attributes
-
-    if (actorAttributes) {
-      // Clean up non-existent attributes, such as custom ones that no longer exist
-      const validAttributes = new Set(Object.keys(attributesList))
-      for (const id of Object.keys(actorAttributes)) {
-        if (!validAttributes.has(id)) {
-          delete actorAttributes[id]
-        }
-      }
-
-      for (const [id, value] of Object.entries(attributesList)) {
-        let attributeData = {}
-
-        // If the actor has an attribute with the key, grab its current values
-        if (Object.prototype.hasOwnProperty.call(actorAttributes, id)) {
-          attributeData = Object.assign({
-            id,
-            value: actorAttributes[id].value
-          }, value)
-        } else { // Otherwise, add it to the actor and set it as some default data
-          await this.actor.update({ [`system.attributes.${id}`]: { value: 1 } })
-
-          attributeData = Object.assign({
-            id,
-            value: 1
-          }, value)
-        }
-
-        // Push to the container in the appropriate type
-        // as long as the attribute isn't "hidden"
-        if (!attributeData.hidden) {
-          if (!attributes[value.type]) attributes[value.type] = [] // Ensure the type exists
-          attributes[value.type].push(attributeData)
-        }
-      }
-    }
-
-    // Loop through each entry in the skills list, get the data (if available), and then push to the containers
-    const skillsList = Skills.getList({})
-    const actorSkills = actorData.system?.skills
-
-    if (actorSkills) {
-      // Clean up non-existent skills, such as custom ones that no longer exist
-      const validSkills = new Set(Object.keys(skillsList))
-      for (const id of Object.keys(actorSkills)) {
-        if (!validSkills.has(id)) {
-          delete actorSkills[id]
-        }
-      }
-
-      for (const [id, value] of Object.entries(skillsList)) {
-        let skillData = {}
-        let hasSpecialties = false
-        const specialtiesList = []
-
-        if (actorSkills[id]?.bonuses?.length > 0) {
-          hasSpecialties = true
-
-          for (const bonus of actorSkills[id].bonuses) {
-            specialtiesList.push(bonus.source)
-          }
-        }
-
-        // If the actor has a skill with the key, grab its current values
-        if (Object.prototype.hasOwnProperty.call(actorSkills, id)) {
-          skillData = Object.assign({
-            id,
-            value: actorSkills[id].value,
-            hasSpecialties,
-            specialtiesList,
-            macroid: actorSkills[id].macroid
-          }, value)
-        } else { // Otherwise, add it to the actor and set it as some default data
-          await this.actor.update({ [`system.skills.${id}`]: { value: 0 } })
-
-          skillData = Object.assign({
-            id,
-            value: 0,
-            hasSpecialties,
-            specialtiesList
-          }, value)
-        }
-
-        // Push to the container in the appropriate type
-        // as long as the skill isn't "hidden"
-        if (!skillData.hidden) {
-          if (!skills[value.type]) skills[value.type] = [] // Ensure the type exists
-          skills[value.type].push(skillData)
-        }
-      }
-    }
 
     // Iterate through items, allocating to containers
     for (const i of sheetData.items) {
@@ -225,21 +138,18 @@ export class WoDActor extends ActorSheet {
         // Append to equipment
         equipment[i.system.equipmentType].push(i)
       } else if (i.type === 'feature') {
+        // Check the featuretype field and set a default
+        const featuretype = i.system.featuretype in WOD5E.Features.getList() ? i.system.featuretype : 'background'
+
         // Append to features
-        features[i.system.featuretype].push(i)
-      } else if (i.type === 'boon') {
-        // Append to boons
-        boons.push(i)
+        features[featuretype].push(i)
       } else if (i.type === 'customRoll') {
         // Append to custom rolls
         customRolls.push(i)
       }
     }
 
-    // Assign and return
-    actorData.system.attributes_list = attributes
-    actorData.system.skills_list = skills
-    actorData.system.boons = boons
+    // Assign items to their containers in the actor data
     actorData.system.customRolls = customRolls
     actorData.system.equipment = equipment
     actorData.system.features = features
@@ -489,44 +399,6 @@ export class WoDActor extends ActorSheet {
     // Add the dialog to the list of apps on the actor
     // This re-renders the dialog every actor update
     actor.apps[SkillEditDialog.appId] = SkillEditDialog
-  }
-
-  // Handle changes to health
-  _onHealthChange () {
-    // Top-level variables
-    const actor = this.actor
-
-    // Define the healthData
-    const healthData = actor.system.health
-
-    // Derive the character's "health value" by taking
-    // the sum of the current aggravated and superficial
-    // damage taken and subtracting the max by that;
-    // superficial damage is reduced by half to represent
-    // its lesser effect
-    const derivedHealth = healthData.max - (healthData.aggravated + (healthData.superficial / 2))
-
-    // Update the actor's health.value
-    actor.update({ 'system.health.value': derivedHealth })
-  }
-
-  // Handle changes to willpower
-  _onWillpowerChange () {
-    // Top-level variables
-    const actor = this.actor
-
-    // Define the healthData
-    const willpowerData = actor.system.willpower
-
-    // Derive the character's "willpower value" by taking
-    // the sum of the current aggravated and superficial
-    // damage taken and subtracting the max by that;
-    // superficial damage is reduced by half to represent
-    // its lesser effect
-    const derivedWillpower = willpowerData.max - (willpowerData.aggravated + (willpowerData.superficial / 2))
-
-    // Update the actor's health.value
-    actor.update({ 'system.willpower.value': derivedWillpower })
   }
 
   // Roll Handlers

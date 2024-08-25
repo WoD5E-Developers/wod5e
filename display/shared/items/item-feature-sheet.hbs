@@ -19,23 +19,28 @@
     <section class="sheet-body">
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            <prose-mirror name="system.description" data-document-u-u-i-d="{{../actor.uuid}}" value="{{item.system.description}}" toggled="true">
+            <prose-mirror name="system.description" data-document-u-u-i-d="{{../actor.uuid}}" value="{{item.system.description}}"
+                toggled="true" compact="true">
                 {{{enrichedDescription}}}
             </prose-mirror>
         </div>
 
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
-            <div class="resource grid grid-4col flex-center">
-                <label class="resource-label">{{localize "WOD5E.ItemsList.FeatureType"}}: </label>
+            <div class="grid grid-4col flex-center">
+                <label class="resource-label">
+                    <b>
+                        {{localize "WOD5E.ItemsList.FeatureType"}}:
+                    </b>
+                </label>
                 <select name="system.featuretype" data-type="String">
-                    {{#select item.system.featuretype}}
-                    <option value="merit">{{localize "WOD5E.ItemsList.Merit"}}</option>
-                    <option value="flaw">{{localize "WOD5E.ItemsList.Flaw"}}</option>
-                    <option value="background">{{localize "WOD5E.ItemsList.Background"}}</option>
-                    {{/select}}
+                    {{selectOptions featureTypes selected=item.system.featuretype localize=true}}
                 </select>
-                <label class="resource-label">{{localize "WOD5E.ItemsList.Points"}}: </label>
+                <label class="resource-label">
+                    <b>
+                        {{localize "WOD5E.ItemsList.Points"}}:
+                    </b>
+                </label>
                 <input type="number" name="system.points" value="{{item.system.points}}" />
             </div>
         </div>

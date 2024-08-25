@@ -2,8 +2,11 @@
 
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 
-export const _onHaranoRoll = async function (actor, event) {
+export const _onHaranoRoll = async function (event) {
   event.preventDefault()
+
+  // Top-level variables
+  const actor = this.actor
 
   const harano = actor.system.balance.harano.value
   const hauglosk = actor.system.balance.hauglosk.value
@@ -20,8 +23,11 @@ export const _onHaranoRoll = async function (actor, event) {
   })
 }
 
-export const _onHaugloskRoll = async function (actor, event) {
+export const _onHaugloskRoll = async function (event) {
   event.preventDefault()
+
+  // Top-level variables
+  const actor = this.actor
 
   const harano = actor.system.balance.harano.value
   const hauglosk = actor.system.balance.hauglosk.value

@@ -19,15 +19,6 @@
           },
           "history": ""
         },
-        "settings": {
-          "headerbg": "",
-          "limited": {
-            "biography": true,
-            "appearance": true,
-            "touchstones": false,
-            "tenets": false
-          }
-        },
         "headers": {
           "concept":"",
           "chronicle":"",
@@ -211,12 +202,6 @@
         "appearance": "",
         "notes": "",
         "privatenotes": "",
-        "limited": {
-          "biography": true,
-          "appearance": true,
-          "touchstones": false,
-          "tenets": false
-        },
         "generaldifficulty": {
           "strongest": 0,
           "normal": 0
@@ -843,30 +828,41 @@
         "portillon": {
           "value": 0
         }
+      },
+      "settings": {
+        "settings": {
+          "headerbg": "",
+          "limited": {
+            "biography": true,
+            "appearance": true,
+            "touchstones": false,
+            "tenets": false
+          }
+        }
       }
     },
     "mortal": {
-      "templates": ["base"],
+      "templates": ["base", "settings"],
       "gamesystem": "mortal"
     },
     "vampire": {
-      "templates": ["base", "vampire_traits", "disciplines"],
+      "templates": ["base", "vampire_traits", "disciplines", "settings"],
       "gamesystem": "vampire"
     },
     "werewolf": {
-      "templates": ["base", "werewolf_traits", "renown", "werewolfForms", "gifts"],
+      "templates": ["base", "werewolf_traits", "renown", "werewolfForms", "gifts", "settings"],
       "gamesystem": "werewolf"
     },
     "hunter": {
-      "templates": ["base", "hunter_traits", "edges"],
+      "templates": ["base", "hunter_traits", "edges", "settings"],
       "gamesystem": "hunter"
     },
     "ghoul": {
-      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "settings"],
       "gamesystem": "vampire"
     },
     "group": {
-      "templates": ["cell_traits", "coterie_traits"],
+      "templates": ["cell_traits", "coterie_traits", "settings"],
       "groupType": "coterie",
       "biography": "",
       "equipment": "",
@@ -879,7 +875,7 @@
       "collapsed": true
     },
     "spc": {
-      "templates": ["abbreviated", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges"],
+      "templates": ["abbreviated", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
       "spcType": "mortal",
       "gamesystem": "mortal"
     }

@@ -25,12 +25,18 @@
                                     <a class="item-control edge-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-edge="{{key}}">
                                         <i class="fas fa-comment-alt"></i>
                                     </a>
+                                    <!-- Icon to delete the edge (as long as it doesn't have any perks) -->
+                                    {{#if (eq edge.perks.length 0)}}
+                                        <a class="item-control remove-edge" title="{{localize 'WOD5E.Delete'}}" data-edge="{{key}}">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    {{/if}}
                                 </div>
                             </div>
                         </div>
                         <div class="edge-description">
                             <prose-mirror name="system.edges.{{key}}.description" data-document-u-u-i-d="{{../actor.uuid}}" value="{{edge.description}}"
-                                toggled="true">
+                                toggled="true" compact="true">
                                 {{{edge.enrichedDescription}}}
                             </prose-mirror>
                         </div>

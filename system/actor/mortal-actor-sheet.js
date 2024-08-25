@@ -46,7 +46,7 @@ export class MortalActorSheet extends WoDActor {
   /** Prepare item data for the Mortal actor */
   async _prepareItems (sheetData) {
     // Prepare items
-    super._prepareItems(sheetData)
+    await super._prepareItems(sheetData)
 
     return sheetData
   }

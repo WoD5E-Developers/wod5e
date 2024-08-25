@@ -81,7 +81,7 @@ export class GroupActorSheet extends WoDActor {
   async getData () {
     // Top-level variables
     const data = await super.getData()
-    const actor = this.actor
+    const group = this.actor
 
     // Prepare items
     await this._prepareItems(data)
@@ -90,16 +90,16 @@ export class GroupActorSheet extends WoDActor {
     data.groupMembers = []
 
     // Push each group member's data to the groupMembers list
-    if (actor.system.members) {
-      actor.system.members.forEach(actorID => {
-        const actor = fromUuidSync(actorID)
-        data.groupMembers.push(actor)
+    if (group.system.members) {
+      group.system.members.forEach(async actorID => {
+        const member = fromUuidSync(actorID)
+        data.groupMembers.push(member)
       })
     }
 
     // Handle figuring out hunting difficulty
-    if (actor.system.groupType === 'coterie') {
-      data.huntingDifficulty = 7 - actor.system.chasse.value
+    if (group.system.groupType === 'coterie') {
+      data.huntingDifficulty = 7 - group.system.chasse.value
     }
 
     // Apply new CSS classes to the sheet, if necessary
@@ -118,7 +118,7 @@ export class GroupActorSheet extends WoDActor {
   /** Prepare item data for the Group actor */
   async _prepareItems (sheetData) {
     // Prepare items
-    super._prepareItems(sheetData)
+    await super._prepareItems(sheetData)
 
     return sheetData
   }
@@ -186,12 +186,6 @@ export class GroupActorSheet extends WoDActor {
 
     // Set the actor's group to the group's ID
     await actor.update({ 'system.group': group.id })
-
-    // Update the group's permissions to include the players as limited by default if the default ownership is "none"
-    // Otherwise keep whatever default ownership the storyteller has set
-    if (actor.hasPlayerOwner && group.ownership.default === 0) {
-      await group.update({ ownership: { default: 1 } })
-    }
 
     // Re-render the actors list
     await game.actors.render()

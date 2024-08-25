@@ -1,8 +1,10 @@
-/* global game, foundry, renderTemplate, ChatMessage */
+/* global game, foundry */
 
-import { WOD5eDice } from '../../scripts/system-rolls.js'
 import { GhoulActorSheet } from './ghoul-actor-sheet.js'
 import { getBloodPotencyValues, getBloodPotencyText } from './scripts/blood-potency.js'
+import { _onRemorseRoll } from './scripts/roll-remorse.js'
+import { _onEndFrenzy } from './scripts/end-frenzy.js'
+import { _onFrenzyRoll } from './scripts/frenzy-roll.js'
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -37,16 +39,13 @@ export class VampireActorSheet extends GhoulActorSheet {
     // Prepare items
     await this._prepareItems(data)
 
-    // Prepare discipline data
-    data.actor.system.disciplines = await this._prepareDisciplineData(data)
-
     return data
   }
 
   /** Prepare item data for the Vampire actor */
   async _prepareItems (sheetData) {
     // Prepare items
-    super._prepareItems(sheetData)
+    await super._prepareItems(sheetData)
 
     // Top-level variables
     const actorData = sheetData.actor
@@ -54,8 +53,8 @@ export class VampireActorSheet extends GhoulActorSheet {
 
     // Define various blood potency values
     actorData.system.bloodPotencyValue = parseInt(actor.system.blood.potency)
-    sheetData.blood_potency_text = getBloodPotencyText(actorData.system.bloodPotencyValue)
-    actorData.system.bloodPotency = getBloodPotencyValues(actorData.system.bloodPotencyValue)
+    sheetData.blood_potency_text = await getBloodPotencyText(actorData.system.bloodPotencyValue)
+    actorData.system.bloodPotency = await getBloodPotencyValues(actorData.system.bloodPotencyValue)
 
     // Handle adding blood potency bonuses
     actorData.system.blood.bonuses = [
@@ -96,92 +95,8 @@ export class VampireActorSheet extends GhoulActorSheet {
     if (!this.options.editable) return
 
     // Rollable gift buttons
-    html.find('.remorse-roll').click(this._onRemorseRoll.bind(this))
-    html.find('.frenzy-roll').click(this._onFrenzyRoll.bind(this))
-    html.find('.end-frenzy').click(this._onEndFrenzy.bind(this))
-  }
-
-  // Roll Handlers
-  async _onRemorseRoll (event) {
-    event.preventDefault()
-
-    // Top-level variables
-    const actor = this.actor
-
-    // Secondary variables
-    const humanity = actor.system.humanity.value
-    const stain = actor.system.humanity.stains
-    const dicePool = Math.max((10 - humanity - stain), 1)
-
-    WOD5eDice.Roll({
-      basicDice: dicePool,
-      title: game.i18n.localize('WOD5E.VTM.RollingRemorse'),
-      selectors: ['humanity'],
-      actor,
-      data: actor.system,
-      quickRoll: true,
-      disableAdvancedDice: true,
-      callback: (err, rollData) => {
-        if (err) console.log(err)
-
-        const hasSuccess = rollData.terms[0].results.some(result => result.success)
-
-        // Reduce humanity by 1 if the roll fails, otherwise reset stain to 0 in any other cases
-        if (hasSuccess) {
-          actor.update({ 'system.humanity.stains': 0 })
-        } else {
-          actor.update({ 'system.humanity.value': Math.max(humanity - 1, 0) })
-          actor.update({ 'system.humanity.stains': 0 })
-
-          renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
-            name: game.i18n.localize('WOD5E.VTM.RemorseFailed'),
-            img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
-            description: game.i18n.format('WOD5E.VTM.RemorseFailedDescription', {
-              actor: actor.name
-            })
-          }).then(html => {
-            ChatMessage.create({
-              content: html
-            })
-          })
-        }
-      }
-    })
-  }
-
-  async _onEndFrenzy (event) {
-    event.preventDefault()
-
-    // Top-level variables
-    const actor = this.actor
-
-    await actor.update({ 'system.frenzyActive': false })
-  }
-
-  async _onFrenzyRoll (event) {
-    event.preventDefault()
-
-    // Top-level variables
-    const actor = this.actor
-
-    // Secondary variables
-    const willpowerDicePool = this.getWillpowerDicePool(actor)
-    const humanity = actor.system.humanity.value
-    const dicePool = Math.max(willpowerDicePool + Math.floor(humanity / 3), 1)
-
-    WOD5eDice.Roll({
-      basicDice: dicePool,
-      title: game.i18n.localize('WOD5E.VTM.ResistingFrenzy'),
-      actor,
-      data: actor.system,
-      disableAdvancedDice: true,
-      callback: (err, result) => {
-        if (err) console.log(err)
-
-        if (!result.rollSuccessful) {
-          actor.update({ 'system.frenzyActive': true })
-        }
-      }
-    })
+    html.find('.remorse-roll').click(_onRemorseRoll.bind(this))
+    html.find('.frenzy-roll').click(_onFrenzyRoll.bind(this))
+    html.find('.end-frenzy').click(_onEndFrenzy.bind(this))
   }
 }
