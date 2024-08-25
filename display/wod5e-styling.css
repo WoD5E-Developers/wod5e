@@ -23,9 +23,6 @@
 .actor.sheet.hunter prose-mirror .editor-menu button:hover {
   background-color: var(--hunter-color-1);
 }
-.actor.sheet.hunter prose-mirror li.text:not(:has(.format)) {
-  display: none;
-}
 .actor.sheet.hunter prose-mirror .editor-content {
   scrollbar-color: var(--hunter-color-2) var(--color-scrollbar-track);
 }
@@ -414,9 +411,13 @@
 }
 /* ProseMirror Alterations */
 prose-mirror .editor-menu {
-  height: 30px;
+  height: 35px;
   padding: 2px;
   border-radius: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: flex;
+  flex-flow: nowrap;
 }
 .prosemirror menu .pm-dropdown {
   background: transparent;
@@ -800,9 +801,6 @@ h3.item-name {
 .actor.sheet.vampire prose-mirror .editor-menu button:hover {
   background-color: var(--vampire-color-2);
 }
-.actor.sheet.vampire prose-mirror li.text:not(:has(.format)) {
-  display: none;
-}
 .actor.sheet.vampire prose-mirror .editor-content {
   scrollbar-color: var(--vampire-color-2) var(--color-scrollbar-track);
   max-height: 150px;
@@ -1010,9 +1008,6 @@ h3.item-name {
 }
 .actor.sheet.werewolf prose-mirror .editor-menu button:hover {
   background-color: var(--werewolf-color-2);
-}
-.actor.sheet.werewolf prose-mirror li.text:not(:has(.format)) {
-  display: none;
 }
 .actor.sheet.werewolf prose-mirror .editor-content {
   scrollbar-color: var(--werewolf-color-2) var(--color-scrollbar-track);
@@ -1448,6 +1443,7 @@ body.uk .actor.sheet {
 .actor.sheet .tab.notepad .note-container {
   padding: 3px;
   margin: 5px;
+  width: 50%;
 }
 .actor.sheet .tab.notepad .note-container .field-header {
   font-size: 16pt;
@@ -1586,7 +1582,6 @@ body.uk .actor.sheet {
 .actor.sheet .item-list .category .item .item-image img {
   border-radius: 50%;
   padding: 2px;
-  max-width: 25px;
 }
 .actor.sheet .item-list .category .item .item-header {
   font-size: 16pt;
@@ -1622,7 +1617,10 @@ body.uk .actor.sheet {
 .actor.sheet .item-image img {
   border-radius: 50%;
   padding: 2px;
+  min-width: 25px;
+  min-height: 25px;
   max-width: 25px;
+  max-height: 25px;
 }
 .actor.sheet .resource-header {
   display: block;
@@ -1808,6 +1806,12 @@ body.uk .actor.sheet {
   font-size: 15pt;
   font-weight: bold;
 }
+.group.sheet .coterie-features .hunting-difficulty,
+.group.sheet .coterie-features .lien,
+.group.sheet .coterie-features .chasse,
+.group.sheet .coterie-features .portilion {
+  width: 200px;
+}
 
 /* Grids */
 .wod5e .grid,
@@ -1889,6 +1893,9 @@ body.uk .actor.sheet {
 }
 .item.sheet .item-header input[type="number"] {
   max-width: 35px;
+}
+.item.sheet .tabs .item {
+  font-weight: bold;
 }
 .item.sheet .tab.dicepool .remove-dice {
   flex-grow: 0;
