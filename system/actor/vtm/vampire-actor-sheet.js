@@ -99,13 +99,4 @@ export class VampireActorSheet extends GhoulActorSheet {
     html.find('.frenzy-roll').click(_onFrenzyRoll.bind(this))
     html.find('.end-frenzy').click(_onEndFrenzy.bind(this))
   }
-
-  async _onFrenzyRoll (event) {
-    event.preventDefault()
-
-    // Top-level variables
-    const actor = this.actor
-
-
-  }
 }
