@@ -3,8 +3,11 @@
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveBonuses } from '../../../scripts/rolls/situational-modifiers.js'
 
-export const _onAddGift = async function (actor, event) {
+export const _onAddGift = async function (event) {
   event.preventDefault()
+
+  // Top-level variables
+  const actor = this.actor
 
   // Secondary variables
   const selectLabel = game.i18n.localize('WOD5E.WTA.SelectGift')
@@ -56,6 +59,21 @@ export const _onAddGift = async function (actor, event) {
   }, {
     classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
   }).render(true)
+}
+
+/** Handle removing a gift from an actor */
+export const _onRemoveGift = async function (event) {
+  event.preventDefault()
+
+  // Top-level variables
+  const actor = this.actor
+  const element = event.currentTarget
+  const dataset = Object.assign({}, element.dataset)
+  const gift = dataset.gift
+
+  await actor.update({
+    [`system.gifts.${gift}.visible`]: false
+  })
 }
 
 export const _onGiftCost = async function (actor, item) {

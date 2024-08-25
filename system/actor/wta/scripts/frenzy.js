@@ -1,19 +1,25 @@
-export const _onBeginFrenzy = async function (actor, event) {
+export const _onBeginFrenzy = async function (event) {
   event.preventDefault()
+
+  // Top-level variables
+  const actor = this.actor
 
   // Enable frenzy
-  actor.update({ 'system.frenzyActive': true })
+  await actor.update({ 'system.frenzyActive': true })
 
   // Set rage to 5
-  actor.update({ 'system.rage.value': 5 })
+  await actor.update({ 'system.rage.value': 5 })
 }
 
-export const _onEndFrenzy = async function (actor, event) {
+export const _onEndFrenzy = async function (event) {
   event.preventDefault()
 
+  // Top-level variables
+  const actor = this.actor
+
   // Disable frenzy
-  actor.update({ 'system.frenzyActive': false })
+  await actor.update({ 'system.frenzyActive': false })
 
   // Set rage to 0
-  actor.update({ 'system.rage.value': 0 })
+  await actor.update({ 'system.rage.value': 0 })
 }
