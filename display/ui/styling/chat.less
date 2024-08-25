@@ -28,13 +28,13 @@
     margin-bottom: 2px;
     display: flex;
     flex-wrap: wrap;
-  }
-  
-  .modifiers .mod {
-    text-transform: uppercase;
-    font-size: 8pt;
-    padding: 0 5px;
-    margin: 1px 3px;
+
+    .mod {
+      text-transform: uppercase;
+      font-size: 8pt;
+      padding: 0 5px;
+      margin: 1px 3px;
+    }
   }
   
   .total-and-difficulty {
@@ -106,17 +106,15 @@ p.roll-label.uppercase {
   line-height: 1.4rem;
 }
 
-.willpower-reroll .die {
-  flex: 0;
-}
+.willpower-reroll {
+  .die {
+    flex: 0;
+  }
 
-.willpower-reroll .selected::after {
-  position: absolute;
-  font-size: 35px;
-  font-weight: 700;
-  margin-left: -38px;
-  margin-top: 0;
-  content: "⟳";
+  .selected img {
+    border: 2px solid var(--system-color-3);
+    filter: invert(1);
+  }
 }
 
 h3.item-name {

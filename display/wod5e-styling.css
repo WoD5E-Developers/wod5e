@@ -567,13 +567,9 @@ p.roll-label.uppercase {
 .willpower-reroll .die {
   flex: 0;
 }
-.willpower-reroll .selected::after {
-  position: absolute;
-  font-size: 35px;
-  font-weight: 700;
-  margin-left: -38px;
-  margin-top: 0;
-  content: "⟳";
+.willpower-reroll .selected img {
+  border: 2px solid var(--system-color-3);
+  filter: invert(1);
 }
 h3.item-name {
   border-bottom: 0;
