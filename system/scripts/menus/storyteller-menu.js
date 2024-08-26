@@ -88,7 +88,7 @@ export class StorytellerMenu extends FormApplication {
 
     handleClick('.add-mod-button', ({ type }) => this._onGenerateModPrompt(type))
     handleClick('.remove-mod-button', ({ type, id }) => this._onRemoveChange(type, id))
-    
+
     handleClick('.add-custom-button', async ({ type }) => {
       if (type === 'attribute') {
         await addCustomItem('attribute', 'customAttributes', 'New Attribute')
@@ -151,12 +151,12 @@ export class StorytellerMenu extends FormApplication {
     const list = await WOD5E[this.listKeys[type].defCategory].getList({})
     this._onRenderPromptDialog(type, list, game.i18n.localize(`WOD5E.${this.listKeys[type].labelCategory}.Label`))
   }
-  
+
   // Function for rendering the dialog for adding a new modification
   async _onRenderPromptDialog (type, list, title) {
     const template = 'systems/vtm5e/display/ui/select-dialog.hbs'
     const content = await renderTemplate(template, { list })
-  
+
     new Dialog({
       title,
       content,
@@ -181,7 +181,7 @@ export class StorytellerMenu extends FormApplication {
       default: 'add'
     }).render(true)
   }
-  
+
   // Function for removing a change
   async _onRemoveChange (type, id) {
     const modifiedKey = `modified${this.listKeys[type].defCategory}`
@@ -189,12 +189,12 @@ export class StorytellerMenu extends FormApplication {
     modifiedList = modifiedList.filter(item => item.id !== id)
     await game.settings.set('vtm5e', modifiedKey, modifiedList)
   }
-  
+
   // Function for removing a custom feature
   async _onRemoveCustom (type, id) {
     const customKey = `custom${this.listKeys[type].defCategory}`
     let customList = await game.settings.get('vtm5e', customKey)
     customList = customList.filter(item => item.id !== id)
     await game.settings.set('vtm5e', customKey, customList)
-  }  
+  }
 }
