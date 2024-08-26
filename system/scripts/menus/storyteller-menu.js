@@ -19,6 +19,25 @@ export class StorytellerMenu extends FormApplication {
     })
   }
 
+  constructor (application, options) {
+    super(application, options)
+
+    this.listKeys = {
+      attribute: {
+        defCategory: 'Attributes',
+        labelCategory: 'AttributesList'
+      },
+      skill: {
+        defCategory: 'Skills',
+        labelCategory: 'SkillsList'
+      },
+      discipline: {
+        defCategory: 'Disciplines',
+        labelCategory: 'DisciplinesList'
+      }
+    }
+  }
+
   /* -------------------------------------------- */
 
   /** @override */
@@ -48,198 +67,97 @@ export class StorytellerMenu extends FormApplication {
 
   /** @override */
   activateListeners (html) {
-    html.find('.add-mod-button').click(function (event) {
-      event.preventDefault()
+    const handleClick = (selector, handler) => {
+      html.find(selector).click(function (event) {
+        event.preventDefault()
+        const data = event.target.dataset
+        handler(data)
+      })
+    }
 
-      const data = event.target.dataset
-      const type = data.type
+    const addCustomItem = async (type, listKey, label) => {
+      const list = await game.settings.get('vtm5e', listKey)
+      const newItem = {
+        id: foundry.utils.randomID(8),
+        label,
+        type: 'physical'
+      }
+      list.push(newItem)
+      await game.settings.set('vtm5e', listKey, list)
+    }
 
-      _onGenerateModPrompt(type)
-    })
-
-    html.find('.remove-mod-button').click(function (event) {
-      event.preventDefault()
-
-      const data = event.target.dataset
-      const type = data.type
-      const id = data.id
-
-      _onRemoveChange(type, id)
-    })
-
-    html.find('.add-custom-button').click(function (event) {
-      event.preventDefault()
-
-      const data = event.target.dataset
-      const type = data.type
-
+    handleClick('.add-mod-button', ({ type }) => this._onGenerateModPrompt(type))
+    handleClick('.remove-mod-button', ({ type, id }) => this._onRemoveChange(type, id))
+    
+    handleClick('.add-custom-button', async ({ type }) => {
       if (type === 'attribute') {
-        // Get the list of custom attributes
-        const customAttributes = game.settings.get('vtm5e', 'customAttributes')
-
-        // Define the new attribute and push it to the list
-        const newAttribute = {
-          id: foundry.utils.randomID(8),
-          label: 'New Attribute',
-          type: 'physical'
-        }
-        customAttributes.push(newAttribute)
-
-        // Set the new list of attributes
-        game.settings.set('vtm5e', 'customAttributes', customAttributes)
+        await addCustomItem('attribute', 'customAttributes', 'New Attribute')
       } else if (type === 'skill') {
-        // Get the list of custom skills
-        const customSkills = game.settings.get('vtm5e', 'customSkills')
-
-        // Define the new skill and push it to the list
-        const newSkill = {
-          id: foundry.utils.randomID(8),
-          label: 'New Skill',
-          type: 'physical'
-        }
-        customSkills.push(newSkill)
-
-        // Set the new list of attributes
-        game.settings.set('vtm5e', 'customSkills', customSkills)
-      } if (type === 'discipline') {
-        // Get the list of custom disciplines
-        const customDisciplines = game.settings.get('vtm5e', 'customDisciplines')
-
-        // Define the new discipline and push it to the list
-        const newDiscipline = {
-          id: foundry.utils.randomID(8),
-          label: 'New Discipline',
-          type: 'physical'
-        }
-        customDisciplines.push(newDiscipline)
-
-        // Set the new list of attributes
-        game.settings.set('vtm5e', 'customDisciplines', customDisciplines)
+        await addCustomItem('skill', 'customSkills', 'New Skill')
+      } else if (type === 'discipline') {
+        await addCustomItem('discipline', 'customDisciplines', 'New Discipline')
       }
     })
 
-    html.find('.remove-custom-button').click(function (event) {
-      event.preventDefault()
+    handleClick('.remove-custom-button', ({ type, id }) => this._onRemoveCustom(type, id))
 
-      const data = event.target.dataset
-      const type = data.type
-      const id = data.id
+    handleClick('.save-modifications', () => {
+      const modifications = {
+        attribute: [],
+        skill: [],
+        discipline: []
+      }
+      const custom = {
+        attribute: [],
+        skill: [],
+        discipline: []
+      }
 
-      _onRemoveCustom(type, id)
-    })
+      const handleFeature = (feature, list) => {
+        const { id, type, label } = feature.dataset
+        const rename = $(feature).find('.mod-rename')[0].value
+        const hidden = $(feature).find('.mod-hidden')[0].checked
+        list[type].push({ id, rename, label, hidden })
+      }
 
-    html.find('.save-modifications').click(function (event) {
-      event.preventDefault()
+      const handleCustomFeature = (feature, customList) => {
+        const { id, type } = feature.dataset
+        const label = $(feature).find('.label')[0].value
+        const attrType = $(feature).find('.attr-type')[0]?.value || ''
+        const newItem = { id, label }
+        if (type === 'attribute' || type === 'skill') newItem.type = attrType
+        customList[type].push(newItem)
+      }
 
-      const attributeModifications = []
-      const customAttributes = []
-      const skillModifications = []
-      const customSkills = []
-      const disciplineModifications = []
-      const customDisciplines = []
-
-      // Modifications to existing features
       html.find('.modification-row').each(function () {
-        const featureMod = $(this)[0]
-        const id = featureMod.dataset.id
-        const type = featureMod.dataset.type
-        const label = featureMod.dataset.label
-
-        const rename = $(this).find('.mod-rename')[0].value
-        const hidden = $(this).find('.mod-hidden')[0].checked
-
-        if (type === 'attribute') {
-          attributeModifications.push({
-            id,
-            rename,
-            label,
-            hidden
-          })
-        } else if (type === 'skill') {
-          skillModifications.push({
-            id,
-            rename,
-            label,
-            hidden
-          })
-        } else if (type === 'discipline') {
-          disciplineModifications.push({
-            id,
-            rename,
-            label,
-            hidden
-          })
-        }
+        handleFeature(this, modifications)
       })
 
-      // Custom additions to existing features
       html.find('.customization-row').each(function () {
-        const customFeature = $(this)[0]
-        const id = customFeature.dataset.id
-        const type = customFeature.dataset.type
-
-        const label = $(this).find('.label')[0].value
-        const attrType = $(this).find('.attr-type')[0]?.value || ''
-
-        if (type === 'attribute') {
-          customAttributes.push({
-            id,
-            type: attrType,
-            label
-          })
-        } else if (type === 'skill') {
-          customSkills.push({
-            id,
-            type: attrType,
-            label
-          })
-        } else if (type === 'discipline') {
-          customDisciplines.push({
-            id,
-            label
-          })
-        }
+        handleCustomFeature(this, custom)
       })
 
-      // Save the new settings
-      game.settings.set('vtm5e', 'modifiedAttributes', attributeModifications)
-      game.settings.set('vtm5e', 'customAttributes', customAttributes)
-      game.settings.set('vtm5e', 'modifiedSkills', skillModifications)
-      game.settings.set('vtm5e', 'customSkills', customSkills)
-      game.settings.set('vtm5e', 'modifiedDisciplines', disciplineModifications)
-      game.settings.set('vtm5e', 'customDisciplines', customDisciplines)
+      game.settings.set('vtm5e', 'modifiedAttributes', modifications.attribute)
+      game.settings.set('vtm5e', 'customAttributes', custom.attribute)
+      game.settings.set('vtm5e', 'modifiedSkills', modifications.skill)
+      game.settings.set('vtm5e', 'customSkills', custom.skill)
+      game.settings.set('vtm5e', 'modifiedDisciplines', modifications.discipline)
+      game.settings.set('vtm5e', 'customDisciplines', custom.discipline)
     })
   }
-}
 
-// Function for getting the information necessary for the selection dialog
-async function _onGenerateModPrompt (type) {
-  if (type === 'attribute') {
-    const attributesList = WOD5E.Attributes.getList({})
-
-    // Render the dialog
-    _onRenderPromptDialog('attribute', attributesList, game.i18n.localize('WOD5E.AttributesList.Label'))
-  } else if (type === 'skill') {
-    const skillsList = WOD5E.Skills.getList({})
-
-    // Render the dialog
-    _onRenderPromptDialog('skill', skillsList, game.i18n.localize('WOD5E.SkillsList.Label'))
-  } else if (type === 'discipline') {
-    const disciplinesList = WOD5E.Disciplines.getList({})
-
-    // Render the dialog
-    _onRenderPromptDialog('discipline', disciplinesList, game.i18n.localize('WOD5E.DisciplinesList.Label'))
+  // Function for getting the information necessary for the selection dialog
+  async _onGenerateModPrompt (type) {
+    const list = await WOD5E[this.listKeys[type].defCategory].getList({})
+    this._onRenderPromptDialog(type, list, game.i18n.localize(`WOD5E.${this.listKeys[type].labelCategory}.Label`))
   }
-}
-
-// Function for rendering the dialog for adding a new modification
-async function _onRenderPromptDialog (type, list, title) {
-  // Render the template
-  const template = 'systems/vtm5e/display/ui/select-dialog.hbs'
-  const content = await renderTemplate(template, { list })
-
-  new Dialog(
-    {
+  
+  // Function for rendering the dialog for adding a new modification
+  async _onRenderPromptDialog (type, list, title) {
+    const template = 'systems/vtm5e/display/ui/select-dialog.hbs'
+    const content = await renderTemplate(template, { list })
+  
+    new Dialog({
       title,
       content,
       buttons: {
@@ -247,57 +165,12 @@ async function _onRenderPromptDialog (type, list, title) {
           icon: '<i class="fas fa-check"></i>',
           label: game.i18n.localize('WOD5E.Add'),
           callback: async html => {
-            // Grab the id from the select element
             const id = html.find('[id=optionSelect]').val()
-            // Define the label
-            const label = id in list ? list[id]?.label : id
-
-            if (type === 'attribute') {
-              // Get the list of modified attributes
-              const modifiedAttributes = game.settings.get('vtm5e', 'modifiedAttributes')
-
-              // Define the new attribute and push it to the list
-              const newAttribute = {
-                id,
-                label,
-                rename: '',
-                hidden: false
-              }
-              modifiedAttributes.push(newAttribute)
-
-              // Set the new list of attributes
-              game.settings.set('vtm5e', 'modifiedAttributes', modifiedAttributes)
-            } else if (type === 'skill') {
-              // Get the list of modified skills
-              const modifiedSkills = game.settings.get('vtm5e', 'modifiedSkills')
-
-              // Define the new skill and push it to the list
-              const newSkill = {
-                id,
-                label,
-                rename: '',
-                hidden: false
-              }
-              modifiedSkills.push(newSkill)
-
-              // Set the new list of skills
-              game.settings.set('vtm5e', 'modifiedSkills', modifiedSkills)
-            } else if (type === 'discipline') {
-              // Get the list of modified disciplines
-              const modifiedDisciplines = game.settings.get('vtm5e', 'modifiedDisciplines')
-
-              // Define the new discipline and push it to the list
-              const newDiscipline = {
-                id,
-                label,
-                rename: '',
-                hidden: false
-              }
-              modifiedDisciplines.push(newDiscipline)
-
-              // Set the new list of disciplines
-              game.settings.set('vtm5e', 'modifiedDisciplines', modifiedDisciplines)
-            }
+            const label = list[id]?.label || id
+            const modifiedKey = `modified${this.listKeys[type].defCategory}`
+            const modifiedList = await game.settings.get('vtm5e', modifiedKey)
+            modifiedList.push({ id, label, rename: '', hidden: false })
+            await game.settings.set('vtm5e', modifiedKey, modifiedList)
           }
         },
         cancel: {
@@ -306,58 +179,22 @@ async function _onRenderPromptDialog (type, list, title) {
         }
       },
       default: 'add'
-    }
-  ).render(true)
-}
-
-// Function for removing a change
-async function _onRemoveChange (type, id) {
-  if (type === 'attribute') {
-    // Get the list of modified attributes
-    let modifiedAttributes = game.settings.get('vtm5e', 'modifiedAttributes')
-
-    // Remove the attribute by id then update the game settings
-    modifiedAttributes = modifiedAttributes.filter(attribute => (attribute.id !== id))
-    game.settings.set('vtm5e', 'modifiedAttributes', modifiedAttributes)
-  } else if (type === 'skill') {
-    // Get the list of modified skills
-    let modifiedSkills = game.settings.get('vtm5e', 'modifiedSkills')
-
-    // Remove the skill by id then update the game settings
-    modifiedSkills = modifiedSkills.filter(skill => (skill.id !== id))
-    game.settings.set('vtm5e', 'modifiedSkills', modifiedSkills)
-  } else if (type === 'discipline') {
-    // Get the list of modified disciplines
-    let modifiedDisciplines = game.settings.get('vtm5e', 'modifiedDisciplines')
-
-    // Remove the discipline by id then update the game settings
-    modifiedDisciplines = modifiedDisciplines.filter(discipline => (discipline.id !== id))
-    game.settings.set('vtm5e', 'modifiedDisciplines', modifiedDisciplines)
+    }).render(true)
   }
-}
-
-// Function for removing a custom feature
-async function _onRemoveCustom (type, id) {
-  if (type === 'attribute') {
-    // Get the list of custom attributes
-    let customAttributes = game.settings.get('vtm5e', 'customAttributes')
-
-    // Remove the attribute by id then update the game settings
-    customAttributes = customAttributes.filter(attribute => (attribute.id !== id))
-    game.settings.set('vtm5e', 'customAttributes', customAttributes)
-  } else if (type === 'skill') {
-    // Get the list of custom skills
-    let customSkills = game.settings.get('vtm5e', 'customSkills')
-
-    // Remove the skill by id then update the game settings
-    customSkills = customSkills.filter(skill => (skill.id !== id))
-    game.settings.set('vtm5e', 'customSkills', customSkills)
-  } else if (type === 'discipline') {
-    // Get the list of custom disciplines
-    let customDisciplines = game.settings.get('vtm5e', 'customDisciplines')
-
-    // Remove the discipline by id then update the game settings
-    customDisciplines = customDisciplines.filter(discipline => (discipline.id !== id))
-    game.settings.set('vtm5e', 'customDisciplines', customDisciplines)
+  
+  // Function for removing a change
+  async _onRemoveChange (type, id) {
+    const modifiedKey = `modified${this.listKeys[type].defCategory}`
+    let modifiedList = await game.settings.get('vtm5e', modifiedKey)
+    modifiedList = modifiedList.filter(item => item.id !== id)
+    await game.settings.set('vtm5e', modifiedKey, modifiedList)
   }
+  
+  // Function for removing a custom feature
+  async _onRemoveCustom (type, id) {
+    const customKey = `custom${this.listKeys[type].defCategory}`
+    let customList = await game.settings.get('vtm5e', customKey)
+    customList = customList.filter(item => item.id !== id)
+    await game.settings.set('vtm5e', customKey, customList)
+  }  
 }
