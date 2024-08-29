@@ -234,7 +234,9 @@
       "StorytellerMenu": "Storyteller Menu",
       "StorytellerMenuHint": "Modify the system, such as renaming existing and creating custom skills and attributes.",
       "WorldVersion": "World Version",
-      "WorldVersionHint": "Automatically upgrades data when the system.json is upgraded."
+      "WorldVersionHint": "Automatically upgrades data when the system.json is upgraded.",
+      "actorHeaderOverride": "Default Actor Header",
+      "actorHeaderOverrideHint": "Determine the default image used for actor headers."
     },
     "SkillsList": {
       "Academics": "Academics",
