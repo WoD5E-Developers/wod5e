@@ -357,13 +357,13 @@ export class SPCActorSheet extends WoDActor {
 
     // Add a new sheet class depending on the type of sheet
     if (spcType === 'vampire' || spcType === 'ghoul') {
-      sheetElement.removeClass('hunter werewolf')
+      sheetElement.removeClass('hunter werewolf mortal')
       sheetElement.addClass('vampire')
     } else if (spcType === 'hunter') {
-      sheetElement.removeClass('vampire werewolf')
+      sheetElement.removeClass('vampire werewolf mortal')
       sheetElement.addClass('hunter')
     } else if (spcType === 'werewolf') {
-      sheetElement.removeClass('hunter vampire')
+      sheetElement.removeClass('hunter vampire mortal')
       sheetElement.addClass('werewolf')
     } else {
       // Default to a mortal sheet
