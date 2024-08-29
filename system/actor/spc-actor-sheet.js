@@ -62,15 +62,6 @@ export class SPCActorSheet extends WoDActor {
     // Apply new CSS classes to the sheet, if necessary
     this._applyClasses()
 
-    // SPC type options
-    data.spcTypes = {
-      mortal: 'WOD5E.Mortal',
-      vampire: 'WOD5E.VTM.Label',
-      ghoul: 'WOD5E.VTM.Ghoul',
-      hunter: 'WOD5E.HTR.Label',
-      werewolf: 'WOD5E.WTA.Label'
-    }
-
     // Determine gamesystem based on spcType
     const spcType = this.actor.system.spcType
 

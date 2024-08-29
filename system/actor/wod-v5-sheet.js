@@ -6,6 +6,7 @@ import { prepareAttributes } from './scripts/prepare-attributes.js'
 import { _onHealthChange } from './scripts/on-health-change.js'
 import { _onWillpowerChange } from './scripts/on-willpower-change.js'
 import { getActorHeader } from './scripts/get-actor-header.js'
+import { getActorTypes } from './scripts/get-actor-types.js'
 // Roll function
 import { WOD5eDice } from '../scripts/system-rolls.js'
 import { _onRoll } from './scripts/roll.js'
@@ -69,6 +70,11 @@ export class WoDActor extends ActorSheet {
     data.displayBanner = game.settings.get('vtm5e', 'actorBanner')
 
     data.headerbg = await getActorHeader(actor)
+
+    const actorTypeData = await getActorTypes(actor)
+    data.currentActorType = actorTypeData.currentActorType
+    data.actorTypePath = actorTypeData.typePath
+    data.actorOptions = actorTypeData.types
 
     // Enrich non-header editor fields
     if (actorData.biography) { data.enrichedBiography = await TextEditor.enrichHTML(actorData.biography) }

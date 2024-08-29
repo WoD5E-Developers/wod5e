@@ -1,5 +1,5 @@
 <div class="actor-type-field">
-  <select class="spc-type-selector" name="system.spcType" data-type="String"{{#if actor.limited}} disabled{{/if}}>
-    {{selectOptions spcTypes selected=actor.system.spcType localize=true}}
-  </select>
+    <select class="spc-type-selector" name="{{actorTypePath}}" data-type="String"{{#if actor.limited}} disabled{{/if}}>
+        {{selectOptions actorOptions selected=currentActorType localize=true}}
+    </select>
 </div>
