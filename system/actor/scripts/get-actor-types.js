@@ -30,13 +30,13 @@ export const getActorTypes = async function (actor) {
     }
   } else if (currentActorType === 'spc') {
     return {
-      currentActorType,
+      currentActorType: actor.system.spcType,
       typePath: 'system.spcType',
       types: spcTypes
     }
   } else if (currentActorType === 'group') {
     return {
-      currentActorType,
+      currentActorType: actor.system.groupType,
       typePath: 'system.groupType',
       types: groupTypes
     }

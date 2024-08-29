@@ -842,23 +842,23 @@
       }
     },
     "mortal": {
-      "templates": ["base", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "mortal"
     },
     "vampire": {
-      "templates": ["base", "vampire_traits", "disciplines", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "vampire"
     },
     "werewolf": {
-      "templates": ["base", "werewolf_traits", "renown", "werewolfForms", "gifts", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "werewolf"
     },
     "hunter": {
-      "templates": ["base", "hunter_traits", "edges", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "hunter"
     },
     "ghoul": {
-      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "vampire"
     },
     "group": {
