@@ -97,7 +97,7 @@ export class wod5eAPI {
     const { skill, attribute, discipline, renown } = dataset
 
     // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+    const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
 
     // Attribute definitions
     const attributesList = WOD5E.Attributes.getList({})
@@ -273,7 +273,7 @@ export class wod5eAPI {
     const actorData = actor.system
 
     // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+    const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
 
     if (system === 'vampire' && actor.type !== 'ghoul' && actor.type !== 'spc') {
       // Define actor's hunger dice, ensuring it can't go below 0

@@ -244,7 +244,7 @@ export class SPCActorSheet extends WoDActor {
     }
 
     // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+    const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
 
     // Display the dialog
     new Dialog({
@@ -287,7 +287,7 @@ export class SPCActorSheet extends WoDActor {
       titleLabel = game.i18n.localize('WOD5E.VTM.AddDiscipline')
       label = game.i18n.localize('WOD5E.VTM.SelectDiscipline')
     } else if (powerType === 'gift') {
-      const giftsList = WOD5E.Gifts.getList()
+      const giftsList = WOD5E.Gifts.getList({})
       for (const [key, value] of Object.entries(giftsList)) {
         options = options.concat(`<option value="${key}">${value.displayName}</option>`)
       }
@@ -295,7 +295,7 @@ export class SPCActorSheet extends WoDActor {
       titleLabel = game.i18n.localize('WOD5E.WTA.AddGift')
       label = game.i18n.localize('WOD5E.WTA.SelectGift')
     } else if (powerType === 'edge') {
-      const edgesList = WOD5E.Edges.getList()
+      const edgesList = WOD5E.Edges.getList({})
       for (const [key, value] of Object.entries(edgesList)) {
         options = options.concat(`<option value="${key}">${value.displayName}</option>`)
       }
@@ -333,7 +333,7 @@ export class SPCActorSheet extends WoDActor {
     }
 
     // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+    const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
 
     // Display the dialog
     new Dialog({

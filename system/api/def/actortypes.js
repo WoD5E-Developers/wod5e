@@ -1,4 +1,4 @@
-/* global game, Hooks */
+/* global Hooks */
 
 // Mortal
 import { MortalActorSheet } from '../../actor/mortal-actor-sheet.js'
@@ -12,35 +12,9 @@ import { WerewolfActorSheet } from '../../actor/wta/werewolf-actor-sheet.js'
 // All systems
 import { SPCActorSheet } from '../../actor/spc-actor-sheet.js'
 import { GroupActorSheet } from '../../actor/group-actor-sheet.js'
+import { BaseDefinitionClass } from './base-definition-class.js'
 
-export class ActorTypes {
-  // Function to help with quickly grabbing all the listed values;
-  // Will only retrieve objects (definitions)
-  static getList () {
-    return Object.entries(this)
-      .filter(([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value))
-      .reduce((accumulator, [key, value]) => {
-        accumulator[key] = value
-        return accumulator
-      }, {})
-  }
-
-  // Localize the labels
-  static initializeLabels () {
-    for (const [, value] of Object.entries(this)) {
-      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
-        value.label = game.i18n.localize(value.label)
-      }
-
-      // Handle which label to display
-      if (value.rename) {
-        value.displayName = value.rename
-      } else {
-        value.displayName = value.label
-      }
-    }
-  }
-
+export class ActorTypes extends BaseDefinitionClass {
   // Run any necessary compilation on ready
   static onReady () {
     ActorTypes.initializeLabels()

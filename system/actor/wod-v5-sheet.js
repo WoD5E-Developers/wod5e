@@ -148,7 +148,7 @@ export class WoDActor extends ActorSheet {
         equipment[i.system.equipmentType].push(i)
       } else if (i.type === 'feature') {
         // Check the featuretype field and set a default
-        const featuretype = i.system.featuretype in WOD5E.Features.getList() ? i.system.featuretype : 'background'
+        const featuretype = i.system.featuretype in WOD5E.Features.getList({}) ? i.system.featuretype : 'background'
 
         // Append to features
         features[featuretype].push(i)
@@ -237,7 +237,7 @@ export class WoDActor extends ActorSheet {
       const item = actor.getEmbeddedDocument('Item', li.data('itemId'))
 
       // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-      const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+      const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
 
       // Variables yet to be defined
       let buttons = {}
@@ -336,7 +336,7 @@ export class WoDActor extends ActorSheet {
     const skill = header.dataset.skill
 
     // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+    const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
 
     // Render selecting a skill/attribute to roll
     const skillTemplate = 'systems/vtm5e/display/shared/actors/parts/skill-dialog.hbs'
@@ -464,7 +464,7 @@ export class WoDActor extends ActorSheet {
     // Top-level variables
     const actor = this.actor
     const dataset = event.currentTarget.dataset
-    const itemsList = WOD5E.ItemTypes.getList()
+    const itemsList = WOD5E.ItemTypes.getList({})
     const type = dataset.type
 
     // Variables to be defined later
@@ -476,7 +476,7 @@ export class WoDActor extends ActorSheet {
     let options = ''
 
     // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+    const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
 
     // Generate the item name
     itemName = subtype ? WOD5E.api.generateLabelAndLocalize({ string: subtype, type }) : itemsList[type].label
@@ -490,12 +490,12 @@ export class WoDActor extends ActorSheet {
         break
       case 'perk':
         selectLabel = game.i18n.localize('WOD5E.HTR.SelectEdge')
-        itemOptions = WOD5E.Edges.getList()
+        itemOptions = WOD5E.Edges.getList({})
         itemName = game.i18n.format('WOD5E.HTR.NewStringPerk', { string: itemName })
         break
       case 'gift':
         selectLabel = game.i18n.localize('WOD5E.WTA.SelectGift')
-        itemOptions = WOD5E.Gifts.getList()
+        itemOptions = WOD5E.Gifts.getList({})
 
         if (subtype && subtype === 'rite') {
           itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
@@ -508,7 +508,7 @@ export class WoDActor extends ActorSheet {
         break
       case 'feature':
         selectLabel = game.i18n.localize('WOD5E.ItemsList.SelectFeature')
-        itemOptions = WOD5E.Features.getList()
+        itemOptions = WOD5E.Features.getList({})
         itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
         break
       default:

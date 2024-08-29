@@ -40,7 +40,7 @@ export const getDicepoolList = async (document) => {
 
   // Werewolf
   if (gamesystem === 'werewolf') {
-    const renown = WOD5E.Renown.getList()
+    const renown = WOD5E.Renown.getList({})
     for (const [key, value] of Object.entries(renown)) {
       masterList.push({
         value: `renown.${key}`,
@@ -52,7 +52,7 @@ export const getDicepoolList = async (document) => {
 
   // Hunter
   if (gamesystem === 'hunter') {
-    const edges = WOD5E.Edges.getList()
+    const edges = WOD5E.Edges.getList({})
     for (const [key, value] of Object.entries(edges)) {
       masterList.push({
         value: `edges.${key}`,
