@@ -184,6 +184,8 @@
     "Settings": {
       "ActorBanner": "Charakter-Typ-Banner anzeigen",
       "ActorBannerHint": "Zeigt einen farbigen Banner oben am Charakterbogen, der den Typ von Wesen anzeigt.",
+      "_actorHeaderOverride": "",
+      "_actorHeaderOverrideHint": "",
       "AddAttributeModification": "Attributs-Modifikation hinzufügen",
       "AddCustomAttribute": "Eigenes Attribut hinzufügen",
       "_AddCustomDiscipline": "",

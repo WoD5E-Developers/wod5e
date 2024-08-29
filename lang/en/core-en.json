@@ -184,6 +184,8 @@
     "Settings": {
       "ActorBanner": "Enable Character Type Banner",
       "ActorBannerHint": "Display a banner at the top of actor sheets to represent the character type.",
+      "actorHeaderOverride": "Default Actor Header",
+      "actorHeaderOverrideHint": "Determine the default image used for actor headers.",
       "AddAttributeModification": "Add Attribute Modification",
       "AddCustomAttribute": "Add Custom Attribute",
       "AddCustomDiscipline": "Add Custom Discipline",
@@ -234,9 +236,7 @@
       "StorytellerMenu": "Storyteller Menu",
       "StorytellerMenuHint": "Modify the system, such as renaming existing and creating custom skills and attributes.",
       "WorldVersion": "World Version",
-      "WorldVersionHint": "Automatically upgrades data when the system.json is upgraded.",
-      "actorHeaderOverride": "Default Actor Header",
-      "actorHeaderOverrideHint": "Determine the default image used for actor headers."
+      "WorldVersionHint": "Automatically upgrades data when the system.json is upgraded."
     },
     "SkillsList": {
       "Academics": "Academics",

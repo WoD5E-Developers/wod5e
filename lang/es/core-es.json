@@ -184,6 +184,8 @@
     "Settings": {
       "_ActorBanner": "",
       "_ActorBannerHint": "",
+      "_actorHeaderOverride": "",
+      "_actorHeaderOverrideHint": "",
       "_AddAttributeModification": "",
       "_AddCustomAttribute": "",
       "_AddCustomDiscipline": "",
