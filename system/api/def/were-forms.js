@@ -4,7 +4,7 @@ import { BaseDefinitionClass } from './base-definition-class.js'
 
 export class WereForms extends BaseDefinitionClass {
   // Override the initializeLabels method to add extra functionality
-  static initializeLabels() {
+  static initializeLabels () {
     super.initializeLabels()
 
     for (const [, value] of Object.entries(this)) {

@@ -43,7 +43,7 @@ export class BaseDefinitionClass {
         // If mods are enabled, check for a modification to the definition
         if (this.modsEnabled) {
           const checkModification = modifications.filter(definition => definition.id === key)
-          
+
           // If there are modifications, update the value's properties
           if (checkModification.length > 0) {
             value.rename = checkModification[0].rename
