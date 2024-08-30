@@ -4,9 +4,8 @@ import { WoDActor } from '../wod-v5-sheet.js'
 import { _prepareWerewolfItems, prepareGiftData, prepareRiteData, prepareFormData } from './scripts/prepare-data.js'
 import { _onAddGift, _onRemoveGift, _onGiftToChat } from './scripts/gifts.js'
 import { _onBeginFrenzy, _onEndFrenzy } from './scripts/frenzy.js'
-import { _onShiftForm, _onFormToChat, _onFormEdit } from './scripts/forms.js'
+import { _onShiftForm, _onFormToChat, _onFormEdit, _onLostTheWolf } from './scripts/forms.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './scripts/balance.js'
-import { _onLostTheWolf } from './scripts/forms.js'
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
