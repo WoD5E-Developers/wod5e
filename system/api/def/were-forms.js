@@ -11,6 +11,11 @@ export class WereForms extends BaseDefinitionClass {
       if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
         // Initialize the nickname label too
         value.nickname = game.i18n.localize(value.nickname)
+
+        // Localize the Werewolf attributes
+        value.attributes = value.attributes.map(attribute => {
+          return game.i18n.localize(attribute)
+        })
       }
     }
   }
@@ -24,14 +29,19 @@ export class WereForms extends BaseDefinitionClass {
     label: 'WOD5E.WTA.HomidName',
     nickname: 'WOD5E.WTA.HomidTitle',
     cost: 0,
-    attributes: ['Silver Immunity']
+    attributes: [
+      'WOD5E.WTA.SilverImmunity'
+    ]
   }
 
   static lupus = {
     label: 'WOD5E.WTA.LupusName',
     nickname: 'WOD5E.WTA.LupusTitle',
     cost: 0,
-    attributes: ['Silver Immunity', 'Social Tests: Limited to wolves and Garou']
+    attributes: [
+      'WOD5E.WTA.SilverImmunity',
+      'WOD5E.WTA.LupusSocialTests'
+    ]
   }
 
   static hispo = {
@@ -39,11 +49,11 @@ export class WereForms extends BaseDefinitionClass {
     nickname: 'WOD5E.WTA.HispoTitle',
     cost: 1,
     attributes: [
-      '(Non-Stealth) Physical Tests: +2',
-      'Stealth Tests: -2',
-      'Social Tests: Limited to wolves and Garou',
-      'Regenerate: 1/Rage Check',
-      'Bite: +1 Aggravated'
+      'WOD5E.WTA.HispoPhysicalTests',
+      'WOD5E.WTA.HispoStealthTests',
+      'WOD5E.WTA.HispoSocialTests',
+      'WOD5E.WTA.HispoRegenerate',
+      'WOD5E.WTA.HispoBite'
     ],
     bonuses: [
       {
@@ -74,7 +84,11 @@ export class WereForms extends BaseDefinitionClass {
     label: 'WOD5E.WTA.GlabroName',
     nickname: 'WOD5E.WTA.GlabroTitle',
     cost: 1,
-    attributes: ['Physical Tests: +2', 'Social Tests: -2', 'Regenerate: 1/Rage Check'],
+    attributes: [
+      'WOD5E.WTA.GlabroPhysicalTests',
+      'WOD5E.WTA.GlabroSocialTests',
+      'WOD5E.WTA.GlabroRegenerate'
+    ],
     bonuses: [
       {
         source: 'WOD5E.WTA.GlabroName',
@@ -104,15 +118,15 @@ export class WereForms extends BaseDefinitionClass {
     nickname: 'WOD5E.WTA.CrinosTitle',
     cost: 2,
     attributes: [
-      'Frenzy Risk, 1 Willpower/turn',
-      'Physical Tests: +4',
-      'Health: +4',
-      'Social Tests: Auto-failure',
-      'Mental Tests: Auto-failure',
-      'Regenerate: 2/Rage Check',
-      'Claws: +3',
-      'Bite: +1 Aggravated',
-      'Causes Delirium'
+      'WOD5E.WTA.CrinosFrenzy',
+      'WOD5E.WTA.CrinosPhysicalTests',
+      'WOD5E.WTA.CrinosHealth',
+      'WOD5E.WTA.CrinosSocialTests',
+      'WOD5E.WTA.CrinosMentalTests',
+      'WOD5E.WTA.CrinosRegenerate',
+      'WOD5E.WTA.CrinosClaws',
+      'WOD5E.WTA.CrinosBite',
+      'WOD5E.WTA.CausesDelirium'
     ],
     bonuses: [
       {
