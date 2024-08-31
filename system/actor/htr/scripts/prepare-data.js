@@ -84,19 +84,9 @@ export const prepareEdgePowers = async function (edges) {
           // Ensure visibility is set correctly
           if (!edge.visible && !edge.hidden) edge.visible = true
 
-          // Sort the edge containers by the level of the perk
+          // Sort the edge containers alphabetically
           edge.perks = edge.perks.sort(function (perk1, perk2) {
-            // Ensure perk1 and perk2 have the necessary properties
-            const level1 = perk1.system ? perk1.system.level : 0
-            const level2 = perk2.system ? perk2.system.level : 0
-
-            // If levels are the same, sort alphabetically instead
-            if (level1 === level2) {
-              return perk1.name.localeCompare(perk2.name)
-            }
-
-            // Sort by level
-            return level1 - level2
+            return perk1.name.localeCompare(perk2.name)
           })
         }
 
