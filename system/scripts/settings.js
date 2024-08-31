@@ -1,8 +1,14 @@
-/* global game, ui, WOD5E, foundry */
+/* global game, ui, foundry */
 
 import { AutomationMenu } from './menus/automation-menu.js'
 import { StorytellerMenu } from './menus/storyteller-menu.js'
 import { resetActors } from './reset-actors.js'
+
+/* Definitions */
+import { Attributes } from '../api/def/attributes.js'
+import { Skills } from '../api/def/skills.js'
+import { Disciplines } from '../api/def/disciplines.js'
+import { Edges } from '../api/def/edges.js'
 
 /**
  * Define all game settings here
@@ -174,134 +180,69 @@ export const loadSettings = async function () {
     restricted: true
   })
 
-  // Register the modified attributes
-  game.settings.register('vtm5e', 'modifiedAttributes', {
-    name: game.i18n.localize('WOD5E.Settings.ModifiedAttributes'),
-    hint: game.i18n.localize('WOD5E.Settings.ModifiedAttributesHint'),
-    scope: 'world',
-    config: false,
-    default: [],
-    type: Array,
-    onChange: async () => {
-      // Re-render the storyteller menu window once settings are updated
-      _rerenderStorytellerWindow()
-
-      // Re-init labels
-      WOD5E.Attributes.initializeLabels()
-
-      // Reload actorsheets
-      resetActors()
+  const modCustomList = {
+    attribute: {
+      defCategory: 'Attributes',
+      defClass: Attributes
+    },
+    skill: {
+      defCategory: 'Skills',
+      defClass: Skills
+    },
+    discipline: {
+      defCategory: 'Disciplines',
+      defClass: Disciplines
+    },
+    edge: {
+      defCategory: 'Edges',
+      defClass: Edges
     }
-  })
+  }
 
-  // Register the custom attributes
-  game.settings.register('vtm5e', 'customAttributes', {
-    name: game.i18n.localize('WOD5E.Settings.CustomAttributes'),
-    hint: game.i18n.localize('WOD5E.Settings.CustomAttributes'),
-    scope: 'world',
-    config: false,
-    default: [],
-    type: Array,
-    onChange: async (customAttributes) => {
-      // Re-render the storyteller menu window once settings are updated
-      _rerenderStorytellerWindow()
+  for (const [, value] of Object.entries(modCustomList)) {
+    // Register the modification
+    game.settings.register('vtm5e', `modified${value.defCategory}`, {
+      name: game.i18n.localize(`WOD5E.Settings.Modified${value.defCategory}`),
+      hint: game.i18n.localize(`WOD5E.Settings.Modified${value.defCategory}Hint`),
+      scope: 'world',
+      config: false,
+      default: [],
+      type: Array,
+      onChange: async () => {
+        // Re-render the storyteller menu window once settings are updated
+        _rerenderStorytellerWindow()
 
-      // Grab the custom attributes and send them to the function to update the list
-      WOD5E.Attributes.addCustom(customAttributes)
+        // Re-init labels
+        value.defClass.initializeLabels()
 
-      // Re-init labels
-      WOD5E.Attributes.initializeLabels()
+        // Reload actorsheets
+        resetActors()
+      }
+    })
 
-      // Reload actorsheets
-      resetActors()
-    }
-  })
+    // Register the custom subtype
+    game.settings.register('vtm5e', `custom${value.defCategory}`, {
+      name: game.i18n.localize(`WOD5E.Settings.Custom${value.defCategory}`),
+      hint: game.i18n.localize(`WOD5E.Settings.Custom${value.defCategory}Hint`),
+      scope: 'world',
+      config: false,
+      default: [],
+      type: Array,
+      onChange: async (custom) => {
+        // Re-render the storyteller menu window once settings are updated
+        _rerenderStorytellerWindow()
 
-  // Register the modified skills
-  game.settings.register('vtm5e', 'modifiedSkills', {
-    name: game.i18n.localize('WOD5E.Settings.ModifiedSkills'),
-    hint: game.i18n.localize('WOD5E.Settings.ModifiedSkillsHint'),
-    scope: 'world',
-    config: false,
-    default: [],
-    type: Array,
-    onChange: async () => {
-      // Re-render the storyteller menu window once settings are updated
-      _rerenderStorytellerWindow()
+        // Grab the custom attributes and send them to the function to update the list
+        value.defClass.addCustom(custom)
 
-      // Re-init labels
-      WOD5E.Skills.initializeLabels()
+        // Re-init labels
+        value.defClass.initializeLabels()
 
-      // Reload actorsheets
-      resetActors()
-    }
-  })
-
-  // Register the custom attributes
-  game.settings.register('vtm5e', 'customSkills', {
-    name: game.i18n.localize('WOD5E.Settings.CustomSkills'),
-    hint: game.i18n.localize('WOD5E.Settings.CustomSkillsHint'),
-    scope: 'world',
-    config: false,
-    default: [],
-    type: Array,
-    onChange: async (customSkills) => {
-      // Re-render the storyteller menu window once settings are updated
-      _rerenderStorytellerWindow()
-
-      // Grab the custom skills and send them to the function to update the list
-      WOD5E.Skills.addCustom(customSkills)
-
-      // Re-init labels
-      WOD5E.Skills.initializeLabels()
-
-      // Reload actorsheets
-      resetActors()
-    }
-  })
-
-  // Register the modified disciplines
-  game.settings.register('vtm5e', 'modifiedDisciplines', {
-    name: game.i18n.localize('WOD5E.Settings.ModifiedDisciplines'),
-    hint: game.i18n.localize('WOD5E.Settings.ModifiedDisciplinesHint'),
-    scope: 'world',
-    config: false,
-    default: [],
-    type: Array,
-    onChange: async () => {
-      // Re-render the storyteller menu window once settings are updated
-      _rerenderStorytellerWindow()
-
-      // Re-init labels
-      WOD5E.Disciplines.initializeLabels()
-
-      // Reload actorsheets
-      resetActors()
-    }
-  })
-
-  // Register the custom attributes
-  game.settings.register('vtm5e', 'customDisciplines', {
-    name: game.i18n.localize('WOD5E.Settings.CustomDisciplines'),
-    hint: game.i18n.localize('WOD5E.Settings.CustomDisciplinesHint'),
-    scope: 'world',
-    config: false,
-    default: [],
-    type: Array,
-    onChange: async (customDisciplines) => {
-      // Re-render the storyteller menu window once settings are updated
-      _rerenderStorytellerWindow()
-
-      // Grab the custom disciplines and send them to the function to update the list
-      WOD5E.Disciplines.addCustom(customDisciplines)
-
-      // Re-init labels
-      WOD5E.Disciplines.initializeLabels()
-
-      // Reload actorsheets
-      resetActors()
-    }
-  })
+        // Reload actorsheets
+        resetActors()
+      }
+    })
+  }
 
   // Override for the default actor header image
   game.settings.register('vtm5e', 'actorHeaderOverride', {

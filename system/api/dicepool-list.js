@@ -17,6 +17,7 @@ export const getDicepoolList = async (document) => {
       group: game.i18n.localize('WOD5E.AttributesList.Attributes')
     })
   }
+
   // Skills
   const skills = WOD5E.Skills.getList({})
   for (const [key, value] of Object.entries(skills)) {
@@ -26,6 +27,7 @@ export const getDicepoolList = async (document) => {
       group: game.i18n.localize('WOD5E.SkillsList.Skills')
     })
   }
+
   // Vampire
   if (gamesystem === 'vampire') {
     const disciplines = WOD5E.Disciplines.getList({})
@@ -46,18 +48,6 @@ export const getDicepoolList = async (document) => {
         value: `renown.${key}`,
         label: value.displayName,
         group: game.i18n.localize('WOD5E.WTA.Renown')
-      })
-    }
-  }
-
-  // Hunter
-  if (gamesystem === 'hunter') {
-    const edges = WOD5E.Edges.getList({})
-    for (const [key, value] of Object.entries(edges)) {
-      masterList.push({
-        value: `edges.${key}`,
-        label: value.displayName,
-        group: game.i18n.localize('WOD5E.HTR.Edges')
       })
     }
   }

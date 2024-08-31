@@ -59,8 +59,8 @@ export class GhoulActorSheet extends MortalActorSheet {
 
     // Iterate through items, allocating to containers
     for (const i of sheetData.items) {
-      // Make sure the item is a power and has a discipline
-      if (i.type === 'power') {
+      // Make sure the item is a power and has a discipline that exists
+      if (i.type === 'power' && actorData.system.disciplines[i.system.discipline]) {
         // Append to disciplines list
         actorData.system.disciplines[i.system.discipline].powers.push(i)
       }

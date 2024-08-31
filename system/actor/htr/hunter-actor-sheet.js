@@ -1,6 +1,7 @@
-/* global game, foundry, TextEditor, WOD5E, WOD5E */
+/* global game, foundry */
 
 import { WoDActor } from '../wod-v5-sheet.js'
+import { prepareEdges, prepareEdgePowers } from './scripts/prepare-data.js'
 import { _onAddEdge, _onRemoveEdge, _onEdgeToChat } from './scripts/edges.js'
 import { _onToggleDespair } from './scripts/toggle-despair.js'
 
@@ -43,9 +44,6 @@ export class HunterActorSheet extends WoDActor {
     // Prepare items
     await this._prepareItems(data)
 
-    // Prepare edge data
-    data.actor.system.edges = await this._prepareEdgeData(data)
-
     return data
   }
 
@@ -58,69 +56,27 @@ export class HunterActorSheet extends WoDActor {
     const actorData = sheetData.actor
     const actor = this.actor
 
-    // Secondary variables
-    const edges = actor.system.edges
-
     // Track whether despair is toggled on or not
     if (actor.system.despair.value > 0) {
       actorData.system.despairActive = true
     }
 
-    for (const edgeType in edges) {
-      // Localize the edge name
-      edges[edgeType].label = WOD5E.api.generateLabelAndLocalize({ string: edgeType, type: 'edge' })
-
-      // Wipe old perks so they doesn't duplicate
-      edges[edgeType].perks = []
-
-      // Wipe old edge pools so they doesn't duplicate
-      edges[edgeType].pools = []
-    }
+    // Prepare edge data
+    actorData.system.edges = await prepareEdges(actorData)
 
     // Iterate through items, allocating to containers
     for (const i of sheetData.items) {
-      // Make sure the item is a perk and has an edge set
-      if (i.type === 'perk') {
-        if (i.system.edge !== undefined) {
-          edges[i.system.edge].perks.push(i)
-        }
-      } else if (i.type === 'edgepool') {
-        if (i.system.edge !== undefined) {
-          edges[i.system.edge].pools.push(i)
-        }
+      // Make sure the item is a perk and has a edge
+      if (i.type === 'perk' && actorData.system.edges[i.system.edge]) {
+        // Append to edges list
+        actorData.system.edges[i.system.edge].perks.push(i)
+      } else if (i.type === 'edgepool' && actorData.system.edges[i.system.edge]) {
+        actorData.system.edges[i.system.edge].pools.push(i)
       }
     }
 
-    return sheetData
-  }
-
-  // Handle edge data so we can display it on the actor sheet
-  async _prepareEdgeData (sheetData) {
-    const edges = sheetData.actor.system.edges
-
-    // Sort the edge containers by the level of the perk instead of by creation date
-    // and enrich any Edge/Perk descriptions
-    for (const edgeType in edges) {
-      // If there's perks for this Edge, then make sure it's visible and sort them
-      if (edges[edgeType].perks.length > 0) {
-        if (!edges[edgeType].visible) edges[edgeType].visible = true
-
-        edges[edgeType].perks = edges[edgeType].perks.sort(function (perk1, perk2) {
-          // If the levels are the same, sort alphabetically instead
-          if (perk1.system.level === perk2.system.level) {
-            return perk1.name.localeCompare(perk2.name)
-          }
-
-          // Sort by level
-          return perk1.system.level - perk2.system.level
-        })
-      }
-
-      // Enrich edge description
-      edges[edgeType].enrichedDescription = await TextEditor.enrichHTML(edges[edgeType].description)
-    }
-
-    return edges
+    // Sort edge perks
+    actorData.system.edges = await prepareEdgePowers(actorData.system.edges)
   }
 
   /* -------------------------------------------- */

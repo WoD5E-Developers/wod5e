@@ -1,5 +1,11 @@
 /* global game, WOD5E, FormApplication, foundry, renderTemplate, Dialog */
 
+/* Definitions */
+import { Attributes } from '../../api/def/attributes.js'
+import { Skills } from '../../api/def/skills.js'
+import { Disciplines } from '../../api/def/disciplines.js'
+import { Edges } from '../../api/def/edges.js'
+
 export class StorytellerMenu extends FormApplication {
   static get defaultOptions () {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -25,15 +31,23 @@ export class StorytellerMenu extends FormApplication {
     this.listKeys = {
       attribute: {
         defCategory: 'Attributes',
-        labelCategory: 'AttributesList'
+        labelCategory: 'AttributesList',
+        defClass: Attributes
       },
       skill: {
         defCategory: 'Skills',
-        labelCategory: 'SkillsList'
+        labelCategory: 'SkillsList',
+        defClass: Skills
       },
       discipline: {
         defCategory: 'Disciplines',
-        labelCategory: 'DisciplinesList'
+        labelCategory: 'DisciplinesList',
+        defClass: Disciplines
+      },
+      edge: {
+        defCategory: 'Edges',
+        labelCategory: 'EdgesList',
+        defClass: Edges
       }
     }
   }
@@ -54,11 +68,13 @@ export class StorytellerMenu extends FormApplication {
     data.attributeModifications = game.settings.get('vtm5e', 'modifiedAttributes')
     data.skillModifications = game.settings.get('vtm5e', 'modifiedSkills')
     data.disciplineModifications = game.settings.get('vtm5e', 'modifiedDisciplines')
+    data.edgeModifications = game.settings.get('vtm5e', 'modifiedEdges')
 
     // Grab the custom features from the game settings and add them to the application data
     data.customAttributes = game.settings.get('vtm5e', 'customAttributes')
     data.customSkills = game.settings.get('vtm5e', 'customSkills')
     data.customDisciplines = game.settings.get('vtm5e', 'customDisciplines')
+    data.customEdges = game.settings.get('vtm5e', 'customEdges')
 
     return data
   }
@@ -96,6 +112,8 @@ export class StorytellerMenu extends FormApplication {
         await addCustomItem('skill', 'customSkills', 'New Skill')
       } else if (type === 'discipline') {
         await addCustomItem('discipline', 'customDisciplines', 'New Discipline')
+      } else if (type === 'edge') {
+        await addCustomItem('edge', 'customEdges', 'New Edge')
       }
     })
 
@@ -105,12 +123,14 @@ export class StorytellerMenu extends FormApplication {
       const modifications = {
         attribute: [],
         skill: [],
-        discipline: []
+        discipline: [],
+        edge: []
       }
       const custom = {
         attribute: [],
         skill: [],
-        discipline: []
+        discipline: [],
+        edge: []
       }
 
       const handleFeature = (feature, list) => {
@@ -143,6 +163,8 @@ export class StorytellerMenu extends FormApplication {
       game.settings.set('vtm5e', 'customSkills', custom.skill)
       game.settings.set('vtm5e', 'modifiedDisciplines', modifications.discipline)
       game.settings.set('vtm5e', 'customDisciplines', custom.discipline)
+      game.settings.set('vtm5e', 'modifiedEdges', modifications.edge)
+      game.settings.set('vtm5e', 'customEdges', custom.edge)
     })
   }
 
@@ -193,6 +215,7 @@ export class StorytellerMenu extends FormApplication {
   // Function for removing a custom feature
   async _onRemoveCustom (type, id) {
     const customKey = `custom${this.listKeys[type].defCategory}`
+    delete this.listKeys[type].defClass[id]
     let customList = await game.settings.get('vtm5e', customKey)
     customList = customList.filter(item => item.id !== id)
     await game.settings.set('vtm5e', customKey, customList)

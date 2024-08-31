@@ -76,4 +76,30 @@
       </div>
     </div>
   </div>
+
+  <div class="config-category">
+    <h2>{{localize 'WOD5E.Settings.ModifiedEdges'}}</h2>
+    <div class="subcategory">
+      <p class="notes">{{localize 'WOD5E.Settings.ModifiedEdgesHint'}}</p>
+      <div class="grid grid-3col">
+        <div class="mod-header">{{localize 'WOD5E.HTR.Edge'}}</div>
+        <div class="mod-header">{{localize 'WOD5E.Settings.Rename'}}</div>
+        <div class="mod-header">{{localize 'WOD5E.Settings.Hidden'}}</div>
+      </div>
+      {{#each edgeModifications as |edge id|}}
+        <div class="modification-row grid grid-3col" data-type="edge" data-id="{{edge.id}}" data-label="{{edge.label}}">
+          <div class="mod-label">
+            <i class="fas fa-trash remove-mod-button" data-type="edge" data-id="{{edge.id}}"></i>
+            {{edge.label}}
+          </div>
+          <input type="text" class="mod-rename" placeholder="{{edge.label}}" value="{{edge.rename}}">
+          <input type="checkbox" data-type="edge" class="mod-hidden"{{#if edge.hidden}} checked{{/if}}/>
+        </div>
+      {{/each}}
+      <div class="mod-footer">
+        <hr>
+        <div class="add-mod-button addition-button" data-type="edge">{{localize 'WOD5E.Settings.AddEdgeModification'}}</div>
+      </div>
+    </div>
+  </div>
 </div>
