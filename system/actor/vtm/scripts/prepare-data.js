@@ -1,4 +1,4 @@
-/* global WOD5E, TextEditor */
+/* global WOD5E */
 import { Disciplines } from '../../../api/def/disciplines.js'
 
 export const prepareDisciplines = async function (actor) {
@@ -58,28 +58,6 @@ export const prepareDisciplines = async function (actor) {
 
     // Wipe old discipline powers so they doesn't duplicate
     disciplines[id].powers = []
-  }
-
-  // Handle discipline powers
-  for (const disciplineType in disciplines) {
-    if (disciplines[disciplineType].powers.length > 0) {
-      // If there are any discipline powers in the list, make them visible
-      if (!disciplines[disciplineType].visible && !disciplines[disciplineType].hidden) disciplines[disciplineType].visible = true
-
-      // Sort the discipline containers by the level of the power instead of by creation date
-      disciplines[disciplineType].powers = disciplines[disciplineType].powers.sort(function (power1, power2) {
-        // If the levels are the same, sort alphabetically instead
-        if (power1.system.level === power2.system.level) {
-          return power1.name.localeCompare(power2.name)
-        }
-
-        // Sort by level
-        return power1.system.level - power2.system.level
-      })
-    }
-
-    // Enrich discipline description
-    disciplines[disciplineType].enrichedDescription = await TextEditor.enrichHTML(disciplines[disciplineType].description)
   }
 
   return disciplines
