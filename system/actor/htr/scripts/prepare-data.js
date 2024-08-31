@@ -78,6 +78,7 @@ export const prepareEdgePowers = async function (edges) {
     if (Object.prototype.hasOwnProperty.call(edges, edgeType)) {
       const edge = edges[edgeType]
 
+      // Perk Sorting
       if (edge && Array.isArray(edge.perks)) {
         // Check if the edge has perks
         if (edge.perks.length > 0) {
@@ -89,7 +90,12 @@ export const prepareEdgePowers = async function (edges) {
             return perk1.name.localeCompare(perk2.name)
           })
         }
+      } else {
+        console.warn(`Edge ${edgeType} is missing or perks is not an array.`)
+      }
 
+      // Edge Pool Sorting
+      if (edge && Array.isArray(edge.pools)) {
         // Check if the edge has pools
         if (edge.pools.length > 0) {
           // Sort the edgepools containers alphabetically
