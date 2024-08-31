@@ -1,10 +1,10 @@
 /* global game, foundry */
 
 import { WoDActor } from '../wod-v5-sheet.js'
-import { _prepareWerewolfItems, prepareGiftData, prepareRiteData } from './scripts/prepare-data.js'
+import { _prepareWerewolfItems, prepareGiftData, prepareRiteData, prepareFormData } from './scripts/prepare-data.js'
 import { _onAddGift, _onRemoveGift, _onGiftToChat } from './scripts/gifts.js'
 import { _onBeginFrenzy, _onEndFrenzy } from './scripts/frenzy.js'
-import { _onShiftForm, _onFormToChat, _onFormEdit } from './scripts/forms.js'
+import { _onShiftForm, _onFormToChat, _onFormEdit, _onLostTheWolf } from './scripts/forms.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './scripts/balance.js'
 
 /**
@@ -44,6 +44,7 @@ export class WerewolfActorSheet extends WoDActor {
     // Prepare gifts and rites data
     data.actor.system.gifts = await prepareGiftData(data)
     data.actor.system.rites = await prepareRiteData(data)
+    data.actor.system.forms = await prepareFormData(data)
 
     // If the actor's rage is above 0, make sure they aren't in "lost the wolf" form
     if (data.actor.system.rage.value > 0 && data.actor.system.lostTheWolf) {
@@ -53,7 +54,7 @@ export class WerewolfActorSheet extends WoDActor {
     // Check if the actor's rage is 0, they're in a supernatural form, and they haven't already lost the wolf
     const supernaturalForms = ['glabro', 'crinos', 'hispo']
     if ((data.actor.system.rage.value === 0) && (supernaturalForms.indexOf(data.actor.system.activeForm) > -1)) {
-      this._onLostTheWolf()
+      _onLostTheWolf(this.actor)
     }
 
     return data

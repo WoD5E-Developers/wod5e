@@ -184,6 +184,8 @@
     "Settings": {
       "ActorBanner": "Enable Character Type Banner",
       "ActorBannerHint": "Display a banner at the top of actor sheets to represent the character type.",
+      "actorHeaderOverride": "Default Actor Header",
+      "actorHeaderOverrideHint": "Determine the default image used for actor headers.",
       "AddAttributeModification": "Add Attribute Modification",
       "AddCustomAttribute": "Add Custom Attribute",
       "AddCustomDiscipline": "Add Custom Discipline",

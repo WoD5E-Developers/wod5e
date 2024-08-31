@@ -1,6 +1,6 @@
 <form class="{{cssClass}} flexcol {{#if locked}}locked{{/if}}" autocomplete="off">
     {{!-- Vampire Sheet Header --}}
-    <header class="actor-header" {{#if actor.system.settings.headerbg}}style="background: url({{actor.system.settings.headerbg}}) center;"{{/if}}>
+    <header class="actor-header" {{#if headerbg}} style="background: url({{headerbg}}) center;"{{/if}}>
         <div class="header-fields">
             <div class="header-fields-left">
                 {{!-- Health Tracker --}}

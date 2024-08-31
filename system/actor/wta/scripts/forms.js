@@ -14,7 +14,7 @@ export const _onLostTheWolf = async function (actor) {
   if (actor.system.lostTheWolf) return
 
   // Update the listTheWolf key
-  actor.update({ 'system.lostTheWolf': true })
+  await actor.update({ 'system.lostTheWolf': true })
 
   // Define the template to be used
   const template = `
@@ -29,19 +29,19 @@ export const _onLostTheWolf = async function (actor) {
     homid: {
       label: 'Homid',
       callback: async () => {
-        actor.update({ 'system.activeForm': 'homid' })
+        await actor.update({ 'system.activeForm': 'homid' })
       }
     },
     lupus: {
       label: 'Lupus',
       callback: async () => {
-        actor.update({ 'system.activeForm': 'lupus' })
+        await actor.update({ 'system.activeForm': 'lupus' })
       }
     }
   }
 
   new Dialog({
-    title: 'Lost the Wolf',
+    title: game.i18n.localize('WOD5E.WTA.LostTheWolf'),
     content: template,
     buttons,
     default: 'homid'
@@ -62,21 +62,21 @@ export const _onShiftForm = async function (event) {
 
   switch (form) {
     case 'glabro':
-      this.handleFormChange(actor, 'glabro', 1)
+      await handleFormChange(actor, 'glabro', 1)
       break
     case 'crinos':
-      this.handleFormChange(actor, 'crinos', 2)
+      await handleFormChange(actor, 'crinos', 2)
       break
     case 'hispo':
-      this.handleFormChange(actor, 'hispo', 1)
+      await handleFormChange(actor, 'hispo', 1)
       break
     case 'lupus':
-      actor.update({ 'system.activeForm': 'lupus' })
-      this._onFormToChat(event)
+      await actor.update({ 'system.activeForm': 'lupus' })
+      await _onFormToChat(event, actor)
       break
     default:
-      actor.update({ 'system.activeForm': 'homid' })
-      this._onFormToChat(event)
+      await actor.update({ 'system.activeForm': 'homid' })
+      await _onFormToChat(event, actor)
   }
 }
 
@@ -86,11 +86,10 @@ export const handleFormChange = async function (actor, form, diceCount) {
 
   // If automatedRage is turned on and the actor's rage is 0, present a warning
   if (game.settings.get('vtm5e', 'automatedRage') && actor.system.rage.value === 0) {
-    this._onInsufficientRage(form)
+    _onInsufficientRage(actor, form)
   } else {
     // Variables
     const formData = actor.system.forms[form]
-    const flavor = formData.description
 
     // Handle getting any situational modifiers
     const activeBonuses = await getActiveBonuses({
@@ -99,17 +98,17 @@ export const handleFormChange = async function (actor, form, diceCount) {
     })
 
     // Roll the rage dice necessary
-    WOD5eDice.Roll({
+    await WOD5eDice.Roll({
       advancedDice: diceCount + activeBonuses.totalValue,
       title: form,
+      flavor: formData.description,
       actor,
       data: actor.system,
-      flavor,
       quickRoll: true,
       disableBasicDice: true,
       decreaseRage: true,
       selectors,
-      callback: (err, rollData) => {
+      callback: async (err, rollData) => {
         if (err) console.log(err)
 
         // Calculate the number of rage dice the actor has left
@@ -118,25 +117,25 @@ export const handleFormChange = async function (actor, form, diceCount) {
 
         // If rolling rage dice didn't reduce the actor to 0 rage, then update the current form
         if (newRageAmount > 0) {
-          actor.update({ 'system.activeForm': form })
+          await actor.update({ 'system.activeForm': form })
         }
       }
     })
   }
 }
 
-export const _onFormToChat = async function (event) {
+export const _onFormToChat = async function (event, originActor) {
   event.preventDefault()
 
   // Top-level variables
-  const actor = this.actor
+  const actor = originActor || this.actor
   const element = event.currentTarget
   const dataset = Object.assign({}, element.dataset)
   const form = dataset.form
 
   // Secondary variables
   const formData = actor.system.forms[form]
-  const formName = formData.name
+  const formName = formData.displayName
   const formDescription = formData.description ? `<p>${formData.description}</p>` : ''
   const formAbilities = formData.attributes
 
@@ -171,7 +170,7 @@ export const _onFormEdit = async function (event) {
 
   // Secondary variables
   const formData = actor.system.forms[form]
-  const formName = formData.name
+  const formName = formData.displayName
   const formDescription = formData.description
 
   // Variables yet to be defined
@@ -193,7 +192,7 @@ export const _onFormEdit = async function (event) {
       callback: async (html) => {
         const newDescription = html.find('#formDescription')[0].value
 
-        actor.update({ [`system.forms.${form}.description`]: newDescription })
+        await actor.update({ [`system.forms.${form}.description`]: newDescription })
       }
     },
     cancel: {
@@ -232,7 +231,7 @@ export const _onInsufficientRage = async function (actor, form) {
       icon: '<i class="fas fa-check"></i>',
       label: 'Shift Anyway',
       callback: async () => {
-        actor.update({ 'system.activeForm': form })
+        await actor.update({ 'system.activeForm': form })
       }
     },
     cancel: {

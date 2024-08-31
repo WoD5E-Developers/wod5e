@@ -303,6 +303,21 @@ export const loadSettings = async function () {
     }
   })
 
+  // Override for the default actor header image
+  game.settings.register('vtm5e', 'actorHeaderOverride', {
+    name: game.i18n.localize('WOD5E.Settings.actorHeaderOverride'),
+    hint: game.i18n.localize('WOD5E.Settings.actorHeaderOverrideHint'),
+    scope: 'world',
+    config: true,
+    default: '',
+    type: String,
+    filePicker: 'image',
+    onChange: async () => {
+      // Reload actorsheets
+      resetActors()
+    }
+  })
+
   // World Version, only really needed by developers
   game.settings.register('vtm5e', 'worldVersion', {
     name: game.i18n.localize('WOD5E.Settings.WorldVersion'),

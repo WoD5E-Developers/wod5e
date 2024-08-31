@@ -9,7 +9,7 @@ export const _onAddEdge = async function (event) {
 
   // Secondary variables
   const selectLabel = game.i18n.localize('WOD5E.HTR.SelectEdge')
-  const itemOptions = WOD5E.Edges.getList()
+  const itemOptions = WOD5E.Edges.getList({})
 
   // Variables yet to be defined
   let options = []

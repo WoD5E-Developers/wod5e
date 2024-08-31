@@ -62,15 +62,6 @@ export class SPCActorSheet extends WoDActor {
     // Apply new CSS classes to the sheet, if necessary
     this._applyClasses()
 
-    // SPC type options
-    data.spcTypes = {
-      mortal: 'WOD5E.Mortal',
-      vampire: 'WOD5E.VTM.Label',
-      ghoul: 'WOD5E.VTM.Ghoul',
-      hunter: 'WOD5E.HTR.Label',
-      werewolf: 'WOD5E.WTA.Label'
-    }
-
     // Determine gamesystem based on spcType
     const spcType = this.actor.system.spcType
 
@@ -253,7 +244,7 @@ export class SPCActorSheet extends WoDActor {
     }
 
     // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+    const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
 
     // Display the dialog
     new Dialog({
@@ -296,7 +287,7 @@ export class SPCActorSheet extends WoDActor {
       titleLabel = game.i18n.localize('WOD5E.VTM.AddDiscipline')
       label = game.i18n.localize('WOD5E.VTM.SelectDiscipline')
     } else if (powerType === 'gift') {
-      const giftsList = WOD5E.Gifts.getList()
+      const giftsList = WOD5E.Gifts.getList({})
       for (const [key, value] of Object.entries(giftsList)) {
         options = options.concat(`<option value="${key}">${value.displayName}</option>`)
       }
@@ -304,7 +295,7 @@ export class SPCActorSheet extends WoDActor {
       titleLabel = game.i18n.localize('WOD5E.WTA.AddGift')
       label = game.i18n.localize('WOD5E.WTA.SelectGift')
     } else if (powerType === 'edge') {
-      const edgesList = WOD5E.Edges.getList()
+      const edgesList = WOD5E.Edges.getList({})
       for (const [key, value] of Object.entries(edgesList)) {
         options = options.concat(`<option value="${key}">${value.displayName}</option>`)
       }
@@ -342,7 +333,7 @@ export class SPCActorSheet extends WoDActor {
     }
 
     // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+    const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
 
     // Display the dialog
     new Dialog({
@@ -366,13 +357,13 @@ export class SPCActorSheet extends WoDActor {
 
     // Add a new sheet class depending on the type of sheet
     if (spcType === 'vampire' || spcType === 'ghoul') {
-      sheetElement.removeClass('hunter werewolf')
+      sheetElement.removeClass('hunter werewolf mortal')
       sheetElement.addClass('vampire')
     } else if (spcType === 'hunter') {
-      sheetElement.removeClass('vampire werewolf')
+      sheetElement.removeClass('vampire werewolf mortal')
       sheetElement.addClass('hunter')
     } else if (spcType === 'werewolf') {
-      sheetElement.removeClass('hunter vampire')
+      sheetElement.removeClass('hunter vampire mortal')
       sheetElement.addClass('werewolf')
     } else {
       // Default to a mortal sheet

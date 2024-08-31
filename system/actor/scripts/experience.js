@@ -2,7 +2,7 @@
 
 export const _onAddExperience = async function (actor) {
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+  const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
 
   // Render the template
   const experienceTemplate = 'systems/vtm5e/display/shared/actors/parts/experience-display.hbs'

@@ -75,3 +75,34 @@ export const prepareRiteData = async function (sheetData) {
 
   return rites
 }
+
+// Handle form data
+export const prepareFormData = async function (sheetData) {
+  const wereForms = WOD5E.WereForms.getList({})
+
+  // Fields to keep from the existing data
+  const fieldsToKeep = [
+    'description'
+  ]
+
+  // Merge new form data with existing form data
+  const mergedForms = {}
+  for (const formKey in wereForms) {
+    if (Object.prototype.hasOwnProperty.call(wereForms, formKey)) {
+      // Start with the new form data
+      mergedForms[formKey] = { ...wereForms[formKey] }
+
+      // Check if the existing form data has additional fields
+      if (sheetData.actor.system.forms[formKey]) {
+        // Add fields to keep from the existing form data
+        for (const field of fieldsToKeep) {
+          if (sheetData.actor.system.forms[formKey][field] !== undefined) {
+            mergedForms[formKey][field] = sheetData.actor.system.forms[formKey][field]
+          }
+        }
+      }
+    }
+  }
+
+  return mergedForms
+}

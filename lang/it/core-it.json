@@ -184,6 +184,8 @@
     "Settings": {
       "ActorBanner": "Etichetta tipo personaggio",
       "ActorBannerHint": "Mostra un etichetta sulla scheda che rappresenta il tipo di personaggio.",
+      "_actorHeaderOverride": "",
+      "_actorHeaderOverrideHint": "",
       "AddAttributeModification": "Aggiungi modifica attributo",
       "AddCustomAttribute": "Aggiungi attributo personalizzato",
       "_AddCustomDiscipline": "",

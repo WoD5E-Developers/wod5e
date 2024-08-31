@@ -529,126 +529,7 @@
         }
       },
       "werewolfForms": {
-        "activeForm": "homid",
-        "forms": {
-          "homid": {
-            "name": "WOD5E.WTA.HomidName",
-            "nickname": "WOD5E.WTA.HomidTitle",
-            "cost": 0,
-            "description": "",
-            "attributes": [
-              "Silver Immunity"
-            ]
-          },
-          "glabro": {
-            "name": "WOD5E.WTA.GlabroName",
-            "nickname": "WOD5E.WTA.GlabroTitle",
-            "cost": 1,
-            "description": "",
-            "attributes": [
-              "Physical Tests: +2",
-              "Social Tests: -2",
-              "Regenerate: 1/Rage Check"
-            ],
-            "bonuses": [
-              {
-                "source": "WOD5E.WTA.GlabroName",
-                "value": 2,
-                "paths": ["attributes.strength", "attributes.dexterity", "attributes.stamina"],
-                "activeWhen": {
-                  "check": "isEqual",
-                  "path": "activeForm",
-                  "value": "glabro"
-                }
-              },
-              {
-                "source": "WOD5E.WTA.GlabroName",
-                "value": -2,
-                "paths": ["attributes.charisma", "attributes.manipulation", "attributes.composure"],
-                "activeWhen": {
-                  "check": "isEqual",
-                  "path": "activeForm",
-                  "value": "glabro"
-                }
-              }
-            ]
-          },
-          "crinos": {
-            "name": "WOD5E.WTA.CrinosName",
-            "nickname": "WOD5E.WTA.CrinosTitle",
-            "cost": 2,
-            "description": "",
-            "attributes": [
-              "Frenzy Risk, 1 Willpower/turn",
-              "Physical Tests: +4",
-              "Health: +4",
-              "Social Tests: Auto-failure",
-              "Mental Tests: Auto-failure",
-              "Regenerate: 2/Rage Check",
-              "Claws: +3",
-              "Bite: +1 Aggravated",
-              "Causes Delirium"
-            ],
-            "bonuses": [
-              {
-                "source": "WOD5E.WTA.CrinosName",
-                "value": 4,
-                "paths": ["attributes.strength", "attributes.dexterity", "attributes.stamina"],
-                "activeWhen": {
-                  "check": "isEqual",
-                  "path": "activeForm",
-                  "value": "crinos"
-                }
-              }
-            ]
-          },
-          "hispo": {
-            "name": "WOD5E.WTA.HispoName",
-            "nickname": "WOD5E.WTA.HispoTitle",
-            "cost": 1,
-            "description": "",
-            "attributes": [
-              "(Non-Stealth) Physical Tests: +2",
-              "Stealth Tests: -2",
-              "Social Tests: Limited to wolves and Garou",
-              "Regenerate: 1/Rage Check",
-              "Bite: +1 Aggravated"
-            ],
-            "bonuses": [
-              {
-                "source": "WOD5E.WTA.HispoName",
-                "value": 2,
-                "paths": ["attributes.strength", "attributes.dexterity", "attributes.stamina"],
-                "unless": ["skills.stealth"],
-                "activeWhen": {
-                  "check": "isEqual",
-                  "path": "activeForm",
-                  "value": "hispo"
-                }
-              },
-              {
-                "source": "WOD5E.WTA.HispoName",
-                "value": -2,
-                "paths": ["skills.stealth"],
-                "activeWhen": {
-                  "check": "isEqual",
-                  "path": "activeForm",
-                  "value": "hispo"
-                }
-              }
-            ]
-          },
-          "lupus": {
-            "name": "WOD5E.WTA.LupusName",
-            "nickname": "WOD5E.WTA.LupusTitle",
-            "cost": 0,
-            "description": "",
-            "attributes": [
-              "Silver Immunity",
-              "Social Tests: Limited to wolves and Garou"
-            ]
-          }
-        }
+        "activeForm": "homid"
       },
       "gifts": {
         "gifts": {
@@ -842,23 +723,23 @@
       }
     },
     "mortal": {
-      "templates": ["base", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "mortal"
     },
     "vampire": {
-      "templates": ["base", "vampire_traits", "disciplines", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "vampire"
     },
     "werewolf": {
-      "templates": ["base", "werewolf_traits", "renown", "werewolfForms", "gifts", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "werewolf"
     },
     "hunter": {
-      "templates": ["base", "hunter_traits", "edges", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "hunter"
     },
     "ghoul": {
-      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "vampire"
     },
     "group": {

@@ -11,7 +11,7 @@ export const _onAddGift = async function (event) {
 
   // Secondary variables
   const selectLabel = game.i18n.localize('WOD5E.WTA.SelectGift')
-  const itemOptions = WOD5E.Gifts.getList()
+  const itemOptions = WOD5E.Gifts.getList({})
 
   // Variables yet to be defined
   let options = []

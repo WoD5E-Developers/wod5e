@@ -105,13 +105,6 @@ export class GroupActorSheet extends WoDActor {
     // Apply new CSS classes to the sheet, if necessary
     this._applyClasses()
 
-    // Group type options
-    data.groupTypes = {
-      coterie: 'WOD5E.VTM.Coterie',
-      cell: 'WOD5E.HTR.Cell',
-      pack: 'WOD5E.WTA.Pack'
-    }
-
     return data
   }
 
