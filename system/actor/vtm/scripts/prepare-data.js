@@ -4,7 +4,7 @@ import { Disciplines } from '../../../api/def/disciplines.js'
 export const prepareDisciplines = async function (actor) {
   // Secondary variables
   const disciplinesList = Disciplines.getList({})
-  let disciplines = actor.system?.disciplines
+  const disciplines = actor.system?.disciplines
 
   // Clean up non-existent disciplines, such as custom ones that no longer exist
   const validDisciplines = new Set(Object.keys(disciplinesList))

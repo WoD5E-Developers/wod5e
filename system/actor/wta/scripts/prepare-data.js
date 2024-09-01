@@ -4,7 +4,7 @@ import { Gifts } from '../../../api/def/gifts.js'
 export const prepareGifts = async function (actor) {
   // Secondary variables
   const giftsList = Gifts.getList({})
-  let gifts = actor.system?.gifts
+  const gifts = actor.system?.gifts
 
   // Clean up non-existent gifts, such as custom ones that no longer exist
   const validGifts = new Set(Object.keys(giftsList))

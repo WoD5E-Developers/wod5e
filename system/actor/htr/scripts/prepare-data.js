@@ -5,7 +5,7 @@ import { Edges } from '../../../api/def/edges.js'
 export const prepareEdges = async function (actor) {
   // Secondary variables
   const edgesList = Edges.getList({})
-  let edges = actor.system?.edges
+  const edges = actor.system?.edges
 
   // Clean up non-existent edges, such as custom ones that no longer exist
   const validEdges = new Set(Object.keys(edgesList))
