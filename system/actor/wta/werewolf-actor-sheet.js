@@ -52,8 +52,6 @@ export class WerewolfActorSheet extends WoDActor {
       await _onLostTheWolf(this.actor)
     }
 
-    console.log(data)
-
     return data
   }
 

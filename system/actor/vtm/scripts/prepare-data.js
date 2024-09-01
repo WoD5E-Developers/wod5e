@@ -26,15 +26,6 @@ export const prepareDisciplines = async function (actor) {
         visible: disciplines[id].visible
       }, value)
     } else { // Otherwise, add it to the actor and set it as some default data
-      await actor.update({
-        [`system.disciplines.${id}`]: {
-          value: 0,
-          visible: false,
-          description: '',
-          powers: []
-        }
-      })
-
       disciplineData = Object.assign({
         value: 0,
         visible: false,

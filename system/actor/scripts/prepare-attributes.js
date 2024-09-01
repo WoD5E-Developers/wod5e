@@ -50,5 +50,8 @@ export const prepareAttributes = async function (actor) {
     }
   }
 
-  return { attributes, sortedAttributes }
+  return {
+    attributes,
+    sortedAttributes
+  }
 }

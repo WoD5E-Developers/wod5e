@@ -61,5 +61,8 @@ export const prepareSkills = async function (actor) {
     }
   }
 
-  return { skills, sortedSkills }
+  return {
+    skills,
+    sortedSkills
+  }
 }

@@ -57,7 +57,7 @@ export class WoDActor extends ActorSheet {
   async getData () {
     const data = await super.getData()
     const actor = this.actor
-    const actorData = this.object.system
+    const actorData = actor.system
     data.isCharacter = this.isCharacter
     data.hasBoons = this.hasBoons
     data.locked = actorData.locked
@@ -67,10 +67,23 @@ export class WoDActor extends ActorSheet {
       await _onWillpowerChange(actor)
     }
 
+    // Handle attribute preparation
+    const attributesPrep = await prepareAttributes(actor)
+    actorData.attributes = attributesPrep.attributes
+    actorData.sortedAttributes = attributesPrep.sortedAttributes
+
+    // Handle skill preparation
+    const skillsPrep = await prepareSkills(actor)
+    actorData.skills = skillsPrep.skills
+    actorData.sortedSkills = skillsPrep.sortedSkills
+
+    // Display banner setting
     data.displayBanner = game.settings.get('vtm5e', 'actorBanner')
 
+    // Header background setting
     data.headerbg = await getActorHeader(actor)
 
+    // Actor types that can be swapped to and daa prep for it
     const actorTypeData = await getActorTypes(actor)
     data.currentActorType = actorTypeData.currentActorType
     data.actorTypePath = actorTypeData.typePath
@@ -101,6 +114,10 @@ export class WoDActor extends ActorSheet {
       }
     }
 
+    console.log(data.actor.system)
+    console.log(data.actor)
+    console.log(data.actor.system)
+
     return data
   }
 
@@ -112,18 +129,7 @@ export class WoDActor extends ActorSheet {
      * @override
      */
   async _prepareItems (sheetData) {
-    const actor = this.actor
     const actorData = sheetData.actor
-
-    // Handle attribute preparation
-    const { attributes, sortedAttributes } = await prepareAttributes(actor)
-    actorData.system.attributes = attributes
-    actorData.system.sortedAttributes = sortedAttributes
-
-    // Handle skill preparation
-    const { skills, sortedSkills } = await prepareSkills(actor)
-    actorData.system.skills = skills
-    actorData.system.sortedSkills = sortedSkills
 
     const features = {
       background: [],
