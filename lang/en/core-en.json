@@ -123,7 +123,9 @@
     },
     "Experience": {
       "AddExperience": "Add Experience",
+      "Derived": "Derived",
       "History": "Experience History",
+      "Initial": "Initial",
       "NewExperience": "New Experience",
       "Remaining": "Remaining EXP",
       "Total": "Total EXP"

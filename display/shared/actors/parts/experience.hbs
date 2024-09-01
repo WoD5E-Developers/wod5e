@@ -5,13 +5,31 @@
                 <div class="field-header">
                     {{localize "WOD5E.Experience.Remaining"}}
                 </div>
-                <input name="system.exp.value" value="{{actor.system.exp.value}}"/>
+                <div class="flexrow">
+                    <div class="flexcol">
+                        <input name="system.exp.value" value="{{actor.system.exp.value}}"/>
+                        <div>{{localize "WOD5E.Experience.Initial"}}</div>
+                    </div>
+                    <div class="flexcol">
+                        <input name="system.derivedXP.remainingXP" value="{{actor.system.derivedXP.remainingXP}}" disabled/>
+                        <div>{{localize "WOD5E.Experience.Derived"}}</div>
+                    </div>
+                </div>
             </div>
             <div class="tracker flexcol">
                 <div class="field-header">
                     {{localize "WOD5E.Experience.Total"}}
                 </div>
-                <input name="system.exp.max" value="{{actor.system.exp.max}}"/>
+                <div class="flexrow">
+                    <div class="flexcol">
+                        <input name="system.exp.max" value="{{actor.system.exp.max}}"/>
+                        <div>{{localize "WOD5E.Experience.Initial"}}</div>
+                    </div>
+                    <div class="flexcol">
+                        <input name="system.derivedXP.totalXP" value="{{actor.system.derivedXP.totalXP}}" disabled/>
+                        <div>{{localize "WOD5E.Experience.Derived"}}</div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="flexcol">

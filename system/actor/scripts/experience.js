@@ -64,3 +64,35 @@ export const _onEditExperience = async function (event, actor) {
 
 }
 */
+
+export const _onCalculateDerivedExperience = async function (actor) {
+  const exp = actor.system.exp
+  const experiences = actor.system.experiences
+
+  // If there's no experiences to calculate from, just end the statement early
+  if (!experiences) return
+
+  const { totalXP, spentXP } = experiences.reduce((acc, exp) => {
+    const value = parseInt(exp.value)
+
+    // If the value is greater than or equal to 0, add it under total XP
+    if (value >= 0) {
+        acc.totalXP += value
+    } else { // Otherwise, track it as spent XP
+        acc.spentXP += value
+    }
+
+    return acc
+  }, {
+    totalXP: parseInt(exp.max),
+    spentXP: parseInt(-exp.value)
+  })
+
+  const remainingXP = totalXP + spentXP
+
+  // Return the derivedXP values
+  return {
+    totalXP,
+    remainingXP
+  }
+}

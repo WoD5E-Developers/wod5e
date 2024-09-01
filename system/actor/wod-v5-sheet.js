@@ -15,7 +15,7 @@ import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCount
 import { _onAddBonus, _onDeleteBonus, _onEditBonus } from './scripts/specialty-bonuses.js'
 // Various button functions
 import { _onRollItem } from './scripts/item-roll.js'
-import { _onAddExperience } from './scripts/experience.js'
+import { _onAddExperience, _onCalculateDerivedExperience } from './scripts/experience.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -65,6 +65,10 @@ export class WoDActor extends ActorSheet {
     if (this.object.type !== 'group') {
       await _onHealthChange(actor)
       await _onWillpowerChange(actor)
+    }
+
+    if (this.object.type !== 'group' && this.object.type !== 'spc') {
+      actorData.derivedXP = await _onCalculateDerivedExperience(actor)
     }
 
     // Handle attribute preparation
@@ -298,6 +302,7 @@ export class WoDActor extends ActorSheet {
     // Willpower Rolls
     html.find('.willpower-roll').click(this._onWillpowerRoll.bind(this))
 
+    // Toggle whether a field will be shown in Limited view or not
     html.find('.toggle-limited').click(this._onToggleLimited.bind(this))
   }
 

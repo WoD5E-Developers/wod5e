@@ -31,6 +31,10 @@
           "value": 0,
           "max": 0
         },
+        "derivedXP": {
+          "totalXP": 0,
+          "remainingXP": 0
+        },
         "humanity": {
           "value": 7,
           "stains": 0

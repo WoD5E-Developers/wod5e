@@ -123,7 +123,9 @@
     },
     "Experience": {
       "_AddExperience": "",
+      "_Derived": "",
       "_History": "",
+      "_Initial": "",
       "_NewExperience": "",
       "_Remaining": "",
       "_Total": ""
