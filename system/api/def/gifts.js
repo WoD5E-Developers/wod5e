@@ -14,6 +14,7 @@ export class Gifts extends BaseDefinitionClass {
       Gifts.addCustom(customGifts)
     }
 
+    Gifts.setSortAlphabetically()
     Gifts.initializeLabels()
   }
 

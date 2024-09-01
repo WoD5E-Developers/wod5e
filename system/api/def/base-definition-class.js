@@ -12,16 +12,29 @@ export class BaseDefinitionClass {
     type = '',
     custom = false
   }) {
-    return Object.entries(this)
-      // Filter out any entries with improper formats
+    // Filter based on given filters provided with the function, if any
+    let filteredEntries = Object.entries(this)
       .filter(([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value) &&
-        // Filter based on given filters provided with the function, if any
         (!type || value.type === type) && (!custom || value.custom === custom))
-      // Reduce into a format the system can work with
-      .reduce((accumulator, [key, value]) => {
-        accumulator[key] = value
-        return accumulator
-      }, {})
+
+    // Sort based on either the displayName or the key
+    if (this.sortAlphabetically) {
+      filteredEntries.sort(([, value1], [, value2]) => {
+        // Assuming displayName is a string, we compare them directly
+        return (value1.displayName || '').localeCompare(value2.displayName || '')
+      })
+    } else {
+      filteredEntries.sort(([key1], [key2]) => {
+        // Compare the keys directly
+        return key1.localeCompare(key2)
+      })
+    }
+
+    // Reduce into a format the system can work with
+    return filteredEntries.reduce((accumulator, [key, value]) => {
+      accumulator[key] = value
+      return accumulator
+    }, {})
   }
 
   // Localize the labels
@@ -81,5 +94,10 @@ export class BaseDefinitionClass {
 
     // Reload actorsheets
     resetActors()
+  }
+
+  static setSortAlphabetically () {
+    // This will set the static property on the class that calls this method
+    this.sortAlphabetically = game.settings.get('vtm5e', 'sortDefAlphabetically')
   }
 }

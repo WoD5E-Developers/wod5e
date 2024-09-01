@@ -34,16 +34,6 @@ export class WereForms extends BaseDefinitionClass {
     ]
   }
 
-  static lupus = {
-    label: 'WOD5E.WTA.LupusName',
-    nickname: 'WOD5E.WTA.LupusTitle',
-    cost: 0,
-    attributes: [
-      'WOD5E.WTA.SilverImmunity',
-      'WOD5E.WTA.LupusSocialTests'
-    ]
-  }
-
   static hispo = {
     label: 'WOD5E.WTA.HispoName',
     nickname: 'WOD5E.WTA.HispoTitle',
@@ -75,6 +65,35 @@ export class WereForms extends BaseDefinitionClass {
           check: 'isEqual',
           path: 'activeForm',
           value: 'hispo'
+        }
+      }
+    ]
+  }
+
+  static crinos = {
+    label: 'WOD5E.WTA.CrinosName',
+    nickname: 'WOD5E.WTA.CrinosTitle',
+    cost: 2,
+    attributes: [
+      'WOD5E.WTA.CrinosFrenzy',
+      'WOD5E.WTA.CrinosPhysicalTests',
+      'WOD5E.WTA.CrinosHealth',
+      'WOD5E.WTA.CrinosSocialTests',
+      'WOD5E.WTA.CrinosMentalTests',
+      'WOD5E.WTA.CrinosRegenerate',
+      'WOD5E.WTA.CrinosClaws',
+      'WOD5E.WTA.CrinosBite',
+      'WOD5E.WTA.CausesDelirium'
+    ],
+    bonuses: [
+      {
+        source: 'WOD5E.WTA.CrinosName',
+        value: 4,
+        paths: ['attributes.strength', 'attributes.dexterity', 'attributes.stamina'],
+        activeWhen: {
+          check: 'isEqual',
+          path: 'activeForm',
+          value: 'crinos'
         }
       }
     ]
@@ -113,32 +132,13 @@ export class WereForms extends BaseDefinitionClass {
     ]
   }
 
-  static crinos = {
-    label: 'WOD5E.WTA.CrinosName',
-    nickname: 'WOD5E.WTA.CrinosTitle',
-    cost: 2,
+  static lupus = {
+    label: 'WOD5E.WTA.LupusName',
+    nickname: 'WOD5E.WTA.LupusTitle',
+    cost: 0,
     attributes: [
-      'WOD5E.WTA.CrinosFrenzy',
-      'WOD5E.WTA.CrinosPhysicalTests',
-      'WOD5E.WTA.CrinosHealth',
-      'WOD5E.WTA.CrinosSocialTests',
-      'WOD5E.WTA.CrinosMentalTests',
-      'WOD5E.WTA.CrinosRegenerate',
-      'WOD5E.WTA.CrinosClaws',
-      'WOD5E.WTA.CrinosBite',
-      'WOD5E.WTA.CausesDelirium'
-    ],
-    bonuses: [
-      {
-        source: 'WOD5E.WTA.CrinosName',
-        value: 4,
-        paths: ['attributes.strength', 'attributes.dexterity', 'attributes.stamina'],
-        activeWhen: {
-          check: 'isEqual',
-          path: 'activeForm',
-          value: 'crinos'
-        }
-      }
+      'WOD5E.WTA.SilverImmunity',
+      'WOD5E.WTA.LupusSocialTests'
     ]
   }
 }

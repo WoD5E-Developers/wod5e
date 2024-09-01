@@ -39,6 +39,17 @@ export const loadSettings = async function () {
     onChange: () => _updatePreferredColorScheme()
   })
 
+  // Whether definitions will be sorted alphabetically based on the currently selected language
+  game.settings.register('vtm5e', 'sortDefAlphabetically', {
+    name: game.i18n.localize('WOD5E.Settings.SortDefAlphabetically'),
+    hint: game.i18n.localize('WOD5E.Settings.SortDefAlphabeticallyHint'),
+    scope: 'world',
+    config: true,
+    default: true,
+    type: Boolean,
+    requiresReload: true
+  })
+
   // Deactivate Vampire Revised Font
   game.settings.register('vtm5e', 'disableVampireFont', {
     name: game.i18n.localize('WOD5E.Settings.DisableVampireFont'),

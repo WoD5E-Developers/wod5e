@@ -14,6 +14,7 @@ export class Skills extends BaseDefinitionClass {
       Skills.addCustom(customSkills)
     }
 
+    Skills.setSortAlphabetically()
     Skills.initializeLabels()
   }
 

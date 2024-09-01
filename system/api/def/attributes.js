@@ -14,6 +14,7 @@ export class Attributes extends BaseDefinitionClass {
       Attributes.addCustom(customAttributes)
     }
 
+    Attributes.setSortAlphabetically()
     Attributes.initializeLabels()
   }
 

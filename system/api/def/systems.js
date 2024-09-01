@@ -5,6 +5,7 @@ import { BaseDefinitionClass } from './base-definition-class.js'
 export class Systems extends BaseDefinitionClass {
   // Run any necessary compilation on ready
   static onReady () {
+    Systems.setSortAlphabetically()
     Systems.initializeLabels()
   }
 

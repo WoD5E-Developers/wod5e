@@ -4,7 +4,11 @@ export const prepareSkills = async function (actor) {
   // Loop through each entry in the skills list, get the data (if available), and then push to the containers
   const skillsList = Skills.getList({})
   const skills = actor.system?.skills
-  const sortedSkills = {}
+  const sortedSkills = {
+    physical: [],
+    social: [],
+    mental: []
+  }
 
   if (skills) {
     // Clean up non-existent skills, such as custom ones that no longer exist

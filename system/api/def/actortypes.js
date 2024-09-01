@@ -17,6 +17,7 @@ import { BaseDefinitionClass } from './base-definition-class.js'
 export class ActorTypes extends BaseDefinitionClass {
   // Run any necessary compilation on ready
   static onReady () {
+    ActorTypes.setSortAlphabetically()
     ActorTypes.initializeLabels()
   }
 

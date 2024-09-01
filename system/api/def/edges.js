@@ -14,6 +14,7 @@ export class Edges extends BaseDefinitionClass {
       Edges.addCustom(customEdges)
     }
 
+    Edges.setSortAlphabetically()
     Edges.initializeLabels()
   }
 
