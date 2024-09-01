@@ -1,7 +1,7 @@
 /* global game, foundry */
 
 import { WoDActor } from '../wod-v5-sheet.js'
-import { _prepareWerewolfItems, prepareGiftData, prepareRiteData, prepareFormData } from './scripts/prepare-data.js'
+import { prepareGifts, prepareGiftPowers, prepareFormData } from './scripts/prepare-data.js'
 import { _onAddGift, _onRemoveGift, _onGiftToChat } from './scripts/gifts.js'
 import { _onBeginFrenzy, _onEndFrenzy } from './scripts/frenzy.js'
 import { _onShiftForm, _onFormToChat, _onFormEdit, _onLostTheWolf } from './scripts/forms.js'
@@ -41,11 +41,6 @@ export class WerewolfActorSheet extends WoDActor {
     // Prepare items
     await this._prepareItems(data)
 
-    // Prepare gifts and rites data
-    data.actor.system.gifts = await prepareGiftData(data)
-    data.actor.system.rites = await prepareRiteData(data)
-    data.actor.system.forms = await prepareFormData(data)
-
     // If the actor's rage is above 0, make sure they aren't in "lost the wolf" form
     if (data.actor.system.rage.value > 0 && data.actor.system.lostTheWolf) {
       this.actor.update({ 'system.lostTheWolf': false })
@@ -64,8 +59,27 @@ export class WerewolfActorSheet extends WoDActor {
     // Prepare items
     await super._prepareItems(sheetData)
 
-    // Prepare Werewolf-specific items
-    await _prepareWerewolfItems(this.actor, sheetData)
+    // Top-level variables
+    const actorData = sheetData.actor
+
+    // Prepare discipline data
+    actorData.system.gifts = await prepareGifts(actorData)
+
+    // Prepare form data
+    actorData.system.forms = await prepareFormData(actorData.system.forms)
+
+    // Iterate through items, allocating to containers
+    for (const i of sheetData.items) {
+      // Make sure the item is a gift and has a gift type that exists
+      if (i.type === 'gift' && actorData.system.gifts[i.system.giftType]) {
+        if (!actorData.system.gifts[i.system.giftType]?.powers) actorData.system.gifts[i.system.giftType].powers = []
+        // Append to gifts list
+        actorData.system.gifts[i.system.giftType].powers.push(i)
+      }
+    }
+
+    // Sort discipline powers
+    actorData.system.gifts = await prepareGiftPowers(actorData.system.gifts)
   }
 
   /* -------------------------------------------- */

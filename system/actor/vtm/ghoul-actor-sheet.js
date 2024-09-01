@@ -1,7 +1,7 @@
 /* global game, foundry */
 
 import { MortalActorSheet } from '../mortal-actor-sheet.js'
-import { prepareDisciplines } from './scripts/prepare-data.js'
+import { prepareDisciplines, prepareDisciplinePowers } from './scripts/prepare-data.js'
 import { _onAddDiscipline, _onRemoveDiscipline, _onDisciplineToChat } from './scripts/disciplines.js'
 
 /**
@@ -52,20 +52,23 @@ export class GhoulActorSheet extends MortalActorSheet {
     await super._prepareItems(sheetData)
 
     // Top-level variables
-    const actor = this.actor
     const actorData = sheetData.actor
 
     // Prepare discipline data
-    actorData.system.disciplines = await prepareDisciplines(actor)
+    actorData.system.disciplines = await prepareDisciplines(actorData)
 
     // Iterate through items, allocating to containers
     for (const i of sheetData.items) {
-      // Make sure the item is a power and has a discipline
-      if (i.type === 'power') {
+      // Make sure the item is a power and has a discipline that exists
+      if (i.type === 'power' && actorData.system.disciplines[i.system.discipline]) {
+        if (!actorData.system.disciplines[i.system.discipline]?.powers) actorData.system.disciplines[i.system.discipline].powers = []
         // Append to disciplines list
         actorData.system.disciplines[i.system.discipline].powers.push(i)
       }
     }
+
+    // Sort discipline powers
+    actorData.system.disciplines = await prepareDisciplinePowers(actorData.system.disciplines)
   }
 
   /* -------------------------------------------- */

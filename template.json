@@ -462,6 +462,7 @@
             "description": "",
             "value": 0,
             "perks": [],
+            "pools": [],
             "visible": false
           },
           "globalaccess": {
@@ -617,6 +618,10 @@
             "description": "",
             "value": 0,
             "powers": []
+          },
+          "rites": {
+            "description": "",
+            "powers": []
           }
         }
       },
@@ -669,7 +674,6 @@
             "value": 0
           }
         },
-        "rites": [],
         "talismans": [],
         "rage": {
           "value": 1,

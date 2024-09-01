@@ -14,6 +14,7 @@ export class Disciplines extends BaseDefinitionClass {
       Disciplines.addCustom(customDisciplines)
     }
 
+    Disciplines.setSortAlphabetically()
     Disciplines.initializeLabels()
   }
 

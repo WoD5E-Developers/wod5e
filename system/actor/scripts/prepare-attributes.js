@@ -4,7 +4,11 @@ export const prepareAttributes = async function (actor) {
   // Loop through each entry in the attributes list, get the data (if available), and then push to the containers
   const attributesList = Attributes.getList({})
   const attributes = actor.system?.attributes
-  const sortedAttributes = {}
+  const sortedAttributes = {
+    physical: [],
+    social: [],
+    mental: []
+  }
 
   if (attributes) {
     // Clean up non-existent attributes, such as custom ones that no longer exist
