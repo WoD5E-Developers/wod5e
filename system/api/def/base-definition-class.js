@@ -1,5 +1,7 @@
 /* global game */
 
+import { resetActors } from '../../scripts/reset-actors.js'
+
 export class BaseDefinitionClass {
   static modsEnabled = false
   static defCategory = ''
@@ -23,7 +25,7 @@ export class BaseDefinitionClass {
   }
 
   // Localize the labels
-  static initializeLabels () {
+  static async initializeLabels () {
     let modifications = []
 
     // Check if modifications are enabled
@@ -61,10 +63,13 @@ export class BaseDefinitionClass {
         value.displayName = value.label
       }
     }
+
+    // Reload actorsheets
+    resetActors()
   }
 
   // Method to add extra definitions to a category
-  static addCustom (customDefinitions) {
+  static async addCustom (customDefinitions) {
     for (const [, value] of Object.entries(customDefinitions)) {
       if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
         // Note this definition as being custom
@@ -73,5 +78,8 @@ export class BaseDefinitionClass {
         this[value.id] = value
       }
     }
+
+    // Reload actorsheets
+    resetActors()
   }
 }

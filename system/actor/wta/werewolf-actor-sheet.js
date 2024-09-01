@@ -72,6 +72,7 @@ export class WerewolfActorSheet extends WoDActor {
     for (const i of sheetData.items) {
       // Make sure the item is a gift and has a gift type that exists
       if (i.type === 'gift' && actorData.system.gifts[i.system.giftType]) {
+        if (!actorData.system.gifts[i.system.giftType]?.powers) actorData.system.gifts[i.system.giftType].powers = []
         // Append to gifts list
         actorData.system.gifts[i.system.giftType].powers.push(i)
       }

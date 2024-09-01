@@ -218,10 +218,7 @@ export const loadSettings = async function () {
         _rerenderStorytellerWindow()
 
         // Re-init labels
-        value.defClass.initializeLabels()
-
-        // Reload actorsheets
-        resetActors()
+        await value.defClass.initializeLabels()
       }
     })
 
@@ -238,13 +235,10 @@ export const loadSettings = async function () {
         _rerenderStorytellerWindow()
 
         // Grab the custom attributes and send them to the function to update the list
-        value.defClass.addCustom(custom)
+        await value.defClass.addCustom(custom)
 
         // Re-init labels
-        value.defClass.initializeLabels()
-
-        // Reload actorsheets
-        resetActors()
+        await value.defClass.initializeLabels()
       }
     })
   }

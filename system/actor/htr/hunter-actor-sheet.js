@@ -68,9 +68,11 @@ export class HunterActorSheet extends WoDActor {
     for (const i of sheetData.items) {
       // Make sure the item is a perk and has a edge
       if (i.type === 'perk' && actorData.system.edges[i.system.edge]) {
+        if (!actorData.system.edges[i.system.edge]?.perks) actorData.system.edge[i.system.edge].perks = []
         // Append to edges list
         actorData.system.edges[i.system.edge].perks.push(i)
       } else if (i.type === 'edgepool' && actorData.system.edges[i.system.edge]) {
+        if (!actorData.system.edges[i.system.edge]?.pools) actorData.system.edges[i.system.edge].pools = []
         actorData.system.edges[i.system.edge].pools.push(i)
       }
     }
