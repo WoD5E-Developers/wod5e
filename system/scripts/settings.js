@@ -9,6 +9,7 @@ import { Attributes } from '../api/def/attributes.js'
 import { Skills } from '../api/def/skills.js'
 import { Disciplines } from '../api/def/disciplines.js'
 import { Edges } from '../api/def/edges.js'
+import { Gifts } from '../api/def/gifts.js'
 
 /**
  * Define all game settings here
@@ -196,6 +197,10 @@ export const loadSettings = async function () {
     edge: {
       defCategory: 'Edges',
       defClass: Edges
+    },
+    gift: {
+      defCategory: 'Gifts',
+      defClass: Gifts
     }
   }
 

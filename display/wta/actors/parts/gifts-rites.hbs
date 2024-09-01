@@ -23,7 +23,11 @@
                     <div class="gift category">
                         <div class="flexrow item-header">
                             <div class="item-name">
-                                {{gift.label}}
+                                {{#if (ne key "rite")}}
+                                    {{gift.label}}
+                                {{else}}
+                                    {{localize "WOD5E.WTA.Rites"}}
+                                {{/if}}
                             </div>
                             <!-- Item controls for gift sections -->
                             <div class="item-controls">
@@ -55,7 +59,11 @@
                     <div class="gift category">
                         <div class="flexrow item-header">
                             <div class="item-name">
-                                {{localize "WOD5E.WTA.StringGifts" string=gift.label}}
+                                {{#if (ne key "rite")}}
+                                    {{localize "WOD5E.WTA.StringGifts" string=gift.label}}
+                                {{else}}
+                                    {{localize "WOD5E.WTA.Rites"}}
+                                {{/if}}
                             </div>
                             <!-- Item controls for gift power sections -->
                             <div class="item-controls">
@@ -101,49 +109,6 @@
                     </div>
                 {{/if}}
             {{/each}}
-            <!-- Rites List -->
-            <div class="gift category">
-                <div class="flexrow item-header">
-                    <div class="item-name">
-                        {{localize "WOD5E.WTA.Rites"}}
-                    </div>
-                    <!-- Item controls for gift power sections -->
-                    <div class="item-controls">
-                        <!-- Add new gift power -->
-                        <a class="item-control item-create" title="{{localize 'WOD5E.WTA.AddRite'}}" data-type="gift" data-subtype="rite">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                    </div>
-                </div>
-                {{#each actor.system.rites as |power key|}}
-                    <div class="flexrow power item" data-item-id="{{power._id}}">
-                        <div class="item-image">
-                            <img src="{{power.img}}">
-                        </div>
-                        <div class="item-name">{{power.name}}</div>
-                        <div class="item-controls">
-                            <!-- Icon to edit the power -->
-                            <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <!-- Icon to roll the power's dicepool -->
-                            {{#if (isNotEmpty power.system.dicepool)}}
-                                <a class="item-control rollable-item" data-item-uuid="{{power.uuid}}">
-                                    <i class="fa-solid fa-dice-d10"></i>
-                                </a>
-                            {{/if}}
-                            <!-- Icon to display the power in chat -->
-                            <a class="item-control item-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
-                                <i class="fas fa-comment-alt"></i>
-                            </a>
-                            <!-- Icon to delete the power -->
-                            <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
-                    </div>
-                {{/each}}
-            </div>
         </div>
     </div>
 </div>

@@ -617,6 +617,10 @@
             "description": "",
             "value": 0,
             "powers": []
+          },
+          "rites": {
+            "description": "",
+            "powers": []
           }
         }
       },
@@ -669,7 +673,6 @@
             "value": 0
           }
         },
-        "rites": [],
         "talismans": [],
         "rage": {
           "value": 1,

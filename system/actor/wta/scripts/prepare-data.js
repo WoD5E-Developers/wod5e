@@ -1,83 +1,108 @@
 /* global WOD5E, TextEditor */
+import { Gifts } from '../../../api/def/gifts.js'
 
-// Handle gift data so we can display it on the actor sheet
-export const _prepareWerewolfItems = async function (actor, sheetData) {
+export const prepareGifts = async function (actor) {
   // Secondary variables
-  const gifts = actor.system.gifts
+  const giftsList = Gifts.getList({})
+  let gifts = actor.system?.gifts
 
-  for (const giftType in gifts) {
+  // Clean up non-existent gifts, such as custom ones that no longer exist
+  const validGifts = new Set(Object.keys(giftsList))
+  for (const id of Object.keys(gifts)) {
+    if (!validGifts.has(id)) {
+      delete gifts[id]
+    }
+  }
+
+  for (const [id, value] of Object.entries(giftsList)) {
+    let giftData = {}
+
+    // If the actor has a gift with the key, grab its current values
+    if (Object.prototype.hasOwnProperty.call(gifts, id)) {
+      giftData = Object.assign({
+        value: gifts[id].value,
+        powers: gifts[id].powers || [],
+        description: gifts[id].description,
+        visible: gifts[id].visible
+      }, value)
+    } else { // Otherwise, add it to the actor and set it as some default data
+      await actor.update({
+        [`system.gifts.${id}`]: {
+          value: 0,
+          visible: false,
+          description: '',
+          powers: []
+        }
+      })
+
+      giftData = Object.assign({
+        value: 0,
+        visible: false,
+        description: '',
+        powers: []
+      }, value)
+    }
+
+    // Ensure the gift exists
+    if (!gifts[id]) gifts[id] = {}
+    // Apply the gift's data
+    gifts[id] = giftData
+
+    // Make it forced invisible if it's set to hidden
+    if (giftData.hidden) {
+      gifts[id].visible = false
+    }
+
     // Localize the gift name
-    gifts[giftType].label = WOD5E.api.generateLabelAndLocalize({ string: giftType, type: 'gift' })
+    gifts[id].label = WOD5E.api.generateLabelAndLocalize({ string: id, type: 'gift' })
 
     // Wipe old gift powers so they doesn't duplicate
-    gifts[giftType].powers = []
-  }
-  actor.system.rites = []
-
-  // Iterate through items, allocating to containers
-  for (const i of sheetData.items) {
-    if (i.type === 'gift') {
-      if (i.system.giftType === 'rite') {
-        // Append to the rites list.
-        actor.system.rites.push(i)
-      } else {
-        // Append to each of the gift types.
-        if (i.system.giftType !== undefined) {
-          gifts[i.system.giftType].powers.push(i)
-        }
-      }
-    }
-  }
-}
-
-// Handle gift data so we can display it on the actor sheet
-export const prepareGiftData = async function (sheetData) {
-  const gifts = sheetData.actor.system.gifts
-
-  // Sort the gift containers by the level of the gift instead of by creation date
-  for (const giftType in gifts) {
-    if (gifts[giftType].powers.length > 0) {
-      // If there are any gift powers in the list, make them visible
-      if (!gifts[giftType].visible) gifts[giftType].visible = true
-
-      gifts[giftType].powers = gifts[giftType].powers.sort(function (gift1, gift2) {
-        // If the levels are the same, sort alphabetically instead
-        if (gift1.system.level === gift2.system.level) {
-          return gift1.name.localeCompare(gift2.name)
-        }
-
-        // Sort by level
-        return gift1.system.level - gift2.system.level
-      })
-    }
+    gifts[id].powers = []
 
     // Enrich gift description
-    gifts[giftType].enrichedDescription = await TextEditor.enrichHTML(gifts[giftType].description)
+    gifts[id].enrichedDescription = await TextEditor.enrichHTML(gifts[id].description)
   }
 
   return gifts
 }
 
-// Handle rite data so we can display it on the actor sheet
-export const prepareRiteData = async function (sheetData) {
-  const rites = sheetData.actor.system.rites
+export const prepareGiftPowers = async function (gifts) {
+  for (const giftType in gifts) {
+    if (Object.prototype.hasOwnProperty.call(gifts, giftType)) {
+      const gift = gifts[giftType]
 
-  // Sort the rite containers by the level of the rite instead of by creation date
-  rites.sort(function (rite1, rite2) {
-    // If the levels are the same, sort alphabetically instead
-    if (rite1.system.level === rite2.system.level) {
-      return rite1.name.localeCompare(rite2.name)
+      if (gift && Array.isArray(gift.powers)) {
+        // Check if the gift has powers
+        if (gift.powers.length > 0) {
+          // Ensure visibility is set correctly
+          if (!gift.visible && !gift.hidden) gift.visible = true
+
+          // Sort the gift containers by the level of the power
+          gift.powers = gift.powers.sort(function (power1, power2) {
+            // Ensure power1 and power2 have the necessary properties
+            const level1 = power1.system ? power1.system.level : 0
+            const level2 = power2.system ? power2.system.level : 0
+
+            // If levels are the same, sort alphabetically instead
+            if (level1 === level2) {
+              return power1.name.localeCompare(power2.name)
+            }
+
+            // Sort by level
+            return level1 - level2
+          })
+        }
+      } else {
+        console.warn(`Gift ${giftType} is missing or powers is not an array.`)
+      }
     }
+  }
 
-    // Sort by level
-    return rite1.system.level - rite2.system.level
-  })
-
-  return rites
+  return gifts
 }
 
 // Handle form data
-export const prepareFormData = async function (sheetData) {
+export const prepareFormData = async function (formData) {
   const wereForms = WOD5E.WereForms.getList({})
 
   // Fields to keep from the existing data
@@ -93,16 +118,15 @@ export const prepareFormData = async function (sheetData) {
       mergedForms[formKey] = { ...wereForms[formKey] }
 
       // Check if the existing form data has additional fields
-      if (sheetData.actor.system.forms[formKey]) {
+      if (formData[formKey]) {
         // Add fields to keep from the existing form data
         for (const field of fieldsToKeep) {
-          if (sheetData.actor.system.forms[formKey][field] !== undefined) {
-            mergedForms[formKey][field] = sheetData.actor.system.forms[formKey][field]
+          if (formData[formKey][field] !== undefined) {
+            mergedForms[formKey][field] = formData[formKey][field]
           }
         }
       }
     }
   }
-
   return mergedForms
 }
