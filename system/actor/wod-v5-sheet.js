@@ -114,10 +114,6 @@ export class WoDActor extends ActorSheet {
       }
     }
 
-    console.log(data.actor.system)
-    console.log(data.actor)
-    console.log(data.actor.system)
-
     return data
   }
 
