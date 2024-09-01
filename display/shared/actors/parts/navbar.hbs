@@ -5,11 +5,13 @@
                 <i class="fa-regular fa-chart-line"></i>
             </div>
         </div>
-        <div class="item" data-tab="experience" title="{{localize "WOD5E.Tabs.Experience"}}">
-            <div class="navicon">
-                <i class="fa-solid fa-file-contract"></i>
+        {{#ifnoteq actor.type 'spc'}}
+            <div class="item" data-tab="experience" title="{{localize "WOD5E.Tabs.Experience"}}">
+                <div class="navicon">
+                    <i class="fa-solid fa-file-contract"></i>
+                </div>
             </div>
-        </div>
+        {{/ifnoteq}}
         <!-- Splat-specific tabs -->
         {{#ifeq actor.type 'vampire'}}
           <div class="item" data-tab="disciplines" title="{{localize "WOD5E.VTM.Disciplines"}}">
