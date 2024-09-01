@@ -1,5 +1,6 @@
 /* global WOD5E, TextEditor */
 import { Gifts } from '../../../api/def/gifts.js'
+import { WereForms } from '../../../api/def/were-forms.js'
 
 export const prepareGifts = async function (actor) {
   // Secondary variables
@@ -103,7 +104,7 @@ export const prepareGiftPowers = async function (gifts) {
 
 // Handle form data
 export const prepareFormData = async function (formData) {
-  const wereForms = WOD5E.WereForms.getList({})
+  const wereForms = WereForms.getList({})
 
   // Fields to keep from the existing data
   const fieldsToKeep = [
@@ -128,5 +129,6 @@ export const prepareFormData = async function (formData) {
       }
     }
   }
+
   return mergedForms
 }
