@@ -36,6 +36,7 @@ export class MortalActorSheet extends WoDActor {
 
     // Define the type of sheet
     data.sheetType = `${game.i18n.localize('WOD5E.Mortal')}`
+    this.actor.system.gamesystem = 'mortal'
 
     // Prepare items
     await this._prepareItems(data)

@@ -40,6 +40,8 @@ export class GhoulActorSheet extends MortalActorSheet {
     // Top-level variables
     const data = await super.getData()
 
+    this.actor.system.gamesystem = 'vampire'
+
     return data
   }
 
