@@ -124,6 +124,7 @@
     "Experience": {
       "AddExperience": "Add Experience",
       "Derived": "Derived",
+      "EditExperience": "Edit Experience",
       "History": "Experience History",
       "Initial": "Initial",
       "NewExperience": "New Experience",

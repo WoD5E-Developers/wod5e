@@ -1376,6 +1376,9 @@ body.uk .actor.sheet {
 .actor.sheet .tab.experience .experience-trackers .tracker .field-header {
   font-size: 15pt;
 }
+.actor.sheet .tab.experience .xp-controls {
+  text-align: right;
+}
 .actor.sheet .tab.experience .add-experience {
   font-size: 13pt;
   margin-left: auto;

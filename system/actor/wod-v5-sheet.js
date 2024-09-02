@@ -15,7 +15,7 @@ import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCount
 import { _onAddBonus, _onDeleteBonus, _onEditBonus } from './scripts/specialty-bonuses.js'
 // Various button functions
 import { _onRollItem } from './scripts/item-roll.js'
-import { _onAddExperience, _onCalculateDerivedExperience } from './scripts/experience.js'
+import { _onAddExperience, _onRemoveExperience, _onEditExperience, _onCalculateDerivedExperience } from './scripts/experience.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -212,7 +212,13 @@ export class WoDActor extends ActorSheet {
     html.find('.edit-skill').click(this._onSkillEdit.bind(this))
 
     // Add an experience
-    html.find('.add-experience').click(_onAddExperience.bind(this, actor))
+    html.find('.add-experience').click(_onAddExperience.bind(this))
+
+    // Edit an experience
+    html.find('.edit-experience').click(_onEditExperience.bind(this))
+
+    // Remove an experience
+    html.find('.remove-experience').click(_onRemoveExperience.bind(this))
 
     // Send Inventory Item to Chat
     html.find('.item-chat').click(async event => {
@@ -268,10 +274,7 @@ export class WoDActor extends ActorSheet {
           }
         },
         cancel: {
-          label: game.i18n.localize('WOD5E.Cancel'),
-          callback: async () => {
-            actor.update({ 'system.activeForm': 'lupus' })
-          }
+          label: game.i18n.localize('WOD5E.Cancel')
         }
       }
 
