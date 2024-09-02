@@ -205,9 +205,9 @@ export const _onCalculateDerivedExperience = async function (actor) {
 
     // If the value is greater than or equal to 0, add it under total XP
     if (value >= 0) {
-        acc.totalXP += value
+      acc.totalXP += value
     } else { // Otherwise, track it as spent XP
-        acc.spentXP += value
+      acc.spentXP += value
     }
 
     return acc
