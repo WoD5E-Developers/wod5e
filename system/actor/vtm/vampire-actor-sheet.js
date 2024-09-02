@@ -36,6 +36,8 @@ export class VampireActorSheet extends GhoulActorSheet {
   async getData () {
     const data = await super.getData()
 
+    this.actor.system.gamesystem = 'vampire'
+
     // Prepare items
     await this._prepareItems(data)
 

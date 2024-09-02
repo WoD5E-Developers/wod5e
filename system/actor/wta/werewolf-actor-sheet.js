@@ -38,6 +38,8 @@ export class WerewolfActorSheet extends WoDActor {
     // Top-level variables
     const data = await super.getData()
 
+    this.actor.system.gamesystem = 'werewolf'
+
     // Prepare items
     await this._prepareItems(data)
 
