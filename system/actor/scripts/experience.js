@@ -200,25 +200,24 @@ export const _onCalculateDerivedExperience = async function (actor) {
   // If there's no experiences to calculate from, just end the statement early
   if (!experiences) return
 
-  const { totalXP, spentXP } = experiences.reduce((acc, exp) => {
+  const { totalXP, remainingXP } = experiences.reduce((acc, exp) => {
     const value = parseInt(exp.value)
 
     // If the value is greater than or equal to 0, add it under total XP
     if (value >= 0) {
       acc.totalXP += value
-    } else { // Otherwise, track it as spent XP
-      acc.spentXP += value
     }
+
+    // Accumulate remaining XP by adding the experience value (can be positive or negative)
+    acc.remainingXP += value
 
     return acc
   }, {
     totalXP: parseInt(exp.max),
-    spentXP: parseInt(-exp.value)
+    remainingXP: parseInt(exp.value)
   })
 
-  const remainingXP = totalXP + spentXP
-
-  // Return the derivedXP values
+  // Return the derived XP values
   return {
     totalXP,
     remainingXP
