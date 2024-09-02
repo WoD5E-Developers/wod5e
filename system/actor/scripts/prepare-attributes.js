@@ -29,12 +29,6 @@ export const prepareAttributes = async function (actor) {
           value: attributes[id].value
         }, value)
       } else { // Otherwise, add it to the actor and set it as some default data
-        await actor.update({
-          [`system.attributes.${id}`]: {
-            value: 1
-          }
-        })
-
         attributeData = Object.assign({
           id,
           value: 1
@@ -50,5 +44,8 @@ export const prepareAttributes = async function (actor) {
     }
   }
 
-  return { attributes, sortedAttributes }
+  return {
+    attributes,
+    sortedAttributes
+  }
 }

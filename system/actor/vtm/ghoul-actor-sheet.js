@@ -40,17 +40,11 @@ export class GhoulActorSheet extends MortalActorSheet {
     // Top-level variables
     const data = await super.getData()
 
-    // Prepare items
-    await this._prepareItems(data)
-
     return data
   }
 
   /** Prepare item data for the Ghoul/Vampire actor */
   async _prepareItems (sheetData) {
-    // Prepare items
-    await super._prepareItems(sheetData)
-
     // Top-level variables
     const actorData = sheetData.actor
 

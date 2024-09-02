@@ -42,8 +42,6 @@ export const prepareSkills = async function (actor) {
           macroid: skills[id].macroid
         }, value)
       } else { // Otherwise, add it to the actor and set it as some default data
-        await actor.update({ [`system.skills.${id}`]: { value: 0 } })
-
         skillData = Object.assign({
           id,
           value: 0,
@@ -61,5 +59,8 @@ export const prepareSkills = async function (actor) {
     }
   }
 
-  return { skills, sortedSkills }
+  return {
+    skills,
+    sortedSkills
+  }
 }

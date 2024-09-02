@@ -4,7 +4,7 @@ import { Disciplines } from '../../../api/def/disciplines.js'
 export const prepareDisciplines = async function (actor) {
   // Secondary variables
   const disciplinesList = Disciplines.getList({})
-  let disciplines = actor.system?.disciplines
+  const disciplines = actor.system?.disciplines
 
   // Clean up non-existent disciplines, such as custom ones that no longer exist
   const validDisciplines = new Set(Object.keys(disciplinesList))
@@ -26,15 +26,6 @@ export const prepareDisciplines = async function (actor) {
         visible: disciplines[id].visible
       }, value)
     } else { // Otherwise, add it to the actor and set it as some default data
-      await actor.update({
-        [`system.disciplines.${id}`]: {
-          value: 0,
-          visible: false,
-          description: '',
-          powers: []
-        }
-      })
-
       disciplineData = Object.assign({
         value: 0,
         visible: false,

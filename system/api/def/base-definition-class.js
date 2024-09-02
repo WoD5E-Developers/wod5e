@@ -13,7 +13,7 @@ export class BaseDefinitionClass {
     custom = false
   }) {
     // Filter based on given filters provided with the function, if any
-    let filteredEntries = Object.entries(this)
+    const filteredEntries = Object.entries(this)
       .filter(([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value) &&
         (!type || value.type === type) && (!custom || value.custom === custom))
 

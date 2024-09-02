@@ -5,13 +5,31 @@
                 <div class="field-header">
                     {{localize "WOD5E.Experience.Remaining"}}
                 </div>
-                <input name="system.exp.value" value="{{actor.system.exp.value}}"/>
+                <div class="flexrow">
+                    <div class="flexcol">
+                        <input name="system.exp.value" value="{{actor.system.exp.value}}"/>
+                        <div>{{localize "WOD5E.Experience.Initial"}}</div>
+                    </div>
+                    <div class="flexcol">
+                        <input name="system.derivedXP.remainingXP" value="{{actor.system.derivedXP.remainingXP}}" disabled/>
+                        <div>{{localize "WOD5E.Experience.Derived"}}</div>
+                    </div>
+                </div>
             </div>
             <div class="tracker flexcol">
                 <div class="field-header">
                     {{localize "WOD5E.Experience.Total"}}
                 </div>
-                <input name="system.exp.max" value="{{actor.system.exp.max}}"/>
+                <div class="flexrow">
+                    <div class="flexcol">
+                        <input name="system.exp.max" value="{{actor.system.exp.max}}"/>
+                        <div>{{localize "WOD5E.Experience.Initial"}}</div>
+                    </div>
+                    <div class="flexcol">
+                        <input name="system.derivedXP.totalXP" value="{{actor.system.derivedXP.totalXP}}" disabled/>
+                        <div>{{localize "WOD5E.Experience.Derived"}}</div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="flexcol">
@@ -21,8 +39,18 @@
                 </h1>
             </div>
             {{#each actor.system.experiences as |experience key|}}
-                <div>
+                <div class="flexrow">
                     {{experience.name}} ({{experience.value}} {{localize "WOD5E.Exp"}})
+                    <div class="xp-controls">
+                        <!-- Icon to edit the perk-->
+                        <a class="xp-control edit-experience" title="{{localize 'WOD5E.Edit'}}" data-experience-id="{{experience.id}}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <!-- Icon to delete the perk -->
+                        <a class="xp-control remove-experience" title="{{localize 'WOD5E.Delete'}}" data-experience-id="{{experience.id}}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
                 </div>
             {{/each}}
             <div class="flex-center">

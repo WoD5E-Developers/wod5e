@@ -5,7 +5,7 @@ import { Edges } from '../../../api/def/edges.js'
 export const prepareEdges = async function (actor) {
   // Secondary variables
   const edgesList = Edges.getList({})
-  let edges = actor.system?.edges
+  const edges = actor.system?.edges
 
   // Clean up non-existent edges, such as custom ones that no longer exist
   const validEdges = new Set(Object.keys(edgesList))
@@ -28,16 +28,6 @@ export const prepareEdges = async function (actor) {
         visible: edges[id].visible
       }, value)
     } else { // Otherwise, add it to the actor and set it as some default data
-      await actor.update({
-        [`system.edges.${id}`]: {
-          value: 0,
-          visible: false,
-          description: '',
-          perks: [],
-          pools: []
-        }
-      })
-
       edgeData = Object.assign({
         value: 0,
         visible: false,

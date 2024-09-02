@@ -15,7 +15,7 @@ import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCount
 import { _onAddBonus, _onDeleteBonus, _onEditBonus } from './scripts/specialty-bonuses.js'
 // Various button functions
 import { _onRollItem } from './scripts/item-roll.js'
-import { _onAddExperience } from './scripts/experience.js'
+import { _onAddExperience, _onRemoveExperience, _onEditExperience, _onCalculateDerivedExperience } from './scripts/experience.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -57,7 +57,7 @@ export class WoDActor extends ActorSheet {
   async getData () {
     const data = await super.getData()
     const actor = this.actor
-    const actorData = this.object.system
+    const actorData = actor.system
     data.isCharacter = this.isCharacter
     data.hasBoons = this.hasBoons
     data.locked = actorData.locked
@@ -67,10 +67,27 @@ export class WoDActor extends ActorSheet {
       await _onWillpowerChange(actor)
     }
 
+    if (this.object.type !== 'group' && this.object.type !== 'spc') {
+      actorData.derivedXP = await _onCalculateDerivedExperience(actor)
+    }
+
+    // Handle attribute preparation
+    const attributesPrep = await prepareAttributes(actor)
+    actorData.attributes = attributesPrep.attributes
+    actorData.sortedAttributes = attributesPrep.sortedAttributes
+
+    // Handle skill preparation
+    const skillsPrep = await prepareSkills(actor)
+    actorData.skills = skillsPrep.skills
+    actorData.sortedSkills = skillsPrep.sortedSkills
+
+    // Display banner setting
     data.displayBanner = game.settings.get('vtm5e', 'actorBanner')
 
+    // Header background setting
     data.headerbg = await getActorHeader(actor)
 
+    // Actor types that can be swapped to and daa prep for it
     const actorTypeData = await getActorTypes(actor)
     data.currentActorType = actorTypeData.currentActorType
     data.actorTypePath = actorTypeData.typePath
@@ -112,18 +129,7 @@ export class WoDActor extends ActorSheet {
      * @override
      */
   async _prepareItems (sheetData) {
-    const actor = this.actor
     const actorData = sheetData.actor
-
-    // Handle attribute preparation
-    const { attributes, sortedAttributes } = await prepareAttributes(actor)
-    actorData.system.attributes = attributes
-    actorData.system.sortedAttributes = sortedAttributes
-
-    // Handle skill preparation
-    const { skills, sortedSkills } = await prepareSkills(actor)
-    actorData.system.skills = skills
-    actorData.system.sortedSkills = sortedSkills
 
     const features = {
       background: [],
@@ -206,7 +212,13 @@ export class WoDActor extends ActorSheet {
     html.find('.edit-skill').click(this._onSkillEdit.bind(this))
 
     // Add an experience
-    html.find('.add-experience').click(_onAddExperience.bind(this, actor))
+    html.find('.add-experience').click(_onAddExperience.bind(this))
+
+    // Edit an experience
+    html.find('.edit-experience').click(_onEditExperience.bind(this))
+
+    // Remove an experience
+    html.find('.remove-experience').click(_onRemoveExperience.bind(this))
 
     // Send Inventory Item to Chat
     html.find('.item-chat').click(async event => {
@@ -262,10 +274,7 @@ export class WoDActor extends ActorSheet {
           }
         },
         cancel: {
-          label: game.i18n.localize('WOD5E.Cancel'),
-          callback: async () => {
-            actor.update({ 'system.activeForm': 'lupus' })
-          }
+          label: game.i18n.localize('WOD5E.Cancel')
         }
       }
 
@@ -296,6 +305,7 @@ export class WoDActor extends ActorSheet {
     // Willpower Rolls
     html.find('.willpower-roll').click(this._onWillpowerRoll.bind(this))
 
+    // Toggle whether a field will be shown in Limited view or not
     html.find('.toggle-limited').click(this._onToggleLimited.bind(this))
   }
 

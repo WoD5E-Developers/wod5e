@@ -31,6 +31,10 @@
           "value": 0,
           "max": 0
         },
+        "derivedXP": {
+          "totalXP": 0,
+          "remainingXP": 0
+        },
         "humanity": {
           "value": 7,
           "stains": 0
@@ -85,6 +89,11 @@
           "resolve": {
             "value": 1
           }
+        },
+        "sortedAttributes": {
+          "physical": [],
+          "social": [],
+          "mental": []
         },
         "skills": {
           "athletics": {
@@ -195,6 +204,11 @@
             "value": 0,
             "bonuses": []
           }
+        },
+        "sortedSkills": {
+          "physical": [],
+          "social": [],
+          "mental": []
         }
       },
       "abbreviated": {
@@ -530,7 +544,24 @@
         }
       },
       "werewolfForms": {
-        "activeForm": "homid"
+        "activeForm": "homid",
+        "forms": {
+          "homid": {
+            "description": ""
+          },
+          "glabro": {
+            "description": ""
+          },
+          "crinos": {
+            "description": ""
+          },
+          "hispo": {
+            "description": ""
+          },
+          "lupus": {
+            "description": ""
+          }
+        }
       },
       "gifts": {
         "gifts": {
@@ -727,23 +758,23 @@
       }
     },
     "mortal": {
-      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "werewolfForms", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "mortal"
     },
     "vampire": {
-      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "werewolfForms", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "vampire"
     },
     "werewolf": {
-      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "werewolfForms", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "werewolf"
     },
     "hunter": {
-      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "werewolfForms", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "hunter"
     },
     "ghoul": {
-      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
+      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "werewolfForms", "gifts", "hunter_traits", "edges", "settings"],
       "gamesystem": "vampire"
     },
     "group": {
@@ -760,7 +791,7 @@
       "collapsed": true
     },
     "spc": {
-      "templates": ["abbreviated", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "gifts", "hunter_traits", "edges", "settings"],
+      "templates": ["abbreviated", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "werewolfForms", "gifts", "hunter_traits", "edges", "settings"],
       "spcType": "mortal",
       "gamesystem": "mortal"
     }
