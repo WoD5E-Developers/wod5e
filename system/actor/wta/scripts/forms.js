@@ -2,6 +2,7 @@
 
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveBonuses } from '../../../scripts/rolls/situational-modifiers.js'
+import { WereformApplication } from '../applications/wereform-application.js'
 
 export const _onLostTheWolf = async function (actor) {
   // Variables yet to be defined
@@ -171,45 +172,11 @@ export const _onFormEdit = async function (event) {
   // Secondary variables
   const formData = actor.system.forms[form]
   const formName = formData.displayName
-  const formDescription = formData.description
-
-  // Variables yet to be defined
-  let buttons = {}
-
-  // Define the template to be used
-  const template = `
-    <form>
-        <div class="flexrow">
-          <textarea id="formDescription">${formDescription}</textarea>
-        </div>
-    </form>`
-
-  // Define the buttons to be used and push them to the buttons variable
-  buttons = {
-    submit: {
-      icon: '<i class="fas fa-check"></i>',
-      label: game.i18n.localize('WOD5E.Submit'),
-      callback: async (html) => {
-        const newDescription = html.find('#formDescription')[0].value
-
-        await actor.update({ [`system.forms.${form}.description`]: newDescription })
-      }
-    },
-    cancel: {
-      icon: '<i class="fas fa-times"></i>',
-      label: game.i18n.localize('WOD5E.Cancel')
-    }
-  }
-
-  // Display the dialog
-  new Dialog({
-    title: game.i18n.localize('WOD5E.Edit') + ' ' + game.i18n.localize(formName),
-    content: template,
-    buttons,
-    default: 'submit'
-  },
-  {
-    classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
+  
+  new WereformApplication({
+    actor: this.actor,
+    form,
+    formName
   }).render(true)
 }
 

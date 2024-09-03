@@ -1,0 +1,12 @@
+<div>
+    <h1>
+        {{formName}}
+    </h1>
+    <hr>
+    <prose-mirror name="system.forms.{{form}}.description" data-document-u-u-i-d="{{actor.uuid}}" value="{{formDescription}}"
+        toggled="true" compact="true">
+        {{{enrichedDescription}}}
+    </prose-mirror>
+    <hr>
+    <input name="system.forms.{{form}}.token.img" type="text" data-document-u-u-i-d="{{actor.uuid}}" value="{{formTokenImg}}"/>
+</div>

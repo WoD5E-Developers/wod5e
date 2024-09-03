@@ -99,7 +99,8 @@ export const prepareFormData = async function (formData) {
 
   // Fields to keep from the existing data
   const fieldsToKeep = [
-    'description'
+    'description',
+    'token'
   ]
 
   // Merge new form data with existing form data

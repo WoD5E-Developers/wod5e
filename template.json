@@ -547,19 +547,34 @@
         "activeForm": "homid",
         "forms": {
           "homid": {
-            "description": ""
+            "description": "",
+            "token": {
+              "img": ""
+            }
           },
           "glabro": {
-            "description": ""
+            "description": "",
+            "token": {
+              "img": ""
+            }
           },
           "crinos": {
-            "description": ""
+            "description": "",
+            "token": {
+              "img": ""
+            }
           },
           "hispo": {
-            "description": ""
+            "description": "",
+            "token": {
+              "img": ""
+            }
           },
           "lupus": {
-            "description": ""
+            "description": "",
+            "token": {
+              "img": ""
+            }
           }
         }
       },
