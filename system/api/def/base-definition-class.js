@@ -20,13 +20,8 @@ export class BaseDefinitionClass {
     // Sort based on either the displayName or the key
     if (this.sortAlphabetically) {
       filteredEntries.sort(([, value1], [, value2]) => {
-        // Assuming displayName is a string, we compare them directly
+        // Compare display names
         return (value1.displayName || '').localeCompare(value2.displayName || '')
-      })
-    } else {
-      filteredEntries.sort(([key1], [key2]) => {
-        // Compare the keys directly
-        return key1.localeCompare(key2)
       })
     }
 
