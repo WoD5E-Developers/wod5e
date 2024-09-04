@@ -213,8 +213,8 @@ export const _onCalculateDerivedExperience = async function (actor) {
 
     return acc
   }, {
-    totalXP: parseInt(exp.max),
-    remainingXP: parseInt(exp.value)
+    totalXP: parseInt(exp.max) || 0,
+    remainingXP: parseInt(exp.value) || 0
   })
 
   // Return the derived XP values
