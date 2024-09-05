@@ -1,0 +1,144 @@
+/* global foundry, game, TextEditor */
+
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
+import { _onAddBonus, _onEditBonus, _onDeleteBonus } from './scripts/specialty-bonuses.js'
+
+
+export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) {
+  constructor (data) {
+    super()
+
+    this.data = data
+  }
+
+  get title () {
+    return `Skill Editor - ${this.data.skill}`;
+  }
+
+  get document () {
+    return game.actors.get(this.data.actor._id)
+  }
+
+  static DEFAULT_OPTIONS = {
+    tag: 'form',
+    form: {
+      submitOnChange: true,
+      handler: this.skillHandler
+    },
+    window: {
+      icon: 'fas fa-gear',
+      title: 'Skill Editor'
+    },
+    classes: ['wod5e', 'sheet', 'application'],
+    position: {
+      width: 480,
+      height: 400,
+    },
+    actions: {
+      addBonus: _onAddBonus,
+      editBonus: _onEditBonus,
+      deleteBonus: _onDeleteBonus
+    }
+  }
+
+  static PARTS = {
+    form: {
+      template: 'systems/vtm5e/display/shared/applications/skill-application/skill-application.hbs'
+    },
+    tabs: {
+      template: 'templates/generic/tab-navigation.hbs'
+    },
+    description: {
+      template: 'systems/vtm5e/display/shared/applications/skill-application/parts/description.hbs'
+    },
+    macro: {
+      template: 'systems/vtm5e/display/shared/applications/skill-application/parts/macro.hbs'
+    },
+    bonuses: {
+      template: 'systems/vtm5e/display/shared/applications/skill-application/parts/bonuses.hbs'
+    }
+  }
+
+  tabGroups = {
+    primary: 'description'
+  }
+
+  tabs = {
+    description: {
+      id: 'description',
+      group: 'primary',
+      icon: '',
+      label: 'WOD5E.Tabs.Description'
+    },
+    macro: {
+      id: 'macro',
+      group: 'primary',
+      icon: '',
+      label: 'WOD5E.ItemsList.Macro'
+    },
+    bonuses: {
+      id: 'bonuses',
+      group: 'primary',
+      icon: '',
+      label: 'WOD5E.SkillsList.Specialties'
+    }
+  }
+
+  #getTabs() {
+    const tabs = this.tabs
+
+    for (const tab of Object.values(tabs)) {
+      tab.active = this.tabGroups[tab.group] === tab.id
+      tab.cssClass = tab.active ? 'active' : ''
+
+      console.log(`${tab.id} | ${tab.active} | ${this.tabGroups[tab.group]}`)
+    }
+
+    return tabs
+  }
+
+  async _prepareContext () {
+    // Top-level variables
+    const data = this.data
+    const actorData = this.document.system
+
+    // Define the data the template needs
+    data.skillData = actorData.skills[this.data.skill]
+
+    data.skillDescription = actorData.skills[this.data.skill].description
+    data.enrichedDescription = await TextEditor.enrichHTML(actorData.skills[this.data.skill].description)
+
+    data.tabs = this.#getTabs()
+
+    return data
+  }
+
+  async _preparePartContext(partId, context) {
+    switch (partId) {
+      // Description
+      case 'description':
+        context.tab = context.tabs.description
+        break
+
+      // Macro
+      case 'macro':
+        context.tab = context.tabs.macro
+        break
+
+      // Bonuses
+      case 'bonuses':
+        context.tab = context.tabs.bonuses
+        break
+    }
+
+    return context
+  }
+
+  static async skillHandler (event, form, formData) {
+    // Update the source document
+    await this.document.update(formData.object)
+
+    // Re-render the application
+    this.render()
+  }
+}

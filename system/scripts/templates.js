@@ -8,6 +8,9 @@ export const preloadHandlebarsTemplates = async function () {
 
   // Define template paths to load
   const templatePaths = [
+    // Generic partials
+    'templates/generic/tab-navigation.hbs',
+
     // Base Sheet Partials
     'systems/vtm5e/display/shared/actors/parts/lock-button.hbs',
     'systems/vtm5e/display/shared/actors/parts/header-profile.hbs',
@@ -19,8 +22,6 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/actors/parts/stats.hbs',
     'systems/vtm5e/display/shared/actors/parts/willpower.hbs',
     'systems/vtm5e/display/shared/actors/parts/notes.hbs',
-    'systems/vtm5e/display/shared/actors/parts/skill-dialog.hbs',
-    'systems/vtm5e/display/shared/actors/parts/specialty-display.hbs',
     'systems/vtm5e/display/shared/actors/parts/navbar.hbs',
     'systems/vtm5e/display/shared/actors/parts/actor-settings.hbs',
     'systems/vtm5e/display/shared/actors/parts/core-features.hbs',
@@ -68,6 +69,11 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/actors/parts/group/group-members.hbs',
     'systems/vtm5e/display/shared/actors/parts/group/description.hbs',
     'systems/vtm5e/display/shared/actors/parts/group/header-profile.hbs',
+
+    // Application Partials
+    'systems/vtm5e/display/wta/applications/wereform.hbs',
+    'systems/vtm5e/display/shared/applications/skill-application/skill-application.hbs',
+    'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs',
 
     // Item Sheet Partials (Tabs)
     'systems/vtm5e/display/shared/items/parts/description.hbs',

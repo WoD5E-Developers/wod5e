@@ -12,9 +12,9 @@ import { WOD5eDice } from '../scripts/system-rolls.js'
 import { _onRoll } from './scripts/roll.js'
 // Resource functions
 import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange } from './scripts/counters.js'
-import { _onAddBonus, _onDeleteBonus, _onEditBonus } from './scripts/specialty-bonuses.js'
 // Various button functions
 import { _onRollItem } from './scripts/item-roll.js'
+import { _onEditSkill } from './scripts/on-edit-skill.js'
 import { _onAddExperience, _onRemoveExperience, _onEditExperience, _onCalculateDerivedExperience } from './scripts/experience.js'
 
 /**
@@ -209,7 +209,7 @@ export class WoDActor extends ActorSheet {
     html.find('.rollable-item').click(_onRollItem.bind(this))
 
     // Edit a skill
-    html.find('.edit-skill').click(this._onSkillEdit.bind(this))
+    html.find('.edit-skill').click(_onEditSkill.bind(this))
 
     // Add an experience
     html.find('.add-experience').click(_onAddExperience.bind(this))
@@ -330,94 +330,6 @@ export class WoDActor extends ActorSheet {
 
     // Update the locked state
     await actor.update({ 'system.locked': !actor.system.locked })
-  }
-
-  /**
-   * Handle bringing up the skill edit dialog window
-   * @param {Event} event   The originating click event
-   * @protected
-   */
-  async _onSkillEdit (event) {
-    event.preventDefault()
-
-    // Top-level variables
-    const actor = this.actor
-    const header = event.currentTarget
-    const skill = header.dataset.skill
-
-    // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
-
-    // Render selecting a skill/attribute to roll
-    const skillTemplate = 'systems/vtm5e/display/shared/actors/parts/skill-dialog.hbs'
-    // Render the template
-    const content = await renderTemplate(skillTemplate, {
-      id: skill,
-      actor,
-      system,
-      skill: actor.system.skills[skill]
-    })
-
-    // Render the dialog window to select which skill/attribute combo to use
-    const SkillEditDialog = new Dialog(
-      {
-        title: WOD5E.Skills.getList({})[skill].displayName,
-        content,
-        buttons: { },
-        close: (html) => {
-          // Top-level variables
-          const newDescription = html.find('#description')[0].value
-          const newMacro = html.find('#macroid')[0].value
-
-          // Update the description of the skill
-          actor.update({ [`system.skills.${skill}.description`]: newDescription })
-          // Update the macro ID
-          actor.update({ [`system.skills.${skill}.macroid`]: newMacro })
-
-          // Remove the dialog from the actor's apps on close.
-          delete actor.apps[SkillEditDialog.appId]
-        },
-        render: (html) => {
-          // Define the skill data to send along with any functions
-          const skillData = {
-            id: skill,
-            actor,
-            system,
-            skill: actor.system.skills[skill]
-          }
-
-          // Prompt the dialog to add a new bonus
-          html.find('.add-bonus').click(async event => {
-            _onAddBonus(event, actor, skillData, SkillEditDialog)
-          })
-
-          // Delete a bonus
-          html.find('.delete-bonus').click(async event => {
-            _onDeleteBonus(event, actor, skillData, SkillEditDialog)
-          })
-
-          // Prompt the dialog to edit a bonus
-          html.find('.edit-bonus').click(async event => {
-            _onEditBonus(event, actor, skillData, SkillEditDialog)
-          })
-        }
-      },
-      {
-        classes: ['wod5e', system, 'dialog'],
-        tabs: [
-          {
-            navSelector: '.sheet-tabs',
-            contentSelector: '.sheet-body',
-            initial: 'description'
-          }
-        ],
-        resizeable: true
-      }
-    ).render(true)
-
-    // Add the dialog to the list of apps on the actor
-    // This re-renders the dialog every actor update
-    actor.apps[SkillEditDialog.appId] = SkillEditDialog
   }
 
   // Roll Handlers

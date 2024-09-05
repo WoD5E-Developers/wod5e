@@ -1,0 +1,33 @@
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="bonuses-list">
+        {{#each skillData.bonuses as |bonus key|}}
+            <div class="bonus" style="margin-top: 5px;">
+                <h3>
+                    <a class="edit-bonus" data-action="editBonus" title="Edit bonus" data-uwu="WWWWW" data-bonus="{{key}}" style="margin-right: 5px; margin-top: 5px; font-size: 13pt;">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    {{bonus.source}}
+                    <a class="delete-bonus" data-action="deleteBonus" title="Delete bonus" data-bonus="{{key}}" style="float: right;">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </h3>
+                <div class="grid grid-2col flex-center">
+                    <div class="flexcol flex-center">
+                        <b>{{localize 'WOD5E.Value'}}</b>
+                        <input class="input-value" name="value" type="number" value="{{bonus.value}}" disabled="true"/>
+                    </div>
+                    <div class="flexcol flex-center">
+                        <b>{{localize "WOD5E.Bonus.PathsSeparatedBySemicolons"}}</b>
+                        <input name="paths" type="text" value="{{splitArray bonus.paths}}" placeholder="skills.athletics; attributes.strength" disabled="true"/>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+    <hr>
+    <div class="flex-center">
+        <b>
+            <a class="add-bonus" data-action="addBonus">{{localize 'WOD5E.Bonus.AddNewSpecialty'}}</a>
+        </b>
+    </div>
+</section>

@@ -45,9 +45,9 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
   async _prepareContext () {
     // Top-level variables
     const data = this.data
-
     const actorData = this.document.system
 
+    // Define the data the template needs
     data.formDescription = actorData.forms[data.form].description
     data.enrichedDescription = await TextEditor.enrichHTML(actorData.forms[data.form].description)
 
