@@ -2,7 +2,7 @@
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 import { _onAddBonus, _onEditBonus, _onDeleteBonus } from './scripts/specialty-bonuses.js'
-
+import { generateLocalizedLabel } from '../../api/generate-localization.js'
 
 export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) {
   constructor (data) {
@@ -12,7 +12,8 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
   }
 
   get title () {
-    return `Skill Editor - ${this.data.skill}`;
+    const skillName = generateLocalizedLabel(this.data.skill, 'skill')
+    return `Skill Editor - ${skillName}`
   }
 
   get document () {
@@ -23,7 +24,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     tag: 'form',
     form: {
       submitOnChange: true,
-      handler: this.skillHandler
+      handler: SkillApplication.skillHandler
     },
     window: {
       icon: 'fas fa-gear',
@@ -90,8 +91,6 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     for (const tab of Object.values(tabs)) {
       tab.active = this.tabGroups[tab.group] === tab.id
       tab.cssClass = tab.active ? 'active' : ''
-
-      console.log(`${tab.id} | ${tab.active} | ${this.tabGroups[tab.group]}`)
     }
 
     return tabs

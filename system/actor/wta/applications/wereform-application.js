@@ -37,7 +37,6 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
 
   static PARTS = {
     form: {
-      id: 'form',
       template: 'systems/vtm5e/display/wta/applications/wereform.hbs'
     }
   }

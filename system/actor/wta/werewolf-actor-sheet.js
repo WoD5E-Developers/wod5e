@@ -45,13 +45,13 @@ export class WerewolfActorSheet extends WoDActor {
 
     // If the actor's rage is above 0, make sure they aren't in "lost the wolf" form
     if (data.actor.system.rage.value > 0 && data.actor.system.lostTheWolf) {
-      await this.actor.update({ 'system.lostTheWolf': false })
+      this.actor.update({ 'system.lostTheWolf': false })
     }
 
     // Check if the actor's rage is 0, they're in a supernatural form, and they haven't already lost the wolf
     const supernaturalForms = ['glabro', 'crinos', 'hispo']
     if ((data.actor.system.rage.value === 0) && (supernaturalForms.indexOf(data.actor.system.activeForm) > -1)) {
-      await _onLostTheWolf(this.actor)
+      _onLostTheWolf(this.actor)
     }
 
     return data

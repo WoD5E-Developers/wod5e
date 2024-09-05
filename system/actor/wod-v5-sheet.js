@@ -63,8 +63,8 @@ export class WoDActor extends ActorSheet {
     data.locked = actorData.locked
 
     if (this.object.type !== 'group') {
-      await _onHealthChange(actor)
-      await _onWillpowerChange(actor)
+      _onHealthChange(actor)
+      _onWillpowerChange(actor)
     }
 
     if (this.object.type !== 'group' && this.object.type !== 'spc') {
