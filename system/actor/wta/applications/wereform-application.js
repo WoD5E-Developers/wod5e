@@ -37,8 +37,47 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
 
   static PARTS = {
     form: {
-      template: 'systems/vtm5e/display/wta/applications/wereform.hbs'
+      template: 'systems/vtm5e/display/wta/applications/wereform-application/wereform-application.hbs'
+    },
+    tabs: {
+      template: 'templates/generic/tab-navigation.hbs'
+    },
+    description: {
+      template: 'systems/vtm5e/display/wta/applications/wereform-application/parts/description.hbs'
+    },
+    tokenSettings: {
+      template: 'systems/vtm5e/display/wta/applications/wereform-application/parts/token-settings.hbs'
     }
+  }
+
+  tabGroups = {
+    primary: 'description'
+  }
+
+  tabs = {
+    description: {
+      id: 'description',
+      group: 'primary',
+      icon: '',
+      label: 'WOD5E.Tabs.Description'
+    },
+    tokenSettings: {
+      id: 'token-settings',
+      group: 'primary',
+      icon: '',
+      label: 'WOD5E.Tabs.TokenSettings'
+    }
+  }
+
+  #getTabs() {
+    const tabs = this.tabs
+
+    for (const tab of Object.values(tabs)) {
+      tab.active = this.tabGroups[tab.group] === tab.id
+      tab.cssClass = tab.active ? 'active' : ''
+    }
+
+    return tabs
   }
 
   async _prepareContext () {
@@ -52,12 +91,30 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
 
     data.formTokenImg = actorData.forms[data.form].token.img
 
+    data.tabs = this.#getTabs()
+
     return data
   }
 
   activateListeners (html) {
     // Activate listeners
     super.activateListeners(html)
+  }
+
+  async _preparePartContext(partId, context) {
+    switch (partId) {
+      // Description
+      case 'description':
+        context.tab = context.tabs.description
+        break
+
+      // Token settings
+      case 'tokenSettings':
+        context.tab = context.tabs.tokenSettings
+        break
+    }
+
+    return context
   }
 
   static async wereformHandler (event, form, formData) {

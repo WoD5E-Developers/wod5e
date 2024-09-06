@@ -71,7 +71,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/actors/parts/group/header-profile.hbs',
 
     // Application Partials
-    'systems/vtm5e/display/wta/applications/wereform.hbs',
+    'systems/vtm5e/display/wta/applications/wereform-application/wereform-application.hbs',
     'systems/vtm5e/display/shared/applications/skill-application/skill-application.hbs',
     'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs',
 

@@ -318,7 +318,8 @@
       "PublicNotes": "Public Notes",
       "Settings": "Settings",
       "Stats": "Stats",
-      "StorytellerNotes": "Storyteller Notes"
+      "StorytellerNotes": "Storyteller Notes",
+      "TokenSettings": "Token Settings"
     }
   }
 }
