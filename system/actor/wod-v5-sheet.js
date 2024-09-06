@@ -60,7 +60,6 @@ export class WoDActor extends ActorSheet {
     const actorData = actor.system
     data.isCharacter = this.isCharacter
     data.hasBoons = this.hasBoons
-    data.locked = actorData.locked
 
     if (this.object.type !== 'group') {
       _onHealthChange(actor)

@@ -1,6 +1,6 @@
 {{#if actor.isOwner}}
     <button type="button" class="lock-btn">
-        {{#if locked}}
+        {{#if actor.system.locked}}
             <i class="fa fa-lock"></i>
         {{else}}
             <i class="fa fa-lock-open"></i>
