@@ -12,7 +12,7 @@ import { _onPlayerUpdate, _onGroupUpdate } from './scripts/ownership-updates.js'
  * Extend the base ActorSheet document and put all our base functionality here
  * @extends {Actor}
  */
-export class ActorInfo extends Actor {
+export class WoDActor extends Actor {
   /**
    * @override
    * Handle data that happens before the creation of a new actor document
