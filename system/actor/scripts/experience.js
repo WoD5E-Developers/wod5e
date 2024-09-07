@@ -193,9 +193,9 @@ export const _onEditExperience = async function (event) {
   ).render(true)
 }
 
-export const _onCalculateDerivedExperience = async function (actor) {
-  const exp = actor.system.exp
-  const experiences = actor.system.experiences
+export const getDerivedExperience = async function (systemData) {
+  const exp = systemData.exp
+  const experiences = systemData.experiences
 
   // If there's no experiences to calculate from, just end the statement early
   if (!experiences) return

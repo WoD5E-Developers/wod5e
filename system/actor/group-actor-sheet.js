@@ -175,13 +175,13 @@ export class GroupActorSheet extends WoDActor {
     membersList.push(actorUUID)
 
     // Update the group sheet with the new actor
-    await group.update({ 'system.members': membersList })
+    group.update({ 'system.members': membersList })
 
     // Set the actor's group to the group's ID
-    await actor.update({ 'system.group': group.id })
+    actor.update({ 'system.group': group.id })
 
     // Re-render the actors list
-    await game.actors.render()
+    game.actors.render()
   }
 
   // Function to remove an actor from the group sheet
@@ -200,13 +200,13 @@ export class GroupActorSheet extends WoDActor {
     const membersList = group.system.members.filter(actor => actor !== actorUUID)
 
     // Update the group sheet with the new members list
-    await group.update({ 'system.members': membersList })
+    group.update({ 'system.members': membersList })
 
     // Empty the group field on the actor
-    await actor.update({ 'system.group': '' })
+    actor.update({ 'system.group': '' })
 
     // Re-render the actors list
-    await game.actors.render()
+    game.actors.render()
   }
 
   // Function to open an actor sheet

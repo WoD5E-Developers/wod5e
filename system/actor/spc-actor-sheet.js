@@ -136,7 +136,7 @@ export class SPCActorSheet extends WoDActor {
             visible: actorSkills[id].visible
           }, value)
         } else { // Otherwise, add it to the actor and set it as some default data
-          await this.actor.update({ [`system.exceptionaldicepools.${id}`]: { value: 0 } })
+          this.actor.update({ [`system.exceptionaldicepools.${id}`]: { value: 0 } })
 
           skillData = Object.assign({
             id,

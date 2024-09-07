@@ -64,7 +64,7 @@ export class HunterActorSheet extends WoDActor {
     }
 
     // Prepare edge data
-    actorData.system.edges = await prepareEdges(actorData)
+    actorData.system.edges = prepareEdges(actorData)
 
     // Iterate through items, allocating to containers
     for (const i of sheetData.items) {
@@ -80,7 +80,7 @@ export class HunterActorSheet extends WoDActor {
     }
 
     // Sort edge perks
-    actorData.system.edges = await prepareEdgePowers(actorData.system.edges)
+    actorData.system.edges = prepareEdgePowers(actorData.system.edges)
   }
 
   /* -------------------------------------------- */

@@ -1,10 +1,6 @@
 /* global DEFAULT_TOKEN, ChatMessage, ActorSheet, game, renderTemplate, Dialog, TextEditor, WOD5E, foundry */
 
 // Data preparation functions
-import { prepareSkills } from './scripts/prepare-skills.js'
-import { prepareAttributes } from './scripts/prepare-attributes.js'
-import { _onHealthChange } from './scripts/on-health-change.js'
-import { _onWillpowerChange } from './scripts/on-willpower-change.js'
 import { getActorHeader } from './scripts/get-actor-header.js'
 import { getActorTypes } from './scripts/get-actor-types.js'
 // Roll function
@@ -15,10 +11,10 @@ import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCount
 // Various button functions
 import { _onRollItem } from './scripts/item-roll.js'
 import { _onEditSkill } from './scripts/on-edit-skill.js'
-import { _onAddExperience, _onRemoveExperience, _onEditExperience, _onCalculateDerivedExperience } from './scripts/experience.js'
+import { _onAddExperience, _onRemoveExperience, _onEditExperience } from './scripts/experience.js'
 
 /**
- * Extend the base ActorSheet document and put all our base functionality here
+ * Extend the base Actor document and put all our base functionality here
  * @extends {ActorSheet}
  */
 export class WoDActor extends ActorSheet {
@@ -56,68 +52,41 @@ export class WoDActor extends ActorSheet {
   /** @override */
   async getData () {
     const data = await super.getData()
+
     const actor = this.actor
     const actorData = actor.system
-    data.isCharacter = this.isCharacter
-    data.hasBoons = this.hasBoons
-
-    if (this.object.type !== 'group') {
-      _onHealthChange(actor)
-      _onWillpowerChange(actor)
-    }
-
-    if (this.object.type !== 'group' && this.object.type !== 'spc') {
-      actorData.derivedXP = await _onCalculateDerivedExperience(actor)
-    }
-
-    // Handle attribute preparation
-    const attributesPrep = await prepareAttributes(actor)
-    actorData.attributes = attributesPrep.attributes
-    actorData.sortedAttributes = attributesPrep.sortedAttributes
-
-    // Handle skill preparation
-    const skillsPrep = await prepareSkills(actor)
-    actorData.skills = skillsPrep.skills
-    actorData.sortedSkills = skillsPrep.sortedSkills
-
-    // Display banner setting
-    data.displayBanner = game.settings.get('vtm5e', 'actorBanner')
-
-    // Header background setting
-    data.headerbg = await getActorHeader(actor)
 
     // Actor types that can be swapped to and daa prep for it
     const actorTypeData = await getActorTypes(actor)
-    data.currentActorType = actorTypeData.currentActorType
-    data.actorTypePath = actorTypeData.typePath
-    data.actorOptions = actorTypeData.types
 
-    // Enrich non-header editor fields
-    if (actorData.biography) { data.enrichedBiography = await TextEditor.enrichHTML(actorData.biography) }
-    if (actorData.appearance) { data.enrichedAppearance = await TextEditor.enrichHTML(actorData.appearance) }
-    if (actorData.notes) { data.enrichedNotes = await TextEditor.enrichHTML(actorData.notes) }
-    if (actorData.privatenotes) { data.enrichedPrivateNotes = await TextEditor.enrichHTML(actorData.privatenotes) }
-    if (actorData.equipment) { data.enrichedEquipment = await TextEditor.enrichHTML(actorData.equipment) }
-
-    // Enrich actor header editor fields
+    // Shortcut to the actor headers
     const actorHeaders = actorData.headers
-    if (actorHeaders.tenets) { data.enrichedTenets = await TextEditor.enrichHTML(actorHeaders.tenets) }
-    if (actorHeaders.touchstones) { data.enrichedTouchstones = await TextEditor.enrichHTML(actorHeaders.touchstones) }
-    // Vampire stuff
-    if (actorHeaders.bane) { data.enrichedBane = await TextEditor.enrichHTML(actorHeaders.bane) }
-    // Ghoul stuff
-    if (actorHeaders.creedfields) { data.enrichedCreedFields = await TextEditor.enrichHTML(actorHeaders.creedfields) }
 
-    // Enrich item descriptions
-    for (const item in data.items) {
-      if (data.items[item].system?.description) {
-        const enrichedItemDescription = await TextEditor.enrichHTML(data.items[item].system.description)
+    // Transform any data needed for sheet rendering
+    return {
+      ...data,
 
-        data.items[item].system.enrichedDescription = enrichedItemDescription
-      }
+      isCharacter: this.isCharacter,
+      hasBoons: this.hasBoons,
+
+      displayBanner: game.settings.get('vtm5e', 'actorBanner'),
+
+      headerbg: await getActorHeader(actor),
+
+      currentActorType: actorTypeData.currentActorType,
+      actorTypePath: actorTypeData.typePath,
+      actorOptions: actorTypeData.types,
+
+      biography: await TextEditor.enrichHTML(actorData.biography),
+      appearance: await TextEditor.enrichHTML(actorData.appearance),
+      notes: await TextEditor.enrichHTML(actorData.notes),
+      privatenotes: await TextEditor.enrichHTML(actorData.privatenotes),
+      equipment: await TextEditor.enrichHTML(actorData.equipment),
+      tenets: await TextEditor.enrichHTML(actorHeaders.tenets),
+      touchstones: await TextEditor.enrichHTML(actorHeaders.touchstones),
+      bane: await TextEditor.enrichHTML(actorHeaders.bane),
+      creedfields: await TextEditor.enrichHTML(actorHeaders.creedfields)
     }
-
-    return data
   }
 
   /**
