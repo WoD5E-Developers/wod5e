@@ -101,13 +101,14 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     const data = this.data
     const actorData = this.document.system
 
+    // Prepare tabs
+    data.tabs = this.#getTabs()
+
     // Define the data the template needs
     data.skillData = actorData.skills[this.data.skill]
 
     data.skillDescription = actorData.skills[this.data.skill].description
     data.enrichedDescription = await TextEditor.enrichHTML(actorData.skills[this.data.skill].description)
-
-    data.tabs = this.#getTabs()
 
     return data
   }

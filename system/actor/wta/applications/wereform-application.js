@@ -85,13 +85,14 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
     const data = this.data
     const actorData = this.document.system
 
+    // Prepare tabs
+    data.tabs = this.#getTabs()
+
     // Define the data the template needs
     data.formDescription = actorData.forms[data.form].description
     data.enrichedDescription = await TextEditor.enrichHTML(actorData.forms[data.form].description)
 
     data.formTokenImg = actorData.forms[data.form].token.img
-
-    data.tabs = this.#getTabs()
 
     return data
   }
