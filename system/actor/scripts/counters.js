@@ -25,9 +25,9 @@ export const _onResourceChange = async function (event) {
   }
 
   // Handle adding and subtracting the number of boxes
-  if (dataset.action === 'plus') {
+  if (dataset.resourceAction === 'plus') {
     actorData.system[resource].max++
-  } else if (dataset.action === 'minus') {
+  } else if (dataset.resourceAction === 'minus') {
     actorData.system[resource].max = Math.max(actorData.system[resource].max - 1, 0)
   }
 
