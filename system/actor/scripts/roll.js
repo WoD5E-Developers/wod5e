@@ -8,13 +8,14 @@ import { getActiveBonuses } from '../../scripts/rolls/situational-modifiers.js'
    * @param {Event} event   The originating click event
    * @private
 */
-export const _onRoll = async function (event) {
+export const _onRoll = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
+
+  // Secondary variables
+  const dataset = $(target).data()
 
   WOD5E.api.RollFromDataset({
     dataset,
