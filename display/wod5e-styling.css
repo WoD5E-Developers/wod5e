@@ -1339,6 +1339,7 @@ body.uk .actor.sheet {
   width: 100%;
   text-align: center;
   height: 34px;
+  font-size: 23pt;
 }
 .actor.sheet .actor-header .header-fields {
   display: flex;
