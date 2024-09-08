@@ -19,7 +19,7 @@ export class WoDItemSheet extends ItemSheet {
       height: 400,
       tabs: [{
         navSelector: '.sheet-tabs',
-        contentSelector: '.sheet-body',
+        contentSelector: 'section',
         initial: 'description'
       }]
     })

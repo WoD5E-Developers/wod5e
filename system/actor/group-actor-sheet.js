@@ -18,7 +18,7 @@ export class GroupActorSheet extends WoDActor {
       classes: classList,
       tabs: [{
         navSelector: '.sheet-tabs',
-        contentSelector: '.sheet-body',
+        contentSelector: 'section',
         initial: 'members'
       }],
       dragDrop: [{

@@ -1,32 +1,36 @@
-<div class="tab experience" data-group="primary" data-tab="experience">
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
     <div class="grid grid-2col">
         <div class="experience-trackers">
             <div class="tracker flexcol">
-                <div class="field-header">
-                    {{localize "WOD5E.Experience.Remaining"}}
+                <div class="field-header flex-center">
+                    <h3>
+                        {{localize "WOD5E.Experience.Remaining"}}
+                    </h3>
                 </div>
                 <div class="flexrow">
                     <div class="flexcol">
-                        <input name="system.exp.value" type="number" value="{{actor.system.exp.value}}"/>
+                        <input name="system.exp.value" type="number" value="{{exp.value}}"/>
                         <div>{{localize "WOD5E.Experience.Initial"}}</div>
                     </div>
                     <div class="flexcol">
-                        <input name="system.derivedXP.remainingXP" type="number" value="{{actor.system.derivedXP.remainingXP}}" disabled/>
+                        <input name="system.derivedXP.remainingXP" type="number" value="{{derivedXP.remainingXP}}" disabled/>
                         <div>{{localize "WOD5E.Experience.Derived"}}</div>
                     </div>
                 </div>
             </div>
             <div class="tracker flexcol">
-                <div class="field-header">
-                    {{localize "WOD5E.Experience.Total"}}
+                <div class="field-header flex-center">
+                    <h3>
+                        {{localize "WOD5E.Experience.Total"}}
+                    </h3>
                 </div>
                 <div class="flexrow">
                     <div class="flexcol">
-                        <input name="system.exp.max" type="number" value="{{actor.system.exp.max}}"/>
+                        <input name="system.exp.max" type="number" value="{{exp.max}}"/>
                         <div>{{localize "WOD5E.Experience.Initial"}}</div>
                     </div>
                     <div class="flexcol">
-                        <input name="system.derivedXP.totalXP" type="number" value="{{actor.system.derivedXP.totalXP}}" disabled/>
+                        <input name="system.derivedXP.totalXP" type="number" value="{{derivedXP.totalXP}}" disabled/>
                         <div>{{localize "WOD5E.Experience.Derived"}}</div>
                     </div>
                 </div>
@@ -34,30 +38,30 @@
         </div>
         <div class="flexcol">
             <div>
-                <h1 class="field-header flexrow">
+                <h2 class="field-header flexrow flex-center">
                     {{localize "WOD5E.Experience.History"}}
-                </h1>
+                </h2>
             </div>
-            {{#each actor.system.experiences as |experience key|}}
+            {{#each experiences as |experience key|}}
                 <div class="flexrow">
                     {{experience.name}} ({{experience.value}} {{localize "WOD5E.Exp"}})
                     <div class="xp-controls">
                         <!-- Icon to edit the perk-->
-                        <a class="xp-control edit-experience" title="{{localize 'WOD5E.Edit'}}" data-experience-id="{{experience.id}}">
+                        <a class="xp-control edit-experience" data-action="editExperience" title="{{localize 'WOD5E.Edit'}}" data-experience-id="{{experience.id}}">
                             <i class="fas fa-edit"></i>
                         </a>
                         <!-- Icon to delete the perk -->
-                        <a class="xp-control remove-experience" title="{{localize 'WOD5E.Delete'}}" data-experience-id="{{experience.id}}">
+                        <a class="xp-control remove-experience" data-action="removeExperience" title="{{localize 'WOD5E.Delete'}}" data-experience-id="{{experience.id}}">
                             <i class="fas fa-trash"></i>
                         </a>
                     </div>
                 </div>
             {{/each}}
             <div class="flex-center">
-                <a class="add-experience">
+                <a class="add-experience" data-action="addExperience">
                     {{localize "WOD5E.Experience.AddExperience"}}
                 </a>
             </div>
         </div>
     </div>
-</div>
+</section>

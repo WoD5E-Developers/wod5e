@@ -13,7 +13,7 @@
         {{#each actor.system.exceptionaldicepools_list as |exceptionalskill key|}}
             {{#if exceptionalskill.visible}}
                 <li class="flexrow spc-item-header">
-                    <label for="{{exceptionalskill.name}}" class="resource-label rollable" data-absolute-value="{{exceptionalskill.value}}" 
+                    <label for="{{exceptionalskill.name}}" class="resource-label rollable" data-action="roll" data-absolute-value="{{exceptionalskill.value}}" 
                       data-use-absolute-value="true" data-label="{{exceptionalskill.displayName}}">{{exceptionalskill.displayName}} 
                     </label>
                     <div class="resource-value">

@@ -137,7 +137,7 @@
   background: var(--hunter-color-1);
   border-bottom: 4px double var(--system-color-6);
 }
-.hunter.dialog.window-app .window-content .sheet-body .tab > .resource-label,
+.hunter.dialog.window-app .window-content section .tab > .resource-label,
 .hunter.dialog.window-app .items-list .item-header,
 .hunter.dialog.window-app .items-list .spc-item-header,
 .hunter.dialog.window-app .spc-pool-header,
@@ -203,7 +203,7 @@
 .mortal.dialog .window-header {
   background: var(--mortal-color-1);
 }
-.mortal.dialog .window-content .sheet-body .tab > .resource-label,
+.mortal.dialog .window-content section .tab > .resource-label,
 .mortal.dialog .items-list .item-header,
 .mortal.dialog .items-list .spc-item-header,
 .mortal.dialog .spc-pool-header,
@@ -958,7 +958,7 @@ h3.item-name {
   background: var(--vampire-color-1);
   border-bottom: 4px double var(--system-color-6);
 }
-.vampire.dialog.window-app .window-content .sheet-body .tab .resource-label,
+.vampire.dialog.window-app .window-content section .tab .resource-label,
 .vampire.dialog.window-app .items-list .item-header,
 .vampire.dialog.window-app .items-list .spc-item-header,
 .vampire.dialog.window-app .spc-pool-header,
@@ -1194,7 +1194,7 @@ h3.item-name {
   background: var(--werewolf-color-1);
   border-bottom: 4px double var(--system-color-6);
 }
-.werewolf.dialog.window-app .window-content .sheet-body .tab .resource-label,
+.werewolf.dialog.window-app .window-content section .tab .resource-label,
 .werewolf.dialog.window-app .items-list .item-header,
 .werewolf.dialog.window-app .items-list .spc-item-header,
 .werewolf.dialog.window-app .spc-pool-header,
@@ -1278,8 +1278,6 @@ body.uk .actor.sheet {
   padding: 0;
   padding-bottom: 20px;
   overflow-y: scroll;
-}
-.actor.sheet .window-content form {
   margin-left: 45px;
 }
 .actor.sheet input,
@@ -1323,9 +1321,17 @@ body.uk .actor.sheet {
   align-items: center;
   min-width: 315px;
 }
+.actor.sheet .actor-header .header-profile .name-field {
+  width: 250px;
+}
 .actor.sheet .actor-header .header-profile-img {
   margin-bottom: 10px;
   max-width: 100px;
+}
+.actor.sheet .actor-header .header-profile-img img {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
 }
 .actor.sheet .actor-header .charname input {
   width: 100%;
@@ -1517,12 +1523,13 @@ body.uk .actor.sheet {
 }
 .actor.sheet .lock-btn {
   max-width: 35px;
+  height: 35px;
   align-self: baseline;
 }
 .actor.sheet .lock-btn i {
   margin: auto;
 }
-.actor.sheet .sheet-body {
+.actor.sheet section .tab {
   padding: 8px;
 }
 .actor.sheet .tabs-container {

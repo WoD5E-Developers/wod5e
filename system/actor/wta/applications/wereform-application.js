@@ -10,7 +10,7 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
   }
 
   get title () {
-    return `Wereform Editor - ${this.data.formName}`;
+    return `Wereform Editor - ${this.data.formName}`
   }
 
   get document () {
@@ -30,7 +30,7 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
     classes: ['wod5e', 'sheet', 'werewolf', 'application', 'wereform'],
     position: {
       width: 480,
-      height: 400,
+      height: 400
     },
     actions: {}
   }

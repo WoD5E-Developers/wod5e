@@ -12,7 +12,7 @@
                             <div class="resource-value" data-value="{{actor.system.chasse.value}}" data-name="system.chasse.value">
                                 <span class="resource-value-empty"></span>
                                 {{#numLoop 5}}
-                                <span class="resource-value-step" data-index="{{this}}"></span>
+                                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
                                 {{/numLoop}}
                             </div>
                         </div>
@@ -23,9 +23,9 @@
                         </div>
                         <div class="resource resource-content flexrow flex-center flex-between">
                             <div class="resource-value" data-value="{{actor.system.lien.value}}" data-name="system.lien.value">
-                                <span class="resource-value-empty"></span>
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
                                 {{#numLoop 5}}
-                                <span class="resource-value-step" data-index="{{this}}"></span>
+                                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
                                 {{/numLoop}}
                             </div>
                         </div>
@@ -48,9 +48,9 @@
                         </div>
                         <div class="resource resource-content flexrow flex-center flex-between">
                             <div class="resource-value" data-value="{{actor.system.portillon.value}}" data-name="system.portillon.value">
-                                <span class="resource-value-empty"></span>
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
                                 {{#numLoop 5}}
-                                <span class="resource-value-step" data-index="{{this}}"></span>
+                                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
                                 {{/numLoop}}
                             </div>
                         </div>

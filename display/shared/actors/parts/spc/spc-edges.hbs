@@ -13,7 +13,7 @@
         {{#each actor.system.edges as |edge key|}}
             {{#if edge.visible}}
                 <li class="flexrow spc-item-header">
-                    <label for="{{edge.name}}" class="resource-label rollable" data-use-absolute-value="true"
+                    <label for="{{edge.name}}" class="resource-label rollable" data-action="roll" data-use-absolute-value="true"
                       data-absolute-value="{{edge.value}}" data-label="{{generateLocalizedLabel key 'edges'}}">{{generateLocalizedLabel key 'edges'}}
                     </label>
                     <div class="resource-value">

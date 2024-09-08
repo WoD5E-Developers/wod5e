@@ -33,7 +33,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     classes: ['wod5e', 'sheet', 'application'],
     position: {
       width: 480,
-      height: 400,
+      height: 400
     },
     actions: {
       addBonus: _onAddBonus,

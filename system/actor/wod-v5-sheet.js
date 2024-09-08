@@ -1,60 +1,117 @@
-/* global DEFAULT_TOKEN, ChatMessage, ActorSheet, game, renderTemplate, Dialog, TextEditor, WOD5E, foundry */
+/* global DEFAULT_TOKEN, game, TextEditor, WOD5E, foundry */
+
+const { HandlebarsApplicationMixin } = foundry.applications.api
 
 // Data preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
 import { getActorTypes } from './scripts/get-actor-types.js'
 // Roll function
-import { WOD5eDice } from '../scripts/system-rolls.js'
 import { _onRoll } from './scripts/roll.js'
 // Resource functions
 import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange } from './scripts/counters.js'
 // Various button functions
 import { _onRollItem } from './scripts/item-roll.js'
+import { _onEditImage } from './scripts/on-edit-image.js'
+import { _onToggleLock } from './scripts/on-toggle-lock.js'
 import { _onEditSkill } from './scripts/on-edit-skill.js'
 import { _onAddExperience, _onRemoveExperience, _onEditExperience } from './scripts/experience.js'
+import { _onCreateItem, _onItemChat, _onItemEdit, _onItemDelete } from './scripts/item-actions.js'
+import { _onWillpowerRoll } from './scripts/on-willpower-roll.js'
+import { _onToggleCollapse } from './scripts/on-toggle-collapse.js'
+import { _onToggleLimited } from './scripts/on-toggle-limited.js'
 
 /**
- * Extend the base Actor document and put all our base functionality here
- * @extends {ActorSheet}
+ * Extend the base ActorSheetV2 document
+ * @extends {foundry.applications.sheets.ActorSheetV2}
  */
-export class WoDActor extends ActorSheet {
-  /** @override */
-  static get defaultOptions () {
-    // Define the base list of CSS classes
-    const classList = ['wod5e', 'sheet', 'actor']
+export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
+  get title() {
+    return this.actor.isToken ? `[Token] ${this.actor.name}` : this.actor.name
+  }
 
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: classList,
+  constructor(options = {}) {
+    super(options)
+  }
+
+  static DEFAULT_OPTIONS = {
+    form: {
+      submitOnChange: true,
+      handler: WoDActor.onSubmitActorForm
+    },
+    window: {
+      icon: 'fas fa-gear'
+    },
+    classes: ['wod5e', 'actor', 'sheet'],
+    position: {
       width: 1000,
-      height: 700,
-      tabs: [{
-        navSelector: '.sheet-tabs',
-        contentSelector: '.sheet-body',
-        initial: 'stats'
-      }],
-      dragDrop: [{
-        dragSelector: '.item',
-        dropSelector: null
-      }]
-    })
+      height: 700
+    },
+    actions: {
+      // Resource actions
+      squareCounterChange: _onSquareCounterChange,
+      resourceChange: _onResourceChange,
+      dotCounterChange: _onDotCounterChange,
+      dotCounterEmpty: _onDotCounterEmpty,
+
+      // Rollable actions
+      roll: _onRoll,
+      willpowerRoll: _onWillpowerRoll,
+
+      // Item actions
+      createItem: _onCreateItem,
+      rollItem: _onRollItem,
+      itemChat: _onItemChat,
+      itemEdit: _onItemEdit,
+      itemDelete: _onItemDelete,
+
+      // Various other sheet functions
+      editImage: _onEditImage,
+      editSkill: _onEditSkill,
+      toggleLock: _onToggleLock,
+      toggleLimited: _onToggleLimited,
+      toggleCollapse: _onToggleCollapse,
+      addExperience: _onAddExperience,
+      removeExperience: _onRemoveExperience,
+      editExperience: _onEditExperience
+    }
   }
 
-  /** @override */
-  async _render (...args) {
-    // Override _render so that we can save and restore the scroll position during rendering
-    this._saveScrollPositions()
+  _getHeaderControls() {
+    const controls = super._getHeaderControls()
 
-    await super._render(...args)
-
-    this._restoreScrollPositions()
+    return controls
   }
 
-  /** @override */
-  async getData () {
-    const data = await super.getData()
+  tabGroups = {
+    primary: 'stats'
+  }
 
+  tabs = {}
+
+  getTabs() {
+    const tabs = this.tabs
+
+    for (const tab of Object.values(tabs)) {
+      tab.active = this.tabGroups[tab.group] === tab.id
+      tab.cssClass = tab.active ? 'active' : ''
+    }
+
+    return tabs
+  }
+
+  async _prepareContext () {
+    // Top-level variables
+    const data = await super._prepareContext()
     const actor = this.actor
     const actorData = actor.system
+
+    // Prepare tabs
+    data.tabs = this.getTabs()
+
+    // Define the data the template needs
+
+    // Prepare items
+    await this.prepareItems(actor)
 
     // Actor types that can be swapped to and daa prep for it
     const actorTypeData = await getActorTypes(actor)
@@ -66,8 +123,20 @@ export class WoDActor extends ActorSheet {
     return {
       ...data,
 
+      name: actor.name,
+      img: actor.img,
+
+      health: actorData.health,
+      willpower: actorData.willpower,
+
+      settings: actorData.settings,
+
+      isOwner: actor.isOwner,
+      locked: actorData.locked,
       isCharacter: this.isCharacter,
       hasBoons: this.hasBoons,
+
+      features: actorData.features,
 
       displayBanner: game.settings.get('vtm5e', 'actorBanner'),
 
@@ -77,28 +146,13 @@ export class WoDActor extends ActorSheet {
       actorTypePath: actorTypeData.typePath,
       actorOptions: actorTypeData.types,
 
-      biography: await TextEditor.enrichHTML(actorData.biography),
-      appearance: await TextEditor.enrichHTML(actorData.appearance),
-      notes: await TextEditor.enrichHTML(actorData.notes),
-      privatenotes: await TextEditor.enrichHTML(actorData.privatenotes),
       equipment: await TextEditor.enrichHTML(actorData.equipment),
-      tenets: await TextEditor.enrichHTML(actorHeaders.tenets),
-      touchstones: await TextEditor.enrichHTML(actorHeaders.touchstones),
       bane: await TextEditor.enrichHTML(actorHeaders.bane),
       creedfields: await TextEditor.enrichHTML(actorHeaders.creedfields)
     }
   }
 
-  /**
-     * Organize and classify Items for all sheets.
-     *
-     * @param {Object} actorData The actor to prepare.
-     * @return {undefined}
-     * @override
-     */
-  async _prepareItems (sheetData) {
-    const actorData = sheetData.actor
-
+  async prepareItems (sheetData) {
     const features = {
       background: [],
       merit: [],
@@ -113,8 +167,6 @@ export class WoDActor extends ActorSheet {
     // Iterate through items, allocating to containers
     for (const i of sheetData.items) {
       i.img = i.img || DEFAULT_TOKEN
-
-      i.uuid = `Actor.${this.actor._id}.Item.${i._id}`
 
       // Sort the item into its appropriate place
       if (i.type === 'equipment') {
@@ -133,397 +185,29 @@ export class WoDActor extends ActorSheet {
     }
 
     // Assign items to their containers in the actor data
-    actorData.system.customRolls = customRolls
-    actorData.system.equipment = equipment
-    actorData.system.features = features
+    sheetData.system.customRolls = customRolls
+    sheetData.system.equipment = equipment
+    sheetData.system.features = features
   }
 
-  /* -------------------------------------------- */
+  static async onSubmitActorForm(event, form, formData) {
+    // Process submit data
+    const submitData = this._prepareSubmitData(event, form, formData)
 
-  /** @override */
+    // Overrides
+    const overrides = foundry.utils.flattenObject(this.actor.overrides)
+    for (let k of Object.keys(overrides)) delete submitData[k]
+
+    // Update the window title (since ActorSheetV2 doesn't do it automatically)
+    $(this.window.title).text(this.title)
+
+    // Update the actor data
+    await this.actor.update(submitData)
+  }
+
   activateListeners (html) {
-    // Activate listeners
-    super.activateListeners(html)
-
-    // Top-level variables
-    const actor = this.actor
-
-    // Resource squares (Health, Willpower)
-    html.find('.resource-counter.editable .resource-counter-step').click(_onSquareCounterChange.bind(this))
-    html.find('.resource-plus').click(_onResourceChange.bind(this))
-    html.find('.resource-minus').click(_onResourceChange.bind(this))
-
     // Activate the setup for the counters
     _setupDotCounters(html)
     _setupSquareCounters(html)
-
-    // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) return
-
-    // Rollable attributes
-    html.find('.rollable').click(_onRoll.bind(this))
-
-    // Lock button
-    html.find('.lock-btn').click(this._onToggleLocked.bind(this))
-
-    // Resource dots
-    html.find('.resource-value .resource-value-step').click(_onDotCounterChange.bind(this))
-    html.find('.resource-value .resource-value-empty').click(_onDotCounterEmpty.bind(this))
-
-    // Create a new item on an actor sheet
-    html.find('.item-create').click(this._onCreateItem.bind(this))
-
-    // Roll an item's dicepool
-    html.find('.rollable-item').click(_onRollItem.bind(this))
-
-    // Edit a skill
-    html.find('.edit-skill').click(_onEditSkill.bind(this))
-
-    // Add an experience
-    html.find('.add-experience').click(_onAddExperience.bind(this))
-
-    // Edit an experience
-    html.find('.edit-experience').click(_onEditExperience.bind(this))
-
-    // Remove an experience
-    html.find('.remove-experience').click(_onRemoveExperience.bind(this))
-
-    // Send Inventory Item to Chat
-    html.find('.item-chat').click(async event => {
-      const li = $(event.currentTarget).parents('.item')
-      const item = actor.getEmbeddedDocument('Item', li.data('itemId'))
-      renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
-        name: item.name,
-        img: item.img,
-        description: item.system.description
-      }).then(html => {
-        ChatMessage.create({
-          content: html
-        })
-      })
-    })
-
-    // Update Inventory Item
-    html.find('.item-edit').click(async event => {
-      const li = $(event.currentTarget).parents('.item')
-      const item = actor.getEmbeddedDocument('Item', li.data('itemId'))
-      item.sheet.render(true)
-    })
-
-    // Delete Inventory Item
-    html.find('.item-delete').click(async event => {
-      // Primary variables
-      const li = $(event.currentTarget).parents('.item')
-      const item = actor.getEmbeddedDocument('Item', li.data('itemId'))
-
-      // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-      const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
-
-      // Variables yet to be defined
-      let buttons = {}
-
-      // Define the template to be used
-      const template = `
-      <form>
-          <div class="form-group">
-              <label>${game.i18n.format('WOD5E.ConfirmDeleteDescription', {
-                string: item.name
-              })}</label>
-          </div>
-      </form>`
-
-      // Define the buttons and push them to the buttons variable
-      buttons = {
-        delete: {
-          label: game.i18n.localize('WOD5E.Delete'),
-          callback: async () => {
-            actor.deleteEmbeddedDocuments('Item', [li.data('itemId')])
-            li.slideUp(200, () => this.render(false))
-          }
-        },
-        cancel: {
-          label: game.i18n.localize('WOD5E.Cancel')
-        }
-      }
-
-      new Dialog({
-        title: game.i18n.localize('WOD5E.ConfirmDelete'),
-        content: template,
-        buttons,
-        default: 'cancel'
-      },
-      {
-        classes: ['wod5e', system, 'dialog']
-      }).render(true)
-    })
-
-    // Collapsible items and other elements
-    $('.collapsible').on('click', function () {
-      $(this).toggleClass('active')
-
-      const content = $(this).closest('.collapsible-container').find('.collapsible-content')
-
-      if (content.css('maxHeight') === '0px') {
-        content.css('maxHeight', content.prop('scrollHeight') + 'px')
-      } else {
-        content.css('maxHeight', '0px')
-      }
-    })
-
-    // Willpower Rolls
-    html.find('.willpower-roll').click(this._onWillpowerRoll.bind(this))
-
-    // Toggle whether a field will be shown in Limited view or not
-    html.find('.toggle-limited').click(this._onToggleLimited.bind(this))
-  }
-
-  // Calculate the dice for a Willpower roll
-  getWillpowerDicePool (actor) {
-    const willpowerMax = actor.system.willpower.max
-    const willpowerAgg = actor.system.willpower.aggravated
-    const willpowerSup = actor.system.willpower.superficial
-
-    return Math.max((willpowerMax - willpowerAgg - willpowerSup), 0)
-  }
-
-  /**
-   * Handle locking and unlocking the actor sheet
-   * @param {Event} event   The originating click event
-   */
-  async _onToggleLocked (event) {
-    event.preventDefault()
-
-    // Top-level variables
-    const actor = this.actor
-
-    // Update the locked state
-    await actor.update({ 'system.locked': !actor.system.locked })
-  }
-
-  // Roll Handlers
-  async _onWillpowerRoll (event) {
-    event.preventDefault()
-
-    // Top-level variables
-    const actor = this.actor
-
-    // Secondary variables
-    const dicePool = Math.max(this.getWillpowerDicePool(actor), 1)
-
-    WOD5eDice.Roll({
-      basicDice: dicePool,
-      title: game.i18n.localize('WOD5E.Chat.RollingWillpower'),
-      selectors: ['willpower'],
-      actor,
-      data: actor.system,
-      quickRoll: false,
-      disableAdvancedDice: true
-    })
-  }
-
-  // Handle toggling a field between visible and not visible
-  async _onToggleLimited (event) {
-    event.preventDefault()
-
-    // Top-level variables
-    const actor = this.actor
-    const dataset = event.currentTarget.dataset
-    const field = dataset.name
-
-    // Secondary variables
-    let currentValue = actor
-    const fieldParts = field.split('.')
-
-    // Iterate through the fieldParts to get the current value
-    for (const part of fieldParts) {
-      currentValue = currentValue[part]
-    }
-
-    if (field) {
-      await actor.update({ [field]: !currentValue })
-    }
-  }
-
-  /**
-   * Handle creating a new Owned Item for the actor using initial data defined in a dataset
-   * @param {Event} event   The originating click event
-   */
-  async _onCreateItem (event) {
-    event.preventDefault()
-
-    // Top-level variables
-    const actor = this.actor
-    const dataset = event.currentTarget.dataset
-    const itemsList = WOD5E.ItemTypes.getList({})
-    const type = dataset.type
-
-    // Variables to be defined later
-    let subtype = dataset.subtype
-    let itemName = ''
-    let selectLabel = ''
-    let itemOptions = {}
-    let itemData = {}
-    let options = ''
-
-    // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
-
-    // Generate the item name
-    itemName = subtype ? WOD5E.api.generateLabelAndLocalize({ string: subtype, type }) : itemsList[type].label
-
-    // Generate item-specific data based on type
-    switch (type) {
-      case 'power':
-        selectLabel = game.i18n.localize('WOD5E.VTM.SelectDiscipline')
-        itemOptions = WOD5E.Disciplines.getList({})
-        itemName = game.i18n.format('WOD5E.VTM.NewStringPower', { string: itemName })
-        break
-      case 'perk':
-        selectLabel = game.i18n.localize('WOD5E.HTR.SelectEdge')
-        itemOptions = WOD5E.Edges.getList({})
-        itemName = game.i18n.format('WOD5E.HTR.NewStringPerk', { string: itemName })
-        break
-      case 'gift':
-        selectLabel = game.i18n.localize('WOD5E.WTA.SelectGift')
-        itemOptions = WOD5E.Gifts.getList({})
-
-        if (subtype && subtype === 'rite') {
-          itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
-        } else {
-          itemName = game.i18n.format('WOD5E.WTA.NewStringGift', { string: itemName })
-        }
-        break
-      case 'edgepool':
-        itemName = game.i18n.format('WOD5E.HTR.NewStringEdgePool', { string: itemName })
-        break
-      case 'feature':
-        selectLabel = game.i18n.localize('WOD5E.ItemsList.SelectFeature')
-        itemOptions = WOD5E.Features.getList({})
-        itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
-        break
-      default:
-        itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
-        break
-    }
-
-    // Create item if subtype is already defined or not needed
-    if (subtype || ['customRoll', 'boon'].includes(type)) {
-      if (subtype) {
-        itemData = await this.appendSubtypeData(type, subtype, itemData)
-      }
-
-      // Create the item
-      return this._createItem(actor, itemName, type, itemData)
-    } else {
-      // Build the options for the select dropdown
-      for (const [key, value] of Object.entries(itemOptions)) {
-        options += `<option value="${key}">${value.displayName}</option>`
-      }
-
-      // Template for the dialog form
-      const template = `
-        <form>
-          <div class="form-group">
-            <label>${selectLabel}</label>
-            <select id="subtypeSelect">${options}</select>
-          </div>
-        </form>`
-
-      // Define dialog buttons
-      const buttons = {
-        submit: {
-          icon: '<i class="fas fa-check"></i>',
-          label: game.i18n.localize('WOD5E.Add'),
-          callback: async (html) => {
-            subtype = html.find('#subtypeSelect')[0].value
-            itemData = await this.appendSubtypeData(type, subtype, itemData)
-
-            // Create the item
-            return this._createItem(actor, itemName, type, itemData)
-          }
-        },
-        cancel: {
-          icon: '<i class="fas fa-times"></i>',
-          label: game.i18n.localize('WOD5E.Cancel')
-        }
-      }
-
-      // Display the dialog
-      new Dialog({
-        title: game.i18n.localize('WOD5E.Add'),
-        content: template,
-        buttons,
-        default: 'submit'
-      }, {
-        classes: ['wod5e', system, 'dialog']
-      }).render(true)
-    }
-  }
-
-  /**
-  * Append subtype data to the item data based on item type
-  * @param {string} type    The item type
-  * @param {string} subtype The item subtype
-  * @param {object} itemData The existing item data
-  * @returns {object} The updated item data
-  */
-  async appendSubtypeData (type, subtype, itemData) {
-    switch (type) {
-      case 'power':
-        itemData.discipline = subtype
-        break
-      case 'perk':
-        itemData.edge = subtype
-        break
-      case 'edgepool':
-        itemData.edge = subtype
-        break
-      case 'gift':
-        itemData.giftType = subtype
-        break
-      case 'feature':
-        itemData.featuretype = subtype
-        break
-      default:
-        itemData.subtype = subtype
-    }
-
-    return itemData
-  }
-
-  /**
-  * Create an item for the actor
-  * @param {object} actor    The actor object
-  * @param {string} itemName The name of the item
-  * @param {string} type     The type of the item
-  * @param {object} itemData The data for the item
-  */
-  async _createItem (actor, itemName, type, itemData) {
-    return actor.createEmbeddedDocuments('Item', [{
-      name: itemName,
-      type,
-      system: itemData
-    }])
-  }
-
-  // Save the current scroll position
-  async _saveScrollPositions () {
-    const activeList = this.findActiveList()
-    if (activeList.length) {
-      this._scroll = activeList.prop('scrollTop')
-    }
-  }
-
-  // Restore the saved scroll position
-  async _restoreScrollPositions () {
-    const activeList = this.findActiveList()
-    if (activeList.length && this._scroll != null) {
-      activeList.prop('scrollTop', this._scroll)
-    }
-  }
-
-  // Get the scroll area of the current window
-  findActiveList () {
-    return $(this.element).find('.window-content')
   }
 }

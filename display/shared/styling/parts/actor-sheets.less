@@ -10,10 +10,7 @@
     padding: 0;
     padding-bottom: 20px;
     overflow-y: scroll;
-
-    form {
-      margin-left: 45px;
-    }
+    margin-left: 45px;
   }
 
   /* Input and resource fields */
@@ -65,11 +62,21 @@
       flex-direction: column;
       align-items: center;
       min-width: 315px;
+
+      .name-field {
+        width: 250px;
+      }
     }
 
     .header-profile-img {
       margin-bottom: 10px;
       max-width: 100px;
+
+      img {
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+      }
     }
 
     .charname input {
@@ -321,6 +328,7 @@
   
   .lock-btn {
     max-width: 35px;
+    height: 35px;
     align-self: baseline;
   }
   
@@ -329,7 +337,7 @@
   }
 
   /* Sheet tabs */
-  .sheet-body {
+  section .tab {
     padding: 8px;
   }
 

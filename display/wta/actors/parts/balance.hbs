@@ -10,9 +10,9 @@
             <div class="harano">
                 <div class="resource-content resource">
                     <div class="resource-value" data-value="{{actor.system.balance.harano.value}}" data-name="system.balance.harano.value">
-                        <span class="resource-value-empty harano-value"></span>
+                        <span class="resource-value-empty harano-value" data-action="dotCounterEmpty"></span>
                         {{#numLoop 5}}
-                            <span class="resource-value-step harano-value" data-index="{{this}}"></span>
+                            <span class="resource-value-step harano-value" data-action="dotCounterChange" data-index="{{this}}"></span>
                         {{/numLoop}}
                     </div>
                 </div>
@@ -29,9 +29,9 @@
             </label>
             <div class="resource-content resource">
                 <div class="resource-value" data-value="{{actor.system.balance.hauglosk.value}}" data-name="system.balance.hauglosk.value">
-                    <span class="resource-value-empty hauglosk-value"></span>
+                    <span class="resource-value-empty hauglosk-value" data-action="dotCounterEmpty"></span>
                     {{#numLoop 5}}
-                        <span class="resource-value-step hauglosk-value" data-index="{{this}}"></span>
+                        <span class="resource-value-step hauglosk-value" data-action="dotCounterChange" data-index="{{this}}"></span>
                     {{/numLoop}}
                 </div>
             </div>

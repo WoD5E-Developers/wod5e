@@ -2,7 +2,7 @@
     <div class="resource-content">
         <div class="resource-counter editable" data-states="/:stains,-:value" data-value="{{actor.system.humanity.value}}" data-stains="{{actor.system.humanity.stains}}" data-name="system.humanity">
             {{#numLoop 10}}
-            <span class="resource-counter-step" data-index="{{this}}" data-state=""></span>
+            <span class="resource-counter-step" data-action="squareCounterChange" data-index="{{this}}" data-state=""></span>
             {{/numLoop}}
         </div>
     </div>

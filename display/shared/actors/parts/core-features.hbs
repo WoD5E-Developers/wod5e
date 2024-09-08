@@ -1,4 +1,4 @@
-{{#each actor.system.features as |feature key|}}
+{{#each features as |feature key|}}
     <div class="category">
         <div class="feature">
             <div class="flexrow item-header">
@@ -8,7 +8,7 @@
                 <!-- Item controls for gift item sections -->
                 <div class="item-controls">
                     <!-- Add new feature item -->
-                    <a class="item-control item-create" title="{{localize 'WOD5E.Add'}}" data-type="feature" data-subtype="{{key}}">
+                    <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.Add'}}" data-type="feature" data-subtype="{{key}}">
                         <i class="fas fa-plus"></i>
                     </a>
                 </div>
@@ -20,28 +20,28 @@
                     <div class="item-image">
                         <img src="{{item.img}}">
                     </div>
-                    <div class="item-name{{#if item.system.enrichedDescription}} collapsible{{/if}}">{{item.name}}</div>
+                    <div class="item-name{{#if item.system.enrichedDescription}} collapsible{{/if}}" {{#if item.system.enrichedDescription}}data-action="toggleCollapse"{{/if}}>{{item.name}}</div>
                     {{#ifnoteq item.system.featuretype 'boon'}}
                         <div class="dot-tracker">
                             <div class="resource-value" data-value="{{item.system.points}}" data-name="items.{{item._id}}">
-                                <span class="resource-value-empty"></span>
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
                                 {{#numLoop 5}}
-                                <span class="resource-value-step" data-index="{{this}}"></span>
+                                    <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
                                 {{/numLoop}}
                             </div>
                         </div>
                     {{/ifnoteq}}
                     <div class="item-controls">
                         <!-- Icon to edit the item -->
-                        <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
+                        <a class="item-control item-edit" data-action="itemEdit" title="{{localize 'WOD5E.Edit'}}">
                             <i class="fas fa-edit"></i>
                         </a>
                         <!-- Icon to display the item in chat -->
-                        <a class="item-control item-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
+                        <a class="item-control item-chat" data-action="itemChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
                             <i class="fas fa-comment-alt"></i>
                         </a>
                         <!-- Icon to delete the item -->
-                        <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}">
+                        <a class="item-control item-delete" data-action="itemDelete" title="{{localize 'WOD5E.Delete'}}">
                             <i class="fas fa-trash"></i>
                         </a>
                     </div>

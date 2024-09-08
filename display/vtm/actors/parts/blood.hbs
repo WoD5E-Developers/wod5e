@@ -7,9 +7,9 @@
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.BloodPotency"}}</label>
                     <div class="resource-content flexrow flex-center flex-between">
                         <div class="resource-value" data-value="{{actor.system.blood.potency}}" data-name="system.blood.potency">
-                            <span class="resource-value-empty"></span>
+                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
                             {{#numLoop 10}}
-                            <span class="resource-value-step" data-index="{{this}}"></span>
+                            <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
                             {{/numLoop}}
                         </div>
                     </div>
