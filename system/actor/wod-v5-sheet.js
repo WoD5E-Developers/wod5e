@@ -47,12 +47,6 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       height: 700
     },
     actions: {
-      // Resource actions
-      squareCounterChange: _onSquareCounterChange,
-      resourceChange: _onResourceChange,
-      dotCounterChange: _onDotCounterChange,
-      dotCounterEmpty: _onDotCounterEmpty,
-
       // Rollable actions
       roll: _onRoll,
       willpowerRoll: _onWillpowerRoll,
@@ -205,9 +199,21 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     await this.actor.update(submitData)
   }
 
-  activateListeners (html) {
+
+  _onRender () {
+    const html = $(this.element)
+
+    // Resource squares (Health, Willpower)
+    html.find('.resource-counter.editable .resource-counter-step').click(_onSquareCounterChange.bind(this))
+    html.find('.resource-plus').click(_onResourceChange.bind(this))
+    html.find('.resource-minus').click(_onResourceChange.bind(this))
+
     // Activate the setup for the counters
     _setupDotCounters(html)
     _setupSquareCounters(html)
+
+    // Resource dots
+    html.find('.resource-value .resource-value-step').click(_onDotCounterChange.bind(this))
+    html.find('.resource-value .resource-value-empty').click(_onDotCounterEmpty.bind(this))
   }
 }
