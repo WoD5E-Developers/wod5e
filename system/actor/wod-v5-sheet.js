@@ -193,9 +193,6 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     const overrides = foundry.utils.flattenObject(this.actor.overrides)
     for (let k of Object.keys(overrides)) delete submitData[k]
 
-    // Update the window title (since ActorSheetV2 doesn't do it automatically)
-    $(this.window.title).text(this.title)
-
     // Update the actor data
     await this.actor.update(submitData)
   }
@@ -203,6 +200,12 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
   _onRender () {
     const html = $(this.element)
+
+    // Update the window title (since ActorSheetV2 doesn't do it automatically)
+    $(this.window.title).text(this.title)
+
+    // Toggle whether the sheet is locked or not
+    html.toggleClass('locked', this.actor.system.locked)
 
     // Resource squares (Health, Willpower)
     html.find('.resource-counter.editable .resource-counter-step').click(_onSquareCounterChange.bind(this))
