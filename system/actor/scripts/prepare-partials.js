@@ -36,6 +36,10 @@ export const prepareFeaturesContext = async function (context, actor) {
   context.tab = context.tabs.features
 
   // Part-specific data
+  context.concept = actorHeaders.concept
+  context.chronicle = actorHeaders.chronicle
+  context.ambition = actorHeaders.ambition
+  context.desire = actorHeaders.desire
   context.features = actorData.features
   context.tenets = actorHeaders.tenets
   context.enrichedTenets = await TextEditor.enrichHTML(actorHeaders.tenets)
