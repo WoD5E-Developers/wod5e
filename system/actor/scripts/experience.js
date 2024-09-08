@@ -1,6 +1,6 @@
 /* global game, renderTemplate, WOD5E, foundry, Dialog */
 
-export const _onAddExperience = async function () {
+export const _onAddExperience = async function (event) {
   event.preventDefault()
 
   // Top-level variables
@@ -61,14 +61,12 @@ export const _onAddExperience = async function () {
   ).render(true)
 }
 
-export const _onRemoveExperience = async function (event) {
+export const _onRemoveExperience = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
-  const experienceId = dataset.experienceId
+  const experienceId = target.getAttribute('data-experience-id')
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
   const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
@@ -124,14 +122,12 @@ export const _onRemoveExperience = async function (event) {
   }).render(true)
 }
 
-export const _onEditExperience = async function (event) {
+export const _onEditExperience = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
-  const experienceId = dataset.experienceId
+  const experienceId = target.getAttribute('data-experience-id')
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
   const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
