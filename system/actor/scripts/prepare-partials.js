@@ -1,6 +1,6 @@
 /* global TextEditor */
 
-export const prepareStatsContext = function (context, actor) {
+export const prepareStatsContext = async function (context, actor) {
   const actorData = actor.system
 
   // Tab data
@@ -14,7 +14,7 @@ export const prepareStatsContext = function (context, actor) {
   return context
 }
 
-export const prepareExperienceContext = function (context, actor) {
+export const prepareExperienceContext = async function (context, actor) {
   const actorData = actor.system
 
   // Tab data
@@ -28,7 +28,7 @@ export const prepareExperienceContext = function (context, actor) {
   return context
 }
 
-export const prepareFeaturesContext = function (context, actor) {
+export const prepareFeaturesContext = async function (context, actor) {
   const actorData = actor.system
   const actorHeaders = actorData.headers
 
@@ -38,12 +38,12 @@ export const prepareFeaturesContext = function (context, actor) {
   // Part-specific data
   context.features = actorData.features
   context.tenets = actorHeaders.tenets
-  context.enrichedTenets = TextEditor.enrichHTML(actorHeaders.tenets)
+  context.enrichedTenets = await TextEditor.enrichHTML(actorHeaders.tenets)
 
   return context
 }
 
-export const prepareBiographyContext = function (context, actor) {
+export const prepareBiographyContext = async function (context, actor) {
   const actorData = actor.system
   const actorHeaders = actorData.headers
 
@@ -53,16 +53,16 @@ export const prepareBiographyContext = function (context, actor) {
   // Part-specific data
   context.bio = actorData.bio
   context.biography = actorData.biography
-  context.enrichedBiography = TextEditor.enrichHTML(actorData.biography)
+  context.enrichedBiography = await TextEditor.enrichHTML(actorData.biography)
   context.appearance = actorData.appearance
-  context.enrichedAppearance = TextEditor.enrichHTML(actorData.appearance)
+  context.enrichedAppearance = await TextEditor.enrichHTML(actorData.appearance)
   context.touchstones = actorHeaders.touchstones
-  context.enrichedTouchstones = TextEditor.enrichHTML(actorHeaders.touchstones)
+  context.enrichedTouchstones = await TextEditor.enrichHTML(actorHeaders.touchstones)
 
   return context
 }
 
-export const prepareNotepadContext = function (context, actor) {
+export const prepareNotepadContext = async function (context, actor) {
   const actorData = actor.system
 
   // Tab data
@@ -70,14 +70,14 @@ export const prepareNotepadContext = function (context, actor) {
 
   // Part-specific data
   context.notes = actorData.notes
-  context.enrichedNotes = TextEditor.enrichHTML(actorData.notes)
+  context.enrichedNotes = await TextEditor.enrichHTML(actorData.notes)
   context.privatenotes = actorData.privatenotes
-  context.enrichedPrivatenotes = TextEditor.enrichHTML(actorData.privatenotes)
+  context.enrichedPrivatenotes = await TextEditor.enrichHTML(actorData.privatenotes)
 
   return context
 }
 
-export const prepareSettingsContext = function (context) {
+export const prepareSettingsContext = async function (context) {
   // Tab data
   context.tab = context.tabs.settings
 

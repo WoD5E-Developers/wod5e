@@ -92,7 +92,7 @@ export class MortalActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     return data
   }
 
-  async _preparePartContext(partId, context, options) {
+  async _preparePartContext (partId, context, options) {
     // Inherit any preparation from the extended class
     context = { ...(await super._preparePartContext(partId, context, options)) }
 
