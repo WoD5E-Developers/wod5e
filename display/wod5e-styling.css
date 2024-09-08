@@ -1572,6 +1572,9 @@ body.uk .actor.sheet {
 .actor.sheet .sheet-tabs > [data-tab] .navicon .wod5e-symbol {
   width: 100%;
 }
+.actor.sheet .item-list {
+  align-self: flex-start;
+}
 .actor.sheet .item-list .category {
   display: flex;
   flex-direction: column;
