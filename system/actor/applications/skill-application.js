@@ -111,9 +111,6 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
   }
 
   async _preparePartContext(partId, context) {
-    // Top-level variables
-    const actorData = this.document.system
-
     switch (partId) {
       // Description
       case 'description':
@@ -121,8 +118,8 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
         context.tab = context.tabs.description
 
         // Part-specific data
-        context.skillDescription = actorData.skills[this.data.skill].description
-        context.enrichedDescription = await TextEditor.enrichHTML(actorData.skills[this.data.skill].description)
+        context.description = context.skillData.description
+        context.enrichedDescription = await TextEditor.enrichHTML(context.skillData.description)
 
         break
 
@@ -131,12 +128,18 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
         // Tab data
         context.tab = context.tabs.macro
 
+        // Part-specific data
+        context.macroid = context.skillData.macroid
+
         break
 
       // Bonuses
       case 'bonuses':
         // Tab data
         context.tab = context.tabs.bonuses
+
+        // Part-specific data
+        context.bonuses = context.skillData.bonuses
 
         break
     }

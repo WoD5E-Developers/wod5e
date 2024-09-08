@@ -4,7 +4,7 @@
 import { SkillApplication } from './../applications/skill-application.js'
 
 // Handle changes to health
-export const _onEditSkill = async function (event) {
+export const _onEditSkill = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
@@ -14,8 +14,7 @@ export const _onEditSkill = async function (event) {
   const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
 
   // Top-level variables
-  const header = event.currentTarget
-  const skill = header.dataset.skill
+  const skill = target.getAttribute('data-skill')
 
   await new SkillApplication({
     actor,
