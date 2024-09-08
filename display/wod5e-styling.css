@@ -254,6 +254,9 @@
 .actor.sheet.mortal .actor-header .resource {
   border: 1px solid var(--mortal-color-1);
 }
+.actor.sheet.mortal .item-image img {
+  background-color: var(--mortal-color-2);
+}
 
 @font-face {
   font-family: 'Martel';
