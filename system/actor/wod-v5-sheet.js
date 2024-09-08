@@ -194,9 +194,14 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     for (let k of Object.keys(overrides)) delete submitData[k]
 
     // Update the actor data
-    await this.actor.update(submitData)
-  }
+    this.document.updateSource(submitData)
 
+    // Re-render the core parts of the sheet and the current tab
+    const currentTab = $(form).find('section.tab.active')[0].getAttribute('data-application-part')
+    this.render(false, {
+      parts: ['header', 'tabs', 'banner', currentTab]
+    })
+  }
 
   _onRender () {
     const html = $(this.element)
