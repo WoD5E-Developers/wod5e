@@ -160,23 +160,15 @@ export const _onFormToChat = async function (event, originActor) {
   event.currentTarget.blur()
 }
 
-export const _onFormEdit = async function (event) {
+export const _onFormEdit = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
-  const actor = this.actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
-  const form = dataset.form
-
-  // Secondary variables
-  const formData = actor.system.forms[form]
-  const formName = formData.displayName
+  const form = target.getAttribute('data-form')
   
   new WereformApplication({
     actor: this.actor,
-    form,
-    formName
+    form
   }).render(true)
 }
 

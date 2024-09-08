@@ -175,13 +175,4 @@ export class MortalActorSheet extends HandlebarsApplicationMixin(WoDActor) {
 
     return context
   }
-
-  async _prepareItems (sheetData) {
-    await super._prepareItems(sheetData)
-  }
-
-  activateListeners (html) {
-    // Activate listeners
-    super.activateListeners(html)
-  }
 }

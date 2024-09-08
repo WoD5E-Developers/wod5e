@@ -89,10 +89,7 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
     data.tabs = this.#getTabs()
 
     // Define the data the template needs
-    data.formDescription = actorData.forms[data.form].description
-    data.enrichedDescription = await TextEditor.enrichHTML(actorData.forms[data.form].description)
-
-    data.formTokenImg = actorData.forms[data.form].token.img
+    data.formData = actorData.forms[data.form]
 
     return data
   }
@@ -106,12 +103,23 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
     switch (partId) {
       // Description
       case 'description':
+        // Tab data
         context.tab = context.tabs.description
+
+        // Part-specific data
+        context.formDescription = context.formData.description
+        context.enrichedDescription = await TextEditor.enrichHTML(context.formData.description)
+
         break
 
       // Token settings
       case 'tokenSettings':
+        // Tab data
         context.tab = context.tabs.tokenSettings
+
+        // Part-specific data
+        context.formTokenImg = context.formData.token.img
+
         break
     }
 

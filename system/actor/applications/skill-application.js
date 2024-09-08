@@ -107,27 +107,37 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     // Define the data the template needs
     data.skillData = actorData.skills[this.data.skill]
 
-    data.skillDescription = actorData.skills[this.data.skill].description
-    data.enrichedDescription = await TextEditor.enrichHTML(actorData.skills[this.data.skill].description)
-
     return data
   }
 
   async _preparePartContext(partId, context) {
+    // Top-level variables
+    const actorData = this.document.system
+
     switch (partId) {
       // Description
       case 'description':
+        // Tab data
         context.tab = context.tabs.description
+
+        // Part-specific data
+        context.skillDescription = actorData.skills[this.data.skill].description
+        context.enrichedDescription = await TextEditor.enrichHTML(actorData.skills[this.data.skill].description)
+
         break
 
       // Macro
       case 'macro':
+        // Tab data
         context.tab = context.tabs.macro
+
         break
 
       // Bonuses
       case 'bonuses':
+        // Tab data
         context.tab = context.tabs.bonuses
+
         break
     }
 

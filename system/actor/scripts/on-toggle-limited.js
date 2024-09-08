@@ -1,10 +1,9 @@
-export const _onToggleLimited = async function (event) {
+export const _onToggleLimited = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
-  const dataset = event.currentTarget.dataset
-  const field = dataset.name
+  const field = target.getAttribute('data-name')
 
   // Secondary variables
   let currentValue = actor
@@ -16,6 +15,6 @@ export const _onToggleLimited = async function (event) {
   }
 
   if (field) {
-    await actor.update({ [field]: !currentValue })
+    actor.update({ [field]: !currentValue })
   }
 }
