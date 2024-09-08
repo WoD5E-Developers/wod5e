@@ -308,6 +308,15 @@ export const _assignToActorField = async (fields, value, actor) => {
     }
   }
 
-  // Update the actor with the new data
-  await actor.update(actorData)
+  // Update the actor data
+  await actor.update(actorData, {
+    render: false
+  })
+
+  // Re-render the core parts of the sheet and the current tab
+  const currentTab = $(actor._sheet.element).find('section.tab.active')[0].getAttribute('data-application-part')
+
+  actor.render(false, {
+    parts: ['header', 'tabs', 'banner', currentTab]
+  })
 }
