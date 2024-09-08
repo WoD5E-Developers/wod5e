@@ -59,41 +59,41 @@
 .actor.sheet.hunter .item-image img {
   background: var(--ui-background-hunter-texture);
 }
-.actor.sheet.hunter .tab.edges .perks-list .edge {
+.actor.sheet.hunter .tab[data-tab="edges"] .perks-list .edge {
   margin-left: auto;
   margin-right: auto;
 }
-.actor.sheet.hunter .tab.edges .edges-list {
+.actor.sheet.hunter .tab[data-tab="edges"] .edges-list {
   display: flex;
   flex-direction: column;
   max-width: 300px;
   margin: 0px 10px 10px 10px;
 }
-.actor.sheet.hunter .tab.edges .edges-list .item-header {
+.actor.sheet.hunter .tab[data-tab="edges"] .edges-list .item-header {
   border-bottom: 1px solid var(--system-color-5);
 }
-.actor.sheet.hunter .tab.edges .edges-list .item-name {
+.actor.sheet.hunter .tab[data-tab="edges"] .edges-list .item-name {
   text-wrap: nowrap;
 }
-.actor.sheet.hunter .tab.edges .edges-list .edge-description {
+.actor.sheet.hunter .tab[data-tab="edges"] .edges-list .edge-description {
   max-height: 150px;
   margin-bottom: 5px;
 }
-.actor.sheet.hunter .tab.edges .perks-list .edge .edge-pools {
+.actor.sheet.hunter .tab[data-tab="edges"] .perks-list .edge .edge-pools {
   border-top: 1px solid var(--system-color-5);
 }
-.actor.sheet.hunter .tab.edges .perks-list .edge .edge-pools .edge-pool-label {
+.actor.sheet.hunter .tab[data-tab="edges"] .perks-list .edge .edge-pools .edge-pool-label {
   text-align: center;
   padding: 2px;
 }
-.actor.sheet.hunter .tab.edges .perks-list .edge .edge-pools .item-controls {
+.actor.sheet.hunter .tab[data-tab="edges"] .perks-list .edge .edge-pools .item-controls {
   text-align: right;
   display: contents;
 }
-.actor.sheet.hunter .tab.edges .perks-list .edge .add-edge-pool {
+.actor.sheet.hunter .tab[data-tab="edges"] .perks-list .edge .add-edge-pool {
   font-weight: bold;
 }
-.actor.sheet.hunter .tab.edges .perks-list .edge .add-edge-pool:hover {
+.actor.sheet.hunter .tab[data-tab="edges"] .perks-list .edge .add-edge-pool:hover {
   cursor: pointer;
 }
 /* All Sheets with the Hunter styling, including itemsheets */
@@ -791,7 +791,7 @@ h3.item-name {
 .actor.sheet.vampire .profile-img,
 .actor.sheet.vampire .actor-header input,
 .actor.sheet.vampire .actor-header .resource,
-.actor.sheet.vampire .tab.blood .resource input {
+.actor.sheet.vampire .tab[data-tab="blood"] .resource input {
   border: 1px solid var(--vampire-color-1);
 }
 .actor.sheet.vampire prose-mirror .editor-menu button:hover {
@@ -802,22 +802,22 @@ h3.item-name {
   max-height: 150px;
   font-size: 10pt;
 }
-.actor.sheet.vampire .tab.blood .resource-label {
+.actor.sheet.vampire .tab[data-tab="blood"] .resource-label {
   font-size: 15pt;
 }
-.actor.sheet.vampire .tab.blood .blood-details,
-.actor.sheet.vampire .tab.blood .blood-potency {
+.actor.sheet.vampire .tab[data-tab="blood"] .blood-details,
+.actor.sheet.vampire .tab[data-tab="blood"] .blood-potency {
   margin-left: 10px;
   margin-right: 10px;
 }
-.actor.sheet.vampire .tab.blood .resource-contents:not(.prosemirror-resource),
-.actor.sheet.vampire .tab.blood input.resource {
+.actor.sheet.vampire .tab[data-tab="blood"] .resource-contents:not(.prosemirror-resource),
+.actor.sheet.vampire .tab[data-tab="blood"] input.resource {
   font-weight: bold;
 }
-.actor.sheet.vampire .tab.blood .resource {
+.actor.sheet.vampire .tab[data-tab="blood"] .resource {
   padding: 5px;
 }
-.actor.sheet.vampire .tab.blood .resource .remorse-roll .field-header {
+.actor.sheet.vampire .tab[data-tab="blood"] .resource .remorse-roll .field-header {
   display: inline-flex;
 }
 .actor.sheet.vampire .sheet-banner {
@@ -848,33 +848,33 @@ h3.item-name {
 .actor.sheet.vampire .item-image img {
   background: var(--ui-background-vampire-texture);
 }
-.actor.sheet.vampire .tab.disciplines .powers-list .discipline {
+.actor.sheet.vampire .tab[data-tab="disciplines"] .powers-list .discipline {
   margin-left: auto;
   margin-right: auto;
 }
-.actor.sheet.vampire .tab.disciplines .disciplines-list {
+.actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list {
   display: flex;
   flex-direction: column;
   max-width: 350px;
   margin: 0px 10px 10px 10px;
 }
-.actor.sheet.vampire .tab.disciplines .disciplines-list .category.discipline {
+.actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list .category.discipline {
   max-width: 500px;
 }
-.actor.sheet.vampire .tab.disciplines .disciplines-list .item-header {
+.actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list .item-header {
   border-bottom: 1px solid var(--system-color-5);
 }
-.actor.sheet.vampire .tab.disciplines .disciplines-list .item-controls {
+.actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list .item-controls {
   text-align: right;
   padding: 5px;
 }
-.actor.sheet.vampire .tab.disciplines .disciplines-list .controls {
+.actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list .controls {
   border-bottom: 1px solid var(--system-color-5);
 }
-.actor.sheet.vampire .tab.disciplines .disciplines-list .item-name {
+.actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list .item-name {
   text-wrap: nowrap;
 }
-.actor.sheet.vampire .tab.disciplines .disciplines-list .discipline-description {
+.actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list .discipline-description {
   margin-bottom: 5px;
 }
 /* All Sheets with the Vampire styling, including itemsheets */
@@ -1031,53 +1031,53 @@ h3.item-name {
 .actor.sheet.werewolf .item-image img {
   background: var(--ui-background-vampire-texture);
 }
-.actor.sheet.werewolf .tab.gifts .powers-list .gift {
+.actor.sheet.werewolf .tab[data-tab="gifts"] .powers-list .gift {
   margin-left: auto;
   margin-right: auto;
 }
-.actor.sheet.werewolf .tab.gifts .gifts-list {
+.actor.sheet.werewolf .tab[data-tab="gifts"] .gifts-list {
   display: flex;
   flex-direction: column;
   max-width: 300px;
   margin: 0px 10px 10px 10px;
 }
-.actor.sheet.werewolf .tab.gifts .gifts-list .item-header {
+.actor.sheet.werewolf .tab[data-tab="gifts"] .gifts-list .item-header {
   border-bottom: 1px solid var(--system-color-5);
 }
-.actor.sheet.werewolf .tab.gifts .gifts-list .item-controls {
+.actor.sheet.werewolf .tab[data-tab="gifts"] .gifts-list .item-controls {
   text-align: right;
 }
-.actor.sheet.werewolf .tab.gifts .gifts-list .controls {
+.actor.sheet.werewolf .tab[data-tab="gifts"] .gifts-list .controls {
   border-bottom: 1px solid var(--system-color-5);
 }
-.actor.sheet.werewolf .tab.gifts .gifts-list .item-name {
+.actor.sheet.werewolf .tab[data-tab="gifts"] .gifts-list .item-name {
   text-wrap: nowrap;
 }
-.actor.sheet.werewolf .tab.gifts .gifts-list .gift-description {
+.actor.sheet.werewolf .tab[data-tab="gifts"] .gifts-list .gift-description {
   margin-bottom: 5px;
 }
-.actor.sheet.werewolf .tab.wolf .resource input,
-.actor.sheet.werewolf .tab.wolf .resource .resource-contents,
-.actor.sheet.werewolf .tab.wolf .resource.form {
+.actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
+.actor.sheet.werewolf .tab[data-tab="wolf"] .resource .resource-contents,
+.actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
   background-color: var(--system-color-6);
   border: 1px solid var(--werewolf-color-1);
 }
-.actor.sheet.werewolf .tab.wolf .garou-forms-label {
+.actor.sheet.werewolf .tab[data-tab="wolf"] .garou-forms-label {
   font-size: 20pt;
 }
-.actor.sheet.werewolf .tab.wolf .forms .form {
+.actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form {
   border-radius: 0;
   background-color: var(--system-color-6);
   border: 1px solid var(--system-color-5);
 }
-.actor.sheet.werewolf .tab.wolf .forms .form .form-attributes {
+.actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form .form-attributes {
   list-style: none;
   padding: 0;
 }
-.actor.sheet.werewolf .tab.wolf .forms .form .form-attributes li {
+.actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form .form-attributes li {
   padding: 1px;
 }
-.actor.sheet.werewolf .tab.wolf .forms .form-active {
+.actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form-active {
   background: #eca0589a;
 }
 /* All Sheets with the Werewolf styling, including itemsheets */
@@ -1365,95 +1365,96 @@ body.uk .actor.sheet {
   justify-content: center;
   margin-bottom: 0;
 }
-.actor.sheet .tab.experience .experience-trackers {
+.actor.sheet .tab[data-tab="experience"] .experience-trackers {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
-.actor.sheet .tab.experience .experience-trackers .tracker {
+.actor.sheet .tab[data-tab="experience"] .experience-trackers .tracker {
   margin-bottom: 10px;
 }
-.actor.sheet .tab.experience .experience-trackers .tracker input {
+.actor.sheet .tab[data-tab="experience"] .experience-trackers .tracker input {
   max-width: 50px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
-.actor.sheet .tab.experience .experience-trackers .tracker .field-header {
+.actor.sheet .tab[data-tab="experience"] .experience-trackers .tracker .field-header {
   font-size: 15pt;
 }
-.actor.sheet .tab.experience .xp-controls {
+.actor.sheet .tab[data-tab="experience"] .xp-controls {
   text-align: right;
 }
-.actor.sheet .tab.experience .add-experience {
+.actor.sheet .tab[data-tab="experience"] .add-experience {
   font-size: 13pt;
   margin-left: auto;
 }
-.actor.sheet .tab.features .character-details {
+.actor.sheet .tab[data-tab="features"] .character-details {
   max-width: 400px;
   margin-left: 10px;
   margin-right: 10px;
+  align-self: flex-start;
 }
-.actor.sheet .tab.features .character-details .field-header {
+.actor.sheet .tab[data-tab="features"] .character-details .field-header {
   font-size: 16pt;
 }
-.actor.sheet .tab.features .character-details .detail-row {
+.actor.sheet .tab[data-tab="features"] .character-details .detail-row {
   width: 100%;
   margin-bottom: 5px;
 }
-.actor.sheet .tab.features .character-details .description-field {
+.actor.sheet .tab[data-tab="features"] .character-details .description-field {
   width: -webkit-fill-available;
   width: -moz-available;
 }
-.actor.sheet .tab.features .character-details .description-field .resource-label {
+.actor.sheet .tab[data-tab="features"] .character-details .description-field .resource-label {
   flex-wrap: nowrap;
   display: inline-flex;
 }
-.actor.sheet .tab.features .character-details .description-field .description-content {
+.actor.sheet .tab[data-tab="features"] .character-details .description-field .description-content {
   text-align: initial;
 }
-.actor.sheet .tab.features .features-list .category {
+.actor.sheet .tab[data-tab="features"] .features-list .category {
   margin-left: auto;
   margin-right: auto;
 }
-.actor.sheet .tab.biography .detailed-section {
+.actor.sheet .tab[data-tab="biography"] .detailed-section {
   display: inline-flex;
   align-self: flex-start;
 }
-.actor.sheet .tab.biography .detailed-section .details-header {
+.actor.sheet .tab[data-tab="biography"] .detailed-section .details-header {
   text-align: center;
 }
-.actor.sheet .tab.biography .detailed-section .detail {
+.actor.sheet .tab[data-tab="biography"] .detailed-section .detail {
   width: 50%;
   margin-bottom: 5px;
   margin-left: auto;
   margin-right: auto;
 }
-.actor.sheet .tab.biography .detailed-section input {
+.actor.sheet .tab[data-tab="biography"] .detailed-section input {
   text-align: center;
 }
-.actor.sheet .tab.biography .detailed-section input.number {
+.actor.sheet .tab[data-tab="biography"] .detailed-section input.number {
   min-width: 100px;
 }
-.actor.sheet .tab.biography .descriptive-section .field-header {
+.actor.sheet .tab[data-tab="biography"] .descriptive-section .field-header {
   font-size: 16pt;
 }
-.actor.sheet .tab.biography .descriptive-section .description-field {
+.actor.sheet .tab[data-tab="biography"] .descriptive-section .description-field {
   margin-bottom: 5px;
 }
-.actor.sheet .tab.biography .descriptive-section .resource-label {
+.actor.sheet .tab[data-tab="biography"] .descriptive-section .resource-label {
   flex-wrap: nowrap;
   display: inline-flex;
 }
-.actor.sheet .tab.notepad .note-container {
+.actor.sheet .tab[data-tab="notepad"] .note-container {
   padding: 3px;
   margin: 5px;
   width: 50%;
 }
-.actor.sheet .tab.notepad .note-container .field-header {
+.actor.sheet .tab[data-tab="notepad"] .note-container .field-header {
   font-size: 16pt;
 }
-.actor.sheet .tab.notepad .note-container prose-mirror {
+.actor.sheet .tab[data-tab="notepad"] .note-container prose-mirror {
   height: 400px;
 }
 .actor.sheet .collapsible-content {
@@ -1903,7 +1904,7 @@ body.uk .actor.sheet {
 .item.sheet .tabs .item {
   font-weight: bold;
 }
-.item.sheet .tab.dicepool .remove-dice {
+.item.sheet .tab[data-tab="dicepool"] .remove-dice {
   flex-grow: 0;
   padding: 4px;
 }
@@ -1982,13 +1983,13 @@ body.uk .actor.sheet {
 .flex-group-center:not(.flexrow) .cell-resource-counter {
   margin-top: 5px;
 }
-.tab.disciplines .resource-value,
-.tab.edges .resource-value {
+.tab[data-tab="disciplines"] .resource-value,
+.tab[data-tab="edges"] .resource-value {
   margin-top: 2px;
   text-align: center;
 }
-.tab.features .resource-value,
-.tab.features .resource-value-static {
+.tab[data-tab="features"] .resource-value,
+.tab[data-tab="features"] .resource-value-static {
   margin-top: 2px;
   text-align: center;
 }
@@ -2534,12 +2535,12 @@ prose-mirror .editor-menu button {
 .dark-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
   color: #e97244;
 }
-.dark-theme .actor.sheet.werewolf .tab.wolf .resource input,
-.dark-theme .actor.sheet.werewolf .tab.wolf .resource.form {
+.dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
+.dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.dark-theme .actor.sheet.werewolf .tab.wolf .resource.form.form-active {
+.dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form.form-active {
   background-color: #833501e0;
 }
 .dark-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {

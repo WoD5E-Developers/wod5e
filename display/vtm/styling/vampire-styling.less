@@ -19,7 +19,7 @@
   .profile-img,
   .actor-header input,
   .actor-header .resource,
-  .tab.blood .resource input {
+  .tab[data-tab="blood"] .resource input {
     border: 1px solid var(--vampire-color-1);
   }
 
@@ -35,7 +35,7 @@
     }
   }
 
-  .tab.blood {
+  .tab[data-tab="blood"] {
     .resource-label {
       font-size: 15pt;
     }
@@ -96,7 +96,7 @@
     }
   }
 
-  .tab.disciplines {
+  .tab[data-tab="disciplines"] {
     .powers-list .discipline {
       margin-left: auto;
       margin-right: auto;

@@ -111,14 +111,14 @@ export const _onCreateItem = async function (event, target) {
   }
 }
 
-export const _onItemChat = async function (event) {
+export const _onItemChat = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
 
-  const li = $(event.currentTarget).parents('.item')
-  const item = actor.getEmbeddedDocument('Item', li.data('itemId'))
+  const itemId = target.getAttribute('data-item-id')
+  const item = actor.getEmbeddedDocument('Item', itemId)
   renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
     name: item.name,
     img: item.img,
@@ -130,26 +130,26 @@ export const _onItemChat = async function (event) {
   })
 }
 
-export const _onItemEdit = async function (event) {
+export const _onItemEdit = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
 
-  const li = $(event.currentTarget).parents('.item')
-  const item = actor.getEmbeddedDocument('Item', li.data('itemId'))
+  const itemId = target.getAttribute('data-item-id')
+  const item = actor.getEmbeddedDocument('Item', itemId)
   item.sheet.render(true)
 }
 
-export const _onItemDelete = async function (event) {
+export const _onItemDelete = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
 
   // Primary variables
-  const li = $(event.currentTarget).parents('.item')
-  const item = actor.getEmbeddedDocument('Item', li.data('itemId'))
+  const itemId = target.getAttribute('data-item-id')
+  const item = actor.getEmbeddedDocument('Item', itemId)
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
   const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
@@ -172,8 +172,7 @@ export const _onItemDelete = async function (event) {
     delete: {
       label: game.i18n.localize('WOD5E.Delete'),
       callback: async () => {
-        actor.deleteEmbeddedDocuments('Item', [li.data('itemId')])
-        li.slideUp(200, () => this.render(false))
+        actor.deleteEmbeddedDocuments('Item', [itemId])
       }
     },
     cancel: {

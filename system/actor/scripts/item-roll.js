@@ -8,14 +8,12 @@ import { _onGiftCost } from '../wta/scripts/gifts.js'
 /**
    * Handle rolling dicepools from items
 */
-export const _onRollItem = async function (event) {
+export const _onRollItem = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
   const actor = this.actor
-  const item = fromUuidSync(dataset.itemUuid)
+  const item = fromUuidSync(target.getAttribute('data-item-uuid'))
 
   // Secondary data
   const actorData = this.actor.system
