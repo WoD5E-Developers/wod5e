@@ -1,4 +1,4 @@
-/* global WOD5E, TextEditor */
+/* global TextEditor */
 import { Gifts } from '../../../api/def/gifts.js'
 import { WereForms } from '../../../api/def/were-forms.js'
 
@@ -44,9 +44,6 @@ export const prepareGifts = async function (actor) {
     if (giftData.hidden) {
       gifts[id].visible = false
     }
-
-    // Localize the gift name
-    gifts[id].label = WOD5E.api.generateLabelAndLocalize({ string: id, type: 'gift' })
 
     // Wipe old gift powers so they doesn't duplicate
     gifts[id].powers = []

@@ -24,7 +24,7 @@
                         <div class="flexrow item-header">
                             <div class="item-name">
                                 {{#if (ne key "rite")}}
-                                    {{gift.label}}
+                                    {{gift.displayName}}
                                 {{else}}
                                     {{localize "WOD5E.WTA.Rites"}}
                                 {{/if}}
@@ -60,7 +60,7 @@
                         <div class="flexrow item-header">
                             <div class="item-name">
                                 {{#if (ne key "rite")}}
-                                    {{localize "WOD5E.WTA.StringGifts" string=gift.label}}
+                                    {{localize "WOD5E.WTA.StringGifts" string=gift.displayName}}
                                 {{else}}
                                     {{localize "WOD5E.WTA.Rites"}}
                                 {{/if}}

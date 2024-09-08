@@ -7,6 +7,9 @@ import { getDerivedHealth } from './scripts/on-health-change.js'
 import { getDerivedWillpower } from './scripts/on-willpower-change.js'
 import { getDerivedExperience } from './scripts/experience.js'
 import { _onPlayerUpdate, _onGroupUpdate } from './scripts/ownership-updates.js'
+import { prepareDisciplines } from './vtm/scripts/prepare-data.js'
+import { prepareEdges } from './htr/scripts/prepare-data.js'
+import { prepareGifts } from './wta/scripts/prepare-data.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -65,6 +68,21 @@ export class WoDActor extends Actor {
     // Set skill data
     systemData.skills = skillsPrep.skills
     systemData.sortedSkills = skillsPrep.sortedSkills
+
+    // Set discipline data
+    if (systemData?.gamesystem === 'vampire') {
+      systemData.disciplines = await prepareDisciplines(actorData)
+    }
+
+    // Set edge data
+    if (systemData?.gamesystem === 'hunter') {
+      systemData.edges = await prepareEdges(actorData)
+    }
+
+    // Set gift data
+    if (systemData?.gamesystem === 'werewolf') {
+      systemData.gifts = await prepareGifts(actorData)
+    }
   }
 
   /**

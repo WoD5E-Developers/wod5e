@@ -1,22 +1,22 @@
-<div class="tab disciplines" data-group="primary" data-tab="disciplines">
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
     <div class="flexrow">
         <div class="disciplines-list item-list">
             <!-- Item control for adding new discipline lists -->
             <div class="item-controls">
-                <a class="item-control add-discipline flex-center" title="{{localize 'WOD5E.VTM.AddDiscipline'}}">
-                    <h2>
+                <a class="item-control add-discipline flex-center" title="{{localize 'WOD5E.VTM.AddDiscipline'}}" data-action="addDiscipline">
+                    <h3>
                         <i class="fas fa-plus"></i>
                         {{localize "WOD5E.VTM.AddDiscipline"}}
-                    </h2>
+                    </h3>
                 </a>
             </div>
             <!-- Iterate through each of the discipline lists -->
-            {{#each actor.system.disciplines as |discipline key|}}
+            {{#each disciplines as |discipline key|}}
                 {{#if discipline.visible}}
                     <div class="discipline category">
                         <div class="flex-center item-header">
                             <div class="item-name">
-                                {{discipline.label}}
+                                {{discipline.displayName}}
                             </div>
                         </div>
                         <div class="controls flexrow flex-center">
@@ -36,7 +36,7 @@
                             <div class="item-controls">
                                 <!-- Icon to roll the discipline with an attribute and/or skill combination -->
                                 <a class="rollable discipline-dice" data-action="roll" title="{{localize 'WOD5E.RollList.Label'}}" data-value-paths="disciplines.{{key}}.value"
-                                    data-label="{{discipline.label}}" data-selectors="discipline disciplines.{{key}}" data-discipline="{{key}}" data-select-dialog="true">
+                                    data-label="{{discipline.displayName}}" data-selectors="discipline disciplines.{{key}}" data-discipline="{{key}}" data-select-dialog="true">
                                     <i class="fa-solid fa-dice-d10"></i>
                                 </a>
                                 <!-- Icon to show the discipline description to the chat-->
@@ -62,15 +62,15 @@
             {{/each}}
         </div>
         <div class="powers-list item-list">
-            {{#each actor.system.disciplines as |discipline key|}}
+            {{#each disciplines as |discipline key|}}
                 {{#if discipline.visible}}
                     <div class="discipline category">
                         <div class="flexrow item-header">
                             <div class="item-name">
                                 {{#if (and (ne key "rituals") (ne key "ceremonies"))}}
-                                    {{localize "WOD5E.VTM.StringPowers" string=discipline.label}}
+                                    {{localize "WOD5E.VTM.StringPowers" string=discipline.displayName}}
                                 {{else}}
-                                    {{discipline.label}}
+                                    {{discipline.displayName}}
                                 {{/if}}
                             </div>
                             <!-- Item controls for discipline power sections -->
@@ -119,4 +119,4 @@
             {{/each}}
         </div>
     </div>
-</div>
+</section>
