@@ -1,7 +1,8 @@
-/* global foundry, TextEditor */
+/* global foundry */
 
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
+import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext } from './scripts/prepare-partials.js'
 // Base actor sheet to extend from
 import { WoDActor } from './wod-v5-sheet.js'
 
@@ -91,86 +92,38 @@ export class MortalActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     return data
   }
 
-  async _preparePartContext(partId, context) {
-    const actor = this.actor
-    const actorData = actor.system
-    const actorHeaders = actorData.headers
+  async _preparePartContext(partId, context, options) {
+    // Inherit any preparation from the extended class
+    context = { ...(await super._preparePartContext(partId, context, options)) }
 
+    // Top-level variables
+    const actor = this.actor
+
+    // Prepare each page context
     switch (partId) {
       // Stats
       case 'stats':
-        // Switch tab
-        context.tab = context.tabs.stats
-
-        // Part-specific data
-        context.sortedAttributes = actorData.sortedAttributes
-        context.sortedSkills = actorData.sortedSkills
-        context.customRolls = actorData.customRolls
-
-        break
+        return prepareStatsContext(context, actor)
 
       // Experience
       case 'experience':
-        // Tab data
-        context.tab = context.tabs.experience
-
-        // Part-specific data
-        context.experiences = actorData.experiences
-        context.exp = actorData.exp
-        context.derivedXP = actorData.derivedXP
-
-        break
+        return prepareExperienceContext(context, actor)
 
       // Features
       case 'features':
-        // Tab data
-        context.tab = context.tabs.features
-
-        // Part-specific data
-        context.features = actorData.features
-        context.tenets = actorHeaders.tenets
-        context.enrichedTenets = await TextEditor.enrichHTML(actorHeaders.tenets)
-
-        break
+        return prepareFeaturesContext(context, actor)
 
       // Biography
       case 'biography':
-        // Tab data
-        context.tab = context.tabs.biography
-
-        // Part-specific data
-        context.bio = actorData.bio
-        context.biography = actorData.biography
-        context.enrichedBiography =await TextEditor.enrichHTML(actorData.biography)
-        context.appearance = actorData.appearance
-        context.enrichedAppearance = await TextEditor.enrichHTML(actorData.appearance)
-        context.touchstones = actorHeaders.touchstones
-        context.enrichedTouchstones = await TextEditor.enrichHTML(actorHeaders.touchstones)
-
-        break
+        return prepareBiographyContext(context, actor)
 
       // Notepad
       case 'notepad':
-        // Tab data
-        context.tab = context.tabs.notepad
-
-        // Part-specific data
-        context.notes = actorData.notes
-        context.enrichedNotes = await TextEditor.enrichHTML(actorData.notes)
-        context.privatenotes = actorData.privatenotes
-        context.enrichedPrivatenotes = await TextEditor.enrichHTML(actorData.privatenotes)
-
-        break
+        return prepareNotepadContext(context, actor)
 
       // Settings
       case 'settings':
-        // Tab data
-        context.tab = context.tabs.settings
-
-        // Part-specific data
-      
-
-        break
+        return prepareSettingsContext(context, actor)
     }
 
     return context
