@@ -1,9 +1,12 @@
 /* The actor sheet itself */
+.actor.sheet:not(.minimized) {
+  min-width: 850px;
+  min-height: 300px;
+}
+
 .actor.sheet {
   position: fixed;
   overflow: hidden;
-  min-width: 850px;
-  min-height: 300px;
   border-radius: 0;
 
   .window-content {

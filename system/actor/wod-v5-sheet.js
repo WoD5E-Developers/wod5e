@@ -39,7 +39,8 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       handler: WoDActor.onSubmitActorForm
     },
     window: {
-      icon: 'fas fa-gear'
+      icon: 'fa-solid fa-dice-d10',
+      resizeable: true
     },
     classes: ['wod5e', 'actor', 'sheet'],
     position: {
