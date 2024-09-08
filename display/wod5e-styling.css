@@ -2105,6 +2105,9 @@ prose-mirror .editor-menu button {
   background-color: var(--system-color-4);
   border: 2px solid #1b1b1b;
 }
+.sheet .item-list .category .item .item-image .clickable {
+  cursor: pointer;
+}
 .sheet .item-list .category .item .item-image img {
   border: 1px solid var(--system-color-5);
 }
