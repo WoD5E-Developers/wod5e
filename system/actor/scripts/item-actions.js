@@ -193,8 +193,6 @@ export const _onItemDelete = async function (event, target) {
 
 // Create an embedded item document
 async function createItem (actor, itemName, type, itemData) {
-  console.log(itemName, type, itemData)
-
   return actor.createEmbeddedDocuments('Item', [{
     name: itemName,
     type,
