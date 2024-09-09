@@ -1,4 +1,4 @@
-/* global DEFAULT_TOKEN, game, TextEditor, WOD5E, foundry */
+/* global game, TextEditor, foundry */
 
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
@@ -148,41 +148,32 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
   }
 
   async prepareItems (sheetData) {
-    const features = {
+    // Custom rolls
+    sheetData.system.customRolls = sheetData.items.filter(item => 
+      item.type === 'customRoll'
+    )
+
+    // Features
+    sheetData.system.features = sheetData.items.reduce((acc, item) => {
+      if (item.type === 'feature') {
+        // Assign to featuretype container, default to 'background' if unset
+        const featuretype = item.system.featuretype || 'background' 
+        if (acc[featuretype]) {
+          acc[featuretype].push(item)
+        } else {
+          // Create new array if it doesn't exist
+          acc[featuretype] = [item] 
+        }
+      }
+
+      return acc
+    }, {
+      // Containers for features
       background: [],
       merit: [],
       flaw: [],
       boon: []
-    }
-
-    // Initialize containers.
-    const customRolls = []
-    const equipment = []
-
-    // Iterate through items, allocating to containers
-    for (const i of sheetData.items) {
-      i.img = i.img || DEFAULT_TOKEN
-
-      // Sort the item into its appropriate place
-      if (i.type === 'equipment') {
-        // Append to equipment
-        equipment[i.system.equipmentType].push(i)
-      } else if (i.type === 'feature') {
-        // Check the featuretype field and set a default
-        const featuretype = i.system.featuretype in WOD5E.Features.getList({}) ? i.system.featuretype : 'background'
-
-        // Append to features
-        features[featuretype].push(i)
-      } else if (i.type === 'customRoll') {
-        // Append to custom rolls
-        customRolls.push(i)
-      }
-    }
-
-    // Assign items to their containers in the actor data
-    sheetData.system.customRolls = customRolls
-    sheetData.system.equipment = equipment
-    sheetData.system.features = features
+    })
   }
 
   static async onSubmitActorForm(event, form, formData) {
