@@ -1887,6 +1887,9 @@ body.uk .actor.sheet {
 .wod5e .nogrow {
   flex-grow: 0;
 }
+.wod5e .flexend {
+  align-self: flex-end;
+}
 
 .item.sheet .item-header {
   flex: 0 0 215px;
