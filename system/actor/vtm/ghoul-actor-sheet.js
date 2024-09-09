@@ -5,6 +5,7 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
 import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext } from '../scripts/prepare-partials.js'
 import { prepareDisciplinesContext } from './scripts/prepare-partials.js'
 import { _onAddDiscipline } from './scripts/disciplines.js'
+
 // Base actor sheet to extend from
 import { WoDActor } from '../wod-v5-sheet.js'
 

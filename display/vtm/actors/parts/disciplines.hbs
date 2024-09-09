@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="discipline-description">
-                            <prose-mirror name="system.disciplines.{{key}}.description" data-document-u-u-i-d="{{../actor.uuid}}" value="{{discipline.description}}"
+                            <prose-mirror name="system.disciplines.{{key}}.description" value="{{discipline.description}}"
                                 toggled="true" compact="true">
                                 {{{discipline.enrichedDescription}}}
                             </prose-mirror>
@@ -83,14 +83,14 @@
                         </div>
                         {{#each discipline.powers as |power key|}}
                             <div class="collapsible-container">
-                                <div class="flexrow power item" data-item-id="{{power._id}}">
+                                <div class="flexrow power item">
                                     <div class="item-image">
                                         <img src="{{power.img}}">
                                     </div>
                                     <div class="item-name{{#if power.system.enrichedDescription}} collapsible{{/if}}" {{#if power.system.enrichedDescription}}data-action="toggleCollapse"{{/if}}>{{power.name}}</div>
                                     <div class="item-controls">
                                         <!-- Icon to edit the power -->
-                                        <a class="item-control item-edit" data-action="itemEdit" title="{{localize 'WOD5E.Edit'}}">
+                                        <a class="item-control item-edit" data-action="itemEdit" title="{{localize 'WOD5E.Edit'}}" data-item-id="{{power._id}}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <!-- Icon to roll a power's dicepool -->
@@ -100,11 +100,11 @@
                                             </a>
                                         {{/if}}
                                         <!-- Icon to display the power in chat -->
-                                        <a class="item-control item-chat" data-action="itemChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
+                                        <a class="item-control item-chat" data-action="itemChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-item-id="{{power._id}}">
                                             <i class="fas fa-comment-alt"></i>
                                         </a>
                                         <!-- Icon to delete the power -->
-                                        <a class="item-control item-delete" data-action="itemDelete" title="{{localize 'WOD5E.Delete'}}">
+                                        <a class="item-control item-delete" data-action="itemDelete" title="{{localize 'WOD5E.Delete'}}" data-item-id="{{power._id}}">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </div>

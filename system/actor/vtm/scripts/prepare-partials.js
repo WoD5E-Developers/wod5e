@@ -7,7 +7,7 @@ export const prepareDisciplinesContext = async function (context, actor) {
   context.tab = context.tabs.disciplines
 
   // Part-specific data
-  context.disciplines = await prepareDisciplinePowers(actorData.disciplines)
+  context.disciplines = await prepareDisciplinePowers(actor.items, actorData.disciplines)
 
   return context
 }

@@ -54,7 +54,17 @@ export const prepareDisciplines = async function (actor) {
   return disciplines
 }
 
-export const prepareDisciplinePowers = async function (disciplines) {
+export const prepareDisciplinePowers = async function (items, disciplines) {
+  // Assign discipline power items to containers
+  for (const i of items) {
+    // Make sure the item is a power and has a discipline that exists
+    if (i.type === 'power' && disciplines[i.system.discipline]) {
+      if (!disciplines[i.system.discipline]?.powers) disciplines[i.system.discipline].powers = []
+      // Append to disciplines list
+      disciplines[i.system.discipline].powers.push(i)
+    }
+  }
+
   for (const disciplineType in disciplines) {
     if (Object.prototype.hasOwnProperty.call(disciplines, disciplineType)) {
       const discipline = disciplines[disciplineType]

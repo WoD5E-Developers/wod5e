@@ -5,7 +5,7 @@
                 <label class="resource-label field-header">{{localize "WOD5E.Tabs.PublicNotes"}}</label>
             </div>
             <div class="resource">
-                <prose-mirror name="system.notes" data-document-u-u-i-d="{{../actor.uuid}}" value="{{notes}}"
+                <prose-mirror name="system.notes" value="{{notes}}"
                     toggled="true" compact="true">
                     {{{enrichedNotes}}}
                 </prose-mirror>
@@ -22,7 +22,7 @@
                 </label>
             </div>
             <div class="resource">
-                <prose-mirror name="system.privatenotes" data-document-u-u-i-d="{{../actor.uuid}}" value="{{privatenotes}}"
+                <prose-mirror name="system.privatenotes" value="{{privatenotes}}"
                     toggled="true" compact="true">
                     {{{enrichedPrivateNotes}}}
                 </prose-mirror>

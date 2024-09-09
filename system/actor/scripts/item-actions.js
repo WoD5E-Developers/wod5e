@@ -60,11 +60,11 @@ export const _onCreateItem = async function (event, target) {
   // Create item if subtype is already defined or not needed
   if (subtype || ['customRoll', 'boon'].includes(type)) {
     if (subtype) {
-      itemData = appendSubtypeData(type, subtype, itemData)
+      itemData = await appendSubtypeData(type, subtype, itemData)
     }
 
     // Create the item
-    return _createItem(actor, itemName, type, itemData)
+    await createItem(actor, itemName, type, itemData)
   } else {
     // Build the options for the select dropdown
     for (const [key, value] of Object.entries(itemOptions)) {
@@ -87,10 +87,10 @@ export const _onCreateItem = async function (event, target) {
         label: game.i18n.localize('WOD5E.Add'),
         callback: async (html) => {
           subtype = html.find('#subtypeSelect')[0].value
-          itemData = appendSubtypeData(type, subtype, itemData)
+          itemData = await appendSubtypeData(type, subtype, itemData)
 
           // Create the item
-          return _createItem(actor, itemName, type, itemData)
+          await createItem(actor, itemName, type, itemData)
         }
       },
       cancel: {
@@ -192,7 +192,9 @@ export const _onItemDelete = async function (event, target) {
 }
 
 // Create an embedded item document
-function _createItem (actor, itemName, type, itemData) {
+async function createItem (actor, itemName, type, itemData) {
+  console.log(itemName, type, itemData)
+
   return actor.createEmbeddedDocuments('Item', [{
     name: itemName,
     type,
@@ -201,7 +203,7 @@ function _createItem (actor, itemName, type, itemData) {
 }
 
 // Append subtype data to the item data based on item type
-function appendSubtypeData (type, subtype, itemData) {
+async function appendSubtypeData (type, subtype, itemData) {
   switch (type) {
     case 'power':
       itemData.discipline = subtype
