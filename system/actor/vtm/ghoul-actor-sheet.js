@@ -105,6 +105,7 @@ export class GhoulActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     const actor = this.actor
     const actorData = actor.system
 
+    // Prepare vampire-specific items
     data.domitor = actorData.headers.domitor
     data.humanity = actorData.humanity
     data.hunger = actorData.hunger

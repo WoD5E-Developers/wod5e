@@ -44,27 +44,19 @@ export const prepareDisciplines = async function (actor) {
       disciplines[id].visible = false
     }
 
-    // Wipe old discipline powers so they doesn't duplicate
-    disciplines[id].powers = []
-
     // Enrich discipline description
     disciplines[id].enrichedDescription = await TextEditor.enrichHTML(disciplines[id].description)
+
+    // Assign all matching powers to the discipline
+    disciplines[id].powers = actor.items.filter(item => 
+      item.type === 'power' && item.system.discipline === id
+    )
   }
 
   return disciplines
 }
 
-export const prepareDisciplinePowers = async function (items, disciplines) {
-  // Assign discipline power items to containers
-  for (const i of items) {
-    // Make sure the item is a power and has a discipline that exists
-    if (i.type === 'power' && disciplines[i.system.discipline]) {
-      if (!disciplines[i.system.discipline]?.powers) disciplines[i.system.discipline].powers = []
-      // Append to disciplines list
-      disciplines[i.system.discipline].powers.push(i)
-    }
-  }
-
+export const prepareDisciplinePowers = async function (disciplines) {
   for (const disciplineType in disciplines) {
     if (Object.prototype.hasOwnProperty.call(disciplines, disciplineType)) {
       const discipline = disciplines[disciplineType]
