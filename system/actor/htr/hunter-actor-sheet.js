@@ -111,7 +111,7 @@ export class HunterActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     const actorData = actor.system
     const actorHeaders = actorData.headers
 
-    // Prepare vampire-specific items
+    // Prepare hunter-specific items
     data.despairActive = actorData.despair.value > 0
     data.cellname = actorHeaders.cellname
     data.drive = actorHeaders.drive
