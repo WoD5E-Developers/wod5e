@@ -45,11 +45,13 @@ export const prepareGifts = async function (actor) {
       gifts[id].visible = false
     }
 
-    // Wipe old gift powers so they doesn't duplicate
-    gifts[id].powers = []
-
     // Enrich gift description
     gifts[id].enrichedDescription = await TextEditor.enrichHTML(gifts[id].description)
+
+    // Assign all matching powers to the discipline
+    gifts[id].powers = actor.items.filter(item => 
+      item.type === 'gift' && item.system.giftType === id
+    )
   }
 
   return gifts
@@ -108,7 +110,7 @@ export const prepareFormData = async function (formData) {
       mergedForms[formKey] = { ...wereForms[formKey] }
 
       // Check if the existing form data has additional fields
-      if (formData[formKey]) {
+      if (formData && formData[formKey]) {
         // Add fields to keep from the existing form data
         for (const field of fieldsToKeep) {
           if (formData[formKey][field] !== undefined) {

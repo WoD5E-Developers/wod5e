@@ -62,14 +62,12 @@ export const _onAddGift = async function (event) {
 }
 
 /** Handle removing a gift from an actor */
-export const _onRemoveGift = async function (event) {
+export const _onRemoveGift = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
-  const gift = dataset.gift
+  const gift = target.getAttribute('data-gift')
 
   await actor.update({
     [`system.gifts.${gift}.visible`]: false
@@ -106,14 +104,12 @@ export const _onGiftCost = async function (actor, item) {
 }
 
 /** Post Gift description to the chat */
-export const _onGiftToChat = async function (event) {
+export const _onGiftToChat = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
-  const gift = actor.system.gifts[dataset.gift]
+  const gift = actor.system.gifts[target.getAttribute('data-gift')]
 
   await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
     name: game.i18n.localize(gift.name),

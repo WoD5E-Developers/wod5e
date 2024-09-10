@@ -1070,7 +1070,24 @@ h3.item-name {
   border: 1px solid var(--werewolf-color-1);
 }
 .actor.sheet.werewolf .tab[data-tab="wolf"] .garou-forms-label {
+  margin-top: 10px;
   font-size: 20pt;
+  text-align: center;
+}
+.actor.sheet.werewolf .tab[data-tab="wolf"] .were-form-name,
+.actor.sheet.werewolf .tab[data-tab="wolf"] .were-form-title {
+  text-align: center;
+}
+.actor.sheet.werewolf .tab[data-tab="wolf"] .were-form-name h3,
+.actor.sheet.werewolf .tab[data-tab="wolf"] .were-form-title h3 {
+  margin-bottom: 3px;
+}
+.actor.sheet.werewolf .tab[data-tab="wolf"] .were-form-title {
+  font-style: italic;
+  font-weight: bold;
+}
+.actor.sheet.werewolf .tab[data-tab="wolf"] .forms {
+  align-items: flex-start;
 }
 .actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form {
   border-radius: 0;
@@ -1080,6 +1097,7 @@ h3.item-name {
 .actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form .form-attributes {
   list-style: none;
   padding: 0;
+  text-align: center;
 }
 .actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form .form-attributes li {
   padding: 1px;
@@ -1109,7 +1127,8 @@ h3.item-name {
 }
 .sheet.werewolf .rage-button {
   max-width: 35px;
-  max-height: 35px;
+  height: 35px;
+  align-self: start;
 }
 .sheet.werewolf .rage-button .wod5e-symbol {
   vertical-align: middle;
@@ -1180,6 +1199,8 @@ h3.item-name {
 }
 .sheet.werewolf .frenzy button {
   width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 .werewolf.sheet.window-app .window-resizable-handle {
   border-top: 3px double var(--werewolf-color-1);

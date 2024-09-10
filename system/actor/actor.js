@@ -9,7 +9,7 @@ import { getDerivedExperience } from './scripts/experience.js'
 import { _onPlayerUpdate, _onGroupUpdate } from './scripts/ownership-updates.js'
 import { prepareDisciplines } from './vtm/scripts/prepare-data.js'
 import { prepareEdges } from './htr/scripts/prepare-data.js'
-import { prepareGifts } from './wta/scripts/prepare-data.js'
+import { prepareGifts, prepareFormData } from './wta/scripts/prepare-data.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -82,6 +82,7 @@ export class WoDActor extends Actor {
     // Set gift data
     if (systemData?.gamesystem === 'werewolf') {
       systemData.gifts = await prepareGifts(actorData)
+      systemData.forms = await prepareFormData(actorData.forms)
     }
   }
 

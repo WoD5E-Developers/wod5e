@@ -530,19 +530,6 @@
           }
         }
       },
-      "renown": {
-        "renown": {
-          "glory": {
-            "value": 0
-          },
-          "honor": {
-            "value": 0
-          },
-          "wisdom": {
-            "value": 0
-          }
-        }
-      },
       "werewolfForms": {
         "activeForm": "homid",
         "forms": {
@@ -731,7 +718,18 @@
           "superficial": 0,
           "max": 4
         },
-        "lostTheWolf": false
+        "lostTheWolf": false,
+        "renown": {
+          "glory": {
+            "value": 0
+          },
+          "honor": {
+            "value": 0
+          },
+          "wisdom": {
+            "value": 0
+          }
+        }
       },
       "hunter_traits": {
         "redemption": {

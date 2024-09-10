@@ -1,6 +1,6 @@
-<div class="tab gifts" data-group="primary" data-tab="gifts-rites">
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
     {{> "systems/vtm5e/display/wta/actors/parts/renown.hbs"}}
-    {{#if actor.system.frenzyActive}}
+    {{#if frenzyActive}}
         <div class="frenzyNotification flex-center">
             <h1>{{localize 'WOD5E.WTA.FrenzyActiveWarning'}}</h1>
             <h3>{{localize 'WOD5E.WTA.FrenzyActiveWarning2'}}</h3>
@@ -10,15 +10,15 @@
         <div class="gifts-list item-list">
             <!-- Item control for adding new gift lists -->
             <div class="item-controls">
-                <a class="item-control add-gift flex-center" title="{{localize 'WOD5E.WTA.AddGift'}}">
-                    <h2>
+                <a class="item-control add-gift flex-center" data-action="addGift" title="{{localize 'WOD5E.WTA.AddGift'}}">
+                    <h3>
                         <i class="fas fa-plus"></i>
                         {{localize "WOD5E.WTA.AddGift"}}
-                    </h2>
+                    </h3>
                 </a>
             </div>
             <!-- Iterate through each of the gift lists -->
-            {{#each actor.system.gifts as |gift key|}}
+            {{#each gifts as |gift key|}}
                 {{#if gift.visible}}
                     <div class="gift category">
                         <div class="flexrow item-header">
@@ -32,12 +32,12 @@
                             <!-- Item controls for gift sections -->
                             <div class="item-controls">
                                 <!-- Icon to show the gift description to the chat-->
-                                <a class="item-control gift-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-gift="{{key}}">
+                                <a class="item-control gift-chat" data-action="giftChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-gift="{{key}}">
                                     <i class="fas fa-comment-alt"></i>
                                 </a>
                                 <!-- Icon to delete the gift (as long as it doesn't have any powers) -->
                                 {{#if (eq gift.powers.length 0)}}
-                                    <a class="item-control gift-delete" title="{{localize 'WOD5E.Delete'}}" data-gift="{{key}}">
+                                    <a class="item-control gift-delete" data-action="deleteGift" title="{{localize 'WOD5E.Delete'}}" data-gift="{{key}}">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 {{/if}}
@@ -54,7 +54,7 @@
             {{/each}}
         </div>
         <div class="powers-list item-list">
-            {{#each actor.system.gifts as |gift key|}}
+            {{#each gifts as |gift key|}}
                 {{#if gift.visible}}
                     <div class="gift category">
                         <div class="flexrow item-header">
@@ -75,14 +75,14 @@
                         </div>
                         {{#each gift.powers as |power key|}}
                             <div class="collapsible-container">
-                                <div class="flexrow power item" data-item-id="{{power._id}}">
+                                <div class="flexrow power item">
                                     <div class="item-image">
                                         <img src="{{power.img}}">
                                     </div>
                                     <div class="item-name{{#if power.system.enrichedDescription}} collapsible{{/if}}" {{#if power.system.enrichedDescription}}data-action="toggleCollapse"{{/if}}>{{power.name}}</div>
                                     <div class="item-controls">
                                         <!-- Icon to edit the power -->
-                                        <a class="item-control item-edit" data-action="itemEdit" title="{{localize 'WOD5E.Edit'}}">
+                                        <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{power._id}}" title="{{localize 'WOD5E.Edit'}}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <!-- Icon to roll the power's dicepool -->
@@ -92,11 +92,11 @@
                                             </a>
                                         {{/if}}
                                         <!-- Icon to display the power in chat -->
-                                        <a class="item-control item-chat" data-action="itemChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
+                                        <a class="item-control item-chat" data-action="itemChat" data-item-id="{{power._id}}" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
                                             <i class="fas fa-comment-alt"></i>
                                         </a>
                                         <!-- Icon to delete the power -->
-                                        <a class="item-control item-delete" data-action="itemDelete" title="{{localize 'WOD5E.Delete'}}">
+                                        <a class="item-control item-delete" data-action="itemDelete" data-item-id="{{power._id}}" title="{{localize 'WOD5E.Delete'}}">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </div>
@@ -111,4 +111,4 @@
             {{/each}}
         </div>
     </div>
-</div>
+</section>

@@ -7,7 +7,7 @@
         <i class="fa-solid fa-dice-d10"></i>
     </label>
     <div class="resource-content flexrow flex-center flex-between">
-        <div class="resource-value" data-value="{{actor.system.renown.glory.value}}" data-name="system.renown.glory.value">
+        <div class="resource-value" data-value="{{renown.glory.value}}" data-name="system.renown.glory.value">
             <span class="resource-value-empty glory-value" data-action="dotCounterEmpty"></span>
             {{#numLoop 5}}
                 <span class="resource-value-step glory-value" data-action="dotCounterChange" data-index="{{this}}"></span>
@@ -23,7 +23,7 @@
         <i class="fa-solid fa-dice-d10"></i>
     </label>
     <div class="resource-content flexrow flex-center flex-between">
-        <div class="resource-value" data-value="{{actor.system.renown.honor.value}}" data-name="system.renown.honor.value">
+        <div class="resource-value" data-value="{{renown.honor.value}}" data-name="system.renown.honor.value">
             <span class="resource-value-empty honor-value" data-action="dotCounterEmpty"></span>
             {{#numLoop 5}}
                 <span class="resource-value-step honor-value" data-action="dotCounterChange" data-index="{{this}}"></span>
@@ -39,7 +39,7 @@
         <i class="fa-solid fa-dice-d10"></i>
     </label>
     <div class="resource-content flexrow flex-center flex-between">
-        <div class="resource-value" data-value="{{actor.system.renown.wisdom.value}}" data-name="system.renown.wisdom.value">
+        <div class="resource-value" data-value="{{renown.wisdom.value}}" data-name="system.renown.wisdom.value">
             <span class="resource-value-empty wisdom-value" data-action="dotCounterEmpty"></span>
             {{#numLoop 5}}
                 <span class="resource-value-step wisdom-value" data-action="dotCounterChange" data-index="{{this}}"></span>
