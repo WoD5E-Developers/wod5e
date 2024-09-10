@@ -82,7 +82,7 @@ export class WoDActor extends Actor {
     // Set gift data
     if (systemData?.gamesystem === 'werewolf') {
       systemData.gifts = await prepareGifts(actorData)
-      systemData.forms = await prepareFormData(actorData.forms)
+      systemData.forms = await prepareFormData(systemData.forms)
     }
   }
 

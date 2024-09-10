@@ -1094,6 +1094,14 @@ h3.item-name {
   background-color: var(--system-color-6);
   border: 1px solid var(--system-color-5);
 }
+.actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form hr {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+.actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form .form-description {
+  text-align: center;
+  padding: 3px;
+}
 .actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form .form-attributes {
   list-style: none;
   padding: 0;
