@@ -11,6 +11,9 @@
 .actor.sheet.hunter .actor-header {
   border-bottom: 2px solid var(--hunter-color-1);
 }
+.actor.sheet.hunter .actor-header .despair {
+  height: 30px;
+}
 .actor.sheet.hunter .profile-img,
 .actor.sheet.hunter .actor-header input,
 .actor.sheet.hunter .actor-header .resource {
@@ -903,7 +906,8 @@ h3.item-name {
 }
 .sheet.vampire .rouse-button {
   max-width: 35px;
-  max-height: 35px;
+  height: 35px;
+  align-self: start;
 }
 .sheet.vampire .rouse-button .wod5e-symbol {
   vertical-align: middle;
@@ -1319,6 +1323,7 @@ body.uk .actor.sheet {
 .actor.sheet .actor-header input,
 .actor.sheet .actor-header .resource {
   margin-bottom: 5px;
+  height: 30px;
 }
 .actor.sheet .actor-header .header-profile {
   display: flex;

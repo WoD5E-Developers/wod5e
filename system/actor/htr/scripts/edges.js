@@ -60,14 +60,12 @@ export const _onAddEdge = async function (event) {
 }
 
 /** Handle removing an Edge from an actor */
-export const _onRemoveEdge = async function (event) {
+export const _onRemoveEdge = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
-  const edge = dataset.edge
+  const edge = target.getAttribute('data-edge')
 
   await actor.update({
     [`system.edges.${edge}.visible`]: false
@@ -75,14 +73,12 @@ export const _onRemoveEdge = async function (event) {
 }
 
 /** Post an Edge description to the chat */
-export const _onEdgeToChat = async function (event) {
+export const _onEdgeToChat = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
-  const edge = actor.system.edges[dataset.edge]
+  const edge = actor.system.edges[target.getAttribute('data-edge')]
 
   await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
     name: game.i18n.localize(edge.name),

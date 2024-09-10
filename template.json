@@ -734,6 +734,9 @@
         "lostTheWolf": false
       },
       "hunter_traits": {
+        "redemption": {
+          "value": ""
+        },
         "headers":{
           "cellname": "",
           "creed": "",

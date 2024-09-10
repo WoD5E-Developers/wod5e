@@ -55,6 +55,16 @@ export const prepareEdges = async function (actor) {
 
     // Enrich edge description
     edges[id].enrichedDescription = await TextEditor.enrichHTML(edges[id].description)
+
+    // Assign all matching perks to the edge
+    edges[id].perks = actor.items.filter(item => 
+      item.type === 'perk' && item.system.edge === id
+    )
+
+    // Assign all matching edgepools to the edge
+    edges[id].pools = actor.items.filter(item => 
+      item.type === 'edgepool' && item.system.edge === id
+    )
   }
 
   return edges

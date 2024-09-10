@@ -1,17 +1,17 @@
-<div class="tab edges" data-group="primary" data-tab="edges">
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
     <div class="flexrow">
         <div class="edges-list item-list">
             <!-- Item control for adding new edge lists -->
             <div class="item-controls flex-center">
-                <a class="item-control add-edge" title="{{localize 'WOD5E.HTR.AddEdge'}}">
-                    <h2>
+                <a class="item-control add-edge" title="{{localize 'WOD5E.HTR.AddEdge'}}" data-action="addEdge">
+                    <h3>
                         <i class="fas fa-plus"></i>
                         {{localize "WOD5E.HTR.AddEdge"}}
-                    </h2>
+                    </h3>
                 </a>
             </div>
             <!-- Iterate through each of the edge lists -->
-            {{#each actor.system.edges as |edge key|}}
+            {{#each edges as |edge key|}}
                 {{#if edge.visible}}
                     <div class="edge category">
                         <div class="flexcol">
@@ -22,12 +22,12 @@
                                 <!-- Item controls for Edge sections -->
                                 <div class="item-controls">
                                     <!-- Icon to show the edge description to the chat-->
-                                    <a class="item-control edge-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-edge="{{key}}">
+                                    <a class="item-control edge-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-action="edgeChat" data-edge="{{key}}">
                                         <i class="fas fa-comment-alt"></i>
                                     </a>
                                     <!-- Icon to delete the edge (as long as it doesn't have any perks) -->
                                     {{#if (eq edge.perks.length 0)}}
-                                        <a class="item-control remove-edge" title="{{localize 'WOD5E.Delete'}}" data-edge="{{key}}">
+                                        <a class="item-control remove-edge" title="{{localize 'WOD5E.Delete'}}" data-action="removeEdge" data-edge="{{key}}">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     {{/if}}
@@ -45,7 +45,7 @@
             {{/each}}
         </div>
         <div class="perks-list item-list">
-            {{#each actor.system.edges as |edge key|}}
+            {{#each edges as |edge key|}}
                 {{#if edge.visible}}
                     <div class="edge category">
                         <div class="flexrow item-header">
@@ -62,22 +62,22 @@
                         </div>
                         {{#each edge.perks as |perk key|}}
                             <div class="collapsible-container">
-                                <div class="flexrow perk item" data-item-id="{{perk._id}}">
+                                <div class="flexrow perk item">
                                     <div class="item-image">
                                         <img src="{{perk.img}}">
                                     </div>
                                     <div class="item-name{{#if perk.system.enrichedDescription}} collapsible{{/if}}" {{#if perk.system.enrichedDescription}}data-action="toggleCollapse"{{/if}}>{{perk.name}}</div>
                                     <div class="item-controls">
                                         <!-- Icon to edit the perk-->
-                                        <a class="item-control item-edit" data-action="itemEdit" title="{{localize 'WOD5E.Edit'}}">
+                                        <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{perk._id}}" title="{{localize 'WOD5E.Edit'}}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <!-- Icon to display the perk in chat -->
-                                        <a class="item-control item-chat" data-action="itemChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
+                                        <a class="item-control item-chat" data-action="itemChat" data-item-id="{{perk._id}}" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
                                             <i class="fas fa-comment-alt"></i>
                                         </a>
                                         <!-- Icon to delete the perk -->
-                                        <a class="item-control item-delete" data-action="itemDelete" title="{{localize 'WOD5E.Delete'}}">
+                                        <a class="item-control item-delete" data-action="itemDelete" data-item-id="{{perk._id}}" title="{{localize 'WOD5E.Delete'}}">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </div>
@@ -89,18 +89,18 @@
                         {{/each}}
                         <div class="edge-pools flexcol">
                             {{#each edge.pools as |pool key|}}
-                                <div class="edge-pool flexrow item" data-item-id="{{pool._id}}">
+                                <div class="edge-pool flexrow item">
                                     <div class="edge-pool-label rollable-item" data-action="rollItem" data-item-uuid="{{pool.uuid}}">
                                         {{pool.name}}
                                         <i class="fa-solid fa-dice-d10"></i>
                                     </div>
                                     <div class="item-controls">
                                         <!-- Icon to edit the edge pool -->
-                                        <a class="item-control item-edit" data-action="itemEdit" title="{{localize 'WOD5E.Edit'}}">
+                                        <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{pool._id}}" title="{{localize 'WOD5E.Edit'}}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <!-- Icon to delete the edge pool -->
-                                        <a class="item-control item-delete" data-action="itemDelete" title="{{localize 'WOD5E.Delete'}}">
+                                        <a class="item-control item-delete" data-action="itemDelete" data-item-id="{{pool._id}}" title="{{localize 'WOD5E.Delete'}}">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </div>
@@ -116,4 +116,4 @@
             {{/each}}
         </div>
     </div>
-</div>
+</section>
