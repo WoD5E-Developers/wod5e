@@ -11,12 +11,6 @@ export const _onLostTheWolf = async function (actor) {
   // If automatedRage is disabled, we don't wat to show this dialogue
   if (!game.settings.get('vtm5e', 'automatedRage')) return
 
-  // If the actor has already lost the wolf, we don't need to show this prompt again
-  if (actor.system.lostTheWolf) return
-
-  // Update the listTheWolf key
-  await actor.update({ 'system.lostTheWolf': true })
-
   // Define the template to be used
   const template = `
   <form>
@@ -30,13 +24,19 @@ export const _onLostTheWolf = async function (actor) {
     homid: {
       label: 'Homid',
       callback: async () => {
-        await actor.update({ 'system.activeForm': 'homid' })
+        actor.update({ 'system.activeForm': 'homid' })
       }
     },
     lupus: {
       label: 'Lupus',
       callback: async () => {
-        await actor.update({ 'system.activeForm': 'lupus' })
+        actor.update({ 'system.activeForm': 'lupus' })
+      }
+    },
+    override: {
+      label: 'Stay In Current Form',
+      callback: async () => {
+        actor.update({ 'system.formOverride': true })
       }
     }
   }
@@ -183,7 +183,10 @@ export const _onInsufficientRage = async function (actor, form) {
       icon: '<i class="fas fa-check"></i>',
       label: 'Shift Anyway',
       callback: async () => {
-        await actor.update({ 'system.activeForm': form })
+        await actor.update({
+          'system.activeForm': form,
+          'system.formOverride': true
+        })
       }
     },
     cancel: {

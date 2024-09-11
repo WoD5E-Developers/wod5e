@@ -23,6 +23,7 @@ export const prepareWolfContext = async function (context, actor) {
   context.activeForm = actorData.activeForm
   context.forms = actorData.forms
   context.balance = actorData.balance
+  context.rage = actorData.rage
 
   return context
 }

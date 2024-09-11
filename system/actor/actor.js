@@ -83,6 +83,10 @@ export class WoDActor extends Actor {
     if (systemData?.gamesystem === 'werewolf') {
       systemData.gifts = await prepareGifts(actorData)
       systemData.forms = await prepareFormData(systemData.forms)
+
+      if (systemData.formOverride && systemData.rage.value > 0) {
+        this.update({ 'system.formOverride': false })
+      }
     }
   }
 

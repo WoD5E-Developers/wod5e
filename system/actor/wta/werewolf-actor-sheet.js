@@ -8,6 +8,7 @@ import { _onAddGift, _onRemoveGift, _onGiftToChat } from './scripts/gifts.js'
 import { _onFormEdit, _onFormToChat, _onShiftForm } from './scripts/forms.js'
 import { _onBeginFrenzy, _onEndFrenzy } from './scripts/frenzy.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './scripts/balance.js'
+import { _onLostTheWolf } from './scripts/forms.js'
 
 // Base actor sheet to extend from
 import { WoDActor } from '../wod-v5-sheet.js'
@@ -132,6 +133,14 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     data.tribe = actorHeaders.tribe
     data.rage = actorData.rage
     data.frenzyActive = actorData.frenzyActive
+    data.lostTheWolf = data.rage.value === 0 ? true : false
+
+    // Check if the actor has lost the wolf and they're in a supernatural form
+    // If so, trigger onLostTheWolf and prompt a shift down
+    const supernaturalForms = ['glabro', 'crinos', 'hispo']
+    if (data.lostTheWolf && (supernaturalForms.indexOf(actorData.activeForm) > -1) && !actorData.formOverride) {
+      await _onLostTheWolf(actor)
+    }
 
     return data
   }

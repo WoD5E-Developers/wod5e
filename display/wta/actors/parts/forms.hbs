@@ -1,4 +1,7 @@
-<div class="resource-label garou-forms-label">{{localize "WOD5E.WTA.FormsOfGarou"}}</div>
+<div class="resource-label garou-forms-label">{{localize "WOD5E.WTA.FormsOfGarou"}}
+
+    {{rage.value}}
+</div>
 <div class="flexrow grid grid-5col forms">
     {{#each forms as |form id|}}
         <div>
@@ -10,7 +13,7 @@
                 {{#ifeq ../activeForm id}}
                     <button type="button" class="werewolf-button active">{{localize "WOD5E.WTA.Active"}}</button>
                 {{else}}
-                    <button type="button" class="werewolf-button change-form{{#ifeq ../rage.value 0}}{{#ifnoteq form.cost 0}} disabled{{/ifnoteq}}{{/ifeq}}" 
+                    <button type="button" class="werewolf-button change-form{{#ifeq ../rage.value 0}}{{#ifnoteq form.cost 0}} disabled-form{{/ifnoteq}}{{/ifeq}}" 
                     title="{{#ifeq ../rage.value 0}}{{#ifnoteq form.cost 0}}{{localize 'WOD5E.WTA.LostWolfFormChange'}}{{/ifnoteq}}{{/ifeq}}"
                     data-form="{{id}}" data-action="shiftForm" data-rage-cost="{{form.cost}}" type="button" name="{{id}}">
                         {{form.cost}} {{localize "WOD5E.WTA.RageDice"}}

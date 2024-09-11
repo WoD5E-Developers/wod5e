@@ -1165,8 +1165,8 @@ h3.item-name {
   cursor: default;
   background: #a14503;
 }
-.sheet.werewolf button.werewolf-button.disabled,
-.sheet.werewolf button.werewolf-button.disabled:hover {
+.sheet.werewolf button.werewolf-button.disabled-form,
+.sheet.werewolf button.werewolf-button.disabled-form:hover {
   color: var(--system-color-5);
   cursor: default;
   background: #562f13ef;
