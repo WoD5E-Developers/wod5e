@@ -4,22 +4,28 @@
         <!-- Physical Dicepool -->
         <div class="resource-content flexcol flex-center flex-between">
             <label for="Physical" class="resource-label rollable" data-action="roll" data-use-absolute-value="true"
-                data-absolute-value="{{actor.system.standarddicepools.physical.value}}" data-label="{{localize 'WOD5E.SPC.Physical'}}">{{localize 'WOD5E.SPC.Physical'}} </label>
-            <input type="number" name="system.standarddicepools.physical.value" value="{{actor.system.standarddicepools.physical.value}}" data-dtype="Number" />
+                data-absolute-value="{{standardPools.physical.value}}" data-label="{{localize 'WOD5E.SPC.Physical'}}">
+                {{localize 'WOD5E.SPC.Physical'}} <i class="fa-solid fa-dice-d10"></i>
+            </label>
+            <input type="number" name="system.standarddicepools.physical.value" value="{{standardPools.physical.value}}" data-dtype="Number" />
         </div>
 
         <!-- Social Dicepool -->
         <div class="resource-content flexcol flex-center flex-between">
             <label for="Social" class="resource-label rollable" data-action="roll" data-use-absolute-value="true"
-                data-absolute-value="{{actor.system.standarddicepools.social.value}}" data-label="{{localize 'WOD5E.SPC.Social'}}">{{localize 'WOD5E.SPC.Social'}} </label>
-            <input type="number" name="system.standarddicepools.social.value" value="{{actor.system.standarddicepools.social.value}}" data-dtype="Number" />
+                data-absolute-value="{{standardPools.social.value}}" data-label="{{localize 'WOD5E.SPC.Social'}}">
+                {{localize 'WOD5E.SPC.Social'}} <i class="fa-solid fa-dice-d10"></i>
+            </label>
+            <input type="number" name="system.standarddicepools.social.value" value="{{standardPools.social.value}}" data-dtype="Number" />
         </div>
 
         <!-- Mental Dicepool -->
         <div class="resource-content flexcol flex-center flex-between">
             <label for="Mental" class="resource-label rollable" data-action="roll" data-use-absolute-value="true"
-                data-absolute-value="{{actor.system.standarddicepools.mental.value}}" data-label="{{localize 'WOD5E.SPC.Mental'}}">{{localize 'WOD5E.SPC.Mental'}} </label>
-            <input type="number" name="system.standarddicepools.mental.value" value="{{actor.system.standarddicepools.mental.value}}" data-dtype="Number" />
+                data-absolute-value="{{standardPools.mental.value}}" data-label="{{localize 'WOD5E.SPC.Mental'}}">
+                {{localize 'WOD5E.SPC.Mental'}} <i class="fa-solid fa-dice-d10"></i>
+            </label>
+            <input type="number" name="system.standarddicepools.mental.value" value="{{standardPools.mental.value}}" data-dtype="Number" />
         </div>
     </div>
 </div>

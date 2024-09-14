@@ -93,7 +93,7 @@ export const prepareGiftPowers = async function (gifts) {
 }
 
 // Handle form data
-export const prepareFormData = async function (formData) {
+export const prepareFormData = async function (formData, actor) {
   const wereForms = WereForms.getList({})
 
   // Fields to keep from the existing data
@@ -118,6 +118,21 @@ export const prepareFormData = async function (formData) {
           }
         }
       }
+    }
+
+    // Add on some additional rendering data
+    // Whether the form is disabled or not
+    if (mergedForms[formKey].cost > 0 && actor.system.rage.value === 0) {
+      mergedForms[formKey].disabled = true
+    } else {
+      mergedForms[formKey].disabled = false
+    }
+
+    // Whether the form is active or not
+    if (formKey === actor.system.activeForm) {
+      mergedForms[formKey].active = true
+    } else {
+      mergedForms[formKey].active = false
     }
   }
 

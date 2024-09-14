@@ -4,6 +4,7 @@
     "templates": {
       "base": {
         "locked": false,
+        "hasSkillAttributeData": true,
         "group": "",
         "biography": "",
         "appearance": "",

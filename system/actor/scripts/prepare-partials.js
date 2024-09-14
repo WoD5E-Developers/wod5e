@@ -94,3 +94,20 @@ export const prepareSettingsContext = async function (context) {
 
   return context
 }
+
+export const prepareSpcStatsContext = async function (context, actor) {
+  const actorData = actor.system
+
+  // Tab data
+  context.tab = context.tabs.stats
+
+  // Part-specific data
+  context.standardPools = actorData.standarddicepools
+  context.exceptionalPools = actorData.exceptionaldicepools
+
+  context.disciplines = actorData.disciplines
+  context.edges = actorData.edges
+  context.gifts = actorData.gifts
+
+  return context
+}

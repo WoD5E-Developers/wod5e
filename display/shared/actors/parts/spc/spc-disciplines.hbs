@@ -2,7 +2,7 @@
     <div class="flexrow spc-pool-header">
         <label class="resource-label field-header">{{localize "WOD5E.VTM.Disciplines"}}</label>
         <div class="item-controls spc-item-header">
-            <a class="item-control power-create" title="{{localize 'WOD5E.VTM.AddDiscipline'}}" data-type="discipline">
+            <a class="item-control power-create" data-action="createSPCPower" title="{{localize 'WOD5E.VTM.AddDiscipline'}}" data-type="discipline">
                 <i class="fas fa-plus"></i>
                 {{localize "WOD5E.VTM.AddDiscipline"}}
             </a>
@@ -10,7 +10,7 @@
     </div>
     <ol class="items-list">
         <!-- Iterate through each of the discipline lists -->
-        {{#each actor.system.disciplines as |discipline key|}}
+        {{#each disciplines as |discipline key|}}
             {{#if discipline.visible}}
                 <li class="flexrow spc-item-header">
                     <label for="{{discipline.name}}" class="resource-label rollable" data-action="roll" data-use-absolute-value="true"
@@ -22,8 +22,8 @@
                     </div>
                     <!-- Item controls for Discipline sections -->
                     <div class="item-controls">
-                        <!-- Icon to delete the discipline (as long as it doesn't have any powers) -->
-                        <a class="item-control power-delete" title="{{localize 'WOD5E.Delete'}}" data-id="{{key}}" data-type="discipline">
+                        <!-- Icon to delete the discipline -->
+                        <a class="item-control power-delete" data-action="deleteSPCPower" title="{{localize 'WOD5E.Delete'}}" data-id="{{key}}" data-type="discipline">
                             <i class="fas fa-trash"></i>
                         </a>
                     </div>

@@ -108,7 +108,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     // Prepare items
     await this.prepareItems(actor)
 
-    // Actor types that can be swapped to and daa prep for it
+    // Actor types that can be swapped to and data prep for it
     const actorTypeData = await getActorTypes(actor)
 
     // Shortcut to the actor headers
@@ -126,11 +126,11 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
       settings: actorData.settings,
 
+      gamesystem: actorData.gamesystem,
       isOwner: actor.isOwner,
       locked: actorData.locked,
       isCharacter: this.isCharacter,
       hasBoons: this.hasBoons,
-      gamesystem: actorData.gamesystem,
 
       features: actorData.features,
 

@@ -10,6 +10,7 @@ import { _onPlayerUpdate, _onGroupUpdate } from './scripts/ownership-updates.js'
 import { prepareDisciplines } from './vtm/scripts/prepare-data.js'
 import { prepareEdges } from './htr/scripts/prepare-data.js'
 import { prepareGifts, prepareFormData } from './wta/scripts/prepare-data.js'
+import { prepareExceptionalDicePools } from './scripts/prepare-exceptional-dice-pools.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -55,19 +56,41 @@ export class WoDActor extends Actor {
     const actorData = this
     const systemData = actorData.system
 
-    // Handle attribute preparation
-    const attributesPrep = await prepareAttributes(actorData)
-    
-    // Set attribute data
-    systemData.attributes = attributesPrep.attributes
-    systemData.sortedAttributes = attributesPrep.sortedAttributes
+    if (systemData.hasSkillAttributeData) {
+      // Handle attribute preparation
+      const attributesPrep = await prepareAttributes(actorData)
+      
+      // Set attribute data
+      systemData.attributes = attributesPrep.attributes
+      systemData.sortedAttributes = attributesPrep.sortedAttributes
 
-    // Handle skill preparation
-    const skillsPrep = await prepareSkills(actorData)
+      // Handle skill preparation
+      const skillsPrep = await prepareSkills(actorData)
 
-    // Set skill data
-    systemData.skills = skillsPrep.skills
-    systemData.sortedSkills = skillsPrep.sortedSkills
+      // Set skill data
+      systemData.skills = skillsPrep.skills
+      systemData.sortedSkills = skillsPrep.sortedSkills
+    }
+
+    // Handle prepping exceptional dicepools
+    if (actorData.type === 'spc') {
+      systemData.exceptionaldicepools = await prepareExceptionalDicePools(actorData)
+    }
+
+    const typeMapping = {
+      vampire: 'vampire',
+      ghoul: 'vampire',
+      hunter: 'hunter',
+      werewolf: 'werewolf'
+    }
+
+    // Set gamesystem of an SPC
+    if (actorData.type === 'spc') {
+      systemData.gamesystem = typeMapping[systemData.spcType] || 'mortal'
+    } else if (actorData.type !== 'group') {
+      // Set the gamesystem of a non-SPC non-group character
+      systemData.gamesystem = typeMapping[actorData.type] || 'mortal'
+    }
 
     // Set discipline data
     if (systemData?.gamesystem === 'vampire') {
@@ -82,7 +105,7 @@ export class WoDActor extends Actor {
     // Set gift data
     if (systemData?.gamesystem === 'werewolf') {
       systemData.gifts = await prepareGifts(actorData)
-      systemData.forms = await prepareFormData(systemData.forms)
+      systemData.forms = await prepareFormData(systemData.forms, actorData)
 
       if (systemData.formOverride && systemData.rage.value > 0) {
         this.update({ 'system.formOverride': false })
@@ -125,6 +148,9 @@ export class WoDActor extends Actor {
 
     // Only run through this for the storyteller
     if (!game.user.isGM) return
+
+    // Make sure the actor exists
+    if (!actor) return
 
     // Handle data updates
     await _onPlayerUpdate(actor, data)
