@@ -1,22 +1,22 @@
-<div class="tab disciplines" data-group="primary" data-tab="disciplines">
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
     <div class="flexrow">
         <div class="disciplines-list item-list">
             <!-- Item control for adding new discipline lists -->
             <div class="item-controls">
-                <a class="item-control add-discipline flex-center" title="{{localize 'WOD5E.VTM.AddDiscipline'}}">
-                    <h2>
+                <a class="item-control add-discipline flex-center" title="{{localize 'WOD5E.VTM.AddDiscipline'}}" data-action="addDiscipline">
+                    <h3>
                         <i class="fas fa-plus"></i>
                         {{localize "WOD5E.VTM.AddDiscipline"}}
-                    </h2>
+                    </h3>
                 </a>
             </div>
             <!-- Iterate through each of the discipline lists -->
-            {{#each actor.system.disciplines as |discipline key|}}
+            {{#each disciplines as |discipline key|}}
                 {{#if discipline.visible}}
                     <div class="discipline category">
                         <div class="flex-center item-header">
                             <div class="item-name">
-                                {{discipline.label}}
+                                {{discipline.displayName}}
                             </div>
                         </div>
                         <div class="controls flexrow flex-center">
@@ -25,9 +25,9 @@
                                 <div class="discipline-dots flex-group-center">
                                     <div class="resource-value" data-value="{{discipline.value}}" data-name="system.disciplines.{{key}}.value">
                                         <!-- Empty box (for setting back to 0), and then iterate through the rest of the discipline dots -->
-                                        <span class="resource-value-empty"></span>
+                                        <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
                                         {{#numLoop 5}}
-                                            <span class="resource-value-step" data-index="{{this}}"></span>
+                                            <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
                                         {{/numLoop}}
                                     </div>
                                 </div>
@@ -35,8 +35,8 @@
                             <!-- Item controls for discipline sections -->
                             <div class="item-controls">
                                 <!-- Icon to roll the discipline with an attribute and/or skill combination -->
-                                <a class="rollable discipline-dice" title="{{localize 'WOD5E.RollList.Label'}}" data-value-paths="disciplines.{{key}}.value"
-                                    data-label="{{discipline.label}}" data-selectors="discipline disciplines.{{key}}" data-discipline="{{key}}" data-select-dialog="true">
+                                <a class="rollable discipline-dice" data-action="roll" title="{{localize 'WOD5E.RollList.Label'}}" data-value-paths="disciplines.{{key}}.value"
+                                    data-label="{{discipline.displayName}}" data-selectors="discipline disciplines.{{key}}" data-discipline="{{key}}" data-select-dialog="true">
                                     <i class="fa-solid fa-dice-d10"></i>
                                 </a>
                                 <!-- Icon to show the discipline description to the chat-->
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="discipline-description">
-                            <prose-mirror name="system.disciplines.{{key}}.description" data-document-u-u-i-d="{{../actor.uuid}}" value="{{discipline.description}}"
+                            <prose-mirror name="system.disciplines.{{key}}.description" value="{{discipline.description}}"
                                 toggled="true" compact="true">
                                 {{{discipline.enrichedDescription}}}
                             </prose-mirror>
@@ -62,49 +62,49 @@
             {{/each}}
         </div>
         <div class="powers-list item-list">
-            {{#each actor.system.disciplines as |discipline key|}}
+            {{#each disciplines as |discipline key|}}
                 {{#if discipline.visible}}
                     <div class="discipline category">
                         <div class="flexrow item-header">
                             <div class="item-name">
                                 {{#if (and (ne key "rituals") (ne key "ceremonies"))}}
-                                    {{localize "WOD5E.VTM.StringPowers" string=discipline.label}}
+                                    {{localize "WOD5E.VTM.StringPowers" string=discipline.displayName}}
                                 {{else}}
-                                    {{discipline.label}}
+                                    {{discipline.displayName}}
                                 {{/if}}
                             </div>
                             <!-- Item controls for discipline power sections -->
                             <div class="item-controls">
                                 <!-- Add new discipline power -->
-                                <a class="item-control item-create" title="{{localize 'WOD5E.VTM.AddDiscipline'}}" data-type="power" data-subtype="{{key}}">
+                                <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.VTM.AddDiscipline'}}" data-type="power" data-subtype="{{key}}">
                                     <i class="fas fa-plus"></i>
                                 </a>
                             </div>
                         </div>
                         {{#each discipline.powers as |power key|}}
                             <div class="collapsible-container">
-                                <div class="flexrow power item" data-item-id="{{power._id}}">
+                                <div class="flexrow power item">
                                     <div class="item-image">
                                         <img src="{{power.img}}">
                                     </div>
-                                    <div class="item-name{{#if power.system.enrichedDescription}} collapsible{{/if}}">{{power.name}}</div>
+                                    <div class="item-name{{#if power.system.enrichedDescription}} collapsible{{/if}}" {{#if power.system.enrichedDescription}}data-action="toggleCollapse"{{/if}}>{{power.name}}</div>
                                     <div class="item-controls">
                                         <!-- Icon to edit the power -->
-                                        <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
+                                        <a class="item-control item-edit" data-action="itemEdit" title="{{localize 'WOD5E.Edit'}}" data-item-id="{{power._id}}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <!-- Icon to roll a power's dicepool -->
                                         {{#if (isNotEmpty power.system.dicepool)}}
-                                            <a class="item-image rollable-item" data-item-uuid="{{power.uuid}}">
+                                            <a class="item-image rollable-item" data-action="rollItem" data-item-uuid="{{power.uuid}}">
                                                 <i class="fa-solid fa-dice-d10"></i>
                                             </a>
                                         {{/if}}
                                         <!-- Icon to display the power in chat -->
-                                        <a class="item-control item-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
+                                        <a class="item-control item-chat" data-action="itemChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-item-id="{{power._id}}">
                                             <i class="fas fa-comment-alt"></i>
                                         </a>
                                         <!-- Icon to delete the power -->
-                                        <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}">
+                                        <a class="item-control item-delete" data-action="itemDelete" title="{{localize 'WOD5E.Delete'}}" data-item-id="{{power._id}}">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </div>
@@ -119,4 +119,4 @@
             {{/each}}
         </div>
     </div>
-</div>
+</section>

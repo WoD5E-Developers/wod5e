@@ -45,8 +45,16 @@ export const loadSettings = async function () {
     hint: game.i18n.localize('WOD5E.Settings.SortDefAlphabeticallyHint'),
     scope: 'world',
     config: true,
-    default: true,
-    type: Boolean,
+    type: new foundry.data.fields.StringField({
+      required: true,
+      blank: false,
+      initial: 'default',
+      choices: {
+        default: 'WOD5E.Settings.Default',
+        all: 'WOD5E.Settings.All',
+        none: 'WOD5E.Settings.None'
+      }
+    }),
     requiresReload: true
   })
 

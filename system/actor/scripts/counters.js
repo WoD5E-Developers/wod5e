@@ -17,7 +17,7 @@ export const _onResourceChange = async function (event) {
   const actorData = foundry.utils.duplicate(actor)
 
   // Don't let things be edited if the sheet is locked
-  if (this.actor.locked || actorData.locked) {
+  if (actorData.system.locked) {
     ui.notifications.warn(game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
       string: actor.name
     }))
@@ -25,9 +25,9 @@ export const _onResourceChange = async function (event) {
   }
 
   // Handle adding and subtracting the number of boxes
-  if (dataset.action === 'plus') {
+  if (dataset.resourceAction === 'plus') {
     actorData.system[resource].max++
-  } else if (dataset.action === 'minus') {
+  } else if (dataset.resourceAction === 'minus') {
     actorData.system[resource].max = Math.max(actorData.system[resource].max - 1, 0)
   }
 
@@ -40,7 +40,7 @@ export const _onResourceChange = async function (event) {
   }
 
   // Update the actor with the new data
-  actor.update(actorData)
+  await actor.update(actorData)
 }
 
 // Handle changes to the dot counters
@@ -308,6 +308,23 @@ export const _assignToActorField = async (fields, value, actor) => {
     }
   }
 
-  // Update the actor with the new data
-  await actor.update(actorData)
+  // Update the actor data
+  await actor.update(actorData, {
+    render: false
+  })
+
+  // Re-render the core parts of the sheet and the current tab
+  const partsToRerender = ['header', 'tabs', 'banner']
+  const currentTab = $(actor._sheet.element).find('section.tab.active')[0].getAttribute('data-application-part')
+
+  partsToRerender.push(currentTab)
+
+  // Updating the rage tracker requires a re-render of the Wolf tab, as well
+  if (actorData.type === 'werewolf') {
+    partsToRerender.push('wolf')
+  }
+
+  actor.render(false, {
+    parts: partsToRerender
+  })
 }

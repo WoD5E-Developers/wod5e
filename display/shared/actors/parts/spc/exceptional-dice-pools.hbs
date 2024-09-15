@@ -2,7 +2,7 @@
     <div class="flexrow spc-pool-header">
         <label class="resource-label field-header">{{localize "WOD5E.SPC.ExceptionalDicePools"}}</label> 
         <div class="item-controls spc-item-header">
-            <a class="item-control exceptionalskill-create" title="{{localize 'WOD5E.SPC.AddSkill'}}">
+            <a class="item-control exceptionalskill-create" data-action="createExceptionalSkill" title="{{localize 'WOD5E.SPC.AddSkill'}}">
                 <i class="fas fa-plus"></i>
                 {{localize "WOD5E.SPC.AddSkill"}}
             </a>
@@ -10,20 +10,20 @@
     </div>
     <ol class="items-list">
         <!-- Iterate through each of the skill lists -->
-        {{#each actor.system.exceptionaldicepools_list as |exceptionalskill key|}}
-            {{#if exceptionalskill.visible}}
+        {{#each exceptionalPools as |exceptionalskill key|}}
+            {{#if exceptionalskill.active}}
                 <li class="flexrow spc-item-header">
-                    <label for="{{exceptionalskill.name}}" class="resource-label rollable" data-absolute-value="{{exceptionalskill.value}}" 
-                      data-use-absolute-value="true" data-label="{{exceptionalskill.displayName}}">{{exceptionalskill.displayName}} 
+                    <label for="{{exceptionalskill.name}}" class="resource-label rollable" data-action="roll" data-value-paths="exceptionaldicepools.{{key}}.value" data-select-dialog="false"
+                      data-label="{{exceptionalskill.displayName}}">{{exceptionalskill.displayName}} 
                     </label>
                     <div class="resource-value">
-                        <input type="number" name="system.exceptionaldicepools.{{exceptionalskill.id}}.value" 
-                        value="{{exceptionalskill.value}}" data-name="system.exceptionaldicepools.{{exceptionalskill.id}}.value" />
+                        <input type="number" name="system.exceptionaldicepools.{{key}}.value" 
+                        value="{{exceptionalskill.value}}" data-name="system.exceptionaldicepools.{{key}}.value" />
                     </div>
                     <!-- Item controls for Exceptional Skill sections -->
                     <div class="item-controls">
                         <!-- Icon to delete the exceptionalskill -->
-                        <a class="item-control exceptionalskill-delete" title="{{localize 'WOD5E.Delete'}}" data-exceptionalskill="{{exceptionalskill.id}}">
+                        <a class="item-control exceptionalskill-delete" data-action="deleteExceptionalSkill" title="{{localize 'WOD5E.Delete'}}" data-exceptionalskill="{{exceptionalskill.id}}">
                             <i class="fas fa-trash"></i>
                         </a>
                     </div>

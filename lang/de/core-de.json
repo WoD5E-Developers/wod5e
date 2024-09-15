@@ -199,6 +199,7 @@
       "_AddEdgeModification": "",
       "_AddGiftModification": "",
       "AddSkillModification": "Fähigkeiten-Modifikation hinzufügen",
+      "_All": "",
       "AttributeType": "Attributs-Typ",
       "AutomateHunger": "Automatisierte Hunger-Steigerung",
       "AutomateHungerHint": "Wenn eingeschaltet erhöhen fehlgeschlagene Wallungs-Würfe automatisch den Hunger im Charakterbogen.",
@@ -229,6 +230,7 @@
       "_CustomGiftsHint": "",
       "CustomSkills": "Eigene Fähigkeiten",
       "CustomSkillsHint": "Erlaubt die Erstellung eigener Fähigkeiten.",
+      "_Default": "",
       "DisableAutomation": "Jegliche Automatisierung ausschalten",
       "DisableAutomationHint": "Schaltet jede Automatisierung aus, ohne alle untenstehenden Häkchen entfernen zu müssen.",
       "_DisableVampireFont": "",
@@ -245,6 +247,7 @@
       "_ModifiedGiftsHint": "",
       "ModifiedSkills": "Fähigkeits-Modifikationen",
       "ModifiedSkillsHint": "Erlaubt Änderungen an den existierenden Fähigkeiten.",
+      "_None": "",
       "Rename": "Umbenennen",
       "SaveChanges": "Änderungen speichern",
       "SkillType": "Fähigkeits-Typ",
@@ -315,7 +318,8 @@
       "_PublicNotes": "",
       "_Settings": "",
       "Stats": "Werte",
-      "_StorytellerNotes": ""
+      "_StorytellerNotes": "",
+      "_TokenSettings": ""
     }
   }
 }

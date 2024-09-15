@@ -2,6 +2,7 @@
 
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveBonuses } from '../../../scripts/rolls/situational-modifiers.js'
+import { WereformApplication } from '../applications/wereform-application.js'
 
 export const _onLostTheWolf = async function (actor) {
   // Variables yet to be defined
@@ -9,12 +10,6 @@ export const _onLostTheWolf = async function (actor) {
 
   // If automatedRage is disabled, we don't wat to show this dialogue
   if (!game.settings.get('vtm5e', 'automatedRage')) return
-
-  // If the actor has already lost the wolf, we don't need to show this prompt again
-  if (actor.system.lostTheWolf) return
-
-  // Update the listTheWolf key
-  await actor.update({ 'system.lostTheWolf': true })
 
   // Define the template to be used
   const template = `
@@ -29,13 +24,19 @@ export const _onLostTheWolf = async function (actor) {
     homid: {
       label: 'Homid',
       callback: async () => {
-        await actor.update({ 'system.activeForm': 'homid' })
+        actor.update({ 'system.activeForm': 'homid' })
       }
     },
     lupus: {
       label: 'Lupus',
       callback: async () => {
-        await actor.update({ 'system.activeForm': 'lupus' })
+        actor.update({ 'system.activeForm': 'lupus' })
+      }
+    },
+    override: {
+      label: 'Stay In Current Form',
+      callback: async () => {
+        actor.update({ 'system.formOverride': true })
       }
     }
   }
@@ -51,32 +52,30 @@ export const _onLostTheWolf = async function (actor) {
   }).render(true)
 }
 
-export const _onShiftForm = async function (event) {
+export const _onShiftForm = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
-  const form = dataset.form
+  const form = target.getAttribute('data-form')
 
   switch (form) {
     case 'glabro':
-      await handleFormChange(actor, 'glabro', 1)
+      handleFormChange(actor, 'glabro', 1)
       break
     case 'crinos':
-      await handleFormChange(actor, 'crinos', 2)
+      handleFormChange(actor, 'crinos', 2)
       break
     case 'hispo':
-      await handleFormChange(actor, 'hispo', 1)
+      handleFormChange(actor, 'hispo', 1)
       break
     case 'lupus':
-      await actor.update({ 'system.activeForm': 'lupus' })
-      await _onFormToChat(event, actor)
+      actor.update({ 'system.activeForm': 'lupus' })
+      _onFormToChat(event, target, actor)
       break
     default:
-      await actor.update({ 'system.activeForm': 'homid' })
-      await _onFormToChat(event, actor)
+      actor.update({ 'system.activeForm': 'homid' })
+      _onFormToChat(event, target, actor)
   }
 }
 
@@ -117,21 +116,19 @@ export const handleFormChange = async function (actor, form, diceCount) {
 
         // If rolling rage dice didn't reduce the actor to 0 rage, then update the current form
         if (newRageAmount > 0) {
-          await actor.update({ 'system.activeForm': form })
+          actor.update({ 'system.activeForm': form })
         }
       }
     })
   }
 }
 
-export const _onFormToChat = async function (event, originActor) {
+export const _onFormToChat = async function (event, target, originActor) {
   event.preventDefault()
 
   // Top-level variables
   const actor = originActor || this.actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
-  const form = dataset.form
+  const form = target.getAttribute('data-form')
 
   // Secondary variables
   const formData = actor.system.forms[form]
@@ -141,7 +138,7 @@ export const _onFormToChat = async function (event, originActor) {
 
   // Define the chat message
   let chatMessage = `<p class="roll-label uppercase">${game.i18n.localize(formName)}</p>${formDescription}`
-  if (formAbilities.length > 0) {
+  if (formAbilities && formAbilities.length > 0) {
     chatMessage = chatMessage + '<ul>'
     formAbilities.forEach((ability) => {
       chatMessage = chatMessage + `<li>${ability}</li>`
@@ -154,62 +151,17 @@ export const _onFormToChat = async function (event, originActor) {
     speaker: ChatMessage.getSpeaker({ actor }),
     content: chatMessage
   })
-
-  // Remove focus once the chat message is posted
-  event.currentTarget.blur()
 }
 
-export const _onFormEdit = async function (event) {
+export const _onFormEdit = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
-  const actor = this.actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
-  const form = dataset.form
+  const form = target.getAttribute('data-form')
 
-  // Secondary variables
-  const formData = actor.system.forms[form]
-  const formName = formData.displayName
-  const formDescription = formData.description
-
-  // Variables yet to be defined
-  let buttons = {}
-
-  // Define the template to be used
-  const template = `
-    <form>
-        <div class="flexrow">
-          <textarea id="formDescription">${formDescription}</textarea>
-        </div>
-    </form>`
-
-  // Define the buttons to be used and push them to the buttons variable
-  buttons = {
-    submit: {
-      icon: '<i class="fas fa-check"></i>',
-      label: game.i18n.localize('WOD5E.Submit'),
-      callback: async (html) => {
-        const newDescription = html.find('#formDescription')[0].value
-
-        await actor.update({ [`system.forms.${form}.description`]: newDescription })
-      }
-    },
-    cancel: {
-      icon: '<i class="fas fa-times"></i>',
-      label: game.i18n.localize('WOD5E.Cancel')
-    }
-  }
-
-  // Display the dialog
-  new Dialog({
-    title: game.i18n.localize('WOD5E.Edit') + ' ' + game.i18n.localize(formName),
-    content: template,
-    buttons,
-    default: 'submit'
-  },
-  {
-    classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
+  new WereformApplication({
+    actor: this.actor,
+    form
   }).render(true)
 }
 
@@ -231,7 +183,10 @@ export const _onInsufficientRage = async function (actor, form) {
       icon: '<i class="fas fa-check"></i>',
       label: 'Shift Anyway',
       callback: async () => {
-        await actor.update({ 'system.activeForm': form })
+        await actor.update({
+          'system.activeForm': form,
+          'system.formOverride': true
+        })
       }
     },
     cancel: {

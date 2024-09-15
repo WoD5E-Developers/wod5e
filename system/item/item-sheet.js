@@ -19,7 +19,7 @@ export class WoDItemSheet extends ItemSheet {
       height: 400,
       tabs: [{
         navSelector: '.sheet-tabs',
-        contentSelector: '.sheet-body',
+        contentSelector: 'section',
         initial: 'description'
       }]
     })
@@ -60,7 +60,7 @@ export class WoDItemSheet extends ItemSheet {
 
   /** @override */
   async getData () {
-    const data = super.getData()
+    const data = await super.getData()
 
     const item = data.document
     const itemData = item.system

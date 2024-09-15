@@ -2,15 +2,15 @@
     <div class="flexcol">
         <div class="field-header">
             {{localize "WOD5E.VTM.FrenzyStatus"}}
-            <span class="frenzy-status{{#if actor.system.frenzyActive}} active{{/if}}">
-                {{#if actor.system.frenzyActive}}
+            <span class="frenzy-status{{#if frenzyActive}} active{{/if}}">
+                {{#if frenzyActive}}
                     {{localize "WOD5E.Active"}}
                 {{else}}
                     {{localize "WOD5E.Inactive"}}
                 {{/if}}
             </span>
         </div>
-        {{#if actor.system.frenzyActive}}
+        {{#if frenzyActive}}
             <button class="vampire-button end-frenzy" type="button" name="endfrenzy">{{localize "WOD5E.VTM.EndFrenzy"}}</button>
         {{else}}
             <button class="vampire-button frenzy-roll" type="button" name="resistfrenzy">{{localize "WOD5E.VTM.ResistFrenzy"}}</button>

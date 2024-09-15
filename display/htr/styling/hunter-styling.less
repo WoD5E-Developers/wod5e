@@ -13,6 +13,10 @@
 .actor.sheet.hunter {
   .actor-header {
     border-bottom: 2px solid var(--hunter-color-1);
+
+    .despair {
+      height: 30px;
+    }
   }
 
   .profile-img,
@@ -78,7 +82,7 @@
     }
   }
 
-  .tab.edges {
+  .tab[data-tab="edges"] {
     .perks-list .edge {
       margin-left: auto;
       margin-right: auto;
@@ -183,7 +187,7 @@
     border-bottom: 4px double var(--system-color-6);
   }
 
-  .window-content .sheet-body .tab > .resource-label,
+  .window-content section .tab > .resource-label,
   .items-list .item-header,
   .items-list .spc-item-header,
   .spc-pool-header,

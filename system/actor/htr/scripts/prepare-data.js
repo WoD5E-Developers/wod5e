@@ -1,4 +1,4 @@
-/* global WOD5E, TextEditor */
+/* global TextEditor */
 
 import { Edges } from '../../../api/def/edges.js'
 
@@ -47,9 +47,6 @@ export const prepareEdges = async function (actor) {
       edges[id].visible = false
     }
 
-    // Localize the edge name
-    edges[id].label = WOD5E.api.generateLabelAndLocalize({ string: id, type: 'edge' })
-
     // Wipe old edge perks so they doesn't duplicate
     edges[id].perks = []
 
@@ -58,6 +55,16 @@ export const prepareEdges = async function (actor) {
 
     // Enrich edge description
     edges[id].enrichedDescription = await TextEditor.enrichHTML(edges[id].description)
+
+    // Assign all matching perks to the edge
+    edges[id].perks = actor.items.filter(item =>
+      item.type === 'perk' && item.system.edge === id
+    )
+
+    // Assign all matching edgepools to the edge
+    edges[id].pools = actor.items.filter(item =>
+      item.type === 'edgepool' && item.system.edge === id
+    )
   }
 
   return edges

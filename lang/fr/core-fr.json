@@ -199,6 +199,7 @@
       "_AddEdgeModification": "",
       "_AddGiftModification": "",
       "_AddSkillModification": "",
+      "_All": "",
       "_AttributeType": "",
       "_AutomateHunger": "",
       "_AutomateHungerHint": "",
@@ -229,6 +230,7 @@
       "_CustomGiftsHint": "",
       "_CustomSkills": "",
       "_CustomSkillsHint": "",
+      "_Default": "",
       "_DisableAutomation": "",
       "_DisableAutomationHint": "",
       "_DisableVampireFont": "",
@@ -245,6 +247,7 @@
       "_ModifiedGiftsHint": "",
       "_ModifiedSkills": "",
       "_ModifiedSkillsHint": "",
+      "_None": "",
       "_Rename": "",
       "_SaveChanges": "",
       "_SkillType": "",
@@ -315,7 +318,8 @@
       "_PublicNotes": "",
       "_Settings": "",
       "Stats": "Stats",
-      "_StorytellerNotes": ""
+      "_StorytellerNotes": "",
+      "_TokenSettings": ""
     }
   }
 }

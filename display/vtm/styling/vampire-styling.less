@@ -19,7 +19,7 @@
   .profile-img,
   .actor-header input,
   .actor-header .resource,
-  .tab.blood .resource input {
+  .tab[data-tab="blood"] .resource input {
     border: 1px solid var(--vampire-color-1);
   }
 
@@ -35,7 +35,7 @@
     }
   }
 
-  .tab.blood {
+  .tab[data-tab="blood"] {
     .resource-label {
       font-size: 15pt;
     }
@@ -96,7 +96,7 @@
     }
   }
 
-  .tab.disciplines {
+  .tab[data-tab="disciplines"] {
     .powers-list .discipline {
       margin-left: auto;
       margin-right: auto;
@@ -163,7 +163,8 @@
 
   .rouse-button {
     max-width: 35px;
-    max-height: 35px;
+    height: 35px;
+    align-self: start;
 
     .wod5e-symbol {
       vertical-align: middle;
@@ -235,7 +236,7 @@
     border-bottom: 4px double var(--system-color-6);
   }
 
-  .window-content .sheet-body .tab .resource-label,
+  .window-content section .tab .resource-label,
   .items-list .item-header,
   .items-list .spc-item-header,
   .spc-pool-header,

@@ -96,9 +96,6 @@ export class wod5eAPI {
     // Variables
     const { skill, attribute, discipline, renown } = dataset
 
-    // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
-
     // Attribute definitions
     const attributesList = WOD5E.Attributes.getList({})
     // Skill definitions
@@ -107,14 +104,14 @@ export class wod5eAPI {
     // Render selecting a skill/attribute to roll
     const dialogTemplate = 'systems/vtm5e/display/ui/select-dice-dialog.hbs'
     const dialogData = {
-      system,
+      system: actor.system.gamesystem,
       skill,
       attribute,
       discipline,
       renown,
       attributesList,
       skillsList,
-      hungerValue: system === 'vampire' && actor.type !== 'ghoul' && actor.type !== 'spc' ? actor.system.hunger.value : 0,
+      hungerValue: actor.system.gamesystem === 'vampire' && actor.type !== 'ghoul' ? actor.system.hunger.value : 0,
       actorType: actor.type
     }
     // Render the template
@@ -209,7 +206,7 @@ export class wod5eAPI {
         default: 'confirm'
       },
       {
-        classes: ['wod5e', system, 'dialog']
+        classes: ['wod5e', actor.system.gamesystem, 'dialog']
       }
     ).render(true)
   }
@@ -272,15 +269,12 @@ export class wod5eAPI {
     // Top-level variables
     const actorData = actor.system
 
-    // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
-
-    if (system === 'vampire' && actor.type !== 'ghoul' && actor.type !== 'spc') {
+    if (actor.system.gamesystem === 'vampire' && actor.type !== 'ghoul') {
       // Define actor's hunger dice, ensuring it can't go below 0
       const hungerDice = Math.max(actorData?.hunger?.value, 0)
 
       return hungerDice
-    } else if (system === 'werewolf' && actor.type !== 'spc') {
+    } else if (actor.system.gamesystem === 'werewolf') {
       // Define actor's rage dice, ensuring it can't go below 0
       const rageDice = Math.max(actorData?.rage?.value, 0)
 

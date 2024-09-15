@@ -1,10 +1,11 @@
-/* global renderTemplate, Dialog, game, WOD5E */
+/* global WOD5E, renderTemplate, Dialog, game */
 
-export const _onAddBonus = async function (event, actor, data, SkillEditDialog) {
+export const _onAddBonus = async function (event) {
+  event.preventDefault()
+
   // Top-level variables
-  const header = event.currentTarget
-  const skill = header.dataset.skill
-  const bonusPath = header.dataset.bonusPath
+  const actor = this.data.actor
+  const skill = this.data.skill
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
   const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
@@ -20,7 +21,7 @@ export const _onAddBonus = async function (event, actor, data, SkillEditDialog) 
   }
 
   // Render the template
-  const bonusTemplate = 'systems/vtm5e/display/shared/actors/parts/specialty-display.hbs'
+  const bonusTemplate = 'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs'
   const bonusContent = await renderTemplate(bonusTemplate, bonusData)
 
   new Dialog(
@@ -59,23 +60,14 @@ export const _onAddBonus = async function (event, actor, data, SkillEditDialog) 
             }
 
             // Define the existing list of bonuses
-            const parentKeys = bonusPath.split('.')
-            const actorBonuses = parentKeys.reduce((obj, key) => obj && obj[key], actor.system) || []
+            const skillBonuses = actor.system.skills[skill].bonuses || []
 
             // Add the new bonus to the list
-            actorBonuses.push(newBonus)
+            skillBonuses.push(newBonus)
 
-            // Update the actor
-            await actor.update({ [`system.${bonusPath}`]: actorBonuses })
-
-            // Re-render the skill edit dialog
-            SkillEditDialog.data.content = await renderTemplate('systems/vtm5e/display/shared/actors/parts/skill-dialog.hbs', {
-              id: data.id,
-              actor,
-              system,
-              skill: actor.system.skills[data.id]
-            })
-            SkillEditDialog.render(true)
+            // Update the actor and re-render the editor window
+            await actor.update({ [`system.skills.${skill}.bonuses`]: skillBonuses })
+            this.render(true)
           }
         },
         cancel: {
@@ -91,52 +83,44 @@ export const _onAddBonus = async function (event, actor, data, SkillEditDialog) 
   ).render(true)
 }
 
-export const _onDeleteBonus = async function (event, actor, data, SkillEditDialog) {
-  // Top-level variables
-  const header = event.currentTarget
-  const key = header.dataset.bonus
-  const bonusPath = header.dataset.bonusPath
+export const _onDeleteBonus = async function (event, target) {
+  event.preventDefault()
 
-  // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
+  // Top-level variables
+  const actor = this.data.actor
+  const skill = this.data.skill
+  const key = target.getAttribute('data-bonus')
 
   // Define the existing list of bonuses
-  const bonusKeys = bonusPath.split('.')
-  const actorBonuses = bonusKeys.reduce((obj, key) => obj && obj[key], actor.system) || []
+  const skillBonuses = actor.system.skills[skill].bonuses || []
 
   // Remove the bonus from the list
-  actorBonuses.splice(key, 1)
+  skillBonuses.splice(key, 1)
 
-  // Update the actor
-  await actor.update({ [`system.${bonusPath}`]: actorBonuses })
-
-  // Re-render the skill edit dialog
-  SkillEditDialog.data.content = await renderTemplate('systems/vtm5e/display/shared/actors/parts/skill-dialog.hbs', {
-    id: data.id,
-    actor,
-    system,
-    skill: actor.system.skills[data.id]
-  })
-  SkillEditDialog.render(true)
+  // Update the actor and re-render the editor window
+  await actor.update({ [`system.skills.${skill}.bonuses`]: skillBonuses })
+  await this.render(true)
 }
 
-export const _onEditBonus = async function (event, actor, data, SkillEditDialog) {
+export const _onEditBonus = async function (event, target) {
+  event.preventDefault()
+
   // Top-level variables
-  const header = event.currentTarget
-  const key = header.dataset.bonus
-  const bonusPath = header.dataset.bonusPath
+  const actor = this.data.actor
+  const skill = this.data.skill
+  const key = target.getAttribute('data-bonus')
 
   // Secondary variables
   const bonusData = {
     actor,
-    bonus: data.skill.bonuses[key]
+    bonus: actor.system.skills[skill].bonuses[key]
   }
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
   const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
 
   // Render the template
-  const bonusTemplate = 'systems/vtm5e/display/shared/actors/parts/specialty-display.hbs'
+  const bonusTemplate = 'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs'
   const bonusContent = await renderTemplate(bonusTemplate, bonusData)
 
   new Dialog(
@@ -166,28 +150,19 @@ export const _onEditBonus = async function (event, actor, data, SkillEditDialog)
             const displayWhenInactive = true
 
             // Define the existing list of bonuses
-            const bonusKeys = bonusPath.split('.')
-            const actorBonuses = bonusKeys.reduce((obj, key) => obj && obj[key], actor.system) || []
+            const skillBonuses = actor.system.skills[skill].bonuses || []
 
             // Update the existing bonus with the new data
-            actorBonuses[key] = {
+            skillBonuses[key] = {
               source,
               value,
               paths,
               displayWhenInactive
             }
 
-            // Update the actor
-            await actor.update({ [`system.${bonusPath}`]: actorBonuses })
-
-            // Re-render the skill edit dialog
-            SkillEditDialog.data.content = await renderTemplate('systems/vtm5e/display/shared/actors/parts/skill-dialog.hbs', {
-              id: data.id,
-              actor,
-              system,
-              skill: actor.system.skills[data.id]
-            })
-            SkillEditDialog.render(true)
+            // Update the actor and re-render the editor window
+            await actor.update({ [`system.skills.${skill}.bonuses`]: skillBonuses })
+            await this.render(true)
           }
         },
         cancel: {

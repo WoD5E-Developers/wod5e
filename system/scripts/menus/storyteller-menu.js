@@ -20,7 +20,7 @@ export class StorytellerMenu extends FormApplication {
       closeOnSubmit: true,
       tabs: [{
         navSelector: '.sheet-tabs',
-        contentSelector: '.sheet-body',
+        contentSelector: 'section',
         initial: 'modifications'
       }]
     })

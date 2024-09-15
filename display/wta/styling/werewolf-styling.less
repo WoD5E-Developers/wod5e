@@ -66,7 +66,7 @@
     }
   }
 
-  .tab.gifts {
+  .tab[data-tab="gifts"] {
     .powers-list .gift {
       margin-left: auto;
       margin-right: auto;
@@ -100,7 +100,7 @@
     }
   }
 
-  .tab.wolf {
+  .tab[data-tab="wolf"] {
     .resource input,
     .resource .resource-contents,
     .resource.form {
@@ -109,18 +109,47 @@
     }
 
     .garou-forms-label {
+      margin-top: 10px;
       font-size: 20pt;
+      text-align: center;
+    }
+
+    .were-form-name,
+    .were-form-title {
+      text-align: center;
+
+      h3 {
+        margin-bottom: 3px;
+      }
+    }
+
+    .were-form-title {
+      font-style: italic;
+      font-weight: bold;
     }
 
     .forms {
+      align-items: flex-start;
+
       .form {
         border-radius: 0;
         background-color: var(--system-color-6);
         border: 1px solid var(--system-color-5);
 
+        hr {
+          margin-top: 2px;
+          margin-bottom: 2px;
+        }
+
+        .form-description {
+          text-align: center;
+          padding: 3px;
+        }
+
         .form-attributes {
           list-style: none;
           padding: 0;
+          text-align: center;
 
           li {
             padding: 1px;
@@ -160,7 +189,8 @@
 
   .rage-button {
     max-width: 35px;
-    max-height: 35px;
+    height: 35px;
+    align-self: start;
 
     .wod5e-symbol {
       vertical-align: middle;
@@ -194,8 +224,8 @@
     background: #a14503;
   }
   
-  button.werewolf-button.disabled,
-  button.werewolf-button.disabled:hover {
+  button.werewolf-button.disabled-form,
+  button.werewolf-button.disabled-form:hover {
     color: var(--system-color-5);
     cursor: default;
     background: #562f13ef;
@@ -249,6 +279,8 @@
   
     button {
       width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 }
@@ -278,7 +310,7 @@
     border-bottom: 4px double var(--system-color-6);
   }
 
-  .window-content .sheet-body .tab .resource-label,
+  .window-content section .tab .resource-label,
   .items-list .item-header,
   .items-list .spc-item-header,
   .spc-pool-header,

@@ -1,12 +1,31 @@
-/* global Item, Hooks, WOD5E */
+/* global Item, Hooks, WOD5E, TextEditor */
 
 /**
  * Extend the base ItemSheet document and put all our base functionality here
  * @extends {Item}
  */
-export class ItemInfo extends Item {
+export class WoDItem extends Item {
   prepareData () {
     super.prepareData()
+  }
+
+  /**
+   * @override
+   * Augment the item source data with additional dynamic data. Typically,
+   * you'll want to handle most of your calculated/derived data in this step.
+   * Data calculated in this step should generally not exist in template.json
+   * (such as ability modifiers rather than ability scores) and should be
+   * available both inside and outside of item sheets (such as if an item
+   * is queried and has a roll executed directly from it).
+   */
+  async prepareDerivedData () {
+    const itemData = this
+    const systemData = itemData.system
+
+    // Prepare derived XP values
+    if (systemData.description) {
+      systemData.enrichedDescription = await TextEditor.enrichHTML(systemData.description)
+    }
   }
 }
 

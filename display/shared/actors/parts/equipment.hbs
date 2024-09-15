@@ -1,11 +1,11 @@
-<div class="tab equipment" data-group="primary" data-tab="equipment">
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
     <div class="flex-group-left">
         <div class="flex-center">
             <label class="resource-label">{{localize "WOD5E.Tabs.Equipment"}}</label>
         </div>
-        <prose-mirror name="system.equipment" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.equipment}}"
+        <prose-mirror name="system.equipment" value="{{actor.system.equipment}}"
             toggled="true" compact="true">
             {{{enrichedEquipment}}}
         </prose-mirror>
     </div>
-</div>
+</section>

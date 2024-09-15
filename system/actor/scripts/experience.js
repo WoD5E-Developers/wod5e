@@ -1,6 +1,6 @@
 /* global game, renderTemplate, WOD5E, foundry, Dialog */
 
-export const _onAddExperience = async function () {
+export const _onAddExperience = async function (event) {
   event.preventDefault()
 
   // Top-level variables
@@ -61,14 +61,12 @@ export const _onAddExperience = async function () {
   ).render(true)
 }
 
-export const _onRemoveExperience = async function (event) {
+export const _onRemoveExperience = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
-  const experienceId = dataset.experienceId
+  const experienceId = target.getAttribute('data-experience-id')
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
   const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
@@ -124,14 +122,12 @@ export const _onRemoveExperience = async function (event) {
   }).render(true)
 }
 
-export const _onEditExperience = async function (event) {
+export const _onEditExperience = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
-  const experienceId = dataset.experienceId
+  const experienceId = target.getAttribute('data-experience-id')
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
   const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
@@ -193,32 +189,31 @@ export const _onEditExperience = async function (event) {
   ).render(true)
 }
 
-export const _onCalculateDerivedExperience = async function (actor) {
-  const exp = actor.system.exp
-  const experiences = actor.system.experiences
+export const getDerivedExperience = async function (systemData) {
+  const exp = systemData.exp
+  const experiences = systemData.experiences
 
   // If there's no experiences to calculate from, just end the statement early
   if (!experiences) return
 
-  const { totalXP, spentXP } = experiences.reduce((acc, exp) => {
+  const { totalXP, remainingXP } = experiences.reduce((acc, exp) => {
     const value = parseInt(exp.value)
 
     // If the value is greater than or equal to 0, add it under total XP
     if (value >= 0) {
       acc.totalXP += value
-    } else { // Otherwise, track it as spent XP
-      acc.spentXP += value
     }
+
+    // Accumulate remaining XP by adding the experience value (can be positive or negative)
+    acc.remainingXP += value
 
     return acc
   }, {
-    totalXP: parseInt(exp.max),
-    spentXP: parseInt(-exp.value)
+    totalXP: parseInt(exp.max) || 0,
+    remainingXP: parseInt(exp.value) || 0
   })
 
-  const remainingXP = totalXP + spentXP
-
-  // Return the derivedXP values
+  // Return the derived XP values
   return {
     totalXP,
     remainingXP

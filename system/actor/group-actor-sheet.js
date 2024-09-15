@@ -1,250 +1,368 @@
-/* global game, foundry, fromUuidSync, ui */
+/* global foundry, game, TextEditor, DragDrop, fromUuidSync */
 
-import { WoDActor } from './wod-v5-sheet.js'
+// Preparation functions
+import { getActorHeader } from './scripts/get-actor-header.js'
+import { getActorTypes } from './scripts/get-actor-types.js'
+import { prepareGroupFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareGroupMembersContext } from './scripts/prepare-partials.js'
+// Resource functions
+import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange } from './scripts/counters.js'
+// Various button functions
+import { _onEditImage } from './scripts/on-edit-image.js'
+import { _onToggleLock } from './scripts/on-toggle-lock.js'
+import { _onCreateItem, _onItemChat, _onItemEdit, _onItemDelete } from './scripts/item-actions.js'
+import { _onToggleCollapse } from './scripts/on-toggle-collapse.js'
+import { _addActor, _openActorSheet, _removeActor } from './scripts/group-members.js'
+// Mixin
+const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the base WoDActor with anything necessary for the new actor sheet
+ * Extend the WoDActor document
  * @extends {WoDActor}
  */
+export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
+  get title () {
+    return this.actor.isToken ? `[Token] ${this.actor.name}` : this.actor.name
+  }
 
-export class GroupActorSheet extends WoDActor {
-  /** @override */
-  static get defaultOptions () {
-    // Define the base list of CSS classes
-    const classList = ['group']
-    classList.push(...super.defaultOptions.classes)
+  constructor (options = {}) {
+    super(options)
 
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: classList,
-      tabs: [{
-        navSelector: '.sheet-tabs',
-        contentSelector: '.sheet-body',
-        initial: 'members'
-      }],
-      dragDrop: [{
-        dragSelector: '.entity.actor',
+    this.#dragDrop = this.#createDragDropHandlers()
+  }
+
+  static DEFAULT_OPTIONS = {
+    form: {
+      submitOnChange: true,
+      handler: GroupActorSheet.onSubmitActorForm
+    },
+    window: {
+      icon: 'fa-solid fa-dice-d10',
+      resizeable: true
+    },
+    classes: ['wod5e', 'actor', 'group', 'sheet'],
+    position: {
+      width: 1000,
+      height: 700
+    },
+    actions: {
+      // Item actions
+      createItem: _onCreateItem,
+      itemChat: _onItemChat,
+      itemEdit: _onItemEdit,
+      itemDelete: _onItemDelete,
+
+      // Members functions
+      openActorSheet: _openActorSheet,
+      removeMember: _removeActor,
+
+      // Various other sheet functions
+      editImage: _onEditImage,
+      toggleLock: _onToggleLock,
+      toggleCollapse: _onToggleCollapse
+    },
+    dragDrop: [
+      {
+        dragSelector: '[data-drag]',
         dropSelector: null
-      }]
+      }
+    ]
+  }
+
+  _getHeaderControls () {
+    const controls = super._getHeaderControls()
+
+    return controls
+  }
+
+  static PARTS = {
+    header: {
+      template: 'systems/vtm5e/display/shared/actors/group-sheet.hbs'
+    },
+    tabs: {
+      template: 'systems/vtm5e/display/shared/actors/parts/tab-navigation.hbs'
+    },
+    members: {
+      template: 'systems/vtm5e/display/shared/actors/parts/group/group-members.hbs'
+    },
+    features: {
+      template: 'systems/vtm5e/display/shared/actors/parts/group/features.hbs'
+    },
+    notepad: {
+      template: 'systems/vtm5e/display/shared/actors/parts/notepad.hbs'
+    },
+    settings: {
+      template: 'systems/vtm5e/display/shared/actors/parts/actor-settings.hbs'
+    },
+    banner: {
+      template: 'systems/vtm5e/display/shared/actors/parts/type-banner.hbs'
+    }
+  }
+
+  tabGroups = {
+    primary: 'members'
+  }
+
+  tabs = {
+    members: {
+      id: 'members',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Members',
+      icon: '<i class="fa-solid fa-person"></i>'
+    },
+    features: {
+      id: 'features',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Features',
+      icon: '<i class="fas fa-gem"></i>'
+    },
+    notepad: {
+      id: 'notepad',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Notes',
+      icon: '<i class="fas fa-sticky-note"></i>'
+    },
+    settings: {
+      id: 'settings',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Settings',
+      icon: '<i class="fa-solid fa-gears"></i>'
+    }
+  }
+
+  getTabs () {
+    const tabs = this.tabs
+
+    for (const tab of Object.values(tabs)) {
+      tab.active = this.tabGroups[tab.group] === tab.id
+      tab.cssClass = tab.active ? 'active' : ''
+    }
+
+    return tabs
+  }
+
+  async _prepareContext () {
+    // Top-level variables
+    const data = await super._prepareContext()
+    const actor = this.actor
+    const actorData = actor.system
+
+    // Prepare tabs
+    data.tabs = this.getTabs()
+
+    // Define the data the template needs
+
+    // Prepare items
+    await this.prepareItems(actor)
+
+    // Actor types that can be swapped to and data prep for it
+    const actorTypeData = await getActorTypes(actor)
+
+    // Handle figuring out hunting difficulty
+    if (actorData.groupType === 'coterie') {
+      data.huntingDifficulty = 7 - actorData.chasse.value
+    }
+
+    // Transform any data needed for sheet rendering
+    return {
+      ...data,
+
+      name: actor.name,
+      img: actor.img,
+
+      settings: actorData.settings,
+
+      isOwner: actor.isOwner,
+      locked: actorData.locked,
+
+      features: actorData.features,
+
+      displayBanner: game.settings.get('vtm5e', 'actorBanner'),
+
+      headerbg: await getActorHeader(actor),
+
+      currentActorType: actorTypeData.currentActorType,
+      actorTypePath: actorTypeData.typePath,
+      actorOptions: actorTypeData.types,
+
+      chasse: actorData.chasse,
+      lien: actorData.lien,
+      portillon: actorData.portillon,
+      desperation: actorData.desperation,
+      danger: actorData.danger
+    }
+  }
+
+  async prepareItems (sheetData) {
+    // Features
+    sheetData.system.features = sheetData.items.reduce((acc, item) => {
+      if (item.type === 'feature') {
+        // Assign to featuretype container, default to 'background' if unset
+        const featuretype = item.system.featuretype || 'background'
+        if (acc[featuretype]) {
+          acc[featuretype].push(item)
+        } else {
+          // Create new array if it doesn't exist
+          acc[featuretype] = [item]
+        }
+      }
+
+      return acc
+    }, {
+      // Containers for features
+      background: [],
+      merit: [],
+      flaw: [],
+      boon: []
     })
   }
 
-  /** @override */
-  get template () {
-    // Switch-case for the sheet type to determine which template to display
-    // Includes initialization for the CSS classes
-    switch (this.actor.system.groupType) {
-      case 'cell':
-        this.options.classes.push(...['hunter'])
-        return 'systems/vtm5e/display/htr/actors/cell-sheet.hbs'
+  async _preparePartContext (partId, context, options) {
+    // Inherit any preparation from the extended class
+    context = { ...(await super._preparePartContext(partId, context, options)) }
 
-      case 'coterie':
-        this.options.classes.push(...['vampire'])
-        return 'systems/vtm5e/display/vtm/actors/coterie-sheet.hbs'
-
-      case 'pack':
-        this.options.classes.push(...['werewolf'])
-        return 'systems/vtm5e/display/wta/actors/pack-sheet.hbs'
-
-      default:
-        console.log('Oops! Something broke...')
-        this.options.classes.push(...['mortal'])
-        return 'systems/vtm5e/display/vtm/actors/coterie-sheet.hbs'
-    }
-  }
-
-  /* -------------------------------------------- */
-
-  // Response to an actor being dropped onto the sheet
-  async _onDrop (event) {
-    let data = {}
-
-    if (!this.actor.isOwner) return
-
-    try {
-      data = JSON.parse(event.dataTransfer.getData('text/plain'))
-    } catch (err) {
-      console.log(err)
-
-      return false
-    }
-
-    if (data.type === 'Actor') {
-      this._addActor(data.uuid)
-    } else if (data.type === 'Item') {
-      this.actor.createEmbeddedDocuments('Item', [
-        fromUuidSync(data.uuid)
-      ])
-    }
-  }
-
-  /** @override */
-  async getData () {
     // Top-level variables
-    const data = await super.getData()
-    const group = this.actor
+    const actor = this.actor
 
-    // Prepare items
-    await this._prepareItems(data)
+    // Prepare each page context
+    switch (partId) {
+      // Group members
+      case 'members':
+        return prepareGroupMembersContext(context, actor)
 
-    // Make a list of group members
-    data.groupMembers = []
+      // Features
+      case 'features':
+        return prepareGroupFeaturesContext(context, actor)
 
-    // Push each group member's data to the groupMembers list
-    if (group.system.members) {
-      group.system.members.forEach(async actorID => {
-        const member = fromUuidSync(actorID)
-        data.groupMembers.push(member)
-      })
+      // Notepad
+      case 'notepad':
+        return prepareNotepadContext(context, actor)
+
+      // Settings
+      case 'settings':
+        return prepareSettingsContext(context, actor)
     }
 
-    // Handle figuring out hunting difficulty
-    if (group.system.groupType === 'coterie') {
-      data.huntingDifficulty = 7 - group.system.chasse.value
+    return context
+  }
+
+  static async onSubmitActorForm (event, form, formData) {
+    // Process submit data
+    const submitData = this._prepareSubmitData(event, form, formData)
+
+    // Overrides
+    const overrides = foundry.utils.flattenObject(this.actor.overrides)
+    for (const k of Object.keys(overrides)) delete submitData[k]
+
+    // Update the actor data
+    await this.actor.update(submitData, {
+      render: false
+    })
+
+    // Re-render the core parts of the sheet and the current tab
+    const currentTab = $(form).find('section.tab.active')[0].getAttribute('data-application-part')
+
+    this.render(false, {
+      parts: ['header', 'tabs', 'banner', currentTab]
+    })
+  }
+
+  _onRender () {
+    const html = $(this.element)
+
+    // Update the window title (since ActorSheetV2 doesn't do it automatically)
+    $(this.window.title).text(this.title)
+
+    // Toggle whether the sheet is locked or not
+    html.toggleClass('locked', this.actor.system.locked)
+
+    // Resource squares (Health, Willpower)
+    html.find('.resource-counter.editable .resource-counter-step').click(_onSquareCounterChange.bind(this))
+    html.find('.resource-plus').click(_onResourceChange.bind(this))
+    html.find('.resource-minus').click(_onResourceChange.bind(this))
+
+    // Activate the setup for the counters
+    _setupDotCounters(html)
+    _setupSquareCounters(html)
+
+    // Resource dots
+    html.find('.resource-value .resource-value-step').click(_onDotCounterChange.bind(this))
+    html.find('.resource-value .resource-value-empty').click(_onDotCounterEmpty.bind(this))
+
+    // Add a new sheet styling depending on the type of sheet
+    const groupType = this.actor.system.groupType
+    if (groupType === 'coterie') {
+      html.removeClass('hunter werewolf mortal')
+      html.addClass('vampire')
+    } else if (groupType === 'cell') {
+      html.removeClass('vampire werewolf mortal')
+      html.addClass('hunter')
+    } else if (groupType === 'pack') {
+      html.removeClass('hunter vampire mortal')
+      html.addClass('werewolf')
+    } else {
+      // Default to mortal styling
+      html.removeClass('hunter vampire werewolf')
+      html.addClass('mortal')
     }
 
-    // Apply new CSS classes to the sheet, if necessary
-    this._applyClasses()
-
-    return data
+    // Drag and drop functionality
+    this.#dragDrop.forEach((d) => d.bind(this.element))
   }
 
-  /** Prepare item data for the Group actor */
-  async _prepareItems (sheetData) {
-    // Prepare items
-    await super._prepareItems(sheetData)
+  #createDragDropHandlers () {
+    return this.options.dragDrop.map((d) => {
+      d.permissions = {
+        dragstart: this._canDragStart.bind(this),
+        drop: this._canDragDrop.bind(this)
+      }
 
-    return sheetData
+      d.callbacks = {
+        dragstart: this._onDragStart.bind(this),
+        dragover: this._onDragOver.bind(this),
+        drop: this._onDrop.bind(this)
+      }
+      return new DragDrop(d)
+    })
   }
 
-  /* -------------------------------------------- */
+  #dragDrop
 
-  /** @override */
-  activateListeners (html) {
-    // Activate listeners
-    super.activateListeners(html)
-
-    // Handle opening a sheet
-    html.find('.open-sheet').click(this._openActorSheet.bind(this))
-
-    // Only activate the below listeners for the storyteller
-    if (!this.actor.isOwner) return
-
-    // Handle removing an actor
-    html.find('.remove-actor').click(this._removeActor.bind(this))
+  _canDragStart () {
+    return this.isEditable
   }
 
-  // Add a new actor to the active players list
-  async _addActor (actorUUID) {
-    if (!this.actor.isOwner) return
-
-    // Define the actor data
-    const actor = fromUuidSync(actorUUID)
-    const group = this.actor
-
-    // Don't let group sheets be added to group sheets
-    if (actor.type === 'group') return
-
-    // Check if the actor is unique in the already existing list;
-    // Returns false if it's found, or true if it's not found
-    const actorIsntUnique = group.system.members.find(players => players === actorUUID)
-    if (actorIsntUnique) {
-      ui.notifications.warn(game.i18n.format('WOD5E.Notifications.StringAlreadyInCurrentGroup', {
-        string: actor.name
-      }))
-
-      return
-    }
-
-    // Check if the actor is already in a group and if the group still exists
-    const actorHasGroup = actor.system.group
-    const groupExists = game.actors.get(actorHasGroup)
-
-    if (actorHasGroup && groupExists) {
-      ui.notifications.warn(game.i18n.format('WOD5E.Notifications.StringAlreadyInOtherGroup', {
-        string: actor.name
-      }))
-
-      return
-    }
-
-    // If the actor exists, is unique, and does not already belong to an existing group, continue
-    // Define the current members list
-    const membersList = group.system.members ? group.system.members : []
-
-    // Push actor to the list
-    membersList.push(actorUUID)
-
-    // Update the group sheet with the new actor
-    await group.update({ 'system.members': membersList })
-
-    // Set the actor's group to the group's ID
-    await actor.update({ 'system.group': group.id })
-
-    // Re-render the actors list
-    await game.actors.render()
+  _canDragDrop () {
+    return this.isEditable
   }
 
-  // Function to remove an actor from the group sheet
-  async _removeActor (event) {
-    event.preventDefault()
+  _onDragStart (event) {
+    if ('link' in event.target.dataset) return
 
-    if (!this.actor.isOwner) return
+    // Extract the data you need
+    const dragData = null
 
-    // Define variables
-    const data = $(event.currentTarget)[0].dataset
-    const actorUUID = data.uuid
-    const actor = fromUuidSync(actorUUID)
-    const group = this.actor
+    if (!dragData) return
 
-    // Filter out the UUID from the members list
-    const membersList = group.system.members.filter(actor => actor !== actorUUID)
-
-    // Update the group sheet with the new members list
-    await group.update({ 'system.members': membersList })
-
-    // Empty the group field on the actor
-    await actor.update({ 'system.group': '' })
-
-    // Re-render the actors list
-    await game.actors.render()
+    // Set data transfer
+    event.dataTransfer.setData('text/plain', JSON.stringify(dragData))
   }
 
-  // Function to open an actor sheet
-  async _openActorSheet (event) {
-    event.preventDefault()
+  _onDragOver () {}
 
-    // Define variables
-    const data = $(event.currentTarget)[0].dataset
-    const actorUUID = data.uuid
+  async _onDrop (event) {
+    const data = TextEditor.getDragEventData(event)
 
-    fromUuidSync(actorUUID).sheet.render(true)
-  }
-
-  // Called to re-apply the CSS classes if the sheet type is changed
-  async _applyClasses () {
-    // Grab the default list of sheet classes
-    const sheetElement = $(this.document._sheet.element)
-
-    // Add a new sheet class depending on the type of sheet
-    switch (this.actor.system.groupType) {
-      case 'cell':
-        sheetElement.removeClass('vampire werewolf')
-        sheetElement.addClass('hunter')
+    // Handle different data types
+    switch (data.type) {
+      case 'Item':
+        // Create the embedded item from the origin item data
+        await this.actor.createEmbeddedDocuments('Item', [
+          fromUuidSync(data.uuid)
+        ])
         break
-
-      case 'coterie':
-        sheetElement.removeClass('hunter werewolf')
-        sheetElement.addClass('vampire')
+      case 'Actor':
+        _addActor(this.actor, data.uuid)
         break
-
-      case 'pack':
-        sheetElement.removeClass('hunter vampire')
-        sheetElement.addClass('werewolf')
-        break
-
-      default:
-        sheetElement.removeClass('hunter werewolf vampire')
-        sheetElement.addClass('mortal')
     }
   }
 }

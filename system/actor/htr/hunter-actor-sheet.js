@@ -1,108 +1,163 @@
-/* global game, foundry */
+/* global foundry */
 
-import { WoDActor } from '../wod-v5-sheet.js'
-import { prepareEdges, prepareEdgePowers } from './scripts/prepare-data.js'
-import { _onAddEdge, _onRemoveEdge, _onEdgeToChat } from './scripts/edges.js'
+// Preparation functions
+import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext } from '../scripts/prepare-partials.js'
+import { prepareEdgesContext } from './scripts/prepare-partials.js'
+// Various button functions
 import { _onToggleDespair } from './scripts/toggle-despair.js'
+import { _onAddEdge, _onRemoveEdge, _onEdgeToChat } from './scripts/edges.js'
+// Base actor sheet to extend from
+import { WoDActor } from '../wod-v5-sheet.js'
+// Mixin
+const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the WOD5E ActorSheet with some very simple modifications
+ * Extend the WoDActor document
  * @extends {WoDActor}
  */
+export class HunterActorSheet extends HandlebarsApplicationMixin(WoDActor) {
+  static DEFAULT_OPTIONS = {
+    classes: ['wod5e', 'actor', 'sheet', 'hunter'],
+    actions: {
+      toggleDespair: _onToggleDespair,
+      addEdge: _onAddEdge,
+      removeEdge: _onRemoveEdge,
+      edgeChat: _onEdgeToChat
+    }
+  }
 
-export class HunterActorSheet extends WoDActor {
-  /** @override */
-  static get defaultOptions () {
-    // Define the base list of CSS classes
-    const classList = ['hunter']
-    classList.push(...super.defaultOptions.classes)
-
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: classList,
+  static PARTS = {
+    header: {
       template: 'systems/vtm5e/display/htr/actors/hunter-sheet.hbs'
-    })
+    },
+    tabs: {
+      template: 'systems/vtm5e/display/shared/actors/parts/tab-navigation.hbs'
+    },
+    stats: {
+      template: 'systems/vtm5e/display/shared/actors/parts/stats.hbs'
+    },
+    experience: {
+      template: 'systems/vtm5e/display/shared/actors/parts/experience.hbs'
+    },
+    edges: {
+      template: 'systems/vtm5e/display/htr/actors/parts/edges.hbs'
+    },
+    features: {
+      template: 'systems/vtm5e/display/htr/actors/parts/features.hbs'
+    },
+    biography: {
+      template: 'systems/vtm5e/display/shared/actors/parts/biography.hbs'
+    },
+    notepad: {
+      template: 'systems/vtm5e/display/shared/actors/parts/notepad.hbs'
+    },
+    settings: {
+      template: 'systems/vtm5e/display/shared/actors/parts/actor-settings.hbs'
+    },
+    banner: {
+      template: 'systems/vtm5e/display/shared/actors/parts/type-banner.hbs'
+    }
   }
 
-  constructor (actor, options) {
-    super(actor, options)
-    this.despairActive = false
+  tabs = {
+    stats: {
+      id: 'stats',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Stats',
+      icon: '<i class="fa-regular fa-chart-line"></i>'
+    },
+    experience: {
+      id: 'experience',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Experience',
+      icon: '<i class="fa-solid fa-file-contract"></i>'
+    },
+    edges: {
+      id: 'edges',
+      group: 'primary',
+      title: 'WOD5E.HTR.Edges',
+      icon: '<span class="wod5e-symbol hunter">e</span>'
+    },
+    features: {
+      id: 'features',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Features',
+      icon: '<i class="fas fa-gem"></i>'
+    },
+    biography: {
+      id: 'biography',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Biography',
+      icon: '<i class="fas fa-id-card"></i>'
+    },
+    notepad: {
+      id: 'notepad',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Notes',
+      icon: '<i class="fas fa-sticky-note"></i>'
+    },
+    settings: {
+      id: 'settings',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Settings',
+      icon: '<i class="fa-solid fa-gears"></i>'
+    }
   }
 
-  /** @override */
-  get template () {
-    if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/display/shared/actors/limited-sheet.hbs'
-    return 'systems/vtm5e/display/htr/actors/hunter-sheet.hbs'
-  }
-
-  /* -------------------------------------------- */
-
-  /** @override */
-  async getData () {
+  async _prepareContext () {
     // Top-level variables
-    const data = await super.getData()
+    const data = await super._prepareContext()
 
-    this.actor.system.gamesystem = 'hunter'
+    const actor = this.actor
+    const actorData = actor.system
+    const actorHeaders = actorData.headers
 
-    // Prepare items
-    await this._prepareItems(data)
+    // Prepare hunter-specific items
+    data.despairActive = actorData.despair.value > 0
+    data.cellname = actorHeaders.cellname
+    data.drive = actorHeaders.drive
 
     return data
   }
 
-  /** Prepare item data for the Hunter actor */
-  async _prepareItems (sheetData) {
-    // Prepare items
-    await super._prepareItems(sheetData)
+  async _preparePartContext (partId, context, options) {
+    // Inherit any preparation from the extended class
+    context = { ...(await super._preparePartContext(partId, context, options)) }
 
     // Top-level variables
-    const actorData = sheetData.actor
     const actor = this.actor
 
-    // Track whether despair is toggled on or not
-    if (actor.system.despair.value > 0) {
-      actorData.system.despairActive = true
+    // Prepare each page context
+    switch (partId) {
+      // Stats
+      case 'stats':
+        return prepareStatsContext(context, actor)
+
+      // Experience
+      case 'experience':
+        return prepareExperienceContext(context, actor)
+
+      // Experience
+      case 'edges':
+        return prepareEdgesContext(context, actor)
+
+      // Features
+      case 'features':
+        return prepareFeaturesContext(context, actor)
+
+      // Biography
+      case 'biography':
+        return prepareBiographyContext(context, actor)
+
+      // Notepad
+      case 'notepad':
+        return prepareNotepadContext(context, actor)
+
+      // Settings
+      case 'settings':
+        return prepareSettingsContext(context, actor)
     }
 
-    // Prepare edge data
-    actorData.system.edges = await prepareEdges(actorData)
-
-    // Iterate through items, allocating to containers
-    for (const i of sheetData.items) {
-      // Make sure the item is a perk and has a edge
-      if (i.type === 'perk' && actorData.system.edges[i.system.edge]) {
-        if (!actorData.system.edges[i.system.edge]?.perks) actorData.system.edge[i.system.edge].perks = []
-        // Append to edges list
-        actorData.system.edges[i.system.edge].perks.push(i)
-      } else if (i.type === 'edgepool' && actorData.system.edges[i.system.edge]) {
-        if (!actorData.system.edges[i.system.edge]?.pools) actorData.system.edges[i.system.edge].pools = []
-        actorData.system.edges[i.system.edge].pools.push(i)
-      }
-    }
-
-    // Sort edge perks
-    actorData.system.edges = await prepareEdgePowers(actorData.system.edges)
-  }
-
-  /* -------------------------------------------- */
-
-  /** @override */
-  activateListeners (html) {
-    // Activate listeners
-    super.activateListeners(html)
-
-    // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) return
-
-    // Toggle despair
-    html.find('.despair-toggle').click(_onToggleDespair.bind(this))
-
-    // Handle adding a new edge to the sheet
-    html.find('.add-edge').click(_onAddEdge.bind(this))
-
-    // Handle removing an edge from the sheet
-    html.find('.remove-edge').click(_onRemoveEdge.bind(this))
-
-    // Post Edge description to the chat
-    html.find('.edge-chat').click(_onEdgeToChat.bind(this))
+    return context
   }
 }

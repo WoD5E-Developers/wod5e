@@ -5,7 +5,7 @@
  * @param string
  * @param type
  */
-export const generateLocalizedLabel = (string, type) => {
+export const generateLocalizedLabel = function (string = '', type = '') {
   if (type === 'actortypes' || type === 'actortype') { // Actor Types
     const actortypes = WOD5E.ActorTypes.getList({})
     return findLabel(actortypes, string)
@@ -45,12 +45,11 @@ export const generateLocalizedLabel = (string, type) => {
 
     return findLabel(grouptypes, string)
   } else { // Return the base localization if nothing else is found
-    const otherLocalizationString = string.capitalize()
-    return game.i18n.localize(`WOD5E.${otherLocalizationString}`)
+    return game.i18n.localize(`WOD5E.${string}`)
   }
 
   // Function to actually grab the localized label
-  function findLabel (list, str) {
+  function findLabel (list = {}, str = '') {
     const stringObject = list[str]
 
     // Return the localized string if found

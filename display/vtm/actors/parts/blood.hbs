@@ -1,4 +1,4 @@
-<div class="tab blood" data-group="primary" data-tab="blood">
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
     <div class="flexrow">
         <!-- Blood Potency details -->
         <div class="blood-potency flexcol">
@@ -6,10 +6,10 @@
                 <div class="flexcol resource">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.BloodPotency"}}</label>
                     <div class="resource-content flexrow flex-center flex-between">
-                        <div class="resource-value" data-value="{{actor.system.blood.potency}}" data-name="system.blood.potency">
-                            <span class="resource-value-empty"></span>
+                        <div class="resource-value" data-value="{{blood.potency}}" data-name="system.blood.potency">
+                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
                             {{#numLoop 10}}
-                            <span class="resource-value-step" data-index="{{this}}"></span>
+                            <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
                             {{/numLoop}}
                         </div>
                     </div>
@@ -19,27 +19,27 @@
             <div class="grid grid-2col">
                 <div class="flex-group-center">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.BloodSurge"}}</label>
-                    <div class="resource-contents resource">{{lookup blood_potency_text "surge"}}</div>
+                    <div class="resource-contents resource">{{bloodpotency.surge}}</div>
                 </div>
                 <div class="flex-group-center">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.MendAmount"}}</label>
-                    <div class="resource-contents resource">{{lookup blood_potency_text "mend"}}</div>
+                    <div class="resource-contents resource">{{bloodpotency.mend}}</div>
                 </div>
                 <div class="flex-group-center">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.PowerBonus"}}</label>
-                    <div class="resource-contents resource">{{lookup blood_potency_text "power"}}</div>
+                    <div class="resource-contents resource">{{bloodpotency.power}}</div>
                 </div>
                 <div class="flex-group-center">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.RouseReRoll"}}</label>
-                    <div class="resource-contents resource">{{lookup blood_potency_text "rouse"}}</div>
+                    <div class="resource-contents resource">{{bloodpotency.rouse}}</div>
                 </div>
                 <div class="flex-group-center">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.FeedingPenalty"}}</label>
-                    <div class="resource-contents resource">{{lookup blood_potency_text "feeding"}}</div>
+                    <div class="resource-contents resource">{{bloodpotency.feeding}}</div>
                 </div>
                 <div class="flex-group-center">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.BaneSeverity"}}</label>
-                    <div class="resource-contents resource">{{lookup blood_potency_text "bane"}}</div>
+                    <div class="resource-contents resource">{{bloodpotency.bane}}</div>
                 </div>
             </div>
         </div>
@@ -61,22 +61,22 @@
             <div class="flexrow nowrap flex-group-center nogrow">
                 <div class="flexcol">
                     <label class="resource-label field-header">{{localize 'WOD5E.VTM.Sire'}}</label>
-                    <input class="resource" type="text" name="system.headers.sire" value="{{actor.system.headers.sire}}" placeholder="{{localize 'WOD5E.VTM.Sire'}}"/>
+                    <input class="resource" type="text" name="system.headers.sire" value="{{sire}}" placeholder="{{localize 'WOD5E.VTM.Sire'}}"/>
                 </div>
                 <div class="flexcol">
                     <label class="resource-label field-header">{{localize 'WOD5E.VTM.Generation'}}</label>
-                    <input class="resource" type="text" name="system.headers.generation" value="{{actor.system.headers.generation}}" placeholder="{{localize 'WOD5E.VTM.Generation'}}"/>
+                    <input class="resource" type="text" name="system.headers.generation" value="{{generation}}" placeholder="{{localize 'WOD5E.VTM.Generation'}}"/>
                 </div>
             </div>
 
             <div class="flexrow nowrap flex-group-center nogrow">
                 <div class="flexcol">
                     <label class="resource-label field-header">{{localize 'WOD5E.VTM.PredatorType'}}</label>
-                    <input class="resource" name="system.headers.predator" type="text" value="{{actor.system.headers.predator}}" placeholder="{{localize 'WOD5E.VTM.PredatorType'}}"/>
+                    <input class="resource" name="system.headers.predator" type="text" value="{{predator}}" placeholder="{{localize 'WOD5E.VTM.PredatorType'}}"/>
                 </div>
                 <div class="flexcol">
                     <label class="resource-label field-header">{{localize 'WOD5E.VTM.BloodResonance'}}</label>
-                    <input class="resource" type="text" name="system.blood.resonance" value="{{actor.system.blood.resonance}}" placeholder="{{localize 'WOD5E.VTM.BloodResonance'}}"/>
+                    <input class="resource" type="text" name="system.blood.resonance" value="{{blood.resonance}}" placeholder="{{localize 'WOD5E.VTM.BloodResonance'}}"/>
                 </div>
             </div>
 
@@ -85,7 +85,7 @@
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.ClanBane"}}</label>
                 </div>
                 <div class="resource-contents prosemirror-resource resource">
-                    <prose-mirror name="system.headers.bane" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.headers.bane}}"
+                    <prose-mirror name="system.headers.bane" value="{{bane}}"
                         toggled="true" compact="true">
                         {{{enrichedBane}}}
                     </prose-mirror>
@@ -93,4 +93,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>

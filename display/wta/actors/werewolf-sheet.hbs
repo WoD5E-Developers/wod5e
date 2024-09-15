@@ -1,77 +1,38 @@
-<form class="{{cssClass}} flexcol {{#if locked}}locked{{/if}}" autocomplete="off">
-    {{!-- Werewolf Sheet Header --}}
-    <header class="actor-header" {{#if headerbg}} style="background: url({{headerbg}}) center;"{{/if}}>
-        <div class="header-fields">
-            <div class="header-fields-left">
-                {{!-- Health Tracker --}}
-                {{> "systems/vtm5e/display/shared/actors/parts/health.hbs"}}
-                {{!-- Willpower Tracker --}}
-                {{> "systems/vtm5e/display/shared/actors/parts/willpower.hbs"}}
-            </div>
+{{!-- Werewolf Sheet Header --}}
+<header class="actor-header" {{#if headerbg}} style="background: url({{headerbg}}) center;"{{/if}}>
+    <div class="header-fields">
+        <div class="header-fields-left">
+            {{!-- Health Tracker --}}
+            {{> "systems/vtm5e/display/shared/actors/parts/health.hbs"}}
+            {{!-- Willpower Tracker --}}
+            {{> "systems/vtm5e/display/shared/actors/parts/willpower.hbs"}}
         </div>
-        <!-- Middle of the header -->
-        {{> "systems/vtm5e/display/shared/actors/parts/header-profile.hbs"}}
-        <div class="header-fields">
-            <div class="header-fields-right">
-                <div class="flexcol">
-                    <div class="field-section">
-                        <div class="flexrow nowrap">
-                            <div class="flexcol">
-                                <label class="resource-label field-header">{{localize 'WOD5E.WTA.Auspice'}}</label>
-                                <input name="system.headers.auspice" type="text" value="{{actor.system.headers.auspice}}" placeholder="{{localize 'WOD5E.WTA.Auspice'}}"/>
-                            </div>
-                            <div class="flexcol">
-                                <label class="resource-label field-header">{{localize 'WOD5E.WTA.Tribe'}}</label>
-                                <input name="system.headers.tribe" type="text" value="{{actor.system.headers.tribe}}" placeholder="{{localize 'WOD5E.WTA.Tribe'}}"/>
-                            </div>
+    </div>
+    <!-- Middle of the header -->
+    {{> "systems/vtm5e/display/shared/actors/parts/header-profile.hbs"}}
+    <div class="header-fields">
+        <div class="header-fields-right">
+            <div class="flexcol">
+                <div class="field-section">
+                    <div class="flexrow nowrap">
+                        <div class="flexcol">
+                            <label class="resource-label field-header">{{localize 'WOD5E.WTA.Auspice'}}</label>
+                            <input name="system.headers.auspice" type="text" value="{{auspice}}" placeholder="{{localize 'WOD5E.WTA.Auspice'}}"/>
+                        </div>
+                        <div class="flexcol">
+                            <label class="resource-label field-header">{{localize 'WOD5E.WTA.Tribe'}}</label>
+                            <input name="system.headers.tribe" type="text" value="{{tribe}}" placeholder="{{localize 'WOD5E.WTA.Tribe'}}"/>
                         </div>
                     </div>
-                    <div class="flexcol field-section">
-                        <label class="resource-label field-header">{{localize "WOD5E.WTA.Rage"}}</label>
-                        <div class="flexrow">
-                            {{> "systems/vtm5e/display/wta/actors/parts/rage-value.hbs"}}
-                            {{> "systems/vtm5e/display/wta/actors/parts/rage-button.hbs"}}
-                        </div>
+                </div>
+                <div class="flexcol field-section">
+                    <label class="resource-label field-header">{{localize "WOD5E.WTA.Rage"}}</label>
+                    <div class="flexrow">
+                        {{> "systems/vtm5e/display/wta/actors/parts/rage-value.hbs"}}
+                        {{> "systems/vtm5e/display/wta/actors/parts/rage-button.hbs"}}
                     </div>
                 </div>
             </div>
         </div>
-    </header>
-
-    {{!-- Tab Navigation --}}
-    {{> "systems/vtm5e/display/shared/actors/parts/navbar.hbs"}}
-
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-        {{!-- Experience Tab --}}
-        {{> "systems/vtm5e/display/shared/actors/parts/experience.hbs"}}
-        
-        {{!-- Stats Tab --}}
-        {{> "systems/vtm5e/display/shared/actors/parts/stats.hbs"}}
-
-        {{!-- Gifts & Rites Tab --}}
-        {{> "systems/vtm5e/display/wta/actors/parts/gifts-rites.hbs"}}
-
-        {{!-- Wolf Tab --}}
-        {{> "systems/vtm5e/display/wta/actors/parts/wolf.hbs"}}
-
-        {{!-- Features Tab --}}
-        {{> "systems/vtm5e/display/wta/actors/parts/features.hbs"}}
-
-        {{!-- Biography Tab --}}
-        {{> "systems/vtm5e/display/shared/actors/parts/biography.hbs"}}
-
-        {{!-- Notes Tab --}}
-        {{> "systems/vtm5e/display/shared/actors/parts/notepad.hbs"}}
-
-        {{!-- Settings Tab --}}
-        {{> "systems/vtm5e/display/shared/actors/parts/actor-settings.hbs"}}
-    </section>
-
-    {{!-- Actor Type Banner --}}
-    {{#if displayBanner}}
-        <div class="sheet-banner">
-            {{localize "WOD5E.WTA.Label"}}
-        </div>
-    {{/if}}
-</form>
+    </div>
+</header>

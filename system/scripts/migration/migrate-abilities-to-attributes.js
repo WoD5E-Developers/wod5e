@@ -8,12 +8,13 @@ export const MigrateAbilitiesToAttributes = async function () {
   // If there's nothing to go through, then just resolve and move on.
   if (totalIterations === 0) { return [] }
 
-  // Fix the Animal Ken skill (v4.0.0)
+  // Fix 'abilities' to use the proper term of 'attributes'
   for (const actor of actorsList) {
     const actorData = actor.system
 
     // Ignore all non-player sheets
-    if (actor.type !== 'spc' && actor.type !== 'cell' && actor.type !== 'coterie' && actor.type !== 'group') {
+    // Additionally, if actorData.attributes already exists, ignore it as well
+    if (actor.type !== 'spc' && actor.type !== 'cell' && actor.type !== 'coterie' && actor.type !== 'group' && !actorData.attributes) {
       // Move abilities -> attributes
       actorData.attributes = actorData.abilities
 

@@ -199,6 +199,7 @@
       "_AddEdgeModification": "",
       "_AddGiftModification": "",
       "AddSkillModification": "Aggiungi modifica Abilità",
+      "_All": "",
       "AttributeType": "Tipo di attributo",
       "AutomateHunger": "Automatizza fame",
       "AutomateHungerHint": "Se selezionato, tirare dadi fame e fallire farà automaticamente salire la fame sulla scheda.",
@@ -229,6 +230,7 @@
       "_CustomGiftsHint": "",
       "CustomSkills": "Abilità Personalizzate",
       "CustomSkillsHint": "Consente di creare abilità Personalizzate",
+      "_Default": "",
       "DisableAutomation": "Disabilita tutte le automazioni",
       "DisableAutomationHint": "Disabilita tutte le automazioni senza dover cliccare tutti i pulsanti qui sotto.",
       "_DisableVampireFont": "",
@@ -245,6 +247,7 @@
       "_ModifiedGiftsHint": "",
       "ModifiedSkills": "Modifica abilità",
       "ModifiedSkillsHint": "Consente di modificare abilità esistenti",
+      "_None": "",
       "Rename": "Rinomina",
       "SaveChanges": "Salva modifiche",
       "SkillType": "Tipo di abilità",
@@ -315,7 +318,8 @@
       "_PublicNotes": "",
       "_Settings": "",
       "Stats": "Statistiche",
-      "_StorytellerNotes": ""
+      "_StorytellerNotes": "",
+      "_TokenSettings": ""
     }
   }
 }

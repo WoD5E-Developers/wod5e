@@ -1,4 +1,4 @@
-/* global WOD5E, TextEditor */
+/* global TextEditor */
 import { Disciplines } from '../../../api/def/disciplines.js'
 
 export const prepareDisciplines = async function (actor) {
@@ -44,14 +44,13 @@ export const prepareDisciplines = async function (actor) {
       disciplines[id].visible = false
     }
 
-    // Localize the discipline name
-    disciplines[id].label = WOD5E.api.generateLabelAndLocalize({ string: id, type: 'discipline' })
-
-    // Wipe old discipline powers so they doesn't duplicate
-    disciplines[id].powers = []
-
     // Enrich discipline description
     disciplines[id].enrichedDescription = await TextEditor.enrichHTML(disciplines[id].description)
+
+    // Assign all matching powers to the discipline
+    disciplines[id].powers = actor.items.filter(item =>
+      item.type === 'power' && item.system.discipline === id
+    )
   }
 
   return disciplines

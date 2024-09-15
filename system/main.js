@@ -1,13 +1,13 @@
 /* global CONFIG, Hooks, Actors, ActorSheet, ChatMessage, Items, ItemSheet, Macro, game, ui, CONST */
 
 // Actor sheets
-import { ActorInfo } from './actor/actor.js'
+import { WoDActor } from './actor/actor.js'
 import { WOD5EActorDirectory } from './ui/actor-directory.js'
 import { RenderActorSidebar } from './ui/actors-sidebar.js'
 import { RenderSettings } from './ui/settings-sidebar.js'
 import { ProseMirrorSettings } from './ui/prosemirror.js'
 // Item sheets
-import { ItemInfo } from './item/item.js'
+import { WoDItem } from './item/item.js'
 import { WoDItemSheet } from './item/item-sheet.js'
 // FVTT and module functionality
 import { preloadHandlebarsTemplates } from './scripts/templates.js'
@@ -39,14 +39,14 @@ Hooks.once('init', async function () {
 
   // Some basic info for the gamesystem
   game.wod5e = {
-    ActorInfo,
-    ItemInfo,
+    WoDActor,
+    WoDItem,
     rollItemMacro
   }
 
   // Define custom Entity classes
-  CONFIG.Actor.documentClass = ActorInfo
-  CONFIG.Item.documentClass = ItemInfo
+  CONFIG.Actor.documentClass = WoDActor
+  CONFIG.Item.documentClass = WoDItem
   CONFIG.ui.actors = WOD5EActorDirectory
   CONFIG.Dice.terms.m = MortalDie
   CONFIG.Dice.terms.v = VampireDie

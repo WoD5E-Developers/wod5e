@@ -1,9 +1,9 @@
 <div class="resource flex-group-center rage-value">
   <div class="resource-content flexrow flex-center flex-between">
-      <div class="resource-value" data-value="{{actor.system.rage.value}}" data-name="system.rage.value">
-          <span class="resource-value-empty rage-value"></span>
+      <div class="resource-value" data-value="{{rage.value}}" data-name="system.rage.value">
+          <span class="resource-value-empty rage-value" data-action="dotCounterEmpty"></span>
           {{#numLoop 5}}
-          <span class="resource-value-step rage-value" data-index="{{this}}"></span>
+          <span class="resource-value-step rage-value" data-action="dotCounterChange" data-index="{{this}}"></span>
           {{/numLoop}}
       </div>
   </div>

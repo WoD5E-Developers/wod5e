@@ -1,10 +1,10 @@
 <form class="{{cssClass}} flexcol limited" autocomplete="off">
     {{!-- Sheet Header --}}
     <header class="limited-actor-header">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" width="100" alt="Profile Image"/>
+        <img class="profile-img" src="{{img}}" data-edit="img" title="{{name}}" width="100" alt="Profile Image"/>
         <div class="header-content">
             <h1 class="limited-charname">
-                {{actor.name}}
+                {{name}}
             </h1>
         </div>
     </header>
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="grid grid-2col flexrow">
-            {{#if actor.system.settings.limited.biography}}
+            {{#if settings.limited.biography}}
                 <div class="tab description-content">
                     <div class="flex-center">
                         <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.Label"}}</h2></label>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             {{/if}}
-            {{#if actor.system.settings.limited.appearance}}
+            {{#if settings.limited.appearance}}
                 <div class="tab description-content">
                     <div class="flex-center">
                         <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.Appearance"}}</h2></label>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             {{/if}}
-            {{#if actor.system.settings.limited.touchstones}}
+            {{#if settings.limited.touchstones}}
                 <div class="tab description-content">
                     <div class="flex-center">
                         <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.TouchstonesAndConvictions"}}</h2></label>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             {{/if}}
-            {{#if actor.system.settings.limited.tenets}}
+            {{#if settings.limited.tenets}}
                 <div class="tab description-content">
                     <div class="flex-center">
                         <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.ChronicleTenets"}}</h2></label>

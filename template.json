@@ -4,6 +4,7 @@
     "templates": {
       "base": {
         "locked": false,
+        "hasSkillAttributeData": true,
         "group": "",
         "biography": "",
         "appearance": "",
@@ -530,36 +531,38 @@
           }
         }
       },
-      "renown": {
-        "renown": {
-          "glory": {
-            "value": 0
-          },
-          "honor": {
-            "value": 0
-          },
-          "wisdom": {
-            "value": 0
-          }
-        }
-      },
       "werewolfForms": {
         "activeForm": "homid",
         "forms": {
           "homid": {
-            "description": ""
+            "description": "",
+            "token": {
+              "img": ""
+            }
           },
           "glabro": {
-            "description": ""
+            "description": "",
+            "token": {
+              "img": ""
+            }
           },
           "crinos": {
-            "description": ""
+            "description": "",
+            "token": {
+              "img": ""
+            }
           },
           "hispo": {
-            "description": ""
+            "description": "",
+            "token": {
+              "img": ""
+            }
           },
           "lupus": {
-            "description": ""
+            "description": "",
+            "token": {
+              "img": ""
+            }
           }
         }
       },
@@ -716,9 +719,23 @@
           "superficial": 0,
           "max": 4
         },
-        "lostTheWolf": false
+        "lostTheWolf": false,
+        "renown": {
+          "glory": {
+            "value": 0
+          },
+          "honor": {
+            "value": 0
+          },
+          "wisdom": {
+            "value": 0
+          }
+        }
       },
       "hunter_traits": {
+        "redemption": {
+          "value": ""
+        },
         "headers":{
           "cellname": "",
           "creed": "",

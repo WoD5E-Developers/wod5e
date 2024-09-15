@@ -1,4 +1,4 @@
-<div class="tab features" data-group="primary" data-tab="features">
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
     <div class="flexrow">
         <div class="character-details flexcol">
             <div class="flexcol flex-group-center">
@@ -9,11 +9,11 @@
                 <div class="flexrow detail-row">
                     <div class="flexcol">
                         <label class="resource-label field-header">{{localize 'WOD5E.HTR.Creed'}}</label>
-                        <input name="system.headers.creed" type="text" value="{{actor.system.headers.creed}}" placeholder="{{localize 'WOD5E.HTR.Creed'}}"/>
+                        <input name="system.headers.creed" type="text" value="{{creed}}" placeholder="{{localize 'WOD5E.HTR.Creed'}}"/>
                     </div>
                     <div class="flexcold">
                         <label class="resource-label field-header">{{localize "WOD5E.HTR.Redemption"}}</label>
-                        <input type="text" name="system.redemption.value" value="{{actor.system.redemption.value}}" placeholder="{{localize 'WOD5E.HTR.Redemption'}}" />
+                        <input type="text" name="system.redemption.value" value="{{redemption}}" placeholder="{{localize 'WOD5E.HTR.Redemption'}}" />
                     </div>
                 </div>
 
@@ -25,9 +25,9 @@
                     <label class="resource-label field-header">{{localize "WOD5E.HTR.CreedFields"}}</label>
                 </div>
                 <div class="description-content resource">
-                    <prose-mirror name="system.headers.creedfields" data-document-u-u-i-d="{{../actor.uuid}}" value="{{actor.system.headers.creedfields}}"
+                    <prose-mirror name="system.headers.creedfields" value="{{creedfields}}"
                         toggled="true" compact="true">
-                        {{{enrichedCreedFields}}}
+                        {{{enrichedCreedfields}}}
                     </prose-mirror>
                 </div>
             </div>
@@ -37,4 +37,4 @@
             {{> "systems/vtm5e/display/shared/actors/parts/core-features.hbs"}}
         </div>
     </div>
-</div>
+</section>

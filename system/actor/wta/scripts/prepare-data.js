@@ -1,4 +1,4 @@
-/* global WOD5E, TextEditor */
+/* global TextEditor */
 import { Gifts } from '../../../api/def/gifts.js'
 import { WereForms } from '../../../api/def/were-forms.js'
 
@@ -45,14 +45,13 @@ export const prepareGifts = async function (actor) {
       gifts[id].visible = false
     }
 
-    // Localize the gift name
-    gifts[id].label = WOD5E.api.generateLabelAndLocalize({ string: id, type: 'gift' })
-
-    // Wipe old gift powers so they doesn't duplicate
-    gifts[id].powers = []
-
     // Enrich gift description
     gifts[id].enrichedDescription = await TextEditor.enrichHTML(gifts[id].description)
+
+    // Assign all matching powers to the discipline
+    gifts[id].powers = actor.items.filter(item =>
+      item.type === 'gift' && item.system.giftType === id
+    )
   }
 
   return gifts
@@ -94,12 +93,13 @@ export const prepareGiftPowers = async function (gifts) {
 }
 
 // Handle form data
-export const prepareFormData = async function (formData) {
+export const prepareFormData = async function (formData, actor) {
   const wereForms = WereForms.getList({})
 
   // Fields to keep from the existing data
   const fieldsToKeep = [
-    'description'
+    'description',
+    'token'
   ]
 
   // Merge new form data with existing form data
@@ -110,7 +110,7 @@ export const prepareFormData = async function (formData) {
       mergedForms[formKey] = { ...wereForms[formKey] }
 
       // Check if the existing form data has additional fields
-      if (formData[formKey]) {
+      if (formData && formData[formKey]) {
         // Add fields to keep from the existing form data
         for (const field of fieldsToKeep) {
           if (formData[formKey][field] !== undefined) {
@@ -118,6 +118,21 @@ export const prepareFormData = async function (formData) {
           }
         }
       }
+    }
+
+    // Add on some additional rendering data
+    // Whether the form is disabled or not
+    if (mergedForms[formKey].cost > 0 && actor.system.rage.value === 0) {
+      mergedForms[formKey].disabled = true
+    } else {
+      mergedForms[formKey].disabled = false
+    }
+
+    // Whether the form is active or not
+    if (formKey === actor.system.activeForm) {
+      mergedForms[formKey].active = true
+    } else {
+      mergedForms[formKey].active = false
     }
   }
 

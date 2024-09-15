@@ -1,124 +1,192 @@
-/* global game, foundry */
+/* global foundry */
 
-import { WoDActor } from '../wod-v5-sheet.js'
-import { prepareGifts, prepareGiftPowers, prepareFormData } from './scripts/prepare-data.js'
+// Preparation functions
+import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext } from '../scripts/prepare-partials.js'
+import { prepareGiftsContext, prepareWolfContext } from './scripts/prepare-partials.js'
+// Various button functions
 import { _onAddGift, _onRemoveGift, _onGiftToChat } from './scripts/gifts.js'
+import { _onFormEdit, _onFormToChat, _onShiftForm, _onLostTheWolf } from './scripts/forms.js'
 import { _onBeginFrenzy, _onEndFrenzy } from './scripts/frenzy.js'
-import { _onShiftForm, _onFormToChat, _onFormEdit, _onLostTheWolf } from './scripts/forms.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './scripts/balance.js'
+// Base actor sheet to extend from
+import { WoDActor } from '../wod-v5-sheet.js'
+// Mixin
+const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the basic ActorSheet with some very simple modifications
- * @extends {Wov5DActorSheet}
+ * Extend the WoDActor document
+ * @extends {WoDActor}
  */
-
-export class WerewolfActorSheet extends WoDActor {
-  /** @override */
-  static get defaultOptions () {
-    // Define the base list of CSS classes
-    const classList = ['werewolf']
-    classList.push(...super.defaultOptions.classes)
-
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: classList,
-      template: 'systems/vtm5e/display/wta/actors/werewolf-sheet.hbs'
-    })
-  }
-
-  /** @override */
-  get template () {
-    if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/display/shared/actors/limited-sheet.hbs'
-    return 'systems/vtm5e/display/wta/actors/werewolf-sheet.hbs'
-  }
-
-  /* -------------------------------------------- */
-
-  /** @override */
-  async getData () {
-    // Top-level variables
-    const data = await super.getData()
-
-    this.actor.system.gamesystem = 'werewolf'
-
-    // Prepare items
-    await this._prepareItems(data)
-
-    // If the actor's rage is above 0, make sure they aren't in "lost the wolf" form
-    if (data.actor.system.rage.value > 0 && data.actor.system.lostTheWolf) {
-      await this.actor.update({ 'system.lostTheWolf': false })
+export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
+  static DEFAULT_OPTIONS = {
+    classes: ['wod5e', 'actor', 'sheet', 'werewolf'],
+    actions: {
+      addGift: _onAddGift,
+      removeGift: _onRemoveGift,
+      giftChat: _onGiftToChat,
+      shiftForm: _onShiftForm,
+      formChat: _onFormToChat,
+      editForm: _onFormEdit,
+      beginFrenzy: _onBeginFrenzy,
+      endFrenzy: _onEndFrenzy,
+      haranoRoll: _onHaranoRoll,
+      haugloskRoll: _onHaugloskRoll
     }
+  }
 
-    // Check if the actor's rage is 0, they're in a supernatural form, and they haven't already lost the wolf
+  static PARTS = {
+    header: {
+      template: 'systems/vtm5e/display/wta/actors/werewolf-sheet.hbs'
+    },
+    tabs: {
+      template: 'systems/vtm5e/display/shared/actors/parts/tab-navigation.hbs'
+    },
+    stats: {
+      template: 'systems/vtm5e/display/shared/actors/parts/stats.hbs'
+    },
+    experience: {
+      template: 'systems/vtm5e/display/shared/actors/parts/experience.hbs'
+    },
+    gifts: {
+      template: 'systems/vtm5e/display/wta/actors/parts/gifts-rites.hbs'
+    },
+    wolf: {
+      template: 'systems/vtm5e/display/wta/actors/parts/wolf.hbs'
+    },
+    features: {
+      template: 'systems/vtm5e/display/shared/actors/parts/features.hbs'
+    },
+    biography: {
+      template: 'systems/vtm5e/display/shared/actors/parts/biography.hbs'
+    },
+    notepad: {
+      template: 'systems/vtm5e/display/shared/actors/parts/notepad.hbs'
+    },
+    settings: {
+      template: 'systems/vtm5e/display/shared/actors/parts/actor-settings.hbs'
+    },
+    banner: {
+      template: 'systems/vtm5e/display/shared/actors/parts/type-banner.hbs'
+    }
+  }
+
+  tabs = {
+    stats: {
+      id: 'stats',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Stats',
+      icon: '<i class="fa-regular fa-chart-line"></i>'
+    },
+    experience: {
+      id: 'experience',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Experience',
+      icon: '<i class="fa-solid fa-file-contract"></i>'
+    },
+    gifts: {
+      id: 'gifts',
+      group: 'primary',
+      title: 'WOD5E.WTA.Gifts',
+      icon: '<span class="wod5e-symbol">h</span>'
+    },
+    wolf: {
+      id: 'wolf',
+      group: 'primary',
+      title: 'WOD5E.WTA.Wolf',
+      icon: '<i class="fa-brands fa-wolf-pack-battalion"></i>'
+    },
+    features: {
+      id: 'features',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Features',
+      icon: '<i class="fas fa-gem"></i>'
+    },
+    biography: {
+      id: 'biography',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Biography',
+      icon: '<i class="fas fa-id-card"></i>'
+    },
+    notepad: {
+      id: 'notepad',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Notes',
+      icon: '<i class="fas fa-sticky-note"></i>'
+    },
+    settings: {
+      id: 'settings',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Settings',
+      icon: '<i class="fa-solid fa-gears"></i>'
+    }
+  }
+
+  async _prepareContext () {
+    // Top-level variables
+    const data = await super._prepareContext()
+    const actor = this.actor
+    const actorData = actor.system
+    const actorHeaders = actorData.headers
+
+    // Prepare werewolf-specific items
+    data.auspice = actorHeaders.auspice
+    data.tribe = actorHeaders.tribe
+    data.rage = actorData.rage
+    data.frenzyActive = actorData.frenzyActive
+    data.lostTheWolf = data.rage.value === 0
+
+    // Check if the actor has lost the wolf and they're in a supernatural form
+    // If so, trigger onLostTheWolf and prompt a shift down
     const supernaturalForms = ['glabro', 'crinos', 'hispo']
-    if ((data.actor.system.rage.value === 0) && (supernaturalForms.indexOf(data.actor.system.activeForm) > -1)) {
-      await _onLostTheWolf(this.actor)
+    if (data.lostTheWolf && (supernaturalForms.indexOf(actorData.activeForm) > -1) && !actorData.formOverride) {
+      await _onLostTheWolf(actor)
     }
 
     return data
   }
 
-  async _prepareItems (sheetData) {
-    // Prepare items
-    await super._prepareItems(sheetData)
+  async _preparePartContext (partId, context, options) {
+    // Inherit any preparation from the extended class
+    context = { ...(await super._preparePartContext(partId, context, options)) }
 
     // Top-level variables
-    const actorData = sheetData.actor
+    const actor = this.actor
 
-    // Prepare discipline data
-    actorData.system.gifts = await prepareGifts(actorData)
+    // Prepare each page context
+    switch (partId) {
+      // Stats
+      case 'stats':
+        return prepareStatsContext(context, actor)
 
-    // Prepare form data
-    actorData.system.forms = await prepareFormData(actorData.system.forms)
+      // Experience
+      case 'experience':
+        return prepareExperienceContext(context, actor)
 
-    // Iterate through items, allocating to containers
-    for (const i of sheetData.items) {
-      // Make sure the item is a gift and has a gift type that exists
-      if (i.type === 'gift' && actorData.system.gifts[i.system.giftType]) {
-        if (!actorData.system.gifts[i.system.giftType]?.powers) actorData.system.gifts[i.system.giftType].powers = []
-        // Append to gifts list
-        actorData.system.gifts[i.system.giftType].powers.push(i)
-      }
+      // Gifts
+      case 'gifts':
+        return prepareGiftsContext(context, actor)
+
+      // Wolf
+      case 'wolf':
+        return prepareWolfContext(context, actor)
+
+      // Features
+      case 'features':
+        return prepareFeaturesContext(context, actor)
+
+      // Biography
+      case 'biography':
+        return prepareBiographyContext(context, actor)
+
+      // Notepad
+      case 'notepad':
+        return prepareNotepadContext(context, actor)
+
+      // Settings
+      case 'settings':
+        return prepareSettingsContext(context, actor)
     }
 
-    // Sort discipline powers
-    actorData.system.gifts = await prepareGiftPowers(actorData.system.gifts)
-  }
-
-  /* -------------------------------------------- */
-
-  /** @override */
-  activateListeners (html) {
-    // Activate listeners
-    super.activateListeners(html)
-
-    // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) return
-
-    // Add a new gift type to the sheet
-    html.find('.add-gift').click(_onAddGift.bind(this))
-
-    // Remove a gift type from the sheet
-    html.find('.gift-delete').click(_onRemoveGift.bind(this))
-
-    // Frenzy buttons
-    html.find('.begin-frenzy').click(_onBeginFrenzy.bind(this))
-    html.find('.end-frenzy').click(_onEndFrenzy.bind(this))
-
-    // Form change buttons
-    html.find('.change-form').click(_onShiftForm.bind(this))
-
-    // Harano buttons
-    html.find('.harano-roll').click(_onHaranoRoll.bind(this))
-    // Hauglosk buttons
-    html.find('.hauglosk-roll').click(_onHaugloskRoll.bind(this))
-
-    // Form to chat buttons
-    html.find('.were-form-chat').click(_onFormToChat.bind(this))
-
-    // Form edit buttons
-    html.find('.were-form-edit').click(_onFormEdit.bind(this))
-
-    // Post Gift description to the chat
-    html.find('.gift-chat').click(_onGiftToChat.bind(this))
+    return context
   }
 }

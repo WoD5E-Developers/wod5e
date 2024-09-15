@@ -10,23 +10,20 @@ export class BaseDefinitionClass {
   // Will only retrieve objects (definitions)
   static getList ({
     type = '',
-    custom = false
+    custom = false,
+    disableSort = false
   }) {
     // Filter based on given filters provided with the function, if any
     const filteredEntries = Object.entries(this)
       .filter(([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value) &&
         (!type || value.type === type) && (!custom || value.custom === custom))
 
-    // Sort based on either the displayName or the key
-    if (this.sortAlphabetically) {
+    // Sort based on either the displayName
+    // If disableSort is false, that specific query won't sort
+    if (this.sortAlphabetically && !disableSort) {
       filteredEntries.sort(([, value1], [, value2]) => {
-        // Assuming displayName is a string, we compare them directly
+        // Compare display names
         return (value1.displayName || '').localeCompare(value2.displayName || '')
-      })
-    } else {
-      filteredEntries.sort(([key1], [key2]) => {
-        // Compare the keys directly
-        return key1.localeCompare(key2)
       })
     }
 
@@ -98,6 +95,12 @@ export class BaseDefinitionClass {
 
   static setSortAlphabetically () {
     // This will set the static property on the class that calls this method
-    this.sortAlphabetically = game.settings.get('vtm5e', 'sortDefAlphabetically')
+    const sortingSetting = game.settings.get('vtm5e', 'sortDefAlphabetically')
+
+    if (sortingSetting === 'all' || sortingSetting === 'default') {
+      this.sortAlphabetically = true
+    } else {
+      this.sortAlphabetically = false
+    }
   }
 }
