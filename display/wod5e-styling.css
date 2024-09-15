@@ -2152,7 +2152,7 @@ prose-mirror .editor-menu button {
   background-color: var(--system-color-4);
 }
 .sheet .sheet-tabs {
-  color: #000;
+  color: var(--system-color-5);
 }
 .sheet .sheet-tabs > [data-tab] .navicon {
   background-color: var(--system-color-6);
