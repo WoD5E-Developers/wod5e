@@ -19,12 +19,26 @@
   --logo-default: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
 }
 
-.application .window-header {
-  background: var(--system-color-1);
+.application {
+  .window-header {
+    background: var(--system-color-1);
+  }
+}
+
+.application ::selection,
+.application ::placeholder {
+  color: #000000ab;
 }
 
 .window-content {
   box-shadow: 0 0 5px var(--system-color-1);
+
+  input,
+  .actor-header,
+  .tab {
+    color: #000;
+    --input-text-color: #000;
+  }
 }
 
 #logo {
@@ -44,7 +58,7 @@ prose-mirror {
 
   .editor-menu {
     background: var(--system-color-7);
-    
+
     button {
       color: var(--system-color-6);
     }
@@ -110,7 +124,7 @@ prose-mirror {
       }
     }
   }
-  
+
   .lock-btn {
     background: var(--ui-background-texture);
     color: var(--system-color-4);
@@ -121,6 +135,8 @@ prose-mirror {
   }
 
   .sheet-tabs {
+    color: #000;
+
     > [data-tab] .navicon {
       background-color: var(--system-color-6);
       border: 1px solid var(--system-color-5);
@@ -144,7 +160,7 @@ prose-mirror {
       }
     }
   }
-  
+
   .item-image img {
     border: 1px solid var(--system-color-6);
   }
@@ -188,11 +204,11 @@ prose-mirror {
         background-color: var(--system-color-8);
       }
     }
-  
+
     .stats-container.attributes .stats-footer {
       border-bottom: 1px solid var(--system-color-5);
     }
-  
+
     .stats-container.skills .stats-footer {
       border-top: 1px solid var(--system-color-5);
     }
@@ -366,16 +382,16 @@ prose-mirror {
   .dice-group-header {
     color: var(--system-color-4);
   }
-  
+
   .dice-input img {
     background-color: var(--system-color-5);
   }
-  
+
   .dialog-control:hover,
   .dialog-control:focus {
       color: var(--system-color-5);
   }
-  
+
   .situational-modifiers {
     background-color: var(--system-color-6);
     box-shadow: 0 0 10px var(--color-shadow-dark);
@@ -415,13 +431,13 @@ prose-mirror {
       }
     }
   }
-  
+
   .group-item.collapsed {
     > .group-header {
       background: rgba(0 0 0 50%);
     }
   }
-  
+
   .group-item.droptarget > header {
     h3 {
       text-shadow: 1px 1px 3px var(--color-shadow-dark);
@@ -458,13 +474,13 @@ prose-mirror {
   a.inline-roll {
     color: var(--system-color-5);
   }
-  
+
   .modifiers .mod {
     background-color: var(--system-color-6);
     border: 1px solid #424242;
     color: var(--system-color-5);
   }
-  
+
   .total-and-difficulty {
     border: 1px solid var(--system-color-5);
   }
@@ -473,29 +489,29 @@ prose-mirror {
     background: #222;
     text-shadow: 0 0 5px var(--system-color-5);
   }
-  
+
   .roll-result-label.success,
   .roll-result-label.critical-success {
     background-color: #065200;
     color: #dbd6d6;
   }
-  
+
   .roll-result-label.messy-critical {
     background-color: #f10808;
     color: var(--system-color-6);
   }
-  
+
   .roll-result-label.failure,
   .roll-result-label.critical-failure,
   .roll-result-label.bestial-failure {
     background-color: #900;
     color: #dbdbdb;
   }
-  
+
   .roll-result-label.desperation-failure {
     background-color: #e97c00;
   }
-  
+
   .roll-result-label.rage-failure {
     background-color: #783b01;
     color: #dbdbdb;
@@ -546,7 +562,7 @@ prose-mirror {
   .danger {
     color: #831515;
   }
-  
+
   .success {
     color: #18520b;
   }
@@ -563,7 +579,7 @@ prose-mirror {
     box-shadow: 0 0 10px var(--system-color-3);
     border: 1px solid var(--system-color-2);
   }
-  
+
   ol.control-tools > li.active,
   ol.control-tools > li:hover {
     background: var(--ui-background-active-texture);
@@ -579,13 +595,13 @@ prose-mirror {
   #nav-toggle {
     background: var(--ui-background-texture);
   }
-  
+
   #scene-list .scene.active {
     background: var(--ui-background-active-texture);
   }
 }
 
-#hotbar { 
+#hotbar {
   .macro {
     background: rgb(24 51 103 / 50%);
   }

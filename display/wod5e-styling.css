@@ -1316,6 +1316,9 @@ body.uk .actor.sheet {
   padding: 0;
   padding-bottom: 20px;
   overflow-y: scroll;
+}
+.actor.sheet .window-content .actor-header,
+.actor.sheet .window-content .tab {
   margin-left: 45px;
 }
 .actor.sheet input,
@@ -1576,7 +1579,6 @@ body.uk .actor.sheet {
 .actor.sheet .tabs-container {
   position: absolute;
   height: 100%;
-  top: 25px;
   left: -2px;
   overflow: hidden;
 }
@@ -2065,8 +2067,18 @@ body.uk .actor.sheet {
 .application .window-header {
   background: var(--system-color-1);
 }
+.application ::selection,
+.application ::placeholder {
+  color: #000000ab;
+}
 .window-content {
   box-shadow: 0 0 5px var(--system-color-1);
+}
+.window-content input,
+.window-content .actor-header,
+.window-content .tab {
+  color: #000;
+  --input-text-color: #000;
 }
 #logo {
   content: var(--logo-default);
@@ -2139,6 +2151,9 @@ prose-mirror .editor-menu button {
 }
 .sheet .tabs-container {
   background-color: var(--system-color-4);
+}
+.sheet .sheet-tabs {
+  color: #000;
 }
 .sheet .sheet-tabs > [data-tab] .navicon {
   background-color: var(--system-color-6);
@@ -2465,6 +2480,21 @@ prose-mirror .editor-menu button {
   color: var(--system-dark-color-4);
   background-blend-mode: hard-light;
 }
+.dark-theme .sheet .journal-entry-content input,
+.dark-theme .dialog .journal-entry-content input,
+.dark-theme .sheet .window-content input,
+.dark-theme .dialog .window-content input,
+.dark-theme .sheet .journal-entry-content .actor-header,
+.dark-theme .dialog .journal-entry-content .actor-header,
+.dark-theme .sheet .window-content .actor-header,
+.dark-theme .dialog .window-content .actor-header,
+.dark-theme .sheet .journal-entry-content .tab,
+.dark-theme .dialog .journal-entry-content .tab,
+.dark-theme .sheet .window-content .tab,
+.dark-theme .dialog .window-content .tab {
+  color: #ffffff;
+  --input-text-color: #ffffff;
+}
 .dark-theme .sheet select,
 .dark-theme .dialog select,
 .dark-theme .sheet input,
@@ -2515,6 +2545,9 @@ prose-mirror .editor-menu button {
 .dark-theme .actor.sheet .stats-container .stats-footer {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
+}
+.dark-theme .actor.sheet .sheet-tabs {
+  color: #ffffff;
 }
 .dark-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
   background-color: var(--system-dark-color-1);

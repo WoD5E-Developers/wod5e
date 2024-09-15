@@ -13,7 +13,11 @@
     padding: 0;
     padding-bottom: 20px;
     overflow-y: scroll;
-    margin-left: 45px;
+
+    .actor-header,
+    .tab {
+      margin-left: 45px;
+    }
   }
 
   /* Input and resource fields */
@@ -237,7 +241,7 @@
       }
     }
   }
-  
+
   /* Notes Tab */
   .tab[data-tab="notepad"] {
     .note-container {
@@ -325,21 +329,21 @@
     cursor: pointer;
     flex-grow: 0;
   }
-  
+
   .resource-plus {
     margin-left: 5px;
   }
-  
+
   .resource-minus {
     margin-right: 5px;
   }
-  
+
   .lock-btn {
     max-width: 35px;
     height: 35px;
     align-self: baseline;
   }
-  
+
   .lock-btn i {
     margin: auto;
   }
@@ -352,7 +356,6 @@
   .tabs-container {
     position: absolute;
     height: 100%;
-    top: 25px;
     left: -2px;
     overflow: hidden;
   }
@@ -403,31 +406,31 @@
       max-width: 400px;
       margin: 5px;
       padding: 5px;
-  
+
       .item-description {
         margin-left: 10px;
         margin-right: 10px;
       }
-  
+
       .item {
         .item-image {
           flex-grow: 0;
-  
+
           img {
             border-radius: 50%;
             padding: 2px;
           }
         }
-  
+
         .item-header {
           font-size: 16pt;
           font-weight: bold;
-  
+
           .item-controls {
             text-align-last: right;
           }
         }
-  
+
         .item-name {
           text-align: left;
           padding: 3px;
@@ -435,11 +438,11 @@
           text-overflow: ellipsis;
           overflow-x: hidden;
         }
-  
+
         .item-controls {
           text-align: right;
           display: contents;
-  
+
           .item-control {
             margin-left: 3px;
           }
@@ -461,7 +464,7 @@
   .item-name {
     text-wrap: nowrap;
   }
-  
+
   .item-image img {
     border-radius: 50%;
     padding: 2px;
