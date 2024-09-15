@@ -1315,11 +1315,13 @@ body.uk .actor.sheet {
 .actor.sheet .window-content {
   padding: 0;
   padding-bottom: 20px;
-  overflow-y: scroll;
 }
 .actor.sheet .window-content .actor-header,
 .actor.sheet .window-content .tab {
   margin-left: 45px;
+}
+.actor.sheet .window-content section.tab {
+  overflow-y: scroll;
 }
 .actor.sheet input,
 .actor.sheet .resource {
@@ -1536,15 +1538,12 @@ body.uk .actor.sheet {
 }
 .actor.sheet .sheet-banner {
   text-align: center;
-  margin: -10px -10px 5px;
+  margin: -10px -10px 0 0;
   font-size: 14pt;
   padding: 3px;
   position: absolute;
-  bottom: -6px;
+  bottom: 0;
   width: 100%;
-  left: 10px;
-  z-index: 1;
-  justify-content: center;
 }
 .actor.sheet .sheet-banner .actor-type-field {
   text-align: left;
