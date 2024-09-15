@@ -201,9 +201,17 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     // Re-render the core parts of the sheet and the current tab
     const currentTab = $(form).find('section.tab.active')[0].getAttribute('data-application-part')
 
-    this.render(false, {
-      parts: ['header', 'tabs', 'banner', currentTab]
-    })
+    // Create the base parts array
+    let parts = ['header', 'tabs', 'banner', currentTab]
+
+    // Check if currentTab is not 'stats' and if this.actor.type is 'spc'
+    // If so, we need to re-render the stats page so that disciplines/edges/gifts update
+    if (currentTab !== 'stats' && this.actor.type === 'spc') {
+      parts.push('stats')
+    }
+
+    // Re-render with the updated parts array
+    this.render(false, { parts })
   }
 
   _onRender () {
