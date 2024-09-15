@@ -2578,6 +2578,7 @@ prose-mirror .editor-menu button {
 }
 .dark-theme .actor.sheet .item-list .category .content-link {
   color: var(--system-dark-color-1);
+  background-color: #FFF;
 }
 .dark-theme .item.sheet .window-content,
 .dark-theme .dialog .window-content {
