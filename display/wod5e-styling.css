@@ -2076,14 +2076,14 @@ body.uk .actor.sheet {
 .window-content input,
 .window-content .actor-header,
 .window-content .tab {
-  color: #000;
-  --input-text-color: #000;
+  color: var(--system-color-5);
+  --input-text-color: var(--system-color-5);
 }
 #logo {
   content: var(--logo-default);
 }
 #pause figcaption {
-  color: var(--system-color-5);
+  color: #e4e4e4a9;
 }
 prose-mirror button.icon.toggle {
   background-color: var(--system-color-6);
