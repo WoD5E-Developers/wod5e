@@ -2234,6 +2234,10 @@ prose-mirror .editor-menu button {
 .cell-resource-counter .cell-resource-counter-step[data-state="x"] {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
 }
+/* Item Sheets */
+.item.sheet .sheet-tabs {
+  background-color: var(--system-color-6);
+}
 /* Sidebar */
 /* General Sidebar Styling */
 #sidebar {
