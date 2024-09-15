@@ -69,7 +69,7 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
     }
   }
 
-  #getTabs() {
+  #getTabs () {
     const tabs = this.tabs
 
     for (const tab of Object.values(tabs)) {
@@ -99,7 +99,7 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
     super.activateListeners(html)
   }
 
-  async _preparePartContext(partId, context) {
+  async _preparePartContext (partId, context) {
     switch (partId) {
       // Description
       case 'description':

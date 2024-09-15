@@ -145,7 +145,7 @@ export class VampireActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       // Disciplines
       case 'disciplines':
         return prepareDisciplinesContext(context, actor)
-      
+
       // Disciplines
       case 'blood':
         return prepareBloodContext(context, actor)

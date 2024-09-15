@@ -127,7 +127,7 @@ export const _onFormToChat = async function (event, target, originActor) {
   event.preventDefault()
 
   // Top-level variables
-  const actor = originActor ? originActor : this.actor
+  const actor = originActor || this.actor
   const form = target.getAttribute('data-form')
 
   // Secondary variables
@@ -158,7 +158,7 @@ export const _onFormEdit = async function (event, target) {
 
   // Top-level variables
   const form = target.getAttribute('data-form')
-  
+
   new WereformApplication({
     actor: this.actor,
     form

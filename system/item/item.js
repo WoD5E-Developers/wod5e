@@ -18,7 +18,7 @@ export class WoDItem extends Item {
    * available both inside and outside of item sheets (such as if an item
    * is queried and has a roll executed directly from it).
    */
-  async prepareDerivedData() {
+  async prepareDerivedData () {
     const itemData = this
     const systemData = itemData.system
 

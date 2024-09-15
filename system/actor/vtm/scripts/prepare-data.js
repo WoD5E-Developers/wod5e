@@ -48,7 +48,7 @@ export const prepareDisciplines = async function (actor) {
     disciplines[id].enrichedDescription = await TextEditor.enrichHTML(disciplines[id].description)
 
     // Assign all matching powers to the discipline
-    disciplines[id].powers = actor.items.filter(item => 
+    disciplines[id].powers = actor.items.filter(item =>
       item.type === 'power' && item.system.discipline === id
     )
   }

@@ -158,7 +158,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
   async prepareItems (sheetData) {
     // Custom rolls
-    sheetData.system.customRolls = sheetData.items.filter(item => 
+    sheetData.system.customRolls = sheetData.items.filter(item =>
       item.type === 'customRoll'
     )
 
@@ -166,12 +166,12 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     sheetData.system.features = sheetData.items.reduce((acc, item) => {
       if (item.type === 'feature') {
         // Assign to featuretype container, default to 'background' if unset
-        const featuretype = item.system.featuretype || 'background' 
+        const featuretype = item.system.featuretype || 'background'
         if (acc[featuretype]) {
           acc[featuretype].push(item)
         } else {
           // Create new array if it doesn't exist
-          acc[featuretype] = [item] 
+          acc[featuretype] = [item]
         }
       }
 
@@ -191,7 +191,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
     // Overrides
     const overrides = foundry.utils.flattenObject(this.actor.overrides)
-    for (let k of Object.keys(overrides)) delete submitData[k]
+    for (const k of Object.keys(overrides)) delete submitData[k]
 
     // Update the actor data
     await this.actor.update(submitData, {
@@ -262,7 +262,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     if ('link' in event.target.dataset) return
 
     // Extract the data you need
-    let dragData = null
+    const dragData = null
 
     if (!dragData) return
 

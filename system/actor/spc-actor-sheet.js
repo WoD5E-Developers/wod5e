@@ -104,10 +104,9 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
 
     if (data.gamesystem === 'werewolf') {
       data.rage = actorData.rage
-      data.lostTheWolf = data.rage.value === 0 ? true : false
+      data.lostTheWolf = data.rage.value === 0
       data.balance = actorData.balance
     }
-
 
     return data
   }

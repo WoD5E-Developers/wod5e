@@ -6,7 +6,7 @@ export const prepareAttributes = async function (actor) {
   // Loop through each entry in the attributes list, get the data (if available), and then push to the containers
   // Use the sortDefAlphabetically setting to determine if we need to do sorting
   const attributesList = Attributes.getList({
-    disableSort: game.settings.get('vtm5e', 'sortDefAlphabetically') === 'default' ? true : false
+    disableSort: game.settings.get('vtm5e', 'sortDefAlphabetically') === 'default'
   })
   const attributes = actor.system?.attributes
   const sortedAttributes = {
