@@ -202,7 +202,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     const currentTab = $(form).find('section.tab.active')[0].getAttribute('data-application-part')
 
     // Create the base parts array
-    let parts = ['header', 'tabs', 'banner', currentTab]
+    const parts = ['header', 'tabs', 'banner', currentTab]
 
     // Check if currentTab is not 'stats' and if this.actor.type is 'spc'
     // If so, we need to re-render the stats page so that disciplines/edges/gifts update
