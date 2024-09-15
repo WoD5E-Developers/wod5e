@@ -95,6 +95,19 @@ export const prepareSettingsContext = async function (context) {
   return context
 }
 
+export const prepareLimitedContext = async function (context, actor) {
+  const actorData = actor.system
+  const actorHeaders = actorData.headers
+
+  // Part-specific data
+  context.enrichedNotes = await TextEditor.enrichHTML(actorData.notes)
+  context.enrichedAppearance = await TextEditor.enrichHTML(actorData.appearance)
+  context.enrichedTenets = await TextEditor.enrichHTML(actorHeaders.tenets)
+  context.enrichedTouchstones = await TextEditor.enrichHTML(actorHeaders.touchstones)
+
+  return context
+}
+
 export const prepareSpcStatsContext = async function (context, actor) {
   const actorData = actor.system
 

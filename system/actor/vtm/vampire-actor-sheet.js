@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext } from '../scripts/prepare-partials.js'
+import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from '../scripts/prepare-partials.js'
 import { prepareDisciplinesContext, prepareBloodContext } from './scripts/prepare-partials.js'
 // Various button functions
 import { _onAddDiscipline } from './scripts/disciplines.js'
@@ -55,6 +55,9 @@ export class VampireActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     },
     banner: {
       template: 'systems/vtm5e/display/shared/actors/parts/type-banner.hbs'
+    },
+    limited: {
+      template: 'systems/vtm5e/display/shared/actors/limited-sheet.hbs'
     }
   }
 
@@ -165,6 +168,10 @@ export class VampireActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       // Settings
       case 'settings':
         return prepareSettingsContext(context, actor)
+
+      // Limited view
+      case 'limited':
+        return prepareLimitedContext(context, actor)
     }
 
     return context

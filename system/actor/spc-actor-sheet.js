@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareBiographyContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareSpcStatsContext } from './scripts/prepare-partials.js'
+import { prepareBiographyContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareLimitedContext, prepareSpcStatsContext } from './scripts/prepare-partials.js'
 // Various button functions
 import { _onCreateExceptionalSkill, _onDeleteExceptionalSkill } from './scripts/exceptional-dicepools.js'
 import { _onCreatePower, _onDeletePower } from './scripts/spc-powers.js'
@@ -52,6 +52,9 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     },
     banner: {
       template: 'systems/vtm5e/display/shared/actors/parts/type-banner.hbs'
+    },
+    limited: {
+      template: 'systems/vtm5e/display/shared/actors/limited-sheet.hbs'
     }
   }
 
@@ -139,6 +142,10 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       // Settings
       case 'settings':
         return prepareSettingsContext(context, actor)
+
+      // Limited view
+      case 'limited':
+        return prepareLimitedContext(context, actor)
     }
 
     return context

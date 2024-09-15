@@ -214,6 +214,18 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     this.render(false, { parts })
   }
 
+  _configureRenderOptions(options) {
+    super._configureRenderOptions(options)
+
+    // If the document is in limited view, only show the limited view;
+    // otherwise, don't include the limited part
+    if (this.document.limited) {
+      options.parts = ['limited']
+    } else {
+      options.parts = options.parts.filter(item => item !== 'limited')
+    }
+  }
+
   _onRender () {
     const html = $(this.element)
 
