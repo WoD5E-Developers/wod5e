@@ -1,4 +1,4 @@
-/* global game, TextEditor, foundry */
+/* global game, TextEditor, foundry, DragDrop, fromUuidSync */
 
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
@@ -25,12 +25,14 @@ import { _onToggleLimited } from './scripts/on-toggle-limited.js'
  * @extends {foundry.applications.sheets.ActorSheetV2}
  */
 export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
-  get title() {
+  get title () {
     return this.actor.isToken ? `[Token] ${this.actor.name}` : this.actor.name
   }
 
-  constructor(options = {}) {
+  constructor (options = {}) {
     super(options)
+
+    this.#dragDrop = this.#createDragDropHandlers()
   }
 
   static DEFAULT_OPTIONS = {
@@ -68,7 +70,13 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       addExperience: _onAddExperience,
       removeExperience: _onRemoveExperience,
       editExperience: _onEditExperience
-    }
+    },
+    dragDrop: [
+      {
+        dragSelector: '[data-drag]',
+        dropSelector: null
+      }
+    ]
   }
 
   _getHeaderControls() {
@@ -219,5 +227,62 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     // Resource dots
     html.find('.resource-value .resource-value-step').click(_onDotCounterChange.bind(this))
     html.find('.resource-value .resource-value-empty').click(_onDotCounterEmpty.bind(this))
+
+    // Drag and drop functionality
+    this.#dragDrop.forEach((d) => d.bind(this.element))
+  }
+
+  #createDragDropHandlers() {
+    return this.options.dragDrop.map((d) => {
+      d.permissions = {
+        dragstart: this._canDragStart.bind(this),
+        drop: this._canDragDrop.bind(this)
+      }
+
+      d.callbacks = {
+        dragstart: this._onDragStart.bind(this),
+        dragover: this._onDragOver.bind(this),
+        drop: this._onDrop.bind(this)
+      }
+      return new DragDrop(d)
+    })
+  }
+
+  #dragDrop
+
+  _canDragStart () {
+    return this.isEditable
+  }
+
+  _canDragDrop () {
+    return this.isEditable
+  }
+
+  _onDragStart (event) {
+    if ('link' in event.target.dataset) return
+
+    // Extract the data you need
+    let dragData = null
+
+    if (!dragData) return
+
+    // Set data transfer
+    event.dataTransfer.setData('text/plain', JSON.stringify(dragData))
+  }
+
+  _onDragOver () {}
+
+  async _onDrop (event) {
+    const data = TextEditor.getDragEventData(event)
+
+    // Handle different data types
+    switch (data.type) {
+      case 'Item':
+        // Create the embedded item from the origin item data
+        await this.actor.createEmbeddedDocuments('Item', [
+          fromUuidSync(data.uuid)
+        ])
+        break
+    }
   }
 }

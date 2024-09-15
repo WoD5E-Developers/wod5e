@@ -1,10 +1,10 @@
-<div class="tab members" data-group="primary" data-tab="members">
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
   {{#if groupMembers}}
     {{#each groupMembers as |member id|}}
       <div class="flexcol group-member">
         <div class="flexrow">
           <div class="actor-image">
-            <img src="{{member.img}}" title="{{member.name}}" width="50" height="50" class="open-sheet" data-uuid="{{member.uuid}}"
+            <img src="{{member.img}}" title="{{member.name}}" width="50" height="50" class="open-sheet" data-action="openActorSheet" data-uuid="{{member.uuid}}"
               alt="{{member.name}}" />
           </div>
           <div class="flexcol">
@@ -14,11 +14,11 @@
               </div>
               <div class="sup-item type">{{generateLocalizedLabel member.type 'actortypes'}}</div>
               <div class="sup-item">
-                <a class="open-sheet" data-uuid="{{member.uuid}}" title="{{localize 'WOD5E.OpenSheet'}}">
+                <a class="open-sheet" data-action="openActorSheet" data-uuid="{{member.uuid}}" title="{{localize 'WOD5E.OpenSheet'}}">
                   <i class="fas fa-user"></i>
                 </a>
                 {{#unless actor.limited}}
-                  <a class="remove-actor" data-uuid="{{member.uuid}}" title="{{localize 'WOD5E.RemoveFromGroup'}}">
+                  <a class="remove-actor" data-action="removeMember" data-uuid="{{member.uuid}}" title="{{localize 'WOD5E.RemoveFromGroup'}}">
                     <i class="fas fa-times"></i>
                   </a>
                 {{/unless}}
@@ -112,4 +112,4 @@
   {{else}}
     <h2 class="flex-center">{{localize "WOD5E.NoGroupMembers"}}</h2>
   {{/if}}
-</div>
+</section>

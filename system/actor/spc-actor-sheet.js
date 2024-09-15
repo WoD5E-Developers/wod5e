@@ -2,8 +2,7 @@
 
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
-import { prepareBiographyContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext } from './scripts/prepare-partials.js'
-import { prepareSpcStatsContext } from './scripts/prepare-partials.js'
+import { prepareBiographyContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareSpcStatsContext } from './scripts/prepare-partials.js'
 import { _onCreateExceptionalSkill, _onDeleteExceptionalSkill } from './scripts/exceptional-dicepools.js'
 import { _onCreatePower, _onDeletePower } from './scripts/spc-powers.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './wta/scripts/balance.js'

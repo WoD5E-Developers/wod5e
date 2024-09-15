@@ -1767,7 +1767,6 @@ body.uk .actor.sheet {
 }
 
 .group.sheet .actor-header {
-  margin-top: auto;
   align-items: flex-end;
   justify-content: space-between;
   padding: 5px;
@@ -1808,39 +1807,39 @@ body.uk .actor.sheet {
 .group.sheet .actor-header .field-header {
   font-size: 16pt;
 }
-.group.sheet .members .group-member .group-sheet .members .group-member {
+.group.sheet .tab[data-tab="members"] .group-member .group-sheet .members .group-member {
   padding: 5px 0;
 }
-.group.sheet .members .group-member .actor-name {
+.group.sheet .tab[data-tab="members"] .group-member .actor-name {
   font-size: 20px;
   font-weight: bold;
 }
-.group.sheet .members .group-member .actor-image {
+.group.sheet .tab[data-tab="members"] .group-member .actor-image {
   max-width: 60px;
 }
-.group.sheet .members .group-member .actor-image img {
+.group.sheet .tab[data-tab="members"] .group-member .actor-image img {
   margin: 0 3px;
   cursor: pointer;
 }
-.group.sheet .members .group-member .sub-item {
+.group.sheet .tab[data-tab="members"] .group-member .sub-item {
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
   padding-left: 5px;
   padding-right: 5px;
 }
-.group.sheet .members .group-member .sub-item .sub-item-name {
+.group.sheet .tab[data-tab="members"] .group-member .sub-item .sub-item-name {
   font-weight: bold;
 }
-.group.sheet .members .group-member .sup-item {
+.group.sheet .tab[data-tab="members"] .group-member .sup-item {
   flex-grow: 0;
   display: flex;
 }
-.group.sheet .members .group-member .sup-item a {
+.group.sheet .tab[data-tab="members"] .group-member .sup-item a {
   margin-left: 2.5px;
   margin-right: 2.5px;
 }
-.group.sheet .members .group-member .sup-item.type {
+.group.sheet .tab[data-tab="members"] .group-member .sup-item.type {
   text-transform: uppercase;
   margin-right: 10px;
   text-wrap: nowrap;

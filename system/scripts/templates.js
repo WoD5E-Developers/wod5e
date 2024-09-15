@@ -22,7 +22,6 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/actors/parts/stats.hbs',
     'systems/vtm5e/display/shared/actors/parts/willpower.hbs',
     'systems/vtm5e/display/shared/actors/parts/notes.hbs',
-    'systems/vtm5e/display/shared/actors/parts/navbar.hbs',
     'systems/vtm5e/display/shared/actors/parts/actor-settings.hbs',
     'systems/vtm5e/display/shared/actors/parts/core-features.hbs',
     'systems/vtm5e/display/shared/actors/parts/core-details.hbs',
@@ -65,10 +64,11 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/actors/parts/spc/spc-edges.hbs',
 
     // Group Sheet Partials
-    'systems/vtm5e/display/shared/actors/parts/group/navbar.hbs',
+    'systems/vtm5e/display/vtm/actors/coterie-sheet.hbs',
+    'systems/vtm5e/display/htr/actors/cell-sheet.hbs',
+    'systems/vtm5e/display/wta/actors/pack-sheet.hbs',
     'systems/vtm5e/display/shared/actors/parts/group/group-members.hbs',
-    'systems/vtm5e/display/shared/actors/parts/group/description.hbs',
-    'systems/vtm5e/display/shared/actors/parts/group/header-profile.hbs',
+    'systems/vtm5e/display/shared/actors/parts/group/features.hbs',
 
     // Application Partials
     'systems/vtm5e/display/wta/applications/wereform-application/wereform-application.hbs',

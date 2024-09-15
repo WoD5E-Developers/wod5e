@@ -3,9 +3,9 @@
         <label for="system.danger.value" class="resource-label field-header">{{localize "WOD5E.HTR.Danger"}}</label>
     </div>
     <div class="resource resource-content flexrow flex-group-center flex-between">
-        <div class="resource-counter editable" data-states="-:value" data-value="{{actor.system.danger.value}}" data-name="system.danger">
+        <div class="resource-counter editable" data-states="-:value" data-value="{{danger.value}}" data-name="system.danger">
             <i class="fas fa-minus resource-control resource-minus" data-action="resourceChange" data-resource="danger" data-resource-action="minus"></i>
-            {{#numLoop actor.system.danger.max}}
+            {{#numLoop danger.max}}
                 <span class="resource-counter-step" data-action="squareCounterChange" data-index="{{this}}" data-state=""></span>
             {{/numLoop}}
             <i class="fas fa-plus resource-control resource-plus" data-action="resourceChange" data-resource="danger" data-resource-action="plus"></i>

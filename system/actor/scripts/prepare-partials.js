@@ -1,4 +1,4 @@
-/* global TextEditor */
+/* global TextEditor, fromUuidSync */
 
 export const prepareStatsContext = async function (context, actor) {
   const actorData = actor.system
@@ -108,6 +108,44 @@ export const prepareSpcStatsContext = async function (context, actor) {
   context.disciplines = actorData.disciplines
   context.edges = actorData.edges
   context.gifts = actorData.gifts
+
+  return context
+}
+
+export const prepareGroupMembersContext = async function (context, actor) {
+  const actorData = actor.system
+
+  // Tab data
+  context.tab = context.tabs.members
+
+  // Part-specific data
+  // Push each group member's data to the groupMembers list\
+  context.groupMembers = []
+  if (actorData.members) {
+    actorData.members.forEach(actorID => {
+      const actor = fromUuidSync(actorID)
+      context.groupMembers.push(actor)
+    })
+  }
+
+  return context
+}
+
+export const prepareGroupFeaturesContext = async function (context, actor) {
+  const actorData = actor.system
+  const actorHeaders = actorData.headers
+
+  // Tab data
+  context.tab = context.tabs.features
+
+  // Part-specific data
+  context.concept = actorHeaders.concept
+  context.chronicle = actorHeaders.chronicle
+  context.features = actorData.features
+  context.tenets = actorHeaders.tenets
+  context.enrichedTenets = await TextEditor.enrichHTML(actorHeaders.tenets)
+  context.biography = actorData.biography
+  context.enrichedBiography = await TextEditor.enrichHTML(actorData.biography)
 
   return context
 }
