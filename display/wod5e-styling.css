@@ -813,6 +813,7 @@ h3.item-name {
 }
 .actor.sheet.vampire .tab[data-tab="blood"] .blood-details,
 .actor.sheet.vampire .tab[data-tab="blood"] .blood-potency {
+  align-self: flex-start;
   margin-left: 10px;
   margin-right: 10px;
 }
