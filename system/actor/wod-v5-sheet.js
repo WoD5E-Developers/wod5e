@@ -1,7 +1,5 @@
 /* global game, TextEditor, foundry, DragDrop, fromUuidSync */
 
-const { HandlebarsApplicationMixin } = foundry.applications.api
-
 // Data preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
 import { getActorTypes } from './scripts/get-actor-types.js'
@@ -19,6 +17,8 @@ import { _onCreateItem, _onItemChat, _onItemEdit, _onItemDelete } from './script
 import { _onWillpowerRoll } from './scripts/on-willpower-roll.js'
 import { _onToggleCollapse } from './scripts/on-toggle-collapse.js'
 import { _onToggleLimited } from './scripts/on-toggle-limited.js'
+// Mixin
+const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
  * Extend the base ActorSheetV2 document
@@ -79,7 +79,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     ]
   }
 
-  _getHeaderControls() {
+  _getHeaderControls () {
     const controls = super._getHeaderControls()
 
     return controls
@@ -91,7 +91,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
   tabs = {}
 
-  getTabs() {
+  getTabs () {
     const tabs = this.tabs
 
     for (const tab of Object.values(tabs)) {
@@ -185,7 +185,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     })
   }
 
-  static async onSubmitActorForm(event, form, formData) {
+  static async onSubmitActorForm (event, form, formData) {
     // Process submit data
     const submitData = this._prepareSubmitData(event, form, formData)
 
@@ -232,7 +232,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     this.#dragDrop.forEach((d) => d.bind(this.element))
   }
 
-  #createDragDropHandlers() {
+  #createDragDropHandlers () {
     return this.options.dragDrop.map((d) => {
       d.permissions = {
         dragstart: this._canDragStart.bind(this),

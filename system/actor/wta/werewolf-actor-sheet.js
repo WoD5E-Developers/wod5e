@@ -1,17 +1,18 @@
 /* global foundry */
 
-const { HandlebarsApplicationMixin } = foundry.applications.api
-
+// Preparation functions
 import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext } from '../scripts/prepare-partials.js'
 import { prepareGiftsContext, prepareWolfContext } from './scripts/prepare-partials.js'
+// Various button functions
 import { _onAddGift, _onRemoveGift, _onGiftToChat } from './scripts/gifts.js'
 import { _onFormEdit, _onFormToChat, _onShiftForm } from './scripts/forms.js'
 import { _onBeginFrenzy, _onEndFrenzy } from './scripts/frenzy.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './scripts/balance.js'
 import { _onLostTheWolf } from './scripts/forms.js'
-
 // Base actor sheet to extend from
 import { WoDActor } from '../wod-v5-sheet.js'
+// Mixin
+const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
  * Extend the WoDActor document

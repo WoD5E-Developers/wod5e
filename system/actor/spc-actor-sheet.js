@@ -1,14 +1,15 @@
 /* global foundry */
 
-const { HandlebarsApplicationMixin } = foundry.applications.api
-
+// Preparation functions
 import { prepareBiographyContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareSpcStatsContext } from './scripts/prepare-partials.js'
+// Various button functions
 import { _onCreateExceptionalSkill, _onDeleteExceptionalSkill } from './scripts/exceptional-dicepools.js'
 import { _onCreatePower, _onDeletePower } from './scripts/spc-powers.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './wta/scripts/balance.js'
-
 // Base actor sheet to extend from
 import { WoDActor } from './wod-v5-sheet.js'
+// Mixin
+const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
  * Extend the WoDActor document

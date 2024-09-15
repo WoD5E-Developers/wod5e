@@ -1,10 +1,11 @@
 /* global foundry */
 
-const { HandlebarsApplicationMixin } = foundry.applications.api
-
+// Preparation functions
 import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext } from './scripts/prepare-partials.js'
 // Base actor sheet to extend from
 import { WoDActor } from './wod-v5-sheet.js'
+// Mixin
+const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
  * Extend the WoDActor document

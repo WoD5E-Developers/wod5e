@@ -1,8 +1,8 @@
 /* global foundry, game, TextEditor */
 
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 import { _onAddBonus, _onEditBonus, _onDeleteBonus } from './scripts/specialty-bonuses.js'
 import { generateLocalizedLabel } from '../../api/generate-localization.js'
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 
 export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) {
   constructor (data) {
@@ -85,7 +85,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     }
   }
 
-  #getTabs() {
+  #getTabs () {
     const tabs = this.tabs
 
     for (const tab of Object.values(tabs)) {
@@ -110,7 +110,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     return data
   }
 
-  async _preparePartContext(partId, context) {
+  async _preparePartContext (partId, context) {
     switch (partId) {
       // Description
       case 'description':

@@ -1,14 +1,15 @@
 /* global foundry */
 
-const { HandlebarsApplicationMixin } = foundry.applications.api
-
+// Preparation functions
 import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext } from '../scripts/prepare-partials.js'
 import { prepareEdgesContext } from './scripts/prepare-partials.js'
+// Various button functions
 import { _onToggleDespair } from './scripts/toggle-despair.js'
 import { _onAddEdge, _onRemoveEdge, _onEdgeToChat } from './scripts/edges.js'
-
 // Base actor sheet to extend from
 import { WoDActor } from '../wod-v5-sheet.js'
+// Mixin
+const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
  * Extend the WoDActor document

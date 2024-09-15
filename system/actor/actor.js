@@ -52,14 +52,14 @@ export class WoDActor extends Actor {
    * Data modifications in this step occur before processing embedded
    * documents or derived data.
    */
-  async prepareBaseData() {
+  async prepareBaseData () {
     const actorData = this
     const systemData = actorData.system
 
     if (systemData.hasSkillAttributeData) {
       // Handle attribute preparation
       const attributesPrep = await prepareAttributes(actorData)
-      
+
       // Set attribute data
       systemData.attributes = attributesPrep.attributes
       systemData.sortedAttributes = attributesPrep.sortedAttributes
@@ -122,7 +122,7 @@ export class WoDActor extends Actor {
    * available both inside and outside of character sheets (such as if an actor
    * is queried and has a roll executed directly from it).
    */
-  async prepareDerivedData() {
+  async prepareDerivedData () {
     const actorData = this
     const systemData = actorData.system
 

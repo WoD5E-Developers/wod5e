@@ -1,8 +1,6 @@
 /* global foundry, game, TextEditor, DragDrop, fromUuidSync */
 
-const { HandlebarsApplicationMixin } = foundry.applications.api
-
-// Data preparation functions
+// Preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
 import { getActorTypes } from './scripts/get-actor-types.js'
 import { prepareGroupFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareGroupMembersContext } from './scripts/prepare-partials.js'
@@ -14,6 +12,8 @@ import { _onToggleLock } from './scripts/on-toggle-lock.js'
 import { _onCreateItem, _onItemChat, _onItemEdit, _onItemDelete } from './scripts/item-actions.js'
 import { _onToggleCollapse } from './scripts/on-toggle-collapse.js'
 import { _addActor, _openActorSheet, _removeActor } from './scripts/group-members.js'
+// Mixin
+const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
  * Extend the WoDActor document
@@ -68,7 +68,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     ]
   }
 
-  _getHeaderControls() {
+  _getHeaderControls () {
     const controls = super._getHeaderControls()
 
     return controls
@@ -129,7 +129,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     }
   }
 
-  getTabs() {
+  getTabs () {
     const tabs = this.tabs
 
     for (const tab of Object.values(tabs)) {
@@ -197,12 +197,12 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     sheetData.system.features = sheetData.items.reduce((acc, item) => {
       if (item.type === 'feature') {
         // Assign to featuretype container, default to 'background' if unset
-        const featuretype = item.system.featuretype || 'background' 
+        const featuretype = item.system.featuretype || 'background'
         if (acc[featuretype]) {
           acc[featuretype].push(item)
         } else {
           // Create new array if it doesn't exist
-          acc[featuretype] = [item] 
+          acc[featuretype] = [item]
         }
       }
 
@@ -245,13 +245,13 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     return context
   }
 
-  static async onSubmitActorForm(event, form, formData) {
+  static async onSubmitActorForm (event, form, formData) {
     // Process submit data
     const submitData = this._prepareSubmitData(event, form, formData)
 
     // Overrides
     const overrides = foundry.utils.flattenObject(this.actor.overrides)
-    for (let k of Object.keys(overrides)) delete submitData[k]
+    for (const k of Object.keys(overrides)) delete submitData[k]
 
     // Update the actor data
     await this.actor.update(submitData, {
@@ -309,7 +309,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     this.#dragDrop.forEach((d) => d.bind(this.element))
   }
 
-  #createDragDropHandlers() {
+  #createDragDropHandlers () {
     return this.options.dragDrop.map((d) => {
       d.permissions = {
         dragstart: this._canDragStart.bind(this),
@@ -339,7 +339,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     if ('link' in event.target.dataset) return
 
     // Extract the data you need
-    let dragData = null
+    const dragData = null
 
     if (!dragData) return
 
