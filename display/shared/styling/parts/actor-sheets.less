@@ -1,6 +1,11 @@
 /* The actor sheet itself */
-.actor.sheet:not(.minimized) {
+.actor.sheet:not(.minimized):not(.group) {
   min-width: 850px;
+  min-height: 300px;
+}
+
+.group.sheet {
+  min-width: 650px;
   min-height: 300px;
 }
 
