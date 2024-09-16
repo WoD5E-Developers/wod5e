@@ -42,7 +42,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     },
     window: {
       icon: 'fa-solid fa-dice-d10',
-      resizeable: true
+      resizable: true
     },
     classes: ['wod5e', 'actor', 'sheet'],
     position: {
