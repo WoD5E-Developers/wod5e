@@ -2077,6 +2077,7 @@ body.uk .actor.sheet {
 .window-content {
   box-shadow: 0 0 5px var(--system-color-1);
 }
+.window-content select,
 .window-content input,
 .window-content .actor-header,
 .window-content .tab {
