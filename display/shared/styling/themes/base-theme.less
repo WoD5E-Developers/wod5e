@@ -33,11 +33,12 @@
 .window-content {
   box-shadow: 0 0 5px var(--system-color-1);
 
+  select,
   input,
   .actor-header,
   .tab {
-    color: #000;
-    --input-text-color: #000;
+    color: var(--system-color-5);
+    --input-text-color: var(--system-color-5);
   }
 }
 
@@ -47,7 +48,7 @@
 
 #pause {
   figcaption {
-    color: var(--system-color-5);
+    color: #e4e4e4a9;
   }
 }
 
@@ -135,7 +136,7 @@ prose-mirror {
   }
 
   .sheet-tabs {
-    color: #000;
+    color: var(--system-color-5);
 
     > [data-tab] .navicon {
       background-color: var(--system-color-6);
@@ -323,6 +324,13 @@ prose-mirror {
     transparent 57%,
     transparent 100%
   );
+}
+
+/* Item Sheets */
+.item.sheet {
+  .sheet-tabs {
+    background-color: var(--system-color-6);
+  }
 }
 
 /* Sidebar */

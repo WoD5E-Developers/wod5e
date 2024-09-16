@@ -813,6 +813,7 @@ h3.item-name {
 }
 .actor.sheet.vampire .tab[data-tab="blood"] .blood-details,
 .actor.sheet.vampire .tab[data-tab="blood"] .blood-potency {
+  align-self: flex-start;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -1287,8 +1288,12 @@ body.uk .actor.sheet {
 }
 
 /* The actor sheet itself */
-.actor.sheet:not(.minimized) {
+.actor.sheet:not(.minimized):not(.group) {
   min-width: 850px;
+  min-height: 300px;
+}
+.group.sheet {
+  min-width: 650px;
   min-height: 300px;
 }
 .actor.sheet {
@@ -1363,7 +1368,6 @@ body.uk .actor.sheet {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 315px;
 }
 .actor.sheet .actor-header .header-profile .name-field {
   width: 250px;
@@ -2073,17 +2077,18 @@ body.uk .actor.sheet {
 .window-content {
   box-shadow: 0 0 5px var(--system-color-1);
 }
+.window-content select,
 .window-content input,
 .window-content .actor-header,
 .window-content .tab {
-  color: #000;
-  --input-text-color: #000;
+  color: var(--system-color-5);
+  --input-text-color: var(--system-color-5);
 }
 #logo {
   content: var(--logo-default);
 }
 #pause figcaption {
-  color: var(--system-color-5);
+  color: #e4e4e4a9;
 }
 prose-mirror button.icon.toggle {
   background-color: var(--system-color-6);
@@ -2152,7 +2157,7 @@ prose-mirror .editor-menu button {
   background-color: var(--system-color-4);
 }
 .sheet .sheet-tabs {
-  color: #000;
+  color: var(--system-color-5);
 }
 .sheet .sheet-tabs > [data-tab] .navicon {
   background-color: var(--system-color-6);
@@ -2233,6 +2238,10 @@ prose-mirror .editor-menu button {
 }
 .cell-resource-counter .cell-resource-counter-step[data-state="x"] {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
+}
+/* Item Sheets */
+.item.sheet .sheet-tabs {
+  background-color: var(--system-color-6);
 }
 /* Sidebar */
 /* General Sidebar Styling */

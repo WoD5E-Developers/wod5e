@@ -25,7 +25,8 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
     },
     window: {
       icon: 'fas fa-gear',
-      title: 'WereForm Editor'
+      title: 'WereForm Editor',
+      resizable: true
     },
     classes: ['wod5e', 'sheet', 'werewolf', 'application', 'wereform'],
     position: {

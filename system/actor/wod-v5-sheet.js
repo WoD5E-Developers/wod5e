@@ -42,7 +42,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     },
     window: {
       icon: 'fa-solid fa-dice-d10',
-      resizeable: true
+      resizable: true
     },
     classes: ['wod5e', 'actor', 'sheet'],
     position: {
@@ -186,12 +186,19 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
   }
 
   static async onSubmitActorForm (event, form, formData) {
+    let rerenderSidebar = false
+
     // Process submit data
     const submitData = this._prepareSubmitData(event, form, formData)
 
     // Overrides
     const overrides = foundry.utils.flattenObject(this.actor.overrides)
     for (const k of Object.keys(overrides)) delete submitData[k]
+
+    // Re-render the actors sidebar if we're updating the actor name
+    if (this.actor.name !== submitData.name) {
+      rerenderSidebar = true
+    }
 
     // Update the actor data
     await this.actor.update(submitData, {
@@ -212,9 +219,14 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
     // Re-render with the updated parts array
     this.render(false, { parts })
+
+    // Rerender the actors sidebar if we need to
+    if (rerenderSidebar) {
+      game.actors.render()
+    }
   }
 
-  _configureRenderOptions(options) {
+  _configureRenderOptions (options) {
     super._configureRenderOptions(options)
 
     // If the document is in limited view, only show the limited view;

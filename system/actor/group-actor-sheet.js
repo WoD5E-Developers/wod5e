@@ -37,12 +37,12 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     },
     window: {
       icon: 'fa-solid fa-dice-d10',
-      resizeable: true
+      resizable: true
     },
     classes: ['wod5e', 'actor', 'group', 'sheet'],
     position: {
-      width: 1000,
-      height: 700
+      width: 700,
+      height: 600
     },
     actions: {
       // Item actions

@@ -28,7 +28,8 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     },
     window: {
       icon: 'fas fa-gear',
-      title: 'Skill Editor'
+      title: 'Skill Editor',
+      resizable: true
     },
     classes: ['wod5e', 'sheet', 'application'],
     position: {
