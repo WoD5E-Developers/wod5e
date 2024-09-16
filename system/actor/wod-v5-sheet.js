@@ -226,7 +226,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     }
   }
 
-  _configureRenderOptions(options) {
+  _configureRenderOptions (options) {
     super._configureRenderOptions(options)
 
     // If the document is in limited view, only show the limited view;
