@@ -2079,6 +2079,18 @@ body.uk .actor.sheet {
   --actor-header-default: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp");
   --logo-default: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
 }
+.standard-form .form-group > label,
+.standard-form .form-group:hover > label {
+  color: var(--system-color-5);
+}
+.standard-form .form-group .hint,
+.standard-form .form-group:hover .hint {
+  color: var(--system-color-7);
+}
+.standard-form input[type=range] {
+  --range-thumb-background-color: var(--system-color-5);
+  --range-thumb-border-color: var(--system-dark-color-1);
+}
 .application .window-header {
   background: var(--system-color-1);
 }

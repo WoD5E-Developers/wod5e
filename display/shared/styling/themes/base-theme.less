@@ -19,6 +19,24 @@
   --logo-default: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
 }
 
+.standard-form {
+  .form-group,
+  .form-group:hover {
+    > label {
+      color: var(--system-color-5);
+    }
+
+    .hint {
+      color: var(--system-color-7);
+    }
+  }
+
+  input[type=range] {
+    --range-thumb-background-color: var(--system-color-5);
+    --range-thumb-border-color: var(--system-dark-color-1);
+  }
+}
+
 .application {
   .window-header {
     background: var(--system-color-1);
