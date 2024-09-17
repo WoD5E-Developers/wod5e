@@ -2683,7 +2683,7 @@ prose-mirror .editor-menu button {
 :root {
   --ui-background-hunter-texture: url("/systems/vtm5e/assets/ui/ui_background_hunter_texture.webp");
   --sidebar-background-hunter: url(/systems/vtm5e/assets/ui/sidebar_hunter.webp);
-  --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.png);
+  --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.png.webp);
 }
 .hunter-theme {
   /* Logo */
@@ -2736,7 +2736,7 @@ prose-mirror .editor-menu button {
   /* Foundry Controls UI */
 }
 .vampire-theme #logo {
-  content: url(/systems/vtm5e/assets/ui/VtM_Logo.png);
+  content: url(/systems/vtm5e/assets/ui/VtM_Logo.png.webp);
 }
 .vampire-theme .sheet .window-header {
   background-color: var(--vampire-color-1);
@@ -2824,7 +2824,7 @@ prose-mirror .editor-menu button {
   /* Foundry Controls UI */
 }
 .werewolf-theme #logo {
-  content: url(/systems/vtm5e/assets/ui/WtA_Logo.png);
+  content: url(/systems/vtm5e/assets/ui/WtA_Logo.png.webp);
 }
 .werewolf-theme .sheet .window-header {
   background-color: var(--werewolf-color-1);
