@@ -2481,6 +2481,7 @@ prose-mirror .editor-menu button {
   --system-dark-color-5: #ffffff9c;
   --system-dark-color-6: #ff0000;
   --system-dark-color-7: #505050;
+  --system-dark-color-8: #e6e6e6;
   --ui-background-dark-texture: url("/systems/vtm5e/assets/ui/ui_background_dark_texture.webp");
   --sidebar-background-dark: url(/systems/vtm5e/assets/ui/sidebar_dark.webp);
 }
@@ -2490,6 +2491,21 @@ prose-mirror .editor-menu button {
   /* Hunter Styling */
   /* Sidebar */
   /* Foundry Controls UI */
+}
+.dark-theme .standard-form .form-group > label,
+.dark-theme .standard-form .form-group:hover > label {
+  color: var(--system-dark-color-4);
+}
+.dark-theme .standard-form .form-group .hint,
+.dark-theme .standard-form .form-group:hover .hint {
+  color: var(--system-dark-color-8);
+}
+.dark-theme .standard-form .sheet-tabs {
+  color: var(--system-dark-color-4);
+}
+.dark-theme .standard-form input[type=range] {
+  --range-thumb-background-color: var(--system-dark-color-4);
+  --range-thumb-border-color: var(--system-dark-color-1);
 }
 .dark-theme .sheet .window-header,
 .dark-theme .dialog .window-header {
