@@ -3,7 +3,7 @@
 // Preparation functions
 import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from './scripts/prepare-partials.js'
 // Base actor sheet to extend from
-import { WoDActor } from './wod-v5-sheet.js'
+import { WoDActor } from './wod-actor-base.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 

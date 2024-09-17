@@ -1,6 +1,11 @@
 /* global renderTemplate, Dialog, game */
 
-export const _onAddBonus = async function (event, item) {
+export const _onAddBonus = async function (event) {
+  event.preventDefault()
+
+  // Top-level variables
+  const item = this.item
+
   // Secondary variables
   const bonusData = {
     item,
@@ -98,10 +103,12 @@ export const _onAddBonus = async function (event, item) {
   ).render(true)
 }
 
-export const _onDeleteBonus = async function (event, item) {
+export const _onDeleteBonus = async function (event, target) {
+  event.preventDefault()
+
   // Top-level variables
-  const header = event.currentTarget
-  const key = header.dataset.bonus
+  const item = this.item
+  const key = target.getAttribute('data-bonus')
 
   // Define the existing list of bonuses
   const itemBonuses = item.system.bonuses || []
@@ -113,10 +120,12 @@ export const _onDeleteBonus = async function (event, item) {
   await item.update({ 'system.bonuses': itemBonuses })
 }
 
-export const _onEditBonus = async function (event, item) {
+export const _onEditBonus = async function (event, target) {
+  event.preventDefault()
+
   // Top-level variables
-  const header = event.currentTarget
-  const key = header.dataset.bonus
+  const item = this.item
+  const key = target.getAttribute('data-bonus')
 
   // Secondary variables
   const bonusData = {

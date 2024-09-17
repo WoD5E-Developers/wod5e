@@ -1929,8 +1929,10 @@ body.uk .actor.sheet {
   align-self: flex-end;
 }
 
+.item.sheet .window-content {
+  padding: 0;
+}
 .item.sheet .item-header {
-  flex: 0 0 215px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -1947,16 +1949,23 @@ body.uk .actor.sheet {
 }
 .item.sheet .item-header .header-fields {
   flex: 1;
+  margin-top: auto;
+}
+.item.sheet .item-header .header-fields .charname input {
+  font-size: 23pt;
 }
 .item.sheet .item-header input[type="number"] {
   max-width: 35px;
 }
-.item.sheet .tabs .item {
+.item.sheet .tabs a.active {
   font-weight: bold;
 }
-.item.sheet .tab[data-tab="dicepool"] .remove-dice {
+.item.sheet a[data-tab="dicepool"] .remove-dice {
   flex-grow: 0;
   padding: 4px;
+}
+.item.sheet section {
+  padding: 10px 10px 0px 10px;
 }
 
 /* wod5e.css */
@@ -2242,6 +2251,9 @@ prose-mirror .editor-menu button {
 /* Item Sheets */
 .item.sheet .sheet-tabs {
   background-color: var(--system-color-6);
+}
+.item.sheet .sheet-tabs a {
+  color: var(--system-color-5);
 }
 /* Sidebar */
 /* General Sidebar Styling */

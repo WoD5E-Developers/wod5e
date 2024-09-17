@@ -1,5 +1,10 @@
 /* global Hooks */
 
+// Base definition class
+import { BaseDefinitionClass } from './base-definition-class.js'
+// All systems
+import { SPCActorSheet } from '../../actor/spc-actor-sheet.js'
+import { GroupActorSheet } from '../../actor/group-actor-sheet.js'
 // Mortal
 import { MortalActorSheet } from '../../actor/mortal-actor-sheet.js'
 // Vampire system
@@ -9,10 +14,6 @@ import { GhoulActorSheet } from '../../actor/vtm/ghoul-actor-sheet.js'
 import { HunterActorSheet } from '../../actor/htr/hunter-actor-sheet.js'
 // Werewolf system
 import { WerewolfActorSheet } from '../../actor/wta/werewolf-actor-sheet.js'
-// All systems
-import { SPCActorSheet } from '../../actor/spc-actor-sheet.js'
-import { GroupActorSheet } from '../../actor/group-actor-sheet.js'
-import { BaseDefinitionClass } from './base-definition-class.js'
 
 export class ActorTypes extends BaseDefinitionClass {
   // Run any necessary compilation on ready
