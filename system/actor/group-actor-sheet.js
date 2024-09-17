@@ -254,16 +254,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     for (const k of Object.keys(overrides)) delete submitData[k]
 
     // Update the actor data
-    await this.actor.update(submitData, {
-      render: false
-    })
-
-    // Re-render the core parts of the sheet and the current tab
-    const currentTab = $(form).find('section.tab.active')[0].getAttribute('data-application-part')
-
-    this.render(false, {
-      parts: ['header', 'tabs', 'banner', currentTab]
-    })
+    await this.actor.update(submitData)
   }
 
   _onRender () {

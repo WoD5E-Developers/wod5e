@@ -186,8 +186,6 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
   }
 
   static async onSubmitActorForm (event, form, formData) {
-    let rerenderSidebar = false
-
     // Process submit data
     const submitData = this._prepareSubmitData(event, form, formData)
 
@@ -195,35 +193,8 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     const overrides = foundry.utils.flattenObject(this.actor.overrides)
     for (const k of Object.keys(overrides)) delete submitData[k]
 
-    // Re-render the actors sidebar if we're updating the actor name
-    if (this.actor.name !== submitData.name) {
-      rerenderSidebar = true
-    }
-
     // Update the actor data
-    await this.actor.update(submitData, {
-      render: false
-    })
-
-    // Re-render the core parts of the sheet and the current tab
-    const currentTab = $(form).find('section.tab.active')[0].getAttribute('data-application-part')
-
-    // Create the base parts array
-    const parts = ['header', 'tabs', 'banner', currentTab]
-
-    // Check if currentTab is not 'stats' and if this.actor.type is 'spc'
-    // If so, we need to re-render the stats page so that disciplines/edges/gifts update
-    if (currentTab !== 'stats' && this.actor.type === 'spc') {
-      parts.push('stats')
-    }
-
-    // Re-render with the updated parts array
-    this.render(false, { parts })
-
-    // Rerender the actors sidebar if we need to
-    if (rerenderSidebar) {
-      game.actors.render()
-    }
+    this.actor.update(submitData)
   }
 
   _configureRenderOptions (options) {

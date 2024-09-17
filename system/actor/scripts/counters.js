@@ -40,7 +40,7 @@ export const _onResourceChange = async function (event) {
   }
 
   // Update the actor with the new data
-  await actor.update(actorData)
+  actor.update(actorData)
 }
 
 // Handle changes to the dot counters
@@ -309,22 +309,5 @@ export const _assignToActorField = async (fields, value, actor) => {
   }
 
   // Update the actor data
-  await actor.update(actorData, {
-    render: false
-  })
-
-  // Re-render the core parts of the sheet and the current tab
-  const partsToRerender = ['header', 'tabs', 'banner']
-  const currentTab = $(actor._sheet.element).find('section.tab.active')[0].getAttribute('data-application-part')
-
-  partsToRerender.push(currentTab)
-
-  // Updating the rage tracker requires a re-render of the Wolf tab, as well
-  if (actorData.type === 'werewolf') {
-    partsToRerender.push('wolf')
-  }
-
-  actor.render(false, {
-    parts: partsToRerender
-  })
+  actor.update(actorData)
 }
