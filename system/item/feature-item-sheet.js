@@ -2,6 +2,7 @@
 
 // Preparation functions
 import { prepareDescriptionContext, prepareMacroContext, prepareBonusesContext } from './scripts/prepare-partials.js'
+import { Features } from '../api/def/features.js'
 // Base item sheet to extend from
 import { WoDItem } from './wod-item-base.js'
 // Mixin
@@ -56,6 +57,12 @@ export class FeatureItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   async _prepareContext () {
     // Top-level variables
     const data = await super._prepareContext()
+    const item = this.item
+    const itemData = item.system
+
+    data.points = itemData.points
+    data.featureTypeOptions = Features.getList({})
+    data.featureTypeSelected = itemData.featuretype
 
     return data
   }
