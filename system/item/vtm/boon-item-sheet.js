@@ -19,7 +19,7 @@ export class BoonItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/shared/items/feature-sheet.hbs'
+      template: 'systems/vtm5e/display/vtm/items/boon-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
@@ -56,6 +56,10 @@ export class BoonItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   async _prepareContext () {
     // Top-level variables
     const data = await super._prepareContext()
+    const item = this.item
+    const itemData = item.system
+
+    data.boonType = itemData.boontype
 
     return data
   }

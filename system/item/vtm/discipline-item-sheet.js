@@ -2,6 +2,7 @@
 
 // Preparation functions
 import { prepareDescriptionContext, prepareDicepoolContext, prepareMacroContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+import { Disciplines } from '../../api/def/disciplines.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -19,7 +20,7 @@ export class DisciplineItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/shared/items/feature-sheet.hbs'
+      template: 'systems/vtm5e/display/vtm/items/discipline-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
@@ -67,7 +68,10 @@ export class DisciplineItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     const item = this.item
     const itemData = item.system
 
-    console.log(itemData)
+    data.disciplineOptions = Disciplines.getList({})
+    data.selectedDiscipline = itemData.discipline
+    data.level = itemData.level
+    data.cost = itemData.cost
 
     return data
   }

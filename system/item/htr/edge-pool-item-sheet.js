@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareDicepoolContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+import { prepareDescriptionContext, prepareDicepoolContext } from '../scripts/prepare-partials.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -19,7 +19,7 @@ export class EdgePoolItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/shared/items/feature-sheet.hbs'
+      template: 'systems/vtm5e/display/htr/items/edge-pool-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
@@ -29,9 +29,6 @@ export class EdgePoolItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     },
     dicepool: {
       template: 'systems/vtm5e/display/shared/items/parts/dicepool.hbs'
-    },
-    bonuses: {
-      template: 'systems/vtm5e/display/shared/items/parts/bonuses.hbs'
     }
   }
 
@@ -45,11 +42,6 @@ export class EdgePoolItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       id: 'dicepool',
       group: 'primary',
       label: 'WOD5E.Tabs.Dicepool'
-    },
-    bonuses: {
-      id: 'bonuses',
-      group: 'primary',
-      label: 'WOD5E.ItemsList.Bonuses'
     }
   }
 
@@ -74,8 +66,6 @@ export class EdgePoolItemSheet extends HandlebarsApplicationMixin(WoDItem) {
         return prepareDescriptionContext(context, item)
       case 'dicepool':
         return prepareDicepoolContext(context, item)
-      case 'bonuses':
-        return prepareBonusesContext(context, item)
     }
 
     return context

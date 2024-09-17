@@ -19,7 +19,7 @@ export class GiftItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/shared/items/feature-sheet.hbs'
+      template: 'systems/vtm5e/display/wta/items/gift-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'

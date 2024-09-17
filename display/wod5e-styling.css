@@ -1954,6 +1954,9 @@ body.uk .actor.sheet {
 .item.sheet .item-header .header-fields .charname input {
   font-size: 23pt;
 }
+.item.sheet .item-header .header-fields .header-details {
+  padding: 5px;
+}
 .item.sheet .item-header input[type="number"] {
   max-width: 35px;
 }

@@ -19,7 +19,7 @@ export class CustomRollItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/shared/items/feature-sheet.hbs'
+      template: 'systems/vtm5e/display/shared/items/custom-roll-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'

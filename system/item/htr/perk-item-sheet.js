@@ -19,7 +19,7 @@ export class PerkItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/shared/items/feature-sheet.hbs'
+      template: 'systems/vtm5e/display/htr/items/perk-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
