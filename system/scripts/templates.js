@@ -21,7 +21,6 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/actors/parts/notepad.hbs',
     'systems/vtm5e/display/shared/actors/parts/stats.hbs',
     'systems/vtm5e/display/shared/actors/parts/willpower.hbs',
-    'systems/vtm5e/display/shared/actors/parts/notes.hbs',
     'systems/vtm5e/display/shared/actors/parts/actor-settings.hbs',
     'systems/vtm5e/display/shared/actors/parts/core-features.hbs',
     'systems/vtm5e/display/shared/actors/parts/core-details.hbs',
