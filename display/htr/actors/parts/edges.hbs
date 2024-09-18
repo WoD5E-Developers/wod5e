@@ -62,7 +62,7 @@
                         </div>
                         {{#each edge.perks as |perk key|}}
                             <div class="collapsible-container">
-                                <div class="flexrow perk item" data-drag="true" data-document-uuid="{{perk.uuid}}" data-type="Item">
+                                <div class="flexrow perk item" data-drag="true" data-item-id="{{perk.id}}" data-document-uuid="{{perk.uuid}}" data-type="Item">
                                     <div class="item-image">
                                         <img src="{{perk.img}}">
                                     </div>
@@ -89,7 +89,7 @@
                         {{/each}}
                         <div class="edge-pools flexcol">
                             {{#each edge.pools as |pool key|}}
-                                <div class="edge-pool flexrow item" data-drag="true" data-document-uuid="{{pool.uuid}}" data-type="Item">
+                                <div class="edge-pool flexrow item" data-drag="true" data-item-id="{{pool.id}}" data-document-uuid="{{pool.uuid}}" data-type="Item">
                                     <div class="edge-pool-label rollable-item" data-action="rollItem" data-item-uuid="{{pool.uuid}}">
                                         {{pool.name}}
                                         <i class="fa-solid fa-dice-d10"></i>

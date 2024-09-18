@@ -73,7 +73,7 @@
             <div class="stats-container">
                 <div class="items-list flexcol">
                     {{#each customRolls as |roll id|}}
-                        <div class="item flexrow" data-drag="true" data-document-uuid="{{roll.uuid}}" data-type="Item">
+                        <div class="item flexrow" data-drag="true" data-item-id="{{roll.id}}" data-document-uuid="{{roll.uuid}}" data-type="Item">
                             <div class="item-image rollable-item" data-action="rollItem" data-item-uuid="{{roll.uuid}}">
                                 <img src="{{roll.img}}" title="{{roll.name}}" width="24" height="24" alt="{{roll.name}}" />
                             </div>
