@@ -327,10 +327,15 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
   }
 
   _onDragStart (event) {
-    if ('link' in event.target.dataset) return
+    const dataset = event.target.dataset
+    if ('link' in dataset) return
 
     // Extract the data you need
-    const dragData = null
+    const dragData = {
+      type: dataset.type,
+      uuid: dataset.documentUuid,
+      origin: this.actor.uuid
+    }
 
     if (!dragData) return
 
@@ -342,6 +347,9 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
 
   async _onDrop (event) {
     const data = TextEditor.getDragEventData(event)
+
+    // Prevent duplicating items on the same actor
+    if (data.origin === this.actor.uuid) return
 
     // Handle different data types
     switch (data.type) {
