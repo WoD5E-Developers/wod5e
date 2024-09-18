@@ -270,8 +270,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     // Extract the data you need
     const dragData = {
       type: dataset.type,
-      uuid: dataset.documentUuid,
-      origin: this.actor.uuid
+      uuid: dataset.documentUuid
     }
 
     if (!dragData) return

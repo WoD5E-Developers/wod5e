@@ -1,4 +1,4 @@
-/* global foundry, game, TextEditor, DragDrop, fromUuidSync */
+/* global foundry, game, TextEditor, DragDrop, Item, SortingHelpers */
 
 // Preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
@@ -333,8 +333,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     // Extract the data you need
     const dragData = {
       type: dataset.type,
-      uuid: dataset.documentUuid,
-      origin: this.actor.uuid
+      uuid: dataset.documentUuid
     }
 
     if (!dragData) return
@@ -348,20 +347,60 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
   async _onDrop (event) {
     const data = TextEditor.getDragEventData(event)
 
-    // Prevent duplicating items on the same actor
-    if (data.origin === this.actor.uuid) return
-
     // Handle different data types
     switch (data.type) {
       case 'Item':
-        // Create the embedded item from the origin item data
-        await this.actor.createEmbeddedDocuments('Item', [
-          fromUuidSync(data.uuid)
-        ])
-        break
+        return this._onDropItem(event, data)
       case 'Actor':
-        _addActor(this.actor, data.uuid)
-        break
+        return _addActor(this.actor, data.uuid)
     }
+  }
+
+  async _onDropItem (event, data) {
+    if (!this.actor.isOwner) return false
+    const item = await Item.implementation.fromDropData(data)
+    const itemData = item.toObject()
+
+    // Handle item sorting within the same Actor
+    if (this.actor.uuid === item.parent?.uuid) return this._onSortItem(event, itemData)
+
+    // Create the owned item
+    return this._onDropItemCreate(itemData, event)
+  }
+
+  async _onDropItemCreate (itemData) {
+    itemData = itemData instanceof Array ? itemData : [itemData]
+    return this.actor.createEmbeddedDocuments("Item", itemData)
+  }
+
+  _onSortItem (event, itemData) {
+    // Get the drag source and drop target
+    const items = this.actor.items
+    const source = items.get(itemData._id)
+    const dropTarget = event.target.closest("[data-item-id]")
+    if (!dropTarget) return
+    const target = items.get(dropTarget.dataset.itemId)
+
+    // Don't sort on yourself
+    if (source.id === target.id) return
+
+    // Identify sibling items based on adjacent HTML elements
+    const siblings = []
+    for (let el of dropTarget.parentElement.children) {
+      const siblingId = el.dataset.itemId
+      if (siblingId && (siblingId !== source.id)) siblings.push(items.get(el.dataset.itemId))
+    }
+
+    // Perform the sort
+    const sortUpdates = SortingHelpers.performIntegerSort(source, {target, siblings})
+
+    const updateData = sortUpdates.map(u => {
+      const update = u.update
+      update._id = u.target._id
+      return update
+    })
+
+    // Perform the update
+    return this.actor.updateEmbeddedDocuments("Item", updateData)
   }
 }
