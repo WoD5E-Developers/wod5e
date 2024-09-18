@@ -180,6 +180,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
 
       headerbg: await getActorHeader(actor),
 
+      baseActorType: actorTypeData.baseActorType,
       currentActorType: actorTypeData.currentActorType,
       actorTypePath: actorTypeData.typePath,
       actorOptions: actorTypeData.types,
