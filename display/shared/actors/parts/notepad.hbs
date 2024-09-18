@@ -11,22 +11,24 @@
                 </prose-mirror>
             </div>
         </div>
-        <div class="note-container private-notepad">
-            <div class="flex-center">
-                <label class="resource-label field-header">
-                    {{#ifeq baseActorType 'group'}}
-                        {{localize "WOD5E.Tabs.StorytellerNotes"}}
-                    {{else}}
-                        {{localize "WOD5E.Tabs.PrivateNotes"}}
-                    {{/ifeq}}
-                </label>
+        {{#if isOwner}}
+            <div class="note-container private-notepad">
+                <div class="flex-center">
+                    <label class="resource-label field-header">
+                        {{#ifeq baseActorType 'group'}}
+                            {{localize "WOD5E.Tabs.StorytellerNotes"}}
+                        {{else}}
+                            {{localize "WOD5E.Tabs.PrivateNotes"}}
+                        {{/ifeq}}
+                    </label>
+                </div>
+                <div class="resource">
+                    <prose-mirror name="system.privatenotes" value="{{privatenotes}}"
+                        toggled="true" compact="true">
+                        {{{enrichedPrivateNotes}}}
+                    </prose-mirror>
+                </div>
             </div>
-            <div class="resource">
-                <prose-mirror name="system.privatenotes" value="{{privatenotes}}"
-                    toggled="true" compact="true">
-                    {{{enrichedPrivateNotes}}}
-                </prose-mirror>
-            </div>
-        </div>
+        {{/if}}
     </div>
 </section>
