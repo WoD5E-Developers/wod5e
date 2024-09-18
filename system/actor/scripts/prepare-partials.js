@@ -104,6 +104,7 @@ export const prepareLimitedContext = async function (context, actor) {
   context.enrichedAppearance = await TextEditor.enrichHTML(actorData.appearance)
   context.enrichedTenets = await TextEditor.enrichHTML(actorHeaders.tenets)
   context.enrichedTouchstones = await TextEditor.enrichHTML(actorHeaders.touchstones)
+  context.enrichedBiography = await TextEditor.enrichHTML(actorData.biography)
 
   return context
 }
