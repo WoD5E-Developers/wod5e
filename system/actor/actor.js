@@ -11,6 +11,7 @@ import { prepareDisciplines } from './vtm/scripts/prepare-data.js'
 import { prepareEdges } from './htr/scripts/prepare-data.js'
 import { prepareGifts, prepareFormData } from './wta/scripts/prepare-data.js'
 import { prepareExceptionalDicePools } from './scripts/prepare-exceptional-dice-pools.js'
+import { getVampireBonuses } from './vtm/scripts/vampire-bonuses.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -135,6 +136,22 @@ export class WoDActor extends Actor {
     if (actorData.type !== 'group') {
       systemData.health = await getDerivedHealth(systemData)
       systemData.willpower = await getDerivedWillpower(systemData)
+    }
+
+    // Get desperation value if the actor has a group set
+    if (actorData.type !== 'group') {
+      if (systemData.group) {
+        const group = game.actors.get(systemData.group)
+
+        if (group) {
+          systemData.desperation = group.system?.desperation || { value: 0 }
+        }
+      }
+    }
+
+    // Get bonuses relevant to particular splats
+    if (actorData.type === 'vampire') {
+      systemData.bonuses = await getVampireBonuses(systemData)
     }
   }
 

@@ -76,6 +76,11 @@ export const _onGroupUpdate = async function (group, data) {
             }
           }
         }
+
+        // Handle updating the group member's Desperation
+        if (groupUpdates.desperation) {
+          member.prepareDerivedData()
+        }
       }
     }
   }
