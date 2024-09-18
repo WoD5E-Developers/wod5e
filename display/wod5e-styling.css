@@ -1866,6 +1866,12 @@ body.uk .actor.sheet {
 .group.sheet .coterie-features .portilion {
   width: 200px;
 }
+.group.sheet .member-hunger.active {
+  background-color: var(--vampire-color-3) !important;
+}
+.group.sheet .member-rage.active {
+  background-color: var(--werewolf-color-2) !important;
+}
 
 /* Grids */
 .wod5e .grid,
