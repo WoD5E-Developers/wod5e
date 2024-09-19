@@ -6,13 +6,8 @@ export const getHunterBonuses = async function (actorData) {
       source: game.i18n.localize('WOD5E.HTR.Drive'),
       value: actorData.desperation.value,
       paths: ['all'],
-      unless: [],
+      unless: ['despair'],
       displayWhenInactive: true,
-      activeWhen: {
-        check: 'ifEquals',
-        path: 'despair.value',
-        value: 0
-      },
       applyDiceTo: 'advanced'
     }
   ]
