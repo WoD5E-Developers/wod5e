@@ -78,7 +78,7 @@ export const _onGroupUpdate = async function (group, data) {
         }
 
         // Handle updating the group member's Desperation
-        if (groupUpdates.desperation) {
+        if (data.system.desperation) {
           member.prepareDerivedData()
         }
       }

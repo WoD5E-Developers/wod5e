@@ -173,7 +173,9 @@
       "CustomModifiers": "Пользовательские модификаторы",
       "Difficulty": "Сложность",
       "Fail": "Провал",
+      "_FailureBy": "",
       "Label": "Проверка",
+      "_Margin": "",
       "Modifier": "Модификатор",
       "MortalDice": "Кости смертного",
       "RollMode": "Режим броска",
@@ -181,6 +183,7 @@
       "SelectRoll": "Сформируйте проверку",
       "Source": "Источник",
       "Success": "Успех",
+      "_SuccessBy": "",
       "Successes": "Успехов",
       "Total": "Результат"
     },

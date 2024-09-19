@@ -173,7 +173,9 @@
       "_CustomModifiers": "",
       "_Difficulty": "",
       "_Fail": "",
+      "_FailureBy": "",
       "_Label": "",
+      "_Margin": "",
       "_Modifier": "",
       "_MortalDice": "",
       "_RollMode": "",
@@ -181,6 +183,7 @@
       "_SelectRoll": "",
       "_Source": "",
       "_Success": "",
+      "_SuccessBy": "",
       "_Successes": "",
       "_Total": ""
     },

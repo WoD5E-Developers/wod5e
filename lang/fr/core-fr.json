@@ -173,7 +173,9 @@
       "CustomModifiers": "Modificateur personnalisé",
       "Difficulty": "Difficulté",
       "Fail": "Échouer",
+      "_FailureBy": "",
       "Label": "Jet",
+      "_Margin": "",
       "Modifier": "Modificateur",
       "MortalDice": "Dé mortel",
       "RollMode": "Type de jet",
@@ -181,6 +183,7 @@
       "_SelectRoll": "",
       "Source": "Source",
       "Success": "Succès",
+      "_SuccessBy": "",
       "Successes": "Succès",
       "_Total": ""
     },

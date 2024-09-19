@@ -12,6 +12,7 @@ import { prepareEdges } from './htr/scripts/prepare-data.js'
 import { prepareGifts, prepareFormData } from './wta/scripts/prepare-data.js'
 import { prepareExceptionalDicePools } from './scripts/prepare-exceptional-dice-pools.js'
 import { getVampireBonuses } from './vtm/scripts/vampire-bonuses.js'
+import { getHunterBonuses } from './htr/scripts/hunter-bonuses.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -152,6 +153,10 @@ export class WoDActor extends Actor {
     // Get bonuses relevant to particular splats
     if (actorData.type === 'vampire') {
       systemData.bonuses = await getVampireBonuses(systemData)
+    }
+
+    if (actorData.type === 'hunter') {
+      systemData.bonuses = await getHunterBonuses(systemData)
     }
   }
 

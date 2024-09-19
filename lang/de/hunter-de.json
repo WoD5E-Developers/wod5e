@@ -15,6 +15,7 @@
       "DespairFailure": "Verzweifelter Fehlschlag",
       "Desperation": "Verzweiflung",
       "DesperationDice": "Verzweiflungs-Würfel",
+      "_DesperationFailure": "",
       "DesperationSuccess": "Erfolg mit Überanstrengen oder verzweifelter Fehlschlag",
       "DesperationUnavailable": "Verzweiflung ist während des Verzweiflens nicht möglich",
       "Drive": "Antrieb",

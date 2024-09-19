@@ -331,7 +331,8 @@ class WOD5eDice {
                 const aCDValue = event.currentTarget.dataset.advancedCheckDice ? parseInt(event.currentTarget.dataset.advancedCheckDice) : 0
 
                 // Determine whether any alterations need to be made to basic dice or advanced dice
-                let applyDiceTo = 'basic'
+                // Either use the current applyDiceTo (if set), or default to 'basic'
+                let applyDiceTo = event.currentTarget.dataset.applyDiceTo || 'basic'
                 // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
                 if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
                   applyDiceTo = 'advanced'
@@ -355,7 +356,7 @@ class WOD5eDice {
                       checkValue = actorData?.rage.value
                     }
 
-                    if (newValue > actorData?.hunger.value || newValue > checkValue) {
+                    if ((newValue > actorData?.hunger.value || newValue > checkValue) && !(event.currentTarget.dataset.applyDiceTo === 'advanced')) {
                       // Check for any excess and apply it to basicDice
                       const excess = newValue - checkValue
                       newValue = checkValue

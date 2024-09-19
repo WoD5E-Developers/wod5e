@@ -2414,6 +2414,7 @@ prose-mirror .editor-menu button {
   background-color: #900;
   color: #dbdbdb;
 }
+.chat-message .roll-result-label.desperation-success,
 .chat-message .roll-result-label.desperation-failure {
   background-color: #e97c00;
 }

@@ -15,6 +15,7 @@
       "DespairFailure": "Fallimento disperato",
       "Desperation": "Disperazione",
       "DesperationDice": "Dadi disperazione?",
+      "_DesperationFailure": "",
       "DesperationSuccess": "Successo a un costo o fallimento disperato",
       "DesperationUnavailable": "Non puoi usare i dadi disperazione se se già disperato",
       "Drive": "Guidare",

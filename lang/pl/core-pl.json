@@ -173,7 +173,9 @@
       "_CustomModifiers": "",
       "Difficulty": "Trudność",
       "Fail": "Porażka",
+      "_FailureBy": "",
       "Label": "Rzut",
+      "_Margin": "",
       "Modifier": "Modyfikator",
       "_MortalDice": "",
       "_RollMode": "",
@@ -181,6 +183,7 @@
       "_SelectRoll": "",
       "_Source": "",
       "Success": "Sukces",
+      "_SuccessBy": "",
       "Successes": "Sukcesy",
       "_Total": ""
     },

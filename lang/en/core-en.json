@@ -173,7 +173,9 @@
       "CustomModifiers": "Custom Modifiers",
       "Difficulty": "Difficulty",
       "Fail": "Failure",
+      "FailureBy": "Failure by {string}",
       "Label": "Roll",
+      "Margin": "Margin",
       "Modifier": "Modifier",
       "MortalDice": "Mortal Dice",
       "RollMode": "Roll Mode",
@@ -181,6 +183,7 @@
       "SelectRoll": "Select Roll",
       "Source": "Source",
       "Success": "Success",
+      "SuccessBy": "Success by {string}",
       "Successes": "Successes",
       "Total": "Total"
     },
