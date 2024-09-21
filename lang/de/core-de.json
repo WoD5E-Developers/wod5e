@@ -173,7 +173,9 @@
       "CustomModifiers": "Eigene Modifikatoren",
       "Difficulty": "Schwierigkeit",
       "Fail": "Fehlschlag",
+      "_FailureBy": "",
       "Label": "Wurf",
+      "_Margin": "",
       "Modifier": "Modifikator",
       "MortalDice": "Würfel",
       "RollMode": "Wurf-Modus",
@@ -181,6 +183,7 @@
       "SelectRoll": "Wurf auswählen",
       "Source": "Quelle",
       "Success": "Erfolg",
+      "_SuccessBy": "",
       "Successes": "Erfolge",
       "Total": "Gesamt"
     },

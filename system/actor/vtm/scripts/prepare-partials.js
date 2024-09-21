@@ -28,7 +28,7 @@ export const prepareBloodContext = async function (context, actor) {
   context.generation = actorHeaders.generation
   context.predator = actorHeaders.predator
   context.bane = actorHeaders.bane
-  context.enrichedBane = await await TextEditor.enrichHTML(actorHeaders.bane)
+  context.enrichedBane = await TextEditor.enrichHTML(actorHeaders.bane)
   context.bloodpotency = await getBloodPotencyText(actorData.blood.potency)
 
   return context

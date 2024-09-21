@@ -1866,6 +1866,12 @@ body.uk .actor.sheet {
 .group.sheet .coterie-features .portilion {
   width: 200px;
 }
+.group.sheet .member-hunger.active {
+  background-color: var(--vampire-color-3) !important;
+}
+.group.sheet .member-rage.active {
+  background-color: var(--werewolf-color-2) !important;
+}
 
 /* Grids */
 .wod5e .grid,
@@ -1929,8 +1935,10 @@ body.uk .actor.sheet {
   align-self: flex-end;
 }
 
+.item.sheet .window-content {
+  padding: 0;
+}
 .item.sheet .item-header {
-  flex: 0 0 215px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -1947,16 +1955,31 @@ body.uk .actor.sheet {
 }
 .item.sheet .item-header .header-fields {
   flex: 1;
+  margin-top: auto;
+}
+.item.sheet .item-header .header-fields .charname input {
+  font-size: 23pt;
+}
+.item.sheet .item-header .header-fields .header-details {
+  padding: 5px;
 }
 .item.sheet .item-header input[type="number"] {
   max-width: 35px;
 }
-.item.sheet .tabs .item {
+.item.sheet .item-header .item-resource {
+  text-wrap: nowrap;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.item.sheet .tabs a.active {
   font-weight: bold;
 }
-.item.sheet .tab[data-tab="dicepool"] .remove-dice {
+.item.sheet a[data-tab="dicepool"] .remove-dice {
   flex-grow: 0;
   padding: 4px;
+}
+.item.sheet section {
+  padding: 10px 10px 0px 10px;
 }
 
 /* wod5e.css */
@@ -2066,6 +2089,18 @@ body.uk .actor.sheet {
   --actor-background-default: url(/systems/vtm5e/assets/actor/actor_background.webp);
   --actor-header-default: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp");
   --logo-default: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
+}
+.standard-form .form-group > label,
+.standard-form .form-group:hover > label {
+  color: var(--system-color-5);
+}
+.standard-form .form-group .hint,
+.standard-form .form-group:hover .hint {
+  color: var(--system-color-7);
+}
+.standard-form input[type=range] {
+  --range-thumb-background-color: var(--system-color-5);
+  --range-thumb-border-color: var(--system-dark-color-1);
 }
 .application .window-header {
   background: var(--system-color-1);
@@ -2243,6 +2278,9 @@ prose-mirror .editor-menu button {
 .item.sheet .sheet-tabs {
   background-color: var(--system-color-6);
 }
+.item.sheet .sheet-tabs a {
+  color: var(--system-color-5);
+}
 /* Sidebar */
 /* General Sidebar Styling */
 #sidebar {
@@ -2381,6 +2419,7 @@ prose-mirror .editor-menu button {
   background-color: #900;
   color: #dbdbdb;
 }
+.chat-message .roll-result-label.desperation-success,
 .chat-message .roll-result-label.desperation-failure {
   background-color: #e97c00;
 }
@@ -2466,6 +2505,7 @@ prose-mirror .editor-menu button {
   --system-dark-color-5: #ffffff9c;
   --system-dark-color-6: #ff0000;
   --system-dark-color-7: #505050;
+  --system-dark-color-8: #e6e6e6;
   --ui-background-dark-texture: url("/systems/vtm5e/assets/ui/ui_background_dark_texture.webp");
   --sidebar-background-dark: url(/systems/vtm5e/assets/ui/sidebar_dark.webp);
 }
@@ -2475,6 +2515,21 @@ prose-mirror .editor-menu button {
   /* Hunter Styling */
   /* Sidebar */
   /* Foundry Controls UI */
+}
+.dark-theme .standard-form .form-group > label,
+.dark-theme .standard-form .form-group:hover > label {
+  color: var(--system-dark-color-4);
+}
+.dark-theme .standard-form .form-group .hint,
+.dark-theme .standard-form .form-group:hover .hint {
+  color: var(--system-dark-color-8);
+}
+.dark-theme .standard-form .sheet-tabs {
+  color: var(--system-dark-color-4);
+}
+.dark-theme .standard-form input[type=range] {
+  --range-thumb-background-color: var(--system-dark-color-4);
+  --range-thumb-border-color: var(--system-dark-color-1);
 }
 .dark-theme .sheet .window-header,
 .dark-theme .dialog .window-header {
@@ -2671,7 +2726,7 @@ prose-mirror .editor-menu button {
 :root {
   --ui-background-hunter-texture: url("/systems/vtm5e/assets/ui/ui_background_hunter_texture.webp");
   --sidebar-background-hunter: url(/systems/vtm5e/assets/ui/sidebar_hunter.webp);
-  --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.png);
+  --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.png.webp);
 }
 .hunter-theme {
   /* Logo */
@@ -2724,7 +2779,7 @@ prose-mirror .editor-menu button {
   /* Foundry Controls UI */
 }
 .vampire-theme #logo {
-  content: url(/systems/vtm5e/assets/ui/VtM_Logo.png);
+  content: url(/systems/vtm5e/assets/ui/VtM_Logo.png.webp);
 }
 .vampire-theme .sheet .window-header {
   background-color: var(--vampire-color-1);
@@ -2812,7 +2867,7 @@ prose-mirror .editor-menu button {
   /* Foundry Controls UI */
 }
 .werewolf-theme #logo {
-  content: url(/systems/vtm5e/assets/ui/WtA_Logo.png);
+  content: url(/systems/vtm5e/assets/ui/WtA_Logo.png.webp);
 }
 .werewolf-theme .sheet .window-header {
   background-color: var(--werewolf-color-1);

@@ -173,7 +173,9 @@
       "_CustomModifiers": "",
       "Difficulty": "Складність",
       "Fail": "Провал",
+      "_FailureBy": "",
       "Label": "Перевірка",
+      "_Margin": "",
       "Modifier": "Модифікатор",
       "_MortalDice": "",
       "_RollMode": "",
@@ -181,6 +183,7 @@
       "_SelectRoll": "",
       "_Source": "",
       "Success": "Успіх",
+      "_SuccessBy": "",
       "Successes": "Успіхів",
       "_Total": ""
     },

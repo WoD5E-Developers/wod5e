@@ -7,7 +7,7 @@ import { prepareEdgesContext } from './scripts/prepare-partials.js'
 import { _onToggleDespair } from './scripts/toggle-despair.js'
 import { _onAddEdge, _onRemoveEdge, _onEdgeToChat } from './scripts/edges.js'
 // Base actor sheet to extend from
-import { WoDActor } from '../wod-v5-sheet.js'
+import { WoDActor } from '../wod-actor-base.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 

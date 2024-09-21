@@ -16,7 +16,7 @@
         </div>
         {{#each feature as |item key|}}
             <div class="collapsible-container">
-                <div class="flexrow item">
+                <div class="flexrow item" data-drag="true" data-item-id="{{item.id}}" data-document-uuid="{{item.uuid}}" data-type="Item">
                     <div class="item-image">
                         <img src="{{item.img}}" class="clickable" data-action="itemChat" data-item-id="{{item._id}}" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
                     </div>

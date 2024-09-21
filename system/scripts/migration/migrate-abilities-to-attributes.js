@@ -14,7 +14,7 @@ export const MigrateAbilitiesToAttributes = async function () {
 
     // Ignore all non-player sheets
     // Additionally, if actorData.attributes already exists, ignore it as well
-    if (actor.type !== 'spc' && actor.type !== 'cell' && actor.type !== 'coterie' && actor.type !== 'group' && !actorData.attributes) {
+    if (actor.type !== 'spc' && actor.type !== 'cell' && actor.type !== 'coterie' && actor.type !== 'group' && actorData.abilities) {
       // Move abilities -> attributes
       actorData.attributes = actorData.abilities
 

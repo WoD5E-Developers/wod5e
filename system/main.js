@@ -8,7 +8,6 @@ import { RenderSettings } from './ui/settings-sidebar.js'
 import { ProseMirrorSettings } from './ui/prosemirror.js'
 // Item sheets
 import { WoDItem } from './item/item.js'
-import { WoDItemSheet } from './item/item-sheet.js'
 // FVTT and module functionality
 import { preloadHandlebarsTemplates } from './scripts/templates.js'
 import { loadDiceSoNice } from './dice/dice-so-nice.js'
@@ -70,11 +69,19 @@ Hooks.once('init', async function () {
     })
   }
 
-  // Register the WoDItemSheet class, used for all items
+  // Register item sheet application classes
   Items.unregisterSheet('core', ItemSheet)
-  Items.registerSheet('vtm5e', WoDItemSheet, {
-    makeDefault: true
-  })
+  // Loop through each entry in the itemTypesList and register their sheet classes
+  const itemTypesList = ItemTypes.getList({})
+  for (const [, value] of Object.entries(itemTypesList)) {
+    const { label, types, sheetClass } = value
+
+    Items.registerSheet('vtm5e', sheetClass, {
+      label,
+      types,
+      makeDefault: true
+    })
+  }
 
   // Make Handlebars templates accessible to the system
   preloadHandlebarsTemplates()

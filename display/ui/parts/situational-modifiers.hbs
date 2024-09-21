@@ -13,7 +13,7 @@
           <div class="mod-value">{{mod.value}}</div>
           <div class="mod-active">
             <input type="checkbox" class="mod-checkbox" data-value="{{mod.value}}" data-label="{{localize mod.source}}"
-              data-advanced-check-dice="{{mod.advancedCheckDice}}" {{#if mod.isActive}}checked{{/if}}>
+              data-advanced-check-dice="{{mod.advancedCheckDice}}" data-apply-dice-to="{{mod.applyDiceTo}}" {{#if mod.isActive}}checked{{/if}}>
           </div>
         </div>
       {{/each}}

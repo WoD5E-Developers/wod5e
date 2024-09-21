@@ -24,18 +24,21 @@ export const getActorTypes = async function (actor) {
 
   if (currentActorType in playerTypes) {
     return {
+      baseActorType: currentActorType,
       currentActorType,
       typePath: 'type',
       types: playerTypes
     }
   } else if (currentActorType === 'spc') {
     return {
+      baseActorType: 'spc',
       currentActorType: actor.system.spcType,
       typePath: 'system.spcType',
       types: spcTypes
     }
   } else if (currentActorType === 'group') {
     return {
+      baseActorType: 'group',
       currentActorType: actor.system.groupType,
       typePath: 'system.groupType',
       types: groupTypes
@@ -43,6 +46,7 @@ export const getActorTypes = async function (actor) {
   } else {
     // The default is an object that has only the current type in it
     return {
+      baseActorType: currentActorType,
       currentActorType,
       typePath: 'type',
       types: {

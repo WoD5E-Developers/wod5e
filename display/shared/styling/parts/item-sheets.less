@@ -1,12 +1,15 @@
 .item.sheet {
+	.window-content {
+		padding: 0;
+	}
+
 	.item-header {
-		flex: 0 0 215px;
 		overflow: hidden;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
-	
+
 		.profile-img {
 			flex: 0 0 100px;
 			min-height: 50px;
@@ -15,26 +18,45 @@
 			width: 100px;
 			margin-right: 0;
 		}
-	
+
 		.header-fields {
 			flex: 1;
+			margin-top: auto;
+
+			.charname input {
+				font-size: 23pt;
+			}
+
+			.header-details {
+				padding: 5px;
+			}
 		}
 
 		input[type="number"] {
 			max-width: 35px;
 		}
+
+		.item-resource {
+			text-wrap: nowrap;
+			margin-left: 5px;
+			margin-right: 5px;
+		}
 	}
 
 	.tabs {
-		.item {
+		a.active {
 			font-weight: bold;
 		}
 	}
 
-	.tab[data-tab="dicepool"] {
+	a[data-tab="dicepool"] {
 		.remove-dice {
 			flex-grow: 0;
 			padding: 4px;
 		}
+	}
+
+	section {
+		padding: 10px 10px 0px 10px;
 	}
 }

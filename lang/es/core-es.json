@@ -173,7 +173,9 @@
       "CustomModifiers": "Modificadores personalizados",
       "Difficulty": "Dificultad",
       "Fail": "Fallo",
+      "_FailureBy": "",
       "Label": "Tirada",
+      "_Margin": "",
       "Modifier": "Modificador",
       "MortalDice": "Dados de mortal",
       "RollMode": "Modo de tirada",
@@ -181,6 +183,7 @@
       "_SelectRoll": "",
       "Source": "Origen",
       "Success": "Éxito",
+      "_SuccessBy": "",
       "Successes": "Éxitos",
       "_Total": ""
     },

@@ -1,4 +1,4 @@
-/* global Actor, game, foundry */
+/* global Actor, game, foundry, CONST, fromUuidSync */
 
 // Data preparation functions
 import { prepareSkills } from './scripts/prepare-skills.js'
@@ -6,11 +6,12 @@ import { prepareAttributes } from './scripts/prepare-attributes.js'
 import { getDerivedHealth } from './scripts/on-health-change.js'
 import { getDerivedWillpower } from './scripts/on-willpower-change.js'
 import { getDerivedExperience } from './scripts/experience.js'
-import { _onPlayerUpdate, _onGroupUpdate } from './scripts/ownership-updates.js'
 import { prepareDisciplines } from './vtm/scripts/prepare-data.js'
 import { prepareEdges } from './htr/scripts/prepare-data.js'
 import { prepareGifts, prepareFormData } from './wta/scripts/prepare-data.js'
 import { prepareExceptionalDicePools } from './scripts/prepare-exceptional-dice-pools.js'
+import { getVampireBonuses } from './vtm/scripts/vampire-bonuses.js'
+import { getHunterBonuses } from './htr/scripts/hunter-bonuses.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -111,6 +112,11 @@ export class WoDActor extends Actor {
         this.update({ 'system.formOverride': false })
       }
     }
+
+    // If the actor is a player, update the default permissions to limited
+    if (this.hasPlayerOwner && !this.getFlag('vtm5e', 'manualDefaultOwnership') && game.user.isGM) {
+      this.update({ 'ownership.default': CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED })
+    }
   }
 
   /**
@@ -136,6 +142,26 @@ export class WoDActor extends Actor {
       systemData.health = await getDerivedHealth(systemData)
       systemData.willpower = await getDerivedWillpower(systemData)
     }
+
+    // Get desperation value if the actor has a group set
+    if (actorData.type !== 'group') {
+      if (systemData.group) {
+        const group = game.actors.get(systemData.group)
+
+        if (group) {
+          systemData.desperation = group.system?.desperation || { value: 0 }
+        }
+      }
+    }
+
+    // Get bonuses relevant to particular splats
+    if (actorData.type === 'vampire') {
+      systemData.bonuses = await getVampireBonuses(systemData)
+    }
+
+    if (actorData.type === 'hunter') {
+      systemData.bonuses = await getHunterBonuses(systemData)
+    }
   }
 
   /**
@@ -143,7 +169,6 @@ export class WoDActor extends Actor {
    * Handle things that need to be done every update or specifically when the actor is being updated
    */
   async _onUpdate (data, options, user) {
-    await super._onUpdate(data, options, user)
     const actor = game.actors.get(data._id)
 
     // Only run through this for the storyteller
@@ -152,10 +177,30 @@ export class WoDActor extends Actor {
     // Make sure the actor exists
     if (!actor) return
 
-    // Handle data updates
-    await _onPlayerUpdate(actor, data)
-    await _onGroupUpdate(actor, data)
+    // If the default ownership is ever not limited, update the manualDefaultOwnership flag
+    if (actor.ownership.default !== CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED) {
+      await actor.setFlag('vtm5e', 'manualDefaultOwnership', true)
+    }
 
-    return data
+    // If the actor is a group...
+    if (actor.type === 'group') {
+      // Handle updating data that needs to propagate to group members
+      if (actor.system?.members) {
+        for (const memberUuid of actor.system.members) {
+          const member = fromUuidSync(memberUuid)
+          if (!member) {
+            console.warn(`Member with UUID ${memberUuid} not found.`)
+          }
+
+          // Handle updating the group member's Desperation
+          if (data.system?.desperation && member.system.gamesystem === 'hunter') {
+            member.prepareDerivedData()
+          }
+        }
+      }
+    }
+
+    // Handle the actual update
+    super._onUpdate(data, options, user)
   }
 }

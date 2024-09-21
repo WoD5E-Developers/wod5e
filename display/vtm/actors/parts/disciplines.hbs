@@ -83,7 +83,7 @@
                         </div>
                         {{#each discipline.powers as |power key|}}
                             <div class="collapsible-container">
-                                <div class="flexrow power item">
+                                <div class="flexrow power item" data-drag="true" data-item-id="{{power.id}}" data-document-uuid="{{power.uuid}}" data-type="Item">
                                     <div class="item-image">
                                         <img src="{{power.img}}">
                                     </div>
