@@ -157,6 +157,13 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
   }
 
   async prepareItems (sheetData) {
+    // Enrich item descriptions
+    sheetData.items.forEach(async (item) => {
+      if (item.system.description) {
+        item.system.enrichedDescription = await TextEditor.enrichHTML(item.system.description)
+      }
+    })
+
     // Custom rolls
     sheetData.system.customRolls = sheetData.items.filter(item =>
       item.type === 'customRoll'
