@@ -1,4 +1,4 @@
-/* global Item, Hooks, WOD5E, TextEditor */
+/* global Item, Hooks, WOD5E */
 
 /**
  * Extend the base ItemSheet document and put all our base functionality here
@@ -18,15 +18,7 @@ export class WoDItem extends Item {
    * available both inside and outside of item sheets (such as if an item
    * is queried and has a roll executed directly from it).
    */
-  async prepareDerivedData () {
-    const itemData = this
-    const systemData = itemData.system
-
-    // Prepare derived XP values
-    if (systemData.description) {
-      systemData.enrichedDescription = await TextEditor.enrichHTML(systemData.description)
-    }
-  }
+  async prepareDerivedData () {}
 }
 
 // Handle setting default item data
