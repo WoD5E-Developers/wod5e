@@ -15,7 +15,6 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/actors/parts/lock-button.hbs',
     'systems/vtm5e/display/shared/actors/parts/header-profile.hbs',
     'systems/vtm5e/display/shared/actors/parts/biography.hbs',
-    'systems/vtm5e/display/shared/actors/parts/exp.hbs',
     'systems/vtm5e/display/shared/actors/parts/features.hbs',
     'systems/vtm5e/display/shared/actors/parts/health.hbs',
     'systems/vtm5e/display/shared/actors/parts/notepad.hbs',
