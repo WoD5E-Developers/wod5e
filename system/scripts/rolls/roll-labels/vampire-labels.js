@@ -35,7 +35,7 @@ function getMessyCriticalLabel (data, difficultySet) {
     labelText = game.i18n.localize('WOD5E.VTM.MessyCritical')
   } else { // Possible messy critical
     labelClass = 'messy-critical'
-    labelText = game.i18n.localize('WOD5E.VTM.PossibleBestialFailure')
+    labelText = game.i18n.localize('WOD5E.VTM.PossibleMessyCritical')
   }
 
   return {
