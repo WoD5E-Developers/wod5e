@@ -11,9 +11,9 @@
             </span>
         </div>
         {{#if frenzyActive}}
-            <button class="vampire-button end-frenzy" type="button" name="endfrenzy">{{localize "WOD5E.VTM.EndFrenzy"}}</button>
+            <button class="vampire-button end-frenzy" data-action="endFrenzy" type="button" name="endfrenzy">{{localize "WOD5E.VTM.EndFrenzy"}}</button>
         {{else}}
-            <button class="vampire-button frenzy-roll" type="button" name="resistfrenzy">{{localize "WOD5E.VTM.ResistFrenzy"}}</button>
+            <button class="vampire-button frenzy-roll" data-action="resistFrenzy" type="button" name="resistfrenzy">{{localize "WOD5E.VTM.ResistFrenzy"}}</button>
         {{/if}}
     </div>
 </div>

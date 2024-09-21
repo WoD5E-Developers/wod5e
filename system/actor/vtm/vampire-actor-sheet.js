@@ -5,6 +5,8 @@ import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesConte
 import { prepareDisciplinesContext, prepareBloodContext } from './scripts/prepare-partials.js'
 // Various button functions
 import { _onAddDiscipline } from './scripts/disciplines.js'
+import { _onFrenzyRoll } from './scripts/frenzy-roll.js'
+import { _onEndFrenzy } from './scripts/end-frenzy.js'
 // Base actor sheet to extend from
 import { WoDActor } from '../wod-actor-base.js'
 // Mixin
@@ -18,7 +20,9 @@ export class VampireActorSheet extends HandlebarsApplicationMixin(WoDActor) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'actor', 'sheet', 'vampire'],
     actions: {
-      addDiscipline: _onAddDiscipline
+      addDiscipline: _onAddDiscipline,
+      resistFrenzy: _onFrenzyRoll,
+      endFrenzy: _onEndFrenzy
     }
   }
 
@@ -123,7 +127,7 @@ export class VampireActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     data.humanity = actorData.humanity
     data.hunger = actorData.hunger
     data.clan = actorData.clan.value
-    data.frenzyactive = actorData.frenzyActive
+    data.frenzyActive = actorData.frenzyActive
 
     return data
   }
