@@ -38,7 +38,7 @@ export async function _damageWillpower (actor, willpowerDamage) {
     }
 
     // Update the actor sheet
-    await actor.update({
+    actor.update({
       'system.willpower': {
         superficial: superWillpower,
         aggravated: aggrWillpower
