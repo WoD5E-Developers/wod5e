@@ -173,7 +173,9 @@
       "CustomModifiers": "Modificatori personalizzati",
       "Difficulty": "Difficoltà",
       "Fail": "Fallimento",
+      "_FailureBy": "",
       "Label": "Tira",
+      "_Margin": "",
       "Modifier": "Modificatori",
       "MortalDice": "Dadi mortale",
       "RollMode": "Modalità di tiro",
@@ -181,6 +183,7 @@
       "SelectRoll": "Seleziona tiro",
       "Source": "Fonte",
       "Success": "Successo",
+      "_SuccessBy": "",
       "Successes": "Successi",
       "Total": "Totale"
     },

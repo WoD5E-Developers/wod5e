@@ -8,7 +8,7 @@
                 </label>
                 <input type="text" class="number" name="system.bio.age.trueage" value="{{bio.age.trueage}}"{{#if locked}} disabled="true"{{/if}}/>
             </div>
-            {{#ifeq actor.type 'vampire'}}
+            {{#ifeq currentActorType 'vampire'}}
                 <div class="detail flexrow">
                     <label>
                         <b>{{localize "WOD5E.BiographyList.ApparentAge"}}:</b>
@@ -22,7 +22,7 @@
                 </label>
                 <input type="text" class="number" name="system.bio.dateof.birth" value="{{bio.dateof.birth}}"{{#if locked}} disabled="true"{{/if}}/>
             </div>
-            {{#ifeq actor.type 'vampire'}}
+            {{#ifeq currentActorType 'vampire'}}
                 <div class="detail flexrow">
                     <label>
                         <b>{{localize "WOD5E.BiographyList.DateOfDeath"}}:</b>

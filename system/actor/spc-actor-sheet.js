@@ -7,7 +7,7 @@ import { _onCreateExceptionalSkill, _onDeleteExceptionalSkill } from './scripts/
 import { _onCreatePower, _onDeletePower } from './scripts/spc-powers.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './wta/scripts/balance.js'
 // Base actor sheet to extend from
-import { WoDActor } from './wod-v5-sheet.js'
+import { WoDActor } from './wod-actor-base.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 

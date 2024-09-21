@@ -15,6 +15,7 @@
       "DespairFailure": "¡Fallo con desesperanza",
       "Desperation": "Desesperación",
       "DesperationDice": "Dados de desesperación",
+      "_DesperationFailure": "",
       "DesperationSuccess": "¡Éxito con extralimitación o fallo con desesperanza",
       "DesperationUnavailable": "Desesperación no disponible en desesperanza",
       "Drive": "Motivación",

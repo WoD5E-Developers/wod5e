@@ -40,6 +40,11 @@ export const _onConfirmRoll = async function (dataset, actor) {
   const selectors = dataset.selectors ? dataset.selectors.split(' ') : []
   const macro = dataset.itemId ? data.macroid : dataset.macroid
 
+  // Add despair to the selectors if the Hunter is in despair
+  if (actor.type === 'hunter' && actor.system.despair.value === 1) {
+    selectors.push('despair')
+  }
+
   // Variables yet to be defined
   let basicDice, advancedDice
 

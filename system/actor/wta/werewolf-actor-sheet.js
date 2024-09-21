@@ -9,7 +9,7 @@ import { _onFormEdit, _onFormToChat, _onShiftForm, _onLostTheWolf } from './scri
 import { _onBeginFrenzy, _onEndFrenzy } from './scripts/frenzy.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './scripts/balance.js'
 // Base actor sheet to extend from
-import { WoDActor } from '../wod-v5-sheet.js'
+import { WoDActor } from '../wod-actor-base.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 

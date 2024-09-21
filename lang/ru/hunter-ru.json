@@ -15,6 +15,7 @@
       "DespairFailure": "Безысходный провал",
       "Desperation": "Отчаяние",
       "DesperationDice": "Кости Отчаяния",
+      "_DesperationFailure": "",
       "DesperationSuccess": "Успех с Перебором или Безысходный провал",
       "DesperationUnavailable": "Отчаяние недоступно при Безысходности",
       "Drive": "Мотивация",

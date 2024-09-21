@@ -19,20 +19,20 @@
         margin-bottom: 0;
         align-self: center;
       }
-  
+
       .group-core-details {
         place-self: flex-end;
 
         .name-and-lock {
           flex-wrap: nowrap;
-        
+
           .charname {
             min-width: 300px;
           }
         }
       }
     }
-  
+
     .group-type-container {
       width: 100%;
 
@@ -57,12 +57,12 @@
       .group-sheet .members .group-member {
         padding: 5px 0;
       }
-      
+
       .actor-name {
         font-size: 20px;
         font-weight: bold;
       }
-      
+
       .actor-image {
         max-width: 60px;
 
@@ -71,7 +71,7 @@
           cursor: pointer;
         }
       }
-      
+
       .sub-item {
         display: inline-flex;
         flex-direction: column;
@@ -83,7 +83,7 @@
           font-weight: bold;
         }
       }
-      
+
       .sup-item {
         flex-grow: 0;
         display: flex;
@@ -93,7 +93,7 @@
           margin-right: 2.5px;
         }
       }
-      
+
       .sup-item.type {
         text-transform: uppercase;
         margin-right: 10px;
@@ -123,5 +123,13 @@
     .portilion {
       width: 200px;
     }
+  }
+
+  .member-hunger.active {
+    background-color: var(--vampire-color-3) !important;
+  }
+
+  .member-rage.active {
+    background-color: var(--werewolf-color-2) !important;
   }
 }
