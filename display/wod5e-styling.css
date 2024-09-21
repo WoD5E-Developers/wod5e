@@ -1593,6 +1593,7 @@ body.uk .actor.sheet {
   width: 50px;
   justify-content: flex-start;
   overflow: hidden;
+  border: 0;
 }
 .actor.sheet .sheet-tabs > [data-tab] {
   display: flex;
