@@ -2,6 +2,7 @@
 
 // Preparation functions
 import { prepareDescriptionContext, prepareDicepoolContext, prepareMacroContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+import { Gifts } from '../../api/def/gifts.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -67,7 +68,11 @@ export class GiftItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     const item = this.item
     const itemData = item.system
 
-    console.log(itemData)
+    data.giftOptions = Gifts.getList({})
+    data.selectedGift = itemData.giftType
+    data.level = itemData.level
+    data.cost = itemData.cost
+    data.willpowercost = itemData.willpowercost
 
     return data
   }

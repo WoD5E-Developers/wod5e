@@ -1966,6 +1966,11 @@ body.uk .actor.sheet {
 .item.sheet .item-header input[type="number"] {
   max-width: 35px;
 }
+.item.sheet .item-header .item-resource {
+  text-wrap: nowrap;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 .item.sheet .tabs a.active {
   font-weight: bold;
 }
