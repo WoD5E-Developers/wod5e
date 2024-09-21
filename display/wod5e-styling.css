@@ -1936,9 +1936,15 @@ body.uk .actor.sheet {
   align-self: flex-end;
 }
 
+.dialog-app .window-content,
 .item.sheet .window-content {
   padding: 0;
 }
+.dialog-app section.tab,
+.item.sheet section.tab {
+  overflow-y: scroll;
+}
+.dialog-app .item-header,
 .item.sheet .item-header {
   overflow: hidden;
   display: flex;
@@ -1946,6 +1952,7 @@ body.uk .actor.sheet {
   justify-content: flex-start;
   align-items: center;
 }
+.dialog-app .item-header .profile-img,
 .item.sheet .item-header .profile-img {
   flex: 0 0 100px;
   min-height: 50px;
@@ -1954,31 +1961,44 @@ body.uk .actor.sheet {
   width: 100px;
   margin-right: 0;
 }
+.dialog-app .item-header .header-fields,
 .item.sheet .item-header .header-fields {
   flex: 1;
   margin-top: auto;
 }
+.dialog-app .item-header .header-fields .charname input,
 .item.sheet .item-header .header-fields .charname input {
   font-size: 23pt;
 }
+.dialog-app .item-header .header-fields h1.skill-name,
+.item.sheet .item-header .header-fields h1.skill-name {
+  margin-bottom: 0;
+  font-size: 40pt;
+}
+.dialog-app .item-header .header-fields .header-details,
 .item.sheet .item-header .header-fields .header-details {
   padding: 5px;
 }
+.dialog-app .item-header input[type="number"],
 .item.sheet .item-header input[type="number"] {
   max-width: 35px;
 }
+.dialog-app .item-header .item-resource,
 .item.sheet .item-header .item-resource {
   text-wrap: nowrap;
   margin-left: 5px;
   margin-right: 5px;
 }
+.dialog-app .tabs a.active,
 .item.sheet .tabs a.active {
   font-weight: bold;
 }
+.dialog-app a[data-tab="dicepool"] .remove-dice,
 .item.sheet a[data-tab="dicepool"] .remove-dice {
   flex-grow: 0;
   padding: 4px;
 }
+.dialog-app section,
 .item.sheet section {
   padding: 10px 10px 0px 10px;
 }
@@ -2276,9 +2296,11 @@ prose-mirror .editor-menu button {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
 }
 /* Item Sheets */
+.dialog-app .sheet-tabs,
 .item.sheet .sheet-tabs {
   background-color: var(--system-color-6);
 }
+.dialog-app .sheet-tabs a,
 .item.sheet .sheet-tabs a {
   color: var(--system-color-5);
 }
@@ -2645,10 +2667,12 @@ prose-mirror .editor-menu button {
   color: var(--system-dark-color-1);
   background-color: #FFF;
 }
+.dark-theme .dialog-app .window-content,
 .dark-theme .item.sheet .window-content,
 .dark-theme .dialog .window-content {
   background: var(--system-dark-color-2);
 }
+.dark-theme .dialog-app input,
 .dark-theme .item.sheet input,
 .dark-theme .dialog input {
   background-color: var(--system-dark-color-2);

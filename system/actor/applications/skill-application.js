@@ -31,7 +31,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
       title: 'Skill Editor',
       resizable: true
     },
-    classes: ['wod5e', 'sheet', 'application'],
+    classes: ['wod5e', 'dialog-app', 'sheet', 'application'],
     position: {
       width: 480,
       height: 400
