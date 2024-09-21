@@ -82,6 +82,22 @@ export const _onRollItem = async function (event, target) {
     }
   }
 
+  // Some checks for selectors we may need to apply based on the item type
+  if (item.type === 'power') {
+    selectors.push('disciplines')
+    selectors.push(itemData.discipline)
+  }
+
+  if (item.type === 'edgepool') {
+    selectors.push('edges')
+    selectors.push(itemData.edge)
+  }
+
+  if (item.type === 'gift') {
+    selectors.push('gifts')
+    selectors.push(itemData.giftType)
+  }
+
   // Send the roll to the system
   WOD5eDice.Roll({
     basicDice,
