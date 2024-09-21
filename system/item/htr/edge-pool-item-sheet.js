@@ -2,6 +2,7 @@
 
 // Preparation functions
 import { prepareDescriptionContext, prepareDicepoolContext } from '../scripts/prepare-partials.js'
+import { Edges } from '../../api/def/edges.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -48,6 +49,11 @@ export class EdgePoolItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   async _prepareContext () {
     // Top-level variables
     const data = await super._prepareContext()
+    const item = this.item
+    const itemData = item.system
+
+    data.edgeOptions = Edges.getList({})
+    data.selectedEdge = itemData.edge
 
     return data
   }

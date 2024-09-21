@@ -2,6 +2,7 @@
 
 // Preparation functions
 import { prepareDescriptionContext, prepareDicepoolContext, prepareMacroContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+import { Edges } from '../../api/def/edges.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -67,7 +68,8 @@ export class PerkItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     const item = this.item
     const itemData = item.system
 
-    console.log(itemData)
+    data.edgeOptions = Edges.getList({})
+    data.selectedEdge = itemData.edge
 
     return data
   }
