@@ -1,5 +1,6 @@
 /* global foundry, game, TextEditor */
 
+import { generateLocalizedLabel } from '../../../api/generate-localization.js'
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 
 export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -10,7 +11,7 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
   }
 
   get title () {
-    return `Wereform Editor - ${this.data.formName}`
+    return `Wereform Editor - ${generateLocalizedLabel(this.data.form, 'wereform')}`
   }
 
   get document () {

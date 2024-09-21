@@ -24,6 +24,9 @@ export const generateLocalizedLabel = function (string = '', type = '') {
   } else if (type === 'gifts' || type === 'gift') { // Gifts
     const gifts = WOD5E.Gifts.getList({})
     return findLabel(gifts, string)
+  } else if (type === 'wereform') { // Wereforms
+    const wereforms = WOD5E.WereForms.getList({})
+    return findLabel(wereforms, string)
   } else if (type === 'renown') { // Renown
     const renown = WOD5E.Renown.getList({})
     return findLabel(renown, string)
