@@ -44,6 +44,27 @@ export const _onRollItem = async function (event, target) {
     valuePaths.push(`${dicepool[dice].path}.value`)
   }
 
+  // Add despair to the selectors if the Hunter is in despair
+  if (actor.type === 'hunter' && actor.system.despair.value === 1) {
+    selectors.push('despair')
+  }
+
+  // Some checks for selectors we may need to apply based on the item type
+  if (item.type === 'power') {
+    selectors.push('disciplines')
+    selectors.push(itemData.discipline)
+  }
+
+  if (item.type === 'edgepool') {
+    selectors.push('edges')
+    selectors.push(itemData.edge)
+  }
+
+  if (item.type === 'gift') {
+    selectors.push('gifts')
+    selectors.push(itemData.giftType)
+  }
+
   // Handle getting any situational modifiers
   const activeBonuses = await getActiveBonuses({
     actor,
@@ -80,22 +101,6 @@ export const _onRollItem = async function (event, target) {
       // the number of rage dice from them, minimum zero
       basicDice = Math.max(basicDice - advancedDice, 0)
     }
-  }
-
-  // Some checks for selectors we may need to apply based on the item type
-  if (item.type === 'power') {
-    selectors.push('disciplines')
-    selectors.push(itemData.discipline)
-  }
-
-  if (item.type === 'edgepool') {
-    selectors.push('edges')
-    selectors.push(itemData.edge)
-  }
-
-  if (item.type === 'gift') {
-    selectors.push('gifts')
-    selectors.push(itemData.giftType)
   }
 
   // Send the roll to the system
