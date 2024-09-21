@@ -193,7 +193,7 @@ export class WoDActor extends Actor {
           }
 
           // Handle updating the group member's Desperation
-          if (data.system.desperation) {
+          if (data.system?.desperation && member.system.gamesystem === 'hunter') {
             member.prepareDerivedData()
           }
         }
