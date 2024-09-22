@@ -2,8 +2,13 @@
     <div class="header-profile-img">
         <img class="profile-img" data-action="editImage" src="{{img}}" title="{{actor.name}}"/>
     </div>
-    <div class="flexrow name-field">
-        <input class="charname" name="name" type="text" value="{{name}}" placeholder="{{localize 'WOD5E.Name'}}" />
-        {{> "systems/vtm5e/display/shared/actors/parts/lock-button.hbs"}}
+    <div class="flexrow name-field{{#if locked}} clickthrough{{/if}}">
+        {{#if locked}}
+            <div class="charname">
+                {{name}}
+            </div>
+        {{else}}
+            <input class="charname" name="name" type="text" value="{{name}}" placeholder="{{localize 'WOD5E.Name'}}"/>
+        {{/if}}
     </div>
 </div>
