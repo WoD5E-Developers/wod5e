@@ -4,7 +4,7 @@
 import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from '../scripts/prepare-partials.js'
 import { prepareDisciplinesContext, prepareBloodContext } from './scripts/prepare-partials.js'
 // Various button functions
-import { _onAddDiscipline } from './scripts/disciplines.js'
+import { _onAddDiscipline, _onDisciplineToChat, _onRemoveDiscipline } from './scripts/disciplines.js'
 import { _onFrenzyRoll } from './scripts/frenzy-roll.js'
 import { _onEndFrenzy } from './scripts/end-frenzy.js'
 // Base actor sheet to extend from
@@ -21,6 +21,8 @@ export class VampireActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     classes: ['wod5e', 'actor', 'sheet', 'vampire'],
     actions: {
       addDiscipline: _onAddDiscipline,
+      removeDiscipline: _onRemoveDiscipline,
+      disciplineChat: _onDisciplineToChat,
       resistFrenzy: _onFrenzyRoll,
       endFrenzy: _onEndFrenzy
     }
