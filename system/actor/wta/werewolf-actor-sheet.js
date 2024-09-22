@@ -137,6 +137,8 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     data.rage = actorData.rage
     data.frenzyActive = actorData.frenzyActive
     data.lostTheWolf = data.rage.value === 0
+    data.crinosHealth = actorData.crinosHealth
+    data.activeForm = actorData.activeForm
 
     // Check if the actor has lost the wolf and they're in a supernatural form
     // If so, trigger onLostTheWolf and prompt a shift down

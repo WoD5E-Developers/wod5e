@@ -20,7 +20,6 @@ export const prepareWolfContext = async function (context, actor) {
   context.tab = context.tabs.wolf
 
   // Part-specific data
-  context.activeForm = actorData.activeForm
   context.forms = actorData.forms
   context.balance = actorData.balance
   context.rage = actorData.rage
