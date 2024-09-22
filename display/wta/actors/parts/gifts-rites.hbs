@@ -37,7 +37,7 @@
                                 </a>
                                 <!-- Icon to delete the gift (as long as it doesn't have any powers) -->
                                 {{#if (eq gift.powers.length 0)}}
-                                    <a class="item-control gift-delete" data-action="deleteGift" title="{{localize 'WOD5E.Delete'}}" data-gift="{{key}}">
+                                    <a class="item-control gift-delete" data-action="removeGift" title="{{localize 'WOD5E.Delete'}}" data-gift="{{key}}">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 {{/if}}

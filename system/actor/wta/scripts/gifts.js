@@ -112,7 +112,7 @@ export const _onGiftToChat = async function (event, target) {
   const gift = actor.system.gifts[target.getAttribute('data-gift')]
 
   await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
-    name: game.i18n.localize(gift.name),
+    name: gift.displayName,
     img: 'icons/svg/dice-target.svg',
     description: gift.description
   }).then(html => {
