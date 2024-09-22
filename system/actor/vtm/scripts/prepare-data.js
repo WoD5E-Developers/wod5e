@@ -20,17 +20,21 @@ export const prepareDisciplines = async function (actor) {
     // If the actor has a discipline with the key, grab its current values
     if (Object.prototype.hasOwnProperty.call(disciplines, id)) {
       disciplineData = Object.assign({
-        value: disciplines[id].value,
+        id,
+        value: disciplines[id].value || 0,
         powers: disciplines[id].powers || [],
         description: disciplines[id].description,
-        visible: disciplines[id].visible
+        visible: disciplines[id].visible,
+        selected: disciplines[id].selected || false
       }, value)
     } else { // Otherwise, add it to the actor and set it as some default data
       disciplineData = Object.assign({
+        id,
         value: 0,
         visible: false,
         description: '',
-        powers: []
+        powers: [],
+        selected: false
       }, value)
     }
 

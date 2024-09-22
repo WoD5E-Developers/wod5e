@@ -1,0 +1,94 @@
+.powers-display-tree {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  .parent {
+    font-weight: bold;
+    flex-direction: row;
+    display: flex;
+    margin-left: 8px;
+
+    .item-controls {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+
+  ul {
+    padding-left: 20px;
+    position: relative;
+    list-style-type: none;
+    margin-bottom: 20px !important;
+  }
+
+  ul:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 18px;
+    width: 2px;
+    background-color: darkred;
+    height: calc(100% - 14px);
+  }
+
+  li {
+    position: relative;
+    padding: 10px 0 0 20px;
+
+    span {
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+      position: relative;
+    }
+  }
+
+  > li {
+    position: relative;
+    padding-left: 20px;
+  }
+
+  li:before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 20px;
+    height: 1px;
+    background-color: darkred;
+  }
+
+  li:first-child:after {
+    top: 15px;
+  }
+
+  li:last-child:after {
+    height: 50%;
+    top: auto;
+    bottom: 0;
+  }
+
+  .icon {
+    width: 20px;
+    max-width: 20px;
+    height: 20px;
+    max-height: 20px;
+    background-color: grey;
+    border: 1px solid black;
+    margin-right: 10px;
+    background-size: cover;
+  }
+
+  .icon.category-select,
+  .icon.power-select {
+    cursor: pointer;
+  }
+
+  .power-resource-dots {
+    display: flex;
+    justify-content: right;
+  }
+}

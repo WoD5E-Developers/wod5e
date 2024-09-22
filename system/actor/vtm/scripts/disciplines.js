@@ -40,8 +40,12 @@ export const _onAddDiscipline = async function (event) {
       callback: async (html) => {
         disciplineSelected = html.find('#disciplineSelect')[0].value
 
-        // Make the edge visible
-        await actor.update({ [`system.disciplines.${disciplineSelected}.visible`]: true })
+        // Make the discipline visible
+        actor.update({ [`system.disciplines.${disciplineSelected}.visible`]: true })
+
+        // Update the currently selected discipline and power
+        _updateSelectedDiscipline(actor, disciplineSelected)
+        _updateSelectedPower(actor, '')
       }
     },
     cancel: {
@@ -90,5 +94,99 @@ export const _onDisciplineToChat = async function (event, target) {
     ChatMessage.create({
       content: html
     })
+  })
+}
+
+/** Select a discipline to display */
+export const _onSelectDiscipline = async function (event, target) {
+  event.preventDefault()
+
+  // Top-level variables
+  const actor = this.actor
+  const discipline = target.getAttribute('data-discipline')
+
+  _updateSelectedDiscipline(actor, discipline)
+}
+
+/** Select a power to display */
+export const _onSelectDisciplinePower = async function (event, target) {
+  event.preventDefault()
+
+  // Top-level variables
+  const actor = this.actor
+  const power = target.getAttribute('data-power')
+
+  _updateSelectedPower(actor, power)
+}
+
+export const _updateSelectedPower = async function (actor, power) {
+  // Variables yet to be defined
+  const updatedData = {}
+
+  // Make sure we actually have a valid power defined
+  if (power && actor.items.get(power)) {
+    const powerItem = actor.items.get(power)
+    const discipline = powerItem.system.discipline
+
+    // Update the selected power
+    updatedData.selectedDisciplinePower = power
+    powerItem.update({
+      system: {
+        selected: true
+      }
+    })
+
+    // Update the selected disciplines
+    _updateSelectedDiscipline(actor, discipline)
+  } else {
+    // Revert to an empty string
+    updatedData.selectedDisciplinePower = ''
+  }
+
+  // Unselect the previously selected power
+  const previouslySelectedPower = actor.system?.selectedDisciplinePower
+  if (previouslySelectedPower && actor.items.get(previouslySelectedPower) && previouslySelectedPower !== power) {
+    actor.items.get(previouslySelectedPower).update({
+      system: {
+        selected: false
+      }
+    })
+  }
+
+  // Update the actor data
+  actor.update({
+    system: updatedData
+  })
+}
+
+export const _updateSelectedDiscipline = async function (actor, discipline) {
+  // Variables yet to be defined
+  const updatedData = {}
+
+  // Make sure we actually have a discipline defined
+  if (discipline && actor.system.disciplines[discipline]) {
+    updatedData.disciplines ??= {}
+    updatedData.disciplines[discipline] ??= {}
+
+    // Update the selected disciplines
+    updatedData.selectedDiscipline = discipline
+    updatedData.disciplines[discipline].selected = true
+
+  } else {
+    // Revert to an empty string
+    updatedData.selectedDiscipline = ''
+  }
+
+  // Unselect the previously selected discipline
+
+  const previouslySelectedDiscipline = actor.system?.selectedDiscipline
+  if (previouslySelectedDiscipline && previouslySelectedDiscipline !== discipline) {
+    updatedData.disciplines[previouslySelectedDiscipline] ??= {}
+    updatedData.disciplines[previouslySelectedDiscipline].selected = false
+  }
+
+  // Update the actor data
+  actor.update({
+    system: updatedData
   })
 }
