@@ -268,7 +268,6 @@
 
   /* Collapsible Descriptions */
   .collapsible-content {
-    padding: 0 1em;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
@@ -372,7 +371,9 @@
     width: 50px;
     justify-content: flex-start;
     overflow: hidden;
-    border: 0;
+    gap: unset;
+    border-top: 0;
+    border-bottom: 0;
 
     > [data-tab] {
       display: flex;
