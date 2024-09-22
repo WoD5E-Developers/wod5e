@@ -12,7 +12,8 @@
   border-bottom: 2px solid var(--hunter-color-1);
 }
 .actor.sheet.hunter .actor-header .despair {
-  height: 30px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .actor.sheet.hunter .profile-img,
 .actor.sheet.hunter .actor-header input,
@@ -1362,7 +1363,7 @@ body.uk .actor.sheet {
 .actor.sheet .actor-header input,
 .actor.sheet .actor-header .resource {
   margin-bottom: 5px;
-  height: 30px;
+  min-height: 30px;
 }
 .actor.sheet .actor-header .header-profile {
   display: flex;
