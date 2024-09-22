@@ -829,7 +829,7 @@
     },
     "power": {
       "templates": ["base"],
-      "discipline": "rituals",
+      "discipline": "aniamlism",
       "duration": "",
       "level": 1,
       "dicepool": {},
