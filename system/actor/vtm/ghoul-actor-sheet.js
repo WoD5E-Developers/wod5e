@@ -4,7 +4,7 @@
 import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from '../scripts/prepare-partials.js'
 import { prepareDisciplinesContext } from './scripts/prepare-partials.js'
 // Various button functions
-import { _onAddDiscipline } from './scripts/disciplines.js'
+import { _onAddDiscipline, _onRemoveDiscipline, _onDisciplineToChat } from './scripts/disciplines.js'
 // Base actor sheet to extend from
 import { WoDActor } from '../wod-actor-base.js'
 // Mixin
@@ -18,7 +18,9 @@ export class GhoulActorSheet extends HandlebarsApplicationMixin(WoDActor) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'actor', 'sheet', 'vampire'],
     actions: {
-      addDiscipline: _onAddDiscipline
+      addDiscipline: _onAddDiscipline,
+      removeDiscipline: _onRemoveDiscipline,
+      disciplineChat: _onDisciplineToChat
     }
   }
 
