@@ -169,7 +169,6 @@ export const _updateSelectedEdge = async function (actor, edge) {
     // Update the selected edges
     updatedData.selectedEdge = edge
     updatedData.edges[edge].selected = true
-
   } else {
     // Revert to an empty string
     updatedData.selectedEdge = ''

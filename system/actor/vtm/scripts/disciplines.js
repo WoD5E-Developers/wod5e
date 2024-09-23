@@ -171,7 +171,6 @@ export const _updateSelectedDiscipline = async function (actor, discipline) {
     // Update the selected disciplines
     updatedData.selectedDiscipline = discipline
     updatedData.disciplines[discipline].selected = true
-
   } else {
     // Revert to an empty string
     updatedData.selectedDiscipline = ''
