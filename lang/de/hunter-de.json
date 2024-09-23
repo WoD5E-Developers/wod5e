@@ -33,6 +33,8 @@
       "NewPerk": "Neue Verstärkung",
       "_NewStringEdgePool": "",
       "_NewStringPerk": "",
+      "_NoEdgeSelected": "",
+      "_NoPerkSelected": "",
       "Ordnance": "Sprengstoff",
       "_Perks": "",
       "PossibleDesperationFailure": "Mögliches Überanstrengen oder verzweifelter Fehlschlag",

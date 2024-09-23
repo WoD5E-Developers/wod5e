@@ -79,55 +79,19 @@
   }
 
   .tab[data-tab="edges"] {
-    .perks-list .edge {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .edges-list {
-      display: flex;
-      flex-direction: column;
-      max-width: 300px;
-      margin: 0px 10px 10px 10px;
-
-      .item-header {
-        border-bottom: 1px solid var(--system-color-5);
+    .powers-display-tree {
+      ul:before {
+        background-color: var(--hunter-color-1);
       }
 
-      .item-name {
-        text-wrap: nowrap;
-      }
-
-      .edge-description {
-        max-height: 150px;
-        margin-bottom: 5px;
+      li:before {
+        background-color: var(--hunter-color-1);
       }
     }
 
-    .perks-list {
-      .edge {
-        .edge-pools {
-          border-top: 1px solid var(--system-color-5);
-
-          .edge-pool-label {
-            text-align: center;
-            padding: 2px;
-          }
-
-          .item-controls {
-            text-align: right;
-            display: contents;
-          }
-        }
-
-        .add-edge-pool {
-          font-weight: bold;
-        }
-
-        .add-edge-pool:hover {
-          cursor: pointer;
-        }
-      }
+    .edge-description {
+      margin-bottom: 5px;
+      border-bottom: 1px solid var(--system-color-5);
     }
   }
 }
@@ -156,17 +120,6 @@
   .hunter-button {
     background-color: var(--hunter-color-2);
     border: 1px solid var(--hunter-color-1);
-  }
-}
-
-.hunter.sheet.window-app {
-  .window-resizable-handle {
-    border-top: 3px double var(--hunter-color-1);
-    border-left: 3px double var(--hunter-color-1);
-    border-bottom: 1px solid var(--hunter-color-1);
-    border-right: 1px solid var(--hunter-color-1);
-    background-color: var(--hunter-color-2);
-    color: var(--system-color-7);
   }
 }
 
