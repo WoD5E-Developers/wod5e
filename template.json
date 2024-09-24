@@ -829,7 +829,7 @@
     },
     "power": {
       "templates": ["base"],
-      "discipline": "aniamlism",
+      "discipline": "animalism",
       "duration": "",
       "level": 1,
       "dicepool": {},
