@@ -125,24 +125,22 @@
                                     </b>
                                 </div>
                             </div>
-                            {{#if selectedDisciplinePower.system.cost}}
+                            {{#ifgr selectedDisciplinePower.system.cost 0}}
                                 <div class="flex-center">
                                     <div>
                                         <b>
                                             {{localize 'WOD5E.ItemsList.Cost'}}:
                                             {{selectedDisciplinePower.system.cost}} {{localize 'WOD5E.VTM.RouseChecks'}}
                                             <!-- Icon to roll a power's dicepool -->
-                                            {{#ifgr selectedDisciplinePower.system.cost 0}}
-                                                <a class="item-image rollable-item" data-action="roll" data-disable-basic-dice="true" data-use-absolute-value="true"
-                                                    data-absolute-value="{{selectedDisciplinePower.system.cost}}" data-label="{{localize 'WOD5E.VTM.RousingBlood'}} - {{selectedDisciplinePower.name}}" data-increase-hunger="true"
-                                                    title="{{localize 'WOD5E.VTM.RollRouse'}}">
-                                                    <i class="fa-solid fa-dice-d10"></i>
-                                                </a>
-                                            {{/ifgr}}
+                                            <a class="item-image rollable-item" data-action="roll" data-disable-basic-dice="true" data-use-absolute-value="true"
+                                                data-absolute-value="{{selectedDisciplinePower.system.cost}}" data-label="{{localize 'WOD5E.VTM.RousingBlood'}} - {{selectedDisciplinePower.name}}" data-increase-hunger="true"
+                                                title="{{localize 'WOD5E.VTM.RollRouse'}}">
+                                                <i class="fa-solid fa-dice-d10"></i>
+                                            </a>
                                         </b>
                                     </div>
                                 </div>
-                            {{/if}}
+                            {{/ifgr}}
                         </div>
                         {{#if selectedDisciplinePower.system.enrichedDescription}}
                             <div class="power-description">
