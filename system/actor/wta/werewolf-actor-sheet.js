@@ -4,7 +4,7 @@
 import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from '../scripts/prepare-partials.js'
 import { prepareGiftsContext, prepareWolfContext } from './scripts/prepare-partials.js'
 // Various button functions
-import { _onAddGift, _onRemoveGift, _onGiftToChat } from './scripts/gifts.js'
+import { _onAddGift, _onRemoveGift, _onGiftToChat, _onSelectGift, _onSelectGiftPower } from './scripts/gifts.js'
 import { _onFormEdit, _onFormToChat, _onShiftForm, _onLostTheWolf } from './scripts/forms.js'
 import { _onBeginFrenzy, _onEndFrenzy } from './scripts/frenzy.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './scripts/balance.js'
@@ -30,7 +30,9 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       beginFrenzy: _onBeginFrenzy,
       endFrenzy: _onEndFrenzy,
       haranoRoll: _onHaranoRoll,
-      haugloskRoll: _onHaugloskRoll
+      haugloskRoll: _onHaugloskRoll,
+      selectGift: _onSelectGift,
+      selectGiftPower: _onSelectGiftPower
     }
   }
 
@@ -89,7 +91,7 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     gifts: {
       id: 'gifts',
       group: 'primary',
-      title: 'WOD5E.WTA.Gifts',
+      title: 'WOD5E.WTA.GiftsAndRenown',
       icon: '<span class="wod5e-symbol">h</span>'
     },
     wolf: {

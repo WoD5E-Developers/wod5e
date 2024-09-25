@@ -4,7 +4,6 @@
 	}
 
 	.item-header {
-		overflow: hidden;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
@@ -57,7 +56,12 @@
 		}
 	}
 
-	section {
+	section.tab {
 		padding: 10px 10px 0px 10px;
+		overflow-y: scroll;
+
+		prose-mirror {
+			max-height: fit-content;
+		}
 	}
 }

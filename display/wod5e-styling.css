@@ -1915,7 +1915,6 @@ body.uk .actor.sheet {
   padding: 0;
 }
 .item.sheet .item-header {
-  overflow: hidden;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -1955,8 +1954,12 @@ body.uk .actor.sheet {
   flex-grow: 0;
   padding: 4px;
 }
-.item.sheet section {
+.item.sheet section.tab {
   padding: 10px 10px 0px 10px;
+  overflow-y: scroll;
+}
+.item.sheet section.tab prose-mirror {
+  max-height: fit-content;
 }
 
 /* wod5e.css */

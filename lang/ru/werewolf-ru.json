@@ -35,6 +35,7 @@
       "GhostCouncil": "Призрачный совет",
       "Gift": "дара",
       "Gifts": "Дары",
+      "_GiftsAndRenown": "",
       "GiftsandRites": "Дары и Обряды",
       "GiftType": "Тип дара",
       "GlabroName": "Глабро",
@@ -73,6 +74,8 @@
       "NewGift": "Новый дар",
       "NewRite": "Новый обряд",
       "_NewStringGift": "",
+      "_NoGiftSelected": "",
+      "_NoPowerSelected": "",
       "_Pack": "",
       "Patron": "Дух-Покровитель",
       "Philodox": "Филодокс",
@@ -80,6 +83,8 @@
       "PostFormToChat": "В чат",
       "Ragabash": "Рагабаш",
       "Rage": "Ярость",
+      "_RageCheck": "",
+      "_RageChecks": "",
       "RageCost": "Кубик ярости",
       "_RageDice": "",
       "_RageFailure": "",
@@ -99,7 +104,8 @@
       "Tribe": "Племя",
       "_WerewolfDice": "",
       "_WillpowerCost": "",
-      "Wisdom": "Мудрость"
+      "Wisdom": "Мудрость",
+      "_Wolf": ""
     }
   }
 }

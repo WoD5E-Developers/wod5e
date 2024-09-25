@@ -41,7 +41,11 @@ export const _onAddGift = async function (event) {
         giftSelected = html.find('#giftSelect')[0].value
 
         // Make the edge visible
-        await actor.update({ [`system.gifts.${giftSelected}.visible`]: true })
+        actor.update({ [`system.gifts.${giftSelected}.visible`]: true })
+
+        // Update the currently selected discipline and power
+        _updateSelectedGift(actor, giftSelected)
+        _updateSelectedPower(actor, '')
       }
     },
     cancel: {
@@ -69,7 +73,7 @@ export const _onRemoveGift = async function (event, target) {
   const actor = this.actor
   const gift = target.getAttribute('data-gift')
 
-  await actor.update({
+  actor.update({
     [`system.gifts.${gift}.visible`]: false
   })
 }
@@ -119,5 +123,98 @@ export const _onGiftToChat = async function (event, target) {
     ChatMessage.create({
       content: html
     })
+  })
+}
+
+/** Select a gift to display */
+export const _onSelectGift = async function (event, target) {
+  event.preventDefault()
+
+  // Top-level variables
+  const actor = this.actor
+  const gift = target.getAttribute('data-gift')
+
+  _updateSelectedGift(actor, gift)
+}
+
+/** Select a power to display */
+export const _onSelectGiftPower = async function (event, target) {
+  event.preventDefault()
+
+  // Top-level variables
+  const actor = this.actor
+  const power = target.getAttribute('data-power')
+
+  _updateSelectedPower(actor, power)
+}
+
+export const _updateSelectedPower = async function (actor, power) {
+  // Variables yet to be defined
+  const updatedData = {}
+
+  // Make sure we actually have a valid power defined
+  if (power && actor.items.get(power)) {
+    const powerItem = actor.items.get(power)
+    const gift = powerItem.system.gift
+
+    // Update the selected power
+    updatedData.selectedGiftPower = power
+    powerItem.update({
+      system: {
+        selected: true
+      }
+    })
+
+    // Update the selected gifts
+    _updateSelectedGift(actor, gift)
+  } else {
+    // Revert to an empty string
+    updatedData.selectedGiftPower = ''
+  }
+
+  // Unselect the previously selected power
+  const previouslySelectedPower = actor.system?.selectedGiftPower
+  if (previouslySelectedPower && actor.items.get(previouslySelectedPower) && previouslySelectedPower !== power) {
+    actor.items.get(previouslySelectedPower).update({
+      system: {
+        selected: false
+      }
+    })
+  }
+
+  // Update the actor data
+  actor.update({
+    system: updatedData
+  })
+}
+
+export const _updateSelectedGift = async function (actor, gift) {
+  // Variables yet to be defined
+  const updatedData = {}
+
+  // Make sure we actually have a gift defined
+  if (gift && actor.system.gifts[gift]) {
+    updatedData.gifts ??= {}
+    updatedData.gifts[gift] ??= {}
+
+    // Update the selected gifts
+    updatedData.selectedGift = gift
+    updatedData.gifts[gift].selected = true
+  } else {
+    // Revert to an empty string
+    updatedData.selectedGift = ''
+  }
+
+  // Unselect the previously selected gift
+
+  const previouslySelectedGift = actor.system?.selectedGift
+  if (previouslySelectedGift && previouslySelectedGift !== gift) {
+    updatedData.gifts[previouslySelectedGift] ??= {}
+    updatedData.gifts[previouslySelectedGift].selected = false
+  }
+
+  // Update the actor data
+  actor.update({
+    system: updatedData
   })
 }

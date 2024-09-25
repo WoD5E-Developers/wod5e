@@ -35,6 +35,7 @@
       "GhostCouncil": "Concilio Fantasma",
       "Gift": "Dono",
       "Gifts": "Doni",
+      "_GiftsAndRenown": "",
       "GiftsandRites": "Doni e Riti",
       "GiftType": "Tipo di Dono",
       "GlabroName": "Glabro",
@@ -73,6 +74,8 @@
       "NewGift": "Nuovo Dono",
       "NewRite": "Nuovo rito",
       "_NewStringGift": "",
+      "_NoGiftSelected": "",
+      "_NoPowerSelected": "",
       "Pack": "Branco",
       "Patron": "Patrono",
       "Philodox": "Philodox",
@@ -80,6 +83,8 @@
       "PostFormToChat": "Chat",
       "Ragabash": "Ragabash",
       "Rage": "Furia",
+      "_RageCheck": "",
+      "_RageChecks": "",
       "RageCost": "Costo in furia",
       "RageDice": "Dadi Furia",
       "_RageFailure": "",
@@ -99,7 +104,8 @@
       "Tribe": "Tribù",
       "WerewolfDice": "Dadi Licantropo",
       "WillpowerCost": "Costo in forza di volontà",
-      "Wisdom": "Saggezza"
+      "Wisdom": "Saggezza",
+      "_Wolf": ""
     }
   }
 }

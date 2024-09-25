@@ -1,5 +1,6 @@
 <section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
     {{> "systems/vtm5e/display/wta/actors/parts/renown.hbs"}}
+    <hr>
     {{#if frenzyActive}}
         <div class="frenzyNotification flex-center">
             <h1>{{localize 'WOD5E.WTA.FrenzyActiveWarning'}}</h1>
@@ -7,29 +8,22 @@
         </div>
     {{/if}}
     <div class="flexrow">
-        <div class="gifts-list item-list">
-            <!-- Item control for adding new gift lists -->
-            <div class="item-controls">
-                <a class="item-control add-gift flex-center" data-action="addGift" title="{{localize 'WOD5E.WTA.AddGift'}}">
-                    <h3>
+        <div class="item-list">
+            <div class="flexrow flex-center">
+                <div class="item-header">{{localize 'WOD5E.WTA.Gifts'}}</div>
+                <div class="item-controls">
+                    <a class="item-control add-gift flex-center" title="{{localize 'WOD5E.WTA.AddGift'}}" data-action="addGift">
                         <i class="fas fa-plus"></i>
                         {{localize "WOD5E.WTA.AddGift"}}
-                    </h3>
-                </a>
+                    </a>
+                </div>
             </div>
-            <!-- Iterate through each of the gift lists -->
-            {{#each gifts as |gift key|}}
-                {{#if gift.visible}}
-                    <div class="gift category">
-                        <div class="flexrow item-header">
-                            <div class="item-name">
-                                {{#if (ne key "rite")}}
-                                    {{gift.displayName}}
-                                {{else}}
-                                    {{localize "WOD5E.WTA.Rites"}}
-                                {{/if}}
-                            </div>
-                            <!-- Item controls for gift sections -->
+            <ul class="powers-display-tree category">
+                {{#each gifts as |gift key|}}
+                    {{#if gift.visible}}
+                        <span class="parent flexrow">
+                            <div class="icon category-select{{#if gift.selected}} selected{{/if}}" data-action="selectGift" data-gift="{{key}}"></div>
+                            {{gift.displayName}}
                             <div class="item-controls">
                                 <!-- Icon to show the gift description to the chat-->
                                 <a class="item-control gift-chat" data-action="giftChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-gift="{{key}}">
@@ -42,73 +36,132 @@
                                     </a>
                                 {{/if}}
                             </div>
-                        </div>
-                        <div class="gift-description">
-                            <prose-mirror name="system.gifts.{{key}}.description" value="{{gift.description}}"
-                                toggled="true" compact="true">
-                                {{{gift.enrichedDescription}}}
-                            </prose-mirror>
-                        </div>
-                    </div>
-                {{/if}}
-            {{/each}}
+                        </span>
+                        <ul>
+                            {{#each gift.powers as |power key|}}
+                                <li>
+                                    <span>
+                                        <div class="icon power-select{{#if power.system.selected}} selected{{/if}}" data-action="selectGiftPower" data-power="{{power.id}}" style="background-image: url('{{power.img}}');"></div>
+                                        {{power.name}}
+                                    </span>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                {{/each}}
+            </ul>
         </div>
         <div class="powers-list item-list">
-            {{#each gifts as |gift key|}}
-                {{#if gift.visible}}
-                    <div class="gift category">
-                        <div class="flexrow item-header">
-                            <div class="item-name">
-                                {{#if (ne key "rite")}}
-                                    {{localize "WOD5E.WTA.StringGifts" string=gift.displayName}}
-                                {{else}}
-                                    {{localize "WOD5E.WTA.Rites"}}
+            {{#if selectedGift}}
+                <div class="gift category collapsible-container">
+                    <div class="flex-center item-header collapsible" data-action="toggleCollapse">
+                        <div class="item-name">
+                            {{selectedGift.displayName}}
+                            <!-- Add new gift power -->
+                            <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.WTA.AddGift'}}" data-type="gift" data-subtype="{{selectedGift.id}}">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="gift-description collapsible-content">
+                        <prose-mirror name="system.gifts.{{selectedGift.id}}.description" value="{{selectedGift.description}}"
+                            toggled="true" compact="true">
+                            {{{selectedGift.enrichedDescription}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+            {{else}}
+                <div class="gift category flex-center">
+                    {{localize 'WOD5E.WTA.NoGiftSelected'}}
+                </div>
+            {{/if}}
+
+            {{#if selectedGiftPower}}
+                <div class="gift category">
+                    <div class="flex-center">
+                        <div class="flexrow">
+                            <span class="item-name item-header">
+                                <!-- Icon to roll a power's dicepool -->
+                                {{#if (isNotEmpty selectedGiftPower.system.dicepool)}}
+                                    <a class="item-image rollable-item" data-action="rollItem" data-item-uuid="{{selectedGiftPower.uuid}}">
+                                        <i class="fa-solid fa-dice-d10"></i>
+                                    </a>
                                 {{/if}}
-                            </div>
-                            <!-- Item controls for gift power sections -->
-                            <div class="item-controls">
-                                <!-- Add new gift power -->
-                                <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.WTA.AddGift'}}" data-type="gift" data-subtype="{{key}}">
-                                    <i class="fas fa-plus"></i>
+                                {{selectedGiftPower.name}}
+                            </span>
+                            <div class="item-controls flex-group-right">
+                                <!-- Icon to edit the power -->
+                                <a class="item-control item-edit" data-action="itemEdit" title="{{localize 'WOD5E.Edit'}}" data-item-id="{{selectedGiftPower._id}}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <!-- Icon to display the power in chat -->
+                                <a class="item-control item-chat" data-action="itemChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-item-id="{{selectedGiftPower._id}}">
+                                    <i class="fas fa-comment-alt"></i>
+                                </a>
+                                <!-- Icon to delete the power -->
+                                <a class="item-control item-delete" data-action="itemDelete" title="{{localize 'WOD5E.Delete'}}" data-item-id="{{selectedGiftPower._id}}">
+                                    <i class="fas fa-trash"></i>
                                 </a>
                             </div>
                         </div>
-                        {{#each gift.powers as |power key|}}
-                            <div class="collapsible-container">
-                                <div class="flexrow power item" data-drag="true" data-item-id="{{power.id}}" data-document-uuid="{{power.uuid}}" data-type="Item">
-                                    <div class="item-image">
-                                        <img src="{{power.img}}">
-                                    </div>
-                                    <div class="item-name{{#if power.system.enrichedDescription}} collapsible{{/if}}" {{#if power.system.enrichedDescription}}data-action="toggleCollapse"{{/if}}>{{power.name}}</div>
-                                    <div class="item-controls">
-                                        <!-- Icon to edit the power -->
-                                        <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{power._id}}" title="{{localize 'WOD5E.Edit'}}">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <!-- Icon to roll the power's dicepool -->
-                                        {{#if (isNotEmpty power.system.dicepool)}}
-                                            <a class="item-control rollable-item" data-action="rollItem" data-item-uuid="{{power.uuid}}">
-                                                <i class="fa-solid fa-dice-d10"></i>
-                                            </a>
-                                        {{/if}}
-                                        <!-- Icon to display the power in chat -->
-                                        <a class="item-control item-chat" data-action="itemChat" data-item-id="{{power._id}}" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
-                                            <i class="fas fa-comment-alt"></i>
-                                        </a>
-                                        <!-- Icon to delete the power -->
-                                        <a class="item-control item-delete" data-action="itemDelete" data-item-id="{{power._id}}" title="{{localize 'WOD5E.Delete'}}">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="collapsible-content item-description">
-                                    {{{power.system.enrichedDescription}}}
-                                </div>
-                            </div>
-                        {{/each}}
                     </div>
-                {{/if}}
-            {{/each}}
+                    <div class="gift-description">
+                        <div class="flex-center flexrow">
+                            <div class="grid grid-2col">
+                                <div>
+                                    <b>
+                                        {{localize "WOD5E.Level"}}: {{selectedGiftPower.system.level}}
+                                    </b>
+                                </div>
+                                {{#ifgr selectedGiftPower.system.cost 0}}
+                                    <div class="flex-center">
+                                        <div>
+                                            <b>
+                                                {{selectedGiftPower.system.cost}} {{localize 'WOD5E.WTA.RageChecks'}}
+                                                <!-- Icon to roll a power's dicepool -->
+                                                <a class="item-image rollable-item" data-action="roll" data-disable-basic-dice="true" data-use-absolute-value="true"
+                                                    data-absolute-value="{{selectedGiftPower.system.cost}}" data-label="{{localize 'WOD5E.WTA.RageCheck'}} - {{selectedGiftPower.name}}" data-decrease-rage="true"
+                                                    title="{{localize 'WOD5E.WTA.RollRage'}}">
+                                                    <i class="fa-solid fa-dice-d10"></i>
+                                                </a>
+                                            </b>
+                                        </div>
+                                    </div>
+                                {{/ifgr}}
+                                <div>
+                                    <b>
+                                        {{localize "WOD5E.WTA.Renown"}}: {{generateLocalizedLabel selectedGiftPower.system.renown 'renown'}}
+                                    </b>
+                                </div>
+                                {{#ifgr selectedGiftPower.system.willpowercost 0}}
+                                    <div class="flex-center">
+                                        <div>
+                                            <b>
+                                                {{selectedGiftPower.system.willpowercost}} {{localize 'WOD5E.Chat.WillpowerDamage'}}
+                                                <!-- Icon to roll a power's dicepool -->
+                                                <a class="item-image rollable-item" data-action="roll" data-disable-basic-dice="true" data-use-absolute-value="true"
+                                                    data-willpower-damage="{{selectedGiftPower.system.willpowercost}}" data-label="{{selectedGiftPower.name}}"
+                                                    title="{{localize 'WOD5E.WTA.DamageWillpower'}}">
+                                                    <i class="fa-solid fa-person-arrow-down-to-line"></i>
+                                                </a>
+                                            </b>
+                                        </div>
+                                    </div>
+                                {{/ifgr}}
+                            </div>
+                        </div>
+                        {{#if selectedGiftPower.system.enrichedDescription}}
+                            <div class="power-description">
+                                {{{selectedGiftPower.system.enrichedDescription}}}
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+            {{else}}
+                <div class="gift category flex-center">
+                    {{localize 'WOD5E.WTA.NoPowerSelected'}}
+                </div>
+            {{/if}}
         </div>
     </div>
 </section>

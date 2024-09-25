@@ -35,6 +35,7 @@
       "_GhostCouncil": "",
       "_Gift": "",
       "_Gifts": "",
+      "_GiftsAndRenown": "",
       "_GiftsandRites": "",
       "_GiftType": "",
       "GlabroName": "Glabro",
@@ -73,6 +74,8 @@
       "_NewGift": "",
       "_NewRite": "",
       "_NewStringGift": "",
+      "_NoGiftSelected": "",
+      "_NoPowerSelected": "",
       "_Pack": "",
       "_Patron": "",
       "_Philodox": "",
@@ -80,6 +83,8 @@
       "PostFormToChat": "Chat",
       "_Ragabash": "",
       "Rage": "Rabia",
+      "_RageCheck": "",
+      "_RageChecks": "",
       "RageCost": "Coste de rabia",
       "RageDice": "Dados de rabia",
       "_RageFailure": "",
@@ -99,7 +104,8 @@
       "Tribe": "Tribu",
       "WerewolfDice": "Dados de hombre lobo",
       "WillpowerCost": "Coste de fuerza de voluntad",
-      "Wisdom": "Sabiduría"
+      "Wisdom": "Sabiduría",
+      "_Wolf": ""
     }
   }
 }
