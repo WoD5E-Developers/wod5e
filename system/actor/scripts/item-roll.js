@@ -21,7 +21,7 @@ export const _onRollItem = async function (event, target) {
   const dicepool = itemData.dicepool
 
   // Define these variables to help construct the roll
-  let willpowerDamage = 0
+  const willpowerDamage = 0
   const difficulty = 0
   const disableBasicDice = false
   const disableAdvancedDice = false
