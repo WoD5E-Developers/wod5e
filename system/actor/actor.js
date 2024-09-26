@@ -154,13 +154,16 @@ export class WoDActor extends Actor {
       }
     }
 
+    // Wipe system-specific bonuses so they don't duplicate
+    systemData.bonuses = {}
+
     // Get bonuses relevant to particular splats
     if (actorData.type === 'vampire') {
-      systemData.derivedBonuses = await getVampireBonuses(systemData)
+      systemData.bonuses = await getVampireBonuses(systemData)
     }
 
     if (actorData.type === 'hunter') {
-      systemData.derivedBonuses = await getHunterBonuses(systemData)
+      systemData.bonuses = await getHunterBonuses(systemData)
     }
   }
 

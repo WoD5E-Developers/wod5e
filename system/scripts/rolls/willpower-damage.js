@@ -1,6 +1,18 @@
 /* global ChatMessage, renderTemplate, game */
 
-export async function _damageWillpower (actor, willpowerDamage) {
+export async function _damageWillpower (event, target, actor, willpowerDamage) {
+  if (event) event.preventDefault()
+
+  // If no actor is provided, try and assume this is being done from an actor
+  if (!actor) actor = this.actor
+
+  // If no willpower damage is provided, try and assume we're getitng data from a dataset
+  if (!willpowerDamage) willpowerDamage = target.getAttribute('data-willpower-damage')
+
+  // If we have a label, define it so we can append it to the title of the chatcard
+  let prependTitle = ''
+  if (target?.getAttribute('data-label')) prependTitle = `${target.getAttribute('data-label')} - `
+
   // Get the actor's willpower and define it for convenience
   const actorWillpower = actor.system.willpower
   const maxWillpower = actorWillpower.max
@@ -23,7 +35,7 @@ export async function _damageWillpower (actor, willpowerDamage) {
       // then tell the chat and don't increase any values.
 
       renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
-        name: game.i18n.localize('WOD5E.Chat.WillpowerFullTitle'),
+        name: `${prependTitle}${game.i18n.localize('WOD5E.Chat.WillpowerFullTitle')}`,
         img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
         description: game.i18n.localize('WOD5E.Chat.WillpowerFull')
       }).then(html => {
@@ -47,7 +59,7 @@ export async function _damageWillpower (actor, willpowerDamage) {
   }
 
   renderTemplate('systems/vtm5e/display/ui/chat/willpower-damage.hbs', {
-    name: game.i18n.localize('WOD5E.Chat.WillpowerDamage'),
+    name: `${prependTitle}${game.i18n.localize('WOD5E.Chat.WillpowerDamage')}`,
     img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
     description: `${game.i18n.format('WOD5E.Chat.HasReceivedWillpowerDamage', {
       actor: actor.name,

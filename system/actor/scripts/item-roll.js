@@ -21,7 +21,7 @@ export const _onRollItem = async function (event, target) {
   const dicepool = itemData.dicepool
 
   // Define these variables to help construct the roll
-  const willpowerDamage = 0
+  let willpowerDamage = 0
   const difficulty = 0
   const disableBasicDice = false
   const disableAdvancedDice = false
@@ -77,7 +77,7 @@ export const _onRollItem = async function (event, target) {
   advancedDice = disableAdvancedDice ? 0 : await WOD5E.api.getAdvancedDice({ actor })
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actorData.gamesystem in WOD5E.Systems.getList({}) ? actorData.gamesystem : 'mortal'
+  const system = actorData.gamesystem || 'mortal'
 
   // Some quick modifications to vampire and werewolf rolls
   // in order to properly display the dice in the dialog window

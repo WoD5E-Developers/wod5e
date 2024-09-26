@@ -8,6 +8,7 @@ import { _onAddGift, _onRemoveGift, _onGiftToChat, _onSelectGift, _onSelectGiftP
 import { _onFormEdit, _onFormToChat, _onShiftForm, _onLostTheWolf } from './scripts/forms.js'
 import { _onBeginFrenzy, _onEndFrenzy } from './scripts/frenzy.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './scripts/balance.js'
+import { _damageWillpower } from '../../scripts/rolls/willpower-damage.js'
 // Base actor sheet to extend from
 import { WoDActor } from '../wod-actor-base.js'
 // Mixin
@@ -32,7 +33,8 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       haranoRoll: _onHaranoRoll,
       haugloskRoll: _onHaugloskRoll,
       selectGift: _onSelectGift,
-      selectGiftPower: _onSelectGiftPower
+      selectGiftPower: _onSelectGiftPower,
+      damageWillpower: _damageWillpower
     }
   }
 
