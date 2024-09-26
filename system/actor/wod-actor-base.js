@@ -218,7 +218,11 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     }
   }
 
-  _onRender () {
+  _preRender () {
+    this._saveScrollPositions()
+  }
+
+  async _onRender () {
     const html = $(this.element)
 
     // Update the window title (since ActorSheetV2 doesn't do it automatically)
@@ -242,6 +246,8 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
     // Drag and drop functionality
     this.#dragDrop.forEach((d) => d.bind(this.element))
+
+    this._restoreScrollPositions()
   }
 
   #createDragDropHandlers () {
@@ -347,5 +353,30 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
     // Perform the update
     return this.actor.updateEmbeddedDocuments('Item', updateData)
+  }
+
+  // Save the current scroll position
+  async _saveScrollPositions () {
+    const activeList = this.findActiveList()
+
+    if (activeList.length) {
+      this._scroll = activeList.scrollTop()
+    }
+  }
+
+  // Restore the saved scroll position
+  async _restoreScrollPositions () {
+    const activeList = this.findActiveList()
+
+    if (activeList.length && this._scroll != null) {
+      activeList.scrollTop(this._scroll)
+    }
+  }
+
+  // Get the scroll area of the currently active tab
+  findActiveList () {
+    const activeList = $(this.element).find('section.tab.active')
+
+    return activeList
   }
 }

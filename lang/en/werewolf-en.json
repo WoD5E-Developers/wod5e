@@ -22,6 +22,7 @@
       "CrinosRegenerate": "Regenerate: 2/Rage Check",
       "CrinosSocialTests": "Social Tests: Auto-failure",
       "CrinosTitle": "The War-Form, The Monster",
+      "DamageWillpower": "Damage Willpower",
       "EndFrenzy": "End Frenzy",
       "EnterFrenzy": "Enter Frenzy",
       "Favor": "Favor",
@@ -35,6 +36,7 @@
       "GhostCouncil": "Ghost Council",
       "Gift": "Gift",
       "Gifts": "Gifts",
+      "GiftsAndRenown": "Gifts & Renown",
       "GiftsandRites": "Gifts & Rites",
       "GiftType": "Gift Type",
       "GlabroName": "Glabro",
@@ -73,6 +75,8 @@
       "NewGift": "New Gift",
       "NewRite": "New Rite",
       "NewStringGift": "New {string} Gift",
+      "NoGiftSelected": "No Gift Selected",
+      "NoPowerSelected": "No Power Selected",
       "Pack": "Pack",
       "Patron": "Patron Spirit",
       "Philodox": "Philodox",
@@ -80,6 +84,8 @@
       "PostFormToChat": "Chat",
       "Ragabash": "Ragabash",
       "Rage": "Rage",
+      "RageCheck": "Rage Check",
+      "RageChecks": "Rage Checks",
       "RageCost": "Rage Cost",
       "RageDice": "Rage Dice",
       "RageFailure": "Brutal Outcome",
@@ -87,6 +93,7 @@
       "Renown": "Renown",
       "Rite": "Rite",
       "Rites": "Rites",
+      "RollRage": "Roll Rage",
       "RollRageDamageWillpower": "Roll Rage, Damage Willpower",
       "SelectGift": "Select Gift",
       "ShadowLord": "Shadow Lord",
@@ -99,7 +106,8 @@
       "Tribe": "Tribe",
       "WerewolfDice": "Werewolf Dice",
       "WillpowerCost": "Willpower Cost",
-      "Wisdom": "Wisdom"
+      "Wisdom": "Wisdom",
+      "Wolf": "Wolf"
     }
   }
 }

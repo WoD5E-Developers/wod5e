@@ -10,6 +10,16 @@ export const prepareGiftsContext = async function (context, actor) {
   context.gifts = await prepareGiftPowers(actorData.gifts)
   context.renown = actorData.renown
 
+  // Get gift data if any gift is currently selected
+  if (actorData?.selectedGift) {
+    context.selectedGift = actorData.gifts[actorData.selectedGift]
+  }
+
+  // Get power data if any power is currently selected
+  if (actorData?.selectedGiftPower) {
+    context.selectedGiftPower = await actor.items.get(actorData.selectedGiftPower)
+  }
+
   return context
 }
 
@@ -20,7 +30,6 @@ export const prepareWolfContext = async function (context, actor) {
   context.tab = context.tabs.wolf
 
   // Part-specific data
-  context.activeForm = actorData.activeForm
   context.forms = actorData.forms
   context.balance = actorData.balance
   context.rage = actorData.rage

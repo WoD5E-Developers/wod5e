@@ -33,6 +33,8 @@
       "NewPerk": "Nuovo Beneficio",
       "_NewStringEdgePool": "",
       "_NewStringPerk": "",
+      "_NoEdgeSelected": "",
+      "_NoPerkSelected": "",
       "Ordnance": "Esplosivi",
       "_Perks": "",
       "PossibleDesperationFailure": "Possibile Successo a un costo o fallimento disperato",

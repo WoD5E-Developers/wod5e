@@ -22,6 +22,7 @@
       "_CrinosRegenerate": "",
       "_CrinosSocialTests": "",
       "CrinosTitle": "Бойова форма, Монстр",
+      "_DamageWillpower": "",
       "EndFrenzy": "Завершити Скаженість",
       "EnterFrenzy": "Увійти в Скаженість",
       "Favor": "Схвалення",
@@ -35,6 +36,7 @@
       "_GhostCouncil": "",
       "Gift": "Дар",
       "Gifts": "Дари",
+      "_GiftsAndRenown": "",
       "GiftsandRites": "Дари й Обряди",
       "GiftType": "Тип Дару",
       "_GlabroName": "",
@@ -73,6 +75,8 @@
       "NewGift": "Новий Дар",
       "NewRite": "Новий Обряд",
       "_NewStringGift": "",
+      "_NoGiftSelected": "",
+      "_NoPowerSelected": "",
       "_Pack": "",
       "Patron": "Дух Покровитель",
       "_Philodox": "",
@@ -80,6 +84,8 @@
       "_PostFormToChat": "",
       "_Ragabash": "",
       "Rage": "Гнів",
+      "_RageCheck": "",
+      "_RageChecks": "",
       "_RageCost": "",
       "RageDice": "Кубик Гніву",
       "_RageFailure": "",
@@ -87,6 +93,7 @@
       "Renown": "Репутація",
       "Rite": "Обряд",
       "_Rites": "",
+      "_RollRage": "",
       "RollRageDamageWillpower": "Кидок Гніву",
       "SelectGift": "Виберіть Дар",
       "_ShadowLord": "",
@@ -99,7 +106,8 @@
       "Tribe": "Плем'я",
       "_WerewolfDice": "",
       "_WillpowerCost": "",
-      "Wisdom": "Мудрість"
+      "Wisdom": "Мудрість",
+      "_Wolf": ""
     }
   }
 }

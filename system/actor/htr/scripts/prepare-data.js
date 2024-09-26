@@ -21,19 +21,23 @@ export const prepareEdges = async function (actor) {
     // If the actor has a edge with the key, grab its current values
     if (Object.prototype.hasOwnProperty.call(edges, id)) {
       edgeData = Object.assign({
+        id,
         value: edges[id].value,
         perks: edges[id].perks || [],
         pools: edges[id].pools || [],
         description: edges[id].description,
-        visible: edges[id].visible
+        visible: edges[id].visible,
+        selected: edges[id].selected || false
       }, value)
     } else { // Otherwise, add it to the actor and set it as some default data
       edgeData = Object.assign({
+        id,
         value: 0,
         visible: false,
         description: '',
         perks: [],
-        pools: []
+        pools: [],
+        selected: false
       }, value)
     }
 

@@ -22,6 +22,7 @@
       "_CrinosRegenerate": "",
       "_CrinosSocialTests": "",
       "CrinosTitle": "Die Kriegsform, Das Monster",
+      "_DamageWillpower": "",
       "EndFrenzy": "Raserei beenden",
       "EnterFrenzy": "In Raserei fallen",
       "Favor": "Gunst",
@@ -35,6 +36,7 @@
       "GhostCouncil": "Rat der Geister",
       "Gift": "Gabe",
       "Gifts": "Gaben",
+      "_GiftsAndRenown": "",
       "GiftsandRites": "Gaben und Riten",
       "GiftType": "Gaben-Typ",
       "GlabroName": "Glabro",
@@ -73,6 +75,8 @@
       "NewGift": "Neue Gabe",
       "NewRite": "Neuer Ritus",
       "_NewStringGift": "",
+      "_NoGiftSelected": "",
+      "_NoPowerSelected": "",
       "Pack": "Rudel",
       "Patron": "Schutzgeist",
       "Philodox": "Philodox",
@@ -80,6 +84,8 @@
       "PostFormToChat": "An Chat",
       "Ragabash": "Ragabash",
       "Rage": "Zorn",
+      "_RageCheck": "",
+      "_RageChecks": "",
       "RageCost": "Zorn-Kosten",
       "RageDice": "Zorn-Würfel",
       "_RageFailure": "",
@@ -87,6 +93,7 @@
       "Renown": "Ansehen",
       "Rite": "Ritus",
       "_Rites": "",
+      "_RollRage": "",
       "RollRageDamageWillpower": "Würfle Zorn, Willenskraft-Schaden",
       "SelectGift": "Wähle Gabe",
       "ShadowLord": "Schattenlord",
@@ -99,7 +106,8 @@
       "Tribe": "Stamm",
       "WerewolfDice": "Werwolf-Würfel",
       "WillpowerCost": "Willenskraft-Kosten",
-      "Wisdom": "Weisheit"
+      "Wisdom": "Weisheit",
+      "_Wolf": ""
     }
   }
 }

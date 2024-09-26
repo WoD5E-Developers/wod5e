@@ -154,6 +154,9 @@ export class WoDActor extends Actor {
       }
     }
 
+    // Wipe system-specific bonuses so they don't duplicate
+    systemData.bonuses = {}
+
     // Get bonuses relevant to particular splats
     if (actorData.type === 'vampire') {
       systemData.bonuses = await getVampireBonuses(systemData)
@@ -170,6 +173,9 @@ export class WoDActor extends Actor {
    */
   async _onUpdate (data, options, user) {
     const actor = game.actors.get(data._id)
+
+    // Handle the actual update
+    super._onUpdate(data, options, user)
 
     // Only run through this for the storyteller
     if (!game.user.isGM) return
@@ -199,8 +205,5 @@ export class WoDActor extends Actor {
         }
       }
     }
-
-    // Handle the actual update
-    super._onUpdate(data, options, user)
   }
 }

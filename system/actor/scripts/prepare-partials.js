@@ -43,6 +43,8 @@ export const prepareFeaturesContext = async function (context, actor) {
   context.features = actorData.features
   context.tenets = actorHeaders.tenets
   context.enrichedTenets = await TextEditor.enrichHTML(actorHeaders.tenets)
+  context.touchstones = actorHeaders.touchstones
+  context.enrichedTouchstones = await TextEditor.enrichHTML(actorHeaders.touchstones)
 
   if (actorData.gamesystem === 'hunter') {
     context.creed = actorHeaders.creed
@@ -56,7 +58,6 @@ export const prepareFeaturesContext = async function (context, actor) {
 
 export const prepareBiographyContext = async function (context, actor) {
   const actorData = actor.system
-  const actorHeaders = actorData.headers
 
   // Tab data
   context.tab = context.tabs.biography
@@ -67,8 +68,6 @@ export const prepareBiographyContext = async function (context, actor) {
   context.enrichedBiography = await TextEditor.enrichHTML(actorData.biography)
   context.appearance = actorData.appearance
   context.enrichedAppearance = await TextEditor.enrichHTML(actorData.appearance)
-  context.touchstones = actorHeaders.touchstones
-  context.enrichedTouchstones = await TextEditor.enrichHTML(actorHeaders.touchstones)
 
   return context
 }

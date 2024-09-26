@@ -33,6 +33,8 @@
       "NewPerk": "New Perk",
       "NewStringEdgePool": "New {string} Edge Pool",
       "NewStringPerk": "New {string} Perk",
+      "NoEdgeSelected": "No Edge Selected",
+      "NoPerkSelected": "No Perk Selected",
       "Ordnance": "Ordnance",
       "Perks": "Perks",
       "PossibleDesperationFailure": "Possible Overreach or Despair",

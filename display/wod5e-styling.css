@@ -12,7 +12,8 @@
   border-bottom: 2px solid var(--hunter-color-1);
 }
 .actor.sheet.hunter .actor-header .despair {
-  height: 30px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .actor.sheet.hunter .profile-img,
 .actor.sheet.hunter .actor-header input,
@@ -42,10 +43,6 @@
 .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-color-6);
 }
-.actor.sheet.hunter .lock-btn {
-  background: var(--ui-background-hunter-texture);
-  color: var(--system-color-6);
-}
 .actor.sheet.hunter .despair-box,
 .actor.sheet.hunter .despair-box .despair-toggle {
   height: 14px;
@@ -62,42 +59,15 @@
 .actor.sheet.hunter .item-image img {
   background: var(--ui-background-hunter-texture);
 }
-.actor.sheet.hunter .tab[data-tab="edges"] .perks-list .edge {
-  margin-left: auto;
-  margin-right: auto;
+.actor.sheet.hunter .tab[data-tab="edges"] .powers-display-tree ul:before {
+  background-color: var(--hunter-color-1);
 }
-.actor.sheet.hunter .tab[data-tab="edges"] .edges-list {
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  margin: 0px 10px 10px 10px;
+.actor.sheet.hunter .tab[data-tab="edges"] .powers-display-tree li:before {
+  background-color: var(--hunter-color-1);
 }
-.actor.sheet.hunter .tab[data-tab="edges"] .edges-list .item-header {
-  border-bottom: 1px solid var(--system-color-5);
-}
-.actor.sheet.hunter .tab[data-tab="edges"] .edges-list .item-name {
-  text-wrap: nowrap;
-}
-.actor.sheet.hunter .tab[data-tab="edges"] .edges-list .edge-description {
-  max-height: 150px;
+.actor.sheet.hunter .tab[data-tab="edges"] .edge-description {
   margin-bottom: 5px;
-}
-.actor.sheet.hunter .tab[data-tab="edges"] .perks-list .edge .edge-pools {
-  border-top: 1px solid var(--system-color-5);
-}
-.actor.sheet.hunter .tab[data-tab="edges"] .perks-list .edge .edge-pools .edge-pool-label {
-  text-align: center;
-  padding: 2px;
-}
-.actor.sheet.hunter .tab[data-tab="edges"] .perks-list .edge .edge-pools .item-controls {
-  text-align: right;
-  display: contents;
-}
-.actor.sheet.hunter .tab[data-tab="edges"] .perks-list .edge .add-edge-pool {
-  font-weight: bold;
-}
-.actor.sheet.hunter .tab[data-tab="edges"] .perks-list .edge .add-edge-pool:hover {
-  cursor: pointer;
+  border-bottom: 1px solid var(--system-color-5);
 }
 /* All Sheets with the Hunter styling, including itemsheets */
 .sheet.hunter {
@@ -115,18 +85,11 @@
 .sheet.hunter .despair-box .despair-toggle.active {
   background-color: var(--hunter-color-1);
 }
+.sheet.hunter .powers-display-tree .icon.selected,
 .sheet.hunter button.rollable,
-.sheet.hunter .actor.sheet .hunter-button {
+.sheet.hunter .hunter-button {
   background-color: var(--hunter-color-2);
   border: 1px solid var(--hunter-color-1);
-}
-.hunter.sheet.window-app .window-resizable-handle {
-  border-top: 3px double var(--hunter-color-1);
-  border-left: 3px double var(--hunter-color-1);
-  border-bottom: 1px solid var(--hunter-color-1);
-  border-right: 1px solid var(--hunter-color-1);
-  background-color: var(--hunter-color-2);
-  color: var(--system-color-7);
 }
 /* Group Sheets */
 .group-header.cell {
@@ -183,14 +146,6 @@
 .sheet.mortal .window-content {
   scrollbar-color: var(--mortal-color-2) var(--mortal-color-1);
 }
-.sheet.mortal .window-app .window-resizable-handle {
-  border-top: 3px double var(--mortal-color-1);
-  border-left: 3px double var(--mortal-color-1);
-  border-bottom: 1px solid var(--mortal-color-1);
-  border-right: 1px solid var(--mortal-color-1);
-  background-color: var(--mortal-color-2);
-  color: var(--mortal-color-4);
-}
 .sheet.mortal .resource-value .resource-value-step.active,
 .sheet.mortal .resource-value-static .resource-value-static-step.active,
 .sheet.mortal .resource-counter .resource-counter-step[data-state="-"] {
@@ -246,9 +201,6 @@
 }
 .actor.sheet.mortal .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-color-6);
-}
-.actor.sheet.mortal .lock-btn {
-  background: var(--ui-background-texture);
 }
 .actor.sheet.mortal .sheet-banner .sheet-label {
   color: var(--mortal-color-3);
@@ -845,19 +797,17 @@ h3.item-name {
 .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-color-6);
 }
-.actor.sheet.vampire .lock-btn {
-  background-color: var(--vampire-color-3);
-  background-blend-mode: luminosity;
-}
 .actor.sheet.vampire .item-image {
   flex-grow: 0;
 }
 .actor.sheet.vampire .item-image img {
   background: var(--ui-background-vampire-texture);
 }
-.actor.sheet.vampire .tab[data-tab="disciplines"] .powers-list .discipline {
-  margin-left: auto;
-  margin-right: auto;
+.actor.sheet.vampire .tab[data-tab="disciplines"] .powers-display-tree ul:before {
+  background-color: var(--vampire-color-1);
+}
+.actor.sheet.vampire .tab[data-tab="disciplines"] .powers-display-tree li:before {
+  background-color: var(--vampire-color-1);
 }
 .actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list {
   display: flex;
@@ -899,6 +849,7 @@ h3.item-name {
 .sheet.vampire .resource-counter .resource-counter-step[data-state="-"] {
   background-color: var(--vampire-color-3);
 }
+.sheet.vampire .powers-display-tree .icon.selected,
 .sheet.vampire button.rollable,
 .sheet.vampire .vampire-button {
   background-color: var(--vampire-color-1);
@@ -908,7 +859,7 @@ h3.item-name {
 .sheet.vampire .rouse-button {
   max-width: 35px;
   height: 35px;
-  align-self: start;
+  margin-top: -5px;
 }
 .sheet.vampire .rouse-button .wod5e-symbol {
   vertical-align: middle;
@@ -945,14 +896,6 @@ h3.item-name {
 .sheet.vampire .frenzy .frenzy-status.active {
   color: #f54949;
   text-shadow: 0 0 10px var(--system-color-5);
-}
-.vampire.sheet.window-app .window-resizable-handle {
-  border-top: 3px double var(--vampire-color-1);
-  border-left: 3px double var(--vampire-color-1);
-  border-bottom: 1px solid var(--vampire-color-1);
-  border-right: 1px solid var(--vampire-color-1);
-  background-color: var(--vampire-color-2);
-  color: var(--system-color-8);
 }
 /* Group Sheets */
 .group-header.coterie {
@@ -1029,9 +972,6 @@ h3.item-name {
 }
 .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-color-6);
-}
-.actor.sheet.werewolf .lock-btn {
-  background: var(--ui-background-werewolf-texture);
 }
 .actor.sheet.werewolf .item-image {
   flex-grow: 0;
@@ -1130,6 +1070,7 @@ h3.item-name {
 .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
   background-color: var(--werewolf-color-2);
 }
+.sheet.werewolf .powers-display-tree .icon.selected,
 .sheet.werewolf button.rollable {
   background-color: var(--werewolf-color-2);
   border: 1px solid var(--werewolf-color-1);
@@ -1137,7 +1078,7 @@ h3.item-name {
 .sheet.werewolf .rage-button {
   max-width: 35px;
   height: 35px;
-  align-self: start;
+  margin-top: -5px;
 }
 .sheet.werewolf .rage-button .wod5e-symbol {
   vertical-align: middle;
@@ -1210,14 +1151,6 @@ h3.item-name {
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-}
-.werewolf.sheet.window-app .window-resizable-handle {
-  border-top: 3px double var(--werewolf-color-1);
-  border-left: 3px double var(--werewolf-color-1);
-  border-bottom: 1px solid var(--werewolf-color-1);
-  border-right: 1px solid var(--werewolf-color-1);
-  background-color: var(--werewolf-color-2);
-  color: var(--system-color-8);
 }
 /* Group Sheets */
 .group-header.pack {
@@ -1362,30 +1295,47 @@ body.uk .actor.sheet {
 .actor.sheet .actor-header input,
 .actor.sheet .actor-header .resource {
   margin-bottom: 5px;
-  height: 30px;
+  min-height: 30px;
 }
 .actor.sheet .actor-header .header-profile {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 .actor.sheet .actor-header .header-profile .name-field {
   width: 250px;
+  position: absolute;
+  height: 100%;
+  align-items: flex-end;
+}
+.actor.sheet .actor-header .header-profile .name-field:not(.clickthrough) {
+  height: 35px;
+  bottom: 0;
+}
+.actor.sheet .actor-header .header-profile .clickthrough {
+  pointer-events: none;
 }
 .actor.sheet .actor-header .header-profile-img {
   margin-bottom: 10px;
-  max-width: 100px;
 }
 .actor.sheet .actor-header .header-profile-img img {
-  width: 100px;
-  height: 100px;
+  height: fit-content;
   cursor: pointer;
+  max-width: 240px;
+  max-height: 200px;
 }
-.actor.sheet .actor-header .charname input {
+.actor.sheet .actor-header .charname:not(input) {
+  font-size: 35px;
+  font-family: "Modesto Condensed", serif;
   width: 100%;
   text-align: center;
-  height: 34px;
-  font-size: 23pt;
+  backdrop-filter: blur(2px);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000000;
+}
+.actor.sheet .actor-header input.charname {
+  font-size: 30px;
 }
 .actor.sheet .actor-header .header-fields {
   display: flex;
@@ -1507,7 +1457,6 @@ body.uk .actor.sheet {
   height: 400px;
 }
 .actor.sheet .collapsible-content {
-  padding: 0 1em;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
@@ -1538,7 +1487,7 @@ body.uk .actor.sheet {
   border: 0;
   height: auto;
   font-weight: 500;
-  margin-bottom: -8px;
+  margin-bottom: -5px;
 }
 .actor.sheet .sheet-banner {
   text-align: center;
@@ -1569,9 +1518,9 @@ body.uk .actor.sheet {
   margin-right: 5px;
 }
 .actor.sheet .lock-btn {
-  max-width: 35px;
-  height: 35px;
-  align-self: baseline;
+  max-width: 40px;
+  height: 40px;
+  align-self: center;
 }
 .actor.sheet .lock-btn i {
   margin: auto;
@@ -1593,7 +1542,9 @@ body.uk .actor.sheet {
   width: 50px;
   justify-content: flex-start;
   overflow: hidden;
-  border: 0;
+  gap: unset;
+  border-top: 0;
+  border-bottom: 0;
 }
 .actor.sheet .sheet-tabs > [data-tab] {
   display: flex;
@@ -1624,7 +1575,7 @@ body.uk .actor.sheet {
   flex-grow: 1;
   margin-left: auto;
   margin-right: auto;
-  max-width: 400px;
+  max-width: 425px;
   margin: 5px;
   padding: 5px;
 }
@@ -1759,10 +1710,6 @@ body.uk .actor.sheet {
 .actor.sheet .stats-content .stats-container .stats-footer {
   text-align: center;
 }
-/* Increase z-index of the window handle to compensate for the actor banner*/
-.window-app .window-resizable-handle {
-  z-index: 2;
-}
 /* Vampire Font in the sheet banners */
 .vampire-font-headers .actor.sheet .sheet-banner,
 .vampire-font-headers .actor.sheet .field-header,
@@ -1772,10 +1719,19 @@ body.uk .actor.sheet {
   font-family: "vampireRevised", "sans-serif";
 }
 
+.skill.application .skillname {
+  font-size: 48px;
+  font-family: var(--font-h1);
+  text-align: center;
+}
+
 .group.sheet .actor-header {
   align-items: flex-end;
   justify-content: space-between;
   padding: 5px;
+}
+.group.sheet .actor-header .header-profile {
+  min-width: 250px;
 }
 .group.sheet .actor-header .resource {
   min-height: 35px;
@@ -1812,6 +1768,25 @@ body.uk .actor.sheet {
 }
 .group.sheet .actor-header .field-header {
   font-size: 16pt;
+}
+.group.sheet .actor-header .coterie-features > div,
+.group.sheet .actor-header .cell-features > div,
+.group.sheet .actor-header .pack-features > div {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.group.sheet .actor-header .coterie-features .resource,
+.group.sheet .actor-header .cell-features .resource,
+.group.sheet .actor-header .pack-features .resource {
+  padding: 8px;
+}
+.group.sheet .actor-header .coterie-features .resource,
+.group.sheet .actor-header .cell-features .resource,
+.group.sheet .actor-header .pack-features .resource,
+.group.sheet .actor-header .coterie-features .field-header,
+.group.sheet .actor-header .cell-features .field-header,
+.group.sheet .actor-header .pack-features .field-header {
+  max-width: 150px;
 }
 .group.sheet .tab[data-tab="members"] .group-member .group-sheet .members .group-member {
   padding: 5px 0;
@@ -1936,23 +1911,15 @@ body.uk .actor.sheet {
   align-self: flex-end;
 }
 
-.dialog-app .window-content,
 .item.sheet .window-content {
   padding: 0;
 }
-.dialog-app section.tab,
-.item.sheet section.tab {
-  overflow-y: scroll;
-}
-.dialog-app .item-header,
 .item.sheet .item-header {
-  overflow: hidden;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 }
-.dialog-app .item-header .profile-img,
 .item.sheet .item-header .profile-img {
   flex: 0 0 100px;
   min-height: 50px;
@@ -1961,46 +1928,38 @@ body.uk .actor.sheet {
   width: 100px;
   margin-right: 0;
 }
-.dialog-app .item-header .header-fields,
 .item.sheet .item-header .header-fields {
   flex: 1;
   margin-top: auto;
 }
-.dialog-app .item-header .header-fields .charname input,
-.item.sheet .item-header .header-fields .charname input {
-  font-size: 23pt;
+.item.sheet .item-header .header-fields .itemname {
+  font-size: 35px;
+  font-family: var(--font-h1);
 }
-.dialog-app .item-header .header-fields h1.skill-name,
-.item.sheet .item-header .header-fields h1.skill-name {
-  margin-bottom: 0;
-  font-size: 40pt;
-}
-.dialog-app .item-header .header-fields .header-details,
 .item.sheet .item-header .header-fields .header-details {
   padding: 5px;
 }
-.dialog-app .item-header input[type="number"],
 .item.sheet .item-header input[type="number"] {
   max-width: 35px;
 }
-.dialog-app .item-header .item-resource,
 .item.sheet .item-header .item-resource {
   text-wrap: nowrap;
   margin-left: 5px;
   margin-right: 5px;
 }
-.dialog-app .tabs a.active,
 .item.sheet .tabs a.active {
   font-weight: bold;
 }
-.dialog-app a[data-tab="dicepool"] .remove-dice,
 .item.sheet a[data-tab="dicepool"] .remove-dice {
   flex-grow: 0;
   padding: 4px;
 }
-.dialog-app section,
-.item.sheet section {
+.item.sheet section.tab {
   padding: 10px 10px 0px 10px;
+  overflow-y: scroll;
+}
+.item.sheet section.tab prose-mirror {
+  max-height: fit-content;
 }
 
 /* wod5e.css */
@@ -2030,6 +1989,86 @@ body.uk .actor.sheet {
 .locked .resource-plus,
 .locked .resource-minus {
   cursor: default;
+}
+
+.powers-display-tree {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.powers-display-tree .parent {
+  font-weight: bold;
+  flex-direction: row;
+  display: flex;
+  margin-left: 8px;
+}
+.powers-display-tree .parent .item-controls {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.powers-display-tree ul {
+  padding-left: 20px;
+  position: relative;
+  list-style-type: none;
+  margin-bottom: 20px !important;
+}
+.powers-display-tree ul:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 18px;
+  width: 2px;
+  height: calc(100% - 14px);
+}
+.powers-display-tree li {
+  position: relative;
+  padding: 10px 0 0 20px;
+}
+.powers-display-tree li span {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  position: relative;
+}
+.powers-display-tree > li {
+  position: relative;
+  padding-left: 20px;
+}
+.powers-display-tree li:before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  width: 20px;
+  height: 1px;
+}
+.powers-display-tree li:first-child:after {
+  top: 15px;
+}
+.powers-display-tree li:last-child:after {
+  height: 50%;
+  top: auto;
+  bottom: 0;
+}
+.powers-display-tree .icon {
+  width: 20px;
+  max-width: 20px;
+  height: 20px;
+  max-height: 20px;
+  background-color: grey;
+  border: 1px solid black;
+  margin-right: 10px;
+  background-size: cover;
+}
+.powers-display-tree .icon.category-select,
+.powers-display-tree .icon.power-select {
+  cursor: pointer;
+}
+.powers-display-tree .power-resource-dots {
+  display: flex;
+  justify-content: right;
 }
 
 .resource-value {
@@ -2189,6 +2228,9 @@ prose-mirror .editor-menu button {
 .sheet .actor-header .field-header {
   color: var(--system-color-6);
 }
+.sheet .actor-header .name-field {
+  color: var(--system-color-6);
+}
 .sheet .collapsible-content {
   color: hwb(0deg 7% 98% / 100%);
   background: var(--system-color-4);
@@ -2205,19 +2247,19 @@ prose-mirror .editor-menu button {
 .sheet .sheet-banner .actor-type-field select {
   background-color: var(--system-color-4);
 }
-.sheet .lock-btn {
-  background: var(--ui-background-texture);
-  color: var(--system-color-4);
-}
 .sheet .tabs-container {
   background-color: var(--system-color-4);
 }
 .sheet .sheet-tabs {
   color: var(--system-color-5);
 }
+.sheet .sheet-tabs .lock-btn,
 .sheet .sheet-tabs > [data-tab] .navicon {
   background-color: var(--system-color-6);
   border: 1px solid var(--system-color-5);
+}
+.sheet .sheet-tabs .lock-btn:hover {
+  color: var(--system-color-5);
 }
 .sheet .item-list .category {
   background-color: var(--system-color-4);
@@ -2662,10 +2704,16 @@ prose-mirror .editor-menu button {
 .dark-theme .actor.sheet .item-list .category {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
+  /* Power Descriptions */
 }
 .dark-theme .actor.sheet .item-list .category .content-link {
   color: var(--system-dark-color-1);
   background-color: #FFF;
+}
+.dark-theme .actor.sheet .item-list .category .discipline-description,
+.dark-theme .actor.sheet .item-list .category .edge-description,
+.dark-theme .actor.sheet .item-list .category .gift-description {
+  color: var(--system-dark-color-4);
 }
 .dark-theme .dialog-app .window-content,
 .dark-theme .item.sheet .window-content,

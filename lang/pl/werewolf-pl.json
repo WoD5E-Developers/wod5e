@@ -22,6 +22,7 @@
       "_CrinosRegenerate": "",
       "_CrinosSocialTests": "",
       "CrinosTitle": "Potworna forma bojowa",
+      "_DamageWillpower": "",
       "EndFrenzy": "Zakończ furię",
       "EnterFrenzy": "Wpadnij w furię",
       "Favor": "Łaska",
@@ -35,6 +36,7 @@
       "GhostCouncil": "Rada Duchów",
       "Gift": "Dar",
       "_Gifts": "",
+      "_GiftsAndRenown": "",
       "GiftsandRites": "Dary i Rytuały",
       "GiftType": "Rodzaj daru",
       "GlabroName": "Glabro",
@@ -73,6 +75,8 @@
       "NewGift": "Nowy Dar",
       "NewRite": "Nowy Rytuał",
       "_NewStringGift": "",
+      "_NoGiftSelected": "",
+      "_NoPowerSelected": "",
       "Pack": "Wataha",
       "Patron": "Duch Opiekuńczy",
       "Philodox": "Filodoks",
@@ -80,6 +84,8 @@
       "PostFormToChat": "Chat",
       "Ragabash": "Ragabash",
       "Rage": "Szał",
+      "_RageCheck": "",
+      "_RageChecks": "",
       "RageCost": "Sprawdzian Szału",
       "RageDice": "Kości Szału",
       "_RageFailure": "",
@@ -87,6 +93,7 @@
       "Renown": "Reputacja",
       "Rite": "Rytuał",
       "_Rites": "",
+      "_RollRage": "",
       "RollRageDamageWillpower": "Sprawdzian Szału, obrażenia Siły Woli",
       "SelectGift": "Wybierz Dar",
       "ShadowLord": "Władcy Cienia",
@@ -99,7 +106,8 @@
       "Tribe": "Plemię",
       "WerewolfDice": "Kości Wilkołaka",
       "WillpowerCost": "Wydatek Siły Woli",
-      "Wisdom": "Mądrość"
+      "Wisdom": "Mądrość",
+      "_Wolf": ""
     }
   }
 }

@@ -1,15 +1,9 @@
-.dialog-app,
 .item.sheet {
 	.window-content {
 		padding: 0;
 	}
 
-	section.tab {
-		overflow-y: scroll;
-	}
-
 	.item-header {
-		overflow: hidden;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
@@ -28,13 +22,9 @@
 			flex: 1;
 			margin-top: auto;
 
-			.charname input {
-				font-size: 23pt;
-			}
-
-			h1.skill-name {
-				margin-bottom: 0;
-				font-size: 40pt;
+			.itemname {
+				font-size: 35px;
+				font-family: var(--font-h1);
 			}
 
 			.header-details {
@@ -66,7 +56,12 @@
 		}
 	}
 
-	section {
+	section.tab {
 		padding: 10px 10px 0px 10px;
+		overflow-y: scroll;
+
+		prose-mirror {
+			max-height: fit-content;
+		}
 	}
 }

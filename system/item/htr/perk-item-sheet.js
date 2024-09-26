@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareDicepoolContext, prepareMacroContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+import { prepareDescriptionContext, prepareMacroContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
 import { Edges } from '../../api/def/edges.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
@@ -28,9 +28,6 @@ export class PerkItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     description: {
       template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
     },
-    dicepool: {
-      template: 'systems/vtm5e/display/shared/items/parts/dicepool.hbs'
-    },
     macro: {
       template: 'systems/vtm5e/display/shared/items/parts/macro.hbs'
     },
@@ -44,11 +41,6 @@ export class PerkItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       id: 'description',
       group: 'primary',
       label: 'WOD5E.Tabs.Description'
-    },
-    dicepool: {
-      id: 'dicepool',
-      group: 'primary',
-      label: 'WOD5E.Tabs.Dicepool'
     },
     macro: {
       id: 'macro',
@@ -86,8 +78,6 @@ export class PerkItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       // Stats
       case 'description':
         return prepareDescriptionContext(context, item)
-      case 'dicepool':
-        return prepareDicepoolContext(context, item)
       case 'macro':
         return prepareMacroContext(context, item)
       case 'bonuses':

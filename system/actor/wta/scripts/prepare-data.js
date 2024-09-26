@@ -21,17 +21,21 @@ export const prepareGifts = async function (actor) {
     // If the actor has a gift with the key, grab its current values
     if (Object.prototype.hasOwnProperty.call(gifts, id)) {
       giftData = Object.assign({
+        id,
         value: gifts[id].value,
         powers: gifts[id].powers || [],
         description: gifts[id].description,
-        visible: gifts[id].visible
+        visible: gifts[id].visible,
+        selected: gifts[id].selected || false
       }, value)
     } else { // Otherwise, add it to the actor and set it as some default data
       giftData = Object.assign({
+        id,
         value: 0,
         visible: false,
         description: '',
-        powers: []
+        powers: [],
+        selected: false
       }, value)
     }
 

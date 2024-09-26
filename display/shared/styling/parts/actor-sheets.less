@@ -70,35 +70,55 @@
     input,
     .resource {
       margin-bottom: 5px;
-      height: 30px;
+      min-height: 30px;
     }
 
     .header-profile {
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
 
       .name-field {
         width: 250px;
+        position: absolute;
+        height: 100%;
+        align-items: flex-end;
+      }
+
+      .name-field:not(.clickthrough) {
+        height: 35px;
+        bottom: 0;
+      }
+
+      .clickthrough {
+        pointer-events: none;
       }
     }
 
     .header-profile-img {
       margin-bottom: 10px;
-      max-width: 100px;
 
       img {
-        width: 100px;
-        height: 100px;
+        height: fit-content;
         cursor: pointer;
+        max-width: 240px;
+        max-height: 200px;
       }
     }
 
-    .charname input {
+    .charname:not(input) {
+      font-size: 35px;
+      font-family: "Modesto Condensed", serif;
       width: 100%;
       text-align: center;
-      height: 34px;
-      font-size: 23pt;
+      backdrop-filter: blur(2px);
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: rgb(0, 0, 0);
+    }
+
+    input.charname {
+      font-size: 30px;
     }
 
     .header-fields {
@@ -268,7 +288,6 @@
 
   /* Collapsible Descriptions */
   .collapsible-content {
-    padding: 0 1em;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
@@ -304,7 +323,7 @@
     border: 0;
     height: auto;
     font-weight: 500;
-    margin-bottom: -8px;
+    margin-bottom: -5px;
   }
 
   /* Sheet Banner */
@@ -343,9 +362,9 @@
   }
 
   .lock-btn {
-    max-width: 35px;
-    height: 35px;
-    align-self: baseline;
+    max-width: 40px;
+    height: 40px;
+    align-self: center;
   }
 
   .lock-btn i {
@@ -372,7 +391,9 @@
     width: 50px;
     justify-content: flex-start;
     overflow: hidden;
-    border: 0;
+    gap: unset;
+    border-top: 0;
+    border-bottom: 0;
 
     > [data-tab] {
       display: flex;
@@ -408,7 +429,7 @@
       flex-grow: 1;
       margin-left: auto;
       margin-right: auto;
-      max-width: 400px;
+      max-width: 425px;
       margin: 5px;
       padding: 5px;
 
@@ -579,11 +600,6 @@
       }
     }
   }
-}
-
-/* Increase z-index of the window handle to compensate for the actor banner*/
-.window-app .window-resizable-handle {
-  z-index: 2;
 }
 
 /* Vampire Font in the sheet banners */

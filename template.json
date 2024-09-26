@@ -829,7 +829,7 @@
     },
     "power": {
       "templates": ["base"],
-      "discipline": "rituals",
+      "discipline": "animalism",
       "duration": "",
       "level": 1,
       "dicepool": {},

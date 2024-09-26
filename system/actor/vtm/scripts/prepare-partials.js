@@ -12,6 +12,16 @@ export const prepareDisciplinesContext = async function (context, actor) {
   // Part-specific data
   context.disciplines = await prepareDisciplinePowers(actorData.disciplines)
 
+  // Get discipline data if any discipline is currently selected
+  if (actorData?.selectedDiscipline) {
+    context.selectedDiscipline = actorData.disciplines[actorData.selectedDiscipline]
+  }
+
+  // Get power data if any power is currently selected
+  if (actorData?.selectedDisciplinePower) {
+    context.selectedDisciplinePower = await actor.items.get(actorData.selectedDisciplinePower)
+  }
+
   return context
 }
 

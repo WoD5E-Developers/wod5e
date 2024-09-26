@@ -5,7 +5,7 @@ import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesConte
 import { prepareEdgesContext } from './scripts/prepare-partials.js'
 // Various button functions
 import { _onToggleDespair } from './scripts/toggle-despair.js'
-import { _onAddEdge, _onRemoveEdge, _onEdgeToChat } from './scripts/edges.js'
+import { _onAddEdge, _onRemoveEdge, _onEdgeToChat, _onSelectEdgePerk, _onSelectEdge } from './scripts/edges.js'
 // Base actor sheet to extend from
 import { WoDActor } from '../wod-actor-base.js'
 // Mixin
@@ -22,7 +22,9 @@ export class HunterActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       toggleDespair: _onToggleDespair,
       addEdge: _onAddEdge,
       removeEdge: _onRemoveEdge,
-      edgeChat: _onEdgeToChat
+      edgeChat: _onEdgeToChat,
+      selectEdge: _onSelectEdge,
+      selectEdgePerk: _onSelectEdgePerk
     }
   }
 

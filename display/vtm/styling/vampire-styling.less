@@ -84,11 +84,6 @@
     }
   }
 
-  .lock-btn {
-    background-color: var(--vampire-color-3);
-    background-blend-mode: luminosity;
-  }
-
   .item-image {
     flex-grow: 0;
 
@@ -98,9 +93,14 @@
   }
 
   .tab[data-tab="disciplines"] {
-    .powers-list .discipline {
-      margin-left: auto;
-      margin-right: auto;
+    .powers-display-tree {
+      ul:before {
+        background-color: var(--vampire-color-1);
+      }
+
+      li:before {
+        background-color: var(--vampire-color-1);
+      }
     }
 
     .disciplines-list {
@@ -155,6 +155,7 @@
     background-color: var(--vampire-color-3);
   }
 
+  .powers-display-tree .icon.selected,
   button.rollable,
   .vampire-button {
     background-color: var(--vampire-color-1);
@@ -165,7 +166,7 @@
   .rouse-button {
     max-width: 35px;
     height: 35px;
-    align-self: start;
+    margin-top: -5px;
 
     .wod5e-symbol {
       vertical-align: middle;
@@ -209,17 +210,6 @@
       color: rgb(245, 73, 73);
       text-shadow: 0 0 10px var(--system-color-5);
     }
-  }
-}
-
-.vampire.sheet.window-app {
-  .window-resizable-handle {
-    border-top: 3px double var(--vampire-color-1);
-    border-left: 3px double var(--vampire-color-1);
-    border-bottom: 1px solid var(--vampire-color-1);
-    border-right: 1px solid var(--vampire-color-1);
-    background-color: var(--vampire-color-2);
-    color: var(--system-color-8);
   }
 }
 

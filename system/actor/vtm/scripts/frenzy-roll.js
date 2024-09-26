@@ -10,7 +10,7 @@ export const _onFrenzyRoll = async function (event) {
   const actor = this.actor
 
   // Secondary variables
-  const willpowerDicePool = this.getWillpowerDicePool(actor)
+  const willpowerDicePool = getWillpowerDicePool(actor)
   const humanity = actor.system.humanity.value
   const dicePool = Math.max(willpowerDicePool + Math.floor(humanity / 3), 1)
 
@@ -28,4 +28,13 @@ export const _onFrenzyRoll = async function (event) {
       }
     }
   })
+}
+
+// Calculate the dice for a Willpower roll
+function getWillpowerDicePool (actor) {
+  const willpowerMax = actor.system.willpower.max
+  const willpowerAgg = actor.system.willpower.aggravated
+  const willpowerSup = actor.system.willpower.superficial
+
+  return Math.max((willpowerMax - willpowerAgg - willpowerSup), 0)
 }

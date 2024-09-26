@@ -22,6 +22,7 @@
       "_CrinosRegenerate": "",
       "_CrinosSocialTests": "",
       "_CrinosTitle": "",
+      "_DamageWillpower": "",
       "_EndFrenzy": "",
       "_EnterFrenzy": "",
       "_Favor": "",
@@ -35,6 +36,7 @@
       "_GhostCouncil": "",
       "_Gift": "",
       "_Gifts": "",
+      "_GiftsAndRenown": "",
       "_GiftsandRites": "",
       "_GiftType": "",
       "_GlabroName": "",
@@ -73,6 +75,8 @@
       "_NewGift": "",
       "_NewRite": "",
       "_NewStringGift": "",
+      "_NoGiftSelected": "",
+      "_NoPowerSelected": "",
       "_Pack": "",
       "_Patron": "",
       "_Philodox": "",
@@ -80,6 +84,8 @@
       "_PostFormToChat": "",
       "_Ragabash": "",
       "_Rage": "",
+      "_RageCheck": "",
+      "_RageChecks": "",
       "_RageCost": "",
       "_RageDice": "",
       "_RageFailure": "",
@@ -87,6 +93,7 @@
       "_Renown": "",
       "_Rite": "",
       "_Rites": "",
+      "_RollRage": "",
       "_RollRageDamageWillpower": "",
       "_SelectGift": "",
       "_ShadowLord": "",
@@ -99,7 +106,8 @@
       "_Tribe": "",
       "_WerewolfDice": "",
       "_WillpowerCost": "",
-      "_Wisdom": ""
+      "_Wisdom": "",
+      "_Wolf": ""
     }
   }
 }
