@@ -979,30 +979,15 @@ h3.item-name {
 .actor.sheet.werewolf .item-image img {
   background: var(--ui-background-vampire-texture);
 }
-.actor.sheet.werewolf .tab[data-tab="gifts"] .powers-list .gift {
-  margin-left: auto;
-  margin-right: auto;
+.actor.sheet.werewolf .tab[data-tab="gifts"] .powers-display-tree ul:before {
+  background-color: var(--werewolf-color-2);
 }
-.actor.sheet.werewolf .tab[data-tab="gifts"] .gifts-list {
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  margin: 0px 10px 10px 10px;
+.actor.sheet.werewolf .tab[data-tab="gifts"] .powers-display-tree li:before {
+  background-color: var(--werewolf-color-2);
 }
-.actor.sheet.werewolf .tab[data-tab="gifts"] .gifts-list .item-header {
-  border-bottom: 1px solid var(--system-color-5);
-}
-.actor.sheet.werewolf .tab[data-tab="gifts"] .gifts-list .item-controls {
-  text-align: right;
-}
-.actor.sheet.werewolf .tab[data-tab="gifts"] .gifts-list .controls {
-  border-bottom: 1px solid var(--system-color-5);
-}
-.actor.sheet.werewolf .tab[data-tab="gifts"] .gifts-list .item-name {
-  text-wrap: nowrap;
-}
-.actor.sheet.werewolf .tab[data-tab="gifts"] .gifts-list .gift-description {
+.actor.sheet.werewolf .tab[data-tab="gifts"] .gift-description {
   margin-bottom: 5px;
+  border-bottom: 1px solid var(--system-color-5);
 }
 .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
 .actor.sheet.werewolf .tab[data-tab="wolf"] .resource .resource-contents,
