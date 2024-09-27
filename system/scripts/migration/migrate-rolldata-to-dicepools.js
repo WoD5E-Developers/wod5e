@@ -15,8 +15,8 @@ export const MigrateRolldataToDicepools = async function () {
     let hasFixedItems = false
 
     for (const item of actorItems) {
-      // If the item was previously rollable and doesn't already have a dicepool, migrate the rolldata to the new format
-      if (item.system?.rollable && !item.system?.dicepool) {
+      // If the item was previously rollable and doesn't already have a filled dicepool, migrate the rolldata to the new format
+      if (item.system?.rollable && foundry.utils.isEmpty(item.system?.dicepool)) {
         hasFixedItems = true
         const dicepool = {}
 
