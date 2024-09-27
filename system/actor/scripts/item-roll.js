@@ -77,7 +77,7 @@ export const _onRollItem = async function (event, target) {
   advancedDice = disableAdvancedDice ? 0 : await WOD5E.api.getAdvancedDice({ actor })
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actorData.gamesystem || 'mortal'
+  const system = actorData.gamesystem
 
   // Some quick modifications to vampire and werewolf rolls
   // in order to properly display the dice in the dialog window

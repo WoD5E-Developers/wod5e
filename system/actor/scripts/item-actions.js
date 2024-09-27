@@ -17,7 +17,7 @@ export const _onCreateItem = async function (event, target) {
   let options = ''
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
+  const system = actor.system.gamesystem
 
   // Generate the item name
   itemName = subtype ? WOD5E.api.generateLabelAndLocalize({ string: subtype, type }) : itemsList[type].label
@@ -27,7 +27,7 @@ export const _onCreateItem = async function (event, target) {
     case 'power':
       selectLabel = game.i18n.localize('WOD5E.VTM.SelectDiscipline')
       itemOptions = WOD5E.Disciplines.getList({})
-      itemName = game.i18n.format('WOD5E.VTM.NewStringPower', { string: itemName })
+      itemName = game.i18n.format('WOD5E.VTM.NewStringPower', {string: itemName })
       break
     case 'perk':
       selectLabel = game.i18n.localize('WOD5E.HTR.SelectEdge')
@@ -152,7 +152,7 @@ export const _onItemDelete = async function (event, target) {
   const item = actor.getEmbeddedDocument('Item', itemId)
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
+  const system = actor.system.gamesystem
 
   // Variables yet to be defined
   let buttons = {}

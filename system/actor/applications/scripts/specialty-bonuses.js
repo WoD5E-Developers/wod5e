@@ -8,7 +8,7 @@ export const _onAddBonus = async function (event) {
   const skill = this.data.skill
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
+  const system = actor.system.gamesystem
 
   // Default values for a new specialty
   const bonusData = {
@@ -117,7 +117,7 @@ export const _onEditBonus = async function (event, target) {
   }
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
+  const system = actor.system.gamesystem
 
   // Render the template
   const bonusTemplate = 'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs'

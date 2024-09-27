@@ -7,7 +7,7 @@ export const _onAddExperience = async function (event) {
   const actor = this.actor
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
+  const system = actor.system.gamesystem
 
   // Render the template
   const experienceTemplate = 'systems/vtm5e/display/shared/actors/parts/experience-display.hbs'
@@ -69,7 +69,7 @@ export const _onRemoveExperience = async function (event, target) {
   const experienceId = target.getAttribute('data-experience-id')
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
+  const system = actor.system.gamesystem
 
   // Define the existing list of experiences
   let actorExperiences = actor.system.experiences || []
@@ -130,7 +130,7 @@ export const _onEditExperience = async function (event, target) {
   const experienceId = target.getAttribute('data-experience-id')
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
+  const system = actor.system.gamesystem
 
   // Find the experience to edit
   const experienceToEdit = (actor.system.experiences || []).find(exp => exp.id === experienceId)
