@@ -5,6 +5,7 @@ import { getDicepoolList } from '../api/dicepool-list.js'
 // Various button functions
 import { _onAddBonus, _onDeleteBonus, _onEditBonus } from './scripts/item-bonuses.js'
 import { _onAddDice, _onRemoveDice } from './scripts/dicepools.js'
+import { _onEditImage } from './scripts/on-edit-image.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
@@ -36,7 +37,8 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
       removeDice: _onRemoveDice,
       addBonus: _onAddBonus,
       deleteBonus: _onDeleteBonus,
-      editBonus: _onEditBonus
+      editBonus: _onEditBonus,
+      editImage: _onEditImage
     }
   }
 
