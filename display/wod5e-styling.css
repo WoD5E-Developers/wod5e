@@ -2070,6 +2070,10 @@ body.uk .actor.sheet {
   display: flex;
   justify-content: right;
 }
+.powers-display-tree .select-label {
+  flex-grow: 0;
+  text-wrap: nowrap;
+}
 
 .resource-value {
   align-self: flex-end;

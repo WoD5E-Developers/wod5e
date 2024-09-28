@@ -15,7 +15,7 @@
                     {{#if discipline.visible}}
                         <span class="parent flexrow">
                             <div class="icon category-select{{#if discipline.selected}} selected{{/if}}" data-action="selectDiscipline" data-discipline="{{key}}"></div>
-                            {{discipline.displayName}}
+                            <a class="select-label" data-action="selectDiscipline" data-discipline="{{key}}">{{discipline.displayName}}</a>
                             <div class="item-controls">
                                 <!-- Icon to roll the discipline with an attribute and/or skill combination -->
                                 {{#if (and (ne key "rituals") (ne key "ceremonies"))}}
@@ -53,7 +53,7 @@
                                 <li>
                                     <span>
                                         <div class="icon power-select{{#if power.system.selected}} selected{{/if}}" data-action="selectDisciplinePower" data-power="{{power.id}}" style="background-image: url('{{power.img}}');"></div>
-                                        {{power.name}}
+                                        <a class="select-label" data-action="selectDisciplinePower" data-power="{{power.id}}">{{power.name}}</a>
                                     </span>
                                 </li>
                             {{/each}}
