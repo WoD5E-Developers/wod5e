@@ -45,7 +45,7 @@ export const _onAddDiscipline = async function (event) {
 
         // Update the currently selected discipline and power
         _updateSelectedDiscipline(actor, disciplineSelected)
-        _updateSelectedPower(actor, '')
+        _updateSelectedDisciplinePower(actor, '')
       }
     },
     cancel: {
@@ -116,10 +116,10 @@ export const _onSelectDisciplinePower = async function (event, target) {
   const actor = this.actor
   const power = target.getAttribute('data-power')
 
-  _updateSelectedPower(actor, power)
+  _updateSelectedDisciplinePower(actor, power)
 }
 
-export const _updateSelectedPower = async function (actor, power) {
+export const _updateSelectedDisciplinePower = async function (actor, power) {
   // Variables yet to be defined
   const updatedData = {}
 

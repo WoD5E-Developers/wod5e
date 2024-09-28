@@ -45,7 +45,7 @@ export const _onAddGift = async function (event) {
 
         // Update the currently selected discipline and power
         _updateSelectedGift(actor, giftSelected)
-        _updateSelectedPower(actor, '')
+        _updateSelectedGiftPower(actor, '')
       }
     },
     cancel: {
@@ -145,17 +145,17 @@ export const _onSelectGiftPower = async function (event, target) {
   const actor = this.actor
   const power = target.getAttribute('data-power')
 
-  _updateSelectedPower(actor, power)
+  _updateSelectedGiftPower(actor, power)
 }
 
-export const _updateSelectedPower = async function (actor, power) {
+export const _updateSelectedGiftPower = async function (actor, power) {
   // Variables yet to be defined
   const updatedData = {}
 
   // Make sure we actually have a valid power defined
   if (power && actor.items.get(power)) {
     const powerItem = actor.items.get(power)
-    const gift = powerItem.system.gift
+    const gift = powerItem.system.giftType
 
     // Update the selected power
     updatedData.selectedGiftPower = power

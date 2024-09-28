@@ -1,4 +1,8 @@
-/* global game, WOD5E, Dialog, renderTemplate, ChatMessage */
+/* global game, WOD5E, Dialog, renderTemplate, ChatMessage, Item */
+
+import { _updateSelectedPerk } from '../htr/scripts/edges.js'
+import { _updateSelectedDisciplinePower } from '../vtm/scripts/disciplines.js'
+import { _updateSelectedGiftPower } from '../wta/scripts/gifts.js'
 
 export const _onCreateItem = async function (event, target) {
   event.preventDefault()
@@ -193,11 +197,29 @@ export const _onItemDelete = async function (event, target) {
 
 // Create an embedded item document
 async function createItem (actor, itemName, type, itemData) {
-  return actor.createEmbeddedDocuments('Item', [{
+  // Create the item
+  const newItem = await Item.create({
     name: itemName,
     type,
     system: itemData
-  }])
+  },
+  {
+    parent: actor
+  })
+  const itemId = newItem.id
+
+  // Handle updating the currently selected power for the actor
+  switch (newItem.type) {
+    case 'power':
+      _updateSelectedDisciplinePower(actor, itemId)
+      break
+    case 'perk':
+      _updateSelectedPerk(actor, itemId)
+      break
+    case 'gift':
+      _updateSelectedGiftPower(actor, itemId)
+      break
+  }
 }
 
 // Append subtype data to the item data based on item type
