@@ -13,4 +13,30 @@
             </select>
         </div>
     </div>
+    {{#if showOptionalPowers}}
+        {{#ifeq gamesystem 'vampire'}}
+            <div class="form-group">
+                <label>Show Disciplines</label>
+                <div class="form-fields">
+                    <input type="checkbox" name="system.settings.enableDisciplines" {{#if enableDisciplines}}checked{{/if}}>
+                </div>
+            </div>
+        {{/ifeq}}
+        {{#ifeq gamesystem 'hunter'}}
+            <div class="form-group">
+                <label>Show Edges</label>
+                <div class="form-fields">
+                    <input type="checkbox" name="system.settings.enableEdges" {{#if enableEdges}}checked{{/if}}>
+                </div>
+            </div>
+        {{/ifeq}}
+        {{#ifeq gamesystem 'werewolf'}}
+            <div class="form-group">
+                <label>Show Gifts</label>
+                <div class="form-fields">
+                    <input type="checkbox" name="system.settings.enableGifts" {{#if enableEdges}}checked{{/if}}>
+                </div>
+            </div>
+        {{/ifeq}}
+    {{/if}}
 </section>

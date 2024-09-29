@@ -1267,7 +1267,7 @@ body.uk .actor.sheet {
   display: flex;
   flex-direction: column;
 }
-.actor.sheet input {
+.actor.sheet input:not(type="checkbox") {
   min-height: 26px;
   border-radius: 0;
 }

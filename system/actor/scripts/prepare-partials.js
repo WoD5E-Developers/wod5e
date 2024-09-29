@@ -87,9 +87,20 @@ export const prepareNotepadContext = async function (context, actor) {
   return context
 }
 
-export const prepareSettingsContext = async function (context) {
+export const prepareSettingsContext = async function (context, actor) {
+  const actorData = actor.system
+  const actorsWithPowers = ['vampire', 'hunter', 'werewolf']
+
   // Tab data
   context.tab = context.tabs.settings
+
+  if (context.baseActorType === 'spc' && actorsWithPowers.indexOf(context.currentActorType) === -1) {
+    context.showOptionalPowers = true
+
+    context.enableDisciplines = actorData.settings.enableDisciplines
+    context.enableEdges = actorData.settings.enableEdges
+    context.enableGifts = actorData.settings.enableGifts
+  }
 
   return context
 }
@@ -122,17 +133,17 @@ export const prepareSpcStatsContext = async function (context, actor) {
   context.enrichedTraits = await TextEditor.enrichHTML(actorData.traits)
 
 
-  if (context.currentActorType === 'vampire' || context.settings.enableDisciplines === true) {
+  if (context.currentActorType === 'vampire' || (context.gamesystem === 'vampire' && context.settings.enableDisciplines === true)) {
     context.showDisciplines = true
     context.disciplines = actorData.disciplines
   }
 
-  if (context.currentActorType === 'hunter' || context.settings.enableEdges === true) {
+  if (context.currentActorType === 'hunter' || (context.gamesystem === 'hunter' && context.settings.enableEdges === true)) {
     context.showEdges = true
     context.edges = actorData.edges
   }
 
-  if (context.currentActorType === 'werewolf' || context.settings.enableGifts === true) {
+  if (context.currentActorType === 'werewolf' || (context.gamesystem === 'werewolf' && context.settings.enableGifts === true)) {
     context.showGifts = true
     context.gifts = actorData.gifts
   }
