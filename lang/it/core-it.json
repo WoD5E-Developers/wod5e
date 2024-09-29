@@ -304,7 +304,8 @@
       "Physical": "Fisico",
       "SelectSkill": "Seleziona abilità",
       "Social": "Sociale",
-      "StandardDicePools": "Pool di dadi standard"
+      "StandardDicePools": "Pool di dadi standard",
+      "_Traits": ""
     },
     "Tabs": {
       "_Biography": "",

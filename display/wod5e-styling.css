@@ -1260,6 +1260,7 @@ body.uk .actor.sheet {
 }
 .actor.sheet .window-content section.tab {
   overflow-y: scroll;
+  align-items: flex-start;
 }
 .actor.sheet input,
 .actor.sheet .resource {
@@ -2132,6 +2133,10 @@ body.uk .actor.sheet {
 }
 .actor.sheet .resource-value-empty {
   margin-left: -16px;
+}
+
+.spc.sheet .spc-stats-body {
+  align-items: flex-start;
 }
 
 /* Variables */

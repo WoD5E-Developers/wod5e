@@ -17,7 +17,7 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
  */
 export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
   static DEFAULT_OPTIONS = {
-    classes: ['wod5e', 'actor', 'sheet'],
+    classes: ['wod5e', 'actor', 'spc', 'sheet'],
     actions: {
       createSPCPower: _onCreatePower,
       deleteSPCPower: _onDeletePower,
@@ -105,14 +105,18 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       data.hunger = actorData.hunger
     }
 
-    if (data.gamesystem === 'werewolf') {
+    if (data.currentActorType === 'werewolf') {
       data.rage = actorData.rage
       data.lostTheWolf = data.rage.value === 0
       data.balance = actorData.balance
     }
 
+    if (data.currentActorType === 'spirit') {
+      data.power = actorData.power
+    }
+
     // If an actor type shouldn't have advanced dice, hold that status in noAdvancedDice
-    if (data.currentActorType === 'ghoul') {
+    if (data.currentActorType === 'ghoul' || data.currentActorType === 'spirit') {
       data.noAdvancedDice = true
     }
 

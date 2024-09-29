@@ -811,7 +811,17 @@
     "spc": {
       "templates": ["abbreviated", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "werewolfForms", "gifts", "hunter_traits", "edges", "settings"],
       "spcType": "mortal",
-      "gamesystem": "mortal"
+      "gamesystem": "mortal",
+      "manifestation": "",
+      "power": {
+        "value": 1
+      },
+      "traits": "",
+      "settings": {
+        "enableGifts": false,
+        "enableDisciplines": false,
+        "enableEdges": false
+      }
     }
   },
   "Item": {

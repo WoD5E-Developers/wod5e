@@ -304,7 +304,8 @@
       "Physical": "Physique",
       "SelectSkill": "Sélectionnez les compétences",
       "Social": "Social",
-      "StandardDicePools": "Groupement de dés standard"
+      "StandardDicePools": "Groupement de dés standard",
+      "_Traits": ""
     },
     "Tabs": {
       "_Biography": "",

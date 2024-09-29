@@ -304,7 +304,8 @@
       "Physical": "Fisica",
       "SelectSkill": "Selecione Habilidade",
       "Social": "Social",
-      "StandardDicePools": "Pool de dados padrão"
+      "StandardDicePools": "Pool de dados padrão",
+      "_Traits": ""
     },
     "Tabs": {
       "_Biography": "",

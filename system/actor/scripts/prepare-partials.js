@@ -118,9 +118,29 @@ export const prepareSpcStatsContext = async function (context, actor) {
   context.standardPools = actorData.standarddicepools
   context.exceptionalPools = actorData.exceptionaldicepools
 
-  context.disciplines = actorData.disciplines
-  context.edges = actorData.edges
-  context.gifts = actorData.gifts
+  context.traits = actorData.traits
+  context.enrichedTraits = await TextEditor.enrichHTML(actorData.traits)
+
+
+  if (context.currentActorType === 'vampire' || context.settings.enableDisciplines === true) {
+    context.showDisciplines = true
+    context.disciplines = actorData.disciplines
+  }
+
+  if (context.currentActorType === 'hunter' || context.settings.enableEdges === true) {
+    context.showEdges = true
+    context.edges = actorData.edges
+  }
+
+  if (context.currentActorType === 'werewolf' || context.settings.enableGifts === true) {
+    context.showGifts = true
+    context.gifts = actorData.gifts
+  }
+
+  if (context.currentActorType === 'spirit') {
+    context.manifestation = actorData.manifestation
+    context.enrichedManifestation = await TextEditor.enrichHTML(actorData.manifestation)
+  }
 
   return context
 }

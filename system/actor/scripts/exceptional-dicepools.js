@@ -59,7 +59,7 @@ export const _onCreateExceptionalSkill = async function (event) {
 
 export const _onDeleteExceptionalSkill = async function (event, target) {
   const actor = this.actor
-  const exceptionalSkill = target.getAttribute('exceptionalskill')
+  const exceptionalSkill = target.getAttribute('data-exceptionalskill')
 
   actor.update({ [`system.exceptionaldicepools.${exceptionalSkill}.active`]: false })
 }

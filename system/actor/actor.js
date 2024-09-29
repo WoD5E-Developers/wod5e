@@ -78,11 +78,13 @@ export class WoDActor extends Actor {
       systemData.exceptionaldicepools = await prepareExceptionalDicePools(actorData)
     }
 
+    // Defines the mapping of SPC subtypes to gamesystems
     const typeMapping = {
       vampire: 'vampire',
       ghoul: 'vampire',
       hunter: 'hunter',
-      werewolf: 'werewolf'
+      werewolf: 'werewolf',
+      spirit: 'werewolf'
     }
 
     // Set gamesystem of an SPC

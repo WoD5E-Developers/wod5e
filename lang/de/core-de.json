@@ -304,7 +304,8 @@
       "Physical": "Körperlich",
       "SelectSkill": "Wähle Fähigkeit",
       "Social": "Gesellschaftlich",
-      "StandardDicePools": "Würfelpools"
+      "StandardDicePools": "Würfelpools",
+      "_Traits": ""
     },
     "Tabs": {
       "_Biography": "",

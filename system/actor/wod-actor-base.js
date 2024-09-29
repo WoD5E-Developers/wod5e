@@ -146,6 +146,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
       headerbg: await getActorHeader(actor),
 
+      baseActorType: actorTypeData.baseActorType,
       currentActorType: actorTypeData.currentActorType,
       actorTypePath: actorTypeData.typePath,
       actorOptions: actorTypeData.types,

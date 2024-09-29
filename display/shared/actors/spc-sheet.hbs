@@ -4,6 +4,7 @@
         <div class="header-fields-left">
             {{!-- Health Tracker --}}
             {{> "systems/vtm5e/display/shared/actors/parts/health.hbs"}}
+
             {{!-- Willpower Tracker --}}
             {{> "systems/vtm5e/display/shared/actors/parts/willpower.hbs"}}
         </div>
@@ -44,6 +45,23 @@
                         <div class="flexcol">
                             <label class="resource-label field-header">{{localize 'WOD5E.WTA.Rage'}}</label>
                             {{> "systems/vtm5e/display/wta/actors/parts/rage-value.hbs"}}
+                        </div>
+                    </div>
+                {{/ifeq}}
+
+                {{#ifeq currentActorType 'spirit'}}
+                    <div class="field-section">
+                        <div class="flexcol">
+                            <!-- Power Dicepool -->
+                            <div class="resource-content flexcol flex-center flex-between">
+                                <label class="field-header flexrow resource-label rollable" for="{{localize 'WOD5E.WTA.Power'}}" data-action="roll" data-use-absolute-value="true"
+                                    data-absolute-value="{{power.value}}" data-label="{{localize 'WOD5E.WTA.Power'}}"
+                                    {{#if noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
+                                    {{localize 'WOD5E.WTA.Power'}}
+                                    <i class="fa-solid fa-dice-d10"></i>
+                                </label>
+                                <input style="max-width: 45px;" type="number" name="system.power.value" value="{{power.value}}" data-dtype="Number" />
+                            </div>
                         </div>
                     </div>
                 {{/ifeq}}
