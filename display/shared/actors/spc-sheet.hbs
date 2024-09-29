@@ -13,7 +13,7 @@
     <div class="header-fields">
         <div class="header-fields-right">
             <div class="flexcol">
-                {{#ifeq gamesystem 'vampire'}}
+                {{#ifeq currentActorType 'vampire'}}
                     <div class="field-section">
                         <div class="flexcol">
                             <label class="resource-label field-header">{{localize 'WOD5E.VTM.Humanity'}}</label>
@@ -30,7 +30,7 @@
                     </div>
                 {{/ifeq}}
 
-                {{#ifeq gamesystem 'hunter'}}
+                {{#ifeq currentActorType 'hunter'}}
                     <div class="field-section">
                         <div class="flexcol">
                             <label class="resource-label field-header">{{localize 'WOD5E.HTR.Despair'}}</label>
@@ -39,7 +39,7 @@
                     </div>
                 {{/ifeq}}
 
-                {{#ifeq gamesystem 'werewolf'}}
+                {{#ifeq currentActorType 'werewolf'}}
                     <div class="field-section">
                         <div class="flexcol">
                             <label class="resource-label field-header">{{localize 'WOD5E.WTA.Rage'}}</label>

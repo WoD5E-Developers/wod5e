@@ -11,6 +11,7 @@ export const getActorTypes = async function (actor) {
 
   const spcTypes = {
     mortal: 'WOD5E.Mortal',
+    ghoul: 'WOD5E.VTM.Ghoul',
     vampire: 'WOD5E.VTM.Label',
     werewolf: 'WOD5E.WTA.Label',
     hunter: 'WOD5E.HTR.Label'

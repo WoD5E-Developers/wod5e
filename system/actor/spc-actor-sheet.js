@@ -111,6 +111,11 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       data.balance = actorData.balance
     }
 
+    // If an actor type shouldn't have advanced dice, hold that status in noAdvancedDice
+    if (data.currentActorType === 'ghoul') {
+      data.noAdvancedDice = true
+    }
+
     return data
   }
 

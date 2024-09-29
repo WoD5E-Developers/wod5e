@@ -1,6 +1,6 @@
 <div class="tab flex-center" data-group="primary">
     <div class="flexrow spc-pool-header">
-        <label class="resource-label field-header">{{localize "WOD5E.SPC.ExceptionalDicePools"}}</label> 
+        <label class="resource-label field-header">{{localize "WOD5E.SPC.ExceptionalDicePools"}}</label>
         <div class="item-controls spc-item-header">
             <a class="item-control exceptionalskill-create" data-action="createExceptionalSkill" title="{{localize 'WOD5E.SPC.AddSkill'}}">
                 <i class="fas fa-plus"></i>
@@ -14,10 +14,11 @@
             {{#if exceptionalskill.active}}
                 <li class="flexrow spc-item-header">
                     <label for="{{exceptionalskill.name}}" class="resource-label rollable" data-action="roll" data-value-paths="exceptionaldicepools.{{key}}.value" data-select-dialog="false"
-                      data-label="{{exceptionalskill.displayName}}">{{exceptionalskill.displayName}} 
+                      data-label="{{exceptionalskill.displayName}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
+                      {{exceptionalskill.displayName}}
                     </label>
                     <div class="resource-value">
-                        <input type="number" name="system.exceptionaldicepools.{{key}}.value" 
+                        <input type="number" name="system.exceptionaldicepools.{{key}}.value"
                         value="{{exceptionalskill.value}}" data-name="system.exceptionaldicepools.{{key}}.value" />
                     </div>
                     <!-- Item controls for Exceptional Skill sections -->
