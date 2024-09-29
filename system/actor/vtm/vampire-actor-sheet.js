@@ -7,6 +7,7 @@ import { prepareDisciplinesContext, prepareBloodContext } from './scripts/prepar
 import { _onAddDiscipline, _onDisciplineToChat, _onRemoveDiscipline, _onSelectDiscipline, _onSelectDisciplinePower } from './scripts/disciplines.js'
 import { _onFrenzyRoll } from './scripts/frenzy-roll.js'
 import { _onEndFrenzy } from './scripts/end-frenzy.js'
+import { _onRemorseRoll } from './scripts/roll-remorse.js'
 // Base actor sheet to extend from
 import { WoDActor } from '../wod-actor-base.js'
 // Mixin
@@ -26,7 +27,8 @@ export class VampireActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       selectDiscipline: _onSelectDiscipline,
       selectDisciplinePower: _onSelectDisciplinePower,
       resistFrenzy: _onFrenzyRoll,
-      endFrenzy: _onEndFrenzy
+      endFrenzy: _onEndFrenzy,
+      remorseRoll: _onRemorseRoll
     }
   }
 
