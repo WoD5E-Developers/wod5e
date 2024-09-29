@@ -1,4 +1,4 @@
-/* global ChatMessage, Roll, game, renderTemplate, CONFIG, Dialog, WOD5E */
+/* global ChatMessage, Roll, game, renderTemplate, CONFIG, Dialog */
 
 // Import various helper functions
 import { generateRollFormula } from './rolls/roll-formula.js'

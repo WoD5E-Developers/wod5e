@@ -11,7 +11,7 @@ export const getWerewolfLabel = async function (data) {
   }
 
   // Handle potential brutal outcomes (when no difficulty is set)
-  if (!difficultySet && data.advancedDice.critFails > 1) {
+  if (!difficultySet && data.advancedDice?.critFails > 1) {
     Object.assign(labelData, getBrutalOutcomeLabel())
   } else {
     // Default to just using the basic label generator if we don't have any splat-specific exceptions

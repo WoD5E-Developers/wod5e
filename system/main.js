@@ -8,6 +8,8 @@ import { RenderSettings } from './ui/settings-sidebar.js'
 import { ProseMirrorSettings } from './ui/prosemirror.js'
 // Item sheets
 import { WoDItem } from './item/item.js'
+// Chat message class
+import { WoDChatMessage } from './ui/wod-chat-message.js'
 // FVTT and module functionality
 import { preloadHandlebarsTemplates } from './scripts/templates.js'
 import { loadDiceSoNice } from './dice/dice-so-nice.js'
@@ -46,6 +48,7 @@ Hooks.once('init', async function () {
   // Define custom Entity classes
   CONFIG.Actor.documentClass = WoDActor
   CONFIG.Item.documentClass = WoDItem
+  CONFIG.ChatMessage.documentClass = WoDChatMessage
   CONFIG.ui.actors = WOD5EActorDirectory
   CONFIG.Dice.terms.m = MortalDie
   CONFIG.Dice.terms.v = VampireDie

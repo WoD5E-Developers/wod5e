@@ -11,7 +11,7 @@ export const getHunterLabel = async function (data) {
   }
 
   // Handle desperation failures
-  if (data.advancedDice.critFails > 0) {
+  if (data.advancedDice?.critFails > 0) {
     Object.assign(labelData, getDesperationLabel(data, difficultySet))
   } else {
     // Default to just using the basic label generator if we don't have any splat-specific exceptions

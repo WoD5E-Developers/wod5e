@@ -11,10 +11,10 @@ export const getVampireLabel = async function (data) {
   }
 
   // Handle messy criticals (when no difficulty is set)
-  if (data.advancedDice.criticals > 1 || (data.basicDice.criticals > 0 && data.advancedDice.criticals > 0)) {
+  if (data.advancedDice?.criticals > 1 || (data.basicDice?.criticals > 0 && data.advancedDice?.criticals > 0)) {
     // Handle messy criticals
     Object.assign(labelData, getMessyCriticalLabel(data, difficultySet))
-  } else if (data.advancedDice.critFails > 0 && (!difficultySet || data.totalResult < data.difficult)) {
+  } else if (data.advancedDice?.critFails > 0 && (!difficultySet || data.totalResult < data.difficult)) {
     // Handle bestial failures
     Object.assign(labelData, getBestialFailureLabel(data, difficultySet))
   } else {

@@ -10,6 +10,8 @@ import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDi
 export class MortalDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
+    termData.modifiers = ['cs>5']
+
     super(termData)
   }
 
@@ -40,6 +42,8 @@ export class MortalDie extends foundry.dice.terms.Die {
 export class VampireDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
+    termData.modifiers = ['cs>5']
+
     super(termData)
   }
 
@@ -70,6 +74,8 @@ export class VampireDie extends foundry.dice.terms.Die {
 export class VampireHungerDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
+    termData.modifiers = ['cs>5']
+
     super(termData)
   }
 
@@ -100,6 +106,8 @@ export class VampireHungerDie extends foundry.dice.terms.Die {
 export class HunterDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
+    termData.modifiers = ['cs>5']
+
     super(termData)
   }
 
@@ -130,6 +138,8 @@ export class HunterDie extends foundry.dice.terms.Die {
 export class HunterDesperationDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
+    termData.modifiers = ['cs>5']
+
     super(termData)
   }
 
@@ -160,6 +170,8 @@ export class HunterDesperationDie extends foundry.dice.terms.Die {
 export class WerewolfDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
+    termData.modifiers = ['cs>5']
+
     super(termData)
   }
 
@@ -190,6 +202,8 @@ export class WerewolfDie extends foundry.dice.terms.Die {
 export class WerewolfRageDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
+    termData.modifiers = ['cs>5']
+
     super(termData)
   }
 
