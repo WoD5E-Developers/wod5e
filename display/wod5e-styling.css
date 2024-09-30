@@ -757,7 +757,6 @@ h3.item-name {
 }
 .actor.sheet.vampire prose-mirror .editor-content {
   scrollbar-color: var(--vampire-color-2) var(--color-scrollbar-track);
-  max-height: 150px;
   font-size: 10pt;
 }
 .actor.sheet.vampire .tab[data-tab="blood"] .resource-label {
