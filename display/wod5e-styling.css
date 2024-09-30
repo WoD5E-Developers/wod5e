@@ -2790,6 +2790,9 @@ prose-mirror .editor-menu button {
 .dark-theme #controls ol.control-tools > li {
   background: var(--ui-background-dark-texture);
 }
+.dark-theme #controls ol.control-tools .has-notes::after {
+  color: var(--system-dark-color-1);
+}
 .dark-theme #navigation #scene-list .scene,
 .dark-theme #navigation #scene-list .scene.view,
 .dark-theme #navigation #scene-list .scene.context,
@@ -2812,7 +2815,8 @@ prose-mirror .editor-menu button {
 :root {
   --ui-background-hunter-texture: url("/systems/vtm5e/assets/ui/ui_background_hunter_texture.webp");
   --sidebar-background-hunter: url(/systems/vtm5e/assets/ui/sidebar_hunter.webp);
-  --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.png.webp);
+  --ui-background-hunter-color: rgba(255, 136, 0, 0.5);
+  --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.webp);
 }
 .hunter-theme {
   /* Logo */
@@ -2841,81 +2845,237 @@ prose-mirror .editor-menu button {
   background: var(--ui-background-hunter-texture);
 }
 .hunter-theme #hotbar .macro {
-  background: rgba(255, 136, 0, 0.5);
+  background: var(--ui-background-hunter-color);
 }
 .hunter-theme #hotbar .bar-controls {
   background: var(--ui-background-hunter-texture);
 }
 .hunter-theme .app {
   background: var(--ui-background-hunter-texture);
+  background-color: #3333335d;
+  background-blend-mode: multiply;
 }
 
 /* Variables */
 :root {
   --ui-background-vampire-texture: url("/systems/vtm5e/assets/ui/ui_background_vampire_texture.webp");
+  --sidebar-background-vampire: url("/systems/vtm5e/assets/ui/sidebar_vampire.webp");
+  --ui-background-vampire-color: rgba(255, 43, 43, 0.5);
+  --logo-vampire: url("/systems/vtm5e/assets/ui/VtM_Logo.webp");
 }
 .vampire-theme {
   /* Logo */
-  /* Sheet window Header */
-  /* Sheet Window Content */
-  /* Navbar */
-  /* Resource Counters */
-  /* Actor Sheet */
+  /* Vampire Styling */
+  /* Werewolf Styling */
+  /* Hunter Styling */
   /* Sidebar */
   /* Foundry Controls UI */
 }
 .vampire-theme #logo {
-  content: url(/systems/vtm5e/assets/ui/VtM_Logo.png.webp);
+  content: var(--logo-vampire);
 }
-.vampire-theme .sheet .window-header {
-  background-color: var(--vampire-color-1);
+.vampire-theme .standard-form .form-group > label,
+.vampire-theme .standard-form .form-group:hover > label {
+  color: var(--system-dark-color-4);
 }
-.vampire-theme .sheet .window-content {
-  background-color: #000000f0;
-  color: var(--system-color-6);
+.vampire-theme .standard-form .form-group .hint,
+.vampire-theme .standard-form .form-group:hover .hint {
+  color: var(--system-dark-color-8);
+}
+.vampire-theme .standard-form .sheet-tabs {
+  color: var(--system-dark-color-4);
+}
+.vampire-theme .standard-form input[type=range] {
+  --range-thumb-background-color: var(--system-dark-color-4);
+  --range-thumb-border-color: var(--system-dark-color-1);
+}
+.vampire-theme .sheet .window-header,
+.vampire-theme .dialog .window-header {
+  background-color: var(--system-dark-color-1);
+}
+.vampire-theme .sheet .journal-entry-content,
+.vampire-theme .dialog .journal-entry-content,
+.vampire-theme .sheet .window-content,
+.vampire-theme .dialog .window-content {
+  background-color: var(--system-dark-color-1);
+  color: var(--system-dark-color-4);
   background-blend-mode: hard-light;
 }
-.vampire-theme .sheet .window-content input {
+.vampire-theme .sheet .journal-entry-content input,
+.vampire-theme .dialog .journal-entry-content input,
+.vampire-theme .sheet .window-content input,
+.vampire-theme .dialog .window-content input,
+.vampire-theme .sheet .journal-entry-content .actor-header,
+.vampire-theme .dialog .journal-entry-content .actor-header,
+.vampire-theme .sheet .window-content .actor-header,
+.vampire-theme .dialog .window-content .actor-header,
+.vampire-theme .sheet .journal-entry-content .tab,
+.vampire-theme .dialog .journal-entry-content .tab,
+.vampire-theme .sheet .window-content .tab,
+.vampire-theme .dialog .window-content .tab {
+  color: #ffffff;
+  --input-text-color: #ffffff;
+}
+.vampire-theme .sheet select,
+.vampire-theme .dialog select,
+.vampire-theme .sheet input,
+.vampire-theme .dialog input {
+  color: var(--system-dark-color-4);
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
+}
+.vampire-theme .sheet select,
+.vampire-theme .dialog select,
+.vampire-theme .sheet select optgroup,
+.vampire-theme .dialog select optgroup {
+  background-color: var(--system-dark-color-2);
+}
+.vampire-theme .sheet select option,
+.vampire-theme .dialog select option {
+  background-color: var(--system-dark-color-3);
+}
+.vampire-theme .sheet button,
+.vampire-theme .dialog button {
+  background-color: var(--system-dark-color-3);
   color: var(--system-color-6);
 }
-.vampire-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
-  background-color: var(--system-color-5);
-  border: 1px solid var(--system-color-6);
+.vampire-theme .sheet button.default,
+.vampire-theme .dialog button.default,
+.vampire-theme .sheet button:hover,
+.vampire-theme .dialog button:hover {
+  background-color: var(--system-dark-color-2);
 }
-.vampire-theme .actor.sheet.hunter .tabs-container .active .navicon {
-  color: var(--system-color-5);
+.vampire-theme .sheet ::placeholder,
+.vampire-theme .dialog ::placeholder {
+  color: var(--system-dark-color-5);
 }
-.vampire-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
-  color: var(--system-color-5);
+.vampire-theme .situational-modifiers {
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
 }
-.vampire-theme .resource-value .resource-value-step {
-  background-color: #bdbdbd91;
+.vampire-theme .actor.sheet {
+  /* Navbar */
+  /* Resource Counters */
 }
-.vampire-theme .resource-counter .resource-counter-step {
-  border: 1px solid var(--system-color-6);
-}
-.vampire-theme .resource-counter .resource-counter-step[data-state="/"] {
-  background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
-}
-.vampire-theme .resource-counter .resource-counter-step[data-state="x"] {
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
-}
-.vampire-theme .resource-value .resource-value-empty {
-  border: 1px solid #777777;
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%);
-}
+.vampire-theme .actor.sheet .item-list .item,
+.vampire-theme .actor.sheet .resource,
+.vampire-theme .actor.sheet prose-mirror .editor-content,
 .vampire-theme .actor.sheet .actor-header input,
 .vampire-theme .actor.sheet .actor-header .resource,
 .vampire-theme .actor.sheet .stats-container,
 .vampire-theme .actor.sheet .stats-container .stats-footer {
-  background-color: #1d1d1d;
-  border-color: var(--system-color-6);
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
+}
+.vampire-theme .actor.sheet .sheet-tabs {
+  color: #ffffff;
+}
+.vampire-theme .actor.sheet .sheet-tabs .lock-btn,
+.vampire-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
+  background-color: var(--system-dark-color-1);
+  border: 1px solid var(--system-dark-color-4);
+}
+.vampire-theme .actor.sheet .lock-btn:hover {
+  color: #ffffff;
+}
+.vampire-theme .actor.sheet .sheet-tabs > [data-tab].active .navicon {
+  background: var(--system-dark-color-7);
+  border: 1px solid var(--system-dark-color-1);
+}
+.vampire-theme .actor.sheet .resource-value .resource-value-step:not(.active) {
+  background-color: var(--system-dark-color-3);
+}
+.vampire-theme .actor.sheet .resource-value .resource-value-empty {
+  border: 1px solid var(--system-dark-color-3);
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%);
+}
+.vampire-theme .actor.sheet .resource-counter .resource-counter-step {
+  border: 1px solid var(--system-dark-color-4);
+}
+.vampire-theme .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
+  background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
+}
+.vampire-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
+}
+.vampire-theme .actor.sheet .item-list .category {
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
+  /* Power Descriptions */
+}
+.vampire-theme .actor.sheet .item-list .category .content-link {
+  color: var(--system-dark-color-1);
+  background-color: #FFF;
+}
+.vampire-theme .actor.sheet .item-list .category .discipline-description,
+.vampire-theme .actor.sheet .item-list .category .edge-description,
+.vampire-theme .actor.sheet .item-list .category .gift-description {
+  color: var(--system-dark-color-4);
+}
+.vampire-theme .dialog-app .window-content,
+.vampire-theme .item.sheet .window-content,
+.vampire-theme .dialog .window-content {
+  background: var(--system-dark-color-2);
+}
+.vampire-theme .dialog-app input,
+.vampire-theme .item.sheet input,
+.vampire-theme .dialog input {
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
+}
+.vampire-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
+.vampire-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
+  color: var(--system-dark-color-4);
+}
+.vampire-theme .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
+.vampire-theme .actor.sheet.vampire .tabs-container .item[data-tab="blood"] {
+  color: var(--system-dark-color-6);
+}
+.vampire-theme .sheet.werewolf .resource-value .resource-value-step.active,
+.vampire-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
+.vampire-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
+  background-color: #e97244;
+}
+.vampire-theme .sheet.werewolf button.rage-button:hover {
+  background-color: #752e11ea;
+}
+.vampire-theme .actor.sheet.werewolf .tabs-container .active.item .navicon {
+  background-color: #752e11ea;
+}
+.vampire-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
+.vampire-theme .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
+  color: var(--system-dark-color-4);
+}
+.vampire-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
+.vampire-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
+  color: #e97244;
+}
+.vampire-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
+.vampire-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
+}
+.vampire-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form.form-active {
+  background-color: #833501e0;
+}
+.vampire-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
+  color: var(--system-dark-color-4);
+}
+.vampire-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
+  color: #ff8f00;
+}
+.vampire-theme prose-mirror button.icon.toggle {
+  color: var(--system-dark-color-4);
+  background-color: var(--system-dark-color-1);
 }
 .vampire-theme #sidebar {
-  background: url(/systems/vtm5e/assets/ui/sidebar_vampire.webp) repeat;
+  background: var(--sidebar-background-dark) repeat;
 }
 .vampire-theme #controls ol.control-tools > li {
   background: var(--ui-background-vampire-texture);
+}
+.vampire-theme #controls ol.control-tools .has-notes::after {
+  color: var(--system-dark-color-1);
 }
 .vampire-theme #navigation #scene-list .scene,
 .vampire-theme #navigation #scene-list .scene.view,
@@ -2925,11 +3085,8 @@ prose-mirror .editor-menu button {
 .vampire-theme #navigation #nav-toggle {
   background: var(--ui-background-vampire-texture);
 }
-.vampire-theme #navigation #scene-list .scene.active {
-  background: var(--ui-background-active-texture);
-}
 .vampire-theme #hotbar .macro {
-  background: rgba(255, 43, 43, 0.5);
+  background: var(--ui-background-vampire-color);
 }
 .vampire-theme #hotbar .bar-controls {
   background: var(--ui-background-vampire-texture);
@@ -2941,68 +3098,223 @@ prose-mirror .editor-menu button {
 /* Variables */
 :root {
   --ui-background-werewolf-texture: url("/systems/vtm5e/assets/ui/ui_background_werewolf_texture.webp");
+  --sidebar-background-werewolf: url("/systems/vtm5e/assets/ui/sidebar_werewolf.webp");
+  --ui-background-werewolf-color: #57340d;
+  --logo-werewolf: url("/systems/vtm5e/assets/ui/WtA_Logo.webp");
 }
 .werewolf-theme {
   /* Logo */
-  /* Sheet window Header */
-  /* Sheet Window Content */
-  /* Navbar */
-  /* Resource Counters */
-  /* Actor Sheet */
+  /* Vampire Styling */
+  /* Werewolf Styling */
+  /* Hunter Styling */
   /* Sidebar */
   /* Foundry Controls UI */
 }
 .werewolf-theme #logo {
-  content: url(/systems/vtm5e/assets/ui/WtA_Logo.png.webp);
+  content: var(--logo-werewolf);
 }
-.werewolf-theme .sheet .window-header {
-  background-color: var(--werewolf-color-1);
+.werewolf-theme .standard-form .form-group > label,
+.werewolf-theme .standard-form .form-group:hover > label {
+  color: var(--system-dark-color-4);
 }
-.werewolf-theme .sheet .window-content {
-  background-color: #000000f0;
-  color: var(--system-color-6);
+.werewolf-theme .standard-form .form-group .hint,
+.werewolf-theme .standard-form .form-group:hover .hint {
+  color: var(--system-dark-color-8);
+}
+.werewolf-theme .standard-form .sheet-tabs {
+  color: var(--system-dark-color-4);
+}
+.werewolf-theme .standard-form input[type=range] {
+  --range-thumb-background-color: var(--system-dark-color-4);
+  --range-thumb-border-color: var(--system-dark-color-1);
+}
+.werewolf-theme .sheet .window-header,
+.werewolf-theme .dialog .window-header {
+  background-color: var(--system-dark-color-1);
+}
+.werewolf-theme .sheet .journal-entry-content,
+.werewolf-theme .dialog .journal-entry-content,
+.werewolf-theme .sheet .window-content,
+.werewolf-theme .dialog .window-content {
+  background-color: var(--system-dark-color-1);
+  color: var(--system-dark-color-4);
   background-blend-mode: hard-light;
 }
-.werewolf-theme .sheet .window-content input {
+.werewolf-theme .sheet .journal-entry-content input,
+.werewolf-theme .dialog .journal-entry-content input,
+.werewolf-theme .sheet .window-content input,
+.werewolf-theme .dialog .window-content input,
+.werewolf-theme .sheet .journal-entry-content .actor-header,
+.werewolf-theme .dialog .journal-entry-content .actor-header,
+.werewolf-theme .sheet .window-content .actor-header,
+.werewolf-theme .dialog .window-content .actor-header,
+.werewolf-theme .sheet .journal-entry-content .tab,
+.werewolf-theme .dialog .journal-entry-content .tab,
+.werewolf-theme .sheet .window-content .tab,
+.werewolf-theme .dialog .window-content .tab {
+  color: #ffffff;
+  --input-text-color: #ffffff;
+}
+.werewolf-theme .sheet select,
+.werewolf-theme .dialog select,
+.werewolf-theme .sheet input,
+.werewolf-theme .dialog input {
+  color: var(--system-dark-color-4);
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
+}
+.werewolf-theme .sheet select,
+.werewolf-theme .dialog select,
+.werewolf-theme .sheet select optgroup,
+.werewolf-theme .dialog select optgroup {
+  background-color: var(--system-dark-color-2);
+}
+.werewolf-theme .sheet select option,
+.werewolf-theme .dialog select option {
+  background-color: var(--system-dark-color-3);
+}
+.werewolf-theme .sheet button,
+.werewolf-theme .dialog button {
+  background-color: var(--system-dark-color-3);
   color: var(--system-color-6);
 }
-.werewolf-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
-  background-color: var(--system-color-5);
-  border: 1px solid var(--system-color-6);
+.werewolf-theme .sheet button.default,
+.werewolf-theme .dialog button.default,
+.werewolf-theme .sheet button:hover,
+.werewolf-theme .dialog button:hover {
+  background-color: var(--system-dark-color-2);
 }
-.werewolf-theme .actor.sheet.hunter .tabs-container .active .navicon {
-  color: var(--system-color-5);
+.werewolf-theme .sheet ::placeholder,
+.werewolf-theme .dialog ::placeholder {
+  color: var(--system-dark-color-5);
 }
-.werewolf-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
-  color: var(--system-color-5);
+.werewolf-theme .situational-modifiers {
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
 }
-.werewolf-theme .resource-value .resource-value-step {
-  background-color: #bdbdbd91;
+.werewolf-theme .actor.sheet {
+  /* Navbar */
+  /* Resource Counters */
 }
-.werewolf-theme .resource-counter .resource-counter-step {
-  border: 1px solid var(--system-color-6);
-}
-.werewolf-theme .resource-counter .resource-counter-step[data-state="/"] {
-  background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
-}
-.werewolf-theme .resource-counter .resource-counter-step[data-state="x"] {
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
-}
-.werewolf-theme .resource-value .resource-value-empty {
-  border: 1px solid #777777;
-  background: linear-gradient(45deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%);
-}
+.werewolf-theme .actor.sheet .item-list .item,
+.werewolf-theme .actor.sheet .resource,
+.werewolf-theme .actor.sheet prose-mirror .editor-content,
 .werewolf-theme .actor.sheet .actor-header input,
 .werewolf-theme .actor.sheet .actor-header .resource,
 .werewolf-theme .actor.sheet .stats-container,
 .werewolf-theme .actor.sheet .stats-container .stats-footer {
-  border-color: var(--system-color-6);
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
+}
+.werewolf-theme .actor.sheet .sheet-tabs {
+  color: #ffffff;
+}
+.werewolf-theme .actor.sheet .sheet-tabs .lock-btn,
+.werewolf-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
+  background-color: var(--system-dark-color-1);
+  border: 1px solid var(--system-dark-color-4);
+}
+.werewolf-theme .actor.sheet .lock-btn:hover {
+  color: #ffffff;
+}
+.werewolf-theme .actor.sheet .sheet-tabs > [data-tab].active .navicon {
+  background: var(--system-dark-color-7);
+  border: 1px solid var(--system-dark-color-1);
+}
+.werewolf-theme .actor.sheet .resource-value .resource-value-step:not(.active) {
+  background-color: var(--system-dark-color-3);
+}
+.werewolf-theme .actor.sheet .resource-value .resource-value-empty {
+  border: 1px solid var(--system-dark-color-3);
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%);
+}
+.werewolf-theme .actor.sheet .resource-counter .resource-counter-step {
+  border: 1px solid var(--system-dark-color-4);
+}
+.werewolf-theme .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
+  background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
+}
+.werewolf-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
+  background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
+}
+.werewolf-theme .actor.sheet .item-list .category {
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
+  /* Power Descriptions */
+}
+.werewolf-theme .actor.sheet .item-list .category .content-link {
+  color: var(--system-dark-color-1);
+  background-color: #FFF;
+}
+.werewolf-theme .actor.sheet .item-list .category .discipline-description,
+.werewolf-theme .actor.sheet .item-list .category .edge-description,
+.werewolf-theme .actor.sheet .item-list .category .gift-description {
+  color: var(--system-dark-color-4);
+}
+.werewolf-theme .dialog-app .window-content,
+.werewolf-theme .item.sheet .window-content,
+.werewolf-theme .dialog .window-content {
+  background: var(--system-dark-color-2);
+}
+.werewolf-theme .dialog-app input,
+.werewolf-theme .item.sheet input,
+.werewolf-theme .dialog input {
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
+}
+.werewolf-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
+.werewolf-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
+  color: var(--system-dark-color-4);
+}
+.werewolf-theme .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
+.werewolf-theme .actor.sheet.vampire .tabs-container .item[data-tab="blood"] {
+  color: var(--system-dark-color-6);
+}
+.werewolf-theme .sheet.werewolf .resource-value .resource-value-step.active,
+.werewolf-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
+.werewolf-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
+  background-color: #e97244;
+}
+.werewolf-theme .sheet.werewolf button.rage-button:hover {
+  background-color: #752e11ea;
+}
+.werewolf-theme .actor.sheet.werewolf .tabs-container .active.item .navicon {
+  background-color: #752e11ea;
+}
+.werewolf-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
+.werewolf-theme .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
+  color: var(--system-dark-color-4);
+}
+.werewolf-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
+.werewolf-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
+  color: #e97244;
+}
+.werewolf-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
+.werewolf-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
+  background-color: var(--system-dark-color-2);
+  border-color: var(--system-dark-color-4);
+}
+.werewolf-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form.form-active {
+  background-color: #833501e0;
+}
+.werewolf-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
+  color: var(--system-dark-color-4);
+}
+.werewolf-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
+  color: #ff8f00;
+}
+.werewolf-theme prose-mirror button.icon.toggle {
+  color: var(--system-dark-color-4);
+  background-color: var(--system-dark-color-1);
 }
 .werewolf-theme #sidebar {
-  background: url(/systems/vtm5e/assets/ui/sidebar_werewolf.webp) repeat;
+  background: var(--sidebar-background-dark) repeat;
 }
 .werewolf-theme #controls ol.control-tools > li {
   background: var(--ui-background-werewolf-texture);
+}
+.werewolf-theme #controls ol.control-tools .has-notes::after {
+  color: var(--system-dark-color-1);
 }
 .werewolf-theme #navigation #scene-list .scene,
 .werewolf-theme #navigation #scene-list .scene.view,
@@ -3012,11 +3324,8 @@ prose-mirror .editor-menu button {
 .werewolf-theme #navigation #nav-toggle {
   background: var(--ui-background-werewolf-texture);
 }
-.werewolf-theme #navigation #scene-list .scene.active {
-  background: var(--ui-background-active-texture);
-}
 .werewolf-theme #hotbar .macro {
-  background: #57340d;
+  background: var(--ui-background-werewolf-color);
 }
 .werewolf-theme #hotbar .bar-controls {
   background: var(--ui-background-werewolf-texture);
