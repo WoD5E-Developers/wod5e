@@ -82,7 +82,7 @@ export const prepareNotepadContext = async function (context, actor) {
   context.notes = actorData.notes
   context.enrichedNotes = await TextEditor.enrichHTML(actorData.notes)
   context.privatenotes = actorData.privatenotes
-  context.enrichedPrivatenotes = await TextEditor.enrichHTML(actorData.privatenotes)
+  context.enrichedPrivateNotes = await TextEditor.enrichHTML(actorData.privatenotes)
 
   return context
 }
