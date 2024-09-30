@@ -8,7 +8,16 @@ export class Skills extends BaseDefinitionClass {
 
   // Run any necessary compilation on ready
   static onReady () {
-    const customSkills = game.settings.get('vtm5e', 'customSkills')
+    // Handle adding custom disciplines from the game settings
+    let customSkills = game.settings.get('vtm5e', 'customSkills') || {}
+
+    // Handle adding custom disciplines from any active modules
+    const activeModules = game.modules.filter(module => module.active === true && module.flags.wod5e)
+    activeModules.forEach((module) => {
+      if (module.flags.wod5e.customSkills) {
+        customSkills = customSkills.concat(module.flags.wod5e.customSkills)
+      }
+    })
 
     if (customSkills) {
       Skills.addCustom(customSkills)

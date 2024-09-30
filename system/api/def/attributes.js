@@ -8,7 +8,16 @@ export class Attributes extends BaseDefinitionClass {
 
   // Run any necessary compilation on ready
   static onReady () {
-    const customAttributes = game.settings.get('vtm5e', 'customAttributes')
+    // Handle adding custom disciplines from the game settings
+    let customAttributes = game.settings.get('vtm5e', 'customAttributes') || {}
+
+    // Handle adding custom disciplines from any active modules
+    const activeModules = game.modules.filter(module => module.active === true && module.flags.wod5e)
+    activeModules.forEach((module) => {
+      if (module.flags.wod5e.customAttributes) {
+        customAttributes = customAttributes.concat(module.flags.wod5e.customAttributes)
+      }
+    })
 
     if (customAttributes) {
       Attributes.addCustom(customAttributes)
