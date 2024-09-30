@@ -5,28 +5,21 @@ import { WereForms } from '../../../api/def/were-forms.js'
 export const prepareGifts = async function (actor) {
   // Secondary variables
   const giftsList = Gifts.getList({})
-  const gifts = actor.system?.gifts
-
-  // Clean up non-existent gifts, such as custom ones that no longer exist
-  const validGifts = new Set(Object.keys(giftsList))
-  for (const id of Object.keys(gifts)) {
-    if (!validGifts.has(id)) {
-      delete gifts[id]
-    }
-  }
+  const actorGifts = actor.system?.gifts
+  const computedGifts = {}
 
   for (const [id, value] of Object.entries(giftsList)) {
     let giftData = {}
 
     // If the actor has a gift with the key, grab its current values
-    if (Object.prototype.hasOwnProperty.call(gifts, id)) {
+    if (Object.prototype.hasOwnProperty.call(actorGifts, id)) {
       giftData = Object.assign({
         id,
-        value: gifts[id].value,
-        powers: gifts[id].powers || [],
-        description: gifts[id].description,
-        visible: gifts[id].visible,
-        selected: gifts[id].selected || false
+        value: actorGifts[id].value,
+        powers: actorGifts[id].powers || [],
+        description: actorGifts[id].description,
+        visible: actorGifts[id].visible,
+        selected: actorGifts[id].selected || false
       }, value)
     } else { // Otherwise, add it to the actor and set it as some default data
       giftData = Object.assign({
@@ -40,25 +33,25 @@ export const prepareGifts = async function (actor) {
     }
 
     // Ensure the gift exists
-    if (!gifts[id]) gifts[id] = {}
+    if (!computedGifts[id]) computedGifts[id] = {}
     // Apply the gift's data
-    gifts[id] = giftData
+    computedGifts[id] = giftData
 
     // Make it forced invisible if it's set to hidden
     if (giftData.hidden) {
-      gifts[id].visible = false
+      computedGifts[id].visible = false
     }
 
     // Enrich gift description
-    gifts[id].enrichedDescription = await TextEditor.enrichHTML(gifts[id].description)
+    computedGifts[id].enrichedDescription = await TextEditor.enrichHTML(computedGifts[id].description)
 
     // Assign all matching powers to the discipline
-    gifts[id].powers = actor.items.filter(item =>
+    computedGifts[id].powers = actor.items.filter(item =>
       item.type === 'gift' && item.system.giftType === id
     )
   }
 
-  return gifts
+  return computedGifts
 }
 
 export const prepareGiftPowers = async function (gifts) {

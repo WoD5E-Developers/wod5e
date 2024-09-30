@@ -4,28 +4,21 @@ import { Disciplines } from '../../../api/def/disciplines.js'
 export const prepareDisciplines = async function (actor) {
   // Secondary variables
   const disciplinesList = Disciplines.getList({})
-  const disciplines = actor.system?.disciplines
-
-  // Clean up non-existent disciplines, such as custom ones that no longer exist
-  const validDisciplines = new Set(Object.keys(disciplinesList))
-  for (const id of Object.keys(disciplines)) {
-    if (!validDisciplines.has(id)) {
-      delete disciplines[id]
-    }
-  }
+  const actorDisciplines = actor.system?.disciplines
+  const computedDisciplines = {}
 
   for (const [id, value] of Object.entries(disciplinesList)) {
     let disciplineData = {}
 
     // If the actor has a discipline with the key, grab its current values
-    if (Object.prototype.hasOwnProperty.call(disciplines, id)) {
+    if (Object.prototype.hasOwnProperty.call(actorDisciplines, id)) {
       disciplineData = Object.assign({
         id,
-        value: disciplines[id].value || 0,
-        powers: disciplines[id].powers || [],
-        description: disciplines[id].description,
-        visible: disciplines[id].visible,
-        selected: disciplines[id].selected || false
+        value: actorDisciplines[id].value || 0,
+        powers: actorDisciplines[id].powers || [],
+        description: actorDisciplines[id].description,
+        visible: actorDisciplines[id].visible,
+        selected: actorDisciplines[id].selected || false
       }, value)
     } else { // Otherwise, add it to the actor and set it as some default data
       disciplineData = Object.assign({
@@ -39,25 +32,25 @@ export const prepareDisciplines = async function (actor) {
     }
 
     // Ensure the discipline exists
-    if (!disciplines[id]) disciplines[id] = {}
+    if (!computedDisciplines[id]) computedDisciplines[id] = {}
     // Apply the discipline's data
-    disciplines[id] = disciplineData
+    computedDisciplines[id] = disciplineData
 
     // Make it forced invisible if it's set to hidden
     if (disciplineData.hidden) {
-      disciplines[id].visible = false
+      computedDisciplines[id].visible = false
     }
 
     // Enrich discipline description
-    disciplines[id].enrichedDescription = await TextEditor.enrichHTML(disciplines[id].description)
+    computedDisciplines[id].enrichedDescription = await TextEditor.enrichHTML(computedDisciplines[id].description)
 
     // Assign all matching powers to the discipline
-    disciplines[id].powers = actor.items.filter(item =>
+    computedDisciplines[id].powers = actor.items.filter(item =>
       item.type === 'power' && item.system.discipline === id
     )
   }
 
-  return disciplines
+  return computedDisciplines
 }
 
 export const prepareDisciplinePowers = async function (disciplines) {
