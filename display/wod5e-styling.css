@@ -2686,9 +2686,13 @@ prose-mirror .editor-menu button {
 .dark-theme .actor.sheet .sheet-tabs {
   color: #ffffff;
 }
+.dark-theme .actor.sheet .sheet-tabs .lock-btn,
 .dark-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
   background-color: var(--system-dark-color-1);
   border: 1px solid var(--system-dark-color-4);
+}
+.dark-theme .actor.sheet .lock-btn:hover {
+  color: #ffffff;
 }
 .dark-theme .actor.sheet .sheet-tabs > [data-tab].active .navicon {
   background: var(--system-dark-color-7);
