@@ -844,10 +844,6 @@
       "level": 1,
       "dicepool": {},
       "cost": "",
-      "rollable": false,
-      "skill": false,
-      "amalgam": false,
-      "rouse": false,
       "gamesystem": "vampire"
     },
     "boon": {
@@ -865,15 +861,11 @@
       "duration": "",
       "dicepool": {},
       "cost": "",
-      "rollable": false,
-      "skill": false,
-      "amalgam": false,
       "gamesystem": "hunter"
     },
     "edgepool": {
       "templates": ["base"],
       "edge": "arsenal",
-      "source": "self",
       "dicepool": {},
       "gamesystem": "hunter"
     },
@@ -884,8 +876,6 @@
       "level": 1,
       "cost": 0,
       "willpowercost": 0,
-      "rollable": false,
-      "rage": false,
       "action": "",
       "dicepool": {},
       "duration": "",
