@@ -1,4 +1,4 @@
-/* global game, Dialog, WOD5E */
+/* global game, Dialog */
 
 // Import modules
 import { WOD5eDice } from './system-rolls.js'
