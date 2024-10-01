@@ -301,10 +301,12 @@
       "GeneralDifficulty": "Общая сложность",
       "Label": "Персонаж Рассказчика",
       "Mental": "Ментальный",
+      "_Normal": "",
       "Physical": "Физическтй",
       "SelectSkill": "Выбор навыка",
       "Social": "Социальный",
       "StandardDicePools": "Универсальные пулы",
+      "_Strongest": "",
       "_Traits": ""
     },
     "Tabs": {

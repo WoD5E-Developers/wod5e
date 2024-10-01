@@ -298,13 +298,15 @@
     "SPC": {
       "AddSkill": "Add Skill",
       "ExceptionalDicePools": "Exceptional Dice Pools",
-      "GeneralDifficulty": "Difficulty",
+      "GeneralDifficulty": "General Difficulty",
       "Label": "Story Character",
       "Mental": "Mental",
+      "Normal": "Normal",
       "Physical": "Physical",
       "SelectSkill": "Select Skill",
       "Social": "Social",
       "StandardDicePools": "Standard Dice Pools",
+      "Strongest": "Strongest",
       "Traits": "Traits"
     },
     "Tabs": {

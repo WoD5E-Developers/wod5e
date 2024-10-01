@@ -301,10 +301,12 @@
       "GeneralDifficulty": "Difficoltà generale",
       "Label": "PNG",
       "Mental": "Mentale",
+      "_Normal": "",
       "Physical": "Fisico",
       "SelectSkill": "Seleziona abilità",
       "Social": "Sociale",
       "StandardDicePools": "Pool di dadi standard",
+      "_Strongest": "",
       "_Traits": ""
     },
     "Tabs": {

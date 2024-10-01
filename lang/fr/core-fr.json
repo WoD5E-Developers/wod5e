@@ -301,10 +301,12 @@
       "GeneralDifficulty": "Difficulté générale",
       "Label": "Antagoniste",
       "Mental": "Mental",
+      "_Normal": "",
       "Physical": "Physique",
       "SelectSkill": "Sélectionnez les compétences",
       "Social": "Social",
       "StandardDicePools": "Groupement de dés standard",
+      "_Strongest": "",
       "_Traits": ""
     },
     "Tabs": {

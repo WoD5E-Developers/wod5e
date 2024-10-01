@@ -13,6 +13,15 @@
             </select>
         </div>
     </div>
+    {{#ifeq baseActorType 'spc'}}
+        <div class="form-group">
+            <label>Show General Difficulty</label>
+            <div class="form-fields">
+                <input type="checkbox" name="system.settings.generalDifficultyEnabled" {{#if generalDifficultyEnabled}}checked{{/if}}>
+            </div>
+        </div>
+    {{/ifeq}}
+
     {{#if showOptionalPowers}}
         {{#ifeq gamesystem 'vampire'}}
             <div class="form-group">

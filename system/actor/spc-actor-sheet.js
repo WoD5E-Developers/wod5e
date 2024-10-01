@@ -108,7 +108,6 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     if (data.currentActorType === 'werewolf') {
       data.rage = actorData.rage
       data.lostTheWolf = data.rage.value === 0
-      data.balance = actorData.balance
     }
 
     if (data.currentActorType === 'spirit') {
@@ -119,6 +118,9 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     if (data.currentActorType === 'ghoul' || data.currentActorType === 'spirit') {
       data.noAdvancedDice = true
     }
+
+    data.generalDifficultyEnabled = actorData.settings.generalDifficultyEnabled
+    data.generaldifficulty = actorData.generaldifficulty
 
     return data
   }

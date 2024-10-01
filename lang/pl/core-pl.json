@@ -301,10 +301,12 @@
       "GeneralDifficulty": "Ogólna trudność",
       "_Label": "",
       "Mental": "Psychiczne",
+      "_Normal": "",
       "Physical": "Fizyczne",
       "SelectSkill": "Wybierz umiejętność",
       "Social": "Społeczne",
       "StandardDicePools": "Standardowe pule kości",
+      "_Strongest": "",
       "_Traits": ""
     },
     "Tabs": {

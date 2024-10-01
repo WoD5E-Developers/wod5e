@@ -301,10 +301,12 @@
       "GeneralDifficulty": "Dificuldade geral",
       "Label": "Personagem do Narrador",
       "Mental": "Mental",
+      "_Normal": "",
       "Physical": "Fisica",
       "SelectSkill": "Selecione Habilidade",
       "Social": "Social",
       "StandardDicePools": "Pool de dados padrão",
+      "_Strongest": "",
       "_Traits": ""
     },
     "Tabs": {

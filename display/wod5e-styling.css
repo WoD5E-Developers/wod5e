@@ -1271,6 +1271,9 @@ body.uk .actor.sheet {
   min-height: 26px;
   border-radius: 0;
 }
+.actor.sheet input[type="number"] {
+  max-width: 35px;
+}
 .actor.sheet .limited-actor-header {
   display: flex;
   flex-grow: 0;
@@ -1939,9 +1942,6 @@ body.uk .actor.sheet {
 }
 .item.sheet .item-header .header-fields .header-details {
   padding: 5px;
-}
-.item.sheet .item-header input[type="number"] {
-  max-width: 35px;
 }
 .item.sheet .item-header .item-resource {
   text-wrap: nowrap;

@@ -820,7 +820,8 @@
       "settings": {
         "enableGifts": false,
         "enableDisciplines": false,
-        "enableEdges": false
+        "enableEdges": false,
+        "generalDifficultyEnabled": true
       }
     }
   },

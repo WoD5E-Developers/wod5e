@@ -301,10 +301,12 @@
       "GeneralDifficulty": "Загальна складність",
       "Label": "НІП",
       "Mental": "Ментальні",
+      "_Normal": "",
       "Physical": "Фізичні",
       "SelectSkill": "Вибрати навичку",
       "Social": "Соціальні",
       "StandardDicePools": "Стандартний пул кубів",
+      "_Strongest": "",
       "_Traits": ""
     },
     "Tabs": {

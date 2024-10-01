@@ -301,10 +301,12 @@
       "GeneralDifficulty": "Allg. SG",
       "Label": "Erzähler-Charakter (NSC)",
       "Mental": "Geistig",
+      "_Normal": "",
       "Physical": "Körperlich",
       "SelectSkill": "Wähle Fähigkeit",
       "Social": "Gesellschaftlich",
       "StandardDicePools": "Würfelpools",
+      "_Strongest": "",
       "_Traits": ""
     },
     "Tabs": {
