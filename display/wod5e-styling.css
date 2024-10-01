@@ -1977,7 +1977,7 @@ body.uk .actor.sheet {
 .locked .resource-plus,
 .locked .resource-minus,
 .locked .resource-value-empty:not(.hunger-value, .rage-value),
-.locked a.item-control.exceptionalskill-create,
+.locked .edit-exceptional-pools,
 .locked .exceptionalskill-delete,
 .locked .power-create,
 .locked .power-delete,
@@ -2137,6 +2137,38 @@ body.uk .actor.sheet {
 
 .spc.sheet .spc-stats-body {
   align-items: flex-start;
+}
+.spc.sheet input[type="number"] {
+  width: 35px;
+  text-align: center;
+}
+.spc.sheet .standard-pools-list,
+.spc.sheet .exceptional-pools-list {
+  margin-bottom: 10px;
+}
+.spc.sheet .exceptional-pools-list {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  text-align: -webkit-center;
+}
+.spc.sheet .exceptional-pools-list .spc-item-header {
+  font-weight: bold;
+}
+.spc.sheet .exceptional-pools-list .exceptionalskill-create {
+  align-self: center;
+}
+.spc.sheet .exceptional-pools-list .exceptional-pool {
+  flex-grow: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.spc.sheet .exceptional-pools-list .exceptional-pool .resource-label {
+  place-content: center;
+  text-wrap: nowrap;
+}
+.exceptional-edit.dialog .exceptional-pool {
+  justify-content: space-between;
 }
 
 /* Variables */

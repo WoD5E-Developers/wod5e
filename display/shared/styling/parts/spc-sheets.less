@@ -2,4 +2,46 @@
   .spc-stats-body {
     align-items: flex-start;
   }
+
+  input[type="number"] {
+    width: 35px;
+    text-align: center;
+  }
+
+  .standard-pools-list,
+  .exceptional-pools-list {
+    margin-bottom: 10px;
+  }
+
+  .exceptional-pools-list {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    text-align: -webkit-center;
+
+    .spc-item-header {
+      font-weight: bold;
+    }
+
+    .exceptionalskill-create {
+      align-self: center;
+    }
+
+    .exceptional-pool {
+      flex-grow: 0;
+      margin-left: auto;
+      margin-right: auto;
+
+      .resource-label {
+        place-content: center;
+        text-wrap: nowrap;
+      }
+    }
+  }
+}
+
+.exceptional-edit.dialog {
+  .exceptional-pool {
+    justify-content: space-between;
+  }
 }

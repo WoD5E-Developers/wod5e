@@ -3,7 +3,7 @@
 // Preparation functions
 import { prepareBiographyContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareLimitedContext, prepareSpcStatsContext } from './scripts/prepare-partials.js'
 // Various button functions
-import { _onCreateExceptionalSkill, _onDeleteExceptionalSkill } from './scripts/exceptional-dicepools.js'
+import { _onEditExceptionalPools } from './scripts/exceptional-dicepools.js'
 import { _onCreatePower, _onDeletePower } from './scripts/spc-powers.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './wta/scripts/balance.js'
 // Base actor sheet to extend from
@@ -21,8 +21,7 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     actions: {
       createSPCPower: _onCreatePower,
       deleteSPCPower: _onDeletePower,
-      createExceptionalSkill: _onCreateExceptionalSkill,
-      deleteExceptionalSkill: _onDeleteExceptionalSkill,
+      editExceptionalPools: _onEditExceptionalPools,
       haranoRoll: _onHaranoRoll,
       haugloskRoll: _onHaugloskRoll
     }
