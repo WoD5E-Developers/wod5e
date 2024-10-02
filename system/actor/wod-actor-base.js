@@ -141,7 +141,6 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       isOwner: actor.isOwner,
       locked: actorData.locked,
       isCharacter: this.isCharacter,
-      hasBoons: this.hasBoons,
       showLegacyXP,
 
       features: actorData.features,
@@ -197,6 +196,9 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       flaw: [],
       boon: []
     })
+
+    // Remove Boons if we have no boons and the actor isn't a vampire
+    if (sheetData.system.features.boon.length === 0 && sheetData.system.gamesystem !== 'vampire') delete sheetData.system.features.boon
   }
 
   static async onSubmitActorForm (event, form, formData) {
