@@ -28,6 +28,14 @@ export class ItemTypes extends BaseDefinitionClass {
     sheetClass: FeatureItemSheet
   }
 
+  static customRoll = {
+    label: 'WOD5E.ItemsList.CustomRoll',
+    img: 'systems/vtm5e/assets/icons/items/custom-roll.png',
+    types: ['customRoll'],
+    sheetClass: CustomRollItemSheet
+  }
+
+  // Vampire Items
   static power = {
     label: 'WOD5E.VTM.Discipline',
     img: 'systems/vtm5e/assets/icons/items/discipline.png',
@@ -42,13 +50,7 @@ export class ItemTypes extends BaseDefinitionClass {
     sheetClass: BoonItemSheet
   }
 
-  static customRoll = {
-    label: 'WOD5E.ItemsList.CustomRoll',
-    img: 'systems/vtm5e/assets/icons/items/custom-roll.png',
-    types: ['customRoll'],
-    sheetClass: CustomRollItemSheet
-  }
-
+  // Hunter Items
   static perk = {
     label: 'WOD5E.HTR.Edge',
     img: 'systems/vtm5e/assets/icons/items/edge.png',
@@ -63,6 +65,7 @@ export class ItemTypes extends BaseDefinitionClass {
     sheetClass: EdgePoolItemSheet
   }
 
+  // Werewolf Items
   static gift = {
     label: 'WOD5E.WTA.Gift',
     img: 'systems/vtm5e/assets/icons/items/gift.png',
