@@ -134,6 +134,13 @@
       "SelectAbility": "Wähle Attribut",
       "SkillShortLabel": "F"
     },
+    "EquipmentList": {
+      "_EquipmentNotes": "",
+      "_Melee": "",
+      "_Ranged": "",
+      "_SelectWeaponType": "",
+      "_Supernatural": ""
+    },
     "Experience": {
       "_AddExperience": "",
       "_Calculated": "",

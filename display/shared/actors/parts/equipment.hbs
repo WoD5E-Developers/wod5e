@@ -1,10 +1,10 @@
 <section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
     <div class="flexrow">
-        <div class="character-details flexcol">
-            <div class="flexcol flex-group-center">
+        <div class="equipment-notes flexcol">
+            <div class="flexcol">
                 <div class="description-field">
-                    <div class="flex-center field-header">
-                        <label class="resource-label">
+                    <div class="flex-center">
+                        <label class="resource-label field-header">
                             {{localize "WOD5E.EquipmentList.EquipmentNotes"}}
                         </label>
                     </div>
@@ -23,7 +23,7 @@
                     <div class="equipment">
                         <div class="flexrow item-header">
                             <div class="item-name">
-                                {{localize (generateLocalizedLabel key 'equipment')}}
+                                {{localize (concat 'TYPES.Item.' key)}}
                             </div>
                             <!-- Item controls for gift item sections -->
                             <div class="item-controls">

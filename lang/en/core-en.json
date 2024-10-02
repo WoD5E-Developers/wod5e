@@ -134,6 +134,13 @@
       "SelectAbility": "Select Ability",
       "SkillShortLabel": "S"
     },
+    "EquipmentList": {
+      "EquipmentNotes": "Equipment Notes",
+      "Melee": "Melee",
+      "Ranged": "Ranged",
+      "SelectWeaponType": "Select Weapon Type",
+      "Supernatural": "Supernatural"
+    },
     "Experience": {
       "AddExperience": "Add Experience",
       "Calculated": "Calculated",

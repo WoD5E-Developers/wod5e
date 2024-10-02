@@ -1,5 +1,17 @@
-/* global game, WOD5E, Dialog, renderTemplate, ChatMessage, Item */
+/* global game, Dialog, renderTemplate, ChatMessage, Item, foundry */
 
+// Definition classes
+import { ItemTypes } from '../../api/def/itemtypes.js'
+import { Disciplines } from '../../api/def/disciplines.js'
+import { Edges } from '../../api/def/edges.js'
+import { Gifts } from '../../api/def/gifts.js'
+import { Features } from '../../api/def/features.js'
+import { Weapons } from '../../api/def/weapons.js'
+
+// Localization function
+import { generateLocalizedLabel } from '../../api/generate-localization.js'
+
+// Various update functions
 import { _updateSelectedPerk } from '../htr/scripts/edges.js'
 import { _updateSelectedDisciplinePower } from '../vtm/scripts/disciplines.js'
 import { _updateSelectedGiftPower } from '../wta/scripts/gifts.js'
@@ -9,7 +21,7 @@ export const _onCreateItem = async function (event, target) {
 
   // Top-level variables
   const actor = this.actor
-  const itemsList = WOD5E.ItemTypes.getList({})
+  const itemsList = ItemTypes.getList({})
   const type = target.getAttribute('data-type')
 
   // Variables to be defined later
@@ -24,23 +36,23 @@ export const _onCreateItem = async function (event, target) {
   const system = actor.system.gamesystem
 
   // Generate the item name
-  itemName = subtype ? WOD5E.api.generateLabelAndLocalize({ string: subtype, type }) : itemsList[type].label
+  itemName = subtype ? generateLocalizedLabel(subtype, type) : itemsList[type].label
 
   // Generate item-specific data based on type
   switch (type) {
     case 'power':
       selectLabel = game.i18n.localize('WOD5E.VTM.SelectDiscipline')
-      itemOptions = WOD5E.Disciplines.getList({})
-      itemName = game.i18n.format('WOD5E.VTM.NewStringPower', {string: itemName })
+      itemOptions = Disciplines.getList({})
+      itemName = game.i18n.format('WOD5E.VTM.NewStringPower', { string: itemName })
       break
     case 'perk':
       selectLabel = game.i18n.localize('WOD5E.HTR.SelectEdge')
-      itemOptions = WOD5E.Edges.getList({})
+      itemOptions = Edges.getList({})
       itemName = game.i18n.format('WOD5E.HTR.NewStringPerk', { string: itemName })
       break
     case 'gift':
       selectLabel = game.i18n.localize('WOD5E.WTA.SelectGift')
-      itemOptions = WOD5E.Gifts.getList({})
+      itemOptions = Gifts.getList({})
 
       if (subtype && subtype === 'rite') {
         itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
@@ -53,7 +65,12 @@ export const _onCreateItem = async function (event, target) {
       break
     case 'feature':
       selectLabel = game.i18n.localize('WOD5E.ItemsList.SelectFeature')
-      itemOptions = WOD5E.Features.getList({})
+      itemOptions = Features.getList({})
+      itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
+      break
+    case 'weapon':
+      selectLabel = game.i18n.localize('WOD5E.EquipmentList.SelectWeaponType')
+      itemOptions = Weapons.getList({})
       itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
       break
     default:
@@ -62,13 +79,13 @@ export const _onCreateItem = async function (event, target) {
   }
 
   // Create item if subtype is already defined or not needed
-  if (subtype || ['customRoll', 'boon'].includes(type)) {
+  if (subtype || foundry.utils.isEmpty(itemOptions)) {
     if (subtype) {
       itemData = await appendSubtypeData(type, subtype, itemData)
     }
 
     // Create the item
-    await createItem(actor, itemName, type, itemData)
+    createItem(actor, itemName, type, itemData)
   } else {
     // Build the options for the select dropdown
     for (const [key, value] of Object.entries(itemOptions)) {
@@ -94,7 +111,7 @@ export const _onCreateItem = async function (event, target) {
           itemData = await appendSubtypeData(type, subtype, itemData)
 
           // Create the item
-          await createItem(actor, itemName, type, itemData)
+          createItem(actor, itemName, type, itemData)
         }
       },
       cancel: {

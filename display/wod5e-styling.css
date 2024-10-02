@@ -1238,6 +1238,7 @@ body.uk .actor.sheet {
   /* Actor Header */
   /* Experience Tab */
   /* Features tab */
+  /* Equipment Tab */
   /* Biography Tab */
   /* Notes Tab */
   /* Collapsible Descriptions */
@@ -1424,6 +1425,13 @@ body.uk .actor.sheet {
 .actor.sheet .tab[data-tab="features"] .features-list .category {
   margin-left: auto;
   margin-right: auto;
+}
+.actor.sheet .equipment-notes {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.actor.sheet .equipment-notes .field-header {
+  font-size: 16pt;
 }
 .actor.sheet .tab[data-tab="biography"] .detailed-section {
   display: inline-flex;

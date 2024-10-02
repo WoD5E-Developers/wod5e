@@ -34,49 +34,49 @@ export class ItemTypes extends BaseDefinitionClass {
   }
 
   static feature = {
-    label: 'Types.Item.feature',
+    label: 'TYPES.Item.feature',
     img: 'systems/vtm5e/assets/icons/items/feature.svg',
     types: ['feature'],
     sheetClass: FeatureItemSheet
   }
 
   static customRoll = {
-    label: 'Types.Item.customRoll',
+    label: 'TYPES.Item.customRoll',
     img: 'systems/vtm5e/assets/icons/items/custom-roll.png',
     types: ['customRoll'],
     sheetClass: CustomRollItemSheet
   }
 
   static armor = {
-    label: 'Types.Item.armor',
+    label: 'TYPES.Item.armor',
     img: '',
     types: ['armor'],
     sheetClass: ArmorItemSheet
   }
 
   static weapon = {
-    label: 'Types.Item.weapon',
+    label: 'TYPES.Item.weapon',
     img: '',
     types: ['weapon'],
     sheetClass: WeaponItemSheet
   }
 
   static gear = {
-    label: 'Types.Item.gear',
+    label: 'TYPES.Item.gear',
     img: '',
     types: ['gear'],
     sheetClass: GearItemSheet
   }
 
   static trait = {
-    label: 'Types.Item.trait',
+    label: 'TYPES.Item.trait',
     img: '',
     types: ['trait'],
     sheetClass: TraitItemSheet
   }
 
   static condition = {
-    label: 'Types.Item.condition',
+    label: 'TYPES.Item.condition',
     img: '',
     types: ['condition'],
     sheetClass: ConditionItemSheet
@@ -84,35 +84,35 @@ export class ItemTypes extends BaseDefinitionClass {
 
   // Vampire Items
   static clan = {
-    label: 'Types.Item.clan',
+    label: 'TYPES.Item.clan',
     img: '',
     types: ['clan'],
     sheetClass: ClanItemSheet
   }
 
   static predatorType = {
-    label: 'Types.Item.predatorType',
+    label: 'TYPES.Item.predatorType',
     img: '',
     types: ['predatorType'],
     sheetClass: PredatorTypeItemSheet
   }
 
   static resonance = {
-    label: 'Types.Item.resonance',
+    label: 'TYPES.Item.resonance',
     img: '',
     types: ['resonance'],
     sheetClass: ResonanceItemSheet
   }
 
   static power = {
-    label: 'Types.Item.power',
+    label: 'TYPES.Item.power',
     img: 'systems/vtm5e/assets/icons/items/discipline.png',
     types: ['power'],
     sheetClass: DisciplineItemSheet
   }
 
   static boon = {
-    label: 'Types.Item.boon',
+    label: 'TYPES.Item.boon',
     img: 'systems/vtm5e/assets/icons/items/boon.svg',
     types: ['boon'],
     sheetClass: BoonItemSheet
@@ -120,28 +120,28 @@ export class ItemTypes extends BaseDefinitionClass {
 
   // Hunter Items
   static creed = {
-    label: 'Types.Item.creed',
+    label: 'TYPES.Item.creed',
     img: '',
     types: ['creed'],
     sheetClass: CreedItemSheet
   }
 
   static drive = {
-    label: 'Types.Item.drive',
+    label: 'TYPES.Item.drive',
     img: '',
     types: ['drive'],
     sheetClass: DriveItemSheet
   }
 
   static perk = {
-    label: 'Types.Item.perk',
+    label: 'TYPES.Item.perk',
     img: 'systems/vtm5e/assets/icons/items/edge.png',
     types: ['perk'],
     sheetClass: PerkItemSheet
   }
 
   static edgepool = {
-    label: 'Types.Item.edgepool',
+    label: 'TYPES.Item.edgepool',
     img: 'systems/vtm5e/assets/icons/items/edgepool.png',
     types: ['edgepool'],
     sheetClass: EdgePoolItemSheet
@@ -149,21 +149,21 @@ export class ItemTypes extends BaseDefinitionClass {
 
   // Werewolf Items
   static tribe = {
-    label: 'Types.Item.tribe',
+    label: 'TYPES.Item.tribe',
     img: '',
     types: ['tribe'],
     sheetClass: TribeItemSheet
   }
 
   static talisman = {
-    label: 'Types.Item.talisman',
+    label: 'TYPES.Item.talisman',
     img: '',
     types: ['talisman'],
     sheetClass: TalismanItemSheet
   }
 
   static gift = {
-    label: 'Types.Item.gift',
+    label: 'TYPES.Item.gift',
     img: 'systems/vtm5e/assets/icons/items/gift.png',
     types: ['gift'],
     sheetClass: GiftItemSheet

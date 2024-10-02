@@ -134,6 +134,13 @@
       "SelectAbility": "Escolher Atributo",
       "SkillShortLabel": "H"
     },
+    "EquipmentList": {
+      "_EquipmentNotes": "",
+      "_Melee": "",
+      "_Ranged": "",
+      "_SelectWeaponType": "",
+      "_Supernatural": ""
+    },
     "Experience": {
       "_AddExperience": "",
       "_Calculated": "",

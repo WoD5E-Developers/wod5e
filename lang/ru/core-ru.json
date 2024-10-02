@@ -134,6 +134,13 @@
       "SelectAbility": "Выбор Характеристики",
       "SkillShortLabel": "Н"
     },
+    "EquipmentList": {
+      "_EquipmentNotes": "",
+      "_Melee": "",
+      "_Ranged": "",
+      "_SelectWeaponType": "",
+      "_Supernatural": ""
+    },
     "Experience": {
       "_AddExperience": "",
       "_Calculated": "",
