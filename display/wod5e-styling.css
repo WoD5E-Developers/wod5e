@@ -2300,11 +2300,9 @@ prose-mirror .editor-menu button {
 .sheet .tabs-container {
   background-color: var(--system-color-4);
 }
-.sheet .sheet-tabs {
-  color: var(--system-color-5);
-}
 .sheet .sheet-tabs .lock-btn,
 .sheet .sheet-tabs > [data-tab] .navicon {
+  color: var(--system-color-5);
   background-color: var(--system-color-6);
   border: 1px solid var(--system-color-5);
 }
