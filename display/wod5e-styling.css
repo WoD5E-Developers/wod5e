@@ -2135,8 +2135,14 @@ body.uk .actor.sheet {
   margin-left: -16px;
 }
 
+.spc.sheet .stat-resource-background {
+  padding: 5px 15px 5px;
+}
 .spc.sheet .spc-stats-body {
   align-items: flex-start;
+}
+.spc.sheet .spc-stats-body .field-header {
+  font-size: 16pt;
 }
 .spc.sheet input[type="number"] {
   width: 35px;
@@ -2155,17 +2161,20 @@ body.uk .actor.sheet {
 .spc.sheet .exceptional-pools-list .spc-item-header {
   font-weight: bold;
 }
-.spc.sheet .exceptional-pools-list .exceptionalskill-create {
-  align-self: center;
-}
-.spc.sheet .exceptional-pools-list .exceptional-pool {
+.spc.sheet .exceptional-pools-list .exceptional-pool:not(.locked) {
   flex-grow: 0;
   margin-left: auto;
   margin-right: auto;
 }
-.spc.sheet .exceptional-pools-list .exceptional-pool .resource-label {
+.spc.sheet .exceptional-pools-list .exceptional-pool:not(.locked) .resource-label {
   place-content: center;
   text-wrap: nowrap;
+}
+.locked .exceptional-pools-list {
+  place-content: center;
+}
+.locked .exceptional-pools-list a:not(:first-child)::before {
+  content: ", ";
 }
 .exceptional-edit.dialog .exceptional-pool {
   justify-content: space-between;

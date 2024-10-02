@@ -10,7 +10,13 @@
                 {{localize 'WOD5E.SPC.Physical'}}
                 <i class="fa-solid fa-dice-d10"></i>
             </label>
-            <input type="number" name="system.standarddicepools.physical.value" value="{{standardPools.physical.value}}" data-dtype="Number" />
+            {{#if locked}}
+                <div class="resource stat-resource-background">
+                    {{standardPools.physical.value}}
+                </div>
+            {{else}}
+                <input type="number" name="system.standarddicepools.physical.value" value="{{standardPools.physical.value}}" data-dtype="Number"/>
+            {{/if}}
         </div>
 
         <!-- Social Dicepool -->
@@ -20,7 +26,13 @@
                 {{localize 'WOD5E.SPC.Social'}}
                 <i class="fa-solid fa-dice-d10"></i>
             </label>
-            <input type="number" name="system.standarddicepools.social.value" value="{{standardPools.social.value}}" data-dtype="Number" />
+            {{#if locked}}
+                <div class="resource stat-resource-background">
+                    {{standardPools.social.value}}
+                </div>
+            {{else}}
+                <input type="number" name="system.standarddicepools.social.value" value="{{standardPools.social.value}}" data-dtype="Number"/>
+            {{/if}}
         </div>
 
         <!-- Mental Dicepool -->
@@ -30,7 +42,13 @@
                 {{localize 'WOD5E.SPC.Mental'}}
                 <i class="fa-solid fa-dice-d10"></i>
             </label>
-            <input type="number" name="system.standarddicepools.mental.value" value="{{standardPools.mental.value}}" data-dtype="Number" />
+            {{#if locked}}
+                <div class="resource stat-resource-background">
+                    {{standardPools.mental.value}}
+                </div>
+            {{else}}
+                <input type="number" name="system.standarddicepools.mental.value" value="{{standardPools.mental.value}}" data-dtype="Number"/>
+            {{/if}}
         </div>
     </div>
 </div>

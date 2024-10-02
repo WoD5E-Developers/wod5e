@@ -49,14 +49,20 @@
                     <div class="field-section">
                         <div class="flexcol">
                             <!-- Power Dicepool -->
-                            <div class="resource-content flexcol flex-center flex-between">
-                                <label class="field-header flexrow resource-label rollable" for="{{localize 'WOD5E.WTA.Power'}}" data-action="roll" data-use-absolute-value="true"
+                            <div class="flexcol flex-center">
+                                <a class="field-header flexrow resource-label rollable" for="{{localize 'WOD5E.WTA.Power'}}" data-action="roll" data-use-absolute-value="true"
                                     data-absolute-value="{{power.value}}" data-label="{{localize 'WOD5E.WTA.Power'}}"
                                     {{#if noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
                                     {{localize 'WOD5E.WTA.Power'}}
                                     <i class="fa-solid fa-dice-d10"></i>
-                                </label>
-                                <input type="number" name="system.power.value" value="{{power.value}}" data-dtype="Number" />
+                                </a>
+                                {{#if locked}}
+                                    <div class="resource stat-resource-background">
+                                        {{power.value}}
+                                    </div>
+                                {{else}}
+                                    <input type="number" name="system.power.value" value="{{power.value}}" data-dtype="Number"/>
+                                {{/if}}
                             </div>
                         </div>
                     </div>

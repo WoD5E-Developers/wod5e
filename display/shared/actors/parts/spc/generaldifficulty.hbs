@@ -9,14 +9,22 @@
                     {{localize 'WOD5E.SPC.Strongest'}}
                     <i class="fa-solid fa-dice-d10"></i>
                 </a>
-                <input type="number" name="system.generaldifficulty.strongest" value="{{generaldifficulty.strongest}}" data-dtype="Number"/>
+                {{#if locked}}
+                    {{generaldifficulty.strongest}}
+                {{else}}
+                    <input type="number" name="system.generaldifficulty.strongest" value="{{generaldifficulty.strongest}}" data-dtype="Number"/>
+                {{/if}}
             </div>
             <div class="flexcol flex-center">
                 <a data-action="roll" data-use-absolute-value="true" data-absolute-value="{{generaldifficulty.normal}}">
                     {{localize 'WOD5E.SPC.Normal'}}
                     <i class="fa-solid fa-dice-d10"></i>
                 </a>
-                <input type="number" name="system.generaldifficulty.normal" value="{{generaldifficulty.normal}}" data-dtype="Number"/>
+                {{#if locked}}
+                    {{generaldifficulty.normal}}
+                {{else}}
+                    <input type="number" name="system.generaldifficulty.normal" value="{{generaldifficulty.normal}}" data-dtype="Number"/>
+                {{/if}}
             </div>
         </div>
     </div>

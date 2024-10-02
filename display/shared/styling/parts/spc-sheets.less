@@ -1,6 +1,14 @@
 .spc.sheet {
+  .stat-resource-background {
+    padding: 5px 15px 5px;
+  }
+
   .spc-stats-body {
     align-items: flex-start;
+
+    .field-header {
+      font-size: 16pt;
+    }
   }
 
   input[type="number"] {
@@ -23,11 +31,7 @@
       font-weight: bold;
     }
 
-    .exceptionalskill-create {
-      align-self: center;
-    }
-
-    .exceptional-pool {
+    .exceptional-pool:not(.locked) {
       flex-grow: 0;
       margin-left: auto;
       margin-right: auto;
@@ -36,6 +40,16 @@
         place-content: center;
         text-wrap: nowrap;
       }
+    }
+  }
+}
+
+.locked {
+  .exceptional-pools-list {
+    place-content: center;
+
+    a:not(:first-child)::before {
+      content: ", ";
     }
   }
 }

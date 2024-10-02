@@ -5,22 +5,34 @@
             <i class="fas fa-edit"></i>
         </a>
     </div>
-    <div class="flexrow exceptional-pools-list">
+    <div class="exceptional-pools-list{{#unless locked}} flexrow{{else}} resource stat-resource-background{{/unless}}">
         <!-- Iterate through each of the skill lists -->
-        {{#each exceptionalPools as |exceptionalskill key|}}
-            {{#if exceptionalskill.active}}
-                <div class="spc-item-header exceptional-pool">
-                    <div class="flexrow resource-label rollable" data-action="roll" data-value-paths="exceptionaldicepools.{{key}}.value" data-select-dialog="false"
-                        data-label="{{exceptionalskill.displayName}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
-                        {{exceptionalskill.displayName}}
+        {{#if locked}}
+            {{#each exceptionalPools as |exceptionalskill key|}}
+                {{#if exceptionalskill.active}}
+                    <a class="exceptional-pool resource-label rollable{{#if ../locked}} locked{{/if}}" data-action="roll" data-value-paths="exceptionaldicepools.{{key}}.value"
+                            data-select-dialog="false" data-label="{{exceptionalskill.displayName}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
+                        <b>{{exceptionalskill.displayName}}</b>
+                        <span class="exceptional-value">{{exceptionalskill.value}}</span>
+                    </a>
+                {{/if}}
+            {{/each}}
+        {{else}}
+            {{#each exceptionalPools as |exceptionalskill key|}}
+                {{#if exceptionalskill.active}}
+                    <div class="spc-item-header exceptional-pool">
+                        <div class="resource-label rollable" data-action="roll" data-value-paths="exceptionaldicepools.{{key}}.value" data-select-dialog="false"
+                            data-label="{{exceptionalskill.displayName}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
+                            {{exceptionalskill.displayName}}
+                        </div>
+                        <div class="resource-value">
+                            <input type="number" name="system.exceptionaldicepools.{{key}}.value"
+                            value="{{exceptionalskill.value}}" data-name="system.exceptionaldicepools.{{key}}.value"/>
+                        </div>
                     </div>
-                    <div class="resource-value">
-                        <input type="number" name="system.exceptionaldicepools.{{key}}.value"
-                        value="{{exceptionalskill.value}}" data-name="system.exceptionaldicepools.{{key}}.value"/>
-                    </div>
-                </div>
-            {{/if}}
-        {{/each}}
+                {{/if}}
+            {{/each}}
+        {{/if}}
     </div>
 </div>
 
