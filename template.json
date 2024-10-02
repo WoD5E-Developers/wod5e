@@ -838,49 +838,15 @@
       "featuretype": "merit",
       "points": 0
     },
-    "power": {
-      "templates": ["base"],
-      "discipline": "animalism",
-      "duration": "",
-      "level": 1,
-      "dicepool": {},
-      "cost": "",
-      "gamesystem": "vampire"
-    },
     "boon": {
       "templates": ["base"],
-      "boontype": "Trivial"
+      "boontype": "Trivial",
+      "gamesystem": "vampire"
     },
     "customRoll": {
       "templates": ["base"],
       "dicepool": {},
       "modifier": 0
-    },
-    "perk": {
-      "templates": ["base"],
-      "edge": "arsenal",
-      "duration": "",
-      "dicepool": {},
-      "cost": "",
-      "gamesystem": "hunter"
-    },
-    "edgepool": {
-      "templates": ["base"],
-      "edge": "arsenal",
-      "dicepool": {},
-      "gamesystem": "hunter"
-    },
-    "gift": {
-      "templates": ["base"],
-      "giftType": "native",
-      "renown": "honor",
-      "level": 1,
-      "cost": 0,
-      "willpowercost": 0,
-      "action": "",
-      "dicepool": {},
-      "duration": "",
-      "gamesystem": "werewolf"
     },
     "armor": {
       "templates": ["base"]
@@ -898,25 +864,67 @@
       "templates": ["base"]
     },
     "clan": {
-      "templates": ["base"]
+      "templates": ["base"],
+      "gamesystem": "vampire"
     },
     "predatorType": {
-      "templates": ["base"]
+      "templates": ["base"],
+      "gamesystem": "vampire"
     },
     "resonance": {
-      "templates": ["base"]
+      "templates": ["base"],
+      "gamesystem": "vampire"
+    },
+    "power": {
+      "templates": ["base"],
+      "discipline": "animalism",
+      "duration": "",
+      "level": 1,
+      "dicepool": {},
+      "cost": "",
+      "gamesystem": "vampire"
     },
     "creed": {
-      "templates": ["base"]
+      "templates": ["base"],
+      "gamesystem": "hunter"
     },
     "drive": {
-      "templates": ["base"]
+      "templates": ["base"],
+      "gamesystem": "hunter"
+    },
+    "perk": {
+      "templates": ["base"],
+      "edge": "arsenal",
+      "duration": "",
+      "dicepool": {},
+      "cost": "",
+      "gamesystem": "hunter"
+    },
+    "edgepool": {
+      "templates": ["base"],
+      "edge": "arsenal",
+      "dicepool": {},
+      "gamesystem": "hunter"
     },
     "tribe": {
-      "templates": ["base"]
+      "templates": ["base"],
+      "gamesystem": "werewolf"
     },
     "talisman": {
-      "templates": ["base"]
+      "templates": ["base"],
+      "gamesystem": "werewolf"
+    },
+    "gift": {
+      "templates": ["base"],
+      "giftType": "native",
+      "renown": "honor",
+      "level": 1,
+      "cost": 0,
+      "willpowercost": 0,
+      "action": "",
+      "dicepool": {},
+      "duration": "",
+      "gamesystem": "werewolf"
     }
   }
 }

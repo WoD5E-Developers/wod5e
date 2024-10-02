@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareBiographyContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareLimitedContext, prepareSpcStatsContext } from './scripts/prepare-partials.js'
+import { prepareBiographyContext, prepareFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareLimitedContext, prepareSpcStatsContext } from './scripts/prepare-partials.js'
 // Various button functions
 import { _onEditExceptionalPools } from './scripts/exceptional-dicepools.js'
 import { _onCreatePower, _onDeletePower } from './scripts/spc-powers.js'
@@ -40,6 +40,9 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     features: {
       template: 'systems/vtm5e/display/shared/actors/parts/features.hbs'
     },
+    equipment: {
+      template: 'systems/vtm5e/display/shared/actors/parts/equipment.hbs'
+    },
     biography: {
       template: 'systems/vtm5e/display/shared/actors/parts/biography.hbs'
     },
@@ -69,6 +72,12 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       group: 'primary',
       title: 'WOD5E.Tabs.Features',
       icon: '<i class="fas fa-gem"></i>'
+    },
+    equipment: {
+      id: 'equipment',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Equipment',
+      icon: '<i class="fa-solid fa-toolbox"></i>'
     },
     biography: {
       id: 'biography',
@@ -140,6 +149,10 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       // Features
       case 'features':
         return prepareFeaturesContext(context, actor)
+
+      // Equipment
+      case 'equipment':
+        return prepareEquipmentContext(context, actor)
 
       // Biography
       case 'biography':

@@ -119,9 +119,6 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     // Actor types that can be swapped to and data prep for it
     const actorTypeData = await getActorTypes(actor)
 
-    // Shortcut to the actor headers
-    const actorHeaders = actorData.headers
-
     // Determine whether we show legacy XP depending on if the legacy values are filled or not
     const showLegacyXP = actorData.exp ? (actorData.exp.value || actorData.exp.max) : false
 
@@ -152,11 +149,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       baseActorType: actorTypeData.baseActorType,
       currentActorType: actorTypeData.currentActorType,
       actorTypePath: actorTypeData.typePath,
-      actorOptions: actorTypeData.types,
-
-      equipment: await TextEditor.enrichHTML(actorData.equipment),
-      bane: await TextEditor.enrichHTML(actorHeaders.bane),
-      creedfields: await TextEditor.enrichHTML(actorHeaders.creedfields)
+      actorOptions: actorTypeData.types
     }
   }
 
@@ -199,6 +192,35 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
     // Remove Boons if we have no boons and the actor isn't a vampire
     if (sheetData.system.features.boon.length === 0 && sheetData.system.gamesystem !== 'vampire') delete sheetData.system.features.boon
+
+    // Equipment
+    sheetData.system.equipmentItems = sheetData.items.reduce((acc, item) => {
+      switch (item.type) {
+        case 'armor':
+          acc['armor'].push(item)
+          break
+        case 'weapon':
+          acc['weapon'].push(item)
+          break
+        case 'gear':
+          acc['gear'].push(item)
+          break
+        case 'talisman':
+          acc['talisman'].push(item)
+          break
+      }
+
+      return acc
+    }, {
+      // Containers for equipment
+      armor: [],
+      weapon: [],
+      gear: [],
+      talisman: []
+    })
+
+    // Remove Talismans if we have no boons and the actor isn't a werewolf
+    if (sheetData.system.equipmentItems.talisman.length === 0 && sheetData.system.gamesystem !== 'werewolf') delete sheetData.system.equipmentItems.talisman
   }
 
   static async onSubmitActorForm (event, form, formData) {

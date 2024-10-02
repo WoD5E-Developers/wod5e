@@ -56,6 +56,20 @@ export const prepareFeaturesContext = async function (context, actor) {
   return context
 }
 
+export const prepareEquipmentContext = async function (context, actor) {
+  const actorData = actor.system
+
+  // Tab data
+  context.tab = context.tabs.equipment
+
+  // Part-specific data
+  context.equipment = actorData.equipment
+  context.enrichedEquipment = await TextEditor.enrichHTML(actorData.equipment)
+  context.equipmentItems = actorData.equipmentItems
+
+  return context
+}
+
 export const prepareBiographyContext = async function (context, actor) {
   const actorData = actor.system
 

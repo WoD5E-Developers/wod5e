@@ -3,7 +3,7 @@
 // Preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
 import { getActorTypes } from './scripts/get-actor-types.js'
-import { prepareGroupFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareGroupMembersContext } from './scripts/prepare-partials.js'
+import { prepareGroupFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareGroupMembersContext } from './scripts/prepare-partials.js'
 // Resource functions
 import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange } from './scripts/counters.js'
 // Various button functions
@@ -87,6 +87,9 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     features: {
       template: 'systems/vtm5e/display/shared/actors/parts/group/features.hbs'
     },
+    equipment: {
+      template: 'systems/vtm5e/display/shared/actors/parts/equipment.hbs'
+    },
     notepad: {
       template: 'systems/vtm5e/display/shared/actors/parts/notepad.hbs'
     },
@@ -114,6 +117,12 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       group: 'primary',
       title: 'WOD5E.Tabs.Features',
       icon: '<i class="fas fa-gem"></i>'
+    },
+    equipment: {
+      id: 'equipment',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Equipment',
+      icon: '<i class="fa-solid fa-toolbox"></i>'
     },
     notepad: {
       id: 'notepad',
@@ -233,6 +242,10 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       // Features
       case 'features':
         return prepareGroupFeaturesContext(context, actor)
+
+      // Equipment
+      case 'equipment':
+        return prepareEquipmentContext(context, actor)
 
       // Notepad
       case 'notepad':

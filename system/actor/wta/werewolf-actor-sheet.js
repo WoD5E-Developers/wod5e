@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from '../scripts/prepare-partials.js'
+import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from '../scripts/prepare-partials.js'
 import { prepareGiftsContext, prepareWolfContext } from './scripts/prepare-partials.js'
 // Various button functions
 import { _onAddGift, _onRemoveGift, _onGiftToChat, _onSelectGift, _onSelectGiftPower } from './scripts/gifts.js'
@@ -60,6 +60,9 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     features: {
       template: 'systems/vtm5e/display/shared/actors/parts/features.hbs'
     },
+    equipment: {
+      template: 'systems/vtm5e/display/shared/actors/parts/equipment.hbs'
+    },
     biography: {
       template: 'systems/vtm5e/display/shared/actors/parts/biography.hbs'
     },
@@ -107,6 +110,12 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       group: 'primary',
       title: 'WOD5E.Tabs.Features',
       icon: '<i class="fas fa-gem"></i>'
+    },
+    equipment: {
+      id: 'equipment',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Equipment',
+      icon: '<i class="fa-solid fa-toolbox"></i>'
     },
     biography: {
       id: 'biography',
@@ -182,6 +191,10 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       // Features
       case 'features':
         return prepareFeaturesContext(context, actor)
+
+      // Equipment
+      case 'equipment':
+        return prepareEquipmentContext(context, actor)
 
       // Biography
       case 'biography':
