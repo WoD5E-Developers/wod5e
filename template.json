@@ -826,7 +826,7 @@
     }
   },
   "Item": {
-    "types": ["feature", "power", "boon", "customRoll", "perk", "edgepool", "gift"],
+    "types": ["feature", "power", "boon", "customRoll", "perk", "edgepool", "gift", "armor", "weapon", "gear", "trait", "condition", "clan", "predatorType", "resonance", "creed", "drive", "tribe", "talisman"],
     "templates": {
       "base": {
         "description": "",
@@ -881,6 +881,42 @@
       "dicepool": {},
       "duration": "",
       "gamesystem": "werewolf"
+    },
+    "armor": {
+      "templates": ["base"]
+    },
+    "weapon": {
+      "templates": ["base"]
+    },
+    "gear": {
+      "templates": ["base"]
+    },
+    "trait": {
+      "templates": ["base"]
+    },
+    "condition": {
+      "templates": ["base"]
+    },
+    "clan": {
+      "templates": ["base"]
+    },
+    "predatorType": {
+      "templates": ["base"]
+    },
+    "resonance": {
+      "templates": ["base"]
+    },
+    "creed": {
+      "templates": ["base"]
+    },
+    "drive": {
+      "templates": ["base"]
+    },
+    "tribe": {
+      "templates": ["base"]
+    },
+    "talisman": {
+      "templates": ["base"]
     }
   }
 }

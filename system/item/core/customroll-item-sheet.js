@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareMacroContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+import { prepareDescriptionContext, prepareDicepoolContext, prepareMacroContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -11,7 +11,7 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
  * Extend the WoDItem document
  * @extends {WoDItem}
  */
-export class BoonItemSheet extends HandlebarsApplicationMixin(WoDItem) {
+export class CustomRollItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
     actions: {}
@@ -19,13 +19,16 @@ export class BoonItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/vtm/items/boon-sheet.hbs'
+      template: 'systems/vtm5e/display/shared/items/custom-roll-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
     },
     description: {
       template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
+    },
+    dicepool: {
+      template: 'systems/vtm5e/display/shared/items/parts/dicepool.hbs'
     },
     macro: {
       template: 'systems/vtm5e/display/shared/items/parts/macro.hbs'
@@ -40,6 +43,11 @@ export class BoonItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       id: 'description',
       group: 'primary',
       label: 'WOD5E.Tabs.Description'
+    },
+    dicepool: {
+      id: 'dicepool',
+      group: 'primary',
+      label: 'WOD5E.Tabs.Dicepool'
     },
     macro: {
       id: 'macro',
@@ -56,10 +64,6 @@ export class BoonItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   async _prepareContext () {
     // Top-level variables
     const data = await super._prepareContext()
-    const item = this.item
-    const itemData = item.system
-
-    data.boonType = itemData.boontype
 
     return data
   }
@@ -76,6 +80,8 @@ export class BoonItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       // Stats
       case 'description':
         return prepareDescriptionContext(context, item)
+      case 'dicepool':
+        return prepareDicepoolContext(context, item)
       case 'macro':
         return prepareMacroContext(context, item)
       case 'bonuses':

@@ -10,13 +10,25 @@
       "_werewolf": ""
     },
     "Item": {
+      "_armor": "",
       "boon": "Dette",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "customRoll": "Jet Personnalisé",
+      "_drive": "",
       "_edgepool": "",
       "feature": "Atout",
+      "_gear": "",
       "_gift": "",
       "perk": "Avantage",
-      "power": "Discipline"
+      "power": "Discipline",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {

@@ -10,13 +10,25 @@
       "werewolf": "Licantropo"
     },
     "Item": {
+      "_armor": "",
       "boon": "Favore",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "customRoll": "Tiro personalizzato",
+      "_drive": "",
       "_edgepool": "",
       "feature": "Caratteristica",
+      "_gear": "",
       "gift": "Dono",
       "perk": "Beneficio",
-      "power": "Disciplina"
+      "power": "Disciplina",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {

@@ -10,13 +10,25 @@
       "werewolf": ""
     },
     "Item": {
+      "_armor": "",
       "boon": "Favor",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "customRoll": "Rolagem Personalizada",
+      "_drive": "",
       "_edgepool": "",
       "feature": "Vantagem",
+      "_gear": "",
       "_gift": "",
       "perk": "Distinção",
-      "power": "Disciplina"
+      "power": "Disciplina",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {

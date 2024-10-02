@@ -2,6 +2,7 @@
 
 // Preparation functions
 import { prepareDescriptionContext, prepareMacroContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+import { Features } from '../../api/def/features.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -11,7 +12,7 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
  * Extend the WoDItem document
  * @extends {WoDItem}
  */
-export class BoonItemSheet extends HandlebarsApplicationMixin(WoDItem) {
+export class FeatureItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
     actions: {}
@@ -19,7 +20,7 @@ export class BoonItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/vtm/items/boon-sheet.hbs'
+      template: 'systems/vtm5e/display/shared/items/feature-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
@@ -59,7 +60,9 @@ export class BoonItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     const item = this.item
     const itemData = item.system
 
-    data.boonType = itemData.boontype
+    data.points = itemData.points
+    data.featureTypeOptions = Features.getList({})
+    data.featureTypeSelected = itemData.featuretype
 
     return data
   }

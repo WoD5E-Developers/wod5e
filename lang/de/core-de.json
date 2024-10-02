@@ -10,13 +10,25 @@
       "werewolf": "Werwolf"
     },
     "Item": {
+      "_armor": "",
       "boon": "Gefallen",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "customRoll": "Benutzerdefinierter Wurf",
+      "_drive": "",
       "_edgepool": "",
       "feature": "Merkmal",
+      "_gear": "",
       "gift": "Gabe",
       "perk": "Verstärkung",
-      "power": "Disziplin"
+      "power": "Disziplin",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {

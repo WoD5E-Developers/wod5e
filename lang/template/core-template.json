@@ -10,13 +10,25 @@
       "_werewolf": ""
     },
     "Item": {
+      "_armor": "",
       "_boon": "",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "_customRoll": "",
+      "_drive": "",
       "_edgepool": "",
       "_feature": "",
+      "_gear": "",
       "_gift": "",
       "_perk": "",
-      "_power": ""
+      "_power": "",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {

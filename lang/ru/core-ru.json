@@ -10,13 +10,25 @@
       "werewolf": "Оборотень"
     },
     "Item": {
+      "_armor": "",
       "boon": "Долг",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "customRoll": "Уникальная проверка",
+      "_drive": "",
       "_edgepool": "",
       "feature": "Преимущества",
+      "_gear": "",
       "gift": "дара",
       "perk": "Улучшение",
-      "power": "Дисциплина"
+      "power": "Дисциплина",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {

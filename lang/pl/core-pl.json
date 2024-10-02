@@ -10,13 +10,25 @@
       "_werewolf": ""
     },
     "Item": {
+      "_armor": "",
       "boon": "Przysługa",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "customRoll": "Własny Rzut",
+      "_drive": "",
       "_edgepool": "",
       "feature": "Cechy",
+      "_gear": "",
       "_gift": "",
       "perk": "Perk",
-      "power": "Dyscyplinę"
+      "power": "Dyscyplinę",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {

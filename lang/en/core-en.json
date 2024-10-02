@@ -10,13 +10,25 @@
       "werewolf": "Werewolf"
     },
     "Item": {
+      "armor": "Armor",
       "boon": "Boon",
+      "clan": "Clan",
+      "condition": "Condition",
+      "creed": "Creed",
       "customRoll": "Custom Roll",
+      "drive": "Drive",
       "edgepool": "Edge Pool",
       "feature": "Feature",
+      "gear": "Gear",
       "gift": "Gift",
       "perk": "Perk",
-      "power": "Discipline"
+      "power": "Discipline",
+      "predatorType": "Predator Type",
+      "resonance": "Resonance",
+      "talisman": "Talisman",
+      "trait": "SPC Trait",
+      "tribe": "Tribe",
+      "weapon": "Weapon"
     }
   },
   "WOD5E": {

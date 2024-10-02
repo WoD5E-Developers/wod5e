@@ -9,7 +9,7 @@ import { WoDItem } from '../wod-item-base.js'
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the WoDActor document
+ * Extend the WoDItem document
  * @extends {WoDItem}
  */
 export class DisciplineItemSheet extends HandlebarsApplicationMixin(WoDItem) {

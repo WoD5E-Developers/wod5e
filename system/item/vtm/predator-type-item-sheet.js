@@ -11,7 +11,7 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
  * Extend the WoDItem document
  * @extends {WoDItem}
  */
-export class BoonItemSheet extends HandlebarsApplicationMixin(WoDItem) {
+export class PredatorTypeItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
     actions: {}
@@ -19,7 +19,7 @@ export class BoonItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/vtm/items/boon-sheet.hbs'
+      template: 'systems/vtm5e/display/vtm/items/predator-type-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
@@ -59,7 +59,7 @@ export class BoonItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     const item = this.item
     const itemData = item.system
 
-    data.boonType = itemData.boontype
+    console.log(itemData)
 
     return data
   }

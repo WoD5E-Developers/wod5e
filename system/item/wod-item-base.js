@@ -10,7 +10,7 @@ import { _onEditImage } from './scripts/on-edit-image.js'
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the base ActorSheetV2 document
+ * Extend the base ItemSheetV2 document
  * @extends {foundry.applications.sheets.ItemSheetV2}
  */
 export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {

@@ -10,13 +10,25 @@
       "werewolf": "Hombre lobo"
     },
     "Item": {
+      "_armor": "",
       "boon": "Bendición",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "customRoll": "Tirada Personalizadas",
+      "_drive": "",
       "_edgepool": "",
       "feature": "Rasgo",
+      "_gear": "",
       "_gift": "",
       "perk": "Beneficio",
-      "power": "Disciplina"
+      "power": "Disciplina",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {
