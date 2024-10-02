@@ -124,10 +124,11 @@
     },
     "Experience": {
       "AddExperience": "Add Experience",
-      "Derived": "Derived",
+      "Calculated": "Calculated",
       "EditExperience": "Edit Experience",
       "History": "Experience History",
-      "Initial": "Initial",
+      "Label": "Experience",
+      "Legacy": "Legacy",
       "NewExperience": "New Experience",
       "Remaining": "Remaining EXP",
       "Total": "Total EXP"

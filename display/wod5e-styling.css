@@ -1375,6 +1375,11 @@ body.uk .actor.sheet {
 }
 .actor.sheet .tab[data-tab="experience"] .experience-trackers .tracker {
   margin-bottom: 10px;
+  text-wrap: nowrap;
+}
+.actor.sheet .tab[data-tab="experience"] .experience-trackers .tracker .exp-tracker {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .actor.sheet .tab[data-tab="experience"] .experience-trackers .tracker input {
   max-width: 50px;

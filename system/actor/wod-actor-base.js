@@ -122,6 +122,9 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     // Shortcut to the actor headers
     const actorHeaders = actorData.headers
 
+    // Determine whether we show legacy XP depending on if the legacy values are filled or not
+    const showLegacyXP = (actorData.exp.value || actorData.exp.max)
+
     // Transform any data needed for sheet rendering
     return {
       ...data,
@@ -139,6 +142,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       locked: actorData.locked,
       isCharacter: this.isCharacter,
       hasBoons: this.hasBoons,
+      showLegacyXP,
 
       features: actorData.features,
 
