@@ -1429,6 +1429,7 @@ body.uk .actor.sheet {
 .actor.sheet .equipment-notes {
   margin-left: 10px;
   margin-right: 10px;
+  align-self: flex-start;
 }
 .actor.sheet .equipment-notes .field-header {
   font-size: 16pt;
