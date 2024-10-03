@@ -68,6 +68,7 @@ export class WeaponItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     const itemData = item.system
 
     data.quantity = itemData.quantity
+    data.weaponvalue = itemData.weaponvalue
 
     return data
   }
