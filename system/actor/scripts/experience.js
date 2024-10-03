@@ -1,4 +1,4 @@
-/* global game, renderTemplate, WOD5E, foundry, Dialog */
+/* global game, renderTemplate, foundry, Dialog */
 
 export const _onAddExperience = async function (event) {
   event.preventDefault()
