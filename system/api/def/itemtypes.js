@@ -103,7 +103,8 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['clan'],
     sheetClass: ClanItemSheet,
     restrictedActorTypes: ['vampire'],
-    excludedActorTypes: ['spc']
+    excludedActorTypes: ['spc'],
+    limitOnePerActor: true
   }
 
   static predatorType = {
@@ -112,7 +113,8 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['predatorType'],
     sheetClass: PredatorTypeItemSheet,
     restrictedActorTypes: ['vampire'],
-    excludedActorTypes: ['spc']
+    excludedActorTypes: ['spc'],
+    limitOnePerActor: true
   }
 
   static resonance = {
@@ -121,7 +123,8 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['resonance'],
     sheetClass: ResonanceItemSheet,
     restrictedActorTypes: ['vampire'],
-    excludedActorTypes: ['spc']
+    excludedActorTypes: ['spc'],
+    limitOnePerActor: true
   }
 
   static power = {
@@ -149,7 +152,8 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['creed'],
     sheetClass: CreedItemSheet,
     restrictedActorTypes: ['hunter'],
-    excludedActorTypes: ['spc']
+    excludedActorTypes: ['spc'],
+    limitOnePerActor: true
   }
 
   static drive = {
@@ -158,7 +162,8 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['drive'],
     sheetClass: DriveItemSheet,
     restrictedActorTypes: ['hunter'],
-    excludedActorTypes: ['spc']
+    excludedActorTypes: ['spc'],
+    limitOnePerActor: true
   }
 
   static perk = {
@@ -186,7 +191,8 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['tribe'],
     sheetClass: TribeItemSheet,
     restrictedActorTypes: ['werewolf'],
-    excludedActorTypes: ['spc']
+    excludedActorTypes: ['spc'],
+    limitOnePerActor: true
   }
 
   static talisman = {

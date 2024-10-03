@@ -367,6 +367,13 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
         return false
       }
+
+      // Handle limiting only a single type of an item to an actor
+      if (itemsList[itemType].limitOnePerActor) {
+        // Delete all other types of this item on the actor
+        const duplicateItemTypeInstances = this.actor.items.filter(item => item.type === itemType).map(item => item.id)
+        this.actor.deleteEmbeddedDocuments('Item', duplicateItemTypeInstances)
+      }
     }
 
     // Handle item sorting within the same Actor
