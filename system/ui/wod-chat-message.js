@@ -7,10 +7,10 @@ export class WoDChatMessage extends ChatMessage {
    * Render the HTML for the ChatMessage which should be added to the log
    * @returns {Promise<jQuery>}
    */
-  async getHTML() {
+  async getHTML () {
     // Determine some metadata
     const data = this.toObject(false)
-    data.content = await TextEditor.enrichHTML(this.content, {rollData: this.getRollData()})
+    data.content = await TextEditor.enrichHTML(this.content, { rollData: this.getRollData() })
     const isWhisper = this.whisper.length
 
     // Construct message data
@@ -23,12 +23,12 @@ export class WoDChatMessage extends ChatMessage {
         this.style === CONST.CHAT_MESSAGE_STYLES.IC ? 'ic' : null,
         this.style === CONST.CHAT_MESSAGE_STYLES.EMOTE ? 'emote' : null,
         isWhisper ? 'whisper' : null,
-        this.blind ? 'blind': null
+        this.blind ? 'blind' : null
       ].filterJoin(' '),
       isWhisper: this.whisper.length,
-      canDelete: game.user.isGM,  // Only GM users are allowed to have the trash-bin icon in the chat log itself
+      canDelete: game.user.isGM, // Only GM users are allowed to have the trash-bin icon in the chat log itself
       whisperTo: this.whisper.map(u => {
-        let user = game.users.get(u)
+        const user = game.users.get(u)
         return user ? user.name : null
       }).filterJoin(', ')
     }

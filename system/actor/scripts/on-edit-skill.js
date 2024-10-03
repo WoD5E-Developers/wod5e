@@ -1,5 +1,3 @@
-/* global WOD5E */
-
 // Applications
 import { SkillApplication } from './../applications/skill-application.js'
 

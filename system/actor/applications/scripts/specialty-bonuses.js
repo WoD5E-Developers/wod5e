@@ -1,4 +1,4 @@
-/* global WOD5E, renderTemplate, Dialog, game */
+/* global renderTemplate, Dialog, game */
 
 export const _onAddBonus = async function (event) {
   event.preventDefault()
