@@ -172,6 +172,7 @@
       "NewSpecialty": "Neue Spezialisierung",
       "_NoDiceSelectedHint": "",
       "Points": "Punkte",
+      "_Quantity": "",
       "Rollable": "Würfelbar",
       "SelectFeature": "Merkmal auswählen",
       "ShowToChat": "An Chat senden",

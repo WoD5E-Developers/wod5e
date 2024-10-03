@@ -172,6 +172,7 @@
       "NewSpecialty": "Новая специализация",
       "_NoDiceSelectedHint": "",
       "Points": "Точки",
+      "_Quantity": "",
       "Rollable": "Требует броска",
       "_SelectFeature": "",
       "ShowToChat": "Вывести в чат",

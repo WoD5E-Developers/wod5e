@@ -172,6 +172,7 @@
       "NewSpecialty": "Nouvelle Spécialité",
       "_NoDiceSelectedHint": "",
       "Points": "Points",
+      "_Quantity": "",
       "Rollable": "Jet de dés",
       "_SelectFeature": "",
       "ShowToChat": "Afficher pour discuter",

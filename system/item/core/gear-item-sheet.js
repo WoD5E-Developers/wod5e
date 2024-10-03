@@ -67,7 +67,7 @@ export class GearItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     const item = this.item
     const itemData = item.system
 
-    console.log(itemData)
+    data.quantity = itemData.quantity
 
     return data
   }

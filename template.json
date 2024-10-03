@@ -831,6 +831,9 @@
       "base": {
         "description": "",
         "bonuses": []
+      },
+      "equipment": {
+        "quantity": 1
       }
     },
     "feature": {
@@ -849,13 +852,13 @@
       "modifier": 0
     },
     "armor": {
-      "templates": ["base"]
+      "templates": ["base", "equipment"]
     },
     "weapon": {
-      "templates": ["base"]
+      "templates": ["base", "equipment"]
     },
     "gear": {
-      "templates": ["base"]
+      "templates": ["base", "equipment"]
     },
     "trait": {
       "templates": ["base"]
@@ -911,7 +914,7 @@
       "gamesystem": "werewolf"
     },
     "talisman": {
-      "templates": ["base"],
+      "templates": ["base", "equipment"],
       "gamesystem": "werewolf"
     },
     "gift": {

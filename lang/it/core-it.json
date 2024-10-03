@@ -172,6 +172,7 @@
       "NewSpecialty": "Nuova Specialità",
       "_NoDiceSelectedHint": "",
       "Points": "Punti",
+      "_Quantity": "",
       "Rollable": "Tirabile",
       "SelectFeature": "Seleziona Caratteristica",
       "ShowToChat": "Mostra in chat",

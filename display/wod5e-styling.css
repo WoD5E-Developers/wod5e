@@ -380,6 +380,15 @@ prose-mirror .editor-menu {
 .prosemirror menu .pm-dropdown {
   background: transparent;
 }
+/* Input Fields */
+input:not(type="checkbox") {
+  min-height: 26px;
+  border-radius: 0;
+}
+input[type="number"] {
+  max-width: 35px;
+  text-align: center;
+}
 
 /* Actors Sidebar */
 .actors-sidebar .group-item {
@@ -1267,13 +1276,6 @@ body.uk .actor.sheet {
 .actor.sheet .resource {
   display: flex;
   flex-direction: column;
-}
-.actor.sheet input:not(type="checkbox") {
-  min-height: 26px;
-  border-radius: 0;
-}
-.actor.sheet input[type="number"] {
-  max-width: 35px;
 }
 .actor.sheet .limited-actor-header {
   display: flex;
@@ -2165,10 +2167,6 @@ body.uk .actor.sheet {
 }
 .spc.sheet .spc-stats-body .field-header {
   font-size: 16pt;
-}
-.spc.sheet input[type="number"] {
-  width: 35px;
-  text-align: center;
 }
 .spc.sheet .standard-pools-list,
 .spc.sheet .exceptional-pools-list {
