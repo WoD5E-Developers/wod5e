@@ -164,6 +164,7 @@
       "Feature": "Feature",
       "FeatureType": "Feature Type",
       "Flaw": "Flaw",
+      "ItemCannotBeDroppedOnActor": "This item type \"{string1}\" cannot be dropped onto actor type \"{string2}.\"",
       "Items": "Items",
       "Label": "Item",
       "Macro": "Macro",

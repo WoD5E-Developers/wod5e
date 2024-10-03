@@ -164,6 +164,7 @@
       "Feature": "Merkmal",
       "FeatureType": "Merkmals-Typ",
       "Flaw": "Schwächen",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
       "Label": "Gegenstände",
       "Macro": "Macro",

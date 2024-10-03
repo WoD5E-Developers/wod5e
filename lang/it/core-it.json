@@ -164,6 +164,7 @@
       "Feature": "Caratteristica",
       "FeatureType": "Tipo di caratteristica",
       "Flaw": "Difetti",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
       "Label": "Etichetta",
       "Macro": "Macro",

@@ -164,6 +164,7 @@
       "Feature": "Особливості",
       "FeatureType": "Тип Особливості",
       "Flaw": "Недолік",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
       "_Label": "",
       "_Macro": "",

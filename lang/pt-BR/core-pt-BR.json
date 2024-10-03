@@ -164,6 +164,7 @@
       "Feature": "Vantagem",
       "FeatureType": "Tipo de Vantagem",
       "Flaw": "Defeito",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
       "Label": "Items",
       "_Macro": "",

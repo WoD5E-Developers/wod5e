@@ -1,8 +1,10 @@
-/* global game, TextEditor, foundry, DragDrop, Item, SortingHelpers */
+/* global game, TextEditor, foundry, DragDrop, Item, SortingHelpers, ui */
 
 // Data preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
 import { getActorTypes } from './scripts/get-actor-types.js'
+// Definition file
+import { ItemTypes } from '../api/def/itemtypes.js'
 // Roll function
 import { _onRoll } from './scripts/roll.js'
 // Resource functions
@@ -335,8 +337,37 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
   async _onDropItem (event, data) {
     if (!this.actor.isOwner) return false
+    const actorType = this.actor.type
     const item = await Item.implementation.fromDropData(data)
     const itemData = item.toObject()
+    const itemType = itemData.type
+    const itemsList = ItemTypes.getList({})
+
+    // Check whether we should allow this item type to be placed on this actor type
+    if (itemsList[itemType]) {
+      const whitelist = itemsList[itemType].restrictedActorTypes
+      const blacklist = itemsList[itemType].excludedActorTypes
+
+      // If the whitelist contains any entries, we can check to make sure this actor type is allowed for the item
+      if (!foundry.utils.isEmpty(whitelist) && whitelist.indexOf(actorType) === -1) {
+        ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
+          string1: itemType,
+          string2: actorType
+        }))
+
+        return false
+      }
+
+      // If the blacklist contains any entries, we can check to make sure this actor type isn't disallowed for the item
+      if (!foundry.utils.isEmpty(blacklist) && blacklist.indexOf(actorType) > -1) {
+        ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
+          string1: itemType,
+          string2: actorType
+        }))
+
+        return false
+      }
+    }
 
     // Handle item sorting within the same Actor
     if (this.actor.uuid === item.parent?.uuid) return this._onSortItem(event, itemData)

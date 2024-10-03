@@ -164,6 +164,7 @@
       "Feature": "Rasgo",
       "FeatureType": "Tipo de rasgo",
       "Flaw": "Defecto",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
       "Label": "Objeto",
       "Macro": "Macro",

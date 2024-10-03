@@ -1,9 +1,11 @@
-/* global foundry, game, TextEditor, DragDrop, Item, SortingHelpers */
+/* global foundry, game, TextEditor, DragDrop, Item, SortingHelpers, ui */
 
 // Preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
 import { getActorTypes } from './scripts/get-actor-types.js'
 import { prepareGroupFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareGroupMembersContext } from './scripts/prepare-partials.js'
+// Definition file
+import { ItemTypes } from '../api/def/itemtypes.js'
 // Resource functions
 import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange } from './scripts/counters.js'
 // Various button functions
@@ -404,8 +406,37 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
 
   async _onDropItem (event, data) {
     if (!this.actor.isOwner) return false
+    const actorType = this.actor.type
     const item = await Item.implementation.fromDropData(data)
     const itemData = item.toObject()
+    const itemType = itemData.type
+    const itemsList = ItemTypes.getList({})
+
+    // Check whether we should allow this item type to be placed on this actor type
+    if (itemsList[itemType]) {
+      const whitelist = itemsList[itemType].restrictedActorTypes
+      const blacklist = itemsList[itemType].excludedActorTypes
+
+      // If the whitelist contains any entries, we can check to make sure this actor type is allowed for the item
+      if (!foundry.utils.isEmpty(whitelist) && whitelist.indexOf(actorType) === -1) {
+        ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
+          string1: itemType,
+          string2: actorType
+        }))
+
+        return false
+      }
+
+      // If the blacklist contains any entries, we can check to make sure this actor type isn't disallowed for the item
+      if (!foundry.utils.isEmpty(blacklist) && blacklist.indexOf(actorType) > -1) {
+        ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
+          string1: itemType,
+          string2: actorType
+        }))
+
+        return false
+      }
+    }
 
     // Handle item sorting within the same Actor
     if (this.actor.uuid === item.parent?.uuid) return this._onSortItem(event, itemData)

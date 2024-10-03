@@ -164,6 +164,7 @@
       "Feature": "Atout",
       "FeatureType": "Type d'Atout",
       "Flaw": "Handicap",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
       "Label": "Objets",
       "Macro": "Macro",

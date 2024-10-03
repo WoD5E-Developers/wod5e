@@ -164,6 +164,7 @@
       "_Feature": "",
       "FeatureType": "Rodzaj Cechy",
       "Flaw": "Wada",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
       "_Label": "",
       "_Macro": "",

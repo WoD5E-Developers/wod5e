@@ -164,6 +164,7 @@
       "Feature": "Преимущества",
       "FeatureType": "Тип преимущества",
       "Flaw": "Недостатки",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
       "_Label": "",
       "Macro": "Макрос",

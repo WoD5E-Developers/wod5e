@@ -37,49 +37,63 @@ export class ItemTypes extends BaseDefinitionClass {
     label: 'TYPES.Item.feature',
     img: 'systems/vtm5e/assets/icons/items/feature.svg',
     types: ['feature'],
-    sheetClass: FeatureItemSheet
+    sheetClass: FeatureItemSheet,
+    restrictedActorTypes: [],
+    excludedActorTypes: []
   }
 
   static customRoll = {
     label: 'TYPES.Item.customRoll',
     img: 'systems/vtm5e/assets/icons/items/custom-roll.png',
     types: ['customRoll'],
-    sheetClass: CustomRollItemSheet
+    sheetClass: CustomRollItemSheet,
+    restrictedActorTypes: [],
+    excludedActorTypes: ['group', 'spc']
   }
 
   static armor = {
     label: 'TYPES.Item.armor',
     img: '',
     types: ['armor'],
-    sheetClass: ArmorItemSheet
+    sheetClass: ArmorItemSheet,
+    restrictedActorTypes: [],
+    excludedActorTypes: []
   }
 
   static weapon = {
     label: 'TYPES.Item.weapon',
     img: '',
     types: ['weapon'],
-    sheetClass: WeaponItemSheet
+    sheetClass: WeaponItemSheet,
+    restrictedActorTypes: [],
+    excludedActorTypes: []
   }
 
   static gear = {
     label: 'TYPES.Item.gear',
     img: '',
     types: ['gear'],
-    sheetClass: GearItemSheet
+    sheetClass: GearItemSheet,
+    restrictedActorTypes: [],
+    excludedActorTypes: []
   }
 
   static trait = {
     label: 'TYPES.Item.trait',
     img: '',
     types: ['trait'],
-    sheetClass: TraitItemSheet
+    sheetClass: TraitItemSheet,
+    restrictedActorTypes: ['spc'],
+    excludedActorTypes: []
   }
 
   static condition = {
     label: 'TYPES.Item.condition',
     img: '',
     types: ['condition'],
-    sheetClass: ConditionItemSheet
+    sheetClass: ConditionItemSheet,
+    restrictedActorTypes: [],
+    excludedActorTypes: ['group']
   }
 
   // Vampire Items
@@ -87,35 +101,45 @@ export class ItemTypes extends BaseDefinitionClass {
     label: 'TYPES.Item.clan',
     img: '',
     types: ['clan'],
-    sheetClass: ClanItemSheet
+    sheetClass: ClanItemSheet,
+    restrictedActorTypes: ['vampire'],
+    excludedActorTypes: ['spc']
   }
 
   static predatorType = {
     label: 'TYPES.Item.predatorType',
     img: '',
     types: ['predatorType'],
-    sheetClass: PredatorTypeItemSheet
+    sheetClass: PredatorTypeItemSheet,
+    restrictedActorTypes: ['vampire'],
+    excludedActorTypes: ['spc']
   }
 
   static resonance = {
     label: 'TYPES.Item.resonance',
     img: '',
     types: ['resonance'],
-    sheetClass: ResonanceItemSheet
+    sheetClass: ResonanceItemSheet,
+    restrictedActorTypes: ['vampire'],
+    excludedActorTypes: ['spc']
   }
 
   static power = {
     label: 'TYPES.Item.power',
     img: 'systems/vtm5e/assets/icons/items/discipline.png',
     types: ['power'],
-    sheetClass: DisciplineItemSheet
+    sheetClass: DisciplineItemSheet,
+    restrictedActorTypes: ['vampire'],
+    excludedActorTypes: ['spc']
   }
 
   static boon = {
     label: 'TYPES.Item.boon',
     img: 'systems/vtm5e/assets/icons/items/boon.svg',
     types: ['boon'],
-    sheetClass: BoonItemSheet
+    sheetClass: BoonItemSheet,
+    restrictedActorTypes: ['vampire'],
+    excludedActorTypes: ['spc']
   }
 
   // Hunter Items
@@ -123,28 +147,36 @@ export class ItemTypes extends BaseDefinitionClass {
     label: 'TYPES.Item.creed',
     img: '',
     types: ['creed'],
-    sheetClass: CreedItemSheet
+    sheetClass: CreedItemSheet,
+    restrictedActorTypes: ['hunter'],
+    excludedActorTypes: ['spc']
   }
 
   static drive = {
     label: 'TYPES.Item.drive',
     img: '',
     types: ['drive'],
-    sheetClass: DriveItemSheet
+    sheetClass: DriveItemSheet,
+    restrictedActorTypes: ['hunter'],
+    excludedActorTypes: ['spc']
   }
 
   static perk = {
     label: 'TYPES.Item.perk',
     img: 'systems/vtm5e/assets/icons/items/edge.png',
     types: ['perk'],
-    sheetClass: PerkItemSheet
+    sheetClass: PerkItemSheet,
+    restrictedActorTypes: ['hunter'],
+    excludedActorTypes: ['spc']
   }
 
   static edgepool = {
     label: 'TYPES.Item.edgepool',
     img: 'systems/vtm5e/assets/icons/items/edgepool.png',
     types: ['edgepool'],
-    sheetClass: EdgePoolItemSheet
+    sheetClass: EdgePoolItemSheet,
+    restrictedActorTypes: ['hunter'],
+    excludedActorTypes: ['spc']
   }
 
   // Werewolf Items
@@ -152,21 +184,27 @@ export class ItemTypes extends BaseDefinitionClass {
     label: 'TYPES.Item.tribe',
     img: '',
     types: ['tribe'],
-    sheetClass: TribeItemSheet
+    sheetClass: TribeItemSheet,
+    restrictedActorTypes: ['werewolf'],
+    excludedActorTypes: ['spc']
   }
 
   static talisman = {
     label: 'TYPES.Item.talisman',
     img: '',
     types: ['talisman'],
-    sheetClass: TalismanItemSheet
+    sheetClass: TalismanItemSheet,
+    restrictedActorTypes: ['werewolf'],
+    excludedActorTypes: ['spc']
   }
 
   static gift = {
     label: 'TYPES.Item.gift',
     img: 'systems/vtm5e/assets/icons/items/gift.png',
     types: ['gift'],
-    sheetClass: GiftItemSheet
+    sheetClass: GiftItemSheet,
+    restrictedActorTypes: ['werewolf'],
+    excludedActorTypes: ['spc']
   }
 }
 
