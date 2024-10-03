@@ -1325,6 +1325,8 @@ body.uk .actor.sheet {
 }
 .actor.sheet .actor-header .header-profile-img {
   margin-bottom: 10px;
+  width: 240px;
+  height: 200px;
 }
 .actor.sheet .actor-header .header-profile-img img {
   height: fit-content;
