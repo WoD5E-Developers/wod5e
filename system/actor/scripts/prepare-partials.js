@@ -146,7 +146,6 @@ export const prepareSpcStatsContext = async function (context, actor) {
   context.traits = actorData.traits
   context.enrichedTraits = await TextEditor.enrichHTML(actorData.traits)
 
-
   if (context.currentActorType === 'vampire' || (context.gamesystem === 'vampire' && context.settings.enableDisciplines === true)) {
     context.showDisciplines = true
     context.disciplines = actorData.disciplines

@@ -234,16 +234,16 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     sheetData.system.equipmentItems = sheetData.items.reduce((acc, item) => {
       switch (item.type) {
         case 'armor':
-          acc['armor'].push(item)
+          acc.armor.push(item)
           break
         case 'weapon':
-          acc['weapon'].push(item)
+          acc.weapon.push(item)
           break
         case 'gear':
-          acc['gear'].push(item)
+          acc.gear.push(item)
           break
         case 'talisman':
-          acc['talisman'].push(item)
+          acc.talisman.push(item)
           break
       }
 
