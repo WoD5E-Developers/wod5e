@@ -239,13 +239,23 @@
   }
 
   /* Equipment Tab */
-  .equipment-notes {
-    margin-left: 10px;
-    margin-right: 10px;
-    align-self: flex-start;
+  .tab[data-tab="equipment"] {
+    .equipment-notes {
+      max-width: 400px;
+      margin-left: 10px;
+      margin-right: 10px;
+      align-self: flex-start;
 
-    .field-header {
-      font-size: 16pt;
+      .field-header {
+        font-size: 16pt;
+      }
+    }
+
+    .equipment-list {
+      .category {
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
   }
 
