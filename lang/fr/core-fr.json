@@ -135,11 +135,16 @@
       "SkillShortLabel": "C"
     },
     "EquipmentList": {
+      "_ArmorValue": "",
       "_EquipmentNotes": "",
       "_Melee": "",
+      "_NewStringWeapon": "",
+      "_Quantity": "",
       "_Ranged": "",
       "_SelectWeaponType": "",
-      "_Supernatural": ""
+      "_Supernatural": "",
+      "_WeaponType": "",
+      "_WeaponValue": ""
     },
     "Experience": {
       "_AddExperience": "",
@@ -172,7 +177,6 @@
       "NewSpecialty": "Nouvelle Spécialité",
       "_NoDiceSelectedHint": "",
       "Points": "Points",
-      "_Quantity": "",
       "Rollable": "Jet de dés",
       "_SelectFeature": "",
       "ShowToChat": "Afficher pour discuter",

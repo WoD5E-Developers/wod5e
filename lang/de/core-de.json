@@ -135,11 +135,16 @@
       "SkillShortLabel": "F"
     },
     "EquipmentList": {
+      "_ArmorValue": "",
       "_EquipmentNotes": "",
       "_Melee": "",
+      "_NewStringWeapon": "",
+      "_Quantity": "",
       "_Ranged": "",
       "_SelectWeaponType": "",
-      "_Supernatural": ""
+      "_Supernatural": "",
+      "_WeaponType": "",
+      "_WeaponValue": ""
     },
     "Experience": {
       "_AddExperience": "",
@@ -172,7 +177,6 @@
       "NewSpecialty": "Neue Spezialisierung",
       "_NoDiceSelectedHint": "",
       "Points": "Punkte",
-      "_Quantity": "",
       "Rollable": "Würfelbar",
       "SelectFeature": "Merkmal auswählen",
       "ShowToChat": "An Chat senden",

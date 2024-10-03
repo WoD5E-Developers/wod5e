@@ -135,11 +135,16 @@
       "SkillShortLabel": "S"
     },
     "EquipmentList": {
+      "ArmorValue": "Armor Value",
       "EquipmentNotes": "Equipment Notes",
       "Melee": "Melee",
+      "NewStringWeapon": "New {string} Weapon",
+      "Quantity": "Quantity",
       "Ranged": "Ranged",
       "SelectWeaponType": "Select Weapon Type",
-      "Supernatural": "Supernatural"
+      "Supernatural": "Supernatural",
+      "WeaponType": "Weapon Type",
+      "WeaponValue": "Weapon Value"
     },
     "Experience": {
       "AddExperience": "Add Experience",
@@ -172,7 +177,6 @@
       "NewSpecialty": "New Specialty",
       "NoDiceSelectedHint": "No dicepools added. Click \"Add Dice\" to begin constructing a dicepool.",
       "Points": "Points",
-      "Quantity": "Quantity",
       "Rollable": "Rollable",
       "SelectFeature": "Select Feature",
       "ShowToChat": "Show to Chat",

@@ -2,6 +2,8 @@
 
 // Preparation functions
 import { prepareDescriptionContext, prepareDicepoolContext, prepareMacroContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+// Definition file
+import { Weapons } from '../../api/def/weapons.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -69,6 +71,9 @@ export class WeaponItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
     data.quantity = itemData.quantity
     data.weaponvalue = itemData.weaponvalue
+
+    data.weaponTypeOptions = Weapons.getList({})
+    data.weaponTypeSelected = itemData.weapontype
 
     return data
   }

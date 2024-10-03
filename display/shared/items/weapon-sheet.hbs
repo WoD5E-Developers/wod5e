@@ -6,7 +6,7 @@
             <div class="flexcol level flex-center item-resource">
                 <div>
                     <b>
-                        {{localize "WOD5E.ItemsList.Quantity"}}
+                        {{localize "WOD5E.EquipmentList.Quantity"}}
                     </b>
                 </div>
                 <input name="system.quantity" value="{{quantity}}" type="number" min="0"/>
@@ -14,10 +14,19 @@
             <div class="flexcol level flex-center item-resource">
                 <div>
                     <b>
-                        {{localize "WOD5E.ItemsList.WeaponValue"}}
+                        {{localize "WOD5E.EquipmentList.WeaponValue"}}
                     </b>
                 </div>
                 <input name="system.weaponvalue" value="{{weaponvalue}}" type="number" min="0"/>
+            </div>
+            <!-- Select the type this weapon belongs to -->
+            <div class="flexcol feature-type flex-center item-resource">
+                <label>
+                    <b>{{localize "WOD5E.EquipmentList.WeaponType"}}</b>
+                </label>
+                <select name="system.weaponType" data-type="String">
+                    {{selectOptions weaponTypeOptions selected=weaponTypeSelected localize=true}}
+                </select>
             </div>
         </div>
     </div>

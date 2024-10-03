@@ -1,4 +1,15 @@
-/* global game WOD5E */
+/* global game */
+
+import { ActorTypes } from './def/actortypes.js'
+import { Attributes } from './def/attributes.js'
+import { Skills } from './def/skills.js'
+import { Features } from './def/features.js'
+import { Weapons } from './def/weapons.js'
+import { Disciplines } from './def/disciplines.js'
+import { Gifts } from './def/gifts.js'
+import { WereForms } from './def/were-forms.js'
+import { Renown } from './def/renown.js'
+import { Edges } from './def/edges.js'
 
 /**
  * Function to handle localization of keys
@@ -7,31 +18,34 @@
  */
 export const generateLocalizedLabel = function (string = '', type = '') {
   if (type === 'actortypes' || type === 'actortype') { // Actor Types
-    const actortypes = WOD5E.ActorTypes.getList({})
+    const actortypes = ActorTypes.getList({})
     return findLabel(actortypes, string)
   } else if (type === 'attributes' || type === 'attribute') { // Attributes
-    const attributes = WOD5E.Attributes.getList({})
+    const attributes = Attributes.getList({})
     return findLabel(attributes, string)
   } else if (type === 'skills' || type === 'skill') { // Skills
-    const skills = WOD5E.Skills.getList({})
+    const skills = Skills.getList({})
     return findLabel(skills, string)
   } else if (type === 'features' || type === 'feature') { // Features
-    const features = WOD5E.Features.getList({})
+    const features = Features.getList({})
     return findLabel(features, string)
+  } else if (type === 'weapons' || type === 'weapon') { // Weapons
+    const weapons = Weapons.getList({})
+    return findLabel(weapons, string)
   } else if (type === 'disciplines' || type === 'discipline' || type === 'power') { // Disciplines
-    const disciplines = WOD5E.Disciplines.getList({})
+    const disciplines = Disciplines.getList({})
     return findLabel(disciplines, string)
   } else if (type === 'gifts' || type === 'gift') { // Gifts
-    const gifts = WOD5E.Gifts.getList({})
+    const gifts = Gifts.getList({})
     return findLabel(gifts, string)
   } else if (type === 'wereform') { // Wereforms
-    const wereforms = WOD5E.WereForms.getList({})
+    const wereforms = WereForms.getList({})
     return findLabel(wereforms, string)
   } else if (type === 'renown') { // Renown
-    const renown = WOD5E.Renown.getList({})
+    const renown = Renown.getList({})
     return findLabel(renown, string)
   } else if (type === 'edges' || type === 'edge' || type === 'perk' || type === 'edgepool') { // Edges
-    const edges = WOD5E.Edges.getList({})
+    const edges = Edges.getList({})
     return findLabel(edges, string)
   } else if (type === 'grouptype' || type === 'group') {
     const grouptypes = {

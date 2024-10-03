@@ -135,11 +135,16 @@
       "_SkillShortLabel": ""
     },
     "EquipmentList": {
+      "_ArmorValue": "",
       "_EquipmentNotes": "",
       "_Melee": "",
+      "_NewStringWeapon": "",
+      "_Quantity": "",
       "_Ranged": "",
       "_SelectWeaponType": "",
-      "_Supernatural": ""
+      "_Supernatural": "",
+      "_WeaponType": "",
+      "_WeaponValue": ""
     },
     "Experience": {
       "_AddExperience": "",
@@ -172,7 +177,6 @@
       "_NewSpecialty": "",
       "_NoDiceSelectedHint": "",
       "_Points": "",
-      "_Quantity": "",
       "_Rollable": "",
       "_SelectFeature": "",
       "_ShowToChat": "",

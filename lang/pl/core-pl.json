@@ -135,11 +135,16 @@
       "SkillShortLabel": "U"
     },
     "EquipmentList": {
+      "_ArmorValue": "",
       "_EquipmentNotes": "",
       "_Melee": "",
+      "_NewStringWeapon": "",
+      "_Quantity": "",
       "_Ranged": "",
       "_SelectWeaponType": "",
-      "_Supernatural": ""
+      "_Supernatural": "",
+      "_WeaponType": "",
+      "_WeaponValue": ""
     },
     "Experience": {
       "_AddExperience": "",
@@ -172,7 +177,6 @@
       "_NewSpecialty": "",
       "_NoDiceSelectedHint": "",
       "Points": "Punkty",
-      "_Quantity": "",
       "Rollable": "Użyj Rzutu",
       "_SelectFeature": "",
       "ShowToChat": "Pokaż na czacie",

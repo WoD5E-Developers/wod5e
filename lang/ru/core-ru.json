@@ -135,11 +135,16 @@
       "SkillShortLabel": "Н"
     },
     "EquipmentList": {
+      "_ArmorValue": "",
       "_EquipmentNotes": "",
       "_Melee": "",
+      "_NewStringWeapon": "",
+      "_Quantity": "",
       "_Ranged": "",
       "_SelectWeaponType": "",
-      "_Supernatural": ""
+      "_Supernatural": "",
+      "_WeaponType": "",
+      "_WeaponValue": ""
     },
     "Experience": {
       "_AddExperience": "",
@@ -172,7 +177,6 @@
       "NewSpecialty": "Новая специализация",
       "_NoDiceSelectedHint": "",
       "Points": "Точки",
-      "_Quantity": "",
       "Rollable": "Требует броска",
       "_SelectFeature": "",
       "ShowToChat": "Вывести в чат",
