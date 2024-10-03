@@ -4,9 +4,9 @@
             {{#if showLegacyXP}}
                 <div class="tracker flexcol">
                     <div class="field-header flex-center">
-                        <h3>
+                        <div class="field-header big-header">
                             {{localize "WOD5E.Experience.Remaining"}}
-                        </h3>
+                        </div>
                     </div>
                     <div class="flexrow">
                         <div class="flexcol">
@@ -21,9 +21,9 @@
                 </div>
                 <div class="tracker flexcol">
                     <div class="field-header flex-center">
-                        <h3>
+                        <div class="field-header big-header">
                             {{localize "WOD5E.Experience.Total"}}
-                        </h3>
+                        </div>
                     </div>
                     <div class="flexrow">
                         <div class="flexcol">
@@ -39,9 +39,9 @@
             {{else}}
                 <div class="tracker flexcol">
                     <div class="field-header flex-center">
-                        <h3>
+                        <div class="field-header big-header">
                             {{localize "WOD5E.Experience.Label"}}
-                        </h3>
+                        </div>
                     </div>
                     <div class="flexrow">
                         <div class="flexcol exp-tracker">
@@ -58,9 +58,9 @@
         </div>
         <div class="flexcol">
             <div>
-                <h2 class="field-header flexrow flex-center">
+                <div class="field-header big-header flexrow flex-center">
                     {{localize "WOD5E.Experience.History"}}
-                </h2>
+                </div>
             </div>
             {{#each experiences as |experience key|}}
                 <div class="flexrow">

@@ -1733,12 +1733,15 @@ body.uk .actor.sheet {
 .actor.sheet .stats-content .stats-container .stats-footer {
   text-align: center;
 }
+.field-header.big-header {
+  font-size: 16pt;
+}
 /* Vampire Font in the sheet banners */
-.vampire-font-headers .actor.sheet .sheet-banner,
-.vampire-font-headers .actor.sheet .field-header,
-.vampire-font-headers .actor.sheet .resource-header,
-.vampire-font-headers .actor.sheet .item-header,
-.vampire-font-headers .actor.sheet .specialty {
+.vampire-font-headers .sheet-banner,
+.vampire-font-headers .field-header,
+.vampire-font-headers .resource-header,
+.vampire-font-headers .item-header,
+.vampire-font-headers .specialty {
   font-family: "vampireRevised", "sans-serif";
 }
 
