@@ -368,6 +368,10 @@
   font-family: "vampireRevised", "sans-serif";
 }
 /* ProseMirror Alterations */
+prose-mirror {
+  width: -webkit-fill-available;
+  width: -moz-available;
+}
 prose-mirror .editor-menu {
   height: 35px;
   padding: 2px;
