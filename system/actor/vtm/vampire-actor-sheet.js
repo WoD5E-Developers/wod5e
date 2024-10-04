@@ -137,11 +137,14 @@ export class VampireActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     const actor = this.actor
     const actorData = actor.system
 
+    // Filters for item-specific data
+    const clanFilter = actor.items.filter(item => item.type === 'clan')
+
     // Prepare vampire-specific items
     data.domitor = actorData.headers.domitor
     data.humanity = actorData.humanity
     data.hunger = actorData.hunger
-    data.clan = actorData.clan.value
+    data.clan = clanFilter[0]
     data.frenzyActive = actorData.frenzyActive
 
     return data

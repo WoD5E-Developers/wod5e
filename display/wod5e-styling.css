@@ -782,11 +782,11 @@ h3.item-name {
 .actor.sheet.vampire .tab[data-tab="blood"] input.resource {
   font-weight: bold;
 }
-.actor.sheet.vampire .tab[data-tab="blood"] .resource {
-  padding: 5px;
-}
 .actor.sheet.vampire .tab[data-tab="blood"] .resource .remorse-roll .field-header {
   display: inline-flex;
+}
+.actor.sheet.vampire .tab[data-tab="blood"] .bane {
+  text-align: initial;
 }
 .actor.sheet.vampire .sheet-banner {
   background-color: var(--vampire-color-1);
@@ -1275,7 +1275,22 @@ body.uk .actor.sheet {
 .actor.sheet input,
 .actor.sheet .resource {
   display: flex;
-  flex-direction: column;
+}
+.actor.sheet .resource {
+  padding: 5px;
+  position: relative;
+  place-content: center;
+  min-height: 30px;
+}
+.actor.sheet .resource .data-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 85%;
+}
+.actor.sheet .resource .edit-data-item,
+.actor.sheet .resource .add-data-item {
+  position: absolute;
+  right: 3px;
 }
 .actor.sheet .limited-actor-header {
   display: flex;
@@ -1362,6 +1377,10 @@ body.uk .actor.sheet {
 .actor.sheet .actor-header .header-fields .header-fields-right .field-section {
   margin-bottom: 5px;
   width: 250px;
+}
+.actor.sheet .actor-header .header-fields .header-fields-left .field-section .shared-row,
+.actor.sheet .actor-header .header-fields .header-fields-right .field-section .shared-row {
+  max-width: 125px;
 }
 .actor.sheet .actor-header .header-fields .header-fields-left {
   padding-right: 10px;
@@ -2007,6 +2026,8 @@ body.uk .actor.sheet {
 .locked .exceptionalskill-delete,
 .locked .power-create,
 .locked .power-delete,
+.locked .add-data-item,
+.locked .edit-data-item,
 .locked .remove-actor {
   display: none;
 }

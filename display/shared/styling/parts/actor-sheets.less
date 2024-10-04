@@ -33,7 +33,25 @@
   input,
   .resource {
     display: flex;
-    flex-direction: column;
+  }
+
+  .resource {
+    padding: 5px;
+    position: relative;
+    place-content: center;
+    min-height: 30px;
+
+    .data-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 85%;
+    }
+
+    .edit-data-item,
+    .add-data-item {
+      position: absolute;
+      right: 3px;
+    }
   }
 
   /* Limited Sheet */
@@ -134,6 +152,10 @@
         .field-section {
           margin-bottom: 5px;
           width: 250px;
+
+          .shared-row {
+            max-width: 125px;
+          }
         }
       }
 

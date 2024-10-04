@@ -1,7 +1,8 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareMacroContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+import { prepareDescriptionContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+import { prepareBaneContext } from './scripts/prepare-partials.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -27,8 +28,8 @@ export class ClanItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     description: {
       template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
     },
-    macro: {
-      template: 'systems/vtm5e/display/shared/items/parts/macro.hbs'
+    bane: {
+      template: 'systems/vtm5e/display/vtm/items/parts/bane.hbs'
     },
     bonuses: {
       template: 'systems/vtm5e/display/shared/items/parts/bonuses.hbs'
@@ -41,10 +42,10 @@ export class ClanItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       group: 'primary',
       label: 'WOD5E.Tabs.Description'
     },
-    macro: {
-      id: 'macro',
+    bane: {
+      id: 'bane',
       group: 'primary',
-      label: 'WOD5E.ItemsList.Macro'
+      label: 'WOD5E.VTM.ClanBane'
     },
     bonuses: {
       id: 'bonuses',
@@ -76,8 +77,8 @@ export class ClanItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       // Stats
       case 'description':
         return prepareDescriptionContext(context, item)
-      case 'macro':
-        return prepareMacroContext(context, item)
+      case 'bane':
+        return prepareBaneContext(context, item)
       case 'bonuses':
         return prepareBonusesContext(context, item)
     }

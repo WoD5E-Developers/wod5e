@@ -14,10 +14,23 @@
         <div class="header-fields-right">
             <div class="flexcol">
                 <div class="field-section flexrow">
-                    <div class="flexrow nowrap flexend">
-                        <div class="flexcol">
+                    <div class="flexrow nowrap flexend ">
+                        <div class="flexcol shared-row">
                             <label class="resource-label field-header">{{localize 'WOD5E.VTM.Clan'}}</label>
-                            <input name="system.clan.value" type="text" value="{{clan}}" placeholder="{{localize 'WOD5E.VTM.Clan'}}"/>
+                            <div class="resource resource-content">
+                                {{#if clan}}
+                                    <span class="data-item">
+                                        {{clan.name}}
+                                    </span>
+                                    <a class="edit-data-item" data-action="itemEdit" data-item-id="{{clan.id}}">
+                                        <i class="fa-solid fa-pen-nib"></i>
+                                    </a>
+                                {{else}}
+                                    <a class="add-data-item" data-action="createItem" data-type="clan">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </a>
+                                {{/if}}
+                            </div>
                         </div>
                     </div>
                     {{> "systems/vtm5e/display/vtm/actors/parts/frenzy.hbs"}}

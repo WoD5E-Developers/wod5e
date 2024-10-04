@@ -870,7 +870,8 @@
     },
     "clan": {
       "templates": ["base"],
-      "gamesystem": "vampire"
+      "gamesystem": "vampire",
+      "bane": ""
     },
     "predatorType": {
       "templates": ["base"],
@@ -878,7 +879,8 @@
     },
     "resonance": {
       "templates": ["base"],
-      "gamesystem": "vampire"
+      "gamesystem": "vampire",
+      "dyscrasia": ""
     },
     "power": {
       "templates": ["base"],
