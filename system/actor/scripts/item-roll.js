@@ -6,7 +6,7 @@ import { _onRouseCheck } from '../vtm/scripts/rouse.js'
 import { _onGiftCost } from '../wta/scripts/gifts.js'
 
 /**
-   * Handle rolling dicepools from items
+ * Proxy for transforming data from a data action into data we can use to roll with
 */
 export const _onRollItem = async function (event, target) {
   event.preventDefault()
@@ -15,8 +15,15 @@ export const _onRollItem = async function (event, target) {
   const actor = this.actor
   const item = fromUuidSync(target.getAttribute('data-item-uuid'))
 
+  _rollItem(actor, item)
+}
+
+/**
+   * Handle rolling dicepools from items
+*/
+export const _rollItem = async function (actor, item) {
   // Secondary data
-  const actorData = this.actor.system
+  const actorData = actor.system
   const itemData = item.system
   const dicepool = itemData.dicepool
 

@@ -1,4 +1,4 @@
-/* global CONFIG, Hooks, Actors, ActorSheet, ChatMessage, Items, ItemSheet, Macro, game, ui, CONST */
+/* global CONFIG, Hooks, Actors, ActorSheet, ChatMessage, Items, ItemSheet, game, ui, CONST */
 
 // Actor sheets
 import { WoDActor } from './actor/actor.js'
@@ -10,6 +10,8 @@ import { ProseMirrorSettings } from './ui/prosemirror.js'
 import { WoDItem } from './item/item.js'
 // Chat message class
 import { WoDChatMessage } from './ui/wod-chat-message.js'
+// Hotbar class
+import { WoDHotbar } from './ui/wod-hotbar.js'
 // FVTT and module functionality
 import { preloadHandlebarsTemplates } from './scripts/templates.js'
 import { loadDiceSoNice } from './dice/dice-so-nice.js'
@@ -33,22 +35,17 @@ import { Edges } from './api/def/edges.js'
 import { Renown } from './api/def/renown.js'
 import { WereForms } from './api/def/were-forms.js'
 import { Gifts } from './api/def/gifts.js'
+import { _rollItem } from './actor/scripts/item-roll.js'
 
 // Anything that needs to be ran alongside the initialisation of the world
 Hooks.once('init', async function () {
   console.log('Initializing Schrecknet...')
 
-  // Some basic info for the gamesystem
-  game.wod5e = {
-    WoDActor,
-    WoDItem,
-    rollItemMacro
-  }
-
   // Define custom Entity classes
   CONFIG.Actor.documentClass = WoDActor
   CONFIG.Item.documentClass = WoDItem
   CONFIG.ChatMessage.documentClass = WoDChatMessage
+  CONFIG.ui.hotbar = WoDHotbar
   CONFIG.ui.actors = WOD5EActorDirectory
   CONFIG.Dice.terms.m = MortalDie
   CONFIG.Dice.terms.v = VampireDie
@@ -129,8 +126,11 @@ Hooks.once('ready', async function () {
       getAdvancedDice: wod5eAPI.getAdvancedDice,
       getFlavorDescription: wod5eAPI.getFlavorDescription,
       generateLabelAndLocalize: wod5eAPI.generateLabelAndLocalize,
-      migrateWorld
+      migrateWorld,
+      _onRollItemFromMacro
     },
+    WoDItem,
+    WoDActor,
     Systems,
     Attributes,
     Skills,
@@ -143,9 +143,6 @@ Hooks.once('ready', async function () {
     Gifts,
     WereForms
   }
-
-  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on('hotbarDrop', (bar, data, slot) => createRollableMacro(data, slot))
 
   // Migration functions
   migrateWorld()
@@ -194,48 +191,7 @@ Hooks.on('getChatLogEntryContext', (html, options) => {
   })
 })
 
-/* -------------------------------------------- */
-/*  Hotbar Macros                               */
-/* -------------------------------------------- */
-
-/**
- * Create a Macro from an Item drop.
- * Get an existing item macro if one exists, otherwise create a new one.
- * @param {Object} data     The dropped data
- * @param {number} slot     The hotbar slot to use
- * @returns {Promise}
- */
-async function createRollableMacro (data, slot) {
-  if (data.type !== 'Item') return
-
-  // Create a rollable macro for this item
-  if (data.system.rollable) {
-    const item = data.system
-
-    // Create the macro command
-    const command = `game.WOD5E.RollListItemMacro("${item.name}")`
-    let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command))
-    if (!macro) {
-      macro = await Macro.create({
-        name: item.name,
-        type: 'script',
-        img: item.img,
-        command,
-        flags: { 'vtm5e.itemMacro': true }
-      })
-    }
-    game.user.assignHotbarMacro(macro, slot)
-    return false
-  }
-}
-
-/**
- * Create a Macro from an Item drop.
- * Get an existing item macro if one exists, otherwise create a new one.
- * @param {string} itemName
- * @return {Promise}
- */
-function rollItemMacro (itemName) {
+function _onRollItemFromMacro (itemName) {
   const speaker = ChatMessage.getSpeaker()
   let actor
   if (speaker.token) actor = game.actors.tokens[speaker.token]
@@ -243,6 +199,5 @@ function rollItemMacro (itemName) {
   const item = actor ? actor.items.find(i => i.name === itemName) : null
   if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`)
 
-  // Trigger the item roll
-  return item.roll()
+  _rollItem(actor, item)
 }
