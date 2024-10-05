@@ -27,7 +27,9 @@ export class WoDHotbar extends Hotbar {
 
     // Assign the macro to the hotbar
     if (!macro) return
-    return game.user.assignHotbarMacro(macro, slot, {fromSlot: data.slot})
+    return game.user.assignHotbarMacro(macro, slot, {
+      fromSlot: data.slot
+    })
   }
 
   async _createRollableMacro (document) {
