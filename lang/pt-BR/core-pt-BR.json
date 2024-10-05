@@ -11,6 +11,7 @@
     },
     "Item": {
       "_armor": "",
+      "_auspice": "",
       "boon": "Favor",
       "_clan": "",
       "_condition": "",

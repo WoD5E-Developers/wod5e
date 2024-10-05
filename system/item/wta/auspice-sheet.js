@@ -2,7 +2,6 @@
 
 // Preparation functions
 import { prepareDescriptionContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
-import { preparePatronSpiritContext } from './scripts/prepare-partials.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -12,7 +11,7 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
  * Extend the WoDItem document
  * @extends {WoDItem}
  */
-export class TribeItemSheet extends HandlebarsApplicationMixin(WoDItem) {
+export class AuspiceItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
     actions: {}
@@ -20,16 +19,13 @@ export class TribeItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/wta/items/tribe-sheet.hbs'
+      template: 'systems/vtm5e/display/wta/items/auspice-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
     },
     description: {
       template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
-    },
-    patronSpirit: {
-      template: 'systems/vtm5e/display/wta/items/parts/patron-spirit.hbs'
     },
     bonuses: {
       template: 'systems/vtm5e/display/shared/items/parts/bonuses.hbs'
@@ -41,11 +37,6 @@ export class TribeItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       id: 'description',
       group: 'primary',
       label: 'WOD5E.Tabs.Description'
-    },
-    patronSpirit: {
-      id: 'patronSpirit',
-      group: 'primary',
-      label: 'WOD5E.WTA.PatronSpirit'
     },
     bonuses: {
       id: 'bonuses',
@@ -77,8 +68,6 @@ export class TribeItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       // Stats
       case 'description':
         return prepareDescriptionContext(context, item)
-      case 'patronSpirit':
-        return preparePatronSpiritContext(context, item)
       case 'bonuses':
         return prepareBonusesContext(context, item)
     }

@@ -35,14 +35,14 @@ export const prepareBloodContext = async function (context, actor) {
   // Filters for item-specific data
   const predatorFilter = actor.items.filter(item => item.type === 'predatorType')
   const resonanceFilter = actor.items.filter(item => item.type === 'resonance')
-  const baneFilter = actor.items.filter(item => item.type === 'clan')
+  const clanFilter = context.clan // Filtering already done in main dataprep
 
   // Part-specific data
   context.blood = actorData.blood
   context.sire = actorHeaders.sire
   context.generation = actorHeaders.generation
   context.predator = predatorFilter[0]
-  context.bane = baneFilter[0]?.system?.bane || ''
+  context.bane = clanFilter[0]?.system?.bane || ''
   context.resonance = resonanceFilter[0]
   context.enrichedBane = await TextEditor.enrichHTML(context.bane)
   context.bloodpotency = await getBloodPotencyText(actorData.blood.potency)

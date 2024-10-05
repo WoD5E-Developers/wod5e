@@ -23,6 +23,7 @@ import { PerkItemSheet } from '../../item/htr/perk-item-sheet.js'
 import { EdgePoolItemSheet } from '../../item/htr/edge-pool-item-sheet.js'
 // Werewolf system
 import { GiftItemSheet } from '../../item/wta/gift-item-sheet.js'
+import { AuspiceItemSheet } from '../../item/wta/auspice-sheet.js'
 import { TalismanItemSheet } from '../../item/wta/talisman-item-sheet.js'
 import { TribeItemSheet } from '../../item/wta/tribe-item-sheet.js'
 
@@ -190,6 +191,16 @@ export class ItemTypes extends BaseDefinitionClass {
     img: '',
     types: ['tribe'],
     sheetClass: TribeItemSheet,
+    restrictedActorTypes: ['werewolf'],
+    excludedActorTypes: ['spc'],
+    limitOnePerActor: true
+  }
+
+  static auspice = {
+    label: 'TYPES.Item.auspice',
+    img: '',
+    types: ['auspice'],
+    sheetClass: AuspiceItemSheet,
     restrictedActorTypes: ['werewolf'],
     excludedActorTypes: ['spc'],
     limitOnePerActor: true

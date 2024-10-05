@@ -1957,6 +1957,7 @@ body.uk .actor.sheet {
 }
 .wod5e .nowrap {
   flex-wrap: nowrap;
+  text-wrap: nowrap;
 }
 .wod5e .nogrow {
   flex-grow: 0;

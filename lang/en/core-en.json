@@ -11,6 +11,7 @@
     },
     "Item": {
       "armor": "Armor",
+      "auspice": "Auspice",
       "boon": "Boon",
       "clan": "Clan",
       "condition": "Condition",

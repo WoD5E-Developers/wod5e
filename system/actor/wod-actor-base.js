@@ -49,7 +49,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     classes: ['wod5e', 'actor', 'sheet'],
     position: {
       width: 1000,
-      height: 700
+      height: 800
     },
     actions: {
       // Rollable actions

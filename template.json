@@ -826,7 +826,12 @@
     }
   },
   "Item": {
-    "types": ["feature", "power", "boon", "customRoll", "perk", "edgepool", "gift", "armor", "weapon", "gear", "trait", "condition", "clan", "predatorType", "resonance", "creed", "drive", "tribe", "talisman"],
+    "types": [
+      "feature", "customRoll", "armor", "weapon", "gear", "trait", "condition",
+      "power", "boon", "clan", "predatorType", "resonance",
+      "perk", "edgepool", "creed", "drive",
+      "gift", "tribe", "auspice", "talisman"
+    ],
     "templates": {
       "base": {
         "description": "",
@@ -914,6 +919,16 @@
       "gamesystem": "hunter"
     },
     "tribe": {
+      "templates": ["base"],
+      "gamesystem": "werewolf",
+      "patronSpirit": {
+        "name": "",
+        "description": "",
+        "favor": "",
+        "ban": ""
+      }
+    },
+    "auspice": {
       "templates": ["base"],
       "gamesystem": "werewolf"
     },
