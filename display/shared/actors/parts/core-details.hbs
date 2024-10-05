@@ -6,7 +6,7 @@
     <label class="resource-label field-header">{{localize "WOD5E.BiographyList.Chronicle"}}</label>
     <input type="text" name="system.headers.chronicle" value="{{chronicle}}" placeholder="{{localize 'WOD5E.BiographyList.Chronicle'}}" />
 </div>
-{{#ifnoteq baseActorType 'group'}}
+{{#if showAmbitionDesire}}
     <div class="flexrow detail-row">
         <div class="flexcol">
             <label class="resource-label field-header">{{localize "WOD5E.BiographyList.Ambition"}}</label>
@@ -17,4 +17,4 @@
             <input type="text" name="system.headers.desire" value="{{desire}}" placeholder="{{localize 'WOD5E.BiographyList.Desire'}}" />
         </div>
     </div>
-{{/ifnoteq}}
+{{/if}}
