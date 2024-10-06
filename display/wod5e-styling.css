@@ -387,6 +387,7 @@ input:not(type="checkbox") {
 }
 input[type="number"] {
   max-width: 35px;
+  min-width: 35px;
   text-align: center;
 }
 
@@ -2202,6 +2203,9 @@ body.uk .actor.sheet {
 .spc.sheet .standard-pools-list,
 .spc.sheet .exceptional-pools-list {
   margin-bottom: 10px;
+}
+.spc.sheet .general-difficulty {
+  width: -webkit-fill-available;
 }
 .spc.sheet .exceptional-pools-list {
   display: flex;

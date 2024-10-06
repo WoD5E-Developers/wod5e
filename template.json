@@ -213,6 +213,7 @@
         }
       },
       "abbreviated": {
+        "locked": false,
         "biography": "",
         "appearance": "",
         "notes": "",
