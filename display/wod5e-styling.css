@@ -1437,6 +1437,10 @@ body.uk .actor.sheet {
   width: 100%;
   margin-bottom: 5px;
 }
+.actor.sheet .tab[data-tab="features"] .character-details .detail-row .shared-row {
+  margin-left: 2px;
+  margin-right: 2px;
+}
 .actor.sheet .tab[data-tab="features"] .character-details .description-field {
   width: -webkit-fill-available;
   width: -moz-available;

@@ -4,7 +4,7 @@ export const prepareRedemptionContext = async function (context, item) {
   const itemData = item.system
 
   // Tab data
-  context.tab = context.tabs.bane
+  context.tab = context.tabs.redemption
 
   // Part-specific data
   context.redemption = itemData.redemption

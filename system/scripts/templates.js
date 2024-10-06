@@ -34,6 +34,8 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/htr/actors/parts/desperation.hbs',
     'systems/vtm5e/display/htr/actors/parts/edges.hbs',
     'systems/vtm5e/display/htr/actors/parts/features.hbs',
+    'systems/vtm5e/display/htr/actors/parts/redemption.hbs',
+    'systems/vtm5e/display/htr/actors/parts/creed-fields.hbs',
 
     // Vampire Sheet Partials
     'systems/vtm5e/display/vtm/actors/parts/disciplines.hbs',
