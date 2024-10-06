@@ -148,8 +148,8 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     const auspiceFilter = actor.items.filter(item => item.type === 'auspice')
 
     // Prepare werewolf-specific items
-    data.tribe = tribeFilter[0] || {}
-    data.auspice = auspiceFilter[0] || {}
+    data.tribe = tribeFilter[0]
+    data.auspice = auspiceFilter[0]
     data.rage = actorData.rage
     data.frenzyActive = actorData.frenzyActive
     data.lostTheWolf = data.rage.value === 0
