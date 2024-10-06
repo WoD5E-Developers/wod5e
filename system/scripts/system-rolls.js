@@ -375,7 +375,7 @@ class WOD5eDice {
                   advancedCheckDice = advancedCheckDice + aCDValue
                 } else {
                   // Removing the modifier
-                  if (applyDiceTo === 'advanced' && advancedValue > 0) {
+                  if (applyDiceTo === 'advanced') {
                     // Apply the modifier to advancedDice
                     newValue = advancedValue - modifier
 
