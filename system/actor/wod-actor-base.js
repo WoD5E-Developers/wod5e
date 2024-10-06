@@ -139,7 +139,6 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       gamesystem: actorData.gamesystem,
       isOwner: actor.isOwner,
       locked: actorData.locked,
-      isCharacter: this.isCharacter,
       showLegacyXP,
 
       features: actorData.features,

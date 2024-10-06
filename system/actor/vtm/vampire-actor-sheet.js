@@ -144,7 +144,7 @@ export class VampireActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     data.domitor = actorData.headers.domitor
     data.humanity = actorData.humanity
     data.hunger = actorData.hunger
-    data.clan = clanFilter[0]
+    data.clan = clanFilter[0] || {}
     data.frenzyActive = actorData.frenzyActive
 
     return data

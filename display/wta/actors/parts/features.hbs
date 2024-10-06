@@ -1,4 +1,4 @@
-<div class="tab features" data-group="primary" data-tab="features">
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
     <div class="flexrow">
         <div class="character-details flexcol">
             <div class="flexcol flex-group-center">
@@ -6,23 +6,11 @@
                 {{> "systems/vtm5e/display/shared/actors/parts/core-details.hbs"}}
 
                 <!-- Werewolf-specific details -->
-                <div class="flexrow detail-row">
-                    <div class="flex-group-center flexcol wolf-resource">
-                        <label class="resource-label field-header">{{localize "WOD5E.WTA.PatronSpirit"}}</label>
-                        <input type="text" name="system.headers.patron" value="{{actor.system.headers.patron}}" placeholder="{{localize "WOD5E.WTA.PatronSpirit"}}" />
-                    </div>
-                </div>
+                {{> "systems/vtm5e/display/wta/actors/parts/patron-spirit.hbs"}}
 
-                <div class="flexrow detail-row">
-                    <div class="flex-group-center flexcol wolf-resource shared-row">
-                        <label class="resource-label field-header">{{localize "WOD5E.WTA.Favor"}}</label>
-                        <input type="text" name="system.headers.favor" value="{{actor.system.headers.favor}}" placeholder="{{localize "WOD5E.WTA.Favor"}}" />
-                    </div>
-                    <div class="flex-group-center flexcol wolf-resource shared-row">
-                        <label class="resource-label field-header">{{localize "WOD5E.WTA.Ban"}}</label>
-                        <input type="text" name="system.headers.ban" value="{{actor.system.headers.ban}}" placeholder="{{localize "WOD5E.WTA.Ban"}}" />
-                    </div>
-                </div>
+                {{> "systems/vtm5e/display/wta/actors/parts/favor.hbs"}}
+
+                {{> "systems/vtm5e/display/wta/actors/parts/ban.hbs"}}
 
                 <!-- Chronicle Tenets -->
                 {{> "systems/vtm5e/display/shared/actors/parts/chronicle-tenets.hbs"}}
@@ -33,4 +21,4 @@
             {{> "systems/vtm5e/display/shared/actors/parts/core-features.hbs"}}
         </div>
     </div>
-</div>
+</section>

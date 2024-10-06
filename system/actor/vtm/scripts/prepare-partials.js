@@ -39,13 +39,13 @@ export const prepareBloodContext = async function (context, actor) {
 
   // Part-specific data
   context.blood = actorData.blood
+  context.bloodpotency = await getBloodPotencyText(actorData.blood.potency)
   context.sire = actorHeaders.sire
   context.generation = actorHeaders.generation
-  context.predator = predatorFilter[0]
-  context.bane = clanFilter[0]?.system?.bane || ''
-  context.resonance = resonanceFilter[0]
+  context.predator = predatorFilter[0] || {}
+  context.resonance = resonanceFilter[0] || {}
+  context.bane = clanFilter?.system?.bane || ''
   context.enrichedBane = await TextEditor.enrichHTML(context.bane)
-  context.bloodpotency = await getBloodPotencyText(actorData.blood.potency)
 
   return context
 }

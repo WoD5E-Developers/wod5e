@@ -47,11 +47,16 @@ export const prepareFeaturesContext = async function (context, actor) {
   context.enrichedTouchstones = await TextEditor.enrichHTML(actorHeaders.touchstones)
   context.showAmbitionDesire = actorData.gamesystem !== 'werewolf' && actor.type !== 'group'
 
-  if (actorData.gamesystem === 'hunter') {
-    context.redemption = actorData.redemption.value
-    context.creedfields = actorHeaders.creedfields
-    context.enrichedCreedfields = await TextEditor.enrichHTML(actorHeaders.creedfields)
+  if (actorData.gamesystem === 'werewolf') {
+    const tribe = context.tribe
+
+    context.favor = tribe?.system?.patronSpirit?.favor || ''
+    context.enrichedFavor = await TextEditor.enrichHTML(context.favor)
+    context.ban = tribe?.system?.patronSpirit?.ban || ''
+    context.enrichedBan = await TextEditor.enrichHTML(context.ban)
   }
+
+  console.log(context)
 
   return context
 }
