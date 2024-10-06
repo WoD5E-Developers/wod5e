@@ -9,12 +9,14 @@
       "BeastWhisperer": "Заклинач звірів",
       "Cell": "Підрозділ",
       "Creed": "Кредо",
+      "_CreedDetails": "",
       "CreedFields": "Області Кредо",
       "Danger": "Загроза",
       "Despair": "Відчай",
       "DespairFailure": "Провал з Відчаєм",
       "Desperation": "Відчайдушність",
       "DesperationDice": "Кубик Відчайдушності",
+      "_DesperationDiceFields": "",
       "_DesperationFailure": "",
       "DesperationSuccess": "Успіх з Перепоною чи Провал з Відчаєм",
       "DesperationUnavailable": "Відчайдушність недоступна, перебуваючи у Відчаї",
@@ -43,6 +45,8 @@
       "SelectEdge": "Обрати Грань",
       "SenseTheUnnatural": "Відчуття Химерного",
       "_StringPerks": "",
+      "_SuggestedDrives": "",
+      "_SuggestedEdges": "",
       "ThwartTheUnnatural": "Протидія Химерному"
     }
   }

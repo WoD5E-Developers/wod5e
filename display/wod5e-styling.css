@@ -11,10 +11,6 @@
 .actor.sheet.hunter .actor-header {
   border-bottom: 2px solid var(--hunter-color-1);
 }
-.actor.sheet.hunter .actor-header .despair {
-  padding-left: 5px;
-  padding-right: 5px;
-}
 .actor.sheet.hunter .profile-img,
 .actor.sheet.hunter .actor-header input,
 .actor.sheet.hunter .actor-header .resource {
@@ -1386,6 +1382,8 @@ body.uk .actor.sheet {
 .actor.sheet .actor-header .header-fields .header-fields-left .field-section .shared-row,
 .actor.sheet .actor-header .header-fields .header-fields-right .field-section .shared-row {
   max-width: 125px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 .actor.sheet .actor-header .header-fields .header-fields-left {
   padding-right: 10px;

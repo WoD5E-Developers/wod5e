@@ -9,12 +9,14 @@
       "BeastWhisperer": "Encantador de bestias",
       "Cell": "Célula",
       "Creed": "Credo",
+      "_CreedDetails": "",
       "CreedFields": "Campos de credo",
       "Danger": "Peligro",
       "Despair": "Desesperación",
       "DespairFailure": "¡Fallo con desesperanza",
       "Desperation": "Desesperación",
       "DesperationDice": "Dados de desesperación",
+      "_DesperationDiceFields": "",
       "_DesperationFailure": "",
       "DesperationSuccess": "¡Éxito con extralimitación o fallo con desesperanza",
       "DesperationUnavailable": "Desesperación no disponible en desesperanza",
@@ -43,6 +45,8 @@
       "SelectEdge": "Seleccionar facultad",
       "SenseTheUnnatural": "Sentir lo antinatural",
       "_StringPerks": "",
+      "_SuggestedDrives": "",
+      "_SuggestedEdges": "",
       "ThwartTheUnnatural": "Frustrar lo antinatural"
     }
   }

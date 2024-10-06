@@ -1,7 +1,8 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareMacroContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+import { prepareDescriptionContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+import { prepareRedemptionContext } from './scripts/prepare-partials.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -27,8 +28,8 @@ export class DriveItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     description: {
       template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
     },
-    macro: {
-      template: 'systems/vtm5e/display/shared/items/parts/macro.hbs'
+    redemption: {
+      template: 'systems/vtm5e/display/htr/items/parts/redemption.hbs'
     },
     bonuses: {
       template: 'systems/vtm5e/display/shared/items/parts/bonuses.hbs'
@@ -41,10 +42,10 @@ export class DriveItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       group: 'primary',
       label: 'WOD5E.Tabs.Description'
     },
-    macro: {
-      id: 'macro',
+    redemption: {
+      id: 'redemption',
       group: 'primary',
-      label: 'WOD5E.ItemsList.Macro'
+      label: 'WOD5E.HTR.Redemption'
     },
     bonuses: {
       id: 'bonuses',
@@ -56,10 +57,6 @@ export class DriveItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   async _prepareContext () {
     // Top-level variables
     const data = await super._prepareContext()
-    const item = this.item
-    const itemData = item.system
-
-    console.log(itemData)
 
     return data
   }
@@ -76,8 +73,8 @@ export class DriveItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       // Stats
       case 'description':
         return prepareDescriptionContext(context, item)
-      case 'macro':
-        return prepareMacroContext(context, item)
+      case 'redemption':
+        return prepareRedemptionContext(context, item)
       case 'bonuses':
         return prepareBonusesContext(context, item)
     }

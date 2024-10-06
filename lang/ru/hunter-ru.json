@@ -9,12 +9,14 @@
       "BeastWhisperer": "Говорящий с животными",
       "Cell": "Целла",
       "Creed": "Кредо",
+      "_CreedDetails": "",
       "CreedFields": "Поля Кредо",
       "Danger": "Опасность",
       "Despair": "Безысходность",
       "DespairFailure": "Безысходный провал",
       "Desperation": "Отчаяние",
       "DesperationDice": "Кости Отчаяния",
+      "_DesperationDiceFields": "",
       "_DesperationFailure": "",
       "DesperationSuccess": "Успех с Перебором или Безысходный провал",
       "DesperationUnavailable": "Отчаяние недоступно при Безысходности",
@@ -43,6 +45,8 @@
       "SelectEdge": "Выбор Черты",
       "SenseTheUnnatural": "Чутьё на сверхъестественное",
       "_StringPerks": "",
+      "_SuggestedDrives": "",
+      "_SuggestedEdges": "",
       "ThwartTheUnnatural": "Воспротивиться сверхъестественному"
     }
   }

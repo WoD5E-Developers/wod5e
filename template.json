@@ -669,17 +669,12 @@
           }
         },
         "headers":{
-          "predator":"",
           "sire":"",
-          "generation":"",
-          "bane":""
+          "generation":""
         },
         "blood": {
           "potency": 0,
           "resonance": ""
-        },
-        "clan": {
-          "value": ""
         },
         "hunger": {
           "value": 1,
@@ -693,13 +688,6 @@
         }
       },
       "werewolf_traits": {
-        "headers": {
-          "auspice": "",
-          "patron": "",
-          "favor": "",
-          "ban": "",
-          "tribe": ""
-        },
         "balance": {
           "hauglosk": {
             "value": 0
@@ -733,13 +721,8 @@
         }
       },
       "hunter_traits": {
-        "redemption": {
-          "value": ""
-        },
         "headers":{
-          "cellname": "",
-          "creed": "",
-          "drive": ""
+          "cellname": ""
         }
       },
       "cell_traits": {
@@ -898,11 +881,15 @@
     },
     "creed": {
       "templates": ["base"],
-      "gamesystem": "hunter"
+      "gamesystem": "hunter",
+      "edges": "",
+      "drives": "",
+      "desperationFields": ""
     },
     "drive": {
       "templates": ["base"],
-      "gamesystem": "hunter"
+      "gamesystem": "hunter",
+      "redemption": ""
     },
     "perk": {
       "templates": ["base"],

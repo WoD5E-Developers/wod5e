@@ -48,7 +48,6 @@ export const prepareFeaturesContext = async function (context, actor) {
   context.showAmbitionDesire = actorData.gamesystem !== 'werewolf' && actor.type !== 'group'
 
   if (actorData.gamesystem === 'hunter') {
-    context.creed = actorHeaders.creed
     context.redemption = actorData.redemption.value
     context.creedfields = actorHeaders.creedfields
     context.enrichedCreedfields = await TextEditor.enrichHTML(actorHeaders.creedfields)

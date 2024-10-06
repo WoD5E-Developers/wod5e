@@ -9,12 +9,14 @@
       "BeastWhisperer": "Tierflüsterer",
       "Cell": "Zelle",
       "Creed": "Überzeugung",
+      "_CreedDetails": "",
       "CreedFields": "Einsatzgebiete der Überzeugungen",
       "Danger": "Gefahr",
       "Despair": "Hoffnungslosigkeit",
       "DespairFailure": "Verzweifelter Fehlschlag",
       "Desperation": "Verzweiflung",
       "DesperationDice": "Verzweiflungs-Würfel",
+      "_DesperationDiceFields": "",
       "_DesperationFailure": "",
       "DesperationSuccess": "Erfolg mit Überanstrengen oder verzweifelter Fehlschlag",
       "DesperationUnavailable": "Verzweiflung ist während des Verzweiflens nicht möglich",
@@ -43,6 +45,8 @@
       "SelectEdge": "Wähle einen Trumpf:",
       "SenseTheUnnatural": "Übernatürliches spüren",
       "_StringPerks": "",
+      "_SuggestedDrives": "",
+      "_SuggestedEdges": "",
       "ThwartTheUnnatural": "Übernatürliches vereiteln"
     }
   }

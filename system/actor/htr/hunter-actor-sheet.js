@@ -126,10 +126,15 @@ export class HunterActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     const actorData = actor.system
     const actorHeaders = actorData.headers
 
+    // Filters for item-specific data
+    const driveFilter = actor.items.filter(item => item.type === 'drive')
+    const creedFilter = actor.items.filter(item => item.type === 'creed')
+
     // Prepare hunter-specific items
     data.despairActive = actorData.despair.value > 0
     data.cellname = actorHeaders.cellname
-    data.drive = actorHeaders.drive
+    data.drive = driveFilter[0]
+    data.creed = creedFilter[0]
 
     return data
   }

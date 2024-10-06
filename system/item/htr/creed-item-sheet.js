@@ -1,7 +1,9 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareMacroContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+import { prepareDescriptionContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+import { prepareCreedDetailsContext } from './scripts/prepare-partials.js'
+
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -27,8 +29,8 @@ export class CreedItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     description: {
       template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
     },
-    macro: {
-      template: 'systems/vtm5e/display/shared/items/parts/macro.hbs'
+    creedDetails: {
+      template: 'systems/vtm5e/display/htr/items/parts/creed-details.hbs'
     },
     bonuses: {
       template: 'systems/vtm5e/display/shared/items/parts/bonuses.hbs'
@@ -41,10 +43,10 @@ export class CreedItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       group: 'primary',
       label: 'WOD5E.Tabs.Description'
     },
-    macro: {
-      id: 'macro',
+    creedDetails: {
+      id: 'creedDetails',
       group: 'primary',
-      label: 'WOD5E.ItemsList.Macro'
+      label: 'WOD5E.HTR.CreedDetails'
     },
     bonuses: {
       id: 'bonuses',
@@ -56,10 +58,6 @@ export class CreedItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   async _prepareContext () {
     // Top-level variables
     const data = await super._prepareContext()
-    const item = this.item
-    const itemData = item.system
-
-    console.log(itemData)
 
     return data
   }
@@ -76,8 +74,8 @@ export class CreedItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       // Stats
       case 'description':
         return prepareDescriptionContext(context, item)
-      case 'macro':
-        return prepareMacroContext(context, item)
+      case 'creedDetails':
+        return prepareCreedDetailsContext(context, item)
       case 'bonuses':
         return prepareBonusesContext(context, item)
     }
