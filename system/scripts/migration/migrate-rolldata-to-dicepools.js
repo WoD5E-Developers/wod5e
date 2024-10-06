@@ -59,6 +59,7 @@ export const MigrateRolldataToDicepools = async function () {
       // Update the actor's data with the new information
       actor.updateEmbeddedDocuments('Item', updatedItems)
       ui.notifications.info(`Fixing actor ${actor.name}: Migrating roll data of items.`)
+      migrationIDs.push(actor.id)
     }
   }
 

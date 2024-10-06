@@ -1,31 +1,22 @@
 /* global ui, game, foundry */
 
 import { MigrateLegacySheets } from './migration/migrate-legacy-sheets.js'
-import { MigrateLocalization } from './migration/migrate-localization.js'
-import { MigrateGamesystem } from './migration/migrate-gamesystem.js'
-import { MigrateTrackers } from './migration/migrate-trackers.js'
 import { MigrateSpecialties } from './migration/migrate-specialties.js'
-import { MigrateLocalization2 } from './migration/migrate-localization2.js'
 import { MigrateItemImages } from './migration/migrate-item-images.js'
 import { MigrateAnimalKen } from './migration/migrate-animal-ken.js'
 import { MigrateGroupSheets } from './migration/migrate-group-sheets.js'
 import { MigrateAbilitiesToAttributes } from './migration/migrate-abilities-to-attributes.js'
 import { MigrateRolldataToDicepools } from './migration/migrate-rolldata-to-dicepools.js'
-
-let worldVersion
+import { MigrateOldDetailsToNewItems } from './migration/migrate-old-details-to-new-items.js'
 
 export const migrateWorld = async () => {
   // Only allow the Game Master to run this script
   if (!game.user.isGM) return
 
-  // Store current version
+  // Store current loaded version of the system
   const currentVersion = game.system.version
-
-  try {
-    worldVersion = game.settings.get('vtm5e', 'worldVersion')
-  } catch (e) {
-    worldVersion = '1.5' // No version detected - Default to current 1.5
-  }
+  // Store the world version pre-migration
+  const worldVersion = game.settings.get('vtm5e', 'worldVersion') || '1.5'
 
   console.log('Current SchreckNet Layer v' + worldVersion)
 
@@ -41,25 +32,9 @@ export const migrateWorld = async () => {
         const migrationIDs1 = await MigrateLegacySheets()
         updates.push(...migrationIDs1)
 
-        // Migrate localization
-        const migrationIDs2 = await MigrateLocalization()
-        updates.push(...migrationIDs2)
-
-        // Migrate gamesystem data
-        const migrationIDs3 = await MigrateGamesystem()
-        updates.push(...migrationIDs3)
-
-        // Migrate health and willpower tracker data
-        const migrationIDs4 = await MigrateTrackers()
-        updates.push(...migrationIDs4)
-
         // Migrate specialties into their respective skills
         const migrationIDs5 = await MigrateSpecialties()
         updates.push(...migrationIDs5)
-
-        // Second localization migration
-        const migrationIDs6 = await MigrateLocalization2()
-        updates.push(...migrationIDs6)
 
         // Migrate item images
         const migrationIDs7 = await MigrateItemImages()
@@ -73,13 +48,17 @@ export const migrateWorld = async () => {
         const migrationIDs9 = await MigrateGroupSheets()
         updates.push(...migrationIDs9)
 
-        // Unify Cell and Coterie sheets into one "Group" type
+        // Migrate the abilities object to attributes
         const migrationIDs10 = await MigrateAbilitiesToAttributes()
         updates.push(...migrationIDs10)
 
-        // Unify Cell and Coterie sheets into one "Group" type
+        // Migrate old roll data on items into the new Dicepool format
         const migrationIDs11 = await MigrateRolldataToDicepools()
         updates.push(...migrationIDs11)
+
+        // Migrate old roll data on items into the new Dicepool format
+        const migrationIDs12 = await MigrateOldDetailsToNewItems()
+        updates.push(...migrationIDs12)
 
         // Only reload if there's 1 or more updates
         if (updates.length > 0) {
