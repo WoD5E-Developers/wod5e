@@ -11,6 +11,9 @@ import { Weapons } from '../../api/def/weapons.js'
 // Localization function
 import { generateLocalizedLabel } from '../../api/generate-localization.js'
 
+// Data item format function
+import { formatDataItemId } from './format-data-item-id.js'
+
 // Various update functions
 import { _updateSelectedPerk } from '../htr/scripts/edges.js'
 import { _updateSelectedDisciplinePower } from '../vtm/scripts/disciplines.js'
@@ -259,11 +262,18 @@ export const _onItemDelete = async function (event, target) {
 
 // Create an embedded item document
 async function createItem (actor, itemName, type, itemData) {
+  const dataItemId = `${type}-${formatDataItemId(itemName)}`
+
   // Create the item
   const newItem = await Item.create({
     name: itemName,
     type,
-    system: itemData
+    system: itemData,
+    flags: {
+      vtm5e: {
+        dataItemId
+      }
+    }
   },
   {
     parent: actor

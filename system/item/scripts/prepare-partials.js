@@ -66,3 +66,10 @@ export const prepareBonusesContext = async function (context, item) {
 
   return context
 }
+
+export const prepareItemSettingsContext = async function (context) {
+  // Tab data
+  context.tab = context.tabs.settings
+
+  return context
+}

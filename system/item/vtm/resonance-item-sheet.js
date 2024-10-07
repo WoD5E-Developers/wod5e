@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareBonusesContext } from '../scripts/prepare-partials.js'
+import { prepareDescriptionContext, prepareBonusesContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -29,6 +29,9 @@ export class ResonanceItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     },
     bonuses: {
       template: 'systems/vtm5e/display/shared/items/parts/bonuses.hbs'
+    },
+    settings: {
+      template: 'systems/vtm5e/display/shared/items/parts/item-settings.hbs'
     }
   }
 
@@ -42,6 +45,11 @@ export class ResonanceItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       id: 'bonuses',
       group: 'primary',
       label: 'WOD5E.ItemsList.Bonuses'
+    },
+    settings: {
+      id: 'settings',
+      group: 'primary',
+      label: 'WOD5E.ItemsList.ItemSettings'
     }
   }
 
@@ -70,6 +78,8 @@ export class ResonanceItemSheet extends HandlebarsApplicationMixin(WoDItem) {
         return prepareDescriptionContext(context, item)
       case 'bonuses':
         return prepareBonusesContext(context, item)
+      case 'settings':
+        return prepareItemSettingsContext(context, item)
     }
 
     return context

@@ -6,6 +6,7 @@ import { getDicepoolList } from '../api/dicepool-list.js'
 import { _onAddBonus, _onDeleteBonus, _onEditBonus } from './scripts/item-bonuses.js'
 import { _onAddDice, _onRemoveDice } from './scripts/dicepools.js'
 import { _onEditImage } from './scripts/on-edit-image.js'
+import { _onFormatDataId } from './scripts/on-format-data-id.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
@@ -38,7 +39,8 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
       addBonus: _onAddBonus,
       deleteBonus: _onDeleteBonus,
       editBonus: _onEditBonus,
-      editImage: _onEditImage
+      editImage: _onEditImage,
+      formatDataId: _onFormatDataId
     }
   }
 
@@ -83,7 +85,9 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
 
       diceOptions: await getDicepoolList(item),
 
-      gamesystem: itemData.gamesystem || 'mortal'
+      gamesystem: itemData.gamesystem || 'mortal',
+
+      dataItemId: item.getFlag('vtm5e', 'dataItemId') || ''
     }
   }
 

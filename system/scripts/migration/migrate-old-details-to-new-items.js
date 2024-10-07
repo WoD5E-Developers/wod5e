@@ -1,5 +1,8 @@
 /* global ui, game */
 
+// Data item format function
+import { formatDataItemId } from '../../actor/scripts/format-data-item-id.js'
+
 export const MigrateOldDetailsToNewItems = async function () {
   const actorsList = game.actors
   const totalIterations = actorsList.size
@@ -194,11 +197,4 @@ export const MigrateOldDetailsToNewItems = async function () {
   }
 
   return migrationIDs
-}
-
-function formatDataItemId (input) {
-  return input
-    .toLowerCase() // Convert to lowercase
-    .trim() // Trim out any extra spaces
-    .replace(/\s+/g, '-') // Replace one or more spaces with a single dash
 }

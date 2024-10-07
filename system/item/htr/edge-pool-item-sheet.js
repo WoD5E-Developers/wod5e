@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareDicepoolContext } from '../scripts/prepare-partials.js'
+import { prepareDescriptionContext, prepareDicepoolContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
 import { Edges } from '../../api/def/edges.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
@@ -30,6 +30,9 @@ export class EdgePoolItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     },
     dicepool: {
       template: 'systems/vtm5e/display/shared/items/parts/dicepool.hbs'
+    },
+    settings: {
+      template: 'systems/vtm5e/display/shared/items/parts/item-settings.hbs'
     }
   }
 
@@ -43,6 +46,11 @@ export class EdgePoolItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       id: 'dicepool',
       group: 'primary',
       label: 'WOD5E.Tabs.Dicepool'
+    },
+    settings: {
+      id: 'settings',
+      group: 'primary',
+      label: 'WOD5E.ItemsList.ItemSettings'
     }
   }
 
@@ -72,6 +80,8 @@ export class EdgePoolItemSheet extends HandlebarsApplicationMixin(WoDItem) {
         return prepareDescriptionContext(context, item)
       case 'dicepool':
         return prepareDicepoolContext(context, item)
+      case 'settings':
+        return prepareItemSettingsContext(context, item)
     }
 
     return context
