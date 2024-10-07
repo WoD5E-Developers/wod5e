@@ -1,9 +1,11 @@
-/* global foundry, game, TextEditor, DragDrop, Item, SortingHelpers */
+/* global foundry, game, TextEditor, DragDrop, Item, SortingHelpers, ui */
 
 // Preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
 import { getActorTypes } from './scripts/get-actor-types.js'
-import { prepareGroupFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareGroupMembersContext } from './scripts/prepare-partials.js'
+import { prepareGroupFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareGroupMembersContext } from './scripts/prepare-partials.js'
+// Definition file
+import { ItemTypes } from '../api/def/itemtypes.js'
 // Resource functions
 import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange } from './scripts/counters.js'
 // Various button functions
@@ -87,6 +89,9 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     features: {
       template: 'systems/vtm5e/display/shared/actors/parts/group/features.hbs'
     },
+    equipment: {
+      template: 'systems/vtm5e/display/shared/actors/parts/equipment.hbs'
+    },
     notepad: {
       template: 'systems/vtm5e/display/shared/actors/parts/notepad.hbs'
     },
@@ -114,6 +119,12 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       group: 'primary',
       title: 'WOD5E.Tabs.Features',
       icon: '<i class="fas fa-gem"></i>'
+    },
+    equipment: {
+      id: 'equipment',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Equipment',
+      icon: '<i class="fa-solid fa-toolbox"></i>'
     },
     notepad: {
       id: 'notepad',
@@ -215,6 +226,38 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       flaw: [],
       boon: []
     })
+
+    // Remove Boons if we have no boons and the actor isn't a coterie
+    if (sheetData.system.features.boon.length === 0 && sheetData.type !== 'coterie') delete sheetData.system.features.boon
+
+    // Equipment
+    sheetData.system.equipmentItems = sheetData.items.reduce((acc, item) => {
+      switch (item.type) {
+        case 'armor':
+          acc.armor.push(item)
+          break
+        case 'weapon':
+          acc.weapon.push(item)
+          break
+        case 'gear':
+          acc.gear.push(item)
+          break
+        case 'talisman':
+          acc.talisman.push(item)
+          break
+      }
+
+      return acc
+    }, {
+      // Containers for equipment
+      armor: [],
+      weapon: [],
+      gear: [],
+      talisman: []
+    })
+
+    // Remove Talismans if we have no boons and the actor isn't a werewolf
+    if (sheetData.system.equipmentItems.talisman.length === 0 && sheetData.type !== 'pack') delete sheetData.system.equipmentItems.talisman
   }
 
   async _preparePartContext (partId, context, options) {
@@ -233,6 +276,10 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       // Features
       case 'features':
         return prepareGroupFeaturesContext(context, actor)
+
+      // Equipment
+      case 'equipment':
+        return prepareEquipmentContext(context, actor)
 
       // Notepad
       case 'notepad':
@@ -359,8 +406,37 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
 
   async _onDropItem (event, data) {
     if (!this.actor.isOwner) return false
+    const actorType = this.actor.type
     const item = await Item.implementation.fromDropData(data)
     const itemData = item.toObject()
+    const itemType = itemData.type
+    const itemsList = ItemTypes.getList({})
+
+    // Check whether we should allow this item type to be placed on this actor type
+    if (itemsList[itemType]) {
+      const whitelist = itemsList[itemType].restrictedActorTypes
+      const blacklist = itemsList[itemType].excludedActorTypes
+
+      // If the whitelist contains any entries, we can check to make sure this actor type is allowed for the item
+      if (!foundry.utils.isEmpty(whitelist) && whitelist.indexOf(actorType) === -1) {
+        ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
+          string1: itemType,
+          string2: actorType
+        }))
+
+        return false
+      }
+
+      // If the blacklist contains any entries, we can check to make sure this actor type isn't disallowed for the item
+      if (!foundry.utils.isEmpty(blacklist) && blacklist.indexOf(actorType) > -1) {
+        ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
+          string1: itemType,
+          string2: actorType
+        }))
+
+        return false
+      }
+    }
 
     // Handle item sorting within the same Actor
     if (this.actor.uuid === item.parent?.uuid) return this._onSortItem(event, itemData)

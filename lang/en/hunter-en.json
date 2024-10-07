@@ -9,12 +9,14 @@
       "BeastWhisperer": "Beast Whisperer",
       "Cell": "Cell",
       "Creed": "Creed",
+      "CreedDetails": "Creed Details",
       "CreedFields": "Creed Fields",
       "Danger": "Danger",
       "Despair": "Despair",
       "DespairFailure": "Despair Failure",
       "Desperation": "Desperation",
       "DesperationDice": "Desperation Dice",
+      "DesperationDiceFields": "Desperation Dice Fields",
       "DesperationFailure": "Overreach or Despair",
       "DesperationSuccess": "Success with Overreach, or Despair",
       "DesperationUnavailable": "Desperation unavailable while in Despair",
@@ -43,6 +45,8 @@
       "SelectEdge": "Select Edge",
       "SenseTheUnnatural": "Sense the Unnatural",
       "StringPerks": "{string} Perks",
+      "SuggestedDrives": "Suggested Drives",
+      "SuggestedEdges": "Suggested Edges",
       "ThwartTheUnnatural": "Thwart the Unnatural"
     }
   }

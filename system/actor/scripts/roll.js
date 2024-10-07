@@ -83,7 +83,7 @@ export const _onConfirmRoll = async function (dataset, actor) {
   }
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
+  const system = actor.system.gamesystem
 
   // Some quick modifications to vampire and werewolf rolls
   // in order to properly display the dice in the dialog window

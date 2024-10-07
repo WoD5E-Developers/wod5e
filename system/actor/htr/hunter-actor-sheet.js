@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from '../scripts/prepare-partials.js'
+import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from '../scripts/prepare-partials.js'
 import { prepareEdgesContext } from './scripts/prepare-partials.js'
 // Various button functions
 import { _onToggleDespair } from './scripts/toggle-despair.js'
@@ -47,6 +47,9 @@ export class HunterActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     features: {
       template: 'systems/vtm5e/display/htr/actors/parts/features.hbs'
     },
+    equipment: {
+      template: 'systems/vtm5e/display/shared/actors/parts/equipment.hbs'
+    },
     biography: {
       template: 'systems/vtm5e/display/shared/actors/parts/biography.hbs'
     },
@@ -89,6 +92,12 @@ export class HunterActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       title: 'WOD5E.Tabs.Features',
       icon: '<i class="fas fa-gem"></i>'
     },
+    equipment: {
+      id: 'equipment',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Equipment',
+      icon: '<i class="fa-solid fa-toolbox"></i>'
+    },
     biography: {
       id: 'biography',
       group: 'primary',
@@ -117,10 +126,15 @@ export class HunterActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     const actorData = actor.system
     const actorHeaders = actorData.headers
 
+    // Filters for item-specific data
+    const driveFilter = actor.items.filter(item => item.type === 'drive')
+    const creedFilter = actor.items.filter(item => item.type === 'creed')
+
     // Prepare hunter-specific items
     data.despairActive = actorData.despair.value > 0
     data.cellname = actorHeaders.cellname
-    data.drive = actorHeaders.drive
+    data.drive = driveFilter[0]
+    data.creed = creedFilter[0]
 
     return data
   }
@@ -149,6 +163,10 @@ export class HunterActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       // Features
       case 'features':
         return prepareFeaturesContext(context, actor)
+
+      // Equipment
+      case 'equipment':
+        return prepareEquipmentContext(context, actor)
 
       // Biography
       case 'biography':

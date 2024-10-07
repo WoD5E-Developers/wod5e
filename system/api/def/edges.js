@@ -8,7 +8,16 @@ export class Edges extends BaseDefinitionClass {
 
   // Run any necessary compilation on ready
   static onReady () {
-    const customEdges = game.settings.get('vtm5e', 'customEdges')
+    // Handle adding custom disciplines from the game settings
+    let customEdges = game.settings.get('vtm5e', 'customEdges') || {}
+
+    // Handle adding custom disciplines from any active modules
+    const activeModules = game.modules.filter(module => module.active === true && module.flags.wod5e)
+    activeModules.forEach((module) => {
+      if (module.flags.wod5e.customEdges) {
+        customEdges = customEdges.concat(module.flags.wod5e.customEdges)
+      }
+    })
 
     if (customEdges) {
       Edges.addCustom(customEdges)

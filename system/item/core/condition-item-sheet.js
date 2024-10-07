@@ -1,17 +1,17 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareDicepoolContext, prepareMacroContext, prepareBonusesContext } from './scripts/prepare-partials.js'
+import { prepareDescriptionContext, prepareMacroContext, prepareBonusesContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
 // Base item sheet to extend from
-import { WoDItem } from './wod-item-base.js'
+import { WoDItem } from '../wod-item-base.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the WoDActor document
+ * Extend the WoDItem document
  * @extends {WoDItem}
  */
-export class CustomRollItemSheet extends HandlebarsApplicationMixin(WoDItem) {
+export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
     actions: {}
@@ -19,7 +19,7 @@ export class CustomRollItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/shared/items/custom-roll-sheet.hbs'
+      template: 'systems/vtm5e/display/shared/items/condition-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
@@ -27,14 +27,14 @@ export class CustomRollItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     description: {
       template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
     },
-    dicepool: {
-      template: 'systems/vtm5e/display/shared/items/parts/dicepool.hbs'
-    },
     macro: {
       template: 'systems/vtm5e/display/shared/items/parts/macro.hbs'
     },
     bonuses: {
       template: 'systems/vtm5e/display/shared/items/parts/bonuses.hbs'
+    },
+    settings: {
+      template: 'systems/vtm5e/display/shared/items/parts/item-settings.hbs'
     }
   }
 
@@ -43,11 +43,6 @@ export class CustomRollItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       id: 'description',
       group: 'primary',
       label: 'WOD5E.Tabs.Description'
-    },
-    dicepool: {
-      id: 'dicepool',
-      group: 'primary',
-      label: 'WOD5E.Tabs.Dicepool'
     },
     macro: {
       id: 'macro',
@@ -58,12 +53,21 @@ export class CustomRollItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       id: 'bonuses',
       group: 'primary',
       label: 'WOD5E.ItemsList.Bonuses'
+    },
+    settings: {
+      id: 'settings',
+      group: 'primary',
+      label: 'WOD5E.ItemsList.ItemSettings'
     }
   }
 
   async _prepareContext () {
     // Top-level variables
     const data = await super._prepareContext()
+    const item = this.item
+    const itemData = item.system
+
+    console.log(itemData)
 
     return data
   }
@@ -80,12 +84,12 @@ export class CustomRollItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       // Stats
       case 'description':
         return prepareDescriptionContext(context, item)
-      case 'dicepool':
-        return prepareDicepoolContext(context, item)
       case 'macro':
         return prepareMacroContext(context, item)
       case 'bonuses':
         return prepareBonusesContext(context, item)
+      case 'settings':
+        return prepareItemSettingsContext(context, item)
     }
 
     return context

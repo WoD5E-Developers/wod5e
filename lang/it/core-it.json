@@ -10,13 +10,26 @@
       "werewolf": "Licantropo"
     },
     "Item": {
+      "_armor": "",
+      "_auspice": "",
       "boon": "Favore",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "customRoll": "Tiro personalizzato",
+      "_drive": "",
       "_edgepool": "",
       "feature": "Caratteristica",
+      "_gear": "",
       "gift": "Dono",
       "perk": "Beneficio",
-      "power": "Disciplina"
+      "power": "Disciplina",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {
@@ -122,12 +135,25 @@
       "SelectAbility": "Seleziona Attributo",
       "SkillShortLabel": "Ab"
     },
+    "EquipmentList": {
+      "_ArmorValue": "",
+      "_EquipmentNotes": "",
+      "_Melee": "",
+      "_NewStringWeapon": "",
+      "_Quantity": "",
+      "_Ranged": "",
+      "_SelectWeaponType": "",
+      "_Supernatural": "",
+      "_WeaponType": "",
+      "_WeaponValue": ""
+    },
     "Experience": {
       "_AddExperience": "",
-      "_Derived": "",
+      "_Calculated": "",
       "_EditExperience": "",
       "_History": "",
-      "_Initial": "",
+      "_Label": "",
+      "_Legacy": "",
       "_NewExperience": "",
       "_Remaining": "",
       "_Total": ""
@@ -141,10 +167,14 @@
       "Cost": "Costo",
       "CustomRoll": "Tiro personalizzato",
       "CustomRolls": "Tiri personalizzati",
+      "_DataItemId": "",
       "Feature": "Caratteristica",
       "FeatureType": "Tipo di caratteristica",
       "Flaw": "Difetti",
+      "_GenerateDataItemID": "",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
+      "_ItemSettings": "",
       "Label": "Etichetta",
       "Macro": "Macro",
       "Merit": "Vantaggi",
@@ -301,10 +331,13 @@
       "GeneralDifficulty": "Difficoltà generale",
       "Label": "PNG",
       "Mental": "Mentale",
+      "_Normal": "",
       "Physical": "Fisico",
       "SelectSkill": "Seleziona abilità",
       "Social": "Sociale",
-      "StandardDicePools": "Pool di dadi standard"
+      "StandardDicePools": "Pool di dadi standard",
+      "_Strongest": "",
+      "_Traits": ""
     },
     "Tabs": {
       "_Biography": "",

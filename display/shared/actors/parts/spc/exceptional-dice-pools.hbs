@@ -1,35 +1,38 @@
-<div class="tab flex-center" data-group="primary">
-    <div class="flexrow spc-pool-header">
-        <label class="resource-label field-header">{{localize "WOD5E.SPC.ExceptionalDicePools"}}</label> 
-        <div class="item-controls spc-item-header">
-            <a class="item-control exceptionalskill-create" data-action="createExceptionalSkill" title="{{localize 'WOD5E.SPC.AddSkill'}}">
-                <i class="fas fa-plus"></i>
-                {{localize "WOD5E.SPC.AddSkill"}}
-            </a>
-        </div>
+<div>
+    <div class="resource-label field-header flex-center">
+        {{localize "WOD5E.SPC.ExceptionalDicePools"}}
+        <a class="edit-exceptional-pools" data-action="editExceptionalPools" title="Edit exceptional pools">
+            <i class="fas fa-edit"></i>
+        </a>
     </div>
-    <ol class="items-list">
+    <div class="exceptional-pools-list{{#unless locked}} flexrow{{else}} resource stat-resource-background{{/unless}}">
         <!-- Iterate through each of the skill lists -->
-        {{#each exceptionalPools as |exceptionalskill key|}}
-            {{#if exceptionalskill.active}}
-                <li class="flexrow spc-item-header">
-                    <label for="{{exceptionalskill.name}}" class="resource-label rollable" data-action="roll" data-value-paths="exceptionaldicepools.{{key}}.value" data-select-dialog="false"
-                      data-label="{{exceptionalskill.displayName}}">{{exceptionalskill.displayName}} 
-                    </label>
-                    <div class="resource-value">
-                        <input type="number" name="system.exceptionaldicepools.{{key}}.value" 
-                        value="{{exceptionalskill.value}}" data-name="system.exceptionaldicepools.{{key}}.value" />
+        {{#if locked}}
+            {{#each exceptionalPools as |exceptionalskill key|}}
+                {{#if exceptionalskill.active}}
+                    <a class="exceptional-pool resource-label rollable{{#if ../locked}} locked{{/if}}" data-action="roll" data-value-paths="exceptionaldicepools.{{key}}.value"
+                            data-select-dialog="false" data-label="{{exceptionalskill.displayName}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
+                        <b>{{exceptionalskill.displayName}}</b>
+                        <span class="exceptional-value">{{exceptionalskill.value}}</span>
+                    </a>
+                {{/if}}
+            {{/each}}
+        {{else}}
+            {{#each exceptionalPools as |exceptionalskill key|}}
+                {{#if exceptionalskill.active}}
+                    <div class="spc-item-header exceptional-pool">
+                        <div class="resource-label rollable" data-action="roll" data-value-paths="exceptionaldicepools.{{key}}.value" data-select-dialog="false"
+                            data-label="{{exceptionalskill.displayName}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
+                            {{exceptionalskill.displayName}}
+                        </div>
+                        <div class="resource-value">
+                            <input type="number" name="system.exceptionaldicepools.{{key}}.value"
+                            value="{{exceptionalskill.value}}" data-name="system.exceptionaldicepools.{{key}}.value"/>
+                        </div>
                     </div>
-                    <!-- Item controls for Exceptional Skill sections -->
-                    <div class="item-controls">
-                        <!-- Icon to delete the exceptionalskill -->
-                        <a class="item-control exceptionalskill-delete" data-action="deleteExceptionalSkill" title="{{localize 'WOD5E.Delete'}}" data-exceptionalskill="{{exceptionalskill.id}}">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                    </div>
-                </li>
-            {{/if}}
-        {{/each}}
-    </ol>
+                {{/if}}
+            {{/each}}
+        {{/if}}
+    </div>
 </div>
 

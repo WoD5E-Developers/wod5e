@@ -10,13 +10,26 @@
       "werewolf": "Werwolf"
     },
     "Item": {
+      "_armor": "",
+      "_auspice": "",
       "boon": "Gefallen",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "customRoll": "Benutzerdefinierter Wurf",
+      "_drive": "",
       "_edgepool": "",
       "feature": "Merkmal",
+      "_gear": "",
       "gift": "Gabe",
       "perk": "Verstärkung",
-      "power": "Disziplin"
+      "power": "Disziplin",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {
@@ -122,12 +135,25 @@
       "SelectAbility": "Wähle Attribut",
       "SkillShortLabel": "F"
     },
+    "EquipmentList": {
+      "_ArmorValue": "",
+      "_EquipmentNotes": "",
+      "_Melee": "",
+      "_NewStringWeapon": "",
+      "_Quantity": "",
+      "_Ranged": "",
+      "_SelectWeaponType": "",
+      "_Supernatural": "",
+      "_WeaponType": "",
+      "_WeaponValue": ""
+    },
     "Experience": {
       "_AddExperience": "",
-      "_Derived": "",
+      "_Calculated": "",
       "_EditExperience": "",
       "_History": "",
-      "_Initial": "",
+      "_Label": "",
+      "_Legacy": "",
       "_NewExperience": "",
       "_Remaining": "",
       "_Total": ""
@@ -141,10 +167,14 @@
       "Cost": "Kosten",
       "CustomRoll": "Benutzerdefinierter Wurf",
       "CustomRolls": "Benutzerdefinierte Würfe",
+      "_DataItemId": "",
       "Feature": "Merkmal",
       "FeatureType": "Merkmals-Typ",
       "Flaw": "Schwächen",
+      "_GenerateDataItemID": "",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
+      "_ItemSettings": "",
       "Label": "Gegenstände",
       "Macro": "Macro",
       "Merit": "Vorteile",
@@ -301,10 +331,13 @@
       "GeneralDifficulty": "Allg. SG",
       "Label": "Erzähler-Charakter (NSC)",
       "Mental": "Geistig",
+      "_Normal": "",
       "Physical": "Körperlich",
       "SelectSkill": "Wähle Fähigkeit",
       "Social": "Gesellschaftlich",
-      "StandardDicePools": "Würfelpools"
+      "StandardDicePools": "Würfelpools",
+      "_Strongest": "",
+      "_Traits": ""
     },
     "Tabs": {
       "_Biography": "",

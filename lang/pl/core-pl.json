@@ -10,13 +10,26 @@
       "_werewolf": ""
     },
     "Item": {
+      "_armor": "",
+      "_auspice": "",
       "boon": "Przysługa",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "customRoll": "Własny Rzut",
+      "_drive": "",
       "_edgepool": "",
       "feature": "Cechy",
+      "_gear": "",
       "_gift": "",
       "perk": "Perk",
-      "power": "Dyscyplinę"
+      "power": "Dyscyplinę",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {
@@ -122,12 +135,25 @@
       "SelectAbility": "Wybierz Umiejętność",
       "SkillShortLabel": "U"
     },
+    "EquipmentList": {
+      "_ArmorValue": "",
+      "_EquipmentNotes": "",
+      "_Melee": "",
+      "_NewStringWeapon": "",
+      "_Quantity": "",
+      "_Ranged": "",
+      "_SelectWeaponType": "",
+      "_Supernatural": "",
+      "_WeaponType": "",
+      "_WeaponValue": ""
+    },
     "Experience": {
       "_AddExperience": "",
-      "_Derived": "",
+      "_Calculated": "",
       "_EditExperience": "",
       "_History": "",
-      "_Initial": "",
+      "_Label": "",
+      "_Legacy": "",
       "_NewExperience": "",
       "_Remaining": "",
       "_Total": ""
@@ -141,10 +167,14 @@
       "_Cost": "",
       "CustomRoll": "Własny Rzut",
       "CustomRolls": "Własne Rzuty",
+      "_DataItemId": "",
       "_Feature": "",
       "FeatureType": "Rodzaj Cechy",
       "Flaw": "Wada",
+      "_GenerateDataItemID": "",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
+      "_ItemSettings": "",
       "_Label": "",
       "_Macro": "",
       "Merit": "Zaleta",
@@ -301,10 +331,13 @@
       "GeneralDifficulty": "Ogólna trudność",
       "_Label": "",
       "Mental": "Psychiczne",
+      "_Normal": "",
       "Physical": "Fizyczne",
       "SelectSkill": "Wybierz umiejętność",
       "Social": "Społeczne",
-      "StandardDicePools": "Standardowe pule kości"
+      "StandardDicePools": "Standardowe pule kości",
+      "_Strongest": "",
+      "_Traits": ""
     },
     "Tabs": {
       "_Biography": "",

@@ -14,10 +14,12 @@
             {{#if edge.visible}}
                 <li class="flexrow spc-item-header">
                     <label for="{{edge.name}}" class="resource-label rollable" data-action="roll" data-use-absolute-value="true"
-                      data-absolute-value="{{edge.value}}" data-label="{{generateLocalizedLabel key 'edges'}}">{{generateLocalizedLabel key 'edges'}}
+                      data-absolute-value="{{edge.value}}" data-label="{{generateLocalizedLabel key 'edges'}}"
+                      {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
+                      {{generateLocalizedLabel key 'edges'}}
                     </label>
                     <div class="resource-value">
-                        <input type="number" name="system.edges.{{key}}.value" 
+                        <input type="number" name="system.edges.{{key}}.value"
                         value="{{edge.value}}" data-name="system.edges.{{key}}.value" />
                     </div>
                     <!-- Item controls for Edge sections -->

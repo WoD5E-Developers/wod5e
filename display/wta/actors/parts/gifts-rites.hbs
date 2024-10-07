@@ -3,8 +3,8 @@
     <hr>
     {{#if frenzyActive}}
         <div class="frenzyNotification flex-center">
-            <h1>{{localize 'WOD5E.WTA.FrenzyActiveWarning'}}</h1>
-            <h3>{{localize 'WOD5E.WTA.FrenzyActiveWarning2'}}</h3>
+            <div class="field-header big-header">{{localize 'WOD5E.WTA.FrenzyActiveWarning'}}</div>
+            <div class="field-header">{{localize 'WOD5E.WTA.FrenzyActiveWarning2'}}</div>
         </div>
     {{/if}}
     <div class="flexrow">
@@ -23,7 +23,7 @@
                     {{#if gift.visible}}
                         <span class="parent flexrow">
                             <div class="icon category-select{{#if gift.selected}} selected{{/if}}" data-action="selectGift" data-gift="{{key}}"></div>
-                            {{gift.displayName}}
+                            <a class="select-label" data-action="selectGift" data-gift="{{key}}">{{gift.displayName}}</a>
                             <div class="item-controls">
                                 <!-- Icon to show the gift description to the chat-->
                                 <a class="item-control gift-chat" data-action="giftChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-gift="{{key}}">
@@ -42,7 +42,7 @@
                                 <li>
                                     <span>
                                         <div class="icon power-select{{#if power.system.selected}} selected{{/if}}" data-action="selectGiftPower" data-power="{{power.id}}" style="background-image: url('{{power.img}}');"></div>
-                                        {{power.name}}
+                                        <a class="select-label" data-action="selectGiftPower" data-power="{{power.id}}">{{power.name}}</a>
                                     </span>
                                 </li>
                             {{/each}}

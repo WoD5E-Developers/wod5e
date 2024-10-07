@@ -6,33 +6,15 @@
                 {{> "systems/vtm5e/display/shared/actors/parts/core-details.hbs"}}
 
                 <!-- Hunter-specific details -->
-                <div class="flexrow detail-row">
-                    <div class="flexcol">
-                        <label class="resource-label field-header">{{localize 'WOD5E.HTR.Creed'}}</label>
-                        <input name="system.headers.creed" type="text" value="{{creed}}" placeholder="{{localize 'WOD5E.HTR.Creed'}}"/>
-                    </div>
-                    <div class="flexcold">
-                        <label class="resource-label field-header">{{localize "WOD5E.HTR.Redemption"}}</label>
-                        <input type="text" name="system.redemption.value" value="{{redemption}}" placeholder="{{localize 'WOD5E.HTR.Redemption'}}" />
-                    </div>
-                </div>
+                {{> "systems/vtm5e/display/htr/actors/parts/redemption.hbs"}}
+
+                {{> "systems/vtm5e/display/htr/actors/parts/creed-fields.hbs"}}
 
                 <!-- Chronicle Tenets -->
                 {{> "systems/vtm5e/display/shared/actors/parts/chronicle-tenets.hbs"}}
 
                 <!-- Touchstones/Convictions -->
                 {{> "systems/vtm5e/display/shared/actors/parts/touchstones-convictions.hbs"}}
-            </div>
-            <div class="flex-group-left">
-                <div class="flex-center">
-                    <label class="resource-label field-header">{{localize "WOD5E.HTR.CreedFields"}}</label>
-                </div>
-                <div class="description-content resource">
-                    <prose-mirror name="system.headers.creedfields" value="{{creedfields}}"
-                        toggled="true" compact="true">
-                        {{{enrichedCreedfields}}}
-                    </prose-mirror>
-                </div>
             </div>
         </div>
         <div class="features-list item-list">

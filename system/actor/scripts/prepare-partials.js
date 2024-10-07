@@ -45,13 +45,32 @@ export const prepareFeaturesContext = async function (context, actor) {
   context.enrichedTenets = await TextEditor.enrichHTML(actorHeaders.tenets)
   context.touchstones = actorHeaders.touchstones
   context.enrichedTouchstones = await TextEditor.enrichHTML(actorHeaders.touchstones)
+  context.showAmbitionDesire = actorData.gamesystem !== 'werewolf' && actor.type !== 'group'
 
-  if (actorData.gamesystem === 'hunter') {
-    context.creed = actorHeaders.creed
-    context.redemption = actorData.redemption.value
-    context.creedfields = actorHeaders.creedfields
-    context.enrichedCreedfields = await TextEditor.enrichHTML(actorHeaders.creedfields)
+  if (actorData.gamesystem === 'werewolf') {
+    const tribe = context.tribe
+
+    context.favor = tribe?.system?.patronSpirit?.favor || ''
+    context.enrichedFavor = await TextEditor.enrichHTML(context.favor)
+    context.ban = tribe?.system?.patronSpirit?.ban || ''
+    context.enrichedBan = await TextEditor.enrichHTML(context.ban)
   }
+
+  console.log(context)
+
+  return context
+}
+
+export const prepareEquipmentContext = async function (context, actor) {
+  const actorData = actor.system
+
+  // Tab data
+  context.tab = context.tabs.equipment
+
+  // Part-specific data
+  context.equipment = actorData.equipment
+  context.enrichedEquipment = await TextEditor.enrichHTML(actorData.equipment)
+  context.equipmentItems = actorData.equipmentItems
 
   return context
 }
@@ -82,14 +101,25 @@ export const prepareNotepadContext = async function (context, actor) {
   context.notes = actorData.notes
   context.enrichedNotes = await TextEditor.enrichHTML(actorData.notes)
   context.privatenotes = actorData.privatenotes
-  context.enrichedPrivatenotes = await TextEditor.enrichHTML(actorData.privatenotes)
+  context.enrichedPrivateNotes = await TextEditor.enrichHTML(actorData.privatenotes)
 
   return context
 }
 
-export const prepareSettingsContext = async function (context) {
+export const prepareSettingsContext = async function (context, actor) {
+  const actorData = actor.system
+  const actorsWithPowers = ['vampire', 'hunter', 'werewolf']
+
   // Tab data
   context.tab = context.tabs.settings
+
+  if (context.baseActorType === 'spc' && actorsWithPowers.indexOf(context.currentActorType) === -1) {
+    context.showOptionalPowers = true
+
+    context.enableDisciplines = actorData.settings.enableDisciplines
+    context.enableEdges = actorData.settings.enableEdges
+    context.enableGifts = actorData.settings.enableGifts
+  }
 
   return context
 }
@@ -118,9 +148,28 @@ export const prepareSpcStatsContext = async function (context, actor) {
   context.standardPools = actorData.standarddicepools
   context.exceptionalPools = actorData.exceptionaldicepools
 
-  context.disciplines = actorData.disciplines
-  context.edges = actorData.edges
-  context.gifts = actorData.gifts
+  context.traits = actorData.traits
+  context.enrichedTraits = await TextEditor.enrichHTML(actorData.traits)
+
+  if (context.currentActorType === 'vampire' || (context.gamesystem === 'vampire' && context.settings.enableDisciplines === true)) {
+    context.showDisciplines = true
+    context.disciplines = actorData.disciplines
+  }
+
+  if (context.currentActorType === 'hunter' || (context.gamesystem === 'hunter' && context.settings.enableEdges === true)) {
+    context.showEdges = true
+    context.edges = actorData.edges
+  }
+
+  if (context.currentActorType === 'werewolf' || (context.gamesystem === 'werewolf' && context.settings.enableGifts === true)) {
+    context.showGifts = true
+    context.gifts = actorData.gifts
+  }
+
+  if (context.currentActorType === 'spirit') {
+    context.manifestation = actorData.manifestation
+    context.enrichedManifestation = await TextEditor.enrichHTML(actorData.manifestation)
+  }
 
   return context
 }

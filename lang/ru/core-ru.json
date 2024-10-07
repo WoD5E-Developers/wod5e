@@ -10,13 +10,26 @@
       "werewolf": "Оборотень"
     },
     "Item": {
+      "_armor": "",
+      "_auspice": "",
       "boon": "Долг",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "customRoll": "Уникальная проверка",
+      "_drive": "",
       "_edgepool": "",
       "feature": "Преимущества",
+      "_gear": "",
       "gift": "дара",
       "perk": "Улучшение",
-      "power": "Дисциплина"
+      "power": "Дисциплина",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {
@@ -122,12 +135,25 @@
       "SelectAbility": "Выбор Характеристики",
       "SkillShortLabel": "Н"
     },
+    "EquipmentList": {
+      "_ArmorValue": "",
+      "_EquipmentNotes": "",
+      "_Melee": "",
+      "_NewStringWeapon": "",
+      "_Quantity": "",
+      "_Ranged": "",
+      "_SelectWeaponType": "",
+      "_Supernatural": "",
+      "_WeaponType": "",
+      "_WeaponValue": ""
+    },
     "Experience": {
       "_AddExperience": "",
-      "_Derived": "",
+      "_Calculated": "",
       "_EditExperience": "",
       "_History": "",
-      "_Initial": "",
+      "_Label": "",
+      "_Legacy": "",
       "_NewExperience": "",
       "_Remaining": "",
       "_Total": ""
@@ -141,10 +167,14 @@
       "Cost": "Стоимость",
       "CustomRoll": "Уникальная проверка",
       "CustomRolls": "Уникальные проверки",
+      "_DataItemId": "",
       "Feature": "Преимущества",
       "FeatureType": "Тип преимущества",
       "Flaw": "Недостатки",
+      "_GenerateDataItemID": "",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
+      "_ItemSettings": "",
       "_Label": "",
       "Macro": "Макрос",
       "Merit": "Достоинства",
@@ -301,10 +331,13 @@
       "GeneralDifficulty": "Общая сложность",
       "Label": "Персонаж Рассказчика",
       "Mental": "Ментальный",
+      "_Normal": "",
       "Physical": "Физическтй",
       "SelectSkill": "Выбор навыка",
       "Social": "Социальный",
-      "StandardDicePools": "Универсальные пулы"
+      "StandardDicePools": "Универсальные пулы",
+      "_Strongest": "",
+      "_Traits": ""
     },
     "Tabs": {
       "_Biography": "",

@@ -1,8 +1,10 @@
-/* global game, TextEditor, foundry, DragDrop, Item, SortingHelpers */
+/* global game, TextEditor, foundry, DragDrop, Item, SortingHelpers, ui */
 
 // Data preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
 import { getActorTypes } from './scripts/get-actor-types.js'
+// Definition file
+import { ItemTypes } from '../api/def/itemtypes.js'
 // Roll function
 import { _onRoll } from './scripts/roll.js'
 // Resource functions
@@ -47,7 +49,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     classes: ['wod5e', 'actor', 'sheet'],
     position: {
       width: 1000,
-      height: 700
+      height: 800
     },
     actions: {
       // Rollable actions
@@ -119,8 +121,8 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     // Actor types that can be swapped to and data prep for it
     const actorTypeData = await getActorTypes(actor)
 
-    // Shortcut to the actor headers
-    const actorHeaders = actorData.headers
+    // Determine whether we show legacy XP depending on if the legacy values are filled or not
+    const showLegacyXP = actorData.exp ? (Number(actorData.exp.value) || Number(actorData.exp.max)) : false
 
     // Transform any data needed for sheet rendering
     return {
@@ -137,8 +139,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       gamesystem: actorData.gamesystem,
       isOwner: actor.isOwner,
       locked: actorData.locked,
-      isCharacter: this.isCharacter,
-      hasBoons: this.hasBoons,
+      showLegacyXP,
 
       features: actorData.features,
 
@@ -146,13 +147,10 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
       headerbg: await getActorHeader(actor),
 
+      baseActorType: actorTypeData.baseActorType,
       currentActorType: actorTypeData.currentActorType,
       actorTypePath: actorTypeData.typePath,
-      actorOptions: actorTypeData.types,
-
-      equipment: await TextEditor.enrichHTML(actorData.equipment),
-      bane: await TextEditor.enrichHTML(actorHeaders.bane),
-      creedfields: await TextEditor.enrichHTML(actorHeaders.creedfields)
+      actorOptions: actorTypeData.types
     }
   }
 
@@ -192,6 +190,38 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       flaw: [],
       boon: []
     })
+
+    // Remove Boons if we have no boons and the actor isn't a vampire
+    if (sheetData.system.features.boon.length === 0 && sheetData.system.gamesystem !== 'vampire') delete sheetData.system.features.boon
+
+    // Equipment
+    sheetData.system.equipmentItems = sheetData.items.reduce((acc, item) => {
+      switch (item.type) {
+        case 'armor':
+          acc.armor.push(item)
+          break
+        case 'weapon':
+          acc.weapon.push(item)
+          break
+        case 'gear':
+          acc.gear.push(item)
+          break
+        case 'talisman':
+          acc.talisman.push(item)
+          break
+      }
+
+      return acc
+    }, {
+      // Containers for equipment
+      armor: [],
+      weapon: [],
+      gear: [],
+      talisman: []
+    })
+
+    // Remove Talismans if we have no boons and the actor isn't a werewolf
+    if (sheetData.system.equipmentItems.talisman.length === 0 && sheetData.system.gamesystem !== 'werewolf') delete sheetData.system.equipmentItems.talisman
   }
 
   static async onSubmitActorForm (event, form, formData) {
@@ -306,8 +336,44 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
   async _onDropItem (event, data) {
     if (!this.actor.isOwner) return false
+    const actorType = this.actor.type
     const item = await Item.implementation.fromDropData(data)
     const itemData = item.toObject()
+    const itemType = itemData.type
+    const itemsList = ItemTypes.getList({})
+
+    // Check whether we should allow this item type to be placed on this actor type
+    if (itemsList[itemType]) {
+      const whitelist = itemsList[itemType].restrictedActorTypes
+      const blacklist = itemsList[itemType].excludedActorTypes
+
+      // If the whitelist contains any entries, we can check to make sure this actor type is allowed for the item
+      if (!foundry.utils.isEmpty(whitelist) && whitelist.indexOf(actorType) === -1) {
+        ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
+          string1: itemType,
+          string2: actorType
+        }))
+
+        return false
+      }
+
+      // If the blacklist contains any entries, we can check to make sure this actor type isn't disallowed for the item
+      if (!foundry.utils.isEmpty(blacklist) && blacklist.indexOf(actorType) > -1) {
+        ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
+          string1: itemType,
+          string2: actorType
+        }))
+
+        return false
+      }
+
+      // Handle limiting only a single type of an item to an actor
+      if (itemsList[itemType].limitOnePerActor) {
+        // Delete all other types of this item on the actor
+        const duplicateItemTypeInstances = this.actor.items.filter(item => item.type === itemType).map(item => item.id)
+        this.actor.deleteEmbeddedDocuments('Item', duplicateItemTypeInstances)
+      }
+    }
 
     // Handle item sorting within the same Actor
     if (this.actor.uuid === item.parent?.uuid) return this._onSortItem(event, itemData)

@@ -5,29 +5,22 @@ import { Edges } from '../../../api/def/edges.js'
 export const prepareEdges = async function (actor) {
   // Secondary variables
   const edgesList = Edges.getList({})
-  const edges = actor.system?.edges
-
-  // Clean up non-existent edges, such as custom ones that no longer exist
-  const validEdges = new Set(Object.keys(edgesList))
-  for (const id of Object.keys(edges)) {
-    if (!validEdges.has(id)) {
-      delete edges[id]
-    }
-  }
+  const actorEdges = actor.system?.edges
+  const computedEdges = {}
 
   for (const [id, value] of Object.entries(edgesList)) {
     let edgeData = {}
 
     // If the actor has a edge with the key, grab its current values
-    if (Object.prototype.hasOwnProperty.call(edges, id)) {
+    if (Object.prototype.hasOwnProperty.call(actorEdges, id)) {
       edgeData = Object.assign({
         id,
-        value: edges[id].value,
-        perks: edges[id].perks || [],
-        pools: edges[id].pools || [],
-        description: edges[id].description,
-        visible: edges[id].visible,
-        selected: edges[id].selected || false
+        value: actorEdges[id].value,
+        perks: actorEdges[id].perks || [],
+        pools: actorEdges[id].pools || [],
+        description: actorEdges[id].description,
+        visible: actorEdges[id].visible,
+        selected: actorEdges[id].selected || false
       }, value)
     } else { // Otherwise, add it to the actor and set it as some default data
       edgeData = Object.assign({
@@ -42,36 +35,36 @@ export const prepareEdges = async function (actor) {
     }
 
     // Ensure the edge exists
-    if (!edges[id]) edges[id] = {}
+    if (!computedEdges[id]) computedEdges[id] = {}
     // Apply the edge's data
-    edges[id] = edgeData
+    computedEdges[id] = edgeData
 
     // Make it forced invisible if it's set to hidden
     if (edgeData.hidden) {
-      edges[id].visible = false
+      computedEdges[id].visible = false
     }
 
     // Wipe old edge perks so they doesn't duplicate
-    edges[id].perks = []
+    computedEdges[id].perks = []
 
     // Wipe old edge pools so they don't duplicate either
-    edges[id].pools = []
+    computedEdges[id].pools = []
 
     // Enrich edge description
-    edges[id].enrichedDescription = await TextEditor.enrichHTML(edges[id].description)
+    computedEdges[id].enrichedDescription = await TextEditor.enrichHTML(computedEdges[id].description)
 
     // Assign all matching perks to the edge
-    edges[id].perks = actor.items.filter(item =>
+    computedEdges[id].perks = actor.items.filter(item =>
       item.type === 'perk' && item.system.edge === id
     )
 
     // Assign all matching edgepools to the edge
-    edges[id].pools = actor.items.filter(item =>
+    computedEdges[id].pools = actor.items.filter(item =>
       item.type === 'edgepool' && item.system.edge === id
     )
   }
 
-  return edges
+  return computedEdges
 }
 
 export const prepareEdgePowers = async function (edges) {

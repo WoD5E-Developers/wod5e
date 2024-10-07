@@ -1,8 +1,6 @@
 /* global game, Dialog */
 
-import { Skills } from '../../api/def/skills.js'
-
-export const _onCreateExceptionalSkill = async function (event) {
+export const _onEditExceptionalPools = async function (event) {
   event.preventDefault()
 
   // Top-level variables
@@ -12,17 +10,21 @@ export const _onCreateExceptionalSkill = async function (event) {
   let options = ''
   let buttons = {}
 
-  // Gather and push the list of options to the 'options' variable
-  for (const [key, value] of Object.entries(Skills.getList({}))) {
-    options = options.concat(`<option value="${key}">${game.i18n.localize(value.displayName)}</option>`)
+  // Gather and push the list of options and whether they're checked or not
+  for (const [key, value] of Object.entries(actor.system.exceptionaldicepools)) {
+    const checkedStatus = value.active ? ' checked' : ''
+
+    options = options.concat(`<div class="flexrow exceptional-pool" data-id="${key}">
+      ${value.displayName}
+      <input type="checkbox" class="exceptional-checkbox"${checkedStatus}>
+    </div>`)
   }
 
   // Define the template to be used
   const template = `
     <form>
-        <div class="form-group">
-            <label>${game.i18n.localize('WOD5E.SPC.SelectSkill')}</label>
-            <select id="skillSelect">${options}</select>
+        <div class="form-group grid grid-3col">
+            ${options}
         </div>
     </form>`
 
@@ -30,13 +32,28 @@ export const _onCreateExceptionalSkill = async function (event) {
   buttons = {
     submit: {
       icon: '<i class="fas fa-check"></i>',
-      label: game.i18n.localize('WOD5E.Add'),
+      label: game.i18n.localize('WOD5E.Save'),
       callback: async (html) => {
-        // Define the skill being used
-        const exceptionalskill = html.find('#skillSelect')[0].value
+        // Store the updated variables here
+        const exceptionaldicepools = {}
+        // Define the list of pools
+        const exceptionalPool = html.find('.exceptional-pool')
 
-        // If the dicepool wasn't already visible, make it visible
-        actor.update({ [`system.exceptionaldicepools.${exceptionalskill}.active`]: true })
+        // Make a value in the object to store the checked property
+        exceptionalPool.each(function (pool) {
+          const id = exceptionalPool[pool].dataset.id
+          exceptionaldicepools[id] ??= {}
+          exceptionaldicepools[id] = {
+            active: $(exceptionalPool[pool]).find('.exceptional-checkbox').prop('checked')
+          }
+        })
+
+        // Update the actor with the new options
+        actor.update({
+          system: {
+            exceptionaldicepools
+          }
+        })
       }
     },
     cancel: {
@@ -53,13 +70,6 @@ export const _onCreateExceptionalSkill = async function (event) {
     default: 'submit'
   },
   {
-    classes: ['wod5e', actor.system.gamesystem, 'dialog']
+    classes: ['wod5e', actor.system.gamesystem, 'exceptional-edit', 'dialog']
   }).render(true)
-}
-
-export const _onDeleteExceptionalSkill = async function (event, target) {
-  const actor = this.actor
-  const exceptionalSkill = target.getAttribute('exceptionalskill')
-
-  actor.update({ [`system.exceptionaldicepools.${exceptionalSkill}.active`]: false })
 }

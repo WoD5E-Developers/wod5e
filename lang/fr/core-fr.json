@@ -10,13 +10,26 @@
       "_werewolf": ""
     },
     "Item": {
+      "_armor": "",
+      "_auspice": "",
       "boon": "Dette",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "customRoll": "Jet Personnalisé",
+      "_drive": "",
       "_edgepool": "",
       "feature": "Atout",
+      "_gear": "",
       "_gift": "",
       "perk": "Avantage",
-      "power": "Discipline"
+      "power": "Discipline",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {
@@ -122,12 +135,25 @@
       "SelectAbility": "Selectionner un attribut",
       "SkillShortLabel": "C"
     },
+    "EquipmentList": {
+      "_ArmorValue": "",
+      "_EquipmentNotes": "",
+      "_Melee": "",
+      "_NewStringWeapon": "",
+      "_Quantity": "",
+      "_Ranged": "",
+      "_SelectWeaponType": "",
+      "_Supernatural": "",
+      "_WeaponType": "",
+      "_WeaponValue": ""
+    },
     "Experience": {
       "_AddExperience": "",
-      "_Derived": "",
+      "_Calculated": "",
       "_EditExperience": "",
       "_History": "",
-      "_Initial": "",
+      "_Label": "",
+      "_Legacy": "",
       "_NewExperience": "",
       "_Remaining": "",
       "_Total": ""
@@ -141,10 +167,14 @@
       "Cost": "Coût",
       "CustomRoll": "Jet Personnalisé",
       "CustomRolls": "Jets Personnalisés",
+      "_DataItemId": "",
       "Feature": "Atout",
       "FeatureType": "Type d'Atout",
       "Flaw": "Handicap",
+      "_GenerateDataItemID": "",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
+      "_ItemSettings": "",
       "Label": "Objets",
       "Macro": "Macro",
       "Merit": "Avantage",
@@ -301,10 +331,13 @@
       "GeneralDifficulty": "Difficulté générale",
       "Label": "Antagoniste",
       "Mental": "Mental",
+      "_Normal": "",
       "Physical": "Physique",
       "SelectSkill": "Sélectionnez les compétences",
       "Social": "Social",
-      "StandardDicePools": "Groupement de dés standard"
+      "StandardDicePools": "Groupement de dés standard",
+      "_Strongest": "",
+      "_Traits": ""
     },
     "Tabs": {
       "_Biography": "",

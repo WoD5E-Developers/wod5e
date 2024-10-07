@@ -48,7 +48,7 @@
         <div class="blood-details flexcol">
             <div class="flex-group-center nogrow">
                 <div class="flexcol resource">
-                    <div class="system-rollable remorse-roll" title="{{localize 'WOD5E.VTM.RollRemorse'}}">
+                    <div class="system-rollable remorse-roll" data-action="remorseRoll" title="{{localize 'WOD5E.VTM.RollRemorse'}}">
                         <div class="resource-label field-header">
                             {{localize "WOD5E.VTM.Humanity"}}
                         </div>
@@ -72,11 +72,37 @@
             <div class="flexrow nowrap flex-group-center nogrow">
                 <div class="flexcol">
                     <label class="resource-label field-header">{{localize 'WOD5E.VTM.PredatorType'}}</label>
-                    <input class="resource" name="system.headers.predator" type="text" value="{{predator}}" placeholder="{{localize 'WOD5E.VTM.PredatorType'}}"/>
+                    <div class="resource resource-content">
+                        {{#if predator}}
+                            <span class="data-item">
+                                {{predator.name}}
+                            </span>
+                            <a class="edit-data-item" data-action="itemEdit" data-item-id="{{predator.id}}">
+                                <i class="fa-solid fa-pen-nib"></i>
+                            </a>
+                        {{else}}
+                            <a class="add-data-item" data-action="createItem" data-type="predatorType">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        {{/if}}
+                    </div>
                 </div>
                 <div class="flexcol">
                     <label class="resource-label field-header">{{localize 'WOD5E.VTM.BloodResonance'}}</label>
-                    <input class="resource" type="text" name="system.blood.resonance" value="{{blood.resonance}}" placeholder="{{localize 'WOD5E.VTM.BloodResonance'}}"/>
+                    <div class="resource resource-content">
+                        {{#if resonance}}
+                            <span class="data-item">
+                                {{resonance.name}}
+                            </span>
+                            <a class="edit-data-item" data-action="itemEdit" data-item-id="{{resonance.id}}">
+                                <i class="fa-solid fa-pen-nib"></i>
+                            </a>
+                        {{else}}
+                            <a class="add-data-item" data-action="createItem" data-type="resonance">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        {{/if}}
+                    </div>
                 </div>
             </div>
 
@@ -84,11 +110,10 @@
                 <div class="flex-center">
                     <label class="resource-label field-header">{{localize "WOD5E.VTM.ClanBane"}}</label>
                 </div>
-                <div class="resource-contents prosemirror-resource resource">
-                    <prose-mirror name="system.headers.bane" value="{{bane}}"
-                        toggled="true" compact="true">
+                <div class="resource-contents prosemirror-resource resource bane">
+                    <div>
                         {{{enrichedBane}}}
-                    </prose-mirror>
+                    </div>
                 </div>
             </div>
         </div>

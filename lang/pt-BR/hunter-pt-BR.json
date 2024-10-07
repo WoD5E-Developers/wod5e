@@ -9,12 +9,14 @@
       "BeastWhisperer": "Encantador de Feras",
       "Cell": "Célula",
       "Creed": "Credo",
+      "_CreedDetails": "",
       "CreedFields": "Áreas de Credo",
       "Danger": "Perigo",
       "Despair": "Aflição",
       "DespairFailure": "Aflição",
       "Desperation": "Desespero",
       "DesperationDice": "Dados de Desespero",
+      "_DesperationDiceFields": "",
       "_DesperationFailure": "",
       "DesperationSuccess": "Sucesso ao Forçar a Barra ou Aflição",
       "DesperationUnavailable": "Dados de Desespero indisponíveis enquanto em Aflição",
@@ -43,6 +45,8 @@
       "SelectEdge": "Selecionar Trunfo",
       "SenseTheUnnatural": "Sentir o Sobrenatural",
       "_StringPerks": "",
+      "_SuggestedDrives": "",
+      "_SuggestedEdges": "",
       "ThwartTheUnnatural": "Frustrar o Sobrenatural"
     }
   }

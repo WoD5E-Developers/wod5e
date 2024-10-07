@@ -10,13 +10,26 @@
       "werewolf": "Hombre lobo"
     },
     "Item": {
+      "_armor": "",
+      "_auspice": "",
       "boon": "Bendición",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "customRoll": "Tirada Personalizadas",
+      "_drive": "",
       "_edgepool": "",
       "feature": "Rasgo",
+      "_gear": "",
       "_gift": "",
       "perk": "Beneficio",
-      "power": "Disciplina"
+      "power": "Disciplina",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {
@@ -122,12 +135,25 @@
       "SelectAbility": "Elegir Atributo",
       "SkillShortLabel": "H"
     },
+    "EquipmentList": {
+      "_ArmorValue": "",
+      "_EquipmentNotes": "",
+      "_Melee": "",
+      "_NewStringWeapon": "",
+      "_Quantity": "",
+      "_Ranged": "",
+      "_SelectWeaponType": "",
+      "_Supernatural": "",
+      "_WeaponType": "",
+      "_WeaponValue": ""
+    },
     "Experience": {
       "_AddExperience": "",
-      "_Derived": "",
+      "_Calculated": "",
       "_EditExperience": "",
       "_History": "",
-      "_Initial": "",
+      "_Label": "",
+      "_Legacy": "",
       "_NewExperience": "",
       "_Remaining": "",
       "_Total": ""
@@ -141,10 +167,14 @@
       "Cost": "Coste",
       "CustomRoll": "Tirada Personalizadas",
       "CustomRolls": "Tiradas Personalizadas",
+      "_DataItemId": "",
       "Feature": "Rasgo",
       "FeatureType": "Tipo de rasgo",
       "Flaw": "Defecto",
+      "_GenerateDataItemID": "",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
+      "_ItemSettings": "",
       "Label": "Objeto",
       "Macro": "Macro",
       "Merit": "Ventaja",
@@ -301,10 +331,13 @@
       "GeneralDifficulty": "Dificultad general",
       "Label": "Personaje del narrador",
       "Mental": "Mental",
+      "_Normal": "",
       "Physical": "Físico",
       "SelectSkill": "Seleccionar habilidad",
       "Social": "Social",
-      "StandardDicePools": "Grupos de dados estándar"
+      "StandardDicePools": "Grupos de dados estándar",
+      "_Strongest": "",
+      "_Traits": ""
     },
     "Tabs": {
       "_Biography": "",

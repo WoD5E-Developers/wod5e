@@ -77,12 +77,28 @@ export class WoDActor extends Actor {
     if (actorData.type === 'spc') {
       systemData.exceptionaldicepools = await prepareExceptionalDicePools(actorData)
     }
+  }
 
+  /**
+   * @override
+   * Augment the actor source data with additional dynamic data. Typically,
+   * you'll want to handle most of your calculated/derived data in this step.
+   * Data calculated in this step should generally not exist in template.json
+   * (such as ability modifiers rather than ability scores) and should be
+   * available both inside and outside of character sheets (such as if an actor
+   * is queried and has a roll executed directly from it).
+   */
+  async prepareDerivedData () {
+    const actorData = this
+    const systemData = actorData.system
+
+    // Defines the mapping of SPC subtypes to gamesystems
     const typeMapping = {
       vampire: 'vampire',
       ghoul: 'vampire',
       hunter: 'hunter',
-      werewolf: 'werewolf'
+      werewolf: 'werewolf',
+      spirit: 'werewolf'
     }
 
     // Set gamesystem of an SPC
@@ -117,20 +133,6 @@ export class WoDActor extends Actor {
     if (this.hasPlayerOwner && !this.getFlag('vtm5e', 'manualDefaultOwnership') && game.user.isGM) {
       this.update({ 'ownership.default': CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED })
     }
-  }
-
-  /**
-   * @override
-   * Augment the actor source data with additional dynamic data. Typically,
-   * you'll want to handle most of your calculated/derived data in this step.
-   * Data calculated in this step should generally not exist in template.json
-   * (such as ability modifiers rather than ability scores) and should be
-   * available both inside and outside of character sheets (such as if an actor
-   * is queried and has a roll executed directly from it).
-   */
-  async prepareDerivedData () {
-    const actorData = this
-    const systemData = actorData.system
 
     // Prepare derived XP values
     if (actorData.type !== 'group' && actorData.type !== 'spc') {

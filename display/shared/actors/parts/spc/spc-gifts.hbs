@@ -1,7 +1,4 @@
 <div class="tab flex-center" data-group="primary">
-    <div class="field-section flexrow">
-        {{> "systems/vtm5e/display/wta/actors/parts/balance.hbs"}}
-    </div>
     <div class="flexrow spc-pool-header">
         <label class="resource-label field-header">{{localize "WOD5E.WTA.Gifts"}}</label>
         <div class="item-controls spc-item-header">
@@ -17,10 +14,11 @@
             {{#if gift.visible}}
                 <li class="flexrow spc-item-header">
                     <label for="{{gift.name}}" class="resource-label rollable" data-action="roll" data-use-absolute-value="true"
-                      data-absolute-value="{{gift.value}}" data-label="{{generateLocalizedLabel key 'gifts'}}">{{generateLocalizedLabel key 'gifts'}}
+                      data-absolute-value="{{gift.value}}" data-label="{{generateLocalizedLabel key 'gifts'}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
+                      {{generateLocalizedLabel key 'gifts'}}
                     </label>
                     <div class="resource-value">
-                        <input type="number" name="system.gifts.{{key}}.value" 
+                        <input type="number" name="system.gifts.{{key}}.value"
                         value="{{gift.value}}" data-name="system.gifts.{{key}}.value" />
                     </div>
                     <!-- Item controls for Gift sections -->

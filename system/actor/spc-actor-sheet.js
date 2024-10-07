@@ -1,9 +1,9 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareBiographyContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareLimitedContext, prepareSpcStatsContext } from './scripts/prepare-partials.js'
+import { prepareBiographyContext, prepareFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareLimitedContext, prepareSpcStatsContext } from './scripts/prepare-partials.js'
 // Various button functions
-import { _onCreateExceptionalSkill, _onDeleteExceptionalSkill } from './scripts/exceptional-dicepools.js'
+import { _onEditExceptionalPools } from './scripts/exceptional-dicepools.js'
 import { _onCreatePower, _onDeletePower } from './scripts/spc-powers.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './wta/scripts/balance.js'
 // Base actor sheet to extend from
@@ -17,12 +17,11 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
  */
 export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
   static DEFAULT_OPTIONS = {
-    classes: ['wod5e', 'actor', 'sheet'],
+    classes: ['wod5e', 'actor', 'spc', 'sheet'],
     actions: {
       createSPCPower: _onCreatePower,
       deleteSPCPower: _onDeletePower,
-      createExceptionalSkill: _onCreateExceptionalSkill,
-      deleteExceptionalSkill: _onDeleteExceptionalSkill,
+      editExceptionalPools: _onEditExceptionalPools,
       haranoRoll: _onHaranoRoll,
       haugloskRoll: _onHaugloskRoll
     }
@@ -40,6 +39,9 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     },
     features: {
       template: 'systems/vtm5e/display/shared/actors/parts/features.hbs'
+    },
+    equipment: {
+      template: 'systems/vtm5e/display/shared/actors/parts/equipment.hbs'
     },
     biography: {
       template: 'systems/vtm5e/display/shared/actors/parts/biography.hbs'
@@ -70,6 +72,12 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       group: 'primary',
       title: 'WOD5E.Tabs.Features',
       icon: '<i class="fas fa-gem"></i>'
+    },
+    equipment: {
+      id: 'equipment',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Equipment',
+      icon: '<i class="fa-solid fa-toolbox"></i>'
     },
     biography: {
       id: 'biography',
@@ -105,11 +113,22 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       data.hunger = actorData.hunger
     }
 
-    if (data.gamesystem === 'werewolf') {
+    if (data.currentActorType === 'werewolf') {
       data.rage = actorData.rage
       data.lostTheWolf = data.rage.value === 0
-      data.balance = actorData.balance
     }
+
+    if (data.currentActorType === 'spirit') {
+      data.power = actorData.power
+    }
+
+    // If an actor type shouldn't have advanced dice, hold that status in noAdvancedDice
+    if (data.currentActorType === 'ghoul' || data.currentActorType === 'spirit') {
+      data.noAdvancedDice = true
+    }
+
+    data.generalDifficultyEnabled = actorData.settings.generalDifficultyEnabled
+    data.generaldifficulty = actorData.generaldifficulty
 
     return data
   }
@@ -130,6 +149,10 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       // Features
       case 'features':
         return prepareFeaturesContext(context, actor)
+
+      // Equipment
+      case 'equipment':
+        return prepareEquipmentContext(context, actor)
 
       // Biography
       case 'biography':

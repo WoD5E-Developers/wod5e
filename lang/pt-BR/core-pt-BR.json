@@ -10,13 +10,26 @@
       "werewolf": ""
     },
     "Item": {
+      "_armor": "",
+      "_auspice": "",
       "boon": "Favor",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "customRoll": "Rolagem Personalizada",
+      "_drive": "",
       "_edgepool": "",
       "feature": "Vantagem",
+      "_gear": "",
       "_gift": "",
       "perk": "Distinção",
-      "power": "Disciplina"
+      "power": "Disciplina",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {
@@ -122,12 +135,25 @@
       "SelectAbility": "Escolher Atributo",
       "SkillShortLabel": "H"
     },
+    "EquipmentList": {
+      "_ArmorValue": "",
+      "_EquipmentNotes": "",
+      "_Melee": "",
+      "_NewStringWeapon": "",
+      "_Quantity": "",
+      "_Ranged": "",
+      "_SelectWeaponType": "",
+      "_Supernatural": "",
+      "_WeaponType": "",
+      "_WeaponValue": ""
+    },
     "Experience": {
       "_AddExperience": "",
-      "_Derived": "",
+      "_Calculated": "",
       "_EditExperience": "",
       "_History": "",
-      "_Initial": "",
+      "_Label": "",
+      "_Legacy": "",
       "_NewExperience": "",
       "_Remaining": "",
       "_Total": ""
@@ -141,10 +167,14 @@
       "Cost": "Custo",
       "CustomRoll": "Rolagem Personalizada",
       "CustomRolls": "Rolagens Personalizadas",
+      "_DataItemId": "",
       "Feature": "Vantagem",
       "FeatureType": "Tipo de Vantagem",
       "Flaw": "Defeito",
+      "_GenerateDataItemID": "",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
+      "_ItemSettings": "",
       "Label": "Items",
       "_Macro": "",
       "Merit": "Qualidade",
@@ -301,10 +331,13 @@
       "GeneralDifficulty": "Dificuldade geral",
       "Label": "Personagem do Narrador",
       "Mental": "Mental",
+      "_Normal": "",
       "Physical": "Fisica",
       "SelectSkill": "Selecione Habilidade",
       "Social": "Social",
-      "StandardDicePools": "Pool de dados padrão"
+      "StandardDicePools": "Pool de dados padrão",
+      "_Strongest": "",
+      "_Traits": ""
     },
     "Tabs": {
       "_Biography": "",

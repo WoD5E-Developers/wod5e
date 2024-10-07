@@ -4,6 +4,7 @@
         <div class="header-fields-left">
             {{!-- Health Tracker --}}
             {{> "systems/vtm5e/display/shared/actors/parts/health.hbs"}}
+
             {{!-- Willpower Tracker --}}
             {{> "systems/vtm5e/display/shared/actors/parts/willpower.hbs"}}
         </div>
@@ -13,15 +14,11 @@
     <div class="header-fields">
         <div class="header-fields-right">
             <div class="flexcol">
-                {{#ifeq gamesystem 'vampire'}}
-                    <div class="field-section">
-                        <div class="flexcol">
-                            <label class="resource-label field-header">{{localize 'WOD5E.VTM.Humanity'}}</label>
-                            <div class="resource flex-group-center">
-                                {{> "systems/vtm5e/display/vtm/actors/parts/humanity.hbs"}}
-                            </div>
-                        </div>
-                    </div>
+                {{#if generalDifficultyEnabled}}
+                    {{> "systems/vtm5e/display/shared/actors/parts/spc/generaldifficulty.hbs"}}
+                {{/if}}
+
+                {{#ifeq currentActorType 'vampire'}}
                     <div class="field-section">
                         <div class="flexcol">
                             <label class="resource-label field-header">{{localize 'WOD5E.VTM.Hunger'}}</label>
@@ -30,7 +27,7 @@
                     </div>
                 {{/ifeq}}
 
-                {{#ifeq gamesystem 'hunter'}}
+                {{#ifeq currentActorType 'hunter'}}
                     <div class="field-section">
                         <div class="flexcol">
                             <label class="resource-label field-header">{{localize 'WOD5E.HTR.Despair'}}</label>
@@ -39,11 +36,34 @@
                     </div>
                 {{/ifeq}}
 
-                {{#ifeq gamesystem 'werewolf'}}
+                {{#ifeq currentActorType 'werewolf'}}
                     <div class="field-section">
                         <div class="flexcol">
                             <label class="resource-label field-header">{{localize 'WOD5E.WTA.Rage'}}</label>
                             {{> "systems/vtm5e/display/wta/actors/parts/rage-value.hbs"}}
+                        </div>
+                    </div>
+                {{/ifeq}}
+
+                {{#ifeq currentActorType 'spirit'}}
+                    <div class="field-section">
+                        <div class="flexcol">
+                            <!-- Power Dicepool -->
+                            <div class="flexcol flex-center">
+                                <a class="field-header flexrow resource-label rollable" for="{{localize 'WOD5E.WTA.Power'}}" data-action="roll" data-use-absolute-value="true"
+                                    data-absolute-value="{{power.value}}" data-label="{{localize 'WOD5E.WTA.Power'}}"
+                                    {{#if noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
+                                    {{localize 'WOD5E.WTA.Power'}}
+                                    <i class="fa-solid fa-dice-d10"></i>
+                                </a>
+                                {{#if locked}}
+                                    <div class="resource stat-resource-background">
+                                        {{power.value}}
+                                    </div>
+                                {{else}}
+                                    <input type="number" name="system.power.value" value="{{power.value}}" data-dtype="Number"/>
+                                {{/if}}
+                            </div>
                         </div>
                     </div>
                 {{/ifeq}}

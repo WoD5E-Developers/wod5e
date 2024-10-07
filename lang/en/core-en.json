@@ -10,13 +10,26 @@
       "werewolf": "Werewolf"
     },
     "Item": {
+      "armor": "Armor",
+      "auspice": "Auspice",
       "boon": "Boon",
+      "clan": "Clan",
+      "condition": "Condition",
+      "creed": "Creed",
       "customRoll": "Custom Roll",
+      "drive": "Drive",
       "edgepool": "Edge Pool",
       "feature": "Feature",
+      "gear": "Gear",
       "gift": "Gift",
       "perk": "Perk",
-      "power": "Discipline"
+      "power": "Discipline",
+      "predatorType": "Predator Type",
+      "resonance": "Resonance",
+      "talisman": "Talisman",
+      "trait": "SPC Trait",
+      "tribe": "Tribe",
+      "weapon": "Weapon"
     }
   },
   "WOD5E": {
@@ -122,12 +135,25 @@
       "SelectAbility": "Select Ability",
       "SkillShortLabel": "S"
     },
+    "EquipmentList": {
+      "ArmorValue": "Armor Value",
+      "EquipmentNotes": "Equipment Notes",
+      "Melee": "Melee",
+      "NewStringWeapon": "New {string} Weapon",
+      "Quantity": "Quantity",
+      "Ranged": "Ranged",
+      "SelectWeaponType": "Select Weapon Type",
+      "Supernatural": "Supernatural",
+      "WeaponType": "Weapon Type",
+      "WeaponValue": "Weapon Value"
+    },
     "Experience": {
       "AddExperience": "Add Experience",
-      "Derived": "Derived",
+      "Calculated": "Calculated",
       "EditExperience": "Edit Experience",
       "History": "Experience History",
-      "Initial": "Initial",
+      "Label": "Experience",
+      "Legacy": "Legacy",
       "NewExperience": "New Experience",
       "Remaining": "Remaining EXP",
       "Total": "Total EXP"
@@ -141,10 +167,14 @@
       "Cost": "Cost",
       "CustomRoll": "Custom Roll",
       "CustomRolls": "Custom Rolls",
+      "DataItemId": "Data Item ID",
       "Feature": "Feature",
       "FeatureType": "Feature Type",
       "Flaw": "Flaw",
+      "GenerateDataItemID": "Generate Data Item ID",
+      "ItemCannotBeDroppedOnActor": "This item type \"{string1}\" cannot be dropped onto actor type \"{string2}.\"",
       "Items": "Items",
+      "ItemSettings": "Item Settings",
       "Label": "Item",
       "Macro": "Macro",
       "Merit": "Merit",
@@ -298,13 +328,16 @@
     "SPC": {
       "AddSkill": "Add Skill",
       "ExceptionalDicePools": "Exceptional Dice Pools",
-      "GeneralDifficulty": "Difficulty",
+      "GeneralDifficulty": "General Difficulty",
       "Label": "Story Character",
       "Mental": "Mental",
+      "Normal": "Normal",
       "Physical": "Physical",
       "SelectSkill": "Select Skill",
       "Social": "Social",
-      "StandardDicePools": "Standard Dice Pools"
+      "StandardDicePools": "Standard Dice Pools",
+      "Strongest": "Strongest",
+      "Traits": "Traits"
     },
     "Tabs": {
       "Biography": "Biography",

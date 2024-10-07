@@ -72,6 +72,9 @@
 
 /* ProseMirror Alterations */
 prose-mirror {
+  width: -webkit-fill-available;
+  width: -moz-available;
+
   .editor-menu {
     height: 35px;
     padding: 2px;
@@ -85,4 +88,16 @@ prose-mirror {
 
 .prosemirror menu .pm-dropdown {
   background: transparent;
+}
+
+/* Input Fields */
+input:not(type="checkbox") {
+  min-height: 26px;
+  border-radius: 0;
+}
+
+input[type="number"] {
+  max-width: 35px;
+  min-width: 35px;
+  text-align: center;
 }

@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from '../scripts/prepare-partials.js'
+import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from '../scripts/prepare-partials.js'
 import { prepareGiftsContext, prepareWolfContext } from './scripts/prepare-partials.js'
 // Various button functions
 import { _onAddGift, _onRemoveGift, _onGiftToChat, _onSelectGift, _onSelectGiftPower } from './scripts/gifts.js'
@@ -58,7 +58,10 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       template: 'systems/vtm5e/display/wta/actors/parts/wolf.hbs'
     },
     features: {
-      template: 'systems/vtm5e/display/shared/actors/parts/features.hbs'
+      template: 'systems/vtm5e/display/wta/actors/parts/features.hbs'
+    },
+    equipment: {
+      template: 'systems/vtm5e/display/shared/actors/parts/equipment.hbs'
     },
     biography: {
       template: 'systems/vtm5e/display/shared/actors/parts/biography.hbs'
@@ -108,6 +111,12 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       title: 'WOD5E.Tabs.Features',
       icon: '<i class="fas fa-gem"></i>'
     },
+    equipment: {
+      id: 'equipment',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Equipment',
+      icon: '<i class="fa-solid fa-toolbox"></i>'
+    },
     biography: {
       id: 'biography',
       group: 'primary',
@@ -133,11 +142,14 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     const data = await super._prepareContext()
     const actor = this.actor
     const actorData = actor.system
-    const actorHeaders = actorData.headers
+
+    // Filters for item-specific data
+    const tribeFilter = actor.items.filter(item => item.type === 'tribe')
+    const auspiceFilter = actor.items.filter(item => item.type === 'auspice')
 
     // Prepare werewolf-specific items
-    data.auspice = actorHeaders.auspice
-    data.tribe = actorHeaders.tribe
+    data.tribe = tribeFilter[0]
+    data.auspice = auspiceFilter[0]
     data.rage = actorData.rage
     data.frenzyActive = actorData.frenzyActive
     data.lostTheWolf = data.rage.value === 0
@@ -182,6 +194,10 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       // Features
       case 'features':
         return prepareFeaturesContext(context, actor)
+
+      // Equipment
+      case 'equipment':
+        return prepareEquipmentContext(context, actor)
 
       // Biography
       case 'biography':

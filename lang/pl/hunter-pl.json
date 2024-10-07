@@ -9,12 +9,14 @@
       "BeastWhisperer": "Zaklinacz Bestii",
       "Cell": "Komórka",
       "Creed": "Kredo",
+      "_CreedDetails": "",
       "CreedFields": "Pula Kredo",
       "Danger": "Zagrożenie",
       "Despair": "Rozpacz",
       "DespairFailure": "Rozpaczliwa porażka",
       "Desperation": "Desperacja",
       "DesperationDice": "Kostki Desperacji",
+      "_DesperationDiceFields": "",
       "_DesperationFailure": "",
       "DesperationSuccess": "Przesadny lub rozpaczliwy sukces",
       "DesperationUnavailable": "W stanie Rozpaczy nie można używać Desperacji",
@@ -43,6 +45,8 @@
       "SelectEdge": "Wybierz Przewagę",
       "SenseTheUnnatural": "Wyczucie nienaturalnego",
       "_StringPerks": "",
+      "_SuggestedDrives": "",
+      "_SuggestedEdges": "",
       "ThwartTheUnnatural": "Udaremnij nienaturalne"
     }
   }

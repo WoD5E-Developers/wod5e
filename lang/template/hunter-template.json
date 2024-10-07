@@ -9,12 +9,14 @@
       "_BeastWhisperer": "",
       "_Cell": "",
       "_Creed": "",
+      "_CreedDetails": "",
       "_CreedFields": "",
       "_Danger": "",
       "_Despair": "",
       "_DespairFailure": "",
       "_Desperation": "",
       "_DesperationDice": "",
+      "_DesperationDiceFields": "",
       "_DesperationFailure": "",
       "_DesperationSuccess": "",
       "_DesperationUnavailable": "",
@@ -43,6 +45,8 @@
       "_SelectEdge": "",
       "_SenseTheUnnatural": "",
       "_StringPerks": "",
+      "_SuggestedDrives": "",
+      "_SuggestedEdges": "",
       "_ThwartTheUnnatural": ""
     }
   }

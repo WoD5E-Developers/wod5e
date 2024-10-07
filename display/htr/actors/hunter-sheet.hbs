@@ -13,23 +13,55 @@
     <div class="header-fields">
         <div class="header-fields-right">
             <div class="flexcol">
-                <div class="field-section">
-                    <div class="flexrow nowrap">
+                <div class="field-section flexrow">
+                    <div class="flexrow nowrap shared-row">
                         <div class="flexcol">
                             <label class="resource-label field-header">{{localize 'WOD5E.HTR.Cell'}}</label>
                             <input name="system.headers.cellname" type="text" value="{{cellname}}" placeholder="{{localize 'WOD5E.HTR.Cell'}}"/>
                         </div>
                     </div>
+                    <div class="flexcol despair shared-row">
+                        <label class="resource-label field-header">{{localize 'WOD5E.HTR.Despair'}}</label>
+                        {{> "systems/vtm5e/display/htr/actors/parts/despair.hbs"}}
+                    </div>
                 </div>
-                <div class="field-section">
-                    <div class="flexrow nowrap">
-                        <div class="flexcol">
+                <div class="field-section flexrow">
+                    <div class="flexrow nowrap flexend">
+                        <div class="flexcol shared-row">
                             <label class="resource-label field-header">{{localize 'WOD5E.HTR.Drive'}}</label>
-                            <input name="system.headers.drive" type="text" value="{{drive}}" placeholder="{{localize 'WOD5E.HTR.Drive'}}"/>
+                            <div class="resource resource-content">
+                                {{#if drive}}
+                                    <span class="data-item nowrap">
+                                        {{drive.name}}
+                                    </span>
+                                    <a class="edit-data-item" data-action="itemEdit" data-item-id="{{drive.id}}">
+                                        <i class="fa-solid fa-pen-nib"></i>
+                                    </a>
+                                {{else}}
+                                    <a class="add-data-item" data-action="createItem" data-type="drive">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </a>
+                                {{/if}}
+                            </div>
                         </div>
-                        <div class="flexcol despair">
-                            <label class="resource-label field-header">{{localize 'WOD5E.HTR.Despair'}}</label>
-                            {{> "systems/vtm5e/display/htr/actors/parts/despair.hbs"}}
+                    </div>
+                    <div class="flexrow nowrap flexend">
+                        <div class="flexcol shared-row">
+                            <label class="resource-label field-header">{{localize 'WOD5E.HTR.Creed'}}</label>
+                            <div class="resource resource-content">
+                                {{#if creed}}
+                                    <span class="data-item nowrap">
+                                        {{creed.name}}
+                                    </span>
+                                    <a class="edit-data-item" data-action="itemEdit" data-item-id="{{creed.id}}">
+                                        <i class="fa-solid fa-pen-nib"></i>
+                                    </a>
+                                {{else}}
+                                    <a class="add-data-item" data-action="createItem" data-type="creed">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </a>
+                                {{/if}}
+                            </div>
                         </div>
                     </div>
                 </div>

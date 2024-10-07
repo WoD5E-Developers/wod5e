@@ -10,13 +10,26 @@
       "_werewolf": ""
     },
     "Item": {
+      "_armor": "",
+      "_auspice": "",
       "_boon": "",
+      "_clan": "",
+      "_condition": "",
+      "_creed": "",
       "_customRoll": "",
+      "_drive": "",
       "_edgepool": "",
       "_feature": "",
+      "_gear": "",
       "_gift": "",
       "_perk": "",
-      "_power": ""
+      "_power": "",
+      "_predatorType": "",
+      "_resonance": "",
+      "_talisman": "",
+      "_trait": "",
+      "_tribe": "",
+      "_weapon": ""
     }
   },
   "WOD5E": {
@@ -122,12 +135,25 @@
       "_SelectAbility": "",
       "_SkillShortLabel": ""
     },
+    "EquipmentList": {
+      "_ArmorValue": "",
+      "_EquipmentNotes": "",
+      "_Melee": "",
+      "_NewStringWeapon": "",
+      "_Quantity": "",
+      "_Ranged": "",
+      "_SelectWeaponType": "",
+      "_Supernatural": "",
+      "_WeaponType": "",
+      "_WeaponValue": ""
+    },
     "Experience": {
       "_AddExperience": "",
-      "_Derived": "",
+      "_Calculated": "",
       "_EditExperience": "",
       "_History": "",
-      "_Initial": "",
+      "_Label": "",
+      "_Legacy": "",
       "_NewExperience": "",
       "_Remaining": "",
       "_Total": ""
@@ -141,10 +167,14 @@
       "_Cost": "",
       "_CustomRoll": "",
       "_CustomRolls": "",
+      "_DataItemId": "",
       "_Feature": "",
       "_FeatureType": "",
       "_Flaw": "",
+      "_GenerateDataItemID": "",
+      "_ItemCannotBeDroppedOnActor": "",
       "_Items": "",
+      "_ItemSettings": "",
       "_Label": "",
       "_Macro": "",
       "_Merit": "",
@@ -301,10 +331,13 @@
       "_GeneralDifficulty": "",
       "_Label": "",
       "_Mental": "",
+      "_Normal": "",
       "_Physical": "",
       "_SelectSkill": "",
       "_Social": "",
-      "_StandardDicePools": ""
+      "_StandardDicePools": "",
+      "_Strongest": "",
+      "_Traits": ""
     },
     "Tabs": {
       "_Biography": "",

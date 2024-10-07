@@ -25,6 +25,7 @@
 
     section.tab {
       overflow-y: scroll;
+      align-items: flex-start;
     }
   }
 
@@ -32,12 +33,25 @@
   input,
   .resource {
     display: flex;
-    flex-direction: column;
   }
 
-  input {
-    min-height: 26px;
-    border-radius: 0;
+  .resource {
+    padding: 5px;
+    position: relative;
+    place-content: center;
+    min-height: 30px;
+
+    .data-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 85%;
+    }
+
+    .edit-data-item,
+    .add-data-item {
+      position: absolute;
+      right: 3px;
+    }
   }
 
   /* Limited Sheet */
@@ -98,6 +112,8 @@
 
     .header-profile-img {
       margin-bottom: 10px;
+      width: 240px;
+      height: 200px;
 
       img {
         height: fit-content;
@@ -136,6 +152,12 @@
         .field-section {
           margin-bottom: 5px;
           width: 250px;
+
+          .shared-row {
+            max-width: 125px;
+            margin-left: 2px;
+            margin-right: 2px;
+          }
         }
       }
 
@@ -163,6 +185,12 @@
 
       .tracker {
         margin-bottom: 10px;
+        text-wrap: nowrap;
+
+        .exp-tracker {
+          margin-left: 10px;
+          margin-right: 10px;
+        }
 
         input {
           max-width: 50px;
@@ -202,6 +230,11 @@
       .detail-row {
         width: 100%;
         margin-bottom: 5px;
+
+        .shared-row {
+          margin-left: 2px;
+          margin-right: 2px;
+        }
       }
 
       .description-field {
@@ -220,6 +253,27 @@
     }
 
     .features-list {
+      .category {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  /* Equipment Tab */
+  .tab[data-tab="equipment"] {
+    .equipment-notes {
+      max-width: 400px;
+      margin-left: 10px;
+      margin-right: 10px;
+      align-self: flex-start;
+
+      .field-header {
+        font-size: 16pt;
+      }
+    }
+
+    .equipment-list {
       .category {
         margin-left: auto;
         margin-right: auto;
@@ -602,8 +656,12 @@
   }
 }
 
+.field-header.big-header {
+  font-size: 16pt;
+}
+
 /* Vampire Font in the sheet banners */
-.vampire-font-headers .actor.sheet {
+.vampire-font-headers {
   .sheet-banner,
   .field-header,
   .resource-header,

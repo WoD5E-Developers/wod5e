@@ -15,7 +15,7 @@
                     {{#if edge.visible}}
                         <span class="parent flexrow">
                             <div class="icon category-select{{#if edge.selected}} selected{{/if}}" data-action="selectEdge" data-edge="{{key}}"></div>
-                            {{edge.displayName}}
+                            <a class="select-label" data-action="selectEdge" data-edge="{{key}}">{{edge.displayName}}</a>
                             <div class="item-controls">
                                 <!-- Icon to show the edge description to the chat-->
                                 <a class="item-control edge-chat" data-action="edgeChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-edge="{{key}}">
@@ -34,7 +34,7 @@
                                 <li>
                                     <span>
                                         <div class="icon power-select{{#if perk.system.selected}} selected{{/if}}" data-action="selectEdgePerk" data-perk="{{perk.id}}" style="background-image: url('{{perk.img}}');"></div>
-                                        {{perk.name}}
+                                        <a class="select-label" data-action="selectEdgePerk" data-perk="{{perk.id}}">{{perk.name}}</a>
                                     </span>
                                 </li>
                             {{/each}}

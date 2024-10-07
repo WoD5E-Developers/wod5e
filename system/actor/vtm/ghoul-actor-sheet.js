@@ -1,10 +1,11 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from '../scripts/prepare-partials.js'
+import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from '../scripts/prepare-partials.js'
 import { prepareDisciplinesContext } from './scripts/prepare-partials.js'
 // Various button functions
 import { _onAddDiscipline, _onRemoveDiscipline, _onDisciplineToChat, _onSelectDiscipline, _onSelectDisciplinePower } from './scripts/disciplines.js'
+import { _onRemorseRoll } from './scripts/roll-remorse.js'
 // Base actor sheet to extend from
 import { WoDActor } from '../wod-actor-base.js'
 // Mixin
@@ -22,7 +23,8 @@ export class GhoulActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       removeDiscipline: _onRemoveDiscipline,
       disciplineChat: _onDisciplineToChat,
       selectDiscipline: _onSelectDiscipline,
-      selectDisciplinePower: _onSelectDisciplinePower
+      selectDisciplinePower: _onSelectDisciplinePower,
+      remorseRoll: _onRemorseRoll
     }
   }
 
@@ -44,6 +46,9 @@ export class GhoulActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     },
     features: {
       template: 'systems/vtm5e/display/shared/actors/parts/features.hbs'
+    },
+    equipment: {
+      template: 'systems/vtm5e/display/shared/actors/parts/equipment.hbs'
     },
     biography: {
       template: 'systems/vtm5e/display/shared/actors/parts/biography.hbs'
@@ -86,6 +91,12 @@ export class GhoulActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       group: 'primary',
       title: 'WOD5E.Tabs.Features',
       icon: '<i class="fas fa-gem"></i>'
+    },
+    equipment: {
+      id: 'equipment',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Equipment',
+      icon: '<i class="fa-solid fa-toolbox"></i>'
     },
     biography: {
       id: 'biography',
@@ -145,6 +156,10 @@ export class GhoulActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       // Features
       case 'features':
         return prepareFeaturesContext(context, actor)
+
+      // Equipment
+      case 'equipment':
+        return prepareEquipmentContext(context, actor)
 
       // Biography
       case 'biography':

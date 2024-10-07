@@ -213,6 +213,7 @@
         }
       },
       "abbreviated": {
+        "locked": false,
         "biography": "",
         "appearance": "",
         "notes": "",
@@ -669,17 +670,12 @@
           }
         },
         "headers":{
-          "predator":"",
           "sire":"",
-          "generation":"",
-          "bane":""
+          "generation":""
         },
         "blood": {
           "potency": 0,
           "resonance": ""
-        },
-        "clan": {
-          "value": ""
         },
         "hunger": {
           "value": 1,
@@ -693,13 +689,6 @@
         }
       },
       "werewolf_traits": {
-        "headers": {
-          "auspice": "",
-          "patron": "",
-          "favor": "",
-          "ban": "",
-          "tribe": ""
-        },
         "balance": {
           "hauglosk": {
             "value": 0
@@ -733,13 +722,8 @@
         }
       },
       "hunter_traits": {
-        "redemption": {
-          "value": ""
-        },
         "headers":{
-          "cellname": "",
-          "creed": "",
-          "drive": ""
+          "cellname": ""
         }
       },
       "cell_traits": {
@@ -811,21 +795,81 @@
     "spc": {
       "templates": ["abbreviated", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "werewolfForms", "gifts", "hunter_traits", "edges", "settings"],
       "spcType": "mortal",
-      "gamesystem": "mortal"
+      "gamesystem": "mortal",
+      "manifestation": "",
+      "power": {
+        "value": 1
+      },
+      "traits": "",
+      "settings": {
+        "enableGifts": false,
+        "enableDisciplines": false,
+        "enableEdges": false,
+        "generalDifficultyEnabled": true
+      }
     }
   },
   "Item": {
-    "types": ["feature", "power", "boon", "customRoll", "perk", "edgepool", "gift"],
+    "types": [
+      "feature", "customRoll", "armor", "weapon", "gear", "trait", "condition",
+      "power", "boon", "clan", "predatorType", "resonance",
+      "perk", "edgepool", "creed", "drive",
+      "gift", "tribe", "auspice", "talisman"
+    ],
     "templates": {
       "base": {
         "description": "",
         "bonuses": []
+      },
+      "equipment": {
+        "quantity": 1
       }
     },
     "feature": {
       "templates": ["base"],
       "featuretype": "merit",
       "points": 0
+    },
+    "boon": {
+      "templates": ["base"],
+      "boontype": "Trivial",
+      "gamesystem": "vampire"
+    },
+    "customRoll": {
+      "templates": ["base"],
+      "dicepool": {},
+      "modifier": 0
+    },
+    "armor": {
+      "templates": ["base", "equipment"],
+      "armorvalue": 0
+    },
+    "weapon": {
+      "templates": ["base", "equipment"],
+      "weaponvalue": 0
+    },
+    "gear": {
+      "templates": ["base", "equipment"]
+    },
+    "trait": {
+      "templates": ["base"]
+    },
+    "condition": {
+      "templates": ["base"]
+    },
+    "clan": {
+      "templates": ["base"],
+      "gamesystem": "vampire",
+      "bane": ""
+    },
+    "predatorType": {
+      "templates": ["base"],
+      "gamesystem": "vampire"
+    },
+    "resonance": {
+      "templates": ["base"],
+      "gamesystem": "vampire",
+      "dyscrasia": ""
     },
     "power": {
       "templates": ["base"],
@@ -834,20 +878,19 @@
       "level": 1,
       "dicepool": {},
       "cost": "",
-      "rollable": false,
-      "skill": false,
-      "amalgam": false,
-      "rouse": false,
       "gamesystem": "vampire"
     },
-    "boon": {
+    "creed": {
       "templates": ["base"],
-      "boontype": "Trivial"
+      "gamesystem": "hunter",
+      "edges": "",
+      "drives": "",
+      "desperationFields": ""
     },
-    "customRoll": {
+    "drive": {
       "templates": ["base"],
-      "dicepool": {},
-      "modifier": 0
+      "gamesystem": "hunter",
+      "redemption": ""
     },
     "perk": {
       "templates": ["base"],
@@ -855,17 +898,31 @@
       "duration": "",
       "dicepool": {},
       "cost": "",
-      "rollable": false,
-      "skill": false,
-      "amalgam": false,
       "gamesystem": "hunter"
     },
     "edgepool": {
       "templates": ["base"],
       "edge": "arsenal",
-      "source": "self",
       "dicepool": {},
       "gamesystem": "hunter"
+    },
+    "tribe": {
+      "templates": ["base"],
+      "gamesystem": "werewolf",
+      "patronSpirit": {
+        "name": "",
+        "description": "",
+        "favor": "",
+        "ban": ""
+      }
+    },
+    "auspice": {
+      "templates": ["base"],
+      "gamesystem": "werewolf"
+    },
+    "talisman": {
+      "templates": ["base", "equipment"],
+      "gamesystem": "werewolf"
     },
     "gift": {
       "templates": ["base"],
@@ -874,8 +931,6 @@
       "level": 1,
       "cost": 0,
       "willpowercost": 0,
-      "rollable": false,
-      "rage": false,
       "action": "",
       "dicepool": {},
       "duration": "",

@@ -15,13 +15,39 @@
             <div class="flexcol">
                 <div class="field-section">
                     <div class="flexrow nowrap">
-                        <div class="flexcol">
-                            <label class="resource-label field-header">{{localize 'WOD5E.WTA.Auspice'}}</label>
-                            <input name="system.headers.auspice" type="text" value="{{auspice}}" placeholder="{{localize 'WOD5E.WTA.Auspice'}}"/>
-                        </div>
-                        <div class="flexcol">
+                        <div class="flexcol shared-row">
                             <label class="resource-label field-header">{{localize 'WOD5E.WTA.Tribe'}}</label>
-                            <input name="system.headers.tribe" type="text" value="{{tribe}}" placeholder="{{localize 'WOD5E.WTA.Tribe'}}"/>
+                            <div class="resource resource-content">
+                                {{#if tribe}}
+                                    <span class="data-item nowrap">
+                                        {{tribe.name}}
+                                    </span>
+                                    <a class="edit-data-item" data-action="itemEdit" data-item-id="{{tribe.id}}">
+                                        <i class="fa-solid fa-pen-nib"></i>
+                                    </a>
+                                {{else}}
+                                    <a class="add-data-item" data-action="createItem" data-type="tribe">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </a>
+                                {{/if}}
+                            </div>
+                        </div>
+                        <div class="flexcol shared-row">
+                            <label class="resource-label field-header">{{localize 'WOD5E.WTA.Auspice'}}</label>
+                            <div class="resource resource-content">
+                                {{#if auspice}}
+                                    <span class="data-item nowrap">
+                                        {{auspice.name}}
+                                    </span>
+                                    <a class="edit-data-item" data-action="itemEdit" data-item-id="{{auspice.id}}">
+                                        <i class="fa-solid fa-pen-nib"></i>
+                                    </a>
+                                {{else}}
+                                    <a class="add-data-item" data-action="createItem" data-type="auspice">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </a>
+                                {{/if}}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -9,12 +9,14 @@
       "BeastWhisperer": "Dresseur",
       "Cell": "Cellule",
       "Creed": "Crédo",
+      "_CreedDetails": "",
       "CreedFields": "Spécialités du crédo",
       "Danger": "Danger",
       "Despair": "Desespéré",
       "DespairFailure": "Échec desespéré",
       "Desperation": "Désespoir",
       "DesperationDice": "Dés de désespoir ?",
+      "_DesperationDiceFields": "",
       "_DesperationFailure": "",
       "DesperationSuccess": "Succès excessif ou échec desespéré",
       "DesperationUnavailable": "Désespoir indisponible en Désespoir",
@@ -43,6 +45,8 @@
       "SelectEdge": "Sélectionner talent",
       "SenseTheUnnatural": "Sentir le contre-nature",
       "_StringPerks": "",
+      "_SuggestedDrives": "",
+      "_SuggestedEdges": "",
       "ThwartTheUnnatural": "Déjouer le contre-nature"
     }
   }

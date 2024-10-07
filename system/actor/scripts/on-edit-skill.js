@@ -1,5 +1,3 @@
-/* global WOD5E */
-
 // Applications
 import { SkillApplication } from './../applications/skill-application.js'
 
@@ -11,7 +9,7 @@ export const _onEditSkill = async function (event, target) {
   const actor = this.actor
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
+  const system = actor.system.gamesystem
 
   // Top-level variables
   const skill = target.getAttribute('data-skill')

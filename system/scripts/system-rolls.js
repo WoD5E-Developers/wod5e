@@ -1,4 +1,4 @@
-/* global ChatMessage, Roll, game, renderTemplate, CONFIG, Dialog, WOD5E */
+/* global ChatMessage, Roll, game, renderTemplate, CONFIG, Dialog */
 
 // Import various helper functions
 import { generateRollFormula } from './rolls/roll-formula.js'
@@ -57,7 +57,7 @@ class WOD5eDice {
     advancedCheckDice = 0
   }) {
     // Define the actor's gamesystem, defaulting to 'mortal' if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList({}) ? actor.system.gamesystem : 'mortal'
+    const system = actor.system.gamesystem
 
     // Handle getting any situational modifiers
     const situationalModifiers = await getSituationalModifiers({
@@ -375,7 +375,7 @@ class WOD5eDice {
                   advancedCheckDice = advancedCheckDice + aCDValue
                 } else {
                   // Removing the modifier
-                  if (applyDiceTo === 'advanced' && advancedValue > 0) {
+                  if (applyDiceTo === 'advanced') {
                     // Apply the modifier to advancedDice
                     newValue = advancedValue - modifier
 

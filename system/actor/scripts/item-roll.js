@@ -6,7 +6,7 @@ import { _onRouseCheck } from '../vtm/scripts/rouse.js'
 import { _onGiftCost } from '../wta/scripts/gifts.js'
 
 /**
-   * Handle rolling dicepools from items
+ * Proxy for transforming data from a data action into data we can use to roll with
 */
 export const _onRollItem = async function (event, target) {
   event.preventDefault()
@@ -15,8 +15,15 @@ export const _onRollItem = async function (event, target) {
   const actor = this.actor
   const item = fromUuidSync(target.getAttribute('data-item-uuid'))
 
+  _rollItem(actor, item)
+}
+
+/**
+   * Handle rolling dicepools from items
+*/
+export const _rollItem = async function (actor, item) {
   // Secondary data
-  const actorData = this.actor.system
+  const actorData = actor.system
   const itemData = item.system
   const dicepool = itemData.dicepool
 
@@ -77,7 +84,7 @@ export const _onRollItem = async function (event, target) {
   advancedDice = disableAdvancedDice ? 0 : await WOD5E.api.getAdvancedDice({ actor })
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actorData.gamesystem || 'mortal'
+  const system = actorData.gamesystem
 
   // Some quick modifications to vampire and werewolf rolls
   // in order to properly display the dice in the dialog window
