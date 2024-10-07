@@ -2761,8 +2761,9 @@ prose-mirror .editor-menu button {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.dark-theme .actor.sheet .sheet-tabs {
-  color: #ffffff;
+.dark-theme .actor.sheet .sheet-tabs .navicon,
+.dark-theme .actor.sheet .sheet-tabs .lock-btn {
+  color: var(--system-dark-color-4);
 }
 .dark-theme .actor.sheet .sheet-tabs .lock-btn,
 .dark-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
@@ -3045,8 +3046,9 @@ prose-mirror .editor-menu button {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.vampire-theme .actor.sheet .sheet-tabs {
-  color: #ffffff;
+.vampire-theme .actor.sheet .sheet-tabs .navicon,
+.vampire-theme .actor.sheet .sheet-tabs .lock-btn {
+  color: var(--system-dark-color-4);
 }
 .vampire-theme .actor.sheet .sheet-tabs .lock-btn,
 .vampire-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
@@ -3284,8 +3286,9 @@ prose-mirror .editor-menu button {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.werewolf-theme .actor.sheet .sheet-tabs {
-  color: #ffffff;
+.werewolf-theme .actor.sheet .sheet-tabs .navicon,
+.werewolf-theme .actor.sheet .sheet-tabs .lock-btn {
+  color: var(--system-dark-color-4);
 }
 .werewolf-theme .actor.sheet .sheet-tabs .lock-btn,
 .werewolf-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
