@@ -16,7 +16,7 @@ export const MigrateOldDetailsToNewItems = async function () {
     const actorData = actor.system
     const itemsToCreate = []
 
-    if (actor.type == 'vampire') {
+    if (actor.type === 'vampire') {
       /*
       * CLAN ITEM
       * Only gets created if the actor doesn't already have a clan item AND has either a bane or a clan set in an old field
@@ -85,7 +85,7 @@ export const MigrateOldDetailsToNewItems = async function () {
         }
         itemsToCreate.push(resonanceData)
       }
-    } else if (actor.type == 'hunter') {
+    } else if (actor.type === 'hunter') {
       /*
       * CREED ITEM
       * Only gets created if the actor doesn't already have a creed item AND has either a creed or creedFields set in the old fields
