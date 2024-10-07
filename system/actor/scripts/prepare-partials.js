@@ -56,8 +56,6 @@ export const prepareFeaturesContext = async function (context, actor) {
     context.enrichedBan = await TextEditor.enrichHTML(context.ban)
   }
 
-  console.log(context)
-
   return context
 }
 
