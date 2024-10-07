@@ -12,7 +12,7 @@ jobs:
     publish-release:
         name: Publish release to Foundry
         runs-on: ubuntu-latest
-    
+
         steps:
           - name: POST release
             id: myRequest
@@ -21,7 +21,7 @@ jobs:
                 url: 'https://api.foundryvtt.com/_api/packages/release_version/'
                 method: 'POST'
                 customHeaders: '{"Authorization": "${{ secrets.FOUNDRY_API_TOKEN }}"}'
-                data: 
+                data:
                     '{
                         "id": "vtm5e",
                         "release": {
@@ -30,7 +30,7 @@ jobs:
                             "notes": "https://github.com/WoD5E-Developers/wod5e/releases/tag/${{ github.event.release.tag_name }}",
                             "compatibility": {
                                 "minimum": "12",
-                                "verified": "12.330",
+                                "verified": "12.331",
                                 "maximum": ""
                             }
                         }

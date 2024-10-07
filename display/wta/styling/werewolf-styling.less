@@ -63,36 +63,19 @@
   }
 
   .tab[data-tab="gifts"] {
-    .powers-list .gift {
-      margin-left: auto;
-      margin-right: auto;
+    .powers-display-tree {
+      ul:before {
+        background-color: var(--werewolf-color-2);
+      }
+
+      li:before {
+        background-color: var(--werewolf-color-2);
+      }
     }
 
-    .gifts-list {
-      display: flex;
-      flex-direction: column;
-      max-width: 300px;
-      margin: 0px 10px 10px 10px;
-
-      .item-header {
-        border-bottom: 1px solid var(--system-color-5);
-      }
-
-      .item-controls {
-        text-align: right;
-      }
-
-      .controls {
-        border-bottom: 1px solid var(--system-color-5);
-      }
-
-      .item-name {
-        text-wrap: nowrap;
-      }
-
-      .gift-description {
-        margin-bottom: 5px;
-      }
+    .gift-description {
+      margin-bottom: 5px;
+      border-bottom: 1px solid var(--system-color-5);
     }
   }
 
