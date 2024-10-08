@@ -157,10 +157,21 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
   }
 
   async prepareItems (sheetData) {
-    // Enrich item descriptions
+    // Make an array to store item-based bonuses
+    sheetData.system.itemBonuses = []
+
+    // Do data manipulation we need to do for ALL items here
     sheetData.items.forEach(async (item) => {
+      // Enrich item descriptions
       if (item.system.description) {
         item.system.enrichedDescription = await TextEditor.enrichHTML(item.system.description)
+      }
+
+      // Calculate item bonuses and shuffle them into system.itemBonuses
+      if (!foundry.utils.isEmpty(item.system.bonuses)) {
+        sheetData.system.itemBonuses = sheetData.system.itemBonuses.concat(item.system.bonuses)
+        // (Temporarily) remove the bonus from the item so we don't duplicate data
+        delete item.system.bonuses
       }
     })
 
