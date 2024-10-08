@@ -1745,6 +1745,9 @@ body.uk .actor.sheet {
 .actor.sheet .stats-content .edit-skill {
   margin-left: -15px;
 }
+.actor.sheet .stats-content .stats-container .skill-attribute-input {
+  height: 20px;
+}
 .actor.sheet .stats-content .stats-container .stats-footer {
   text-align: center;
 }

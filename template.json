@@ -754,7 +754,8 @@
             "appearance": true,
             "touchstones": false,
             "tenets": false
-          }
+          },
+          "skillAttributeInputs": false
         }
       }
     },

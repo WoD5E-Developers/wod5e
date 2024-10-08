@@ -19,12 +19,22 @@
                                 <div class="attribute">
                                     <label for="actor.system.attributes.{{attribute.id}}.value" class="resource-label rollable" data-action="roll" data-value-paths="attributes.{{attribute.id}}.value" data-select-dialog="true"
                                         data-label="{{attribute.displayName}}" data-selectors="attributes attributes.{{attribute.id}}" data-attribute="{{attribute.id}}">{{attribute.displayName}}</label>
-                                    <div class="resource-value" data-value="{{attribute.value}}" data-name="system.attributes.{{attribute.id}}.value">
-                                        <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
-                                        {{#numLoop 5}}
-                                            <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
-                                        {{/numLoop}}
-                                    </div>
+                                    {{#if ../../settings.skillAttributeInputs}}
+                                        {{#if ../../locked}}
+                                            <b>
+                                                {{attribute.value}}
+                                            </b>
+                                        {{else}}
+                                            <input class="resource-value skill-attribute-input" name="system.attributes.{{attribute.id}}.value" type="number" value="{{attribute.value}}"/>
+                                        {{/if}}
+                                    {{else}}
+                                        <div class="resource-value" data-value="{{attribute.value}}" data-name="system.attributes.{{attribute.id}}.value">
+                                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                            {{#numLoop 5}}
+                                                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                                            {{/numLoop}}
+                                        </div>
+                                    {{/if}}
                                 </div>
                             {{/each}}
                         </div>
@@ -50,12 +60,22 @@
                                             <label class="specialty" title="{{localize "WOD5E.SkillsList.Specialties"}}:{{#each skill.specialtiesList as |bonus|}} {{bonus}}{{#unless @last}},{{/unless}}{{/each}}">S</label>
                                         {{/if}}
                                     </div>
-                                    <div class="resource-value" data-value="{{skill.value}}" data-name="system.skills.{{skill.id}}.value">
-                                        <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
-                                        {{#numLoop 5}}
-                                            <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
-                                        {{/numLoop}}
-                                    </div>
+                                    {{#if ../../settings.skillAttributeInputs}}
+                                        {{#if ../../locked}}
+                                            <b>
+                                                {{skill.value}}
+                                            </b>
+                                        {{else}}
+                                            <input class="resource-value skill-attribute-input" name="system.skills.{{skill.id}}.value" type="number" value="{{skill.value}}"/>
+                                        {{/if}}
+                                    {{else}}
+                                        <div class="resource-value" data-value="{{skill.value}}" data-name="system.skills.{{skill.id}}.value">
+                                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                            {{#numLoop 5}}
+                                                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                                            {{/numLoop}}
+                                        </div>
+                                    {{/if}}
                                 </div>
                             {{/each}}
                         </div>
