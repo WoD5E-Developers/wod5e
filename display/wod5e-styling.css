@@ -1257,6 +1257,7 @@ body.uk .actor.sheet {
 .actor.sheet .window-content section.tab {
   overflow-y: scroll;
   align-items: flex-start;
+  height: 100%;
 }
 .actor.sheet input,
 .actor.sheet .resource {
@@ -1999,6 +2000,7 @@ body.uk .actor.sheet {
 .item.sheet section.tab {
   padding: 10px 10px 0px 10px;
   overflow-y: scroll;
+  height: 100%;
 }
 .item.sheet section.tab prose-mirror {
   max-height: fit-content;
