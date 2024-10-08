@@ -117,7 +117,7 @@
 .hunter.dialog.window-app .base-dice-group {
   border: 1px solid var(--hunter-color-2);
 }
-.vampire-font-headers .hunter-button {
+.vampire-font-headers.en .hunter-button {
   font-family: "vampireRevised", "sans-serif";
 }
 
@@ -360,7 +360,7 @@
   font-weight: bold;
 }
 /* Only use this font with the .vampire-font-headers class enabled */
-.vampire-font-headers #pause figcaption {
+.vampire-font-headers.en #pause figcaption {
   font-family: "vampireRevised", "sans-serif";
 }
 /* ProseMirror Alterations */
@@ -936,7 +936,7 @@ h3.item-name {
 .vampire.dialog.window-app .base-dice-group {
   border: 1px solid var(--vampire-color-2);
 }
-.vampire-font-headers .vampire-button {
+.vampire-font-headers.en .vampire-button {
   font-family: "vampireRevised", "sans-serif";
 }
 
@@ -1752,11 +1752,11 @@ body.uk .actor.sheet {
   font-size: 16pt;
 }
 /* Vampire Font in the sheet banners */
-.vampire-font-headers .sheet-banner,
-.vampire-font-headers .field-header,
-.vampire-font-headers .resource-header,
-.vampire-font-headers .item-header,
-.vampire-font-headers .specialty {
+.vampire-font-headers.en .sheet-banner,
+.vampire-font-headers.en .field-header,
+.vampire-font-headers.en .resource-header,
+.vampire-font-headers.en .item-header,
+.vampire-font-headers.en .specialty {
   font-family: "vampireRevised", "sans-serif";
 }
 
