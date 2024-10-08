@@ -71,7 +71,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
   }
 
   _getHeaderControls () {
-    const controls = super._getHeaderControls()
+    const controls = this.options.window.controls
 
     return controls
   }
