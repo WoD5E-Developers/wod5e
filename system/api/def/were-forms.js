@@ -34,37 +34,34 @@ export class WereForms extends BaseDefinitionClass {
     ]
   }
 
-  static hispo = {
-    label: 'WOD5E.WTA.HispoName',
-    nickname: 'WOD5E.WTA.HispoTitle',
+  static glabro = {
+    label: 'WOD5E.WTA.GlabroName',
+    nickname: 'WOD5E.WTA.GlabroTitle',
     cost: 1,
     attributes: [
-      'WOD5E.WTA.HispoPhysicalTests',
-      'WOD5E.WTA.HispoStealthTests',
-      'WOD5E.WTA.HispoSocialTests',
-      'WOD5E.WTA.HispoRegenerate',
-      'WOD5E.WTA.HispoBite'
+      'WOD5E.WTA.GlabroPhysicalTests',
+      'WOD5E.WTA.GlabroSocialTests',
+      'WOD5E.WTA.GlabroRegenerate'
     ],
     bonuses: [
       {
-        source: 'WOD5E.WTA.HispoName',
+        source: 'WOD5E.WTA.GlabroName',
         value: 2,
         paths: ['attributes.strength', 'attributes.dexterity', 'attributes.stamina'],
-        unless: ['skills.stealth'],
         activeWhen: {
           check: 'isEqual',
           path: 'activeForm',
-          value: 'hispo'
+          value: 'glabro'
         }
       },
       {
-        source: 'WOD5E.WTA.HispoName',
+        source: 'WOD5E.WTA.GlabroName',
         value: -2,
-        paths: ['skills.stealth'],
+        paths: ['attributes.charisma', 'attributes.manipulation', 'attributes.composure'],
         activeWhen: {
           check: 'isEqual',
           path: 'activeForm',
-          value: 'hispo'
+          value: 'glabro'
         }
       }
     ]
@@ -99,34 +96,37 @@ export class WereForms extends BaseDefinitionClass {
     ]
   }
 
-  static glabro = {
-    label: 'WOD5E.WTA.GlabroName',
-    nickname: 'WOD5E.WTA.GlabroTitle',
+  static hispo = {
+    label: 'WOD5E.WTA.HispoName',
+    nickname: 'WOD5E.WTA.HispoTitle',
     cost: 1,
     attributes: [
-      'WOD5E.WTA.GlabroPhysicalTests',
-      'WOD5E.WTA.GlabroSocialTests',
-      'WOD5E.WTA.GlabroRegenerate'
+      'WOD5E.WTA.HispoPhysicalTests',
+      'WOD5E.WTA.HispoStealthTests',
+      'WOD5E.WTA.HispoSocialTests',
+      'WOD5E.WTA.HispoRegenerate',
+      'WOD5E.WTA.HispoBite'
     ],
     bonuses: [
       {
-        source: 'WOD5E.WTA.GlabroName',
+        source: 'WOD5E.WTA.HispoName',
         value: 2,
         paths: ['attributes.strength', 'attributes.dexterity', 'attributes.stamina'],
+        unless: ['skills.stealth'],
         activeWhen: {
           check: 'isEqual',
           path: 'activeForm',
-          value: 'glabro'
+          value: 'hispo'
         }
       },
       {
-        source: 'WOD5E.WTA.GlabroName',
+        source: 'WOD5E.WTA.HispoName',
         value: -2,
-        paths: ['attributes.charisma', 'attributes.manipulation', 'attributes.composure'],
+        paths: ['skills.stealth'],
         activeWhen: {
           check: 'isEqual',
           path: 'activeForm',
-          value: 'glabro'
+          value: 'hispo'
         }
       }
     ]
