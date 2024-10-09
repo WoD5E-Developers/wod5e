@@ -49,6 +49,11 @@ export class WoDChatMessage extends ChatMessage {
       const rollTerms = this.rolls[0].terms
 
       rollTerms.forEach(term => {
+        // Check for Mortal dice
+        if (term.constructor.name === 'MortalDie') {
+          this.flags.system = 'mortal'
+        }
+
         // Check for Vampire dice
         if (term.constructor.name === 'VampireDie' || term.constructor.name === 'VampireHungerDie') {
           this.flags.system = 'vampire'
@@ -65,15 +70,17 @@ export class WoDChatMessage extends ChatMessage {
         }
       })
 
-      const messageContent = await generateRollMessage({
-        title: this.flags.title || `${game.i18n.localize('WOD5E.Chat.Rolling')}...`,
-        roll: this.rolls[0],
-        system: this.flags.system || 'mortal',
-        flavor: this.flags.flavor || '',
-        difficulty: this.flags.difficulty || 0
-      })
+      if (this.flags.system) {
+        const messageContent = await generateRollMessage({
+          title: this.flags.title || `${game.i18n.localize('WOD5E.Chat.Rolling')}...`,
+          roll: this.rolls[0],
+          system: this.flags.system || 'mortal',
+          flavor: this.flags.flavor || '',
+          difficulty: this.flags.difficulty || 0
+        })
 
-      html.find('.message-content').html(messageContent)
+        html.find('.message-content').html(messageContent)
+      }
     }
 
     // Flag expanded state of dice rolls
