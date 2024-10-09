@@ -4,6 +4,7 @@ import { BaseDefinitionClass } from './base-definition-class.js'
 
 export class Skills extends BaseDefinitionClass {
   static modsEnabled = true
+  static type = 'skills'
   static defCategory = 'Skills'
 
   // Run any necessary compilation on ready

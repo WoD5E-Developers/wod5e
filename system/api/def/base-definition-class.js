@@ -11,7 +11,8 @@ export class BaseDefinitionClass {
   static getList ({
     type = '',
     custom = false,
-    disableSort = false
+    disableSort = false,
+    prependType = false
   }) {
     // Filter based on given filters provided with the function, if any
     const filteredEntries = Object.entries(this)
@@ -29,7 +30,10 @@ export class BaseDefinitionClass {
 
     // Reduce into a format the system can work with
     return filteredEntries.reduce((accumulator, [key, value]) => {
-      accumulator[key] = value
+      // Conditionally prepend `this.type` to the key if prependType is true
+      const newKey = prependType ? `${this.type}.${key}` : key
+      accumulator[newKey] = value
+
       return accumulator
     }, {})
   }

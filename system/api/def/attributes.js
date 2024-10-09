@@ -4,6 +4,7 @@ import { BaseDefinitionClass } from './base-definition-class.js'
 
 export class Attributes extends BaseDefinitionClass {
   static modsEnabled = true
+  static type = 'attributes'
   static defCategory = 'Attributes'
 
   // Run any necessary compilation on ready

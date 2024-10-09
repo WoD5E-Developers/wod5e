@@ -4,6 +4,7 @@ import { BaseDefinitionClass } from './base-definition-class.js'
 
 export class Gifts extends BaseDefinitionClass {
   static modsEnabled = true
+  static type = 'gifts'
   static defCategory = 'Gifts'
 
   // Run any necessary compilation on ready
