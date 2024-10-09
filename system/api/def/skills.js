@@ -1,75 +1,29 @@
 /* global game, Hooks */
 
-export class Skills {
-  // Function to help with quickly grabbing all the listed values;
-  // Will only retrieve objects (definitions)
-  // Optional string can be provided to filter by type
-  static getList ({
-    type = '',
-    custom = false
-  }) {
-    return Object.entries(this)
-      // Filter out any entries with improper formats
-      .filter(([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value) &&
-        // Filter based on given filters provided with the function, if any
-        (!type || value.type === type) && (!custom || value.custom === custom))
-      // Reduce into a format the system can work with
-      .reduce((accumulator, [key, value]) => {
-        accumulator[key] = value
-        return accumulator
-      }, {})
-  }
+import { BaseDefinitionClass } from './base-definition-class.js'
 
-  // Method to add extra skills
-  static addCustom (customSkills) {
-    for (const [, value] of Object.entries(customSkills)) {
-      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
-        // Note this feature as being a custom feature
-        value.custom = true
-
-        this[value.id] = value
-      }
-    }
-  }
-
-  // Localize the labels
-  static initializeLabels () {
-    const modifications = game.settings.get('vtm5e', 'modifiedSkills')
-
-    for (const [key, value] of Object.entries(this)) {
-      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
-        const checkModification = modifications.filter(skill => skill.id === key)
-
-        value.label = game.i18n.localize(value.label)
-
-        // If there are modifications, update the attribute
-        if (checkModification.length > 0) {
-          value.rename = checkModification[0].rename
-          value.hidden = checkModification[0].hidden
-        } else {
-          // If there are no modifications, use default values
-          value.rename = ''
-          value.hidden = false
-        }
-      }
-
-      // Handle which label to display
-      if (value.rename) {
-        value.displayName = value.rename
-      } else {
-        value.displayName = value.label
-      }
-    }
-  }
+export class Skills extends BaseDefinitionClass {
+  static modsEnabled = true
+  static defCategory = 'Skills'
 
   // Run any necessary compilation on ready
   static onReady () {
-    const customSkills = game.settings.get('vtm5e', 'customSkills')
+    // Handle adding custom disciplines from the game settings
+    let customSkills = game.settings.get('vtm5e', 'customSkills') || {}
+
+    // Handle adding custom disciplines from any active modules
+    const activeModules = game.modules.filter(module => module.active === true && module.flags.wod5e)
+    activeModules.forEach((module) => {
+      if (module.flags.wod5e.customSkills) {
+        customSkills = customSkills.concat(module.flags.wod5e.customSkills)
+      }
+    })
 
     if (customSkills) {
       Skills.addCustom(customSkills)
     }
 
+    Skills.setSortAlphabetically()
     Skills.initializeLabels()
   }
 

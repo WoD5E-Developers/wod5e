@@ -50,4 +50,70 @@
       </div>
     </div>
   </div>
+
+  <div class="config-category">
+    <h2>{{localize 'WOD5E.Settings.CustomDisciplines'}}</h2>
+    <div class="subcategory">
+      <p class="notes">{{localize 'WOD5E.Settings.CustomDisciplinesHint'}}</p>
+      <div class="grid grid-2col">
+        <div class="mod-header">{{localize 'WOD5E.Label'}}</div>
+      </div>
+      {{#each customDisciplines as |discipline id|}}
+        <div class="customization-row grid grid-2col" data-type="discipline" data-id="{{discipline.id}}">
+          <div class="mod-label">
+            <i class="fas fa-trash remove-custom-button" data-type="discipline" data-id="{{discipline.id}}"></i>
+            <input type="text" class="label" placeholder="New Discipline" value="{{discipline.label}}">
+          </div>
+        </div>
+      {{/each}}
+      <div class="mod-footer">
+        <hr>
+        <div class="add-custom-button addition-button" data-type="discipline">{{localize 'WOD5E.Settings.AddCustomDiscipline'}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="config-category">
+    <h2>{{localize 'WOD5E.Settings.CustomEdges'}}</h2>
+    <div class="subcategory">
+      <p class="notes">{{localize 'WOD5E.Settings.CustomEdgesHint'}}</p>
+      <div class="grid grid-2col">
+        <div class="mod-header">{{localize 'WOD5E.Label'}}</div>
+      </div>
+      {{#each customEdges as |edge id|}}
+        <div class="customization-row grid grid-2col" data-type="edge" data-id="{{edge.id}}">
+          <div class="mod-label">
+            <i class="fas fa-trash remove-custom-button" data-type="edge" data-id="{{edge.id}}"></i>
+            <input type="text" class="label" placeholder="New Edge" value="{{edge.label}}">
+          </div>
+        </div>
+      {{/each}}
+      <div class="mod-footer">
+        <hr>
+        <div class="add-custom-button addition-button" data-type="edge">{{localize 'WOD5E.Settings.AddCustomEdge'}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="config-category">
+    <h2>{{localize 'WOD5E.Settings.CustomGifts'}}</h2>
+    <div class="subcategory">
+      <p class="notes">{{localize 'WOD5E.Settings.CustomGiftsHint'}}</p>
+      <div class="grid grid-2col">
+        <div class="mod-header">{{localize 'WOD5E.Label'}}</div>
+      </div>
+      {{#each customGifts as |gift id|}}
+        <div class="customization-row grid grid-2col" data-type="gift" data-id="{{gift.id}}">
+          <div class="mod-label">
+            <i class="fas fa-trash remove-custom-button" data-type="gift" data-id="{{gift.id}}"></i>
+            <input type="text" class="label" placeholder="New Gift" value="{{gift.label}}">
+          </div>
+        </div>
+      {{/each}}
+      <div class="mod-footer">
+        <hr>
+        <div class="add-custom-button addition-button" data-type="gift">{{localize 'WOD5E.Settings.AddCustomGift'}}</div>
+      </div>
+    </div>
+  </div>
 </div>

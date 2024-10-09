@@ -1,39 +1,67 @@
-<form class="{{cssClass}} flexcol limited" autocomplete="off">
+<section>
     {{!-- Sheet Header --}}
     <header class="limited-actor-header">
-        <div style="flex-grow: 0;">
-            <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" width="100"
-                alt="Profile Image" />
-        </div>
-        <div style="flex-grow: 1;">
-            <h2 class="limited-charname">{{actor.name}}</h2>
+        <img class="profile-img" src="{{img}}" data-edit="img" title="{{name}}" width="100" alt="Profile Image"/>
+        <div class="header-content">
+            <div class="charname">
+                {{name}}
+            </div>
         </div>
     </header>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-        {{#ifeq actor.type "spc"}}
-            <div class="tab appearance description-content">
-                <div class="flex-center">
-                    <label class="resource-label"><h2>{{localize "WOD5E.Tabs.Notes"}}</h2></label>
-                </div>                  
-                {{editor enrichedNotes target="system.notes" button=true editable=editable}}
+        <div class="tab description-content">
+            <div class="flex-center">
+                <label class="resource-label">
+                    <h2>{{localize "WOD5E.Tabs.PublicNotes"}}</h2>
+                </label>
             </div>
-        {{else}}
-            <div class="grid grid-2col flexrow">                    
-                <div class="tab appearance description-content">
+            <div class="limited-description-body">
+                {{{enrichedNotes}}}
+            </div>
+        </div>
+        <div class="grid grid-2col flexrow">
+            {{#if settings.limited.biography}}
+                <div class="tab description-content">
                     <div class="flex-center">
                         <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.Label"}}</h2></label>
-                    </div>              
-                    {{editor enrichedBiography target="system.biography" button=true editable=editable}}
-                </div>              
-                <div class="tab appearance description-content">
+                    </div>
+                    <div class="limited-description-body">
+                        {{{enrichedBiography}}}
+                    </div>
+                </div>
+            {{/if}}
+            {{#if settings.limited.appearance}}
+                <div class="tab description-content">
                     <div class="flex-center">
                         <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.Appearance"}}</h2></label>
-                    </div>              
-                    {{editor enrichedAppearance target="system.appearance" button=true editable=editable}}
+                    </div>
+                    <div class="limited-description-body">
+                        {{{enrichedAppearance}}}
+                    </div>
                 </div>
-            </div>
-        {{/ifeq}}
+            {{/if}}
+            {{#if settings.limited.touchstones}}
+                <div class="tab description-content">
+                    <div class="flex-center">
+                        <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.TouchstonesAndConvictions"}}</h2></label>
+                    </div>
+                    <div class="limited-description-body">
+                        {{{enrichedTouchstones}}}
+                    </div>
+                </div>
+            {{/if}}
+            {{#if settings.limited.tenets}}
+                <div class="tab description-content">
+                    <div class="flex-center">
+                        <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.ChronicleTenets"}}</h2></label>
+                    </div>
+                    <div class="limited-description-body">
+                        {{{enrichedTenets}}}
+                    </div>
+                </div>
+            {{/if}}
+        </div>
     </section>
-</form>
+</section>

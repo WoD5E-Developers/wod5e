@@ -8,13 +8,14 @@ import { getActiveBonuses } from '../../scripts/rolls/situational-modifiers.js'
    * @param {Event} event   The originating click event
    * @private
 */
-export const _onRoll = async function (event) {
+export const _onRoll = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
+
+  // Secondary variables
+  const dataset = $(target).data()
 
   WOD5E.api.RollFromDataset({
     dataset,
@@ -38,6 +39,11 @@ export const _onConfirmRoll = async function (dataset, actor) {
   const absoluteValue = parseInt(dataset.absoluteValue) || 0
   const selectors = dataset.selectors ? dataset.selectors.split(' ') : []
   const macro = dataset.itemId ? data.macroid : dataset.macroid
+
+  // Add despair to the selectors if the Hunter is in despair
+  if (actor.type === 'hunter' && actor.system.despair.value === 1) {
+    selectors.push('despair')
+  }
 
   // Variables yet to be defined
   let basicDice, advancedDice
@@ -77,7 +83,7 @@ export const _onConfirmRoll = async function (dataset, actor) {
   }
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
-  const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+  const system = actor.system.gamesystem
 
   // Some quick modifications to vampire and werewolf rolls
   // in order to properly display the dice in the dialog window

@@ -1,16 +1,23 @@
-/* global CONFIG, Hooks, Actors, ActorSheet, ActorDirectory, fromUuidSync, ChatMessage, Items, ItemSheet, Macro, game, ui, CONST */
+/* global CONFIG, Hooks, Actors, ActorSheet, ChatMessage, Items, ItemSheet, game, ui, CONST */
 
 // Actor sheets
-import { ActorInfo } from './actor/actor.js'
-import { WOD5EActorDirectory } from './actor/actor-directory.js'
+import { WoDActor } from './actor/actor.js'
+import { WOD5EActorDirectory } from './ui/actor-directory.js'
+import { RenderActorSidebar } from './ui/actors-sidebar.js'
+import { RenderSettings } from './ui/settings-sidebar.js'
+import { ProseMirrorSettings } from './ui/prosemirror.js'
 // Item sheets
-import { ItemInfo } from './item/item.js'
-import { WoDItemSheet } from './item/item-sheet.js'
+import { WoDItem } from './item/item.js'
+// Chat message class
+import { WoDChatMessage } from './ui/wod-chat-message.js'
+// Hotbar class
+import { WoDHotbar } from './ui/wod-hotbar.js'
 // FVTT and module functionality
 import { preloadHandlebarsTemplates } from './scripts/templates.js'
 import { loadDiceSoNice } from './dice/dice-so-nice.js'
 import { loadHelpers } from './scripts/helpers.js'
-import { loadSettings } from './scripts/settings.js'
+import { loadSettings, _updatePreferredColorScheme, _updateHeaderFontPreference } from './scripts/settings.js'
+import { PauseChanges } from './ui/pause.js'
 // WOD5E functions and classes
 import { MortalDie, VampireDie, VampireHungerDie, HunterDie, HunterDesperationDie, WerewolfDie, WerewolfRageDie } from './dice/splat-dice.js'
 import { migrateWorld } from './scripts/migration.js'
@@ -28,21 +35,17 @@ import { Edges } from './api/def/edges.js'
 import { Renown } from './api/def/renown.js'
 import { WereForms } from './api/def/were-forms.js'
 import { Gifts } from './api/def/gifts.js'
+import { _rollItem } from './actor/scripts/item-roll.js'
 
 // Anything that needs to be ran alongside the initialisation of the world
 Hooks.once('init', async function () {
   console.log('Initializing Schrecknet...')
 
-  // Some basic info for the gamesystem
-  game.wod5e = {
-    ActorInfo,
-    ItemInfo,
-    rollItemMacro
-  }
-
   // Define custom Entity classes
-  CONFIG.Actor.documentClass = ActorInfo
-  CONFIG.Item.documentClass = ItemInfo
+  CONFIG.Actor.documentClass = WoDActor
+  CONFIG.Item.documentClass = WoDItem
+  CONFIG.ChatMessage.documentClass = WoDChatMessage
+  CONFIG.ui.hotbar = WoDHotbar
   CONFIG.ui.actors = WOD5EActorDirectory
   CONFIG.Dice.terms.m = MortalDie
   CONFIG.Dice.terms.v = VampireDie
@@ -55,21 +58,30 @@ Hooks.once('init', async function () {
   // Register actor sheet application classes
   Actors.unregisterSheet('core', ActorSheet)
   // Loop through each entry in the actorTypesList and register their sheet classes
-  const actorTypesList = ActorTypes.getList()
+  const actorTypesList = ActorTypes.getList({})
   for (const [, value] of Object.entries(actorTypesList)) {
-    const { types, sheetClass } = value
+    const { label, types, sheetClass } = value
 
     Actors.registerSheet('vtm5e', sheetClass, {
+      label,
       types,
       makeDefault: true
     })
   }
 
-  // Register the WoDItemSheet class, used for all items
+  // Register item sheet application classes
   Items.unregisterSheet('core', ItemSheet)
-  Items.registerSheet('vtm5e', WoDItemSheet, {
-    makeDefault: true
-  })
+  // Loop through each entry in the itemTypesList and register their sheet classes
+  const itemTypesList = ItemTypes.getList({})
+  for (const [, value] of Object.entries(itemTypesList)) {
+    const { label, types, sheetClass } = value
+
+    Items.registerSheet('vtm5e', sheetClass, {
+      label,
+      types,
+      makeDefault: true
+    })
+  }
 
   // Make Handlebars templates accessible to the system
   preloadHandlebarsTemplates()
@@ -79,13 +91,28 @@ Hooks.once('init', async function () {
 
   // Load settings into Foundry
   loadSettings()
+
+  // Initialize color scheme on game init
+  _updatePreferredColorScheme()
+
+  // Initialize header font preference on game init
+  _updateHeaderFontPreference()
+
+  // Initialize the alterations to the actors sidebar
+  RenderActorSidebar()
+
+  // Initialize the alterations to the settings sidebar
+  RenderSettings()
+
+  // Initialize the alterations to ProseMirror
+  ProseMirrorSettings()
+
+  // Initialize the alterations to the Paused
+  PauseChanges()
 })
 
 // Anything that needs to run once the world is ready
 Hooks.once('ready', async function () {
-  // After settings are loaded, check if we need to apply dark theme
-  document.body.classList.toggle('dark-theme', game.settings.get('vtm5e', 'darkTheme'))
-
   // Apply the currently selected language as a CSS class so we can
   // modify elements based on locale if needed
   document.body.classList.add(game.settings.get('core', 'language'))
@@ -99,8 +126,11 @@ Hooks.once('ready', async function () {
       getAdvancedDice: wod5eAPI.getAdvancedDice,
       getFlavorDescription: wod5eAPI.getFlavorDescription,
       generateLabelAndLocalize: wod5eAPI.generateLabelAndLocalize,
-      migrateWorld
+      migrateWorld,
+      _onRollItemFromMacro
     },
+    WoDItem,
+    WoDActor,
     Systems,
     Attributes,
     Skills,
@@ -113,9 +143,6 @@ Hooks.once('ready', async function () {
     Gifts,
     WereForms
   }
-
-  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on('hotbarDrop', (bar, data, slot) => createVampireMacro(data, slot))
 
   // Migration functions
   migrateWorld()
@@ -164,150 +191,7 @@ Hooks.on('getChatLogEntryContext', (html, options) => {
   })
 })
 
-Hooks.on('renderSidebarTab', async (object, html) => {
-  if (object instanceof ActorDirectory) {
-    // Define the list of groups we're going to be modifying
-    const groups = object.groups
-
-    // Define the directory list so that we can modify its structure
-    const directoryList = html.find('.directory-list')
-
-    // Iterate through each group and make a "folder-like" element out of them
-    groups.forEach(group => {
-      const groupElement = $(`[data-entry-id='${group.id}'`)
-      const groupMembers = group.system?.members
-
-      // Header element for the "folder"
-      const headerElement = `<header class='group-header ${group.system.groupType} flexrow'>
-        <h3 class='noborder'>
-          <i class='fas fa-folder-open fa-fw'></i>
-          ${group.name}
-        </h3>
-        <a class='create-button open-sheet' data-uuid='Actor.${group.id}' title='` + game.i18n.localize('WOD5E.OpenSheet') + `'>
-          <i class="fas fa-user"></i>
-        </a>
-      </header>`
-      const subdirectoryElement = '<ol class="subdirectory"></ol>'
-
-      // Append the above elements to the group element and turn it into a folder
-      groupElement.attr('data-uuid', `Actor.${group.id}`)
-      groupElement.attr('class', 'directory-item group-item flexcol document')
-      // GMs follow the collapsed value, players don't
-      if (group.system?.collapsed && game.user.isGM) {
-        groupElement.addClass('collapsed')
-      }
-      groupElement.find('.entry-name, .thumbnail').remove()
-      groupElement.append(headerElement)
-      groupElement.append(subdirectoryElement)
-
-      // Add an event listener for toggling the group collapse
-      groupElement.find('.group-header').click(async event => {
-        event.preventDefault()
-
-        const collapsed = !group.system.collapsed
-
-        groupElement.toggleClass('collapsed')
-
-        // Players don't have to update the system.collapsed value
-        if (game.user.isGM) {
-          group.update({ 'system.collapsed': collapsed })
-        }
-      })
-
-      // Add an event listener for opening the group sheet
-      groupElement.find('.open-sheet').click(async event => {
-        event.preventDefault()
-        event.stopPropagation()
-
-        game.actors.get(group.id).sheet.render(true)
-      })
-
-      // Move each group member's element to be a child of this group
-      // Additionally, we need to give the actor Limited
-      if (groupMembers) {
-        groupMembers.forEach(actorUuid => {
-          const actorObject = fromUuidSync(actorUuid)
-
-          // Check to verify the actor exists
-          if (actorObject) {
-            const actorElement = $(`[data-entry-id='${actorObject.id}'`)
-            const groupListElement = $(`[data-entry-id='${group.id}'`).find('.subdirectory')[0]
-
-            actorElement.appendTo(groupListElement)
-          } else {
-            // If the actor doesn't exist, remove it from the group
-            // Filter out the UUID from the members list
-            const membersList = groupMembers.filter(actor => actor !== actorUuid)
-
-            // Update the group sheet with the new members list
-            group.update({ 'system.members': membersList })
-          }
-        })
-      }
-
-      // If Ownership Viewer is enabled, adjust the group sheet's ownership viewer because otherwise it gets wonky by default
-      const ownershipViewer = groupElement.children('.ownership-viewer')
-      groupElement.find('header.group-header').append(ownershipViewer)
-
-      // Add to the directory list
-      groupElement.prependTo(directoryList)
-    })
-  }
-})
-
-// Handle actor updates
-Hooks.on('updateActor', (actor) => {
-  if (actor.type === 'group') {
-    // Re-render the actors directory
-    game.actors.render()
-  }
-
-  // Only do this if the actor has an associated group with them
-  if (actor.system?.group) {
-    // Update the group sheet
-    game.actors.get(actor.system.group).sheet.render()
-  }
-})
-
-/* -------------------------------------------- */
-/*  Hotbar Macros                               */
-/* -------------------------------------------- */
-
-/**
- * Create a Macro from an Item drop.
- * Get an existing item macro if one exists, otherwise create a new one.
- * @param {Object} data     The dropped data
- * @param {number} slot     The hotbar slot to use
- * @returns {Promise}
- */
-async function createVampireMacro (data, slot) {
-  if (data.type !== 'Item') return
-  if (!('data' in data)) return ui.notifications.warn('You can only create macro buttons for owned Items')
-  const item = data.system
-
-  // Create the macro command
-  const command = `game.WOD5E.RollListItemMacro("${item.name}");`
-  let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command))
-  if (!macro) {
-    macro = await Macro.create({
-      name: item.name,
-      type: 'script',
-      img: item.img,
-      command,
-      flags: { 'vtm5e.itemMacro': true }
-    })
-  }
-  game.user.assignHotbarMacro(macro, slot)
-  return false
-}
-
-/**
- * Create a Macro from an Item drop.
- * Get an existing item macro if one exists, otherwise create a new one.
- * @param {string} itemName
- * @return {Promise}
- */
-function rollItemMacro (itemName) {
+function _onRollItemFromMacro (itemName) {
   const speaker = ChatMessage.getSpeaker()
   let actor
   if (speaker.token) actor = game.actors.tokens[speaker.token]
@@ -315,6 +199,5 @@ function rollItemMacro (itemName) {
   const item = actor ? actor.items.find(i => i.name === itemName) : null
   if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`)
 
-  // Trigger the item roll
-  return item.roll()
+  _rollItem(actor, item)
 }

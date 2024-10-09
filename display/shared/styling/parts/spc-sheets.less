@@ -1,0 +1,60 @@
+.spc.sheet {
+  .stat-resource-background {
+    padding: 5px 15px 5px;
+  }
+
+  .spc-stats-body {
+    align-items: flex-start;
+
+    .field-header {
+      font-size: 16pt;
+    }
+  }
+
+  .standard-pools-list,
+  .exceptional-pools-list {
+    margin-bottom: 10px;
+  }
+
+  .general-difficulty {
+    width: -webkit-fill-available;
+  }
+
+  .exceptional-pools-list {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    text-align: -webkit-center;
+
+    .spc-item-header {
+      font-weight: bold;
+    }
+
+    .exceptional-pool:not(.locked) {
+      flex-grow: 0;
+      margin-left: auto;
+      margin-right: auto;
+
+      .resource-label {
+        place-content: center;
+        text-wrap: nowrap;
+      }
+    }
+  }
+}
+
+.locked {
+  .exceptional-pools-list {
+    place-content: center;
+
+    a:not(:first-child)::before {
+      content: ", ";
+    }
+  }
+}
+
+.exceptional-edit.dialog {
+  .exceptional-pool {
+    justify-content: space-between;
+  }
+}

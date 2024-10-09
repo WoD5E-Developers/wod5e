@@ -1,0 +1,54 @@
+/* Variables */
+:root {
+  --ui-background-hunter-texture: url("/systems/vtm5e/assets/ui/ui_background_hunter_texture.webp");
+  --sidebar-background-hunter: url(/systems/vtm5e/assets/ui/sidebar_hunter.webp);
+  --ui-background-hunter-color: rgba(255, 136, 0, 0.5);
+  --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.webp);
+}
+
+.hunter-theme {
+  /* Logo */
+  #logo {
+    content: var(--logo-hunter);
+  }
+
+  .sheet,
+  .dialog {
+    .window-header {
+      background-color: var(--hunter-color-1);
+    }
+  }
+
+  /* Sidebar */
+  #sidebar {
+    background: var(--sidebar-background-hunter) repeat;
+  }
+
+  /* Foundry Controls UI */
+  #controls ol.control-tools > li {
+    background: var(--ui-background-hunter-texture);
+  }
+
+  #navigation #scene-list .scene,
+  #navigation #scene-list .scene.view,
+  #navigation #scene-list .scene.context,
+  #navigation #scene-list .scene.gm,
+  #navigation .nav-item,
+  #navigation #nav-toggle {
+    background: var(--ui-background-hunter-texture);
+  }
+
+  #hotbar .macro {
+    background: var(--ui-background-hunter-color);
+  }
+
+  #hotbar .bar-controls {
+    background: var(--ui-background-hunter-texture);
+  }
+
+  .app {
+    background: var(--ui-background-hunter-texture);
+    background-color: #3333335d;
+    background-blend-mode: multiply;
+  }
+}

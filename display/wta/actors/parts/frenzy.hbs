@@ -1,10 +1,19 @@
-<div class="resource flex-group-center frenzy">
-    <label for="placeholder" class="resource-label">{{localize "WOD5E.WTA.Frenzy"}}</label>
-    <div class="resource-content flexrow flex-center flex-between">
-        {{#if actor.system.frenzyActive}}
-            <button class="werewolf-button end-frenzy" type="button" name="endfrenzy">{{localize "WOD5E.WTA.EndFrenzy"}}</button>
+<div class="flexcol frenzy">
+    <div class="field-header flex-center">
+        {{localize "WOD5E.WTA.FrenzyStatus"}}:
+        <span class="frenzy-status{{#if frenzyActive}} active{{/if}}">
+            {{#if frenzyActive}}
+                {{localize "WOD5E.Active"}}
+            {{else}}
+                {{localize "WOD5E.Inactive"}}
+            {{/if}}
+        </span>
+    </div>
+    <div>
+        {{#if frenzyActive}}
+            <button class="werewolf-button end-frenzy" data-action="endFrenzy" type="button" name="endfrenzy">{{localize "WOD5E.WTA.EndFrenzy"}}</button>
         {{else}}
-            <button class="werewolf-button begin-frenzy" type="button" name="beginfrenzy">{{localize "WOD5E.WTA.EnterFrenzy"}}</button>
+            <button class="werewolf-button begin-frenzy" data-action="beginFrenzy" type="button" name="beginfrenzy">{{localize "WOD5E.WTA.EnterFrenzy"}}</button>
         {{/if}}
     </div>
 </div>

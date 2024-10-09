@@ -2,6 +2,7 @@
 
 // Import dice face-related variables for icon paths
 import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces } from '../../dice/icons.js'
+import { getRollFooter } from './roll-labels/get-label.js'
 
 /**
  * Function to help generate the chat message after a roll is made
@@ -196,9 +197,6 @@ export async function generateRollMessage ({
   }
 
   async function generateResult (basicDice, advancedDice) {
-    // Useful variables
-    let resultLabel = ''
-
     // Calculate the totals across the basic and advanced dice
     const basicTotal = basicDice ? basicDice.total : 0
     const advancedTotal = advancedDice ? advancedDice.total : 0
@@ -214,12 +212,6 @@ export async function generateRollMessage ({
 
     // Calculate the total result when factoring in criticals
     const totalResult = basicTotal + advancedTotal + critTotal
-
-    // Append additional data to the original roll
-    roll.system = system
-    roll.difficulty = difficulty
-    roll.totalResult = totalResult
-    roll.rollSuccessful = (totalResult >= difficulty) || (totalResult > 0 && difficulty === 0)
 
     // Construct the markup for total and difficulty display
     let totalAndDifficulty = `<div class="total-and-difficulty">
@@ -244,43 +236,13 @@ export async function generateRollMessage ({
     totalAndDifficulty += '</div>'
 
     // Generate the result label depending on the splat and difficulty
-    if (totalResult < difficulty || difficulty === 0) { // Handle failures...
-      if (system === 'vampire' && advancedDice.critFails > 0) { // Handle bestial failures
-        resultLabel += totalAndDifficulty + `<div class="roll-result-label bestial-failure">${game.i18n.localize('WOD5E.VTM.PossibleBestialFailure')}</div>`
-      } else if (system === 'werewolf' && advancedDice.critFails > 1) { // Handle brutal outcomes
-        resultLabel += totalAndDifficulty + `<div class="roll-result-label rage-failure">${game.i18n.localize('WOD5E.WTA.PossibleRageFailure')}</div>`
-      } else if (system === 'hunter' && advancedDice.critFails > 0) { // Handle desperation failures
-        resultLabel += totalAndDifficulty + `<div class="roll-result-label desperation-failure">${game.i18n.localize('WOD5E.HTR.PossibleDesperationFailure')}</div>`
-      } else {
-        if (totalResult === 0 || difficulty > 0) { // Handle failures
-          resultLabel = totalAndDifficulty + `<div class="roll-result-label failure">${game.i18n.localize('WOD5E.RollList.Fail')}</div>`
-        } else { // Show the number of successes
-          // Handle pluralizing based on the number of successes
-          const successText = totalResult > 1 ? 'WOD5E.RollList.Successes' : 'WOD5E.RollList.Success'
-
-          if (system === 'vampire' && (advancedDice.criticals > 1 || (basicDice.criticals > 0 && advancedDice.criticals > 0))) { // Handle messy criticals if no difficulty is set
-            resultLabel = `<div class="roll-result-label messy-critical">${game.i18n.localize('WOD5E.VTM.MessyCritical')}</div>
-            <div class="roll-result-label">${totalResult} ${game.i18n.localize(successText)}</div>`
-          } else {
-            resultLabel = `<div class="roll-result-label">${totalResult} ${game.i18n.localize(successText)}</div>`
-          }
-        }
-      }
-    } else {
-      if (totalResult >= difficulty) { // If the difficulty is matched or exceeded...
-        if (system === 'werewolf' && advancedDice.critFails > 1) { // Handle brutal outcomes
-          resultLabel += totalAndDifficulty + `<div class="roll-result-label rage-failure">${game.i18n.localize('WOD5E.WTA.PossibleRageFailure')}</div>`
-        } else if (critTotal > 0) { // If there's at least one set of critical dice...
-          if (system === 'vampire' && (advancedDice.criticals > 1 || (basicDice.criticals > 0 && advancedDice.criticals > 0))) { // Handle messy criticals
-            resultLabel = totalAndDifficulty + `<div class="roll-result-label messy-critical">${game.i18n.localize('WOD5E.VTM.MessyCritical')}</div>`
-          } else { // Everything else is just a normal critical success
-            resultLabel = totalAndDifficulty + `<div class="roll-result-label critical-success">${game.i18n.localize('WOD5E.RollList.CriticalSuccess')}</div>`
-          }
-        } else { // Normal success
-          resultLabel = totalAndDifficulty + `<div class="roll-result-label success">${game.i18n.localize('WOD5E.RollList.Success')}</div>`
-        }
-      }
-    }
+    const resultLabel = await getRollFooter(system, {
+      totalResult,
+      difficulty,
+      basicDice,
+      advancedDice,
+      totalAndDifficulty
+    })
 
     return { totalResult, resultLabel }
   }

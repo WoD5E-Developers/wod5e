@@ -1,4 +1,4 @@
-/* global ChatMessage, Roll, game, renderTemplate, CONFIG, Dialog, WOD5E */
+/* global ChatMessage, Roll, game, renderTemplate, CONFIG, Dialog */
 
 // Import various helper functions
 import { generateRollFormula } from './rolls/roll-formula.js'
@@ -57,7 +57,7 @@ class WOD5eDice {
     advancedCheckDice = 0
   }) {
     // Define the actor's gamesystem, defaulting to 'mortal' if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+    const system = actor.system.gamesystem
 
     // Handle getting any situational modifiers
     const situationalModifiers = await getSituationalModifiers({
@@ -135,10 +135,20 @@ class WOD5eDice {
       if (roll.terms[2]) await handleFailure(system, roll.terms[2].results)
 
       // Handle willpower damage
-      if (willpowerDamage > 0 && game.settings.get('vtm5e', 'automatedWillpower')) _damageWillpower(actor, willpowerDamage)
+      if (willpowerDamage > 0 && game.settings.get('vtm5e', 'automatedWillpower')) _damageWillpower(null, null, actor, willpowerDamage)
 
       // Send the results of the roll back to any functions that need it
-      if (callback) callback(roll)
+      if (callback) {
+        callback(
+          null,
+          {
+            ...roll,
+            system,
+            difficulty,
+            rollSuccessful: (roll.total >= difficulty) || (roll.total > 0 && difficulty === 0)
+          }
+        )
+      }
 
       // Run any macros that need to be ran
       if (macro && game.macros.get(macro)) {
@@ -321,7 +331,8 @@ class WOD5eDice {
                 const aCDValue = event.currentTarget.dataset.advancedCheckDice ? parseInt(event.currentTarget.dataset.advancedCheckDice) : 0
 
                 // Determine whether any alterations need to be made to basic dice or advanced dice
-                let applyDiceTo = 'basic'
+                // Either use the current applyDiceTo (if set), or default to 'basic'
+                let applyDiceTo = event.currentTarget.dataset.applyDiceTo || 'basic'
                 // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
                 if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
                   applyDiceTo = 'advanced'
@@ -345,7 +356,7 @@ class WOD5eDice {
                       checkValue = actorData?.rage.value
                     }
 
-                    if (newValue > actorData?.hunger.value || newValue > checkValue) {
+                    if ((newValue > actorData?.hunger.value || newValue > checkValue) && !(event.currentTarget.dataset.applyDiceTo === 'advanced')) {
                       // Check for any excess and apply it to basicDice
                       const excess = newValue - checkValue
                       newValue = checkValue
@@ -364,7 +375,7 @@ class WOD5eDice {
                   advancedCheckDice = advancedCheckDice + aCDValue
                 } else {
                   // Removing the modifier
-                  if (applyDiceTo === 'advanced' && advancedValue > 0) {
+                  if (applyDiceTo === 'advanced') {
                     // Apply the modifier to advancedDice
                     newValue = advancedValue - modifier
 
@@ -419,7 +430,7 @@ class WOD5eDice {
             }
           },
           {
-            classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+            classes: ['wod5e', system, 'dialog']
           }
         ).render(true)
       })

@@ -1,0 +1,34 @@
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="flexrow">
+        <div class="note-container public-notepad">
+            <div class="flex-center">
+                <label class="resource-label field-header">{{localize "WOD5E.Tabs.PublicNotes"}}</label>
+            </div>
+            <div class="resource">
+                <prose-mirror name="system.notes" value="{{notes}}"
+                    toggled="true" compact="true">
+                    {{{enrichedNotes}}}
+                </prose-mirror>
+            </div>
+        </div>
+        {{#if isOwner}}
+            <div class="note-container private-notepad">
+                <div class="flex-center">
+                    <label class="resource-label field-header">
+                        {{#ifeq baseActorType 'group'}}
+                            {{localize "WOD5E.Tabs.StorytellerNotes"}}
+                        {{else}}
+                            {{localize "WOD5E.Tabs.PrivateNotes"}}
+                        {{/ifeq}}
+                    </label>
+                </div>
+                <div class="resource">
+                    <prose-mirror name="system.privatenotes" value="{{privatenotes}}"
+                        toggled="true" compact="true">
+                        {{{enrichedPrivateNotes}}}
+                    </prose-mirror>
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</section>

@@ -1,4 +1,4 @@
-/* global game, Dialog, WOD5E */
+/* global game, Dialog */
 
 // Import modules
 import { WOD5eDice } from './system-rolls.js'
@@ -16,7 +16,7 @@ export const willpowerReroll = async (roll) => {
   const actor = game.actors.get(message.speaker.actor)
 
   // Define the actor's gamesystem, defaulting to 'mortal' if it's not in the systems list
-  const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
+  const system = actor.system.gamesystem
 
   // Go through the message's dice and add them to the diceRolls array
   Object.keys(dice).forEach(function (i) {
@@ -67,7 +67,7 @@ export const willpowerReroll = async (roll) => {
     default: 'submit'
   },
   {
-    classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+    classes: ['wod5e', system, 'dialog']
   }).render(true)
 
   // Handles selecting and de-selecting the die
@@ -106,7 +106,9 @@ export const willpowerReroll = async (roll) => {
         quickRoll: true,
         selectors,
         disableMessageOutput: true,
-        callback: async (reroll) => {
+        callback: async (err, reroll) => {
+          if (err) console.log(err)
+
           const messageRolls = message.rolls
 
           diceSelected.each(function (index) {

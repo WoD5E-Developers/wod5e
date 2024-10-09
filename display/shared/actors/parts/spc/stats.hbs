@@ -1,0 +1,53 @@
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="grid grid-2col flexrow spc-stats-body">
+        <div>
+            {{> "systems/vtm5e/display/shared/actors/parts/spc/standard-dice-pools.hbs"}}
+
+            {{> "systems/vtm5e/display/shared/actors/parts/spc/exceptional-dice-pools.hbs"}}
+
+            {{#if showDisciplines}}
+                {{> "systems/vtm5e/display/shared/actors/parts/spc/spc-disciplines.hbs"}}
+            {{/if}}
+
+            {{#if showGifts}}
+                {{> "systems/vtm5e/display/shared/actors/parts/spc/spc-gifts.hbs"}}
+            {{/if}}
+
+            {{#if showEdges}}
+                {{> "systems/vtm5e/display/shared/actors/parts/spc/spc-edges.hbs"}}
+            {{/if}}
+        </div>
+
+        <div>
+            {{#ifeq currentActorType 'spirit'}}
+                <div class="description-field">
+                    <div class="flex-center field-header">
+                        <label class="resource-label">
+                            {{localize "WOD5E.WTA.PossessionManifestation"}}
+                        </label>
+                    </div>
+                    <div class="description-content resource">
+                        <prose-mirror name="system.manifestation" value="{{manifestation}}"
+                            toggled="true" compact="true">
+                            {{{enrichedManifestation}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+            {{/ifeq}}
+
+            <div class="description-field">
+                <div class="flex-center field-header">
+                    <label class="resource-label">
+                        {{localize "WOD5E.SPC.Traits"}}
+                    </label>
+                </div>
+                <div class="description-content resource">
+                    <prose-mirror name="system.traits" value="{{traits}}"
+                        toggled="true" compact="true">
+                        {{{enrichedTraits}}}
+                    </prose-mirror>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

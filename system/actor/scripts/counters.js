@@ -1,4 +1,4 @@
-/* global foundry, game */
+/* global foundry, game, ui */
 
 // Handle all types of resource changes
 export const _onResourceChange = async function (event) {
@@ -17,12 +17,17 @@ export const _onResourceChange = async function (event) {
   const actorData = foundry.utils.duplicate(actor)
 
   // Don't let things be edited if the sheet is locked
-  if (this.actor.locked || actorData.locked) return
+  if (actorData.system.locked) {
+    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
+      string: actor.name
+    }))
+    return
+  }
 
   // Handle adding and subtracting the number of boxes
-  if (dataset.action === 'plus') {
+  if (dataset.resourceAction === 'plus') {
     actorData.system[resource].max++
-  } else if (dataset.action === 'minus') {
+  } else if (dataset.resourceAction === 'minus') {
     actorData.system[resource].max = Math.max(actorData.system[resource].max - 1, 0)
   }
 
@@ -124,9 +129,22 @@ export const _onDotCounterChange = async function (event) {
   const fields = fieldStrings.split('.')
   const steps = parent.find('.resource-value-step')
 
+  // Make sure that the dot counter can only be changed if the user has permission
+  if (this.actor.permission < 3) {
+    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.NoSufficientPermission', {
+      string: this.actor.name
+    }))
+    return
+  }
+
   // Make sure that the dot counter can only be changed if the sheet is
-  // unlocked or if it's the hunger track.
-  if (this.actor.system.locked && !parent.has('.hunger-value').length) return
+  // unlocked or if it's the hunger/rage track.
+  if (this.actor.system.locked && !parent.has('.hunger-value').length && !parent.has('.rage-value').length) {
+    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
+      string: actor.name
+    }))
+    return
+  }
 
   if (index < 0 || index > steps.length) {
     return
@@ -166,7 +184,12 @@ export const _onDotCounterEmpty = async function (event) {
   // Make sure that the dot counter can only be changed if the sheet is
   // unlocked or if it's the hunger track.
   // Bypass this if this function is being called from a group sheet
-  if (!(this.actor.type === 'group') && actor.system.locked && !parent.has('.hunger-value').length) return
+  if (!(this.actor.type === 'group') && actor.system.locked && !parent.has('.hunger-value').length && !parent.has('.rage-value')) {
+    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
+      string: actor.name
+    }))
+    return
+  }
 
   // Update the actor field
   steps.removeClass('active')
@@ -186,6 +209,14 @@ export const _onSquareCounterChange = async function (event) {
     actor = game.actors.get(dataset.actorId)
   } else {
     actor = this.actor
+  }
+
+  // Make sure that the square counter can only be changed if the user has permission
+  if (this.actor.permission < 3) {
+    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.NoSufficientPermission', {
+      string: this.actor.name
+    }))
+    return
   }
 
   // Secondary variables
@@ -277,6 +308,6 @@ export const _assignToActorField = async (fields, value, actor) => {
     }
   }
 
-  // Update the actor with the new data
-  await actor.update(actorData)
+  // Update the actor data
+  actor.update(actorData)
 }

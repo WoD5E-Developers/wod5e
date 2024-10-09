@@ -1,8 +1,31 @@
-<div class="resource flex-group-center generaldifficulty">
-    <label for="system.generaldifficulty" class="resource-label">{{localize "WOD5E.SPC.GeneralDifficulty"}}</label>
-    <div class="resource-content flexrow flex-center flex-between">
-        <input class="no-border" type="number" name="system.generaldifficulty.strongest.value" value="{{actor.system.generaldifficulty.strongest.value}}" data-dtype="Number" />
-        /
-        <input class="no-border" type="number" name="system.generaldifficulty.normal.value" value="{{actor.system.generaldifficulty.normal.value}}" data-dtype="Number" />
+<div class="field-section flexcol">
+    <div class="field-header flexrow resource-label">
+        {{localize "WOD5E.SPC.GeneralDifficulty"}}
+    </div>
+    <div class="resource">
+        <div class="flex-group-center flexrow general-difficulty">
+            <div class="flexcol flex-center">
+                <a data-action="roll" data-use-absolute-value="true" data-absolute-value="{{generaldifficulty.strongest}}">
+                    {{localize 'WOD5E.SPC.Strongest'}}
+                    <i class="fa-solid fa-dice-d10"></i>
+                </a>
+                {{#if locked}}
+                    {{generaldifficulty.strongest}}
+                {{else}}
+                    <input type="number" name="system.generaldifficulty.strongest" value="{{generaldifficulty.strongest}}" data-dtype="Number"/>
+                {{/if}}
+            </div>
+            <div class="flexcol flex-center">
+                <a data-action="roll" data-use-absolute-value="true" data-absolute-value="{{generaldifficulty.normal}}">
+                    {{localize 'WOD5E.SPC.Normal'}}
+                    <i class="fa-solid fa-dice-d10"></i>
+                </a>
+                {{#if locked}}
+                    {{generaldifficulty.normal}}
+                {{else}}
+                    <input type="number" name="system.generaldifficulty.normal" value="{{generaldifficulty.normal}}" data-dtype="Number"/>
+                {{/if}}
+            </div>
+        </div>
     </div>
 </div>
