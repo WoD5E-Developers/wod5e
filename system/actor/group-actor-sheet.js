@@ -200,8 +200,13 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       chasse: actorData.chasse,
       lien: actorData.lien,
       portillon: actorData.portillon,
+
       desperation: actorData.desperation,
-      danger: actorData.danger
+      danger: actorData.danger,
+
+      territory: actorData.territory,
+      community: actorData.community,
+      spirit: actorData.spirit
     }
   }
 

@@ -746,6 +746,17 @@
           "value": 0
         }
       },
+      "pack_traits": {
+        "territory": {
+          "value": 0
+        },
+        "community": {
+          "value": 0
+        },
+        "spirit": {
+          "value": 0
+        }
+      },
       "settings": {
         "settings": {
           "headerbg": "",
@@ -780,7 +791,7 @@
       "gamesystem": "vampire"
     },
     "group": {
-      "templates": ["cell_traits", "coterie_traits", "settings"],
+      "templates": ["cell_traits", "coterie_traits", "pack_traits", "settings"],
       "locked": false,
       "groupType": "coterie",
       "biography": "",
