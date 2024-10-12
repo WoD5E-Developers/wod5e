@@ -170,8 +170,6 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       // Calculate item bonuses and shuffle them into system.itemBonuses
       if (!foundry.utils.isEmpty(item.system.bonuses)) {
         sheetData.system.itemBonuses = sheetData.system.itemBonuses.concat(item.system.bonuses)
-        // (Temporarily) remove the bonus from the item so we don't duplicate data
-        delete item.system.bonuses
       }
     })
 

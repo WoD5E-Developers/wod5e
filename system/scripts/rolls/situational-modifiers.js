@@ -44,6 +44,11 @@ export async function getSituationalModifiers ({
         return
       }
 
+      // Don't search items
+      if (typeof obj === 'object' && obj.documentName === 'Item') {
+        return
+      }
+
       // Check if there's a "bonuses" path that is an array
       if (obj.bonuses && Array.isArray(obj.bonuses)) {
         // Check for matching bonuses, or 'all'
