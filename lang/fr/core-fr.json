@@ -107,8 +107,8 @@
       "NewBonus": "Nouveau bonus",
       "NewSpecialty": "Nouvelle spécialité",
       "_Path": "",
-      "_PathsSeparatedBySemicolons": "",
       "_PathToCheck": "",
+      "_Selectors": "",
       "Unless": "Minimum",
       "ValueToCheck": "Valeur vérifiée"
     },

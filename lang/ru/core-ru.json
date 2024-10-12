@@ -107,8 +107,8 @@
       "NewBonus": "Новый бонус",
       "NewSpecialty": "Новая специализация",
       "_Path": "",
-      "_PathsSeparatedBySemicolons": "",
       "_PathToCheck": "",
+      "_Selectors": "",
       "_Unless": "",
       "_ValueToCheck": ""
     },

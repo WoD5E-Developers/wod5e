@@ -2,7 +2,7 @@
 
 /**
  * Function to handle getting the list of available dice to add to a dicepool
- * @param actor
+ * @param document
  */
 export const getDicepoolList = async (document) => {
   const masterList = []

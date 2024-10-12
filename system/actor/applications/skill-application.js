@@ -2,6 +2,7 @@
 
 import { _onAddBonus, _onEditBonus, _onDeleteBonus } from './scripts/specialty-bonuses.js'
 import { generateLocalizedLabel } from '../../api/generate-localization.js'
+import { Skills } from '../../api/def/skills.js'
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 
 export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -154,5 +155,35 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
 
     // Re-render the application
     this.render()
+  }
+
+  _onRender () {
+    const html = $(this.element)
+
+    // Input for the list of selectors
+    const input = html.find('.bonus-selectors')
+    // List of selectors to choose from
+    const skillOptions = Skills.getList({
+      prependType: true
+    })
+
+    const data = Object.entries(skillOptions).map(([id, obj]) => ({
+      id,
+      ...obj
+    }))
+
+    data.unshift({
+      id: 'skills',
+      displayName: 'All Skills'
+    })
+
+    input.flexdatalist({
+      selectionRequired: 1,
+      minLength: 1,
+      searchIn: ['displayName'],
+      multiple: true,
+      valueProperty: 'id',
+      data
+    })
   }
 }

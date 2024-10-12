@@ -2,6 +2,7 @@
 
 // Preparation functions
 import { getDicepoolList } from '../api/dicepool-list.js'
+import { getSelectorsList } from '../api/get-selectors-list.js'
 // Various button functions
 import { _onAddBonus, _onDeleteBonus, _onEditBonus } from './scripts/item-bonuses.js'
 import { _onAddDice, _onRemoveDice } from './scripts/dicepools.js'
@@ -104,6 +105,19 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
 
     // Update the window title (since ItemSheetV2 doesn't do it automatically)
     $(this.window.title).text(this.title)
+
+    // Input for the list of selectors
+    const input = html.find('.bonus-selectors')
+    // Style the selectors properly
+    const data = getSelectorsList(this.item)
+    input.flexdatalist({
+      selectionRequired: 1,
+      minLength: 1,
+      searchIn: ['displayName'],
+      multiple: true,
+      valueProperty: 'id',
+      data
+    })
 
     // Add a new sheet styling depending on the type of sheet
     const gamesystem = this.item.system.gamesystem

@@ -556,6 +556,10 @@ h3.item-name {
   border-radius: 0px;
 }
 
+.dialog .dialog-buttons .dialog-button {
+  height: fit-content;
+}
+
 .wod5e-config-form .config-category .subcategory {
   margin-bottom: 15px;
 }

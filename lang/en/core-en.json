@@ -107,8 +107,8 @@
       "NewBonus": "New Bonus",
       "NewSpecialty": "New Specialty",
       "Path": "Path",
-      "PathsSeparatedBySemicolons": "Paths, Separated By Semicolons (;)",
       "PathToCheck": "Path to Check",
+      "Selectors": "Selectors",
       "Unless": "Unless",
       "ValueToCheck": "Value to Check"
     },

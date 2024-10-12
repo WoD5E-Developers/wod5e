@@ -107,8 +107,8 @@
       "NewBonus": "Neuer Bonus",
       "NewSpecialty": "Neue Spezialisierung",
       "Path": "Pfad",
-      "PathsSeparatedBySemicolons": "Pfade, getrennt mit Semikolons (;)",
       "PathToCheck": "Pfad",
+      "_Selectors": "",
       "Unless": "Außer, wenn …",
       "ValueToCheck": "Wert"
     },

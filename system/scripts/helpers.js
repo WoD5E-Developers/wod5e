@@ -72,7 +72,7 @@ export const loadHelpers = async function () {
       return ''
     }
 
-    return arr.join('; ')
+    return arr.join(',')
   })
 
   // Helper to define attributes lists

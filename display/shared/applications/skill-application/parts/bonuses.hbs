@@ -17,8 +17,8 @@
                         <input class="input-value" name="value" type="number" value="{{bonus.value}}" disabled="true"/>
                     </div>
                     <div class="flexcol flex-center">
-                        <b>{{localize "WOD5E.Bonus.PathsSeparatedBySemicolons"}}</b>
-                        <input name="paths" type="text" value="{{splitArray bonus.paths}}" placeholder="skills.athletics; attributes.strength" disabled="true"/>
+                        <b>{{localize "WOD5E.Bonus.Selectors"}}</b>
+                        <input name="paths" class="bonus-selectors" type="text" value="{{splitArray bonus.paths}}" placeholder="{{localize 'WOD5E.None'}}" disabled="true"/>
                     </div>
                 </div>
             </div>
