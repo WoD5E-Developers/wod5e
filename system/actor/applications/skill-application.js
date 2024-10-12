@@ -183,6 +183,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
       searchIn: ['displayName'],
       multiple: true,
       valueProperty: 'id',
+      searchContain: true,
       data
     })
   }

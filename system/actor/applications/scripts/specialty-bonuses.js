@@ -99,6 +99,7 @@ export const _onAddBonus = async function (event) {
           searchIn: ['displayName'],
           multiple: true,
           valueProperty: 'id',
+          searchContain: true,
           data
         })
       }
@@ -213,6 +214,7 @@ export const _onEditBonus = async function (event, target) {
           searchIn: ['displayName'],
           multiple: true,
           valueProperty: 'id',
+          searchContain: true,
           data
         })
       }

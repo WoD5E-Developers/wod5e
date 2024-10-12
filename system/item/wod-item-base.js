@@ -118,6 +118,7 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
       searchIn: ['displayName'],
       multiple: true,
       valueProperty: 'id',
+      searchContain: true,
       data
     })
 
