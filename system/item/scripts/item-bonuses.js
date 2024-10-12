@@ -14,7 +14,7 @@ export const _onAddBonus = async function (event) {
     bonus: {
       source: 'New bonus',
       value: 1,
-      paths: ['skills.athletics'],
+      paths: [],
       displayWhenInactive: false,
       activeWhen: {
         check: 'always'
