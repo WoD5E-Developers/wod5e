@@ -70,12 +70,14 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
     // Top-level variables
     const data = await super._prepareContext()
     const item = this.item
+    const actor = this.actor
     const itemData = item.system
 
     // Prepare tabs
     data.tabs = this.getTabs()
 
     // Define the data the template needs
+    this.item.system.gamesystem = actor ? actor?.system?.gamesystem : itemData.gamesystem
 
     // Transform any data needed for sheet rendering
     return {
