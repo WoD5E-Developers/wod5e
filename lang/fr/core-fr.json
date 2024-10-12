@@ -99,6 +99,7 @@
       "ActiveWhen": "Activé quand",
       "AddNewBonus": "Ajouter nouveau bonus",
       "AddNewSpecialty": "Ajouter nouvelle spécialité",
+      "_AllString": "",
       "Always": "Toujours",
       "DisplayWhenInactive": "Montrer quand inactif",
       "IfEquals": "Seulement si",

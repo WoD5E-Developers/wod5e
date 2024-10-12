@@ -99,6 +99,7 @@
       "ActiveWhen": "Active When",
       "AddNewBonus": "Add New Bonus",
       "AddNewSpecialty": "Add New Specialty",
+      "AllString": "All {string}",
       "Always": "Always",
       "DisplayWhenInactive": "Display When Inactive",
       "IfEquals": "If equals...",
