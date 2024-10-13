@@ -2279,7 +2279,7 @@ body.uk .actor.sheet {
 }
 #logo {
   content: var(--logo-default);
-  filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 -5px 10px var(--system-color-3)) drop-shadow(0 0 15px #ffffff);
+  filter: drop-shadow(0 -5px 10px #cacaca85) drop-shadow(0 -10px 10px var(--system-color-3)) drop-shadow(0 0 10px #ffffff8f);
 }
 #pause figcaption {
   color: #e4e4e4a9;
@@ -2914,7 +2914,7 @@ prose-mirror .editor-menu button {
 }
 .hunter-theme #logo {
   content: var(--logo-hunter);
-  filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 -5px 10px var(--ui-background-hunter-color)) drop-shadow(0 0 15px #ffffff);
+  filter: drop-shadow(0 -5px 10px #cacacac4) drop-shadow(0 -10px 10px var(--ui-background-hunter-color)) drop-shadow(0 0 10px #ffffffb4);
 }
 .hunter-theme .sheet .window-header,
 .hunter-theme .dialog .window-header {
@@ -2963,7 +2963,7 @@ prose-mirror .editor-menu button {
 }
 .vampire-theme #logo {
   content: var(--logo-vampire);
-  filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 -5px 10px var(--ui-background-vampire-color)) drop-shadow(0 0 15px #ffffff);
+  filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 0 10px var(--ui-background-vampire-color)) drop-shadow(0 0 15px #ffffff);
 }
 .vampire-theme .standard-form .form-group > label,
 .vampire-theme .standard-form .form-group:hover > label {
@@ -3204,7 +3204,7 @@ prose-mirror .editor-menu button {
 }
 .werewolf-theme #logo {
   content: var(--logo-werewolf);
-  filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 -5px 10px var(--ui-background-werewolf-color)) drop-shadow(0 0 15px #ffffff);
+  filter: drop-shadow(0 -5px 10px #cacacad3) drop-shadow(0 -10px 10px var(--ui-background-werewolf-color)) drop-shadow(0 0 10px #ffffffe3);
 }
 .werewolf-theme .standard-form .form-group > label,
 .werewolf-theme .standard-form .form-group:hover > label {
