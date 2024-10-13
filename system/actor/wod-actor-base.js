@@ -8,7 +8,7 @@ import { ItemTypes } from '../api/def/itemtypes.js'
 // Roll function
 import { _onRoll } from './scripts/roll.js'
 // Resource functions
-import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange } from './scripts/counters.js'
+import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange, _onRemoveSquareCounter } from './scripts/counters.js'
 // Various button functions
 import { _onRollItem } from './scripts/item-roll.js'
 import { _onEditImage } from './scripts/on-edit-image.js'
@@ -274,6 +274,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
     // Resource squares (Health, Willpower)
     html.find('.resource-counter.editable .resource-counter-step').click(_onSquareCounterChange.bind(this))
+    html.find('.resource-counter.editable .resource-counter-step').on('contextmenu', _onRemoveSquareCounter.bind(this))
     html.find('.resource-plus').click(_onResourceChange.bind(this))
     html.find('.resource-minus').click(_onResourceChange.bind(this))
 

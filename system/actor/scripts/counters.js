@@ -284,7 +284,46 @@ export const _onSquareCounterChange = async function (event) {
   _assignToActorField(fields, newValue, actor)
 }
 
-// Helper functions
+// Function to remove square counter value at clicked index
+export const _onRemoveSquareCounter = async function (event) {
+  event.preventDefault()
+
+  const element = event.currentTarget
+  const dataset = Object.assign({}, element.dataset)
+  const index = parseInt(dataset.index)
+  const actor = getActor(dataset.actorId, this.actor)
+
+  // Ensure user has permission
+  if (!hasSufficientPermission(this.actor)) return
+
+  const parent = $(element.parentNode)
+  const data = parent[0].dataset
+  const states = parseCounterStates(data.states)
+  const steps = parent.find('.resource-counter-step')
+
+  if (index < 0 || index >= steps.length) return
+
+  const oldState = element.dataset.state || ''
+  const allStates = ['', ...Object.keys(states)]
+  const currentState = allStates.indexOf(oldState)
+
+  if (currentState < 0) return
+
+  const newState = resetState(allStates, currentState)
+  steps[index].dataset.state = newState
+
+  // Update counters based on old and new state
+  updateStateCounters(oldState, newState, data, states, index)
+
+  // Save new state to actor
+  const fields = data.name.split('.')
+  const newValue = calculateNewValue(states, data)
+  _assignToActorField(fields, newValue, actor)
+}
+
+/**
+ * HELPER FUNCTIONS
+ */
 
 // Get actor from dataset or fallback to context actor
 function getActor(actorId, fallbackActor) {
@@ -305,6 +344,11 @@ function hasSufficientPermission(actor) {
 // Get the next state from the list of states
 function getNextState(allStates, currentState) {
   return allStates[(currentState + 1) % allStates.length]
+}
+
+// Get reset the state of the value
+function resetState(allStates, currentState) {
+  return allStates[(currentState + 1) % 1]
 }
 
 // Update state counters when the step changes
