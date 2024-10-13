@@ -76,7 +76,9 @@ export class WoDChatMessage extends ChatMessage {
           roll: this.rolls[0],
           system: this.flags.system || 'mortal',
           flavor: this.flags.flavor || '',
-          difficulty: this.flags.difficulty || 0
+          difficulty: this.flags.difficulty || 0,
+          activeModifiers: this.flags.activeModifiers || {},
+          data: this.flags.data || {},
         })
 
         html.find('.message-content').html(messageContent)
