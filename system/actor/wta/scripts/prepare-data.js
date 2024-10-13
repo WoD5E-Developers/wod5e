@@ -1,4 +1,3 @@
-/* global TextEditor */
 import { Gifts } from '../../../api/def/gifts.js'
 import { WereForms } from '../../../api/def/were-forms.js'
 
@@ -41,9 +40,6 @@ export const prepareGifts = async function (actor) {
     if (giftData.hidden) {
       computedGifts[id].visible = false
     }
-
-    // Enrich gift description
-    computedGifts[id].enrichedDescription = await TextEditor.enrichHTML(computedGifts[id].description)
 
     // Assign all matching powers to the discipline
     computedGifts[id].powers = actor.items.filter(item =>
