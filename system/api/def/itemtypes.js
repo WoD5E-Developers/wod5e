@@ -133,7 +133,7 @@ export class ItemTypes extends BaseDefinitionClass {
     img: 'systems/vtm5e/assets/icons/items/discipline.png',
     types: ['power'],
     sheetClass: DisciplineItemSheet,
-    restrictedActorTypes: ['vampire'],
+    restrictedActorTypes: ['vampire', 'ghoul'],
     excludedActorTypes: ['spc']
   }
 
@@ -142,7 +142,7 @@ export class ItemTypes extends BaseDefinitionClass {
     img: 'systems/vtm5e/assets/icons/items/boon.svg',
     types: ['boon'],
     sheetClass: BoonItemSheet,
-    restrictedActorTypes: ['vampire'],
+    restrictedActorTypes: ['vampire', 'ghoul'],
     excludedActorTypes: ['spc']
   }
 
