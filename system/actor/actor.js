@@ -59,7 +59,7 @@ export class WoDActor extends Actor {
 
     // Prepare the effects from condition items onto the actor
     const conditions = actorData.items.filter(item => item.type === 'condition')
-    conditions.forEach(async (condition) => {
+    conditions.forEach((condition) => {
       // Iterate through each effect on the condition
       for (const [, effect] of Object.entries(condition.system.effects)) {
         // Iterate through each key in the effect

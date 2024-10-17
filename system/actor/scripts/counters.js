@@ -148,17 +148,11 @@ export const _onDotCounterChange = async function (event) {
     return
   }
 
+  // Don't let us set the counter less than 0 or greater than the max length set
   if (index < 0 || index > steps.length) {
     return
   }
 
-  // Handle editing the steps on the dot counter
-  steps.removeClass('active')
-  steps.each(function (i) {
-    if (i <= index) {
-      $(this).addClass('active')
-    }
-  })
   // Update the actor field
   _assignToActorField(fields, index + 1, actor)
 }
