@@ -160,6 +160,7 @@
       "_Total": ""
     },
     "ItemsList": {
+      "_Add": "",
       "_AddDice": "",
       "_Background": "",
       "_Bonuses": "",
@@ -169,6 +170,8 @@
       "_CustomRoll": "",
       "_CustomRolls": "",
       "_DataItemId": "",
+      "_Downgrade": "",
+      "_Effects": "",
       "_Feature": "",
       "_FeatureType": "",
       "_Flaw": "",
@@ -179,13 +182,18 @@
       "_Label": "",
       "_Macro": "",
       "_Merit": "",
+      "_Multiply": "",
       "_NewSpecialty": "",
       "_NoDiceSelectedHint": "",
+      "_Override": "",
       "_Points": "",
+      "_Relative": "",
       "_Rollable": "",
       "_SelectFeature": "",
       "_ShowToChat": "",
+      "_Static": "",
       "_Type": "",
+      "_Upgrade": "",
       "_UseSkill": ""
     },
     "Macro": {

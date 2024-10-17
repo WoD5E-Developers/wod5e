@@ -160,6 +160,7 @@
       "_Total": ""
     },
     "ItemsList": {
+      "_Add": "",
       "_AddDice": "",
       "Background": "Historique",
       "Bonuses": "Bonus",
@@ -169,6 +170,8 @@
       "CustomRoll": "Jet Personnalisé",
       "CustomRolls": "Jets Personnalisés",
       "_DataItemId": "",
+      "_Downgrade": "",
+      "_Effects": "",
       "Feature": "Atout",
       "FeatureType": "Type d'Atout",
       "Flaw": "Handicap",
@@ -179,13 +182,18 @@
       "Label": "Objets",
       "Macro": "Macro",
       "Merit": "Avantage",
+      "_Multiply": "",
       "NewSpecialty": "Nouvelle Spécialité",
       "_NoDiceSelectedHint": "",
+      "_Override": "",
       "Points": "Points",
+      "_Relative": "",
       "Rollable": "Jet de dés",
       "_SelectFeature": "",
       "ShowToChat": "Afficher pour discuter",
+      "_Static": "",
       "Type": "Type",
+      "_Upgrade": "",
       "UseSkill": "Utiliser des Compétences"
     },
     "Macro": {

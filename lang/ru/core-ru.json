@@ -160,6 +160,7 @@
       "_Total": ""
     },
     "ItemsList": {
+      "_Add": "",
       "_AddDice": "",
       "Background": "Факты биографии",
       "Bonuses": "Бонусы",
@@ -169,6 +170,8 @@
       "CustomRoll": "Уникальная проверка",
       "CustomRolls": "Уникальные проверки",
       "_DataItemId": "",
+      "_Downgrade": "",
+      "_Effects": "",
       "Feature": "Преимущества",
       "FeatureType": "Тип преимущества",
       "Flaw": "Недостатки",
@@ -179,13 +182,18 @@
       "_Label": "",
       "Macro": "Макрос",
       "Merit": "Достоинства",
+      "_Multiply": "",
       "NewSpecialty": "Новая специализация",
       "_NoDiceSelectedHint": "",
+      "_Override": "",
       "Points": "Точки",
+      "_Relative": "",
       "Rollable": "Требует броска",
       "_SelectFeature": "",
       "ShowToChat": "Вывести в чат",
+      "_Static": "",
       "Type": "Тип",
+      "_Upgrade": "",
       "UseSkill": "Использовать навыки"
     },
     "Macro": {

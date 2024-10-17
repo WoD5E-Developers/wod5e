@@ -160,6 +160,7 @@
       "_Total": ""
     },
     "ItemsList": {
+      "_Add": "",
       "_AddDice": "",
       "Background": "Background",
       "Bonuses": "Bonus",
@@ -169,6 +170,8 @@
       "CustomRoll": "Tiro personalizzato",
       "CustomRolls": "Tiri personalizzati",
       "_DataItemId": "",
+      "_Downgrade": "",
+      "_Effects": "",
       "Feature": "Caratteristica",
       "FeatureType": "Tipo di caratteristica",
       "Flaw": "Difetti",
@@ -179,13 +182,18 @@
       "Label": "Etichetta",
       "Macro": "Macro",
       "Merit": "Vantaggi",
+      "_Multiply": "",
       "NewSpecialty": "Nuova Specialità",
       "_NoDiceSelectedHint": "",
+      "_Override": "",
       "Points": "Punti",
+      "_Relative": "",
       "Rollable": "Tirabile",
       "SelectFeature": "Seleziona Caratteristica",
       "ShowToChat": "Mostra in chat",
+      "_Static": "",
       "Type": "Tipo",
+      "_Upgrade": "",
       "UseSkill": "Usa Abilità"
     },
     "Macro": {

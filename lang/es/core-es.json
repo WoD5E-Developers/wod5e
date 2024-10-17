@@ -160,6 +160,7 @@
       "_Total": ""
     },
     "ItemsList": {
+      "_Add": "",
       "_AddDice": "",
       "Background": "Transfondo",
       "Bonuses": "Bonuses",
@@ -169,6 +170,8 @@
       "CustomRoll": "Tirada Personalizadas",
       "CustomRolls": "Tiradas Personalizadas",
       "_DataItemId": "",
+      "_Downgrade": "",
+      "_Effects": "",
       "Feature": "Rasgo",
       "FeatureType": "Tipo de rasgo",
       "Flaw": "Defecto",
@@ -179,13 +182,18 @@
       "Label": "Objeto",
       "Macro": "Macro",
       "Merit": "Ventaja",
+      "_Multiply": "",
       "NewSpecialty": "Nueva Especialidad",
       "_NoDiceSelectedHint": "",
+      "_Override": "",
       "Points": "Puntos",
+      "_Relative": "",
       "Rollable": "Tirable",
       "_SelectFeature": "",
       "ShowToChat": "Mostrar al chat",
+      "_Static": "",
       "Type": "Tipo",
+      "_Upgrade": "",
       "UseSkill": "Usar Habilidades"
     },
     "Macro": {

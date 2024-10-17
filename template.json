@@ -867,7 +867,8 @@
       "templates": ["base"]
     },
     "condition": {
-      "templates": ["base"]
+      "templates": ["base"],
+      "effects": {}
     },
     "clan": {
       "templates": ["base"],

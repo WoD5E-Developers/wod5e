@@ -2009,6 +2009,22 @@ body.uk .actor.sheet {
 .item.sheet section.tab prose-mirror {
   max-height: fit-content;
 }
+.item.sheet .effects-list .effect {
+  border-top: 1px solid black;
+  padding: 5px;
+}
+.item.sheet .effects-list .effect-keys {
+  display: flex;
+  flex-direction: row;
+}
+.item.sheet .effects-list .effect-keys .label {
+  padding: 5px;
+}
+.item.sheet .effects-list .effect-keys .flexdatalist-multiple {
+  flex-grow: 1;
+  margin: 0;
+  padding: 0;
+}
 
 /* wod5e.css */
 .locked .item-edit,

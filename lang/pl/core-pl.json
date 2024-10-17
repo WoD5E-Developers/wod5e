@@ -160,6 +160,7 @@
       "_Total": ""
     },
     "ItemsList": {
+      "_Add": "",
       "_AddDice": "",
       "Background": "Zaplecze",
       "_Bonuses": "",
@@ -169,6 +170,8 @@
       "CustomRoll": "Własny Rzut",
       "CustomRolls": "Własne Rzuty",
       "_DataItemId": "",
+      "_Downgrade": "",
+      "_Effects": "",
       "_Feature": "",
       "FeatureType": "Rodzaj Cechy",
       "Flaw": "Wada",
@@ -179,13 +182,18 @@
       "_Label": "",
       "_Macro": "",
       "Merit": "Zaleta",
+      "_Multiply": "",
       "_NewSpecialty": "",
       "_NoDiceSelectedHint": "",
+      "_Override": "",
       "Points": "Punkty",
+      "_Relative": "",
       "Rollable": "Użyj Rzutu",
       "_SelectFeature": "",
       "ShowToChat": "Pokaż na czacie",
+      "_Static": "",
       "Type": "Typ",
+      "_Upgrade": "",
       "UseSkill": "Użyj Umiejętności"
     },
     "Macro": {

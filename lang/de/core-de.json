@@ -160,6 +160,7 @@
       "_Total": ""
     },
     "ItemsList": {
+      "_Add": "",
       "_AddDice": "",
       "Background": "Hintergrund",
       "Bonuses": "Boni",
@@ -169,6 +170,8 @@
       "CustomRoll": "Benutzerdefinierter Wurf",
       "CustomRolls": "Benutzerdefinierte Würfe",
       "_DataItemId": "",
+      "_Downgrade": "",
+      "_Effects": "",
       "Feature": "Merkmal",
       "FeatureType": "Merkmals-Typ",
       "Flaw": "Schwächen",
@@ -179,13 +182,18 @@
       "Label": "Gegenstände",
       "Macro": "Macro",
       "Merit": "Vorteile",
+      "_Multiply": "",
       "NewSpecialty": "Neue Spezialisierung",
       "_NoDiceSelectedHint": "",
+      "_Override": "",
       "Points": "Punkte",
+      "_Relative": "",
       "Rollable": "Würfelbar",
       "SelectFeature": "Merkmal auswählen",
       "ShowToChat": "An Chat senden",
+      "_Static": "",
       "Type": "Typ",
+      "_Upgrade": "",
       "UseSkill": "Fähigkeiten einsetzen"
     },
     "Macro": {

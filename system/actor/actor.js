@@ -57,6 +57,34 @@ export class WoDActor extends Actor {
     const actorData = this
     const systemData = actorData.system
 
+    // Prepare the effects from condition items onto the actor
+    const conditions = actorData.items.filter(item => item.type === 'condition')
+    conditions.forEach(async (condition) => {
+      // Iterate through each effect on the condition
+      for (const [, effect] of Object.entries(condition.system.effects)) {
+        // Iterate through each key in the effect
+        effect.keys.forEach(key => {
+          const change = {
+            key,
+            mode: effect.mode,
+            value: effect.value
+          }
+
+          const current = foundry.utils.getProperty(actorData, change.key)
+          let updatedData
+          if (change.mode == CONST.ACTIVE_EFFECT_MODES.ADD) {
+            updatedData = Number(current) + Number(change.value)
+          } else if (change.mode == CONST.ACTIVE_EFFECT_MODES.OVERRIDE) {
+            updatedData = Number(change.value)
+          }
+
+          if (updatedData) {
+            foundry.utils.setProperty(actorData, change.key, updatedData)
+          }
+        })
+      }
+    })
+
     if (systemData.hasSkillAttributeData) {
       // Handle attribute preparation
       const attributesPrep = await prepareAttributes(actorData)
@@ -77,6 +105,10 @@ export class WoDActor extends Actor {
     if (actorData.type === 'spc') {
       systemData.exceptionaldicepools = await prepareExceptionalDicePools(actorData)
     }
+  }
+
+  async prepareEmbeddedDocuments () {
+    super.prepareEmbeddedDocuments()
   }
 
   /**

@@ -160,6 +160,7 @@
       "Total": "Total EXP"
     },
     "ItemsList": {
+      "Add": "Add",
       "AddDice": "Add Dice",
       "Background": "Background",
       "Bonuses": "Bonuses",
@@ -169,6 +170,8 @@
       "CustomRoll": "Custom Roll",
       "CustomRolls": "Custom Rolls",
       "DataItemId": "Data Item ID",
+      "Downgrade": "Downgrade",
+      "Effects": "Effects",
       "Feature": "Feature",
       "FeatureType": "Feature Type",
       "Flaw": "Flaw",
@@ -179,13 +182,18 @@
       "Label": "Item",
       "Macro": "Macro",
       "Merit": "Merit",
+      "Multiply": "Multiply",
       "NewSpecialty": "New Specialty",
       "NoDiceSelectedHint": "No dicepools added. Click \"Add Dice\" to begin constructing a dicepool.",
+      "Override": "Override",
       "Points": "Points",
+      "Relative": "Relative",
       "Rollable": "Rollable",
       "SelectFeature": "Select Feature",
       "ShowToChat": "Show to Chat",
+      "Static": "Static",
       "Type": "Type",
+      "Upgrade": "Upgrade",
       "UseSkill": "Use Skills"
     },
     "Macro": {

@@ -160,6 +160,7 @@
       "_Total": ""
     },
     "ItemsList": {
+      "_Add": "",
       "_AddDice": "",
       "Background": "Antecedente",
       "Bonuses": "Bônus",
@@ -169,6 +170,8 @@
       "CustomRoll": "Rolagem Personalizada",
       "CustomRolls": "Rolagens Personalizadas",
       "_DataItemId": "",
+      "_Downgrade": "",
+      "_Effects": "",
       "Feature": "Vantagem",
       "FeatureType": "Tipo de Vantagem",
       "Flaw": "Defeito",
@@ -179,13 +182,18 @@
       "Label": "Items",
       "_Macro": "",
       "Merit": "Qualidade",
+      "_Multiply": "",
       "NewSpecialty": "New Specialty",
       "_NoDiceSelectedHint": "",
+      "_Override": "",
       "Points": "Pontos",
+      "_Relative": "",
       "Rollable": "Rolável",
       "_SelectFeature": "",
       "ShowToChat": "Mostrar no Chat",
+      "_Static": "",
       "Type": "Tipo",
+      "_Upgrade": "",
       "UseSkill": "Usar Habilidades"
     },
     "Macro": {

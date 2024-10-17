@@ -1,0 +1,43 @@
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="flexrow flex-center">
+        <div class="field-header big-header">
+            Flat Modifiers
+        </div>
+        <a data-action="addEffect" data-type="flatModifier">
+            Add
+        </a>
+    </div>
+    <div class="effects-list">
+        {{#each effects.flatModifier as |effect key|}}
+            <div class="flexcol effect" data-effect-id="{{effect.id}}">
+                <div class="effect-keys">
+                    <b class="label">Keys</b>
+                    <input type="text" class="effectKeys" value="{{splitArray effect.keys}}"/>
+                </div>
+                <div class="flexrow">
+                    <div class="flexcol">
+                        <b class="label">Value</b>
+                        <input name="system.effects.{{effect.id}}.value" type="number" value="{{effect.value}}"/>
+                    </div>
+                    <div class="flexcol">
+                        <b class="label">Flat Modifier Source</b>
+                        <select name="system.effects.{{effect.id}}.flatSource" data-type="String">
+                            {{selectOptions ../flatSourceOptions selected=effect.flatSource localize=true}}
+                        </select>
+                    </div>
+                    <div class="flexcol">
+                        <b class="label">Mode</b>
+                        <select name="system.effects.{{effect.id}}.mode" data-type="String">
+                            {{selectOptions ../modeOptions selected=effect.mode localize=true}}
+                        </select>
+                    </div>
+                </div>
+                <div class="flex-center">
+                    <a data-action="removeEffect" data-effect-id="{{effect.id}}">
+                        <b>Remove Effect</b>
+                    </a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</section>

@@ -26,6 +26,19 @@ export class Skills extends BaseDefinitionClass {
 
     Skills.setSortAlphabetically()
     Skills.initializeLabels()
+    Skills.initializePaths()
+  }
+
+  static initializePaths () {
+    // Cycle through each entry in the definition file to initialize the paths on each
+    // Quickly filter out any non-object, non-null, non-array values
+    const definitionEntries = Object.entries(this).filter(([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value))
+    for (const [key, value] of definitionEntries) {
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        // Set the path
+        value.path = `system.skills.${key}.value`
+      }
+    }
   }
 
   static athletics = {

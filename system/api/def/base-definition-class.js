@@ -12,7 +12,8 @@ export class BaseDefinitionClass {
     type = '',
     custom = false,
     disableSort = false,
-    prependType = false
+    prependType = false,
+    useValuePath = false
   }) {
     // Filter based on given filters provided with the function, if any
     const filteredEntries = Object.entries(this)
@@ -30,8 +31,19 @@ export class BaseDefinitionClass {
 
     // Reduce into a format the system can work with
     return filteredEntries.reduce((accumulator, [key, value]) => {
-      // Conditionally prepend `this.type` to the key if prependType is true
-      const newKey = prependType ? `${this.type}.${key}` : key
+      let newKey
+
+      if (useValuePath && value?.path) {
+        // If useValuePath is true and the definition has a path set, use its path
+        newKey = value.path
+      } else if (prependType) {
+        // If prependType is true and useValuePath is false
+        newKey = `${this.type}.${key}`
+      } else {
+        // If neither condition is true, use the key
+        newKey = key
+      }
+
       accumulator[newKey] = value
 
       return accumulator

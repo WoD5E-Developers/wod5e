@@ -1,7 +1,9 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareMacroContext, prepareBonusesContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
+import { prepareDescriptionContext, prepareEffectsContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
+import { _onAddEffect, _onRemoveEffect } from './scripts/effects.js'
+import { getEffectKeys } from './scripts/get-effect-keys.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -14,7 +16,10 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
 export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
-    actions: {}
+    actions: {
+      addEffect: _onAddEffect,
+      removeEffect: _onRemoveEffect
+    }
   }
 
   static PARTS = {
@@ -27,11 +32,8 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     description: {
       template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
     },
-    macro: {
-      template: 'systems/vtm5e/display/shared/items/parts/macro.hbs'
-    },
-    bonuses: {
-      template: 'systems/vtm5e/display/shared/items/parts/bonuses.hbs'
+    effects: {
+      template: 'systems/vtm5e/display/shared/items/parts/effects.hbs'
     },
     settings: {
       template: 'systems/vtm5e/display/shared/items/parts/item-settings.hbs'
@@ -44,15 +46,10 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       group: 'primary',
       label: 'WOD5E.Tabs.Description'
     },
-    macro: {
-      id: 'macro',
+    effects: {
+      id: 'effects',
       group: 'primary',
-      label: 'WOD5E.ItemsList.Macro'
-    },
-    bonuses: {
-      id: 'bonuses',
-      group: 'primary',
-      label: 'WOD5E.ItemsList.Bonuses'
+      label: 'WOD5E.ItemsList.Effects'
     },
     settings: {
       id: 'settings',
@@ -80,14 +77,47 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       // Stats
       case 'description':
         return prepareDescriptionContext(context, item)
-      case 'macro':
-        return prepareMacroContext(context, item)
-      case 'bonuses':
-        return prepareBonusesContext(context, item)
+      case 'effects':
+        return prepareEffectsContext(context, item)
       case 'settings':
         return prepareItemSettingsContext(context, item)
     }
 
     return context
+  }
+
+  async _onRender () {
+    const html = $(this.element)
+    const item = this.item
+
+    // Input for the list of keys
+    const input = html.find('.effectKeys')
+
+    // List of keys to choose from
+    const data = getEffectKeys()
+
+    input.flexdatalist({
+      selectionRequired: 1,
+      minLength: 1,
+      searchIn: ['displayName'],
+      multiple: true,
+      valueProperty: 'id',
+      searchContain: true,
+      data
+    })
+
+    input.on('change:flexdatalist', function (event) {
+      event.preventDefault()
+
+      // Input for the list of keys
+      const values = $(this).flexdatalist('value')
+
+      const effect = event.target.closest('[data-effect-id]')
+      const effectId = effect.dataset.effectId
+
+      item.update({
+        [`system.effects.${effectId}.keys`]: values
+      })
+    })
   }
 }
