@@ -11,7 +11,8 @@ export const _onAddEffect = async function (event, target) {
   const randomId = foundry.utils.randomID(8)
   const defaultData = {
     keys: [],
-    value: 0,
+    intValue: 0,
+    strValue: '',
     mode: CONST.ACTIVE_EFFECT_MODES.ADD,
     flatSource: 'static',
     type

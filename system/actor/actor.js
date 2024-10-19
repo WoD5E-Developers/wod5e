@@ -67,7 +67,7 @@ export class WoDActor extends Actor {
           const change = {
             key,
             mode: effect.mode,
-            value: effect.value
+            value: effect.intValue
           }
 
           const current = foundry.utils.getProperty(actorData, change.key)

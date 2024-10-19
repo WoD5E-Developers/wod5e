@@ -1718,32 +1718,32 @@ body.uk .actor.sheet {
   padding: 5px;
 }
 .actor.sheet .stats-content .skills-attributes,
-.actor.sheet .stats-content .custom-rolls {
+.actor.sheet .stats-content .side-panel {
   flex: 1 1 auto;
 }
-.actor.sheet .stats-content .custom-rolls {
+.actor.sheet .stats-content .side-panel {
   margin-left: auto;
   margin-right: auto;
   max-width: 300px;
 }
-.actor.sheet .stats-content .custom-rolls .items-list {
+.actor.sheet .stats-content .side-panel .items-list {
   flex: 1 1 auto;
   padding: 5px;
 }
-.actor.sheet .stats-content .custom-rolls .item-image {
+.actor.sheet .stats-content .side-panel .item-image {
   max-width: 30px;
 }
-.actor.sheet .stats-content .custom-rolls .item-image img {
+.actor.sheet .stats-content .side-panel .item-image img {
   border-radius: 0;
 }
-.actor.sheet .stats-content .custom-rolls .item-name {
+.actor.sheet .stats-content .side-panel .item-name {
   flex-grow: 1;
   margin-left: 5px;
   margin-right: 5px;
   overflow-x: hidden;
   text-overflow: ellipsis;
 }
-.actor.sheet .stats-content .custom-rolls .item-controls {
+.actor.sheet .stats-content .side-panel .item-controls {
   text-align-last: right;
   max-width: 30px;
 }
@@ -2402,10 +2402,10 @@ prose-mirror .editor-menu button {
 .sheet .specialty {
   text-shadow: 0 0 5px var(--system-color-9);
 }
-.sheet .stats-content .custom-rolls .item-image img {
+.sheet .stats-content .side-panel .item-image img {
   border: 1px inset var(--system-color-5);
 }
-.sheet .stats-content .custom-rolls .rollable-item img:hover {
+.sheet .stats-content .side-panel .rollable-item img:hover {
   filter: grayscale(80%);
 }
 .sheet .stats-content .stats-container .stats-footer {

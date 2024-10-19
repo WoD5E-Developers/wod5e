@@ -10,6 +10,7 @@ export const prepareStatsContext = async function (context, actor) {
   context.sortedAttributes = actorData.sortedAttributes
   context.sortedSkills = actorData.sortedSkills
   context.customRolls = actorData.customRolls
+  context.conditions = actorData.conditions
 
   return context
 }

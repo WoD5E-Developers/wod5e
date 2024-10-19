@@ -82,15 +82,12 @@ export const prepareEffectsContext = async function (context, item) {
 
   // Part-specific data
   context.modeOptions = {
-    1: 'WOD5E.ItemsList.Multiply',
     2: 'WOD5E.ItemsList.Add',
-    3: 'WOD5E.ItemsList.Downgrade',
-    4: 'WOD5E.ItemsList.Upgrade',
     5: 'WOD5E.ItemsList.Override'
   }
   context.flatSourceOptions = {
-    static: 'WOD5E.ItemsList.Static',
-    relative: 'WOD5E.ItemsList.Relative'
+    static: 'WOD5E.ItemsList.Static'/*,
+    relative: 'WOD5E.ItemsList.Relative'*/
   }
   context.effects = Object.entries(itemData.effects).reduce((acc, [key, effect]) => {
     const effectType = effect?.type || ''
