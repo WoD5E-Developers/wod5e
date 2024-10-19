@@ -47,4 +47,4 @@ jobs:
           # Too many false positives
           VALIDATE_JSON: false
           # Ignore libraries
-          FILTER_REGEX_EXCLUDE: ^lib/
+          FILTER_REGEX_EXCLUDE: ".*/lib/.*"
