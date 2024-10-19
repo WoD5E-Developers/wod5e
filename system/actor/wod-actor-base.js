@@ -242,16 +242,21 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     if (sheetData.system.equipmentItems.talisman.length === 0 && sheetData.system.gamesystem !== 'werewolf') delete sheetData.system.equipmentItems.talisman
   }
 
-  static async onSubmitActorForm (event, form, formData) {
-    // Process submit data
-    const submitData = this._prepareSubmitData(event, form, formData)
+  static async onSubmitActorForm (event) {
+    const target = event.target
+    if (target.tagName === 'INPUT') {
+      let value
+      if (target.type === 'number') {
+        value = parseInt(target.value)
+      } else {
+        value = target.value
+      }
 
-    // Overrides
-    const overrides = foundry.utils.flattenObject(this.actor.overrides)
-    for (const k of Object.keys(overrides)) delete submitData[k]
-
-    // Update the actor data
-    this.actor.update(submitData)
+      // Make the update for the field
+      this.actor.update({
+        [`${target.name}`]: value
+      })
+    }
   }
 
   _configureRenderOptions (options) {
