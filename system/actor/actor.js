@@ -12,6 +12,10 @@ import { prepareGifts, prepareFormData } from './wta/scripts/prepare-data.js'
 import { prepareExceptionalDicePools } from './scripts/prepare-exceptional-dice-pools.js'
 import { getVampireBonuses } from './vtm/scripts/vampire-bonuses.js'
 import { getHunterBonuses } from './htr/scripts/hunter-bonuses.js'
+import { Disciplines } from '../api/def/disciplines.js'
+import { Skills } from '../api/def/skills.js'
+import { Attributes } from '../api/def/attributes.js'
+import { Renown } from '../api/def/renown.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -76,16 +80,41 @@ export class WoDActor extends Actor {
             value: effect.intValue
           }
 
-          const current = foundry.utils.getProperty(actorData, change.key)
-          let updatedData
-          if (change.mode == CONST.ACTIVE_EFFECT_MODES.ADD) {
-            updatedData = Number(current) + Number(change.value)
-          } else if (change.mode == CONST.ACTIVE_EFFECT_MODES.OVERRIDE) {
-            updatedData = Number(change.value)
-          }
-
-          if (updatedData) {
-            foundry.utils.setProperty(actorData, change.key, updatedData)
+          if (change.key === 'attributes') {
+            // Apply to all Attributes
+            const attributes = Attributes.getList({
+              useValuePath: true
+            })
+            for (const [attrKey] of Object.entries(attributes)) {
+              updateActorProperty (actorData, attrKey, change.mode, change.value)
+            }
+          } else if (change.key === 'skills') {
+            // Apply to all skills
+            const skills = Skills.getList({
+              useValuePath: true
+            })
+            for (const [skillKey] of Object.entries(skills)) {
+              updateActorProperty (actorData, skillKey, change.mode, change.value)
+            }
+          } else if (change.key === 'disciplines') {
+            // Apply to all disciplines
+            const disciplines = Disciplines.getList({
+              useValuePath: true
+            })
+            for (const [discKey] of Object.entries(disciplines)) {
+              updateActorProperty (actorData, discKey, change.mode, change.value)
+            }
+          } else if (change.key === 'renown') {
+            // Apply to all renown
+            const renown = Renown.getList({
+              useValuePath: true
+            })
+            for (const [renownKey] of Object.entries(renown)) {
+              updateActorProperty (actorData, renownKey, change.mode, change.value)
+            }
+          } else {
+            // Just apply to the key itself
+            updateActorProperty (actorData, change.key, change.mode, change.value)
           }
         })
       }
@@ -246,4 +275,16 @@ export class WoDActor extends Actor {
       }
     }
   }
+}
+
+async function updateActorProperty (actor, key, mode, value) {
+  const current = foundry.utils.getProperty(actor, key)
+  let updatedData
+  if (mode == CONST.ACTIVE_EFFECT_MODES.ADD) {
+    updatedData = Number(current) + Number(value)
+  } else if (mode == CONST.ACTIVE_EFFECT_MODES.OVERRIDE) {
+    updatedData = Number(value)
+  }
+
+  foundry.utils.setProperty(actor, key, updatedData)
 }
