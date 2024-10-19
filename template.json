@@ -864,7 +864,8 @@
       "templates": ["base", "equipment"]
     },
     "trait": {
-      "templates": ["base"]
+      "templates": ["base"],
+      "dice": 0
     },
     "condition": {
       "templates": ["base"],

@@ -2234,6 +2234,16 @@ body.uk .actor.sheet {
   place-content: center;
   text-wrap: nowrap;
 }
+.spc.sheet .list-resource {
+  display: flex;
+  flex-direction: column;
+}
+.spc.sheet .list-resource .item-name {
+  margin-left: 10px;
+}
+.spc.sheet .list-resource .item-controls {
+  text-align: right;
+}
 .locked .exceptional-pools-list {
   place-content: center;
 }

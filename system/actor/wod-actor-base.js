@@ -187,6 +187,13 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       return roll1.sort - roll2.sort
     })
 
+    // Traits
+    sheetData.system.traits = sheetData.items.filter(item =>
+      item.type === 'trait'
+    ).sort(function (roll1, roll2) {
+      return roll1.sort - roll2.sort
+    })
+
     // Features
     sheetData.system.features = sheetData.items.reduce((acc, item) => {
       if (item.type === 'feature') {
