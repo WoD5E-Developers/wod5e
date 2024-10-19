@@ -1,4 +1,3 @@
-/* global TextEditor */
 import { Disciplines } from '../../../api/def/disciplines.js'
 
 export const prepareDisciplines = async function (actor) {
@@ -40,9 +39,6 @@ export const prepareDisciplines = async function (actor) {
     if (disciplineData.hidden) {
       computedDisciplines[id].visible = false
     }
-
-    // Enrich discipline description
-    computedDisciplines[id].enrichedDescription = await TextEditor.enrichHTML(computedDisciplines[id].description)
 
     // Assign all matching powers to the discipline
     computedDisciplines[id].powers = actor.items.filter(item =>

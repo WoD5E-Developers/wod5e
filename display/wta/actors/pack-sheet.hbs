@@ -1,1 +1,41 @@
-<!-- There's nothing here yet; will appear more with the next Werewolf 5 book -->
+<div class="flexrow pack-features grid-2col">
+    <div class="territory">
+        <div class="flexrow field-header">
+            <label for="system.territory.value" class="resource-label">{{localize "WOD5E.WTA.Territory"}}</label>
+        </div>
+        <div class="resource resource-content">
+            <div class="resource-value" data-value="{{territory.value}}" data-name="system.territory.value">
+                <span class="resource-value-empty"></span>
+                {{#numLoop 5}}
+                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                {{/numLoop}}
+            </div>
+        </div>
+    </div>
+    <div class="community">
+        <div class="flexrow field-header">
+            <label for="system.community.value" class="resource-label">{{localize "WOD5E.WTA.Community"}}</label>
+        </div>
+        <div class="resource resource-content">
+            <div class="resource-value" data-value="{{community.value}}" data-name="system.community.value">
+                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                {{#numLoop 5}}
+                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                {{/numLoop}}
+            </div>
+        </div>
+    </div>
+    <div class="spirit">
+        <div class="flexrow field-header">
+            <label for="system.spirit.value" class="resource-label">{{localize "WOD5E.WTA.Spirit"}}</label>
+        </div>
+        <div class="resource resource-content">
+            <div class="resource-value" data-value="{{spirit.value}}" data-name="system.spirit.value">
+                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                {{#numLoop 5}}
+                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                {{/numLoop}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,11 +1,16 @@
 /* global renderTemplate, Dialog, game */
 
+import { Skills } from '../../../api/def/skills.js'
+
 export const _onAddBonus = async function (event) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.data.actor
   const skill = this.data.skill
+  const skillOptions = Skills.getList({
+    prependType: true
+  })
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
   const system = actor.system.gamesystem
@@ -17,7 +22,8 @@ export const _onAddBonus = async function (event) {
       source: game.i18n.localize('WOD5E.ItemsList.NewSpecialty'),
       value: 1,
       paths: [`skills.${skill}`]
-    }
+    },
+    skillOptions
   }
 
   // Render the template
@@ -38,14 +44,7 @@ export const _onAddBonus = async function (event) {
             const value = html.find('[id=bonusValue]').val()
 
             // Handle the bonus pathing and making it into an array
-            const rawPaths = html.find('[id=bonusPaths]').val()
-            const arrPaths = rawPaths.split(';')
-            const cleanPaths = arrPaths.map(function (item) {
-              return item.trim()
-            })
-            const paths = cleanPaths.filter(function (item) {
-              return item !== ''
-            })
+            const paths = html.find('[id=bonusPaths]').flexdatalist('value')
 
             // displayWhenInactive is ALWAYS true for specialties
             const displayWhenInactive = true
@@ -75,7 +74,35 @@ export const _onAddBonus = async function (event) {
           label: game.i18n.localize('WOD5E.Cancel')
         }
       },
-      default: 'add'
+      default: 'add',
+      render: (html) => {
+        // Input for the list of selectors
+        const input = $(html).find('#bonusPaths')
+        // List of selectors to choose from
+        const skillOptions = Skills.getList({
+          prependType: true
+        })
+
+        const data = Object.entries(skillOptions).map(([id, obj]) => ({
+          id,
+          ...obj
+        }))
+
+        data.unshift({
+          id: 'skills',
+          displayName: 'All Skills'
+        })
+
+        input.flexdatalist({
+          selectionRequired: 1,
+          minLength: 1,
+          searchIn: ['displayName'],
+          multiple: true,
+          valueProperty: 'id',
+          searchContain: true,
+          data
+        })
+      }
     },
     {
       classes: ['wod5e', system, 'dialog']
@@ -137,14 +164,7 @@ export const _onEditBonus = async function (event, target) {
             const value = html.find('[id=bonusValue]').val()
 
             // Handle the bonus pathing and making it into an array
-            const rawPaths = html.find('[id=bonusPaths]').val()
-            const arrPaths = rawPaths.split(';')
-            const cleanPaths = arrPaths.map(function (item) {
-              return item.trim()
-            })
-            const paths = cleanPaths.filter(function (item) {
-              return item !== ''
-            })
+            const paths = html.find('[id=bonusPaths]').flexdatalist('value')
 
             // displayWhenInactive is ALWAYS true for specialties
             const displayWhenInactive = true
@@ -170,7 +190,34 @@ export const _onEditBonus = async function (event, target) {
           label: game.i18n.localize('WOD5E.Cancel')
         }
       },
-      default: 'save'
+      render: (html) => {
+        // Input for the list of selectors
+        const input = $(html).find('#bonusPaths')
+        // List of selectors to choose from
+        const skillOptions = Skills.getList({
+          prependType: true
+        })
+
+        const data = Object.entries(skillOptions).map(([id, obj]) => ({
+          id,
+          ...obj
+        }))
+
+        data.unshift({
+          id: 'skills',
+          displayName: 'All Skills'
+        })
+
+        input.flexdatalist({
+          selectionRequired: 1,
+          minLength: 1,
+          searchIn: ['displayName'],
+          multiple: true,
+          valueProperty: 'id',
+          searchContain: true,
+          data
+        })
+      }
     },
     {
       classes: ['wod5e', system, 'dialog']

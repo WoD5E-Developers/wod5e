@@ -1,3 +1,5 @@
+/* global foundry */
+
 /**
  * Function to help collect any situational modifiers
  *
@@ -21,11 +23,29 @@ export async function getSituationalModifiers ({
   function getModifiers (data, selectors) {
     const modifiers = []
 
+    // Add all bonuses we get from items to start
+    if (!foundry.utils.isEmpty(data?.itemBonuses) && Array.isArray(data?.itemBonuses)) {
+      // Check for matching bonuses, or 'all'
+      const matchingBonuses = data.itemBonuses.filter(bonus =>
+        selectors.some(selector => bonus.paths.includes(selector)) || bonus.paths.includes('all')
+      )
+
+      // If there are any matching bonuses, push it to the modifiers list
+      if (matchingBonuses.length > 0) {
+        modifiers.push(...matchingBonuses)
+      }
+    }
+
     // Run a search for bonuses within the actor's data
     searchBonuses(data, '')
     function searchBonuses (obj, path) {
       // Ensure that we're receiving a valid object
       if (typeof obj !== 'object' || obj === null) {
+        return
+      }
+
+      // Don't search items
+      if (typeof obj === 'object' && obj.documentName === 'Item') {
         return
       }
 

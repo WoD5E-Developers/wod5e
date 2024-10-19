@@ -55,6 +55,10 @@ export const loadHelpers = async function () {
     return bool1 && bool2
   })
 
+  Handlebars.registerHelper('x2', function (int) {
+    return Number(int) * 2
+  })
+
   Handlebars.registerHelper('toLowerCase', function (str) {
     return str.toLowerCase()
   })
@@ -68,7 +72,7 @@ export const loadHelpers = async function () {
       return ''
     }
 
-    return arr.join('; ')
+    return arr.join(',')
   })
 
   // Helper to define attributes lists

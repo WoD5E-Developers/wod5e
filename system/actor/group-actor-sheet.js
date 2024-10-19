@@ -71,7 +71,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
   }
 
   _getHeaderControls () {
-    const controls = super._getHeaderControls()
+    const controls = this.options.window.controls
 
     return controls
   }
@@ -193,14 +193,20 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
 
       baseActorType: actorTypeData.baseActorType,
       currentActorType: actorTypeData.currentActorType,
+      currentTypeLabel: actorTypeData.currentTypeLabel,
       actorTypePath: actorTypeData.typePath,
       actorOptions: actorTypeData.types,
 
       chasse: actorData.chasse,
       lien: actorData.lien,
       portillon: actorData.portillon,
+
       desperation: actorData.desperation,
-      danger: actorData.danger
+      danger: actorData.danger,
+
+      territory: actorData.territory,
+      community: actorData.community,
+      spirit: actorData.spirit
     }
   }
 

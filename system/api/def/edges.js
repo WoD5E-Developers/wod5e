@@ -4,6 +4,7 @@ import { BaseDefinitionClass } from './base-definition-class.js'
 
 export class Edges extends BaseDefinitionClass {
   static modsEnabled = true
+  static type = 'edges'
   static defCategory = 'Edges'
 
   // Run any necessary compilation on ready

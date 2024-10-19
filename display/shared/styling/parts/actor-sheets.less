@@ -26,6 +26,7 @@
     section.tab {
       overflow-y: scroll;
       align-items: flex-start;
+      height: 100%;
     }
   }
 
@@ -340,22 +341,6 @@
     }
   }
 
-  /* Collapsible Descriptions */
-  .collapsible-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-    font-family: Vollkorn, serif;
-    line-height: 1.6em;
-    word-spacing: 0.05em;
-    font-size: 1.1em;
-  }
-
-  .collapsible:hover,
-  .collapsible:focus {
-    cursor: pointer;
-  }
-
   /* Limited View Toggle Button */
   .toggle-limited {
     font-size: 13pt;
@@ -608,11 +593,11 @@
     padding: 5px;
 
     .skills-attributes,
-    .custom-rolls {
+    .side-panel {
       flex: 1 1 auto;
     }
 
-    .custom-rolls {
+    .side-panel {
       margin-left: auto;
       margin-right: auto;
       max-width: 300px;
@@ -649,6 +634,10 @@
     }
 
     .stats-container {
+      .skill-attribute-input {
+        height: 20px;
+      }
+
       .stats-footer {
         text-align: center;
       }
@@ -661,7 +650,7 @@
 }
 
 /* Vampire Font in the sheet banners */
-.vampire-font-headers {
+.vampire-font-headers.en {
   .sheet-banner,
   .field-header,
   .resource-header,

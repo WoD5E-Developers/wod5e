@@ -117,7 +117,7 @@
 .hunter.dialog.window-app .base-dice-group {
   border: 1px solid var(--hunter-color-2);
 }
-.vampire-font-headers .hunter-button {
+.vampire-font-headers.en .hunter-button {
   font-family: "vampireRevised", "sans-serif";
 }
 
@@ -360,7 +360,7 @@
   font-weight: bold;
 }
 /* Only use this font with the .vampire-font-headers class enabled */
-.vampire-font-headers #pause figcaption {
+.vampire-font-headers.en #pause figcaption {
   font-family: "vampireRevised", "sans-serif";
 }
 /* ProseMirror Alterations */
@@ -389,6 +389,20 @@ input[type="number"] {
   max-width: 35px;
   min-width: 35px;
   text-align: center;
+}
+/* Collapsible Descriptions */
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  font-family: Vollkorn, serif;
+  line-height: 1.6em;
+  word-spacing: 0.05em;
+  font-size: 1.1em;
+}
+.collapsible:hover,
+.collapsible:focus {
+  cursor: pointer;
 }
 
 /* Actors Sidebar */
@@ -554,6 +568,10 @@ h3.item-name {
 }
 #controls ol.control-tools > li {
   border-radius: 0px;
+}
+
+.dialog .dialog-buttons .dialog-button {
+  height: fit-content;
 }
 
 .wod5e-config-form .config-category .subcategory {
@@ -936,7 +954,7 @@ h3.item-name {
 .vampire.dialog.window-app .base-dice-group {
   border: 1px solid var(--vampire-color-2);
 }
-.vampire-font-headers .vampire-button {
+.vampire-font-headers.en .vampire-button {
   font-family: "vampireRevised", "sans-serif";
 }
 
@@ -1236,7 +1254,6 @@ body.uk .actor.sheet {
   /* Equipment Tab */
   /* Biography Tab */
   /* Notes Tab */
-  /* Collapsible Descriptions */
   /* Limited View Toggle Button */
   /* Power Descriptions */
   /* Sheet Banner */
@@ -1257,6 +1274,7 @@ body.uk .actor.sheet {
 .actor.sheet .window-content section.tab {
   overflow-y: scroll;
   align-items: flex-start;
+  height: 100%;
 }
 .actor.sheet input,
 .actor.sheet .resource {
@@ -1494,19 +1512,6 @@ body.uk .actor.sheet {
 .actor.sheet .tab[data-tab="notepad"] .note-container prose-mirror {
   height: 400px;
 }
-.actor.sheet .collapsible-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  font-family: Vollkorn, serif;
-  line-height: 1.6em;
-  word-spacing: 0.05em;
-  font-size: 1.1em;
-}
-.actor.sheet .collapsible:hover,
-.actor.sheet .collapsible:focus {
-  cursor: pointer;
-}
 .actor.sheet .toggle-limited {
   font-size: 13pt;
   margin-left: 5px;
@@ -1713,37 +1718,40 @@ body.uk .actor.sheet {
   padding: 5px;
 }
 .actor.sheet .stats-content .skills-attributes,
-.actor.sheet .stats-content .custom-rolls {
+.actor.sheet .stats-content .side-panel {
   flex: 1 1 auto;
 }
-.actor.sheet .stats-content .custom-rolls {
+.actor.sheet .stats-content .side-panel {
   margin-left: auto;
   margin-right: auto;
   max-width: 300px;
 }
-.actor.sheet .stats-content .custom-rolls .items-list {
+.actor.sheet .stats-content .side-panel .items-list {
   flex: 1 1 auto;
   padding: 5px;
 }
-.actor.sheet .stats-content .custom-rolls .item-image {
+.actor.sheet .stats-content .side-panel .item-image {
   max-width: 30px;
 }
-.actor.sheet .stats-content .custom-rolls .item-image img {
+.actor.sheet .stats-content .side-panel .item-image img {
   border-radius: 0;
 }
-.actor.sheet .stats-content .custom-rolls .item-name {
+.actor.sheet .stats-content .side-panel .item-name {
   flex-grow: 1;
   margin-left: 5px;
   margin-right: 5px;
   overflow-x: hidden;
   text-overflow: ellipsis;
 }
-.actor.sheet .stats-content .custom-rolls .item-controls {
+.actor.sheet .stats-content .side-panel .item-controls {
   text-align-last: right;
   max-width: 30px;
 }
 .actor.sheet .stats-content .edit-skill {
   margin-left: -15px;
+}
+.actor.sheet .stats-content .stats-container .skill-attribute-input {
+  height: 20px;
 }
 .actor.sheet .stats-content .stats-container .stats-footer {
   text-align: center;
@@ -1752,11 +1760,11 @@ body.uk .actor.sheet {
   font-size: 16pt;
 }
 /* Vampire Font in the sheet banners */
-.vampire-font-headers .sheet-banner,
-.vampire-font-headers .field-header,
-.vampire-font-headers .resource-header,
-.vampire-font-headers .item-header,
-.vampire-font-headers .specialty {
+.vampire-font-headers.en .sheet-banner,
+.vampire-font-headers.en .field-header,
+.vampire-font-headers.en .resource-header,
+.vampire-font-headers.en .item-header,
+.vampire-font-headers.en .specialty {
   font-family: "vampireRevised", "sans-serif";
 }
 
@@ -1996,9 +2004,26 @@ body.uk .actor.sheet {
 .item.sheet section.tab {
   padding: 10px 10px 0px 10px;
   overflow-y: scroll;
+  height: 100%;
 }
 .item.sheet section.tab prose-mirror {
   max-height: fit-content;
+}
+.item.sheet .effects-list .effect {
+  border-top: 1px solid black;
+  padding: 5px;
+}
+.item.sheet .effects-list .effect-keys {
+  display: flex;
+  flex-direction: row;
+}
+.item.sheet .effects-list .effect-keys .label {
+  padding: 5px;
+}
+.item.sheet .effects-list .effect-keys .flexdatalist-multiple {
+  flex-grow: 1;
+  margin: 0;
+  padding: 0;
 }
 
 /* wod5e.css */
@@ -2209,6 +2234,16 @@ body.uk .actor.sheet {
   place-content: center;
   text-wrap: nowrap;
 }
+.spc.sheet .list-resource {
+  display: flex;
+  flex-direction: column;
+}
+.spc.sheet .list-resource .item-name {
+  margin-left: 10px;
+}
+.spc.sheet .list-resource .item-controls {
+  text-align: right;
+}
 .locked .exceptional-pools-list {
   place-content: center;
 }
@@ -2270,6 +2305,7 @@ body.uk .actor.sheet {
 }
 #logo {
   content: var(--logo-default);
+  filter: drop-shadow(0 -5px 10px #cacaca85) drop-shadow(0 -10px 10px var(--system-color-3)) drop-shadow(0 0 10px #ffffff8f);
 }
 #pause figcaption {
   color: #e4e4e4a9;
@@ -2376,10 +2412,10 @@ prose-mirror .editor-menu button {
 .sheet .specialty {
   text-shadow: 0 0 5px var(--system-color-9);
 }
-.sheet .stats-content .custom-rolls .item-image img {
+.sheet .stats-content .side-panel .item-image img {
   border: 1px inset var(--system-color-5);
 }
-.sheet .stats-content .custom-rolls .rollable-item img:hover {
+.sheet .stats-content .side-panel .rollable-item img:hover {
   filter: grayscale(80%);
 }
 .sheet .stats-content .stats-container .stats-footer {
@@ -2904,6 +2940,7 @@ prose-mirror .editor-menu button {
 }
 .hunter-theme #logo {
   content: var(--logo-hunter);
+  filter: drop-shadow(0 -5px 10px #cacacac4) drop-shadow(0 -10px 10px var(--ui-background-hunter-color)) drop-shadow(0 0 10px #ffffffb4);
 }
 .hunter-theme .sheet .window-header,
 .hunter-theme .dialog .window-header {
@@ -2952,6 +2989,7 @@ prose-mirror .editor-menu button {
 }
 .vampire-theme #logo {
   content: var(--logo-vampire);
+  filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 0 10px var(--ui-background-vampire-color)) drop-shadow(0 0 15px #ffffff);
 }
 .vampire-theme .standard-form .form-group > label,
 .vampire-theme .standard-form .form-group:hover > label {
@@ -3192,6 +3230,7 @@ prose-mirror .editor-menu button {
 }
 .werewolf-theme #logo {
   content: var(--logo-werewolf);
+  filter: drop-shadow(0 -5px 10px #cacacad3) drop-shadow(0 -10px 10px var(--ui-background-werewolf-color)) drop-shadow(0 0 10px #ffffffe3);
 }
 .werewolf-theme .standard-form .form-group > label,
 .werewolf-theme .standard-form .form-group:hover > label {

@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareDicepoolContext, prepareMacroContext, prepareBonusesContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
+import { prepareDescriptionContext, prepareMacroContext, prepareBonusesContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -27,9 +27,6 @@ export class TraitItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     description: {
       template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
     },
-    dicepool: {
-      template: 'systems/vtm5e/display/shared/items/parts/dicepool.hbs'
-    },
     macro: {
       template: 'systems/vtm5e/display/shared/items/parts/macro.hbs'
     },
@@ -46,11 +43,6 @@ export class TraitItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       id: 'description',
       group: 'primary',
       label: 'WOD5E.Tabs.Description'
-    },
-    dicepool: {
-      id: 'dicepool',
-      group: 'primary',
-      label: 'WOD5E.Tabs.Dicepool'
     },
     macro: {
       id: 'macro',
@@ -72,6 +64,10 @@ export class TraitItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   async _prepareContext () {
     // Top-level variables
     const data = await super._prepareContext()
+    const item = this.item
+    const itemData = item.system
+
+    data.dice = itemData.dice
 
     return data
   }
@@ -88,8 +84,6 @@ export class TraitItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       // Stats
       case 'description':
         return prepareDescriptionContext(context, item)
-      case 'dicepool':
-        return prepareDicepoolContext(context, item)
       case 'macro':
         return prepareMacroContext(context, item)
       case 'bonuses':

@@ -49,6 +49,11 @@ export class WoDChatMessage extends ChatMessage {
       const rollTerms = this.rolls[0].terms
 
       rollTerms.forEach(term => {
+        // Check for Mortal dice
+        if (term.constructor.name === 'MortalDie') {
+          this.flags.system = 'mortal'
+        }
+
         // Check for Vampire dice
         if (term.constructor.name === 'VampireDie' || term.constructor.name === 'VampireHungerDie') {
           this.flags.system = 'vampire'
@@ -65,15 +70,34 @@ export class WoDChatMessage extends ChatMessage {
         }
       })
 
-      const messageContent = await generateRollMessage({
-        title: this.flags.title || `${game.i18n.localize('WOD5E.Chat.Rolling')}...`,
-        roll: this.rolls[0],
-        system: this.flags.system || 'mortal',
-        flavor: this.flags.flavor || '',
-        difficulty: this.flags.difficulty || 0
-      })
+      if (this.flags.system) {
+        const messageContent = await generateRollMessage({
+          title: this.flags.title || `${game.i18n.localize('WOD5E.Chat.Rolling')}...`,
+          roll: this.rolls[0],
+          system: this.flags.system || 'mortal',
+          flavor: this.flags.flavor || '',
+          difficulty: this.flags.difficulty || 0,
+          activeModifiers: this.flags.activeModifiers || {},
+          data: this.flags.data || {}
+        })
 
-      html.find('.message-content').html(messageContent)
+        html.find('.message-content').html(messageContent)
+
+        // Add collapsible toggle event listener
+        html.find('.collapsible').click(async event => {
+          event.preventDefault()
+
+          html.find('.collapsible').toggleClass('active')
+
+          const content = html.find('.collapsible-content')
+
+          if (content.css('maxHeight') === '0px') {
+            content.css('maxHeight', content.prop('scrollHeight') + 'px')
+          } else {
+            content.css('maxHeight', '0px')
+          }
+        })
+      }
     }
 
     // Flag expanded state of dice rolls

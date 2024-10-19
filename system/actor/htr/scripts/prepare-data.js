@@ -1,5 +1,3 @@
-/* global TextEditor */
-
 import { Edges } from '../../../api/def/edges.js'
 
 export const prepareEdges = async function (actor) {
@@ -49,9 +47,6 @@ export const prepareEdges = async function (actor) {
 
     // Wipe old edge pools so they don't duplicate either
     computedEdges[id].pools = []
-
-    // Enrich edge description
-    computedEdges[id].enrichedDescription = await TextEditor.enrichHTML(computedEdges[id].description)
 
     // Assign all matching perks to the edge
     computedEdges[id].perks = actor.items.filter(item =>

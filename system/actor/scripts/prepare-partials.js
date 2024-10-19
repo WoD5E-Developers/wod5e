@@ -10,6 +10,7 @@ export const prepareStatsContext = async function (context, actor) {
   context.sortedAttributes = actorData.sortedAttributes
   context.sortedSkills = actorData.sortedSkills
   context.customRolls = actorData.customRolls
+  context.conditions = actorData.conditions
 
   return context
 }
@@ -147,7 +148,7 @@ export const prepareSpcStatsContext = async function (context, actor) {
   context.exceptionalPools = actorData.exceptionaldicepools
 
   context.traits = actorData.traits
-  context.enrichedTraits = await TextEditor.enrichHTML(actorData.traits)
+  context.conditions = actorData.conditions
 
   if (context.currentActorType === 'vampire' || (context.gamesystem === 'vampire' && context.settings.enableDisciplines === true)) {
     context.showDisciplines = true

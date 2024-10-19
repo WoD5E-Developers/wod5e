@@ -12,6 +12,10 @@ import { prepareGifts, prepareFormData } from './wta/scripts/prepare-data.js'
 import { prepareExceptionalDicePools } from './scripts/prepare-exceptional-dice-pools.js'
 import { getVampireBonuses } from './vtm/scripts/vampire-bonuses.js'
 import { getHunterBonuses } from './htr/scripts/hunter-bonuses.js'
+import { Disciplines } from '../api/def/disciplines.js'
+import { Skills } from '../api/def/skills.js'
+import { Attributes } from '../api/def/attributes.js'
+import { Renown } from '../api/def/renown.js'
 
 /**
  * Extend the base ActorSheet document and put all our base functionality here
@@ -57,6 +61,70 @@ export class WoDActor extends Actor {
     const actorData = this
     const systemData = actorData.system
 
+    // Prepare the effects from condition items onto the actor
+    const conditions = actorData.items.filter(item => item.type === 'condition')
+    conditions.forEach((condition) => {
+      // Iterate through each effect on the condition
+      for (const [, effect] of Object.entries(condition.system.effects)) {
+        // Iterate through each key in the effect
+        effect.keys.forEach(key => {
+          // If this is for an SPC sheet, we need to alter the key for stats
+          if (actorData.type === 'spc' && key.includes('skills')) {
+            key = key.replace('skills', 'exceptionaldicepools')
+          }
+
+          // Construct the change in a format similar to ActiveEffects
+          const change = {
+            key,
+            mode: effect.mode,
+            value: effect.intValue
+          }
+
+          if (change.key === 'attributes') {
+            // Apply to all Attributes
+            change.key = Attributes.getList({ useValuePath: true })
+          } else if (change.key === 'skills') {
+            // Apply to all skills
+            change.key = Skills.getList({ useValuePath: true })
+          } else if (change.key === 'disciplines') {
+            // Apply to all disciplines
+            change.key = Disciplines.getList({ useValuePath: true })
+          } else if (change.key === 'renown') {
+            // Apply to all renown
+            change.key = Renown.getList({ useValuePath: true })
+          } else if (change.key === 'physical') {
+            if (actorData.type === 'spc') {
+              change.key = 'system.standarddicepools.physical.value'
+            } else {
+              change.key = Attributes.getList({ type: 'physical', useValuePath: true })
+            }
+          } else if (change.key === 'social') {
+            if (actorData.type === 'spc') {
+              change.key = 'system.standarddicepools.social.value'
+            } else {
+              change.key = Attributes.getList({ type: 'physical', useValuePath: true })
+            }
+          } else if (change.key === 'mental') {
+            if (actorData.type === 'spc') {
+              change.key = 'system.standarddicepools.mental.value'
+            } else {
+              change.key = Attributes.getList({ type: 'physical', useValuePath: true })
+            }
+          }
+
+          // Handle going through every key if we're given an array of options
+          if (typeof change.key === 'object') {
+            for (const [k] of Object.entries(change.key)) {
+              updateActorProperty(actorData, k, change.mode, change.value)
+            }
+          } else {
+            // Otherwise, we just need to update the one key
+            updateActorProperty(actorData, change.key, change.mode, change.value)
+          }
+        })
+      }
+    })
+
     if (systemData.hasSkillAttributeData) {
       // Handle attribute preparation
       const attributesPrep = await prepareAttributes(actorData)
@@ -77,6 +145,10 @@ export class WoDActor extends Actor {
     if (actorData.type === 'spc') {
       systemData.exceptionaldicepools = await prepareExceptionalDicePools(actorData)
     }
+  }
+
+  async prepareEmbeddedDocuments () {
+    super.prepareEmbeddedDocuments()
   }
 
   /**
@@ -208,4 +280,16 @@ export class WoDActor extends Actor {
       }
     }
   }
+}
+
+async function updateActorProperty (actor, key, mode, value) {
+  const current = foundry.utils.getProperty(actor, key)
+  let updatedData
+  if (Number(mode) === CONST.ACTIVE_EFFECT_MODES.ADD) {
+    updatedData = Number(current) + Number(value)
+  } else if (Number(mode) === CONST.ACTIVE_EFFECT_MODES.OVERRIDE) {
+    updatedData = Number(value)
+  }
+
+  foundry.utils.setProperty(actor, key, updatedData)
 }

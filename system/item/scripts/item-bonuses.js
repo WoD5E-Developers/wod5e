@@ -1,5 +1,7 @@
 /* global renderTemplate, Dialog, game */
 
+import { getSelectorsList } from '../../api/get-selectors-list.js'
+
 export const _onAddBonus = async function (event) {
   event.preventDefault()
 
@@ -12,7 +14,7 @@ export const _onAddBonus = async function (event) {
     bonus: {
       source: 'New bonus',
       value: 1,
-      paths: ['skills.athletics'],
+      paths: [],
       displayWhenInactive: false,
       activeWhen: {
         check: 'always'
@@ -40,14 +42,7 @@ export const _onAddBonus = async function (event) {
             const value = html.find('[id=bonusValue]').val()
             const displayWhenInactive = html.find('[id=displayBonusWhenInactive]').is(':checked')
 
-            const rawPaths = html.find('[id=bonusPaths]').val()
-            const arrPaths = rawPaths.split(';')
-            const cleanPaths = arrPaths.map(function (item) {
-              return item.trim()
-            })
-            const paths = cleanPaths.filter(function (item) {
-              return item !== ''
-            })
+            const paths = html.find('[id=bonusPaths]').flexdatalist('value')
 
             activeWhen.check = html.find('[id=activeWhenCheck]').val()
             activeWhen.path = html.find('[id=activeWhenPath]').val()
@@ -85,6 +80,20 @@ export const _onAddBonus = async function (event) {
         const activeWhenCheck = html.find('#activeWhenCheck')
         const activeWhenPath = html.find('#activeWhenPath').parent()
         const activeWhenValue = html.find('#activeWhenValue').parent()
+
+        // Input for the list of selectors
+        const input = html.find('.bonus-selectors')
+        // Handle formatting the input for selectors
+        const data = getSelectorsList(item)
+        input.flexdatalist({
+          selectionRequired: 1,
+          minLength: 1,
+          searchIn: ['displayName'],
+          multiple: true,
+          valueProperty: 'id',
+          searchContain: true,
+          data
+        })
 
         activeWhenCheck.on('change', function () {
           if (activeWhenCheck.val() === 'isEqual') {
@@ -152,14 +161,7 @@ export const _onEditBonus = async function (event, target) {
             const value = html.find('[id=bonusValue]').val()
             const displayWhenInactive = html.find('[id=displayBonusWhenInactive]').is(':checked')
 
-            const rawPaths = html.find('[id=bonusPaths]').val()
-            const arrPaths = rawPaths.split(';')
-            const cleanPaths = arrPaths.map(function (item) {
-              return item.trim()
-            })
-            const paths = cleanPaths.filter(function (item) {
-              return item !== ''
-            })
+            const paths = html.find('[id=bonusPaths]').flexdatalist('value')
 
             activeWhen.check = html.find('[id=activeWhenCheck]').val()
             activeWhen.path = html.find('[id=activeWhenPath]').val()
@@ -195,6 +197,20 @@ export const _onEditBonus = async function (event, target) {
         const activeWhenCheck = html.find('#activeWhenCheck')
         const activeWhenPath = html.find('#activeWhenPath').parent()
         const activeWhenValue = html.find('#activeWhenValue').parent()
+
+        // Input for the list of selectors
+        const input = html.find('.bonus-selectors')
+        // Handle formatting the input for selectors
+        const data = getSelectorsList(item)
+        input.flexdatalist({
+          selectionRequired: 1,
+          minLength: 1,
+          searchIn: ['displayName'],
+          multiple: true,
+          valueProperty: 'id',
+          searchContain: true,
+          data
+        })
 
         activeWhenCheck.on('change', function () {
           if (activeWhenCheck.val() === 'isEqual') {

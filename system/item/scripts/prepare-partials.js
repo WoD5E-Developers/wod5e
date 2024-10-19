@@ -73,3 +73,37 @@ export const prepareItemSettingsContext = async function (context) {
 
   return context
 }
+
+export const prepareEffectsContext = async function (context, item) {
+  const itemData = item.system
+
+  // Tab data
+  context.tab = context.tabs.effects
+
+  // Part-specific data
+  context.modeOptions = {
+    2: 'WOD5E.ItemsList.Add',
+    5: 'WOD5E.ItemsList.Override'
+  }
+  context.flatSourceOptions = {
+    static: 'WOD5E.ItemsList.Static'
+  }
+  context.effects = Object.entries(itemData.effects).reduce((acc, [key, effect]) => {
+    const effectType = effect?.type || ''
+
+    // Push to container if an effect type is set and exists
+    if (acc[effectType]) {
+      acc[effectType].push({
+        id: key,
+        ...effect
+      })
+    }
+
+    return acc
+  }, {
+    // Containers
+    flatModifier: []
+  })
+
+  return context
+}

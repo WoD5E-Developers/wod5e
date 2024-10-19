@@ -1,3 +1,5 @@
+/* global TextEditor */
+
 import { prepareGiftPowers } from './prepare-data.js'
 
 export const prepareGiftsContext = async function (context, actor) {
@@ -13,6 +15,7 @@ export const prepareGiftsContext = async function (context, actor) {
   // Get gift data if any gift is currently selected
   if (actorData?.selectedGift) {
     context.selectedGift = actorData.gifts[actorData.selectedGift]
+    context.enrichedSelectedGiftDescription = await TextEditor.enrichHTML(context.selectedGift.description)
   }
 
   // Get power data if any power is currently selected

@@ -54,17 +54,9 @@ class WOD5eDice {
     selectors = [],
     macro = '',
     disableMessageOutput = false,
-    advancedCheckDice = 0
+    advancedCheckDice = 0,
+    system = actor?.system?.gamesystem || 'mortal'
   }) {
-    // Define the actor's gamesystem, defaulting to 'mortal' if it's not in the systems list
-    const system = actor.system.gamesystem
-
-    // Handle getting any situational modifiers
-    const situationalModifiers = await getSituationalModifiers({
-      actor,
-      selectors
-    })
-
     // Inner roll function
     const _roll = async (inputBasicDice, inputAdvancedDice, $form) => {
       // Get the difficulty and store it
@@ -219,6 +211,9 @@ class WOD5eDice {
 
     // Check if the user wants to bypass the roll dialog
     if (!quickRoll) {
+      // Handle getting any situational modifiers
+      const situationalModifiers = actor ? await getSituationalModifiers({ actor, selectors }) : {}
+
       // Roll dialog template
       const dialogTemplate = `systems/vtm5e/display/ui/${system}-roll-dialog.hbs`
       // Data that the dialog template needs

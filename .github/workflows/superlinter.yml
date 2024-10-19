@@ -40,9 +40,11 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_JSCPD: false 
+          VALIDATE_JSCPD: false
           VALIDATE_GITLEAKS: false
           # System uses Less as a preprocessor and it doesn't play well with CSS linters
           VALIDATE_CSS: false
           # Too many false positives
           VALIDATE_JSON: false
+          # Ignore libraries
+          FILTER_REGEX_EXCLUDE: ".*/lib/.*"

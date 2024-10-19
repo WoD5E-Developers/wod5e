@@ -8,7 +8,7 @@ import { ItemTypes } from '../api/def/itemtypes.js'
 // Roll function
 import { _onRoll } from './scripts/roll.js'
 // Resource functions
-import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange } from './scripts/counters.js'
+import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange, _onRemoveSquareCounter } from './scripts/counters.js'
 // Various button functions
 import { _onRollItem } from './scripts/item-roll.js'
 import { _onEditImage } from './scripts/on-edit-image.js'
@@ -82,7 +82,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
   }
 
   _getHeaderControls () {
-    const controls = super._getHeaderControls()
+    const controls = this.options.window.controls
 
     return controls
   }
@@ -136,6 +136,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
       settings: actorData.settings,
 
+      hasSkillAttributeData: actorData.hasSkillAttributeData,
       gamesystem: actorData.gamesystem,
       isOwner: actor.isOwner,
       locked: actorData.locked,
@@ -149,22 +150,46 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
       baseActorType: actorTypeData.baseActorType,
       currentActorType: actorTypeData.currentActorType,
+      currentTypeLabel: actorTypeData.currentTypeLabel,
       actorTypePath: actorTypeData.typePath,
       actorOptions: actorTypeData.types
     }
   }
 
   async prepareItems (sheetData) {
-    // Enrich item descriptions
+    // Make an array to store item-based bonuses
+    sheetData.system.itemBonuses = []
+
+    // Do data manipulation we need to do for ALL items here
     sheetData.items.forEach(async (item) => {
+      // Enrich item descriptions
       if (item.system.description) {
         item.system.enrichedDescription = await TextEditor.enrichHTML(item.system.description)
+      }
+
+      // Calculate item bonuses and shuffle them into system.itemBonuses
+      if (!foundry.utils.isEmpty(item.system.bonuses)) {
+        sheetData.system.itemBonuses = sheetData.system.itemBonuses.concat(item.system.bonuses)
       }
     })
 
     // Custom rolls
     sheetData.system.customRolls = sheetData.items.filter(item =>
       item.type === 'customRoll'
+    ).sort(function (roll1, roll2) {
+      return roll1.sort - roll2.sort
+    })
+
+    // Conditions
+    sheetData.system.conditions = sheetData.items.filter(item =>
+      item.type === 'condition'
+    ).sort(function (roll1, roll2) {
+      return roll1.sort - roll2.sort
+    })
+
+    // Traits
+    sheetData.system.traits = sheetData.items.filter(item =>
+      item.type === 'trait'
     ).sort(function (roll1, roll2) {
       return roll1.sort - roll2.sort
     })
@@ -224,16 +249,23 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     if (sheetData.system.equipmentItems.talisman.length === 0 && sheetData.system.gamesystem !== 'werewolf') delete sheetData.system.equipmentItems.talisman
   }
 
-  static async onSubmitActorForm (event, form, formData) {
-    // Process submit data
-    const submitData = this._prepareSubmitData(event, form, formData)
+  static async onSubmitActorForm (event) {
+    const target = event.target
+    if (target.tagName === 'INPUT') {
+      let value
 
-    // Overrides
-    const overrides = foundry.utils.flattenObject(this.actor.overrides)
-    for (const k of Object.keys(overrides)) delete submitData[k]
+      // Handle numbers and strings properly
+      if (target.type === 'number') {
+        value = parseInt(target.value)
+      } else {
+        value = target.value
+      }
 
-    // Update the actor data
-    this.actor.update(submitData)
+      // Make the update for the field
+      this.actor.update({
+        [`${target.name}`]: value
+      })
+    }
   }
 
   _configureRenderOptions (options) {
@@ -263,6 +295,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
     // Resource squares (Health, Willpower)
     html.find('.resource-counter.editable .resource-counter-step').click(_onSquareCounterChange.bind(this))
+    html.find('.resource-counter.editable .resource-counter-step').on('contextmenu', _onRemoveSquareCounter.bind(this))
     html.find('.resource-plus').click(_onResourceChange.bind(this))
     html.find('.resource-minus').click(_onResourceChange.bind(this))
 

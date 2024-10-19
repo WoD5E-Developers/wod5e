@@ -56,7 +56,7 @@ export const migrateWorld = async () => {
         const migrationIDs11 = await MigrateRolldataToDicepools()
         updates.push(...migrationIDs11)
 
-        // Migrate old roll data on items into the new Dicepool format
+        // Migrate old actor data to new items
         const migrationIDs12 = await MigrateOldDetailsToNewItems()
         updates.push(...migrationIDs12)
 

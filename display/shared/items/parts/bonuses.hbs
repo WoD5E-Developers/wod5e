@@ -52,8 +52,8 @@
                     {{/ifeq}}
                 </div>
                 <div class="flexcol">
-                    <b>{{localize "WOD5E.Bonus.PathsSeparatedBySemicolons"}}</b>
-                    <input name="paths" type="text" value="{{splitArray bonus.paths}}" placeholder="skills.athletics; attributes.strength" disabled="true"/>
+                    <b>{{localize "WOD5E.Bonus.Selectors"}}</b>
+                    <input class="bonus-selectors" name="paths" type="text" value="{{splitArray bonus.paths}}" placeholder="{{localize 'WOD5E.None'}}" disabled="true"/>
                 </div>
             </div>
         {{/each}}

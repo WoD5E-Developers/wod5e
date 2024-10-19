@@ -28,6 +28,7 @@ export const getActorTypes = async function (actor) {
     return {
       baseActorType: currentActorType,
       currentActorType,
+      currentTypeLabel: playerTypes[currentActorType],
       typePath: 'type',
       types: playerTypes
     }
@@ -35,6 +36,7 @@ export const getActorTypes = async function (actor) {
     return {
       baseActorType: 'spc',
       currentActorType: actor.system.spcType,
+      currentTypeLabel: spcTypes[actor.system.spcType],
       typePath: 'system.spcType',
       types: spcTypes
     }
@@ -42,6 +44,7 @@ export const getActorTypes = async function (actor) {
     return {
       baseActorType: 'group',
       currentActorType: actor.system.groupType,
+      currentTypeLabel: groupTypes[actor.system.groupType],
       typePath: 'system.groupType',
       types: groupTypes
     }
@@ -50,6 +53,7 @@ export const getActorTypes = async function (actor) {
     return {
       baseActorType: currentActorType,
       currentActorType,
+      currentTypeLabel: currentActorType,
       typePath: 'type',
       types: {
         [currentActorType]: currentActorType

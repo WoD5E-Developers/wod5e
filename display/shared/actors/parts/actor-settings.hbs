@@ -13,6 +13,16 @@
             </select>
         </div>
     </div>
+
+    {{#if hasSkillAttributeData}}
+        <div class="form-group">
+            <label>Use Input Fields For Stats</label>
+            <div class="form-fields">
+                <input type="checkbox" name="system.settings.skillAttributeInputs" {{#if settings.skillAttributeInputs}}checked{{/if}}>
+            </div>
+        </div>
+    {{/if}}
+
     {{#ifeq baseActorType 'spc'}}
         <div class="form-group">
             <label>Show General Difficulty</label>

@@ -13,10 +13,7 @@ export const willpowerReroll = async (roll) => {
   const dice = roll.find('.rerollable')
   const diceRolls = []
   const message = game.messages.get(roll.attr('data-message-id'))
-  const actor = game.actors.get(message.speaker.actor)
-
-  // Define the actor's gamesystem, defaulting to 'mortal' if it's not in the systems list
-  const system = actor.system.gamesystem
+  const system = message.flags.system || 'mortal'
 
   // Go through the message's dice and add them to the diceRolls array
   Object.keys(dice).forEach(function (i) {
@@ -81,13 +78,11 @@ export const willpowerReroll = async (roll) => {
   }
 
   // Handles rerolling the number of dice selected
-  // TODO: Make this function duplicate/replace the previous roll with the new results
-  // For now this works well enough as "roll three new dice"
   async function rerollDie (roll) {
     // Variables
     const diceSelected = $('.willpower-reroll .selected')
     const rageDiceSelected = $('.willpower-reroll .selected .rage-dice')
-    const selectors = ['willpower', 'willpower-reroll']
+    const selectors = ['willpower-reroll']
 
     // Get the actor associated with the message
     // Theoretically I should error-check this, but there shouldn't be any
@@ -102,10 +97,11 @@ export const willpowerReroll = async (roll) => {
         advancedDice: rageDiceSelected.length,
         title: game.i18n.localize('WOD5E.Chat.WillpowerReroll'),
         actor,
-        willpowerDamage: 1,
+        willpowerDamage: actor ? 1 : 0, // If no actor is set, we don't need to damage any willpower
         quickRoll: true,
         selectors,
         disableMessageOutput: true,
+        system: message.flags.gamesystem,
         callback: async (err, reroll) => {
           if (err) console.log(err)
 

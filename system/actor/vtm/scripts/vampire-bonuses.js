@@ -17,8 +17,8 @@ export const getVampireBonuses = async function (actorData) {
     {
       source: game.i18n.localize('WOD5E.VTM.BloodSurge'),
       value: bloodPotency.surge,
-      paths: ['all'],
-      unless: ['willpower', 'humanity', 'extended'],
+      paths: ['attributes'],
+      unless: ['willpower', 'humanity', 'extended', 'frenzy'],
       displayWhenInactive: true,
       activeWhen: {
         check: 'isPath',

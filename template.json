@@ -746,6 +746,17 @@
           "value": 0
         }
       },
+      "pack_traits": {
+        "territory": {
+          "value": 0
+        },
+        "community": {
+          "value": 0
+        },
+        "spirit": {
+          "value": 0
+        }
+      },
       "settings": {
         "settings": {
           "headerbg": "",
@@ -754,7 +765,8 @@
             "appearance": true,
             "touchstones": false,
             "tenets": false
-          }
+          },
+          "skillAttributeInputs": false
         }
       }
     },
@@ -779,7 +791,7 @@
       "gamesystem": "vampire"
     },
     "group": {
-      "templates": ["cell_traits", "coterie_traits", "settings"],
+      "templates": ["cell_traits", "coterie_traits", "pack_traits", "settings"],
       "locked": false,
       "groupType": "coterie",
       "biography": "",
@@ -852,10 +864,12 @@
       "templates": ["base", "equipment"]
     },
     "trait": {
-      "templates": ["base"]
+      "templates": ["base"],
+      "dice": 0
     },
     "condition": {
-      "templates": ["base"]
+      "templates": ["base"],
+      "effects": {}
     },
     "clan": {
       "templates": ["base"],
