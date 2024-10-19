@@ -82,38 +82,43 @@ export class WoDActor extends Actor {
 
           if (change.key === 'attributes') {
             // Apply to all Attributes
-            const attributes = Attributes.getList({
-              useValuePath: true
-            })
-            for (const [attrKey] of Object.entries(attributes)) {
-              updateActorProperty (actorData, attrKey, change.mode, change.value)
-            }
+            change.key = Attributes.getList({ useValuePath: true })
           } else if (change.key === 'skills') {
             // Apply to all skills
-            const skills = Skills.getList({
-              useValuePath: true
-            })
-            for (const [skillKey] of Object.entries(skills)) {
-              updateActorProperty (actorData, skillKey, change.mode, change.value)
-            }
+            change.key = Skills.getList({ useValuePath: true })
           } else if (change.key === 'disciplines') {
             // Apply to all disciplines
-            const disciplines = Disciplines.getList({
-              useValuePath: true
-            })
-            for (const [discKey] of Object.entries(disciplines)) {
-              updateActorProperty (actorData, discKey, change.mode, change.value)
-            }
+            change.key = Disciplines.getList({ useValuePath: true })
           } else if (change.key === 'renown') {
             // Apply to all renown
-            const renown = Renown.getList({
-              useValuePath: true
-            })
-            for (const [renownKey] of Object.entries(renown)) {
-              updateActorProperty (actorData, renownKey, change.mode, change.value)
+            change.key = Renown.getList({ useValuePath: true })
+          } else if (change.key === 'physical') {
+            if (actorData.type === 'spc') {
+              change.key = 'system.standarddicepools.physical.value'
+            } else {
+              change.key = Attributes.getList({ type: 'physical', useValuePath: true })
+            }
+          } else if (change.key === 'social') {
+            if (actorData.type === 'spc') {
+              change.key = 'system.standarddicepools.social.value'
+            } else {
+              change.key = Attributes.getList({ type: 'physical', useValuePath: true })
+            }
+          } else if (change.key === 'mental') {
+            if (actorData.type === 'spc') {
+              change.key = 'system.standarddicepools.mental.value'
+            } else {
+              change.key = Attributes.getList({ type: 'physical', useValuePath: true })
+            }
+          }
+
+          // Handle going through every key if we're given an array of options
+          if (typeof change.key === 'object') {
+            for (const [k] of Object.entries(change.key)) {
+              updateActorProperty (actorData, k, change.mode, change.value)
             }
           } else {
-            // Just apply to the key itself
+            // Otherwise, we just need to update the one key
             updateActorProperty (actorData, change.key, change.mode, change.value)
           }
         })

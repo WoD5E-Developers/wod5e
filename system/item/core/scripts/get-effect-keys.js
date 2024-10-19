@@ -25,6 +25,30 @@ export const getEffectKeys = () => {
     })
   }
 
+  // Physical Attributes
+  keysList.push({
+    id: 'physical',
+    displayName: game.i18n.format('WOD5E.Bonus.AllString', {
+      string: game.i18n.localize('WOD5E.SPC.Physical')
+    })
+  })
+
+  // Mental Attributes
+  keysList.push({
+    id: 'mental',
+    displayName: game.i18n.format('WOD5E.Bonus.AllString', {
+      string: game.i18n.localize('WOD5E.SPC.Mental')
+    })
+  })
+
+  // Social Attributes
+  keysList.push({
+    id: 'social',
+    displayName: game.i18n.format('WOD5E.Bonus.AllString', {
+      string: game.i18n.localize('WOD5E.SPC.Social')
+    })
+  })
+
   // Skills
   const skills = WOD5E.Skills.getList({
     useValuePath: true
