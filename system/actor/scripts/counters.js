@@ -43,7 +43,6 @@ export const _onResourceChange = async function (event) {
   actor.update(actorData)
 }
 
-
 // Function to help with counter states
 function parseCounterStates (states) {
   return states.split(',').reduce((obj, state) => {
@@ -320,12 +319,12 @@ export const _onRemoveSquareCounter = async function (event) {
  */
 
 // Get actor from dataset or fallback to context actor
-function getActor(actorId, fallbackActor) {
+function getActor (actorId, fallbackActor) {
   return actorId ? game.actors.get(actorId) : fallbackActor
 }
 
 // Check if the actor has sufficient permissions (level 3 or higher)
-function hasSufficientPermission(actor) {
+function hasSufficientPermission (actor) {
   if (actor.permission < 3) {
     ui.notifications.warn(game.i18n.format('WOD5E.Notifications.NoSufficientPermission', {
       string: actor.name
@@ -336,17 +335,17 @@ function hasSufficientPermission(actor) {
 }
 
 // Get the next state from the list of states
-function getNextState(allStates, currentState) {
+function getNextState (allStates, currentState) {
   return allStates[(currentState + 1) % allStates.length]
 }
 
 // Get reset the state of the value
-function resetState(allStates, currentState) {
+function resetState (allStates, currentState) {
   return allStates[(currentState + 1) % 1]
 }
 
 // Update state counters when the step changes
-function updateStateCounters(oldState, newState, data, states, index) {
+function updateStateCounters (oldState, newState, data, states, index) {
   const humanity = data.name === 'system.humanity'
   const despair = data.name === 'system.despair'
   const desperation = data.name === 'system.desperation'
@@ -354,7 +353,7 @@ function updateStateCounters(oldState, newState, data, states, index) {
 
   const fulls = parseInt(data[states['-']]) || 0
   const halfs = parseInt(data[states['/']]) || 0
-  const crossed = parseInt(data[states['x']]) || 0
+  const crossed = parseInt(data[states.x]) || 0
 
   if ((oldState !== '' && oldState !== '-') || humanity || desperation || danger) {
     data[states[oldState]] = (parseInt(data[states[oldState]]) || 0) - 1
@@ -372,7 +371,7 @@ function updateStateCounters(oldState, newState, data, states, index) {
 }
 
 // Calculate new values for all states
-function calculateNewValue(states, data) {
+function calculateNewValue (states, data) {
   return Object.keys(states).reduce((newValue, stateKey) => {
     newValue[states[stateKey]] = parseInt(data[states[stateKey]]) || 0
     return newValue

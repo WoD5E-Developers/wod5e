@@ -212,10 +212,7 @@ class WOD5eDice {
     // Check if the user wants to bypass the roll dialog
     if (!quickRoll) {
       // Handle getting any situational modifiers
-      const situationalModifiers = actor ? await getSituationalModifiers({
-        actor,
-        selectors
-      }) : {}
+      const situationalModifiers = actor ? await getSituationalModifiers({ actor, selectors }) : {}
 
       // Roll dialog template
       const dialogTemplate = `systems/vtm5e/display/ui/${system}-roll-dialog.hbs`

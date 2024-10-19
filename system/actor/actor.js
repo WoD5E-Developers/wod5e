@@ -115,11 +115,11 @@ export class WoDActor extends Actor {
           // Handle going through every key if we're given an array of options
           if (typeof change.key === 'object') {
             for (const [k] of Object.entries(change.key)) {
-              updateActorProperty (actorData, k, change.mode, change.value)
+              updateActorProperty(actorData, k, change.mode, change.value)
             }
           } else {
             // Otherwise, we just need to update the one key
-            updateActorProperty (actorData, change.key, change.mode, change.value)
+            updateActorProperty(actorData, change.key, change.mode, change.value)
           }
         })
       }
@@ -285,9 +285,9 @@ export class WoDActor extends Actor {
 async function updateActorProperty (actor, key, mode, value) {
   const current = foundry.utils.getProperty(actor, key)
   let updatedData
-  if (mode == CONST.ACTIVE_EFFECT_MODES.ADD) {
+  if (Number(mode) === CONST.ACTIVE_EFFECT_MODES.ADD) {
     updatedData = Number(current) + Number(value)
-  } else if (mode == CONST.ACTIVE_EFFECT_MODES.OVERRIDE) {
+  } else if (Number(mode) === CONST.ACTIVE_EFFECT_MODES.OVERRIDE) {
     updatedData = Number(value)
   }
 
