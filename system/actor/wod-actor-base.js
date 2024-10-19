@@ -246,6 +246,8 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     const target = event.target
     if (target.tagName === 'INPUT') {
       let value
+
+      // Handle numbers and strings properly
       if (target.type === 'number') {
         value = parseInt(target.value)
       } else {
