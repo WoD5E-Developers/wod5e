@@ -42,6 +42,14 @@
                                 </div>
                                 <div class="item-name{{#if item.system.enrichedDescription}} collapsible{{/if}}" {{#if item.system.enrichedDescription}}data-action="toggleCollapse"{{/if}}>{{item.name}}</div>
                                 <div class="item-controls">
+                                    <!-- Icon to roll the item if a dicepool is available -->
+                                    {{#if item.system.dicepool}}
+                                        {{#if (isNotEmpty item.system.dicepool)}}
+                                            <a class="item-image rollable-item" data-action="rollItem" data-item-uuid="{{item.uuid}}">
+                                                <i class="fa-solid fa-dice-d10"></i>
+                                            </a>
+                                        {{/if}}
+                                    {{/if}}
                                     <!-- Icon to edit the item -->
                                     <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{item._id}}" title="{{localize 'WOD5E.Edit'}}">
                                         <i class="fas fa-edit"></i>
