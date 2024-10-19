@@ -257,6 +257,8 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       // Handle numbers and strings properly
       if (target.type === 'number') {
         value = parseInt(target.value)
+      } else if (target.type === 'checkbox') {
+        value = target.checked
       } else {
         value = target.value
       }
@@ -264,6 +266,11 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       // Make the update for the field
       this.actor.update({
         [`${target.name}`]: value
+      })
+    } else if (target.tagName === 'SELECT') {
+      // Make the update for the field
+      this.actor.update({
+        [`${target.name}`]: target.value
       })
     }
   }
