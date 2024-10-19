@@ -82,6 +82,21 @@ export class WoDChatMessage extends ChatMessage {
         })
 
         html.find('.message-content').html(messageContent)
+
+        // Add collapsible toggle event listener
+        html.find('.collapsible').click(async event => {
+          event.preventDefault()
+
+          html.find('.collapsible').toggleClass('active')
+
+          const content = html.find('.collapsible-content')
+
+          if (content.css('maxHeight') === '0px') {
+            content.css('maxHeight', content.prop('scrollHeight') + 'px')
+          } else {
+            content.css('maxHeight', '0px')
+          }
+        })
       }
     }
 

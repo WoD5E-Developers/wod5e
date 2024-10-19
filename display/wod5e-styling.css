@@ -390,6 +390,20 @@ input[type="number"] {
   min-width: 35px;
   text-align: center;
 }
+/* Collapsible Descriptions */
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  font-family: Vollkorn, serif;
+  line-height: 1.6em;
+  word-spacing: 0.05em;
+  font-size: 1.1em;
+}
+.collapsible:hover,
+.collapsible:focus {
+  cursor: pointer;
+}
 
 /* Actors Sidebar */
 .actors-sidebar .group-item {
@@ -1240,7 +1254,6 @@ body.uk .actor.sheet {
   /* Equipment Tab */
   /* Biography Tab */
   /* Notes Tab */
-  /* Collapsible Descriptions */
   /* Limited View Toggle Button */
   /* Power Descriptions */
   /* Sheet Banner */
@@ -1498,19 +1511,6 @@ body.uk .actor.sheet {
 }
 .actor.sheet .tab[data-tab="notepad"] .note-container prose-mirror {
   height: 400px;
-}
-.actor.sheet .collapsible-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  font-family: Vollkorn, serif;
-  line-height: 1.6em;
-  word-spacing: 0.05em;
-  font-size: 1.1em;
-}
-.actor.sheet .collapsible:hover,
-.actor.sheet .collapsible:focus {
-  cursor: pointer;
 }
 .actor.sheet .toggle-limited {
   font-size: 13pt;
