@@ -64,6 +64,12 @@ export class WoDActor extends Actor {
       for (const [, effect] of Object.entries(condition.system.effects)) {
         // Iterate through each key in the effect
         effect.keys.forEach(key => {
+          // If this is for an SPC sheet, we need to alter the key for stats
+          if (actorData.type === 'spc' && key.includes('skills')) {
+            key = key.replace('skills', 'exceptionaldicepools')
+          }
+
+          // Construct the change in a format similar to ActiveEffects
           const change = {
             key,
             mode: effect.mode,
