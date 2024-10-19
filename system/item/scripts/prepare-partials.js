@@ -86,8 +86,7 @@ export const prepareEffectsContext = async function (context, item) {
     5: 'WOD5E.ItemsList.Override'
   }
   context.flatSourceOptions = {
-    static: 'WOD5E.ItemsList.Static' /*,
-    relative: 'WOD5E.ItemsList.Relative'*/
+    static: 'WOD5E.ItemsList.Static'
   }
   context.effects = Object.entries(itemData.effects).reduce((acc, [key, effect]) => {
     const effectType = effect?.type || ''
