@@ -1,6 +1,6 @@
 /* global foundry, game, TextEditor */
 
-import { _onAddBonus, _onEditBonus, _onDeleteBonus } from './scripts/specialty-bonuses.js'
+import { _onAddModifier, _onEditModifier, _onDeleteModifier } from './scripts/specialty-bonuses.js'
 import { generateLocalizedLabel } from '../../api/generate-localization.js'
 import { Skills } from '../../api/def/skills.js'
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
@@ -38,9 +38,9 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
       height: 400
     },
     actions: {
-      addBonus: _onAddBonus,
-      editBonus: _onEditBonus,
-      deleteBonus: _onDeleteBonus
+      addModifier: _onAddModifier,
+      editModifier: _onEditModifier,
+      deleteModifier: _onDeleteModifier
     }
   }
 
@@ -57,8 +57,8 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     macro: {
       template: 'systems/vtm5e/display/shared/applications/skill-application/parts/macro.hbs'
     },
-    bonuses: {
-      template: 'systems/vtm5e/display/shared/applications/skill-application/parts/bonuses.hbs'
+    modifiers: {
+      template: 'systems/vtm5e/display/shared/applications/skill-application/parts/modifiers.hbs'
     }
   }
 
@@ -79,8 +79,8 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
       icon: '',
       label: 'WOD5E.ItemsList.Macro'
     },
-    bonuses: {
-      id: 'bonuses',
+    modifiers: {
+      id: 'modifiers',
       group: 'primary',
       icon: '',
       label: 'WOD5E.SkillsList.Specialties'
@@ -135,10 +135,10 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
 
         break
 
-      // Bonuses
-      case 'bonuses':
+      // Modifiers
+      case 'modifiers':
         // Tab data
-        context.tab = context.tabs.bonuses
+        context.tab = context.tabs.modifiers
 
         // Part-specific data
         context.bonuses = context.skillData.bonuses
@@ -161,7 +161,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     const html = $(this.element)
 
     // Input for the list of selectors
-    const input = html.find('.bonus-selectors')
+    const input = html.find('.modifier-selectors')
     // List of selectors to choose from
     const skillOptions = Skills.getList({
       prependType: true

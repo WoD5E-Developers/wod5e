@@ -94,25 +94,6 @@
       "_Touchstones": "",
       "TouchstonesAndConvictions": "Цінності та Переконання"
     },
-    "Bonus": {
-      "_Active": "",
-      "_ActiveWhen": "",
-      "_AddNewBonus": "",
-      "_AddNewSpecialty": "",
-      "_AllString": "",
-      "_Always": "",
-      "_DisplayWhenInactive": "",
-      "_IfEquals": "",
-      "_IfPathIs": "",
-      "_Never": "",
-      "_NewBonus": "",
-      "_NewSpecialty": "",
-      "_Path": "",
-      "_PathToCheck": "",
-      "_Selectors": "",
-      "_Unless": "",
-      "_ValueToCheck": ""
-    },
     "Chat": {
       "_HasReceivedWillpowerDamage": "",
       "Rolling": "Перевірити",
@@ -163,7 +144,6 @@
       "_Add": "",
       "_AddDice": "",
       "Background": "Передісторія",
-      "_Bonuses": "",
       "Boon": "Милість",
       "Boons": "Милості",
       "_Conditions": "",
@@ -183,6 +163,7 @@
       "_Label": "",
       "_Macro": "",
       "Merit": "Перевага",
+      "_Modifiers": "",
       "_Multiply": "",
       "_NewSpecialty": "",
       "_NoDiceSelectedHint": "",
@@ -200,6 +181,25 @@
     "Macro": {
       "_MacroID": "",
       "_MacroNote": ""
+    },
+    "Modifier": {
+      "_Active": "",
+      "_ActiveWhen": "",
+      "_AddNewModifier": "",
+      "_AddNewSpecialty": "",
+      "_AllString": "",
+      "_Always": "",
+      "_DisplayWhenInactive": "",
+      "_IfEquals": "",
+      "_IfPathIs": "",
+      "_Never": "",
+      "_NewModifier": "",
+      "_NewSpecialty": "",
+      "_Path": "",
+      "_PathToCheck": "",
+      "_Selectors": "",
+      "_Unless": "",
+      "_ValueToCheck": ""
     },
     "Notifications": {
       "_CannotModifyResourceString": "",

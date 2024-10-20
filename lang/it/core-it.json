@@ -94,25 +94,6 @@
       "Touchstones": "Punti di riferimento",
       "TouchstonesAndConvictions": "Punti di riferimento e convinzioni"
     },
-    "Bonus": {
-      "Active": "Attivo",
-      "ActiveWhen": "Attivo quando",
-      "AddNewBonus": "Aggiungi nuovo bonus",
-      "AddNewSpecialty": "Aggiungi nuova specialità",
-      "_AllString": "",
-      "Always": "Sempre",
-      "DisplayWhenInactive": "Mostra quando inattivo",
-      "IfEquals": "Se uguale",
-      "IfPathIs": "Percorso è",
-      "Never": "Mai",
-      "NewBonus": "Nuovo bonus",
-      "NewSpecialty": "Nuova specialità",
-      "Path": "Percorso",
-      "PathToCheck": "Percorso da controllare",
-      "_Selectors": "",
-      "Unless": "A meno che",
-      "ValueToCheck": "Valore è"
-    },
     "Chat": {
       "HasReceivedWillpowerDamage": "{actor} Ha ricevuto {willpowerDamage} danni alla forza di volontà.",
       "Rolling": "Tirando",
@@ -163,7 +144,6 @@
       "_Add": "",
       "AddDice": "Aggiungi dadi",
       "Background": "Background",
-      "Bonuses": "Bonus",
       "Boon": "Favore",
       "Boons": "Favori",
       "_Conditions": "",
@@ -183,6 +163,7 @@
       "Label": "Etichetta",
       "Macro": "Macro",
       "Merit": "Vantaggi",
+      "_Modifiers": "",
       "_Multiply": "",
       "NewSpecialty": "Nuova Specialità",
       "NoDiceSelectedHint": "Non hai inserito una riserva di dadi. Clicca  \"Aggiungi dadi\" per cominciare a crearla.",
@@ -200,6 +181,25 @@
     "Macro": {
       "MacroID": "ID macro",
       "MacroNote": "Se è stata aggiunta una macro, verrà eseguita al click sull'oggetto o dopo aver effettuato un tiro."
+    },
+    "Modifier": {
+      "Active": "Attivo",
+      "ActiveWhen": "Attivo quando",
+      "_AddNewModifier": "",
+      "AddNewSpecialty": "Aggiungi nuova specialità",
+      "_AllString": "",
+      "Always": "Sempre",
+      "DisplayWhenInactive": "Mostra quando inattivo",
+      "IfEquals": "Se uguale",
+      "IfPathIs": "Percorso è",
+      "Never": "Mai",
+      "_NewModifier": "",
+      "NewSpecialty": "Nuova specialità",
+      "Path": "Percorso",
+      "PathToCheck": "Percorso da controllare",
+      "_Selectors": "",
+      "Unless": "A meno che",
+      "ValueToCheck": "Valore è"
     },
     "Notifications": {
       "CannotModifyResourceString": "Questa risorsa non può essere modificata mentre \"{string}\" è chiuso.",

@@ -10,8 +10,8 @@ import { prepareDisciplines } from './vtm/scripts/prepare-data.js'
 import { prepareEdges } from './htr/scripts/prepare-data.js'
 import { prepareGifts, prepareFormData } from './wta/scripts/prepare-data.js'
 import { prepareExceptionalDicePools } from './scripts/prepare-exceptional-dice-pools.js'
-import { getVampireBonuses } from './vtm/scripts/vampire-bonuses.js'
-import { getHunterBonuses } from './htr/scripts/hunter-bonuses.js'
+import { getVampireModifiers } from './vtm/scripts/vampire-bonuses.js'
+import { getHunterModifiers } from './htr/scripts/hunter-bonuses.js'
 import { Disciplines } from '../api/def/disciplines.js'
 import { Skills } from '../api/def/skills.js'
 import { Attributes } from '../api/def/attributes.js'
@@ -233,11 +233,11 @@ export class WoDActor extends Actor {
 
     // Get bonuses relevant to particular splats
     if (actorData.type === 'vampire') {
-      systemData.bonuses = await getVampireBonuses(systemData)
+      systemData.bonuses = await getVampireModifiers(systemData)
     }
 
     if (actorData.type === 'hunter') {
-      systemData.bonuses = await getHunterBonuses(systemData)
+      systemData.bonuses = await getHunterModifiers(systemData)
     }
   }
 

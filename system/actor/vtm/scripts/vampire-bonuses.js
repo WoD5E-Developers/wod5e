@@ -2,7 +2,7 @@
 
 import { getBloodPotencyValues } from './blood-potency.js'
 
-export const getVampireBonuses = async function (actorData) {
+export const getVampireModifiers = async function (actorData) {
   const bloodPotency = await getBloodPotencyValues(actorData.blood.potency)
 
   const bonuses = [

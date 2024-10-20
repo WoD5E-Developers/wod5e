@@ -2,7 +2,7 @@
 
 import { getSelectorsList } from '../../api/get-selectors-list.js'
 
-export const _onAddBonus = async function (event) {
+export const _onAddModifier = async function (event) {
   event.preventDefault()
 
   // Top-level variables
@@ -12,7 +12,7 @@ export const _onAddBonus = async function (event) {
   const bonusData = {
     item,
     bonus: {
-      source: 'New bonus',
+      source: game.i18n.localize('WOD5E.Modifier.NewModifier'),
       value: 1,
       paths: [],
       displayWhenInactive: false,
@@ -23,7 +23,7 @@ export const _onAddBonus = async function (event) {
   }
 
   // Render the template
-  const bonusTemplate = 'systems/vtm5e/display/shared/items/parts/bonus-display.hbs'
+  const bonusTemplate = 'systems/vtm5e/display/shared/items/parts/modifier-display.hbs'
   const bonusContent = await renderTemplate(bonusTemplate, bonusData)
 
   new Dialog(
@@ -36,13 +36,13 @@ export const _onAddBonus = async function (event) {
           label: game.i18n.localize('WOD5E.Add'),
           callback: async html => {
             const activeWhen = {}
-            let newBonus = {}
+            let newModifier = {}
 
-            const source = html.find('[id=bonusSource]').val()
-            const value = html.find('[id=bonusValue]').val()
-            const displayWhenInactive = html.find('[id=displayBonusWhenInactive]').is(':checked')
+            const source = html.find('[id=modifierSource]').val()
+            const value = html.find('[id=modifierValue]').val()
+            const displayWhenInactive = html.find('[id=displayModifierWhenInactive]').is(':checked')
 
-            const paths = html.find('[id=bonusPaths]').flexdatalist('value')
+            const paths = html.find('[id=modifier]').flexdatalist('value')
 
             activeWhen.check = html.find('[id=activeWhenCheck]').val()
             activeWhen.path = html.find('[id=activeWhenPath]').val()
@@ -50,7 +50,7 @@ export const _onAddBonus = async function (event) {
 
             const unless = html.find('[id=unless]').val()
 
-            newBonus = {
+            newModifier = {
               source,
               value,
               paths,
@@ -59,14 +59,14 @@ export const _onAddBonus = async function (event) {
               activeWhen
             }
 
-            // Define the existing list of bonuses
-            const itemBonuses = item.system.bonuses || []
+            // Define the existing list of modifiers
+            const itemModifiers = item.system.bonuses || []
 
             // Add the new bonus to the list
-            itemBonuses.push(newBonus)
+            itemModifiers.push(newModifier)
 
             // Update the item
-            await item.update({ 'system.bonuses': itemBonuses })
+            await item.update({ 'system.bonuses': itemModifiers })
           }
         },
         cancel: {
@@ -82,7 +82,7 @@ export const _onAddBonus = async function (event) {
         const activeWhenValue = html.find('#activeWhenValue').parent()
 
         // Input for the list of selectors
-        const input = html.find('.bonus-selectors')
+        const input = html.find('.modifier-selectors')
         // Handle formatting the input for selectors
         const data = getSelectorsList(item)
         input.flexdatalist({
@@ -112,24 +112,24 @@ export const _onAddBonus = async function (event) {
   ).render(true)
 }
 
-export const _onDeleteBonus = async function (event, target) {
+export const _onDeleteModifier = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const item = this.item
   const key = target.getAttribute('data-bonus')
 
-  // Define the existing list of bonuses
-  const itemBonuses = item.system.bonuses || []
+  // Define the existing list of modifiers
+  const itemModifiers = item.system.bonuses || []
 
   // Remove the bonus from the list
-  itemBonuses.splice(key, 1)
+  itemModifiers.splice(key, 1)
 
   // Update the item
-  await item.update({ 'system.bonuses': itemBonuses })
+  await item.update({ 'system.bonuses': itemModifiers })
 }
 
-export const _onEditBonus = async function (event, target) {
+export const _onEditModifier = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
@@ -143,7 +143,7 @@ export const _onEditBonus = async function (event, target) {
   }
 
   // Render the template
-  const bonusTemplate = 'systems/vtm5e/display/shared/items/parts/bonus-display.hbs'
+  const bonusTemplate = 'systems/vtm5e/display/shared/items/parts/modifier-display.hbs'
   const bonusContent = await renderTemplate(bonusTemplate, bonusData)
 
   new Dialog(
@@ -157,11 +157,11 @@ export const _onEditBonus = async function (event, target) {
           callback: async html => {
             const activeWhen = {}
 
-            const source = html.find('[id=bonusSource]').val()
-            const value = html.find('[id=bonusValue]').val()
-            const displayWhenInactive = html.find('[id=displayBonusWhenInactive]').is(':checked')
+            const source = html.find('[id=modifierSource]').val()
+            const value = html.find('[id=modifierValue]').val()
+            const displayWhenInactive = html.find('[id=displayModifierWhenInactive]').is(':checked')
 
-            const paths = html.find('[id=bonusPaths]').flexdatalist('value')
+            const paths = html.find('[id=modifier]').flexdatalist('value')
 
             activeWhen.check = html.find('[id=activeWhenCheck]').val()
             activeWhen.path = html.find('[id=activeWhenPath]').val()
@@ -169,11 +169,11 @@ export const _onEditBonus = async function (event, target) {
 
             const unless = html.find('[id=unlessValue]').val()
 
-            // Define the existing list of bonuses
-            const itemBonuses = item.system.bonuses
+            // Define the existing list of modifiers
+            const itemModifiers = item.system.bonuses
 
             // Update the existing bonus with the new data
-            itemBonuses[key] = {
+            itemModifiers[key] = {
               source,
               value,
               paths,
@@ -183,7 +183,7 @@ export const _onEditBonus = async function (event, target) {
             }
 
             // Update the item
-            await item.update({ 'system.bonuses': itemBonuses })
+            await item.update({ 'system.bonuses': itemModifiers })
           }
         },
         cancel: {
@@ -199,7 +199,7 @@ export const _onEditBonus = async function (event, target) {
         const activeWhenValue = html.find('#activeWhenValue').parent()
 
         // Input for the list of selectors
-        const input = html.find('.bonus-selectors')
+        const input = html.find('.modifier-selectors')
         // Handle formatting the input for selectors
         const data = getSelectorsList(item)
         input.flexdatalist({

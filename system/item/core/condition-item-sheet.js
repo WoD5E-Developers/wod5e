@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareEffectsContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
+import { prepareDescriptionContext, prepareModifiersContext, prepareEffectsContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
 import { _onAddEffect, _onRemoveEffect } from './scripts/effects.js'
 import { getEffectKeys } from './scripts/get-effect-keys.js'
 // Base item sheet to extend from
@@ -32,6 +32,9 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     description: {
       template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
     },
+    modifiers: {
+      template: 'systems/vtm5e/display/shared/items/parts/modifiers.hbs'
+    },
     effects: {
       template: 'systems/vtm5e/display/shared/items/parts/effects.hbs'
     },
@@ -45,6 +48,11 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       id: 'description',
       group: 'primary',
       label: 'WOD5E.Tabs.Description'
+    },
+    modifiers: {
+      id: 'modifiers',
+      group: 'primary',
+      label: 'WOD5E.ItemsList.Modifiers'
     },
     effects: {
       id: 'effects',
@@ -77,6 +85,8 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       // Stats
       case 'description':
         return prepareDescriptionContext(context, item)
+      case 'modifiers':
+        return prepareModifiersContext(context, item)
       case 'effects':
         return prepareEffectsContext(context, item)
       case 'settings':

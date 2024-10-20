@@ -4,7 +4,7 @@
 import { getDicepoolList } from '../api/dicepool-list.js'
 import { getSelectorsList } from '../api/get-selectors-list.js'
 // Various button functions
-import { _onAddBonus, _onDeleteBonus, _onEditBonus } from './scripts/item-bonuses.js'
+import { _onAddModifier, _onDeleteModifier, _onEditModifier } from './scripts/item-modifiers.js'
 import { _onAddDice, _onRemoveDice } from './scripts/dicepools.js'
 import { _onEditImage } from './scripts/on-edit-image.js'
 import { _onFormatDataId } from './scripts/on-format-data-id.js'
@@ -37,9 +37,9 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
     actions: {
       addDice: _onAddDice,
       removeDice: _onRemoveDice,
-      addBonus: _onAddBonus,
-      deleteBonus: _onDeleteBonus,
-      editBonus: _onEditBonus,
+      addModifier: _onAddModifier,
+      deleteModifier: _onDeleteModifier,
+      editModifier: _onEditModifier,
       editImage: _onEditImage,
       formatDataId: _onFormatDataId
     }
@@ -109,7 +109,7 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
     $(this.window.title).text(this.title)
 
     // Input for the list of selectors
-    const input = html.find('.bonus-selectors')
+    const input = html.find('.modifier-selectors')
     // Style the selectors properly
     const data = getSelectorsList(this.item)
     input.flexdatalist({

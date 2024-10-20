@@ -157,8 +157,8 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
   }
 
   async prepareItems (sheetData) {
-    // Make an array to store item-based bonuses
-    sheetData.system.itemBonuses = []
+    // Make an array to store item-based modifiers
+    sheetData.system.itemModifiers = []
 
     // Do data manipulation we need to do for ALL items here
     sheetData.items.forEach(async (item) => {
@@ -167,9 +167,9 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
         item.system.enrichedDescription = await TextEditor.enrichHTML(item.system.description)
       }
 
-      // Calculate item bonuses and shuffle them into system.itemBonuses
+      // Calculate item modifiers and shuffle them into system.itemModifiers
       if (!foundry.utils.isEmpty(item.system.bonuses)) {
-        sheetData.system.itemBonuses = sheetData.system.itemBonuses.concat(item.system.bonuses)
+        sheetData.system.itemModifiers = sheetData.system.itemModifiers.concat(item.system.bonuses)
       }
     })
 

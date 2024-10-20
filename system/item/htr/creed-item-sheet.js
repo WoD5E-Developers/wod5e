@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareBonusesContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
+import { prepareDescriptionContext, prepareModifiersContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
 import { prepareCreedDetailsContext } from './scripts/prepare-partials.js'
 
 // Base item sheet to extend from
@@ -32,8 +32,8 @@ export class CreedItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     creedDetails: {
       template: 'systems/vtm5e/display/htr/items/parts/creed-details.hbs'
     },
-    bonuses: {
-      template: 'systems/vtm5e/display/shared/items/parts/bonuses.hbs'
+    modifiers: {
+      template: 'systems/vtm5e/display/shared/items/parts/modifiers.hbs'
     },
     settings: {
       template: 'systems/vtm5e/display/shared/items/parts/item-settings.hbs'
@@ -51,10 +51,10 @@ export class CreedItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       group: 'primary',
       label: 'WOD5E.HTR.CreedDetails'
     },
-    bonuses: {
-      id: 'bonuses',
+    modifiers: {
+      id: 'modifiers',
       group: 'primary',
-      label: 'WOD5E.ItemsList.Bonuses'
+      label: 'WOD5E.ItemsList.Modifiers'
     },
     settings: {
       id: 'settings',
@@ -84,8 +84,8 @@ export class CreedItemSheet extends HandlebarsApplicationMixin(WoDItem) {
         return prepareDescriptionContext(context, item)
       case 'creedDetails':
         return prepareCreedDetailsContext(context, item)
-      case 'bonuses':
-        return prepareBonusesContext(context, item)
+      case 'modifiers':
+        return prepareModifiersContext(context, item)
       case 'settings':
         return prepareItemSettingsContext(context, item)
     }

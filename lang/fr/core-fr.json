@@ -94,25 +94,6 @@
       "_Touchstones": "",
       "TouchstonesAndConvictions": "Attaches et Convictions"
     },
-    "Bonus": {
-      "Active": "Actif",
-      "ActiveWhen": "Activé quand",
-      "AddNewBonus": "Ajouter nouveau bonus",
-      "AddNewSpecialty": "Ajouter nouvelle spécialité",
-      "_AllString": "",
-      "Always": "Toujours",
-      "DisplayWhenInactive": "Montrer quand inactif",
-      "IfEquals": "Seulement si",
-      "_IfPathIs": "",
-      "Never": "Jamais",
-      "NewBonus": "Nouveau bonus",
-      "NewSpecialty": "Nouvelle spécialité",
-      "_Path": "",
-      "_PathToCheck": "",
-      "_Selectors": "",
-      "Unless": "Minimum",
-      "ValueToCheck": "Valeur vérifiée"
-    },
     "Chat": {
       "HasReceivedWillpowerDamage": "{actor} a reçu {willpowerDamage} dégâts de volonté.",
       "Rolling": "Jet",
@@ -163,7 +144,6 @@
       "_Add": "",
       "_AddDice": "",
       "Background": "Historique",
-      "Bonuses": "Bonus",
       "Boon": "Dette",
       "Boons": "Dettes",
       "_Conditions": "",
@@ -183,6 +163,7 @@
       "Label": "Objets",
       "Macro": "Macro",
       "Merit": "Avantage",
+      "_Modifiers": "",
       "_Multiply": "",
       "NewSpecialty": "Nouvelle Spécialité",
       "_NoDiceSelectedHint": "",
@@ -200,6 +181,25 @@
     "Macro": {
       "_MacroID": "",
       "_MacroNote": ""
+    },
+    "Modifier": {
+      "Active": "Actif",
+      "ActiveWhen": "Activé quand",
+      "_AddNewModifier": "",
+      "AddNewSpecialty": "Ajouter nouvelle spécialité",
+      "_AllString": "",
+      "Always": "Toujours",
+      "DisplayWhenInactive": "Montrer quand inactif",
+      "IfEquals": "Seulement si",
+      "_IfPathIs": "",
+      "Never": "Jamais",
+      "_NewModifier": "",
+      "NewSpecialty": "Nouvelle spécialité",
+      "_Path": "",
+      "_PathToCheck": "",
+      "_Selectors": "",
+      "Unless": "Minimum",
+      "ValueToCheck": "Valeur vérifiée"
     },
     "Notifications": {
       "_CannotModifyResourceString": "",

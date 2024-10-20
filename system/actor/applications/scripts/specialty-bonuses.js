@@ -2,7 +2,7 @@
 
 import { Skills } from '../../../api/def/skills.js'
 
-export const _onAddBonus = async function (event) {
+export const _onAddModifier = async function (event) {
   event.preventDefault()
 
   // Top-level variables
@@ -40,18 +40,18 @@ export const _onAddBonus = async function (event) {
           label: game.i18n.localize('WOD5E.Add'),
           callback: async html => {
             // Get the source (name) and the value (modifier) from the dialogue
-            const source = html.find('[id=bonusSource]').val()
-            const value = html.find('[id=bonusValue]').val()
+            const source = html.find('[id=modifierSource]').val()
+            const value = html.find('[id=modifierValue]').val()
 
             // Handle the bonus pathing and making it into an array
-            const paths = html.find('[id=bonusPaths]').flexdatalist('value')
+            const paths = html.find('[id=modifier]').flexdatalist('value')
 
             // displayWhenInactive is ALWAYS true for specialties
             const displayWhenInactive = true
 
             // Put the new bonus into an object
-            let newBonus = {}
-            newBonus = {
+            let newModifier = {}
+            newModifier = {
               source,
               value,
               paths,
@@ -59,13 +59,13 @@ export const _onAddBonus = async function (event) {
             }
 
             // Define the existing list of bonuses
-            const skillBonuses = actor.system.skills[skill].bonuses || []
+            const skillModifiers = actor.system.skills[skill].bonuses || []
 
             // Add the new bonus to the list
-            skillBonuses.push(newBonus)
+            skillModifiers.push(newModifier)
 
             // Update the actor and re-render the editor window
-            await actor.update({ [`system.skills.${skill}.bonuses`]: skillBonuses })
+            await actor.update({ [`system.skills.${skill}.bonuses`]: skillModifiers })
             this.render(true)
           }
         },
@@ -77,7 +77,7 @@ export const _onAddBonus = async function (event) {
       default: 'add',
       render: (html) => {
         // Input for the list of selectors
-        const input = $(html).find('#bonusPaths')
+        const input = $(html).find('#modifier')
         // List of selectors to choose from
         const skillOptions = Skills.getList({
           prependType: true
@@ -110,7 +110,7 @@ export const _onAddBonus = async function (event) {
   ).render(true)
 }
 
-export const _onDeleteBonus = async function (event, target) {
+export const _onDeleteModifier = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
@@ -119,17 +119,17 @@ export const _onDeleteBonus = async function (event, target) {
   const key = target.getAttribute('data-bonus')
 
   // Define the existing list of bonuses
-  const skillBonuses = actor.system.skills[skill].bonuses || []
+  const skillModifiers = actor.system.skills[skill].bonuses || []
 
   // Remove the bonus from the list
-  skillBonuses.splice(key, 1)
+  skillModifiers.splice(key, 1)
 
   // Update the actor and re-render the editor window
-  await actor.update({ [`system.skills.${skill}.bonuses`]: skillBonuses })
+  await actor.update({ [`system.skills.${skill}.bonuses`]: skillModifiers })
   await this.render(true)
 }
 
-export const _onEditBonus = async function (event, target) {
+export const _onEditModifier = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
@@ -160,20 +160,20 @@ export const _onEditBonus = async function (event, target) {
           label: game.i18n.localize('WOD5E.Save'),
           callback: async html => {
             // Get the source (name) and the value (modifier) from the dialogue
-            const source = html.find('[id=bonusSource]').val()
-            const value = html.find('[id=bonusValue]').val()
+            const source = html.find('[id=modifierSource]').val()
+            const value = html.find('[id=modifierValue]').val()
 
             // Handle the bonus pathing and making it into an array
-            const paths = html.find('[id=bonusPaths]').flexdatalist('value')
+            const paths = html.find('[id=modifier]').flexdatalist('value')
 
             // displayWhenInactive is ALWAYS true for specialties
             const displayWhenInactive = true
 
             // Define the existing list of bonuses
-            const skillBonuses = actor.system.skills[skill].bonuses || []
+            const skillModifiers = actor.system.skills[skill].bonuses || []
 
             // Update the existing bonus with the new data
-            skillBonuses[key] = {
+            skillModifiers[key] = {
               source,
               value,
               paths,
@@ -181,7 +181,7 @@ export const _onEditBonus = async function (event, target) {
             }
 
             // Update the actor and re-render the editor window
-            await actor.update({ [`system.skills.${skill}.bonuses`]: skillBonuses })
+            await actor.update({ [`system.skills.${skill}.bonuses`]: skillModifiers })
             await this.render(true)
           }
         },
@@ -192,7 +192,7 @@ export const _onEditBonus = async function (event, target) {
       },
       render: (html) => {
         // Input for the list of selectors
-        const input = $(html).find('#bonusPaths')
+        const input = $(html).find('#modifier')
         // List of selectors to choose from
         const skillOptions = Skills.getList({
           prependType: true

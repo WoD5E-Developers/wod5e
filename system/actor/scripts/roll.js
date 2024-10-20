@@ -1,7 +1,7 @@
 /* global WOD5E */
 
 import { WOD5eDice } from '../../scripts/system-rolls.js'
-import { getActiveBonuses } from '../../scripts/rolls/situational-modifiers.js'
+import { getActiveModifiers } from '../../scripts/rolls/situational-modifiers.js'
 
 /**
    * Handle clickable rolls activated through buttons
@@ -49,33 +49,33 @@ export const _onConfirmRoll = async function (dataset, actor) {
   let basicDice, advancedDice
 
   // Handle getting any situational modifiers
-  const activeBonuses = await getActiveBonuses({
+  const activeModifiers = await getActiveModifiers({
     actor,
     selectors
   })
-  const advancedCheckDice = activeBonuses.totalACDValue
+  const advancedCheckDice = activeModifiers.totalACDValue
 
   // Get the number of basicDice and advancedDice
   if (disableBasicDice && useAbsoluteValue) {
     // For when basic dice are disabled and we want the
     // advanced dice to equal the absoluteValue given
-    advancedDice = absoluteValue + activeBonuses.totalValue
+    advancedDice = absoluteValue + activeModifiers.totalValue
     basicDice = 0
   } else if (disableBasicDice) {
     // If just the basicDice are disabled, set it to 0
     // and retrieve the appropriate amount of advanced dice
     basicDice = 0
-    advancedDice = disableAdvancedDice ? 0 + activeBonuses.totalValue : await WOD5E.api.getAdvancedDice(actor) + activeBonuses.totalValue
+    advancedDice = disableAdvancedDice ? 0 + activeModifiers.totalValue : await WOD5E.api.getAdvancedDice(actor) + activeModifiers.totalValue
   } else {
     // Calculate basicDice based on different conditions
     if (useAbsoluteValue) {
       // If basic dice aren't disabled, but we use the absolute
       // value, add the absoluteValue and the flatMod together
-      basicDice = absoluteValue + flatMod + activeBonuses.totalValue
+      basicDice = absoluteValue + flatMod + activeModifiers.totalValue
     } else {
       // All other, more normal, circumstances where basicDice
       // are calculated normally
-      basicDice = await WOD5E.api.getBasicDice({ valuePaths: dataset.valuePaths, flatMod: flatMod + activeBonuses.totalValue, actor })
+      basicDice = await WOD5E.api.getBasicDice({ valuePaths: dataset.valuePaths, flatMod: flatMod + activeModifiers.totalValue, actor })
     }
 
     // Retrieve the appropriate amount of advanced dice
