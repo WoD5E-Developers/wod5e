@@ -97,6 +97,8 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   }
 
   async _onRender () {
+    super._onRender()
+
     const html = $(this.element)
     const item = this.item
 
