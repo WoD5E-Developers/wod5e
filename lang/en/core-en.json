@@ -188,6 +188,7 @@
       "AddNewModifier": "Add New Modifier",
       "AddNewSpecialty": "Add New Specialty",
       "AllString": "All {string}",
+      "AllStringPools": "All {string} Pools",
       "Always": "Always",
       "DisplayWhenInactive": "Display When Inactive",
       "IfEquals": "If equals...",

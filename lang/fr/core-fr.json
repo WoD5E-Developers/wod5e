@@ -188,6 +188,7 @@
       "_AddNewModifier": "",
       "AddNewSpecialty": "Ajouter nouvelle spécialité",
       "_AllString": "",
+      "_AllStringPools": "",
       "Always": "Toujours",
       "DisplayWhenInactive": "Montrer quand inactif",
       "IfEquals": "Seulement si",

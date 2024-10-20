@@ -19,6 +19,27 @@ export const getSelectorsList = (document) => {
       string: game.i18n.localize('WOD5E.AttributesList.Attributes')
     })
   })
+  // Physical Attributes
+  selectorsList.push({
+    id: 'physical',
+    displayName: game.i18n.format('WOD5E.Modifier.AllStringPools', {
+      string: game.i18n.localize('WOD5E.SPC.Physical')
+    })
+  })
+  // Mental Attributes
+  selectorsList.push({
+    id: 'mental',
+    displayName: game.i18n.format('WOD5E.Modifier.AllStringPools', {
+      string: game.i18n.localize('WOD5E.SPC.Mental')
+    })
+  })
+  // Social Attributes
+  selectorsList.push({
+    id: 'social',
+    displayName: game.i18n.format('WOD5E.Modifier.AllStringPools', {
+      string: game.i18n.localize('WOD5E.SPC.Social')
+    })
+  })
   // Individual attributes
   for (const [key, value] of Object.entries(attributes)) {
     selectorsList.push({

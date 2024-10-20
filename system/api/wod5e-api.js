@@ -164,7 +164,7 @@ export class wod5eAPI {
                 if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.attributes[attributeSelect].value
 
                 // Add the attribute selectors to the roll
-                modifiedDataset.selectors += ` attributes attributes.${attributeSelect}`
+                modifiedDataset.selectors += ` attributes attributes.${attributeSelect} ${WOD5E.Attributes.getList({})[attributeSelect].type}`
               }
               // Handle adding a discipline to the dicepool
               if (disciplineSelect) {
