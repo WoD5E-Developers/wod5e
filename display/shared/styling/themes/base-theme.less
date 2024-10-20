@@ -173,10 +173,6 @@ prose-mirror {
 
     .item {
       .item-image {
-        .clickable {
-          cursor: pointer
-        }
-
         img {
           border: 1px solid var(--system-color-5);
         }
@@ -193,10 +189,12 @@ prose-mirror {
     border-bottom: 1px solid var(--system-color-5);
   }
 
+  .clickable:hover,
   .rollable:hover,
   .rollable-item:hover,
   .system-rollable:hover {
     text-shadow: 0 0 5px var(--system-color-9);
+    filter: saturate(250%)
   }
 
   /* Statistics Page */
@@ -215,10 +213,6 @@ prose-mirror {
         img {
           border: 1px inset var(--system-color-5);
         }
-      }
-
-      .rollable-item img:hover {
-        filter: grayscale(80%);
       }
     }
 
@@ -239,6 +233,10 @@ prose-mirror {
 
   select {
     background-color: var(--system-color-4);
+  }
+
+  .clickable {
+    cursor: pointer
   }
 }
 

@@ -2388,9 +2388,6 @@ prose-mirror .editor-menu button {
   background-color: var(--system-color-4);
   border: 2px solid #1b1b1b;
 }
-.sheet .item-list .category .item .item-image .clickable {
-  cursor: pointer;
-}
 .sheet .item-list .category .item .item-image img {
   border: 1px solid var(--system-color-5);
 }
@@ -2400,10 +2397,12 @@ prose-mirror .editor-menu button {
 .sheet .resource-header {
   border-bottom: 1px solid var(--system-color-5);
 }
+.sheet .clickable:hover,
 .sheet .rollable:hover,
 .sheet .rollable-item:hover,
 .sheet .system-rollable:hover {
   text-shadow: 0 0 5px var(--system-color-9);
+  filter: saturate(250%);
 }
 .sheet .stats-container {
   background-color: var(--system-color-4);
@@ -2414,9 +2413,6 @@ prose-mirror .editor-menu button {
 }
 .sheet .stats-content .side-panel .item-image img {
   border: 1px inset var(--system-color-5);
-}
-.sheet .stats-content .side-panel .rollable-item img:hover {
-  filter: grayscale(80%);
 }
 .sheet .stats-content .stats-container .stats-footer {
   background-color: var(--system-color-8);
@@ -2429,6 +2425,9 @@ prose-mirror .editor-menu button {
 }
 .sheet select {
   background-color: var(--system-color-4);
+}
+.sheet .clickable {
+  cursor: pointer;
 }
 /* Resource Counters */
 .resource-value .resource-value-step {
