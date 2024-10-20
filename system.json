@@ -230,6 +230,17 @@
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
+    },
+    {
+      "label": "Conditions",
+      "type": "Item",
+      "name": "conditions",
+      "path": "packs/conditions",
+      "system": "vtm5e",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "packFolders": [
@@ -237,7 +248,8 @@
       "name": "World of Darkness 5e",
       "sorting": "m",
       "packs": [
-        "macros"
+        "macros",
+        "conditions"
       ],
       "color": "#8c0303"
     }
