@@ -18,7 +18,7 @@
                             {{#each type as |attribute key|}}
                                 <div class="attribute">
                                     <label for="actor.system.attributes.{{attribute.id}}.value" class="resource-label rollable" data-action="roll" data-value-paths="attributes.{{attribute.id}}.value" data-select-dialog="true"
-                                        data-label="{{attribute.displayName}}" data-selectors="attributes attributes.{{attribute.id}}" data-attribute="{{attribute.id}}">{{attribute.displayName}}</label>
+                                        data-label="{{attribute.displayName}}" data-selectors="attributes attributes.{{attribute.id}} {{attribute.type}}" data-attribute="{{attribute.id}}">{{attribute.displayName}}</label>
                                     {{#if ../../settings.skillAttributeInputs}}
                                         {{#if ../../locked}}
                                             <b>
