@@ -3,6 +3,9 @@
 import { BaseDefinitionClass } from './base-definition-class.js'
 
 export class Renown extends BaseDefinitionClass {
+  static type = 'renown'
+  static defCategory = 'Renown'
+
   // Run any necessary compilation on ready
   static onReady () {
     Renown.setSortAlphabetically()

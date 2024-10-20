@@ -178,7 +178,7 @@ export class wod5eAPI {
                 if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.disciplines[disciplineSelect].value
 
                 // Add the discipline and potency selectors to the roll
-                modifiedDataset.selectors += ` disciplines disciplines.${disciplineSelect}.value`
+                modifiedDataset.selectors += ` disciplines disciplines.${disciplineSelect}`
               }
               // Handle adding a blood surge to the roll
               if (bloodSurgeCheckbox[0]?.checked) {
@@ -196,7 +196,7 @@ export class wod5eAPI {
                 if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.renown[renownSelect].value
 
                 // Add the renown selector to the roll
-                modifiedDataset.selectors += ` renown renown.${renownSelect}.value`
+                modifiedDataset.selectors += ` renown renown.${renownSelect}`
               }
 
               await _onConfirmRoll(modifiedDataset, actor)

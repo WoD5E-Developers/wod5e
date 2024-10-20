@@ -59,17 +59,17 @@ export const _rollItem = async function (actor, item) {
   // Some checks for selectors we may need to apply based on the item type
   if (item.type === 'power') {
     selectors.push('disciplines')
-    selectors.push(itemData.discipline)
+    selectors.push(`disciplines.${itemData.discipline}`)
   }
 
   if (item.type === 'edgepool') {
     selectors.push('edges')
-    selectors.push(itemData.edge)
+    selectors.push(`edges.${itemData.edge}`)
   }
 
   if (item.type === 'gift') {
     selectors.push('gifts')
-    selectors.push(itemData.giftType)
+    selectors.push(`gifts.${itemData.giftType}`)
   }
 
   // Handle getting any situational modifiers

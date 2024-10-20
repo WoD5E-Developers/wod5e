@@ -4,6 +4,7 @@ import { BaseDefinitionClass } from './base-definition-class.js'
 
 export class Disciplines extends BaseDefinitionClass {
   static modsEnabled = true
+  static type = 'disciplines'
   static defCategory = 'Disciplines'
 
   // Run any necessary compilation on ready
