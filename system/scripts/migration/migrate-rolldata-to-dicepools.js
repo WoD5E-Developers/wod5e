@@ -1,69 +1,103 @@
-/* global ui, game, WOD5E, foundry */
+/* global ui, game, WOD5E, foundry, Item */
 
 export const MigrateRolldataToDicepools = async function () {
+  const compendiumsList = game.packs.filter(compendium => compendium.metadata.type === 'Item')
   const actorsList = game.actors
-  const totalIterations = actorsList.size
+  const totalIterations = actorsList.size + compendiumsList.size
   const migrationIDs = []
 
   // If there's nothing to go through, then just resolve and move on.
   if (totalIterations === 0) { return [] }
 
-  // Fix image data across items (v4.0.0)
+  // Fix dicepools of rollable items in compendiums
+  for (const compendium of compendiumsList) {
+    const docs = await compendium.getDocuments()
+
+    const updates = docs.map((item) => {
+      // If the item was previously rollable and doesn't already have a filled dicepool, migrate the rolldata to the new format
+      if ((item.system?.rollable || item.type === 'customRoll') && foundry.utils.isEmpty(item.system?.dicepool)) {
+        const updatedItemData = fixItemData(item) // Assuming fixItemData handles the update logic for the item
+        // Add the fixed item data to the updates, if needed
+        return {
+          _id: item._id,
+          ...updatedItemData
+        }
+      }
+    })
+
+    // Filter out any `undefined` items in case `fixItemData` doesn't return updates
+    const validUpdates = updates.filter(update => update !== undefined)
+
+    // Apply the updates to the compendium
+    if (validUpdates.length > 0) {
+      Item.updateDocuments(validUpdates, {
+        pack: compendium.metadata.id
+      })
+    }
+  }
+
+  // Fix dicepools of rollable items on actors
   for (const actor of actorsList) {
     const actorItems = actor.items
-    const updatedItems = []
+    const updatedActorItems = []
     let hasFixedItems = false
 
     for (const item of actorItems) {
       // If the item was previously rollable and doesn't already have a filled dicepool, migrate the rolldata to the new format
-      if (item.system?.rollable && foundry.utils.isEmpty(item.system?.dicepool)) {
+      if ((item.system?.rollable || item.type === 'customRoll') && foundry.utils.isEmpty(item.system?.dicepool)) {
         hasFixedItems = true
-        const dicepool = {}
-
-        if (item.system.dice1) {
-          const randomID = foundry.utils.randomID(8)
-
-          dicepool[randomID] = {
-            path: getDicePath(item.system.dice1, item.system)
-          }
-        }
-
-        if (item.system.dice2) {
-          const randomID = foundry.utils.randomID(8)
-
-          dicepool[randomID] = {
-            path: getDicePath(item.system.dice2, item.system)
-          }
-        }
-
-        // Create a new object with the updated 'img' property
-        const updatedItem = {
-          _id: item._id, // Preserve the original _id
-          ...item.toObject(),
-          system: {
-            dicepool
-          }
-        }
-
-        // Remove unnecessary data
-        delete updatedItem.system.roll1
-        delete updatedItem.system.roll2
-        delete updatedItem.system.rollable
 
         // Push the updated item to the array
-        updatedItems.push(updatedItem)
+        updatedActorItems.push(fixItemData(item))
       }
     }
 
     if (hasFixedItems) {
       // Update the actor's data with the new information
-      actor.updateEmbeddedDocuments('Item', updatedItems)
+      actor.updateEmbeddedDocuments('Item', updatedActorItems)
       ui.notifications.info(`Fixing actor ${actor.name}: Migrating roll data of items.`)
       migrationIDs.push(actor.id)
     }
   }
 
   return migrationIDs
+
+  function fixItemData (item) {
+    const dicepool = {}
+
+    if (item.system.dice1) {
+      const randomID = foundry.utils.randomID(8)
+
+      dicepool[randomID] = {
+        path: getDicePath(item.system.dice1, item.system)
+      }
+    }
+
+    if (item.system.dice2) {
+      const randomID = foundry.utils.randomID(8)
+
+      dicepool[randomID] = {
+        path: getDicePath(item.system.dice2, item.system)
+      }
+    }
+
+    // Create a new object with the updated 'img' property
+    const updatedItem = {
+      _id: item._id, // Preserve the original _id
+      ...item.toObject(),
+      system: {
+        dicepool
+      }
+    }
+
+    // Remove unnecessary data
+    delete updatedItem.system.roll1
+    delete updatedItem.system.roll2
+    delete updatedItem.system.rollable
+
+    // Push the updated item to the array
+    return updatedItem
+  }
 
   // Function to change a given dice into its path
   function getDicePath (string, data) {
