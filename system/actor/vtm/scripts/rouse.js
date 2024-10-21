@@ -1,7 +1,7 @@
 /* global game */
 
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
-import { getActiveBonuses } from '../../../scripts/rolls/situational-modifiers.js'
+import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
 import { potencyToRouse } from './blood-potency.js'
 
 export const _onRouseCheck = async function (actor, item) {
@@ -16,14 +16,14 @@ export const _onRouseCheck = async function (actor, item) {
     const rouseRerolls = await potencyToRouse(potency, level)
 
     // Handle getting any situational modifiers
-    const activeBonuses = await getActiveBonuses({
+    const activeModifiers = await getActiveModifiers({
       actor,
       selectors
     })
 
     // Send the roll to the system
     WOD5eDice.Roll({
-      advancedDice: cost + activeBonuses.totalValue,
+      advancedDice: cost + activeModifiers.totalValue,
       title: `${game.i18n.localize('WOD5E.VTM.RousingBlood')} - ${item.name}`,
       actor,
       disableBasicDice: true,

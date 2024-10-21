@@ -94,25 +94,6 @@
       "_Touchstones": "",
       "TouchstonesAndConvictions": "Опоры и принципы"
     },
-    "Bonus": {
-      "Active": "Активен",
-      "_ActiveWhen": "",
-      "AddNewBonus": "Добавить новый бонус",
-      "AddNewSpecialty": "Добавить новую специализацию",
-      "_AllString": "",
-      "_Always": "",
-      "_DisplayWhenInactive": "",
-      "_IfEquals": "",
-      "_IfPathIs": "",
-      "_Never": "",
-      "NewBonus": "Новый бонус",
-      "NewSpecialty": "Новая специализация",
-      "_Path": "",
-      "_PathToCheck": "",
-      "_Selectors": "",
-      "_Unless": "",
-      "_ValueToCheck": ""
-    },
     "Chat": {
       "_HasReceivedWillpowerDamage": "",
       "Rolling": "Бросок",
@@ -163,7 +144,6 @@
       "_Add": "",
       "_AddDice": "",
       "Background": "Факты биографии",
-      "Bonuses": "Бонусы",
       "Boon": "Долг",
       "Boons": "Долги",
       "_Conditions": "",
@@ -183,6 +163,7 @@
       "_Label": "",
       "Macro": "Макрос",
       "Merit": "Достоинства",
+      "_Modifiers": "",
       "_Multiply": "",
       "NewSpecialty": "Новая специализация",
       "_NoDiceSelectedHint": "",
@@ -200,6 +181,26 @@
     "Macro": {
       "MacroID": "ID Макроса",
       "MacroNote": "Если макрос был указан, то он будет выполнен непосредственно после нажатия на элемент или выполнения броска."
+    },
+    "Modifier": {
+      "Active": "Активен",
+      "_ActiveWhen": "",
+      "_AddNewModifier": "",
+      "AddNewSpecialty": "Добавить новую специализацию",
+      "_AllString": "",
+      "_AllStringPools": "",
+      "_Always": "",
+      "_DisplayWhenInactive": "",
+      "_IfEquals": "",
+      "_IfPathIs": "",
+      "_Never": "",
+      "_NewModifier": "",
+      "NewSpecialty": "Новая специализация",
+      "_Path": "",
+      "_PathToCheck": "",
+      "_Selectors": "",
+      "_Unless": "",
+      "_ValueToCheck": ""
     },
     "Notifications": {
       "_CannotModifyResourceString": "",

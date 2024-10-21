@@ -18,7 +18,7 @@
                             {{#each type as |attribute key|}}
                                 <div class="attribute">
                                     <label for="actor.system.attributes.{{attribute.id}}.value" class="resource-label rollable" data-action="roll" data-value-paths="attributes.{{attribute.id}}.value" data-select-dialog="true"
-                                        data-label="{{attribute.displayName}}" data-selectors="attributes attributes.{{attribute.id}}" data-attribute="{{attribute.id}}">{{attribute.displayName}}</label>
+                                        data-label="{{attribute.displayName}}" data-selectors="attributes attributes.{{attribute.id}} {{attribute.type}}" data-attribute="{{attribute.id}}">{{attribute.displayName}}</label>
                                     {{#if ../../settings.skillAttributeInputs}}
                                         {{#if ../../locked}}
                                             <b>
@@ -95,14 +95,14 @@
                     <div class="items-list flexcol">
                         {{#each conditions as |condition id|}}
                             <div class="item flexrow" data-drag="true" data-item-id="{{condition.id}}" data-document-uuid="{{condition.uuid}}" data-type="Item">
-                                <div class="item-image" data-action="itemChat" data-item-id="{{condition._id}}">
+                                <div class="item-image clickable" data-action="itemChat" data-item-id="{{condition._id}}">
                                     <img src="{{condition.img}}" title="{{condition.name}}" width="24" height="24" alt="{{condition.name}}" />
                                 </div>
                                 <div class="item-name">{{condition.name}}</div>
                                 <div class="item-controls">
                                     <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{condition._id}}" title="{{localize 'WOD5E.Edit'}}"><i
                                         class="fas fa-edit"></i></a>
-                                    <a class="item-control item-delete" data-action="itemDelete" data-item-id="{{condition._id}}" title="{{localize 'WOD5E.Delete'}}"><i
+                                    <a class="item-control condition-delete" data-action="itemDelete" data-item-id="{{condition._id}}" title="{{localize 'WOD5E.Delete'}}"><i
                                         class="fas fa-trash"></i></a>
                                 </div>
                             </div>

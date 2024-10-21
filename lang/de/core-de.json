@@ -94,25 +94,6 @@
       "_Touchstones": "",
       "TouchstonesAndConvictions": "Anker & Überzeugungen"
     },
-    "Bonus": {
-      "Active": "Aktiv",
-      "ActiveWhen": "Aktiv, wenn",
-      "AddNewBonus": "Neuen Bonus hinzufügen",
-      "AddNewSpecialty": "Neue Spezialisierung hinzufügen",
-      "_AllString": "",
-      "Always": "Immer",
-      "DisplayWhenInactive": "Anzeigen, wenn inaktiv",
-      "IfEquals": "Falls gleich …",
-      "IfPathIs": "Wenn Pfad … ist",
-      "Never": "Nie",
-      "NewBonus": "Neuer Bonus",
-      "NewSpecialty": "Neue Spezialisierung",
-      "Path": "Pfad",
-      "PathToCheck": "Pfad",
-      "_Selectors": "",
-      "Unless": "Außer, wenn …",
-      "ValueToCheck": "Wert"
-    },
     "Chat": {
       "HasReceivedWillpowerDamage": "{actor} hat {willpowerDamage} Punkte Willenskraft-Schaden erlitten",
       "Rolling": "Würfeln",
@@ -163,7 +144,6 @@
       "_Add": "",
       "_AddDice": "",
       "Background": "Hintergrund",
-      "Bonuses": "Boni",
       "Boon": "Gefallen",
       "Boons": "Gefallen",
       "_Conditions": "",
@@ -183,6 +163,7 @@
       "Label": "Gegenstände",
       "Macro": "Macro",
       "Merit": "Vorteile",
+      "_Modifiers": "",
       "_Multiply": "",
       "NewSpecialty": "Neue Spezialisierung",
       "_NoDiceSelectedHint": "",
@@ -200,6 +181,26 @@
     "Macro": {
       "MacroID": "Makro-ID",
       "MacroNote": "Wenn ein Makro eingetragen ist, wird es sofort nach dem Klick auf das Item oder dem Wurf ausgeführt."
+    },
+    "Modifier": {
+      "Active": "Aktiv",
+      "ActiveWhen": "Aktiv, wenn",
+      "_AddNewModifier": "",
+      "AddNewSpecialty": "Neue Spezialisierung hinzufügen",
+      "_AllString": "",
+      "_AllStringPools": "",
+      "Always": "Immer",
+      "DisplayWhenInactive": "Anzeigen, wenn inaktiv",
+      "IfEquals": "Falls gleich …",
+      "IfPathIs": "Wenn Pfad … ist",
+      "Never": "Nie",
+      "_NewModifier": "",
+      "NewSpecialty": "Neue Spezialisierung",
+      "Path": "Pfad",
+      "PathToCheck": "Pfad",
+      "_Selectors": "",
+      "Unless": "Außer, wenn …",
+      "ValueToCheck": "Wert"
     },
     "Notifications": {
       "_CannotModifyResourceString": "",

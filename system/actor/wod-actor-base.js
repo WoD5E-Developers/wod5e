@@ -157,8 +157,8 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
   }
 
   async prepareItems (sheetData) {
-    // Make an array to store item-based bonuses
-    sheetData.system.itemBonuses = []
+    // Make an array to store item-based modifiers
+    sheetData.system.itemModifiers = []
 
     // Do data manipulation we need to do for ALL items here
     sheetData.items.forEach(async (item) => {
@@ -167,9 +167,9 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
         item.system.enrichedDescription = await TextEditor.enrichHTML(item.system.description)
       }
 
-      // Calculate item bonuses and shuffle them into system.itemBonuses
+      // Calculate item modifiers and shuffle them into system.itemModifiers
       if (!foundry.utils.isEmpty(item.system.bonuses)) {
-        sheetData.system.itemBonuses = sheetData.system.itemBonuses.concat(item.system.bonuses)
+        sheetData.system.itemModifiers = sheetData.system.itemModifiers.concat(item.system.bonuses)
       }
     })
 
@@ -249,7 +249,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     if (sheetData.system.equipmentItems.talisman.length === 0 && sheetData.system.gamesystem !== 'werewolf') delete sheetData.system.equipmentItems.talisman
   }
 
-  static async onSubmitActorForm (event) {
+  static async onSubmitActorForm (event, form, formData) {
     const target = event.target
     if (target.tagName === 'INPUT') {
       let value
@@ -257,21 +257,28 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       // Handle numbers and strings properly
       if (target.type === 'number') {
         value = parseInt(target.value)
-      } else if (target.type === 'checkbox') {
-        value = target.checked
-      } else {
-        value = target.value
-      }
 
-      // Make the update for the field
-      this.actor.update({
-        [`${target.name}`]: value
-      })
-    } else if (target.tagName === 'SELECT') {
-      // Make the update for the field
-      this.actor.update({
-        [`${target.name}`]: target.value
-      })
+        // Make the update for the field
+        this.actor.update({
+          [`${target.name}`]: value
+        })
+      }
+    } else {
+      // Process submit data
+      const submitData = this._prepareSubmitData(event, form, formData)
+
+      // Overrides
+      const overrides = foundry.utils.flattenObject(this.actor.overrides)
+      for (const k of Object.keys(overrides)) delete submitData[k]
+
+      const submitDataFlat = foundry.utils.flattenObject(submitData)
+      const updatedData = {
+        [target.name]: submitDataFlat[target.name]
+      }
+      const expandedData = foundry.utils.expandObject(updatedData)
+
+      // Update the actor data
+      await this.actor.update(expandedData)
     }
   }
 

@@ -94,25 +94,6 @@
       "_Touchstones": "",
       "_TouchstonesAndConvictions": ""
     },
-    "Bonus": {
-      "_Active": "",
-      "_ActiveWhen": "",
-      "_AddNewBonus": "",
-      "_AddNewSpecialty": "",
-      "_AllString": "",
-      "_Always": "",
-      "_DisplayWhenInactive": "",
-      "_IfEquals": "",
-      "_IfPathIs": "",
-      "_Never": "",
-      "_NewBonus": "",
-      "_NewSpecialty": "",
-      "_Path": "",
-      "_PathToCheck": "",
-      "_Selectors": "",
-      "_Unless": "",
-      "_ValueToCheck": ""
-    },
     "Chat": {
       "_HasReceivedWillpowerDamage": "",
       "_Rolling": "",
@@ -163,7 +144,6 @@
       "_Add": "",
       "_AddDice": "",
       "_Background": "",
-      "_Bonuses": "",
       "_Boon": "",
       "_Boons": "",
       "_Conditions": "",
@@ -183,6 +163,7 @@
       "_Label": "",
       "_Macro": "",
       "_Merit": "",
+      "_Modifiers": "",
       "_Multiply": "",
       "_NewSpecialty": "",
       "_NoDiceSelectedHint": "",
@@ -200,6 +181,26 @@
     "Macro": {
       "_MacroID": "",
       "_MacroNote": ""
+    },
+    "Modifier": {
+      "_Active": "",
+      "_ActiveWhen": "",
+      "_AddNewModifier": "",
+      "_AddNewSpecialty": "",
+      "_AllString": "",
+      "_AllStringPools": "",
+      "_Always": "",
+      "_DisplayWhenInactive": "",
+      "_IfEquals": "",
+      "_IfPathIs": "",
+      "_Never": "",
+      "_NewModifier": "",
+      "_NewSpecialty": "",
+      "_Path": "",
+      "_PathToCheck": "",
+      "_Selectors": "",
+      "_Unless": "",
+      "_ValueToCheck": ""
     },
     "Notifications": {
       "_CannotModifyResourceString": "",

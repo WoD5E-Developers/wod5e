@@ -1,6 +1,6 @@
 /* global game */
 
-export const getHunterBonuses = async function (actorData) {
+export const getHunterModifiers = async function (actorData) {
   const bonuses = [
     {
       source: game.i18n.localize('WOD5E.HTR.Drive'),

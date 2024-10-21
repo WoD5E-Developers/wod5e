@@ -94,25 +94,6 @@
       "_Touchstones": "",
       "TouchstonesAndConvictions": "Pilares & Convicções"
     },
-    "Bonus": {
-      "_Active": "",
-      "_ActiveWhen": "",
-      "_AddNewBonus": "",
-      "_AddNewSpecialty": "",
-      "_AllString": "",
-      "_Always": "",
-      "_DisplayWhenInactive": "",
-      "_IfEquals": "",
-      "_IfPathIs": "",
-      "_Never": "",
-      "_NewBonus": "",
-      "_NewSpecialty": "",
-      "_Path": "",
-      "_PathToCheck": "",
-      "_Selectors": "",
-      "_Unless": "",
-      "_ValueToCheck": ""
-    },
     "Chat": {
       "_HasReceivedWillpowerDamage": "",
       "Rolling": "Rolando",
@@ -163,7 +144,6 @@
       "_Add": "",
       "_AddDice": "",
       "Background": "Antecedente",
-      "Bonuses": "Bônus",
       "Boon": "Favor",
       "Boons": "Favores",
       "_Conditions": "",
@@ -183,6 +163,7 @@
       "Label": "Items",
       "_Macro": "",
       "Merit": "Qualidade",
+      "_Modifiers": "",
       "_Multiply": "",
       "NewSpecialty": "New Specialty",
       "_NoDiceSelectedHint": "",
@@ -200,6 +181,26 @@
     "Macro": {
       "_MacroID": "",
       "_MacroNote": ""
+    },
+    "Modifier": {
+      "_Active": "",
+      "_ActiveWhen": "",
+      "_AddNewModifier": "",
+      "_AddNewSpecialty": "",
+      "_AllString": "",
+      "_AllStringPools": "",
+      "_Always": "",
+      "_DisplayWhenInactive": "",
+      "_IfEquals": "",
+      "_IfPathIs": "",
+      "_Never": "",
+      "_NewModifier": "",
+      "_NewSpecialty": "",
+      "_Path": "",
+      "_PathToCheck": "",
+      "_Selectors": "",
+      "_Unless": "",
+      "_ValueToCheck": ""
     },
     "Notifications": {
       "_CannotModifyResourceString": "",

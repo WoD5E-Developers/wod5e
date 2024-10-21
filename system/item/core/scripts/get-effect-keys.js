@@ -13,7 +13,7 @@ export const getEffectKeys = () => {
   // "All Attributes" key
   keysList.push({
     id: 'attributes',
-    displayName: game.i18n.format('WOD5E.Bonus.AllString', {
+    displayName: game.i18n.format('WOD5E.Modifier.AllString', {
       string: game.i18n.localize('WOD5E.AttributesList.Attributes')
     })
   })
@@ -28,7 +28,7 @@ export const getEffectKeys = () => {
   // Physical Attributes
   keysList.push({
     id: 'physical',
-    displayName: game.i18n.format('WOD5E.Bonus.AllString', {
+    displayName: game.i18n.format('WOD5E.Modifier.AllString', {
       string: game.i18n.localize('WOD5E.SPC.Physical')
     })
   })
@@ -36,7 +36,7 @@ export const getEffectKeys = () => {
   // Mental Attributes
   keysList.push({
     id: 'mental',
-    displayName: game.i18n.format('WOD5E.Bonus.AllString', {
+    displayName: game.i18n.format('WOD5E.Modifier.AllString', {
       string: game.i18n.localize('WOD5E.SPC.Mental')
     })
   })
@@ -44,7 +44,7 @@ export const getEffectKeys = () => {
   // Social Attributes
   keysList.push({
     id: 'social',
-    displayName: game.i18n.format('WOD5E.Bonus.AllString', {
+    displayName: game.i18n.format('WOD5E.Modifier.AllString', {
       string: game.i18n.localize('WOD5E.SPC.Social')
     })
   })
@@ -56,7 +56,7 @@ export const getEffectKeys = () => {
   // "All Skills" key
   keysList.push({
     id: 'skills',
-    displayName: game.i18n.format('WOD5E.Bonus.AllString', {
+    displayName: game.i18n.format('WOD5E.Modifier.AllString', {
       string: game.i18n.localize('WOD5E.SkillsList.Skills')
     })
   })
@@ -75,7 +75,7 @@ export const getEffectKeys = () => {
   // "All Disciplines" key
   keysList.push({
     id: 'disciplines',
-    displayName: game.i18n.format('WOD5E.Bonus.AllString', {
+    displayName: game.i18n.format('WOD5E.Modifier.AllString', {
       string: game.i18n.localize('WOD5E.VTM.Disciplines')
     })
   })
@@ -95,7 +95,7 @@ export const getEffectKeys = () => {
   // "All Renown" key
   keysList.push({
     id: 'renown',
-    displayName: game.i18n.format('WOD5E.Bonus.AllString', {
+    displayName: game.i18n.format('WOD5E.Modifier.AllString', {
       string: game.i18n.localize('WOD5E.WTA.Renown')
     })
   })

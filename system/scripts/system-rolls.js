@@ -403,7 +403,7 @@ class WOD5eDice {
                 if (advancedDiceInput.val() < 0) advancedDiceInput.val(0)
               })
 
-              // Add event listener to the add custo mmodifier button
+              // Add event listener to the add custom modifier button
               html.find('.add-custom-mod').click(function (event) {
                 event.preventDefault()
 
@@ -421,6 +421,14 @@ class WOD5eDice {
 
                 // Append a new custom modifier element to the list
                 customModList.append(customModElement)
+
+                customModList.find('.mod-delete').on('click', (event) => {
+                  event.preventDefault()
+
+                  const element = event.target.closest('.custom-modifier')
+
+                  element.remove()
+                })
               })
             }
           },

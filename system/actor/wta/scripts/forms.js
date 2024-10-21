@@ -1,7 +1,7 @@
 /* global game, ChatMessage, Dialog */
 
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
-import { getActiveBonuses } from '../../../scripts/rolls/situational-modifiers.js'
+import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
 import { WereformApplication } from '../applications/wereform-application.js'
 
 export const _onLostTheWolf = async function (actor) {
@@ -91,14 +91,14 @@ export const handleFormChange = async function (actor, form, diceCount) {
     const formData = actor.system.forms[form]
 
     // Handle getting any situational modifiers
-    const activeBonuses = await getActiveBonuses({
+    const activeModifiers = await getActiveModifiers({
       actor,
       selectors
     })
 
     // Roll the rage dice necessary
     await WOD5eDice.Roll({
-      advancedDice: diceCount + activeBonuses.totalValue,
+      advancedDice: diceCount + activeModifiers.totalValue,
       title: form,
       flavor: formData.description,
       actor,

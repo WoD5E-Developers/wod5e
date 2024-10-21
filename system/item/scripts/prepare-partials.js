@@ -55,11 +55,11 @@ export const prepareMacroContext = async function (context, item) {
   return context
 }
 
-export const prepareBonusesContext = async function (context, item) {
+export const prepareModifiersContext = async function (context, item) {
   const itemData = item.system
 
   // Tab data
-  context.tab = context.tabs.bonuses
+  context.tab = context.tabs.modifiers
 
   // Part-specific data
   context.bonuses = itemData.bonuses

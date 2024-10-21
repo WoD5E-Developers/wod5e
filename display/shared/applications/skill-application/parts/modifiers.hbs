@@ -1,13 +1,13 @@
 <section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
-    <div class="bonuses-list">
+    <div class="modifiers-list">
         {{#each bonuses as |bonus key|}}
-            <div class="bonus" style="margin-top: 5px;">
+            <div class="modifier" style="margin-top: 5px;">
                 <div class="field-header">
-                    <a class="edit-bonus" data-action="editBonus" title="Edit bonus" data-uwu="WWWWW" data-bonus="{{key}}" style="margin-right: 5px; margin-top: 5px; font-size: 13pt;">
+                    <a class="edit-bonus" data-action="editModifier" title="Edit bonus" data-uwu="WWWWW" data-bonus="{{key}}" style="margin-right: 5px; margin-top: 5px; font-size: 13pt;">
                         <i class="fas fa-edit"></i>
                     </a>
                     {{bonus.source}}
-                    <a class="delete-bonus" data-action="deleteBonus" title="Delete bonus" data-bonus="{{key}}" style="float: right;">
+                    <a class="delete-bonus" data-action="deleteModifier" title="Delete bonus" data-bonus="{{key}}" style="float: right;">
                         <i class="fas fa-trash"></i>
                     </a>
                 </div>
@@ -17,8 +17,8 @@
                         <input class="input-value" name="value" type="number" value="{{bonus.value}}" disabled="true"/>
                     </div>
                     <div class="flexcol flex-center">
-                        <b>{{localize "WOD5E.Bonus.Selectors"}}</b>
-                        <input name="paths" class="bonus-selectors" type="text" value="{{splitArray bonus.paths}}" placeholder="{{localize 'WOD5E.None'}}" disabled="true"/>
+                        <b>{{localize "WOD5E.Modifier.Selectors"}}</b>
+                        <input name="paths" class="modifier-selectors" type="text" value="{{splitArray bonus.paths}}" placeholder="{{localize 'WOD5E.None'}}" disabled="true"/>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
     <hr>
     <div class="flex-center">
         <b>
-            <a class="add-bonus" data-action="addBonus">{{localize 'WOD5E.Bonus.AddNewSpecialty'}}</a>
+            <a class="add-bonus" data-action="addModifier">{{localize 'WOD5E.Modifier.AddNewSpecialty'}}</a>
         </b>
     </div>
 </section>

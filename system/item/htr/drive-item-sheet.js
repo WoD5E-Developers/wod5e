@@ -1,7 +1,7 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareBonusesContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
+import { prepareDescriptionContext, prepareModifiersContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
 import { prepareRedemptionContext } from './scripts/prepare-partials.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
@@ -31,8 +31,8 @@ export class DriveItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     redemption: {
       template: 'systems/vtm5e/display/htr/items/parts/redemption.hbs'
     },
-    bonuses: {
-      template: 'systems/vtm5e/display/shared/items/parts/bonuses.hbs'
+    modifiers: {
+      template: 'systems/vtm5e/display/shared/items/parts/modifiers.hbs'
     },
     settings: {
       template: 'systems/vtm5e/display/shared/items/parts/item-settings.hbs'
@@ -50,10 +50,10 @@ export class DriveItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       group: 'primary',
       label: 'WOD5E.HTR.Redemption'
     },
-    bonuses: {
-      id: 'bonuses',
+    modifiers: {
+      id: 'modifiers',
       group: 'primary',
-      label: 'WOD5E.ItemsList.Bonuses'
+      label: 'WOD5E.ItemsList.Modifiers'
     },
     settings: {
       id: 'settings',
@@ -83,8 +83,8 @@ export class DriveItemSheet extends HandlebarsApplicationMixin(WoDItem) {
         return prepareDescriptionContext(context, item)
       case 'redemption':
         return prepareRedemptionContext(context, item)
-      case 'bonuses':
-        return prepareBonusesContext(context, item)
+      case 'modifiers':
+        return prepareModifiersContext(context, item)
       case 'settings':
         return prepareItemSettingsContext(context, item)
     }

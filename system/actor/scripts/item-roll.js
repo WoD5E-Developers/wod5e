@@ -1,7 +1,7 @@
 /* global fromUuidSync, WOD5E */
 
 import { WOD5eDice } from '../../scripts/system-rolls.js'
-import { getActiveBonuses } from '../../scripts/rolls/situational-modifiers.js'
+import { getActiveModifiers } from '../../scripts/rolls/situational-modifiers.js'
 import { _onRouseCheck } from '../vtm/scripts/rouse.js'
 import { _onGiftCost } from '../wta/scripts/gifts.js'
 
@@ -59,28 +59,28 @@ export const _rollItem = async function (actor, item) {
   // Some checks for selectors we may need to apply based on the item type
   if (item.type === 'power') {
     selectors.push('disciplines')
-    selectors.push(itemData.discipline)
+    selectors.push(`disciplines.${itemData.discipline}`)
   }
 
   if (item.type === 'edgepool') {
     selectors.push('edges')
-    selectors.push(itemData.edge)
+    selectors.push(`edges.${itemData.edge}`)
   }
 
   if (item.type === 'gift') {
     selectors.push('gifts')
-    selectors.push(itemData.giftType)
+    selectors.push(`gifts.${itemData.giftType}`)
   }
 
   // Handle getting any situational modifiers
-  const activeBonuses = await getActiveBonuses({
+  const activeModifiers = await getActiveModifiers({
     actor,
     selectors
   })
-  const advancedCheckDice = activeBonuses.totalACDValue
+  const advancedCheckDice = activeModifiers.totalACDValue
 
   // Get the number of basicDice and advancedDice
-  basicDice = await WOD5E.api.getBasicDice({ valuePaths, flatMod: flatMod + activeBonuses.totalValue, actor })
+  basicDice = await WOD5E.api.getBasicDice({ valuePaths, flatMod: flatMod + activeModifiers.totalValue, actor })
   advancedDice = disableAdvancedDice ? 0 : await WOD5E.api.getAdvancedDice({ actor })
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list

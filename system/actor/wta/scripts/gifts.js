@@ -1,7 +1,7 @@
 /* global game, Dialog, WOD5E, renderTemplate, ChatMessage */
 
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
-import { getActiveBonuses } from '../../../scripts/rolls/situational-modifiers.js'
+import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
 
 export const _onAddGift = async function (event) {
   event.preventDefault()
@@ -89,14 +89,14 @@ export const _onGiftCost = async function (actor, item) {
   }
 
   // Handle getting any situational modifiers
-  const activeBonuses = await getActiveBonuses({
+  const activeModifiers = await getActiveModifiers({
     actor,
     selectors
   })
 
   // Send the roll to the system
   WOD5eDice.Roll({
-    advancedDice: cost + activeBonuses.totalValue,
+    advancedDice: cost + activeModifiers.totalValue,
     title: `${game.i18n.localize('WOD5E.WTA.RageDice')} - ${item.name}`,
     actor,
     disableBasicDice: true,
