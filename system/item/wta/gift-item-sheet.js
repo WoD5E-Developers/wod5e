@@ -3,6 +3,7 @@
 // Preparation functions
 import { prepareDescriptionContext, prepareDicepoolContext, prepareMacroContext, prepareModifiersContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
 import { Gifts } from '../../api/def/gifts.js'
+import { Renown } from '../../api/def/renown.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -38,7 +39,7 @@ export class GiftItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       template: 'systems/vtm5e/display/shared/items/parts/modifiers.hbs'
     },
     settings: {
-      template: 'systems/vtm5e/display/shared/items/parts/item-settings.hbs'
+      template: 'systems/vtm5e/display/wta/items/parts/gift-settings.hbs'
     }
   }
 
@@ -78,6 +79,8 @@ export class GiftItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
     data.giftOptions = Gifts.getList({})
     data.selectedGift = itemData.giftType
+    data.renownOptions = Renown.getList({})
+    data.selectedRenown = itemData.renown
     data.level = itemData.level
     data.cost = itemData.cost
     data.willpowercost = itemData.willpowercost
