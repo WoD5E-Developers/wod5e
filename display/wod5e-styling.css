@@ -1296,6 +1296,10 @@ body.uk .actor.sheet {
   position: absolute;
   right: 3px;
 }
+.actor.sheet .resource .remove-data-item {
+  position: absolute;
+  right: 23px;
+}
 .actor.sheet .limited-actor-header {
   display: flex;
   flex-grow: 0;
