@@ -3,7 +3,8 @@
 export const MigrateRolldataToDicepools = async function () {
   const compendiumsList = game.packs.filter(compendium => compendium.metadata.type === 'Item')
   const actorsList = game.actors
-  const totalIterations = actorsList.size + compendiumsList.size
+  const itemsList = game.items
+  const totalIterations = actorsList.size + compendiumsList.size + itemsList.size
   const migrationIDs = []
 
   // If there's nothing to go through, then just resolve and move on.
@@ -13,25 +14,31 @@ export const MigrateRolldataToDicepools = async function () {
   for (const compendium of compendiumsList) {
     const docs = await compendium.getDocuments()
 
-    const updates = docs.map((item) => {
-      // If the item was previously rollable and doesn't already have a filled dicepool, migrate the rolldata to the new format
-      if ((item.system?.rollable || item.type === 'customRoll') && foundry.utils.isEmpty(item.system?.dicepool)) {
-        const updatedItemData = fixItemData(item) // Assuming fixItemData handles the update logic for the item
-        // Add the fixed item data to the updates, if needed
+    const updates = docs
+      .filter((item) => (item.system?.rollable || item.type === 'customRoll') && foundry.utils.isEmpty(item.system?.dicepool))
+      .map((item) => {
+        const updatedItemData = fixItemData(item)
         return {
           _id: item._id,
           ...updatedItemData
         }
-      }
-    })
-
-    // Filter out any `undefined` items in case `fixItemData` doesn't return updates
-    const validUpdates = updates.filter(update => update !== undefined)
+      })
 
     // Apply the updates to the compendium
-    if (validUpdates.length > 0) {
-      Item.updateDocuments(validUpdates, {
+    if (updates.length > 0) {
+      Item.updateDocuments(updates, {
         pack: compendium.metadata.id
+      })
+    }
+  }
+
+  // Fix dicepools of rollable items in the world
+  for (const item of itemsList) {
+    // If the item was previously rollable and doesn't already have a filled dicepool, migrate the rolldata to the new format
+    if ((item.system?.rollable || item.type === 'customRoll') && foundry.utils.isEmpty(item.system?.dicepool)) {
+      // Push the updated item data
+      item.update({
+        ...fixItemData(item)
       })
     }
   }
