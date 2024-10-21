@@ -277,8 +277,6 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       }
       const expandedData = foundry.utils.expandObject(updatedData)
 
-      console.log(expandedData)
-
       // Update the actor data
       await this.actor.update(expandedData)
     }
