@@ -81,7 +81,7 @@ export class WeaponItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     data.weaponvalue = itemData.weaponvalue
 
     data.weaponTypeOptions = Weapons.getList({})
-    data.weaponTypeSelected = itemData.weapontype
+    data.weaponTypeSelected = itemData.weaponType
 
     return data
   }
