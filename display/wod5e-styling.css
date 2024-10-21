@@ -2006,9 +2006,6 @@ body.uk .actor.sheet {
   overflow-y: scroll;
   height: 100%;
 }
-.item.sheet section.tab prose-mirror {
-  max-height: fit-content;
-}
 .item.sheet .effects-list .effect {
   border-top: 1px solid black;
   padding: 5px;
