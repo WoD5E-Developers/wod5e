@@ -1352,6 +1352,8 @@ body.uk .actor.sheet {
   cursor: pointer;
   max-width: 240px;
   max-height: 200px;
+  min-width: 50px;
+  min-height: 50px;
 }
 .actor.sheet .actor-header .charname:not(input) {
   font-size: 35px;
