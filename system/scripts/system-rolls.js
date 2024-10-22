@@ -7,6 +7,7 @@ import { getSituationalModifiers } from './rolls/situational-modifiers.js'
 import { _damageWillpower } from './rolls/willpower-damage.js'
 import { _increaseHunger } from './rolls/increase-hunger.js'
 import { _decreaseRage } from './rolls/decrease-rage.js'
+import { _applyOblivionStains } from './rolls/apply-oblivion-stains.js'
 
 class WOD5eDice {
   /**
@@ -451,6 +452,15 @@ class WOD5eDice {
           _increaseHunger(actor, failures)
         } else if (system === 'werewolf' && decreaseRage && game.settings.get('vtm5e', 'automatedRage')) {
           _decreaseRage(actor, failures)
+        }
+      }
+
+      // Handle Oblivion rouse checks here
+      if (selectors.includes('oblivion-rouse') && game.settings.get('vtm5e', 'automatedOblivion')) {
+        const oblivionTriggers = diceResults.filter(result => [1, 10].includes(result.result) && !result.discarded).length
+
+        if (oblivionTriggers > 0) {
+          _applyOblivionStains(actor, oblivionTriggers)
         }
       }
     }
