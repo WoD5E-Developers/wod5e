@@ -2323,9 +2323,6 @@ prose-mirror .editor-menu button {
   color: var(--system-color-6);
 }
 /* Actor Sheets */
-.sheet.journal-entry .journal-entry-content {
-  background: var(--actor-background-default) repeat;
-}
 .sheet {
   /* Input and resource fields */
   /* Actor Header */
@@ -2655,6 +2652,11 @@ prose-mirror .editor-menu button {
 .roll-label .success {
   color: #18520b;
 }
+/* Journals */
+.app.journal-entry .journal-entry-content {
+  background-color: var(--system-color-8);
+  background-blend-mode: color;
+}
 /* Foundry Controls UI */
 .app {
   background: var(--ui-background-texture);
@@ -2703,6 +2705,7 @@ prose-mirror .editor-menu button {
   /* Vampire Styling */
   /* Werewolf Styling */
   /* Hunter Styling */
+  /* Journals */
   /* Sidebar */
   /* Foundry Controls UI */
 }
@@ -2729,9 +2732,7 @@ prose-mirror .editor-menu button {
 .dark-theme .dialog .journal-entry-content,
 .dark-theme .sheet .window-content,
 .dark-theme .dialog .window-content {
-  background-color: var(--system-dark-color-1);
   color: var(--system-dark-color-4);
-  background-blend-mode: hard-light;
 }
 .dark-theme .sheet .journal-entry-content input,
 .dark-theme .dialog .journal-entry-content input,
@@ -2901,6 +2902,13 @@ prose-mirror .editor-menu button {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-1);
 }
+.dark-theme .journal-entry .directory input[type="search"] {
+  background: transparent;
+}
+.dark-theme .app.journal-entry .journal-entry-content {
+  background-color: #121212;
+  background-blend-mode: color;
+}
 .dark-theme #sidebar {
   background: var(--sidebar-background-dark) repeat;
 }
@@ -2932,7 +2940,7 @@ prose-mirror .editor-menu button {
 :root {
   --ui-background-hunter-texture: url("/systems/vtm5e/assets/ui/ui_background_hunter_texture.webp");
   --sidebar-background-hunter: url(/systems/vtm5e/assets/ui/sidebar_hunter.webp);
-  --ui-background-hunter-color: rgba(255, 136, 0, 0.5);
+  --ui-background-hunter-color: #d18125;
   --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.webp);
 }
 .hunter-theme {
@@ -2973,6 +2981,10 @@ prose-mirror .editor-menu button {
   background-color: #3333335d;
   background-blend-mode: multiply;
 }
+.hunter-theme .directory .action-buttons button {
+  background: #020202;
+  color: var(--system-color-6);
+}
 
 /* Variables */
 :root {
@@ -2986,6 +2998,7 @@ prose-mirror .editor-menu button {
   /* Vampire Styling */
   /* Werewolf Styling */
   /* Hunter Styling */
+  /* Journals */
   /* Sidebar */
   /* Foundry Controls UI */
 }
@@ -3016,9 +3029,7 @@ prose-mirror .editor-menu button {
 .vampire-theme .dialog .journal-entry-content,
 .vampire-theme .sheet .window-content,
 .vampire-theme .dialog .window-content {
-  background-color: var(--system-dark-color-1);
   color: var(--system-dark-color-4);
-  background-blend-mode: hard-light;
 }
 .vampire-theme .sheet .journal-entry-content input,
 .vampire-theme .dialog .journal-entry-content input,
@@ -3188,6 +3199,13 @@ prose-mirror .editor-menu button {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-1);
 }
+.vampire-theme .journal-entry .directory input[type="search"] {
+  background: transparent;
+}
+.vampire-theme .app.journal-entry .journal-entry-content {
+  background-color: #121212;
+  background-blend-mode: color;
+}
 .vampire-theme #sidebar {
   background: var(--sidebar-background-dark) repeat;
 }
@@ -3227,6 +3245,7 @@ prose-mirror .editor-menu button {
   /* Vampire Styling */
   /* Werewolf Styling */
   /* Hunter Styling */
+  /* Journals */
   /* Sidebar */
   /* Foundry Controls UI */
 }
@@ -3257,9 +3276,7 @@ prose-mirror .editor-menu button {
 .werewolf-theme .dialog .journal-entry-content,
 .werewolf-theme .sheet .window-content,
 .werewolf-theme .dialog .window-content {
-  background-color: var(--system-dark-color-1);
   color: var(--system-dark-color-4);
-  background-blend-mode: hard-light;
 }
 .werewolf-theme .sheet .journal-entry-content input,
 .werewolf-theme .dialog .journal-entry-content input,
@@ -3428,6 +3445,13 @@ prose-mirror .editor-menu button {
 .werewolf-theme prose-mirror button.icon.toggle {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-1);
+}
+.werewolf-theme .journal-entry .directory input[type="search"] {
+  background: transparent;
+}
+.werewolf-theme .app.journal-entry .journal-entry-content {
+  background-color: #121212;
+  background-blend-mode: color;
 }
 .werewolf-theme #sidebar {
   background: var(--sidebar-background-dark) repeat;

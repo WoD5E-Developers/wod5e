@@ -43,9 +43,7 @@
 
     .journal-entry-content,
     .window-content {
-      background-color: var(--system-dark-color-1);
       color: var(--system-dark-color-4);
-      background-blend-mode: hard-light;
 
       input,
       .actor-header,
@@ -300,6 +298,20 @@
     button.icon.toggle {
       color: var(--system-dark-color-4);
       background-color: var(--system-dark-color-1);
+    }
+  }
+
+  /* Journals */
+  .journal-entry {
+    .directory input[type="search"] {
+      background: transparent;
+    }
+  }
+
+  .app.journal-entry {
+    .journal-entry-content {
+      background-color: #121212;
+      background-blend-mode: color;
     }
   }
 
