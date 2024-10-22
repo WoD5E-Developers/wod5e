@@ -257,12 +257,16 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       // Handle numbers and strings properly
       if (target.type === 'number') {
         value = parseInt(target.value)
-
-        // Make the update for the field
-        this.actor.update({
-          [`${target.name}`]: value
-        })
+      } else if (target.type === 'checkbox') {
+        value = target.checked
+      } else {
+        value = target.value
       }
+
+      // Make the update for the field
+      this.actor.update({
+        [`${target.name}`]: value
+      })
     } else {
       // Process submit data
       const submitData = this._prepareSubmitData(event, form, formData)
