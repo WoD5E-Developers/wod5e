@@ -10,6 +10,10 @@ export const _onRouseCheck = async function (actor, item) {
   const cost = item.system.cost > 0 ? item.system.cost : 1
   const selectors = ['rouse']
 
+  if (item.system.discipline === 'oblivion' && cost > 0) {
+    selectors.push('oblivion-rouse')
+  }
+
   // Vampires roll rouse checks
   if (actor.type === 'vampire') {
     const potency = actor.type === 'vampire' ? actor.system.blood.potency : 0

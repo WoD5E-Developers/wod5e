@@ -17,8 +17,8 @@ export async function _applyOblivionStains (actor, amount) {
       speaker: ChatMessage.getSpeaker({ actor }),
       content: chatMessage
     })
-  }
 
-  // Update the actor with the new amount of rage
-  actor.update({ 'system.humanity.stains': newStains })
+    // Update the actor with the new amount of stains
+    actor.update({ 'system.humanity.stains': newStains })
+  }
 }
