@@ -320,6 +320,7 @@ class WOD5eDice {
                 // Determine the input
                 const modCheckbox = $(event.target)
                 const modifier = parseInt(event.currentTarget.dataset.value)
+                const modifierIsNegative = modifier < 0
 
                 // Get the values of basic and advanced dice
                 const basicValue = basicDiceInput.val() ? parseInt(basicDiceInput.val()) : 0
@@ -329,20 +330,31 @@ class WOD5eDice {
                 // Determine whether any alterations need to be made to basic dice or advanced dice
                 // Either use the current applyDiceTo (if set), or default to 'basic'
                 let applyDiceTo = event.currentTarget.dataset.applyDiceTo || 'basic'
-                // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
-                if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
-                  applyDiceTo = 'advanced'
+
+                if (modifierIsNegative) {
+                  // Apply dice to basicDice unless basicDice is 0
+                  if ((system === 'vampire' || system === 'werewolf') && basicValue === 0) {
+                    applyDiceTo = 'advanced'
+                  }
+                } else {
+                  // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
+                  if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
+                    applyDiceTo = 'advanced'
+                  }
                 }
 
-                // Determine the new input depending on if the bonus is getting added (checked)
-                // or not (unchecked)
+                // Determine the new input depending on if the modifier is adding or subtracting
+                // Checked and modifier is NOT negative = Add
+                // Unchecked and modifier is negative = Add
+                // Checked and modifier is negative = Subtract
+                // Unchecked and modifier is NOT negative = Subtract
                 let newValue = 0
                 let checkValue = 0
-                if (modCheckbox.prop('checked')) {
+                if ((modCheckbox.prop('checked') && !modifierIsNegative) || (!modCheckbox.prop('checked') && modifierIsNegative)) {
                   // Adding the modifier
                   if (applyDiceTo === 'advanced') {
                     // Apply the modifier to advancedDice
-                    newValue = advancedValue + modifier
+                    newValue = advancedValue + Math.abs(modifier)
 
                     // Determine what we're checking against
                     if (system === 'vampire') {
@@ -363,7 +375,7 @@ class WOD5eDice {
                     advancedDiceInput.val(newValue)
                   } else {
                     // If advancedDice is already at its max, apply the whole modifier to just basicDice
-                    newValue = basicValue + modifier
+                    newValue = basicValue + Math.abs(modifier)
                     basicDiceInput.val(newValue)
                   }
 
@@ -373,7 +385,7 @@ class WOD5eDice {
                   // Removing the modifier
                   if (applyDiceTo === 'advanced') {
                     // Apply the modifier to advancedDice
-                    newValue = advancedValue - modifier
+                    newValue = advancedValue - Math.abs(modifier)
 
                     if (newValue < 0) {
                       // Check for any deficit and apply it to basicDice
@@ -385,7 +397,7 @@ class WOD5eDice {
                     // Update the advancedDice in the menu
                     advancedDiceInput.val(newValue)
                   } else {
-                    newValue = basicValue - modifier
+                    newValue = basicValue - Math.abs(modifier)
                     if (newValue < 0) {
                       const deficit = Math.abs(newValue)
                       newValue = 0
