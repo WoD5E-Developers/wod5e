@@ -53,7 +53,7 @@
   flex-grow: 0;
 }
 .actor.sheet.hunter .item-image img {
-  background: var(--ui-background-hunter-texture);
+  background-color: var(--hunter-theme-filter);
 }
 .actor.sheet.hunter .tab[data-tab="edges"] .powers-display-tree ul:before {
   background-color: var(--hunter-color-1);
@@ -828,7 +828,7 @@ h3.item-name {
   flex-grow: 0;
 }
 .actor.sheet.vampire .item-image img {
-  background: var(--ui-background-vampire-texture);
+  background-color: var(--vampire-theme-filter);
 }
 .actor.sheet.vampire .tab[data-tab="disciplines"] .powers-display-tree ul:before {
   background-color: var(--vampire-color-1);
@@ -1004,7 +1004,7 @@ h3.item-name {
   flex-grow: 0;
 }
 .actor.sheet.werewolf .item-image img {
-  background: var(--ui-background-vampire-texture);
+  background-color: var(--werewolf-theme-filter);
 }
 .actor.sheet.werewolf .tab[data-tab="gifts"] .powers-display-tree ul:before {
   background-color: var(--werewolf-color-2);
@@ -2275,10 +2275,10 @@ body.uk .actor.sheet {
   --system-color-10: #4b4b4b;
   --system-color-11: #181818;
   --base-theme-filter: rgba(24, 51, 103, 0.5);
-  --ui-background-texture: url("/systems/vtm5e/assets/ui/base_ui_background_texture.webp");
+  --ui-background-texture: url(/systems/vtm5e/assets/ui/base_ui_background_texture.webp);
   --sidebar-background: url(/systems/vtm5e/assets/ui/base_sidebar.webp);
   --actor-background-default: url(/systems/vtm5e/assets/actor/actor_background.webp);
-  --actor-header-default: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp");
+  --actor-header-default: url(/systems/vtm5e/assets/ui/Actor_Header_Background.webp);
   --logo-default: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
 }
 /* All places that use a filter to apply the theme colour */
@@ -2439,7 +2439,7 @@ prose-mirror .editor-menu button {
 .sheet .rollable-item:hover,
 .sheet .system-rollable:hover {
   text-shadow: 0 0 5px var(--system-color-9);
-  filter: saturate(250%);
+  filter: saturate(250%) drop-shadow(2px 4px 6px black);
 }
 .sheet .stats-container {
   background-color: var(--system-color-4);
@@ -2715,6 +2715,7 @@ prose-mirror .editor-menu button {
   --system-dark-color-7: #505050;
   --system-dark-color-8: #e6e6e6;
   --dark-theme-filter: rgba(43, 43, 43, 0.5);
+  --actor-background-dark: url(/systems/vtm5e/assets/actor/actor_background_dark.webp);
 }
 .wod-dark-theme {
   /* All places that use a filter to apply the theme colour */
@@ -2724,6 +2725,9 @@ prose-mirror .editor-menu button {
   /* Hunter Styling */
   /* Journals */
   /* Foundry Controls UI */
+}
+.wod-dark-theme .sheet .window-content {
+  background: var(--actor-background-dark) repeat;
 }
 .wod-dark-theme .app,
 .wod-dark-theme #sidebar,
@@ -2948,12 +2952,15 @@ prose-mirror .editor-menu button {
 /* Variables */
 :root {
   --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.webp);
-  --hunter-theme-filter: #d18125;
+  --hunter-theme-filter: #D18125;
 }
 .wod-hunter-theme {
   /* All places that use a filter to apply the theme colour */
   /* Logo */
   /* Foundry Controls UI */
+}
+.wod-hunter-theme .sheet .window-content {
+  background: var(--actor-background-default) repeat;
 }
 .wod-hunter-theme .app,
 .wod-hunter-theme #sidebar,
@@ -2987,7 +2994,7 @@ prose-mirror .editor-menu button {
 /* Variables */
 :root {
   --logo-vampire: url("/systems/vtm5e/assets/ui/VtM_Logo.webp");
-  --vampire-theme-filter: rgba(255, 43, 43, 0.5);
+  --vampire-theme-filter: #FF2B2B80;
 }
 .wod-vampire-theme {
   /* All places that use a filter to apply the theme colour */
@@ -2997,6 +3004,9 @@ prose-mirror .editor-menu button {
   /* Hunter Styling */
   /* Journals */
   /* Foundry Controls UI */
+}
+.wod-vampire-theme .sheet .window-content {
+  background: var(--actor-background-dark) repeat;
 }
 .wod-vampire-theme .app,
 .wod-vampire-theme #sidebar,
@@ -3228,7 +3238,7 @@ prose-mirror .editor-menu button {
 /* Variables */
 :root {
   --logo-werewolf: url("/systems/vtm5e/assets/ui/WtA_Logo.webp");
-  --werewolf-theme-filter: rgba(190, 102, 0, 0.5);
+  --werewolf-theme-filter: #BE660080;
 }
 .wod-werewolf-theme {
   /* All places that use a filter to apply the theme colour */
@@ -3238,6 +3248,9 @@ prose-mirror .editor-menu button {
   /* Hunter Styling */
   /* Journals */
   /* Foundry Controls UI */
+}
+.wod-werewolf-theme .sheet .window-content {
+  background: var(--actor-background-dark) repeat;
 }
 .wod-werewolf-theme .app,
 .wod-werewolf-theme #sidebar,
