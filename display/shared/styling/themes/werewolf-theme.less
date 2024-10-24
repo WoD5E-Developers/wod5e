@@ -1,12 +1,31 @@
 /* Variables */
 :root {
-  --ui-background-werewolf-texture: url("/systems/vtm5e/assets/ui/ui_background_werewolf_texture.webp");
-  --sidebar-background-werewolf: url("/systems/vtm5e/assets/ui/sidebar_werewolf.webp");
-  --ui-background-werewolf-color: rgb(87 52 13);
   --logo-werewolf: url("/systems/vtm5e/assets/ui/WtA_Logo.webp");
+  --werewolf-theme-filter: rgba(190, 102, 0, 0.5);
 }
 
-.werewolf-theme {
+.wod-werewolf-theme {
+  /* All places that use a filter to apply the theme colour */
+  .app,
+  #sidebar,
+  #controls ol.control-tools > li,
+  #navigation #scene-list .scene,
+  #navigation #scene-list .scene.view,
+  #navigation #scene-list .scene.context,
+  #navigation #scene-list .scene.gm,
+  #navigation .nav-item,
+  #navigation #nav-toggle,
+  #hotbar .bar-controls {
+    background-color: var(--werewolf-theme-filter);
+    background-blend-mode: color-dodge;
+  }
+
+  #hotbar {
+    .macro {
+      background: var(--werewolf-theme-filter);
+    }
+  }
+
   /* Logo */
   #logo {
     content: var(--logo-werewolf);
@@ -315,38 +334,8 @@
     }
   }
 
-  /* Sidebar */
-  #sidebar {
-    background: var(--sidebar-background-dark) repeat;
-  }
-
   /* Foundry Controls UI */
-  #controls ol.control-tools > li {
-    background: var(--ui-background-werewolf-texture);
-  }
-
   #controls ol.control-tools .has-notes::after {
     color: var(--system-dark-color-1);
-  }
-
-  #navigation #scene-list .scene,
-  #navigation #scene-list .scene.view,
-  #navigation #scene-list .scene.context,
-  #navigation #scene-list .scene.gm,
-  #navigation .nav-item,
-  #navigation #nav-toggle {
-    background: var(--ui-background-werewolf-texture);
-  }
-
-  #hotbar .macro {
-    background: var(--ui-background-werewolf-color);
-  }
-
-  #hotbar .bar-controls {
-    background: var(--ui-background-werewolf-texture);
-  }
-
-  .app {
-    background: var(--ui-background-werewolf-texture);
   }
 }

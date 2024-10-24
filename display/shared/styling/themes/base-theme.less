@@ -11,14 +11,58 @@
   --system-color-9: #e02b2b;
   --system-color-10: #4b4b4b;
   --system-color-11: #181818;
-  --ui-background-texture: url("/systems/vtm5e/assets/ui/ui_background_texture.webp");
-  --ui-background-active-texture: url("/systems/vtm5e/assets/ui/ui_background_active_texture.webp");
-  --sidebar-background-default: url(/systems/vtm5e/assets/ui/sidebar.webp);
+
+  --base-theme-filter: rgb(24 51 103 / 50%);
+
+  --ui-background-texture: url("/systems/vtm5e/assets/ui/base_ui_background_texture.webp");
+  --sidebar-background: url(/systems/vtm5e/assets/ui/base_sidebar.webp);
+
   --actor-background-default: url(/systems/vtm5e/assets/actor/actor_background.webp);
   --actor-header-default: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp");
   --logo-default: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
 }
 
+/* All places that use a filter to apply the theme colour */
+.app,
+#controls ol.control-tools > li,
+#navigation #scene-list .scene,
+#navigation #scene-list .scene.view,
+#navigation #scene-list .scene.context,
+#navigation #scene-list .scene.gm,
+#navigation .nav-item,
+#navigation #nav-toggle,
+#hotbar .bar-controls {
+  background: var(--ui-background-texture);
+}
+
+#sidebar {
+  background: var(--sidebar-background) repeat;
+}
+
+/* Apply light theme colour */
+.wod-light-theme {
+  .app,
+  #sidebar,
+  #controls ol.control-tools > li,
+  #navigation #scene-list .scene,
+  #navigation #scene-list .scene.view,
+  #navigation #scene-list .scene.context,
+  #navigation #scene-list .scene.gm,
+  #navigation .nav-item,
+  #navigation #nav-toggle,
+  #hotbar .bar-controls {
+    background-color: var(--base-theme-filter);
+    background-blend-mode: color-dodge;
+  }
+
+  #hotbar {
+    .macro {
+      background: var(--base-theme-filter);
+    }
+  }
+}
+
+/* Form groups adjustments */
 .standard-form {
   .form-group,
   .form-group:hover {
@@ -355,10 +399,6 @@ prose-mirror {
 
 /* Sidebar */
 /* General Sidebar Styling */
-#sidebar {
-  background: var(--sidebar-background-default) repeat;
-}
-
 #sidebar-tabs {
   background: var(--system-color-5);
   border-bottom: 1px solid var(--system-color-6);
@@ -606,44 +646,20 @@ prose-mirror {
 }
 
 /* Foundry Controls UI */
-.app {
-  background: var(--ui-background-texture);
-}
-
 #controls {
   ol.control-tools > li {
-    background: var(--ui-background-texture);
     box-shadow: 0 0 10px var(--system-color-3);
     border: 1px solid var(--system-color-2);
   }
 
   ol.control-tools > li.active,
   ol.control-tools > li:hover {
-    background: var(--ui-background-active-texture);
+    filter: drop-shadow(0px 0px 2px white);
   }
 }
 
 #navigation {
-  #scene-list .scene,
-  #scene-list .scene.view,
-  #scene-list .scene.context,
-  #scene-list .scene.gm,
-  .nav-item,
-  #nav-toggle {
-    background: var(--ui-background-texture);
-  }
-
   #scene-list .scene.active {
-    background: var(--ui-background-active-texture);
-  }
-}
-
-#hotbar {
-  .macro {
-    background: rgb(24 51 103 / 50%);
-  }
-
-  .bar-controls {
-    background: var(--ui-background-texture);
+    filter: drop-shadow(0px 0px 2px white);
   }
 }

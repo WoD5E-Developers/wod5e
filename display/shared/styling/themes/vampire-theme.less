@@ -1,16 +1,35 @@
 /* Variables */
 :root {
-  --ui-background-vampire-texture: url("/systems/vtm5e/assets/ui/ui_background_vampire_texture.webp");
-  --sidebar-background-vampire: url("/systems/vtm5e/assets/ui/sidebar_vampire.webp");
-  --ui-background-vampire-color: rgba(255, 43, 43, 0.5);
   --logo-vampire: url("/systems/vtm5e/assets/ui/VtM_Logo.webp");
+  --vampire-theme-filter: rgba(255, 43, 43, 0.5);
 }
 
-.vampire-theme {
+.wod-vampire-theme {
+  /* All places that use a filter to apply the theme colour */
+  .app,
+  #sidebar,
+  #controls ol.control-tools > li,
+  #navigation #scene-list .scene,
+  #navigation #scene-list .scene.view,
+  #navigation #scene-list .scene.context,
+  #navigation #scene-list .scene.gm,
+  #navigation .nav-item,
+  #navigation #nav-toggle,
+  #hotbar .bar-controls {
+    background-color: var(--vampire-theme-filter);
+    background-blend-mode: difference;
+  }
+
+  #hotbar {
+    .macro {
+      background: var(--vampire-theme-filter);
+    }
+  }
+
   /* Logo */
   #logo {
     content: var(--logo-vampire);
-    filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 0 10px var(--ui-background-vampire-color)) drop-shadow(0 0 15px #ffffff);
+    filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 0 10px var(--vampire-theme-filter)) drop-shadow(0 0 15px #ffffff);
   }
 
   .standard-form {
@@ -315,38 +334,12 @@
     }
   }
 
-  /* Sidebar */
-  #sidebar {
-    background: var(--sidebar-background-dark) repeat;
-  }
-
   /* Foundry Controls UI */
-  #controls ol.control-tools > li {
-    background: var(--ui-background-vampire-texture);
-  }
-
   #controls ol.control-tools .has-notes::after {
     color: var(--system-dark-color-1);
   }
 
-  #navigation #scene-list .scene,
-  #navigation #scene-list .scene.view,
-  #navigation #scene-list .scene.context,
-  #navigation #scene-list .scene.gm,
-  #navigation .nav-item,
-  #navigation #nav-toggle {
-    background: var(--ui-background-vampire-texture);
-  }
-
   #hotbar .macro {
-    background: var(--ui-background-vampire-color);
-  }
-
-  #hotbar .bar-controls {
-    background: var(--ui-background-vampire-texture);
-  }
-
-  .app {
-    background: var(--ui-background-vampire-texture);
+    background: var(--vampire-theme-filter);
   }
 }

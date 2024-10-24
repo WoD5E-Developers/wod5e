@@ -1,16 +1,35 @@
 /* Variables */
 :root {
-  --ui-background-hunter-texture: url("/systems/vtm5e/assets/ui/ui_background_hunter_texture.webp");
-  --sidebar-background-hunter: url(/systems/vtm5e/assets/ui/sidebar_hunter.webp);
-  --ui-background-hunter-color: rgb(209, 129, 37);
   --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.webp);
+  --hunter-theme-filter: rgb(209, 129, 37);
 }
 
-.hunter-theme {
+.wod-hunter-theme {
+  /* All places that use a filter to apply the theme colour */
+  .app,
+  #sidebar,
+  #controls ol.control-tools > li,
+  #navigation #scene-list .scene,
+  #navigation #scene-list .scene.view,
+  #navigation #scene-list .scene.context,
+  #navigation #scene-list .scene.gm,
+  #navigation .nav-item,
+  #navigation #nav-toggle,
+  #hotbar .bar-controls {
+    background-color: var(--hunter-theme-filter);
+    background-blend-mode: difference;
+  }
+
+  #hotbar {
+    .macro {
+      background: var(--hunter-theme-filter);
+    }
+  }
+
   /* Logo */
   #logo {
     content: var(--logo-hunter);
-    filter: drop-shadow(0 -5px 10px #cacacac4) drop-shadow(0 -10px 10px var(--ui-background-hunter-color)) drop-shadow(0 0 10px #ffffffb4);
+    filter: drop-shadow(0 -5px 10px #cacacac4) drop-shadow(0 -10px 10px var(--hunter-theme-filter)) drop-shadow(0 0 10px #ffffffb4);
   }
 
   .sheet,
@@ -20,39 +39,7 @@
     }
   }
 
-  /* Sidebar */
-  #sidebar {
-    background: var(--sidebar-background-hunter) repeat;
-  }
-
   /* Foundry Controls UI */
-  #controls ol.control-tools > li {
-    background: var(--ui-background-hunter-texture);
-  }
-
-  #navigation #scene-list .scene,
-  #navigation #scene-list .scene.view,
-  #navigation #scene-list .scene.context,
-  #navigation #scene-list .scene.gm,
-  #navigation .nav-item,
-  #navigation #nav-toggle {
-    background: var(--ui-background-hunter-texture);
-  }
-
-  #hotbar .macro {
-    background: var(--ui-background-hunter-color);
-  }
-
-  #hotbar .bar-controls {
-    background: var(--ui-background-hunter-texture);
-  }
-
-  .app {
-    background: var(--ui-background-hunter-texture);
-    background-color: #3333335d;
-    background-blend-mode: multiply;
-  }
-
   .directory .action-buttons button {
     background: #020202;
     color: var(--system-color-6);

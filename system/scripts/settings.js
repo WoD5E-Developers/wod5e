@@ -316,12 +316,12 @@ export const _updatePreferredColorScheme = async function () {
 
   // Determine which theme we're using - if it's not set by the client, we base the theme
   // off of the browser's prefers-color-scheme
-  if (clientSetting) theme = `${clientSetting}-theme`
-  else if (matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark-theme'
-  else if (matchMedia('(prefers-color-scheme: light)').matches) theme = 'theme-light'
+  if (clientSetting) theme = `wod-${clientSetting}-theme`
+  else if (matchMedia('(prefers-color-scheme: dark)').matches) theme = 'wod-dark-theme'
+  else if (matchMedia('(prefers-color-scheme: light)').matches) theme = 'wod-light-theme'
 
   // Remove existing theme classes
-  document.body.classList.remove('theme-light', 'dark-theme', 'vampire-theme', 'hunter-theme', 'werewolf-theme')
+  document.body.classList.remove('wod-light-theme', 'wod-dark-theme', 'wod-vampire-theme', 'wod-hunter-theme', 'wod-werewolf-theme')
 
   // Append the theme class to the document body
   if (theme) document.body.classList.add(theme)
