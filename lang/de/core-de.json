@@ -178,6 +178,7 @@
       "SelectFeature": "Merkmal auswählen",
       "ShowToChat": "An Chat senden",
       "_Static": "",
+      "_SuppressCondition": "",
       "Type": "Typ",
       "_Upgrade": "",
       "UseSkill": "Fähigkeiten einsetzen",

@@ -178,6 +178,7 @@
       "_SelectFeature": "",
       "ShowToChat": "Mostrar no Chat",
       "_Static": "",
+      "_SuppressCondition": "",
       "Type": "Tipo",
       "_Upgrade": "",
       "UseSkill": "Usar Habilidades",

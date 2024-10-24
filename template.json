@@ -874,7 +874,8 @@
     },
     "condition": {
       "templates": ["base"],
-      "effects": {}
+      "effects": {},
+      "suppressed": false
     },
     "clan": {
       "templates": ["base"],
