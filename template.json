@@ -840,7 +840,12 @@
     "feature": {
       "templates": ["base"],
       "featuretype": "merit",
-      "points": 0
+      "points": 0,
+      "uses": {
+        "max": 0,
+        "value": 0,
+        "enabled": false
+      }
     },
     "boon": {
       "templates": ["base"],
