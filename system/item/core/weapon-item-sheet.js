@@ -39,7 +39,7 @@ export class WeaponItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       template: 'systems/vtm5e/display/shared/items/parts/modifiers.hbs'
     },
     settings: {
-      template: 'systems/vtm5e/display/shared/items/parts/item-settings.hbs'
+      template: 'systems/vtm5e/display/shared/items/parts/weapon-settings.hbs'
     }
   }
 
@@ -82,6 +82,8 @@ export class WeaponItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
     data.weaponTypeOptions = Weapons.getList({})
     data.weaponTypeSelected = itemData.weaponType
+
+    data.uses = itemData.uses
 
     return data
   }

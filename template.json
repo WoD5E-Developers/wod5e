@@ -835,17 +835,19 @@
       },
       "equipment": {
         "quantity": 1
+      },
+      "itemUses": {
+        "uses": {
+          "max": 0,
+          "current": 0,
+          "enabled": false
+        }
       }
     },
     "feature": {
-      "templates": ["base"],
+      "templates": ["base", "itemUses"],
       "featuretype": "merit",
-      "points": 0,
-      "uses": {
-        "max": 0,
-        "value": 0,
-        "enabled": false
-      }
+      "points": 0
     },
     "boon": {
       "templates": ["base"],
@@ -862,11 +864,11 @@
       "armorvalue": 0
     },
     "weapon": {
-      "templates": ["base", "equipment"],
+      "templates": ["base", "equipment", "itemUses"],
       "weaponvalue": 0
     },
     "gear": {
-      "templates": ["base", "equipment"]
+      "templates": ["base", "equipment", "itemUses"]
     },
     "trait": {
       "templates": ["base"],

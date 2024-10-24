@@ -37,7 +37,7 @@ export class GearItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       template: 'systems/vtm5e/display/shared/items/parts/modifiers.hbs'
     },
     settings: {
-      template: 'systems/vtm5e/display/shared/items/parts/item-settings.hbs'
+      template: 'systems/vtm5e/display/shared/items/parts/gear-settings.hbs'
     }
   }
 
@@ -76,6 +76,8 @@ export class GearItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     const itemData = item.system
 
     data.quantity = itemData.quantity
+
+    data.uses = itemData.uses
 
     return data
   }
