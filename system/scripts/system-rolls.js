@@ -63,6 +63,20 @@ class WOD5eDice {
       // Get the difficulty and store it
       difficulty = $form ? $form.find('[id=inputDifficulty]').val() : difficulty
 
+      // Prevent trying to roll 0 dice; all dice pools should roll at least 1 die
+      if (parseInt(inputBasicDice) === 0 && parseInt(inputAdvancedDice) === 0) {
+        if (system === 'vampire' && actor.system.hunger.value > 0) {
+          // Vampires with hunger above 0 should be rolling 1 hunger die
+          inputAdvancedDice = 1
+        } else if (system === 'werewolf' && actor.system.rage.value > 0) {
+          // Werewolves with rage above 0 should be rolling 1 rage die
+          inputAdvancedDice = 1
+        } else {
+          // In all other cases, we just roll one basic die
+          inputBasicDice = 1
+        }
+      }
+
       // Construct the proper roll formula by sending it to the generateRollFormula function
       const rollFormula = await generateRollFormula({
         basicDice: inputBasicDice,
@@ -166,9 +180,6 @@ class WOD5eDice {
           decreaseRage: system === 'werewolf'
         })
       }
-
-      // The below isn't needed if there's no dice being rolled
-      if (parseInt(inputBasicDice) === 0 && parseInt(inputAdvancedDice) === 0) return roll
 
       // The below isn't needed if disableMessageOutput is set to true
       if (disableMessageOutput && game.dice3d) {
