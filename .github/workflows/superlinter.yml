@@ -46,5 +46,5 @@ jobs:
           VALIDATE_CSS: false
           # Too many false positives
           VALIDATE_JSON: false
-          # Ignore libraries
-          FILTER_REGEX_EXCLUDE: ".*/lib/.*"
+          # Ignore the license file and the lib folder
+          FILTER_REGEX_EXCLUDE: "(./LICENSE.md|.*/lib/.*)"
