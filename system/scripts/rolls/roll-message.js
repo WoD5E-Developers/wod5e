@@ -19,7 +19,8 @@ export async function generateRollMessage ({
   title,
   flavor = '',
   difficulty = 0,
-  activeModifiers
+  activeModifiers,
+  isContentVisible = true
 }) {
   // Variables to be defined later
   let basicDice, advancedDice
@@ -48,7 +49,8 @@ export async function generateRollMessage ({
     totalResult,
     margin: totalResult > difficulty ? totalResult - difficulty : 0,
     enrichedResultLabel: await TextEditor.enrichHTML(resultLabel),
-    activeModifiers
+    activeModifiers,
+    isContentVisible
   }
 
   const chatMessage = await renderTemplate(chatTemplate, chatData)

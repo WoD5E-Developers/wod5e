@@ -44,8 +44,6 @@ export class WoDChatMessage extends ChatMessage {
 
     html = $(html)
 
-    console.log(this)
-
     if (this.isRoll) {
       // Append a system value if roll classes are detected
       const rollTerms = this.rolls[0].terms
