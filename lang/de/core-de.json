@@ -221,6 +221,7 @@
       "Modifier": "Modifikator",
       "MortalDice": "Würfel",
       "RollMode": "Wurf-Modus",
+      "_RollModifier": "",
       "SelectableModifiers": "Auswählbare Modifikatoren",
       "SelectRoll": "Wurf auswählen",
       "Source": "Quelle",

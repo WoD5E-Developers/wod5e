@@ -221,6 +221,7 @@
       "Modifier": "Модификатор",
       "MortalDice": "Кости смертного",
       "RollMode": "Режим броска",
+      "_RollModifier": "",
       "SelectableModifiers": "Выбранные модификаторы",
       "SelectRoll": "Сформируйте проверку",
       "Source": "Источник",

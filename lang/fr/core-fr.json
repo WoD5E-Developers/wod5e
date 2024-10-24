@@ -221,6 +221,7 @@
       "Modifier": "Modificateur",
       "MortalDice": "Dé mortel",
       "RollMode": "Type de jet",
+      "_RollModifier": "",
       "SelectableModifiers": "Modificateur sélectionnable",
       "_SelectRoll": "",
       "Source": "Source",

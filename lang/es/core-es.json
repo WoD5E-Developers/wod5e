@@ -221,6 +221,7 @@
       "Modifier": "Modificador",
       "MortalDice": "Dados de mortal",
       "RollMode": "Modo de tirada",
+      "_RollModifier": "",
       "SelectableModifiers": "Modificadores seleccionables",
       "_SelectRoll": "",
       "Source": "Origen",

@@ -221,6 +221,7 @@
       "Modifier": "Modificador",
       "MortalDice": "Dados de Mortal",
       "RollMode": "Modo de Rolagem",
+      "_RollModifier": "",
       "_SelectableModifiers": "",
       "_SelectRoll": "",
       "_Source": "",

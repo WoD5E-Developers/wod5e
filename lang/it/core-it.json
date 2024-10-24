@@ -221,6 +221,7 @@
       "Modifier": "Modificatori",
       "MortalDice": "Dadi mortale",
       "RollMode": "Modalità di tiro",
+      "_RollModifier": "",
       "SelectableModifiers": "Modificatori selezionabili",
       "SelectRoll": "Seleziona tiro",
       "Source": "Fonte",
