@@ -39,7 +39,7 @@ export const _rollItem = async function (actor, item) {
   const decreaseRage = false
   const title = item.name
   const flavor = itemData.description
-  const flatMod = 0
+  const flatMod = itemData?.modifier || 0
   const macro = itemData.macroid
   const selectors = []
 

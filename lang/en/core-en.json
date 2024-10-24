@@ -227,7 +227,8 @@
       "Success": "Success",
       "SuccessBy": "Success by {string}",
       "Successes": "Successes",
-      "Total": "Total"
+      "Total": "Total",
+      "RollModifier": "Roll Modifier"
     },
     "Settings": {
       "ActorBanner": "Enable Character Type Banner",
