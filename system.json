@@ -262,7 +262,7 @@
   },
   "initiative": "1d10",
   "changelog": "https://wod5e-developers.github.io/wod5e-docs/changelog.html",
-  "license": "./LICENSE",
+  "license": "./LICENSE.md",
   "url": "https://github.com/WoD5E-Developers/wod5e",
   "bugs": "https://github.com/WoD5E-Developers/wod5e/issues",
   "background": "systems/vtm5e/assets/images/wodcity.jpg",
