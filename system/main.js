@@ -1,4 +1,4 @@
-/* global CONFIG, Hooks, Actors, ActorSheet, ChatMessage, Items, ItemSheet, game, ui, CONST */
+/* global CONFIG, Hooks, Actors, ActorSheet, ChatMessage, Items, ItemSheet, game, ui, CONST, jscolor */
 
 // Actor sheets
 import { WoDActor } from './actor/actor.js'
@@ -117,6 +117,13 @@ Hooks.once('ready', async function () {
   // Apply the currently selected language as a CSS class so we can
   // modify elements based on locale if needed
   document.body.classList.add(game.settings.get('core', 'language'))
+
+  // Set default presets for JS Color
+  jscolor.presets.default = {
+    format: 'hexa',
+    backgroundColor: '#000',
+    palette: '#FF2B2B80 #650202 #d84343 #f51f1f #D18125 #cc6d28 #ffb762 #ff8f00 #BE660080 #4e2100 #994101 #e97244'
+  }
 
   // Activate the API
   window.WOD5E = {
