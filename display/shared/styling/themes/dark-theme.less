@@ -10,9 +10,16 @@
   --system-dark-color-8: #e6e6e6;
 
   --dark-theme-filter: rgba(43, 43, 43, 0.5);
+  --actor-background-dark: url(/systems/vtm5e/assets/actor/actor_background_dark.webp);
 }
 
 .wod-dark-theme {
+  .sheet {
+    .window-content {
+      background: var(--actor-background-dark) repeat;
+    }
+  }
+
   /* All places that use a filter to apply the theme colour */
   .app,
   #sidebar,
