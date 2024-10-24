@@ -2,7 +2,7 @@
 # World of Darkness 5e System
 
 [![Foundry Version Support]][System URL]
-[![MIT License]][MIT URL]
+[![GNU GPL v3 License]][License URL]
 [![GitHub Super-Linter]][Super-Linter URL]
 
 This system is for playing multiple World of Darkness 5th edition systems on the Foundry Virtual Tabletop System. For a list of the latest changes, see the [Changelog](https://wod5e-developers.github.io/wod5e-docs/changelog.html). You can also read further about the system in general on the [WOD5E Docs](https://wod5e-developers.github.io/wod5e-docs/index.html) site!
@@ -48,8 +48,8 @@ Licensed WoD 5e materials will not be provided as this system is provided for pu
 [Foundry Version Support]: https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dplastic%26url%3Dhttps%3A%2F%2Fgithub.com%2FWoD5E-Developers%2Fwod5e%2Freleases%2Flatest%2Fdownload%2Fsystem.json
 [System URL]: https://foundryvtt.com/packages/vtm5e/
 
-[MIT License]: https://img.shields.io/badge/License-MIT-green
-[MIT URL]: https://github.com/WoD5E-Developers/wod5e/blob/main/LICENSE
+[GNU GPL v3 License]: https://img.shields.io/badge/License-GNU_GPL_v3-green
+[License URL]: ./LICENSE.md
 
 [GitHub Super-Linter]: https://github.com/WoD5E-Developers/wod5e/workflows/Super-Linter/badge.svg
 [Super-Linter URL]: https://github.com/marketplace/actions/super-linter
