@@ -19,6 +19,7 @@ import { _onCreateItem, _onItemChat, _onItemEdit, _onItemDelete } from './script
 import { _onWillpowerRoll } from './scripts/on-willpower-roll.js'
 import { _onToggleCollapse } from './scripts/on-toggle-collapse.js'
 import { _onToggleLimited } from './scripts/on-toggle-limited.js'
+import { _onRestoreItemUses, _onExpendItemUse } from './scripts/item-uses.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
@@ -62,6 +63,8 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       itemChat: _onItemChat,
       itemEdit: _onItemEdit,
       itemDelete: _onItemDelete,
+      expendItemUse: _onExpendItemUse,
+      restoreItemUses: _onRestoreItemUses,
 
       // Various other sheet functions
       editImage: _onEditImage,
