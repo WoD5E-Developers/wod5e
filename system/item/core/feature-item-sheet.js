@@ -35,7 +35,7 @@ export class FeatureItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       template: 'systems/vtm5e/display/shared/items/parts/modifiers.hbs'
     },
     settings: {
-      template: 'systems/vtm5e/display/shared/items/parts/item-settings.hbs'
+      template: 'systems/vtm5e/display/shared/items/parts/feature-settings.hbs'
     }
   }
 
@@ -69,6 +69,8 @@ export class FeatureItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     const itemData = item.system
 
     data.points = itemData.points
+    data.uses = itemData.uses
+
     data.featureTypeOptions = Features.getList({})
     data.featureTypeSelected = itemData.featuretype
 

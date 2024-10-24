@@ -14,15 +14,15 @@ export class Systems extends BaseDefinitionClass {
   }
 
   static vampire = {
-    label: 'WOD5E.VTM.Label'
+    label: 'TYPES.Actor.vampire'
   }
 
   static werewolf = {
-    label: 'WOD5E.WTA.Label'
+    label: 'TYPES.Actor.werewolf'
   }
 
   static hunter = {
-    label: 'WOD5E.HTR.Label'
+    label: 'TYPES.Actor.hunter'
   }
 }
 

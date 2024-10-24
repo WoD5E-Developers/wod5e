@@ -1,6 +1,7 @@
 :root {
   --hunter-color-1: #cc6d28;
   --hunter-color-2: #ffb762;
+  --hunter-color-3: #ff8f00;
   --cell-group-header: rgba(204, 109, 40, 0.8);
 }
 /* Define splat-specific colours for the WOD5E Symbols */
@@ -53,7 +54,7 @@
   flex-grow: 0;
 }
 .actor.sheet.hunter .item-image img {
-  background: var(--ui-background-hunter-texture);
+  background-color: var(--hunter-theme-filter);
 }
 .actor.sheet.hunter .tab[data-tab="edges"] .powers-display-tree ul:before {
   background-color: var(--hunter-color-1);
@@ -366,7 +367,7 @@
 /* ProseMirror Alterations */
 prose-mirror {
   width: -webkit-fill-available;
-  width: -moz-available;
+  height: -webkit-fill-available;
 }
 prose-mirror .editor-menu {
   height: 35px;
@@ -828,7 +829,7 @@ h3.item-name {
   flex-grow: 0;
 }
 .actor.sheet.vampire .item-image img {
-  background: var(--ui-background-vampire-texture);
+  background-color: var(--vampire-theme-filter);
 }
 .actor.sheet.vampire .tab[data-tab="disciplines"] .powers-display-tree ul:before {
   background-color: var(--vampire-color-1);
@@ -961,6 +962,7 @@ h3.item-name {
 :root {
   --werewolf-color-1: #4e2100;
   --werewolf-color-2: #994101;
+  --werewolf-color-3: var(--werewolf-color-3);
   --pack-group-header: rgba(78, 33, 0, 0.8);
 }
 /* Define splat-specific colours for the WOD5E Symbols */
@@ -1004,7 +1006,7 @@ h3.item-name {
   flex-grow: 0;
 }
 .actor.sheet.werewolf .item-image img {
-  background: var(--ui-background-vampire-texture);
+  background-color: var(--werewolf-theme-filter);
 }
 .actor.sheet.werewolf .tab[data-tab="gifts"] .powers-display-tree ul:before {
   background-color: var(--werewolf-color-2);
@@ -1296,6 +1298,10 @@ body.uk .actor.sheet {
   position: absolute;
   right: 3px;
 }
+.actor.sheet .resource .remove-data-item {
+  position: absolute;
+  right: 23px;
+}
 .actor.sheet .limited-actor-header {
   display: flex;
   flex-grow: 0;
@@ -1352,6 +1358,8 @@ body.uk .actor.sheet {
   cursor: pointer;
   max-width: 240px;
   max-height: 200px;
+  min-width: 50px;
+  min-height: 50px;
 }
 .actor.sheet .actor-header .charname:not(input) {
   font-size: 35px;
@@ -1756,6 +1764,10 @@ body.uk .actor.sheet {
 .actor.sheet .stats-content .stats-container .stats-footer {
   text-align: center;
 }
+/* Suppressed view for a condition item */
+.suppressed {
+  filter: grayscale(1) opacity(0.8);
+}
 .field-header.big-header {
   font-size: 16pt;
 }
@@ -2005,9 +2017,6 @@ body.uk .actor.sheet {
   padding: 10px 10px 0px 10px;
   overflow-y: scroll;
   height: 100%;
-}
-.item.sheet section.tab prose-mirror {
-  max-height: fit-content;
 }
 .item.sheet .effects-list .effect {
   border-top: 1px solid black;
@@ -2267,13 +2276,46 @@ body.uk .actor.sheet {
   --system-color-9: #e02b2b;
   --system-color-10: #4b4b4b;
   --system-color-11: #181818;
-  --ui-background-texture: url("/systems/vtm5e/assets/ui/ui_background_texture.webp");
-  --ui-background-active-texture: url("/systems/vtm5e/assets/ui/ui_background_active_texture.webp");
-  --sidebar-background-default: url(/systems/vtm5e/assets/ui/sidebar.webp);
+  --base-theme-filter: rgba(24, 51, 103, 0.5);
+  --ui-background-texture: url(/systems/vtm5e/assets/ui/base_ui_background_texture.webp);
+  --sidebar-background: url(/systems/vtm5e/assets/ui/base_sidebar.webp);
   --actor-background-default: url(/systems/vtm5e/assets/actor/actor_background.webp);
-  --actor-header-default: url("/systems/vtm5e/assets/ui/Actor_Header_Background.webp");
+  --actor-header-default: url(/systems/vtm5e/assets/ui/Actor_Header_Background.webp);
   --logo-default: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
 }
+/* All places that use a filter to apply the theme colour */
+.app,
+#controls ol.control-tools > li,
+#navigation #scene-list .scene,
+#navigation #scene-list .scene.view,
+#navigation #scene-list .scene.context,
+#navigation #scene-list .scene.gm,
+#navigation .nav-item,
+#navigation #nav-toggle,
+#hotbar .bar-controls {
+  background: var(--ui-background-texture);
+}
+#sidebar {
+  background: var(--sidebar-background) repeat;
+}
+/* Apply light theme colour */
+.wod-light-theme .app,
+.wod-light-theme #sidebar,
+.wod-light-theme #controls ol.control-tools > li,
+.wod-light-theme #navigation #scene-list .scene,
+.wod-light-theme #navigation #scene-list .scene.view,
+.wod-light-theme #navigation #scene-list .scene.context,
+.wod-light-theme #navigation #scene-list .scene.gm,
+.wod-light-theme #navigation .nav-item,
+.wod-light-theme #navigation #nav-toggle,
+.wod-light-theme #hotbar .bar-controls {
+  background-color: var(--base-theme-filter);
+  background-blend-mode: color-dodge;
+}
+.wod-light-theme #hotbar .macro {
+  background: var(--base-theme-filter);
+}
+/* Form groups adjustments */
 .standard-form .form-group > label,
 .standard-form .form-group:hover > label {
   color: var(--system-color-5);
@@ -2320,9 +2362,6 @@ prose-mirror .editor-menu button {
   color: var(--system-color-6);
 }
 /* Actor Sheets */
-.sheet.journal-entry .journal-entry-content {
-  background: var(--actor-background-default) repeat;
-}
 .sheet {
   /* Input and resource fields */
   /* Actor Header */
@@ -2402,7 +2441,7 @@ prose-mirror .editor-menu button {
 .sheet .rollable-item:hover,
 .sheet .system-rollable:hover {
   text-shadow: 0 0 5px var(--system-color-9);
-  filter: saturate(250%);
+  filter: saturate(250%) drop-shadow(2px 4px 6px black);
 }
 .sheet .stats-container {
   background-color: var(--system-color-4);
@@ -2470,9 +2509,6 @@ prose-mirror .editor-menu button {
 }
 /* Sidebar */
 /* General Sidebar Styling */
-#sidebar {
-  background: var(--sidebar-background-default) repeat;
-}
 #sidebar-tabs {
   background: var(--system-color-5);
   border-bottom: 1px solid var(--system-color-6);
@@ -2652,35 +2688,22 @@ prose-mirror .editor-menu button {
 .roll-label .success {
   color: #18520b;
 }
-/* Foundry Controls UI */
-.app {
-  background: var(--ui-background-texture);
+/* Journals */
+.app.journal-entry .journal-entry-content {
+  background-color: var(--system-color-8);
+  background-blend-mode: color;
 }
+/* Foundry Controls UI */
 #controls ol.control-tools > li {
-  background: var(--ui-background-texture);
   box-shadow: 0 0 10px var(--system-color-3);
   border: 1px solid var(--system-color-2);
 }
 #controls ol.control-tools > li.active,
 #controls ol.control-tools > li:hover {
-  background: var(--ui-background-active-texture);
-}
-#navigation #scene-list .scene,
-#navigation #scene-list .scene.view,
-#navigation #scene-list .scene.context,
-#navigation #scene-list .scene.gm,
-#navigation .nav-item,
-#navigation #nav-toggle {
-  background: var(--ui-background-texture);
+  filter: drop-shadow(0px 0px 2px white);
 }
 #navigation #scene-list .scene.active {
-  background: var(--ui-background-active-texture);
-}
-#hotbar .macro {
-  background: rgba(24, 51, 103, 0.5);
-}
-#hotbar .bar-controls {
-  background: var(--ui-background-texture);
+  filter: drop-shadow(0px 0px 2px white);
 }
 
 /* Variables */
@@ -2690,765 +2713,754 @@ prose-mirror .editor-menu button {
   --system-dark-color-3: #686767;
   --system-dark-color-4: #fff;
   --system-dark-color-5: #ffffff9c;
-  --system-dark-color-6: #ff0000;
   --system-dark-color-7: #505050;
   --system-dark-color-8: #e6e6e6;
-  --ui-background-dark-texture: url("/systems/vtm5e/assets/ui/ui_background_dark_texture.webp");
-  --sidebar-background-dark: url(/systems/vtm5e/assets/ui/sidebar_dark.webp);
+  --dark-theme-filter: rgba(43, 43, 43, 0.5);
+  --actor-background-dark: url(/systems/vtm5e/assets/actor/actor_background_dark.webp);
 }
-.dark-theme {
+.wod-dark-theme {
+  /* All places that use a filter to apply the theme colour */
+  /* Form groups adjustments */
   /* Vampire Styling */
   /* Werewolf Styling */
   /* Hunter Styling */
-  /* Sidebar */
+  /* Journals */
   /* Foundry Controls UI */
 }
-.dark-theme .standard-form .form-group > label,
-.dark-theme .standard-form .form-group:hover > label {
+.wod-dark-theme .sheet .window-content {
+  background: var(--actor-background-dark) repeat;
+}
+.wod-dark-theme .app,
+.wod-dark-theme #sidebar,
+.wod-dark-theme #controls ol.control-tools > li,
+.wod-dark-theme #navigation #scene-list .scene,
+.wod-dark-theme #navigation #scene-list .scene.view,
+.wod-dark-theme #navigation #scene-list .scene.context,
+.wod-dark-theme #navigation #scene-list .scene.gm,
+.wod-dark-theme #navigation .nav-item,
+.wod-dark-theme #navigation #nav-toggle,
+.wod-dark-theme #hotbar .bar-controls {
+  background-color: var(--dark-theme-filter);
+  background-blend-mode: color-dodge;
+}
+.wod-dark-theme .standard-form .form-group > label,
+.wod-dark-theme .standard-form .form-group:hover > label {
   color: var(--system-dark-color-4);
 }
-.dark-theme .standard-form .form-group .hint,
-.dark-theme .standard-form .form-group:hover .hint {
+.wod-dark-theme .standard-form .form-group .hint,
+.wod-dark-theme .standard-form .form-group:hover .hint {
   color: var(--system-dark-color-8);
 }
-.dark-theme .standard-form .sheet-tabs {
+.wod-dark-theme .standard-form .sheet-tabs {
   color: var(--system-dark-color-4);
 }
-.dark-theme .standard-form input[type=range] {
+.wod-dark-theme .standard-form input[type=range] {
   --range-thumb-background-color: var(--system-dark-color-4);
   --range-thumb-border-color: var(--system-dark-color-1);
 }
-.dark-theme .sheet .window-header,
-.dark-theme .dialog .window-header {
+.wod-dark-theme .sheet .window-header,
+.wod-dark-theme .dialog .window-header {
   background-color: var(--system-dark-color-1);
 }
-.dark-theme .sheet .journal-entry-content,
-.dark-theme .dialog .journal-entry-content,
-.dark-theme .sheet .window-content,
-.dark-theme .dialog .window-content {
-  background-color: var(--system-dark-color-1);
+.wod-dark-theme .sheet .journal-entry-content,
+.wod-dark-theme .dialog .journal-entry-content,
+.wod-dark-theme .sheet .window-content,
+.wod-dark-theme .dialog .window-content {
   color: var(--system-dark-color-4);
-  background-blend-mode: hard-light;
 }
-.dark-theme .sheet .journal-entry-content input,
-.dark-theme .dialog .journal-entry-content input,
-.dark-theme .sheet .window-content input,
-.dark-theme .dialog .window-content input,
-.dark-theme .sheet .journal-entry-content .actor-header,
-.dark-theme .dialog .journal-entry-content .actor-header,
-.dark-theme .sheet .window-content .actor-header,
-.dark-theme .dialog .window-content .actor-header,
-.dark-theme .sheet .journal-entry-content .tab,
-.dark-theme .dialog .journal-entry-content .tab,
-.dark-theme .sheet .window-content .tab,
-.dark-theme .dialog .window-content .tab {
+.wod-dark-theme .sheet .journal-entry-content input,
+.wod-dark-theme .dialog .journal-entry-content input,
+.wod-dark-theme .sheet .window-content input,
+.wod-dark-theme .dialog .window-content input,
+.wod-dark-theme .sheet .journal-entry-content .actor-header,
+.wod-dark-theme .dialog .journal-entry-content .actor-header,
+.wod-dark-theme .sheet .window-content .actor-header,
+.wod-dark-theme .dialog .window-content .actor-header,
+.wod-dark-theme .sheet .journal-entry-content .tab,
+.wod-dark-theme .dialog .journal-entry-content .tab,
+.wod-dark-theme .sheet .window-content .tab,
+.wod-dark-theme .dialog .window-content .tab {
   color: #ffffff;
   --input-text-color: #ffffff;
 }
-.dark-theme .sheet select,
-.dark-theme .dialog select,
-.dark-theme .sheet input,
-.dark-theme .dialog input {
+.wod-dark-theme .sheet select,
+.wod-dark-theme .dialog select,
+.wod-dark-theme .sheet input,
+.wod-dark-theme .dialog input {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.dark-theme .sheet select,
-.dark-theme .dialog select,
-.dark-theme .sheet select optgroup,
-.dark-theme .dialog select optgroup {
+.wod-dark-theme .sheet select,
+.wod-dark-theme .dialog select,
+.wod-dark-theme .sheet select optgroup,
+.wod-dark-theme .dialog select optgroup {
   background-color: var(--system-dark-color-2);
 }
-.dark-theme .sheet select option,
-.dark-theme .dialog select option {
+.wod-dark-theme .sheet select option,
+.wod-dark-theme .dialog select option {
   background-color: var(--system-dark-color-3);
 }
-.dark-theme .sheet button,
-.dark-theme .dialog button {
+.wod-dark-theme .sheet button,
+.wod-dark-theme .dialog button {
   background-color: var(--system-dark-color-3);
   color: var(--system-color-6);
 }
-.dark-theme .sheet button.default,
-.dark-theme .dialog button.default,
-.dark-theme .sheet button:hover,
-.dark-theme .dialog button:hover {
+.wod-dark-theme .sheet button.default,
+.wod-dark-theme .dialog button.default,
+.wod-dark-theme .sheet button:hover,
+.wod-dark-theme .dialog button:hover {
   background-color: var(--system-dark-color-2);
 }
-.dark-theme .sheet ::placeholder,
-.dark-theme .dialog ::placeholder {
+.wod-dark-theme .sheet ::placeholder,
+.wod-dark-theme .dialog ::placeholder {
   color: var(--system-dark-color-5);
 }
-.dark-theme .situational-modifiers {
+.wod-dark-theme .situational-modifiers {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.dark-theme .actor.sheet {
+.wod-dark-theme .actor.sheet {
   /* Navbar */
   /* Resource Counters */
 }
-.dark-theme .actor.sheet .item-list .item,
-.dark-theme .actor.sheet .resource,
-.dark-theme .actor.sheet prose-mirror .editor-content,
-.dark-theme .actor.sheet .actor-header input,
-.dark-theme .actor.sheet .actor-header .resource,
-.dark-theme .actor.sheet .stats-container,
-.dark-theme .actor.sheet .stats-container .stats-footer {
+.wod-dark-theme .actor.sheet .item-list .item,
+.wod-dark-theme .actor.sheet .resource,
+.wod-dark-theme .actor.sheet prose-mirror .editor-content,
+.wod-dark-theme .actor.sheet .actor-header input,
+.wod-dark-theme .actor.sheet .actor-header .resource,
+.wod-dark-theme .actor.sheet .stats-container,
+.wod-dark-theme .actor.sheet .stats-container .stats-footer {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.dark-theme .actor.sheet .sheet-tabs .navicon,
-.dark-theme .actor.sheet .sheet-tabs .lock-btn {
+.wod-dark-theme .actor.sheet .sheet-tabs .navicon,
+.wod-dark-theme .actor.sheet .sheet-tabs .lock-btn {
   color: var(--system-dark-color-4);
 }
-.dark-theme .actor.sheet .sheet-tabs .lock-btn,
-.dark-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
+.wod-dark-theme .actor.sheet .sheet-tabs .lock-btn,
+.wod-dark-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
   background-color: var(--system-dark-color-1);
   border: 1px solid var(--system-dark-color-4);
 }
-.dark-theme .actor.sheet .lock-btn:hover {
+.wod-dark-theme .actor.sheet .lock-btn:hover {
   color: #ffffff;
 }
-.dark-theme .actor.sheet .sheet-tabs > [data-tab].active .navicon {
+.wod-dark-theme .actor.sheet .sheet-tabs > [data-tab].active .navicon {
   background: var(--system-dark-color-7);
   border: 1px solid var(--system-dark-color-1);
 }
-.dark-theme .actor.sheet .resource-value .resource-value-step:not(.active) {
+.wod-dark-theme .actor.sheet .resource-value .resource-value-step:not(.active) {
   background-color: var(--system-dark-color-3);
 }
-.dark-theme .actor.sheet .resource-value .resource-value-empty {
+.wod-dark-theme .actor.sheet .resource-value .resource-value-empty {
   border: 1px solid var(--system-dark-color-3);
   background: linear-gradient(45deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%);
 }
-.dark-theme .actor.sheet .resource-counter .resource-counter-step {
+.wod-dark-theme .actor.sheet .resource-counter .resource-counter-step {
   border: 1px solid var(--system-dark-color-4);
 }
-.dark-theme .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
+.wod-dark-theme .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
   background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
-.dark-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
+.wod-dark-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
-.dark-theme .actor.sheet .item-list .category {
+.wod-dark-theme .actor.sheet .item-list .category {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
   /* Power Descriptions */
 }
-.dark-theme .actor.sheet .item-list .category .content-link {
+.wod-dark-theme .actor.sheet .item-list .category .content-link {
   color: var(--system-dark-color-1);
   background-color: #FFF;
 }
-.dark-theme .actor.sheet .item-list .category .discipline-description,
-.dark-theme .actor.sheet .item-list .category .edge-description,
-.dark-theme .actor.sheet .item-list .category .gift-description {
+.wod-dark-theme .actor.sheet .item-list .category .discipline-description,
+.wod-dark-theme .actor.sheet .item-list .category .edge-description,
+.wod-dark-theme .actor.sheet .item-list .category .gift-description {
   color: var(--system-dark-color-4);
 }
-.dark-theme .dialog-app .window-content,
-.dark-theme .item.sheet .window-content,
-.dark-theme .dialog .window-content {
+.wod-dark-theme .dialog-app .window-content,
+.wod-dark-theme .item.sheet .window-content,
+.wod-dark-theme .dialog .window-content {
   background: var(--system-dark-color-2);
 }
-.dark-theme .dialog-app input,
-.dark-theme .item.sheet input,
-.dark-theme .dialog input {
+.wod-dark-theme .dialog-app input,
+.wod-dark-theme .item.sheet input,
+.wod-dark-theme .dialog input {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.dark-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
-.dark-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
+.wod-dark-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
+.wod-dark-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.dark-theme .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
-.dark-theme .actor.sheet.vampire .tabs-container .item[data-tab="blood"] {
-  color: var(--system-dark-color-6);
+.wod-dark-theme .sheet.werewolf .resource-value .resource-value-step.active,
+.wod-dark-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
+.wod-dark-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
+  background-color: var(--werewolf-color-3);
 }
-.dark-theme .sheet.werewolf .resource-value .resource-value-step.active,
-.dark-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
-.dark-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: #e97244;
-}
-.dark-theme .sheet.werewolf button.rage-button:hover {
+.wod-dark-theme .sheet.werewolf button.rage-button:hover {
   background-color: #752e11ea;
 }
-.dark-theme .actor.sheet.werewolf .tabs-container .active.item .navicon {
+.wod-dark-theme .actor.sheet.werewolf .tabs-container .active.item .navicon {
   background-color: #752e11ea;
 }
-.dark-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
-.dark-theme .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
+.wod-dark-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
+.wod-dark-theme .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.dark-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
-.dark-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
-  color: #e97244;
+.wod-dark-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
+.wod-dark-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
+  color: var(--werewolf-color-3);
 }
-.dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
-.dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
+.wod-dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
+.wod-dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form.form-active {
+.wod-dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form.form-active {
   background-color: #833501e0;
 }
-.dark-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
+.wod-dark-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.dark-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
-  color: #ff8f00;
+.wod-dark-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
+  color: var(--hunter-color-3);
 }
-.dark-theme prose-mirror button.icon.toggle {
+.wod-dark-theme prose-mirror button.icon.toggle {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-1);
 }
-.dark-theme #sidebar {
-  background: var(--sidebar-background-dark) repeat;
+.wod-dark-theme .journal-entry .directory input[type="search"] {
+  background: transparent;
 }
-.dark-theme #controls ol.control-tools > li {
-  background: var(--ui-background-dark-texture);
+.wod-dark-theme .app.journal-entry .journal-entry-content {
+  background-color: #121212;
+  background-blend-mode: color;
 }
-.dark-theme #controls ol.control-tools .has-notes::after {
+.wod-dark-theme #controls ol.control-tools .has-notes::after {
   color: var(--system-dark-color-1);
 }
-.dark-theme #navigation #scene-list .scene,
-.dark-theme #navigation #scene-list .scene.view,
-.dark-theme #navigation #scene-list .scene.context,
-.dark-theme #navigation #scene-list .scene.gm,
-.dark-theme #navigation .nav-item,
-.dark-theme #navigation #nav-toggle {
-  background: var(--ui-background-dark-texture);
-}
-.dark-theme #hotbar .macro {
-  background: rgba(43, 43, 43, 0.5);
-}
-.dark-theme #hotbar .bar-controls {
-  background: var(--ui-background-dark-texture);
-}
-.dark-theme .app {
-  background: var(--ui-background-dark-texture);
+.wod-dark-theme #hotbar .macro {
+  background: var(--dark-theme-filter);
 }
 
 /* Variables */
 :root {
-  --ui-background-hunter-texture: url("/systems/vtm5e/assets/ui/ui_background_hunter_texture.webp");
-  --sidebar-background-hunter: url(/systems/vtm5e/assets/ui/sidebar_hunter.webp);
-  --ui-background-hunter-color: rgba(255, 136, 0, 0.5);
   --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.webp);
+  --hunter-theme-filter: #D18125;
 }
-.hunter-theme {
+.wod-hunter-theme {
+  /* All places that use a filter to apply the theme colour */
   /* Logo */
-  /* Sidebar */
   /* Foundry Controls UI */
 }
-.hunter-theme #logo {
-  content: var(--logo-hunter);
-  filter: drop-shadow(0 -5px 10px #cacacac4) drop-shadow(0 -10px 10px var(--ui-background-hunter-color)) drop-shadow(0 0 10px #ffffffb4);
+.wod-hunter-theme .sheet .window-content {
+  background: var(--actor-background-default) repeat;
 }
-.hunter-theme .sheet .window-header,
-.hunter-theme .dialog .window-header {
+.wod-hunter-theme .app,
+.wod-hunter-theme #sidebar,
+.wod-hunter-theme #controls ol.control-tools > li,
+.wod-hunter-theme #navigation #scene-list .scene,
+.wod-hunter-theme #navigation #scene-list .scene.view,
+.wod-hunter-theme #navigation #scene-list .scene.context,
+.wod-hunter-theme #navigation #scene-list .scene.gm,
+.wod-hunter-theme #navigation .nav-item,
+.wod-hunter-theme #navigation #nav-toggle,
+.wod-hunter-theme #hotbar .bar-controls {
+  background-color: var(--hunter-theme-filter);
+  background-blend-mode: difference;
+}
+.wod-hunter-theme #hotbar .macro {
+  background: var(--hunter-theme-filter);
+}
+.wod-hunter-theme #logo {
+  content: var(--logo-hunter);
+  filter: drop-shadow(0 -5px 10px #cacacac4) drop-shadow(0 -10px 10px var(--hunter-theme-filter)) drop-shadow(0 0 10px #ffffffb4);
+}
+.wod-hunter-theme .sheet .window-header,
+.wod-hunter-theme .dialog .window-header {
   background-color: var(--hunter-color-1);
 }
-.hunter-theme #sidebar {
-  background: var(--sidebar-background-hunter) repeat;
-}
-.hunter-theme #controls ol.control-tools > li {
-  background: var(--ui-background-hunter-texture);
-}
-.hunter-theme #navigation #scene-list .scene,
-.hunter-theme #navigation #scene-list .scene.view,
-.hunter-theme #navigation #scene-list .scene.context,
-.hunter-theme #navigation #scene-list .scene.gm,
-.hunter-theme #navigation .nav-item,
-.hunter-theme #navigation #nav-toggle {
-  background: var(--ui-background-hunter-texture);
-}
-.hunter-theme #hotbar .macro {
-  background: var(--ui-background-hunter-color);
-}
-.hunter-theme #hotbar .bar-controls {
-  background: var(--ui-background-hunter-texture);
-}
-.hunter-theme .app {
-  background: var(--ui-background-hunter-texture);
-  background-color: #3333335d;
-  background-blend-mode: multiply;
+.wod-hunter-theme .directory .action-buttons button {
+  background: #020202;
+  color: var(--system-color-6);
 }
 
 /* Variables */
 :root {
-  --ui-background-vampire-texture: url("/systems/vtm5e/assets/ui/ui_background_vampire_texture.webp");
-  --sidebar-background-vampire: url("/systems/vtm5e/assets/ui/sidebar_vampire.webp");
-  --ui-background-vampire-color: rgba(255, 43, 43, 0.5);
   --logo-vampire: url("/systems/vtm5e/assets/ui/VtM_Logo.webp");
+  --vampire-theme-filter: #FF2B2B80;
 }
-.vampire-theme {
+.wod-vampire-theme {
+  /* All places that use a filter to apply the theme colour */
   /* Logo */
   /* Vampire Styling */
   /* Werewolf Styling */
   /* Hunter Styling */
-  /* Sidebar */
+  /* Journals */
   /* Foundry Controls UI */
 }
-.vampire-theme #logo {
-  content: var(--logo-vampire);
-  filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 0 10px var(--ui-background-vampire-color)) drop-shadow(0 0 15px #ffffff);
+.wod-vampire-theme .sheet .window-content {
+  background: var(--actor-background-dark) repeat;
 }
-.vampire-theme .standard-form .form-group > label,
-.vampire-theme .standard-form .form-group:hover > label {
+.wod-vampire-theme .app,
+.wod-vampire-theme #sidebar,
+.wod-vampire-theme #controls ol.control-tools > li,
+.wod-vampire-theme #navigation #scene-list .scene,
+.wod-vampire-theme #navigation #scene-list .scene.view,
+.wod-vampire-theme #navigation #scene-list .scene.context,
+.wod-vampire-theme #navigation #scene-list .scene.gm,
+.wod-vampire-theme #navigation .nav-item,
+.wod-vampire-theme #navigation #nav-toggle,
+.wod-vampire-theme #hotbar .bar-controls {
+  background-color: var(--vampire-theme-filter);
+  background-blend-mode: difference;
+}
+.wod-vampire-theme #hotbar .macro {
+  background: var(--vampire-theme-filter);
+}
+.wod-vampire-theme #logo {
+  content: var(--logo-vampire);
+  filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 0 10px var(--vampire-theme-filter)) drop-shadow(0 0 15px #ffffff);
+}
+.wod-vampire-theme .standard-form .form-group > label,
+.wod-vampire-theme .standard-form .form-group:hover > label {
   color: var(--system-dark-color-4);
 }
-.vampire-theme .standard-form .form-group .hint,
-.vampire-theme .standard-form .form-group:hover .hint {
+.wod-vampire-theme .standard-form .form-group .hint,
+.wod-vampire-theme .standard-form .form-group:hover .hint {
   color: var(--system-dark-color-8);
 }
-.vampire-theme .standard-form .sheet-tabs {
+.wod-vampire-theme .standard-form .sheet-tabs {
   color: var(--system-dark-color-4);
 }
-.vampire-theme .standard-form input[type=range] {
+.wod-vampire-theme .standard-form input[type=range] {
   --range-thumb-background-color: var(--system-dark-color-4);
   --range-thumb-border-color: var(--system-dark-color-1);
 }
-.vampire-theme .sheet .window-header,
-.vampire-theme .dialog .window-header {
+.wod-vampire-theme .sheet .window-header,
+.wod-vampire-theme .dialog .window-header {
   background-color: var(--system-dark-color-1);
 }
-.vampire-theme .sheet .journal-entry-content,
-.vampire-theme .dialog .journal-entry-content,
-.vampire-theme .sheet .window-content,
-.vampire-theme .dialog .window-content {
-  background-color: var(--system-dark-color-1);
+.wod-vampire-theme .sheet .journal-entry-content,
+.wod-vampire-theme .dialog .journal-entry-content,
+.wod-vampire-theme .sheet .window-content,
+.wod-vampire-theme .dialog .window-content {
   color: var(--system-dark-color-4);
-  background-blend-mode: hard-light;
 }
-.vampire-theme .sheet .journal-entry-content input,
-.vampire-theme .dialog .journal-entry-content input,
-.vampire-theme .sheet .window-content input,
-.vampire-theme .dialog .window-content input,
-.vampire-theme .sheet .journal-entry-content .actor-header,
-.vampire-theme .dialog .journal-entry-content .actor-header,
-.vampire-theme .sheet .window-content .actor-header,
-.vampire-theme .dialog .window-content .actor-header,
-.vampire-theme .sheet .journal-entry-content .tab,
-.vampire-theme .dialog .journal-entry-content .tab,
-.vampire-theme .sheet .window-content .tab,
-.vampire-theme .dialog .window-content .tab {
+.wod-vampire-theme .sheet .journal-entry-content input,
+.wod-vampire-theme .dialog .journal-entry-content input,
+.wod-vampire-theme .sheet .window-content input,
+.wod-vampire-theme .dialog .window-content input,
+.wod-vampire-theme .sheet .journal-entry-content .actor-header,
+.wod-vampire-theme .dialog .journal-entry-content .actor-header,
+.wod-vampire-theme .sheet .window-content .actor-header,
+.wod-vampire-theme .dialog .window-content .actor-header,
+.wod-vampire-theme .sheet .journal-entry-content .tab,
+.wod-vampire-theme .dialog .journal-entry-content .tab,
+.wod-vampire-theme .sheet .window-content .tab,
+.wod-vampire-theme .dialog .window-content .tab {
   color: #ffffff;
   --input-text-color: #ffffff;
 }
-.vampire-theme .sheet select,
-.vampire-theme .dialog select,
-.vampire-theme .sheet input,
-.vampire-theme .dialog input {
+.wod-vampire-theme .sheet select,
+.wod-vampire-theme .dialog select,
+.wod-vampire-theme .sheet input,
+.wod-vampire-theme .dialog input {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.vampire-theme .sheet select,
-.vampire-theme .dialog select,
-.vampire-theme .sheet select optgroup,
-.vampire-theme .dialog select optgroup {
+.wod-vampire-theme .sheet select,
+.wod-vampire-theme .dialog select,
+.wod-vampire-theme .sheet select optgroup,
+.wod-vampire-theme .dialog select optgroup {
   background-color: var(--system-dark-color-2);
 }
-.vampire-theme .sheet select option,
-.vampire-theme .dialog select option {
+.wod-vampire-theme .sheet select option,
+.wod-vampire-theme .dialog select option {
   background-color: var(--system-dark-color-3);
 }
-.vampire-theme .sheet button,
-.vampire-theme .dialog button {
+.wod-vampire-theme .sheet button,
+.wod-vampire-theme .dialog button {
   background-color: var(--system-dark-color-3);
   color: var(--system-color-6);
 }
-.vampire-theme .sheet button.default,
-.vampire-theme .dialog button.default,
-.vampire-theme .sheet button:hover,
-.vampire-theme .dialog button:hover {
+.wod-vampire-theme .sheet button.default,
+.wod-vampire-theme .dialog button.default,
+.wod-vampire-theme .sheet button:hover,
+.wod-vampire-theme .dialog button:hover {
   background-color: var(--system-dark-color-2);
 }
-.vampire-theme .sheet ::placeholder,
-.vampire-theme .dialog ::placeholder {
+.wod-vampire-theme .sheet ::placeholder,
+.wod-vampire-theme .dialog ::placeholder {
   color: var(--system-dark-color-5);
 }
-.vampire-theme .situational-modifiers {
+.wod-vampire-theme .situational-modifiers {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.vampire-theme .actor.sheet {
+.wod-vampire-theme .actor.sheet {
   /* Navbar */
   /* Resource Counters */
 }
-.vampire-theme .actor.sheet .item-list .item,
-.vampire-theme .actor.sheet .resource,
-.vampire-theme .actor.sheet prose-mirror .editor-content,
-.vampire-theme .actor.sheet .actor-header input,
-.vampire-theme .actor.sheet .actor-header .resource,
-.vampire-theme .actor.sheet .stats-container,
-.vampire-theme .actor.sheet .stats-container .stats-footer {
+.wod-vampire-theme .actor.sheet .item-list .item,
+.wod-vampire-theme .actor.sheet .resource,
+.wod-vampire-theme .actor.sheet prose-mirror .editor-content,
+.wod-vampire-theme .actor.sheet .actor-header input,
+.wod-vampire-theme .actor.sheet .actor-header .resource,
+.wod-vampire-theme .actor.sheet .stats-container,
+.wod-vampire-theme .actor.sheet .stats-container .stats-footer {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.vampire-theme .actor.sheet .sheet-tabs .navicon,
-.vampire-theme .actor.sheet .sheet-tabs .lock-btn {
+.wod-vampire-theme .actor.sheet .sheet-tabs .navicon,
+.wod-vampire-theme .actor.sheet .sheet-tabs .lock-btn {
   color: var(--system-dark-color-4);
 }
-.vampire-theme .actor.sheet .sheet-tabs .lock-btn,
-.vampire-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
+.wod-vampire-theme .actor.sheet .sheet-tabs .lock-btn,
+.wod-vampire-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
   background-color: var(--system-dark-color-1);
   border: 1px solid var(--system-dark-color-4);
 }
-.vampire-theme .actor.sheet .lock-btn:hover {
+.wod-vampire-theme .actor.sheet .lock-btn:hover {
   color: #ffffff;
 }
-.vampire-theme .actor.sheet .sheet-tabs > [data-tab].active .navicon {
+.wod-vampire-theme .actor.sheet .sheet-tabs > [data-tab].active .navicon {
   background: var(--system-dark-color-7);
   border: 1px solid var(--system-dark-color-1);
 }
-.vampire-theme .actor.sheet .resource-value .resource-value-step:not(.active) {
+.wod-vampire-theme .actor.sheet .resource-value .resource-value-step:not(.active) {
   background-color: var(--system-dark-color-3);
 }
-.vampire-theme .actor.sheet .resource-value .resource-value-empty {
+.wod-vampire-theme .actor.sheet .resource-value .resource-value-empty {
   border: 1px solid var(--system-dark-color-3);
   background: linear-gradient(45deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%);
 }
-.vampire-theme .actor.sheet .resource-counter .resource-counter-step {
+.wod-vampire-theme .actor.sheet .resource-counter .resource-counter-step {
   border: 1px solid var(--system-dark-color-4);
 }
-.vampire-theme .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
+.wod-vampire-theme .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
   background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
-.vampire-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
+.wod-vampire-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
-.vampire-theme .actor.sheet .item-list .category {
+.wod-vampire-theme .actor.sheet .item-list .category {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
   /* Power Descriptions */
 }
-.vampire-theme .actor.sheet .item-list .category .content-link {
+.wod-vampire-theme .actor.sheet .item-list .category .content-link {
   color: var(--system-dark-color-1);
   background-color: #FFF;
 }
-.vampire-theme .actor.sheet .item-list .category .discipline-description,
-.vampire-theme .actor.sheet .item-list .category .edge-description,
-.vampire-theme .actor.sheet .item-list .category .gift-description {
+.wod-vampire-theme .actor.sheet .item-list .category .discipline-description,
+.wod-vampire-theme .actor.sheet .item-list .category .edge-description,
+.wod-vampire-theme .actor.sheet .item-list .category .gift-description {
   color: var(--system-dark-color-4);
 }
-.vampire-theme .dialog-app .window-content,
-.vampire-theme .item.sheet .window-content,
-.vampire-theme .dialog .window-content {
+.wod-vampire-theme .dialog-app .window-content,
+.wod-vampire-theme .item.sheet .window-content,
+.wod-vampire-theme .dialog .window-content {
   background: var(--system-dark-color-2);
 }
-.vampire-theme .dialog-app input,
-.vampire-theme .item.sheet input,
-.vampire-theme .dialog input {
+.wod-vampire-theme .dialog-app input,
+.wod-vampire-theme .item.sheet input,
+.wod-vampire-theme .dialog input {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.vampire-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
-.vampire-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
+.wod-vampire-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
+.wod-vampire-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.vampire-theme .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
-.vampire-theme .actor.sheet.vampire .tabs-container .item[data-tab="blood"] {
-  color: var(--system-dark-color-6);
+.wod-vampire-theme .sheet.werewolf .resource-value .resource-value-step.active,
+.wod-vampire-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
+.wod-vampire-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
+  background-color: var(--werewolf-color-3);
 }
-.vampire-theme .sheet.werewolf .resource-value .resource-value-step.active,
-.vampire-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
-.vampire-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: #e97244;
-}
-.vampire-theme .sheet.werewolf button.rage-button:hover {
+.wod-vampire-theme .sheet.werewolf button.rage-button:hover {
   background-color: #752e11ea;
 }
-.vampire-theme .actor.sheet.werewolf .tabs-container .active.item .navicon {
+.wod-vampire-theme .actor.sheet.werewolf .tabs-container .active.item .navicon {
   background-color: #752e11ea;
 }
-.vampire-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
-.vampire-theme .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
+.wod-vampire-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
+.wod-vampire-theme .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.vampire-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
-.vampire-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
-  color: #e97244;
+.wod-vampire-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
+.wod-vampire-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
+  color: var(--werewolf-color-3);
 }
-.vampire-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
-.vampire-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
+.wod-vampire-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
+.wod-vampire-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.vampire-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form.form-active {
+.wod-vampire-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form.form-active {
   background-color: #833501e0;
 }
-.vampire-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
+.wod-vampire-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.vampire-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
-  color: #ff8f00;
+.wod-vampire-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
+  color: var(--hunter-color-3);
 }
-.vampire-theme prose-mirror button.icon.toggle {
+.wod-vampire-theme prose-mirror button.icon.toggle {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-1);
 }
-.vampire-theme #sidebar {
-  background: var(--sidebar-background-dark) repeat;
+.wod-vampire-theme .journal-entry .directory input[type="search"] {
+  background: transparent;
 }
-.vampire-theme #controls ol.control-tools > li {
-  background: var(--ui-background-vampire-texture);
+.wod-vampire-theme .app.journal-entry .journal-entry-content {
+  background-color: #121212;
+  background-blend-mode: color;
 }
-.vampire-theme #controls ol.control-tools .has-notes::after {
+.wod-vampire-theme #controls ol.control-tools .has-notes::after {
   color: var(--system-dark-color-1);
 }
-.vampire-theme #navigation #scene-list .scene,
-.vampire-theme #navigation #scene-list .scene.view,
-.vampire-theme #navigation #scene-list .scene.context,
-.vampire-theme #navigation #scene-list .scene.gm,
-.vampire-theme #navigation .nav-item,
-.vampire-theme #navigation #nav-toggle {
-  background: var(--ui-background-vampire-texture);
-}
-.vampire-theme #hotbar .macro {
-  background: var(--ui-background-vampire-color);
-}
-.vampire-theme #hotbar .bar-controls {
-  background: var(--ui-background-vampire-texture);
-}
-.vampire-theme .app {
-  background: var(--ui-background-vampire-texture);
+.wod-vampire-theme #hotbar .macro {
+  background: var(--vampire-theme-filter);
 }
 
 /* Variables */
 :root {
-  --ui-background-werewolf-texture: url("/systems/vtm5e/assets/ui/ui_background_werewolf_texture.webp");
-  --sidebar-background-werewolf: url("/systems/vtm5e/assets/ui/sidebar_werewolf.webp");
-  --ui-background-werewolf-color: #57340d;
   --logo-werewolf: url("/systems/vtm5e/assets/ui/WtA_Logo.webp");
+  --werewolf-theme-filter: #BE660080;
 }
-.werewolf-theme {
+.wod-werewolf-theme {
+  /* All places that use a filter to apply the theme colour */
   /* Logo */
   /* Vampire Styling */
   /* Werewolf Styling */
   /* Hunter Styling */
-  /* Sidebar */
+  /* Journals */
   /* Foundry Controls UI */
 }
-.werewolf-theme #logo {
+.wod-werewolf-theme .sheet .window-content {
+  background: var(--actor-background-dark) repeat;
+}
+.wod-werewolf-theme .app,
+.wod-werewolf-theme #sidebar,
+.wod-werewolf-theme #controls ol.control-tools > li,
+.wod-werewolf-theme #navigation #scene-list .scene,
+.wod-werewolf-theme #navigation #scene-list .scene.view,
+.wod-werewolf-theme #navigation #scene-list .scene.context,
+.wod-werewolf-theme #navigation #scene-list .scene.gm,
+.wod-werewolf-theme #navigation .nav-item,
+.wod-werewolf-theme #navigation #nav-toggle,
+.wod-werewolf-theme #hotbar .bar-controls {
+  background-color: var(--werewolf-theme-filter);
+  background-blend-mode: color-dodge;
+}
+.wod-werewolf-theme #hotbar .macro {
+  background: var(--werewolf-theme-filter);
+}
+.wod-werewolf-theme #logo {
   content: var(--logo-werewolf);
   filter: drop-shadow(0 -5px 10px #cacacad3) drop-shadow(0 -10px 10px var(--ui-background-werewolf-color)) drop-shadow(0 0 10px #ffffffe3);
 }
-.werewolf-theme .standard-form .form-group > label,
-.werewolf-theme .standard-form .form-group:hover > label {
+.wod-werewolf-theme .standard-form .form-group > label,
+.wod-werewolf-theme .standard-form .form-group:hover > label {
   color: var(--system-dark-color-4);
 }
-.werewolf-theme .standard-form .form-group .hint,
-.werewolf-theme .standard-form .form-group:hover .hint {
+.wod-werewolf-theme .standard-form .form-group .hint,
+.wod-werewolf-theme .standard-form .form-group:hover .hint {
   color: var(--system-dark-color-8);
 }
-.werewolf-theme .standard-form .sheet-tabs {
+.wod-werewolf-theme .standard-form .sheet-tabs {
   color: var(--system-dark-color-4);
 }
-.werewolf-theme .standard-form input[type=range] {
+.wod-werewolf-theme .standard-form input[type=range] {
   --range-thumb-background-color: var(--system-dark-color-4);
   --range-thumb-border-color: var(--system-dark-color-1);
 }
-.werewolf-theme .sheet .window-header,
-.werewolf-theme .dialog .window-header {
+.wod-werewolf-theme .sheet .window-header,
+.wod-werewolf-theme .dialog .window-header {
   background-color: var(--system-dark-color-1);
 }
-.werewolf-theme .sheet .journal-entry-content,
-.werewolf-theme .dialog .journal-entry-content,
-.werewolf-theme .sheet .window-content,
-.werewolf-theme .dialog .window-content {
-  background-color: var(--system-dark-color-1);
+.wod-werewolf-theme .sheet .journal-entry-content,
+.wod-werewolf-theme .dialog .journal-entry-content,
+.wod-werewolf-theme .sheet .window-content,
+.wod-werewolf-theme .dialog .window-content {
   color: var(--system-dark-color-4);
-  background-blend-mode: hard-light;
 }
-.werewolf-theme .sheet .journal-entry-content input,
-.werewolf-theme .dialog .journal-entry-content input,
-.werewolf-theme .sheet .window-content input,
-.werewolf-theme .dialog .window-content input,
-.werewolf-theme .sheet .journal-entry-content .actor-header,
-.werewolf-theme .dialog .journal-entry-content .actor-header,
-.werewolf-theme .sheet .window-content .actor-header,
-.werewolf-theme .dialog .window-content .actor-header,
-.werewolf-theme .sheet .journal-entry-content .tab,
-.werewolf-theme .dialog .journal-entry-content .tab,
-.werewolf-theme .sheet .window-content .tab,
-.werewolf-theme .dialog .window-content .tab {
+.wod-werewolf-theme .sheet .journal-entry-content input,
+.wod-werewolf-theme .dialog .journal-entry-content input,
+.wod-werewolf-theme .sheet .window-content input,
+.wod-werewolf-theme .dialog .window-content input,
+.wod-werewolf-theme .sheet .journal-entry-content .actor-header,
+.wod-werewolf-theme .dialog .journal-entry-content .actor-header,
+.wod-werewolf-theme .sheet .window-content .actor-header,
+.wod-werewolf-theme .dialog .window-content .actor-header,
+.wod-werewolf-theme .sheet .journal-entry-content .tab,
+.wod-werewolf-theme .dialog .journal-entry-content .tab,
+.wod-werewolf-theme .sheet .window-content .tab,
+.wod-werewolf-theme .dialog .window-content .tab {
   color: #ffffff;
   --input-text-color: #ffffff;
 }
-.werewolf-theme .sheet select,
-.werewolf-theme .dialog select,
-.werewolf-theme .sheet input,
-.werewolf-theme .dialog input {
+.wod-werewolf-theme .sheet select,
+.wod-werewolf-theme .dialog select,
+.wod-werewolf-theme .sheet input,
+.wod-werewolf-theme .dialog input {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.werewolf-theme .sheet select,
-.werewolf-theme .dialog select,
-.werewolf-theme .sheet select optgroup,
-.werewolf-theme .dialog select optgroup {
+.wod-werewolf-theme .sheet select,
+.wod-werewolf-theme .dialog select,
+.wod-werewolf-theme .sheet select optgroup,
+.wod-werewolf-theme .dialog select optgroup {
   background-color: var(--system-dark-color-2);
 }
-.werewolf-theme .sheet select option,
-.werewolf-theme .dialog select option {
+.wod-werewolf-theme .sheet select option,
+.wod-werewolf-theme .dialog select option {
   background-color: var(--system-dark-color-3);
 }
-.werewolf-theme .sheet button,
-.werewolf-theme .dialog button {
+.wod-werewolf-theme .sheet button,
+.wod-werewolf-theme .dialog button {
   background-color: var(--system-dark-color-3);
   color: var(--system-color-6);
 }
-.werewolf-theme .sheet button.default,
-.werewolf-theme .dialog button.default,
-.werewolf-theme .sheet button:hover,
-.werewolf-theme .dialog button:hover {
+.wod-werewolf-theme .sheet button.default,
+.wod-werewolf-theme .dialog button.default,
+.wod-werewolf-theme .sheet button:hover,
+.wod-werewolf-theme .dialog button:hover {
   background-color: var(--system-dark-color-2);
 }
-.werewolf-theme .sheet ::placeholder,
-.werewolf-theme .dialog ::placeholder {
+.wod-werewolf-theme .sheet ::placeholder,
+.wod-werewolf-theme .dialog ::placeholder {
   color: var(--system-dark-color-5);
 }
-.werewolf-theme .situational-modifiers {
+.wod-werewolf-theme .situational-modifiers {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.werewolf-theme .actor.sheet {
+.wod-werewolf-theme .actor.sheet {
   /* Navbar */
   /* Resource Counters */
 }
-.werewolf-theme .actor.sheet .item-list .item,
-.werewolf-theme .actor.sheet .resource,
-.werewolf-theme .actor.sheet prose-mirror .editor-content,
-.werewolf-theme .actor.sheet .actor-header input,
-.werewolf-theme .actor.sheet .actor-header .resource,
-.werewolf-theme .actor.sheet .stats-container,
-.werewolf-theme .actor.sheet .stats-container .stats-footer {
+.wod-werewolf-theme .actor.sheet .item-list .item,
+.wod-werewolf-theme .actor.sheet .resource,
+.wod-werewolf-theme .actor.sheet prose-mirror .editor-content,
+.wod-werewolf-theme .actor.sheet .actor-header input,
+.wod-werewolf-theme .actor.sheet .actor-header .resource,
+.wod-werewolf-theme .actor.sheet .stats-container,
+.wod-werewolf-theme .actor.sheet .stats-container .stats-footer {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.werewolf-theme .actor.sheet .sheet-tabs .navicon,
-.werewolf-theme .actor.sheet .sheet-tabs .lock-btn {
+.wod-werewolf-theme .actor.sheet .sheet-tabs .navicon,
+.wod-werewolf-theme .actor.sheet .sheet-tabs .lock-btn {
   color: var(--system-dark-color-4);
 }
-.werewolf-theme .actor.sheet .sheet-tabs .lock-btn,
-.werewolf-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
+.wod-werewolf-theme .actor.sheet .sheet-tabs .lock-btn,
+.wod-werewolf-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
   background-color: var(--system-dark-color-1);
   border: 1px solid var(--system-dark-color-4);
 }
-.werewolf-theme .actor.sheet .lock-btn:hover {
+.wod-werewolf-theme .actor.sheet .lock-btn:hover {
   color: #ffffff;
 }
-.werewolf-theme .actor.sheet .sheet-tabs > [data-tab].active .navicon {
+.wod-werewolf-theme .actor.sheet .sheet-tabs > [data-tab].active .navicon {
   background: var(--system-dark-color-7);
   border: 1px solid var(--system-dark-color-1);
 }
-.werewolf-theme .actor.sheet .resource-value .resource-value-step:not(.active) {
+.wod-werewolf-theme .actor.sheet .resource-value .resource-value-step:not(.active) {
   background-color: var(--system-dark-color-3);
 }
-.werewolf-theme .actor.sheet .resource-value .resource-value-empty {
+.wod-werewolf-theme .actor.sheet .resource-value .resource-value-empty {
   border: 1px solid var(--system-dark-color-3);
   background: linear-gradient(45deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%);
 }
-.werewolf-theme .actor.sheet .resource-counter .resource-counter-step {
+.wod-werewolf-theme .actor.sheet .resource-counter .resource-counter-step {
   border: 1px solid var(--system-dark-color-4);
 }
-.werewolf-theme .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
+.wod-werewolf-theme .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
   background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
-.werewolf-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
+.wod-werewolf-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
-.werewolf-theme .actor.sheet .item-list .category {
+.wod-werewolf-theme .actor.sheet .item-list .category {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
   /* Power Descriptions */
 }
-.werewolf-theme .actor.sheet .item-list .category .content-link {
+.wod-werewolf-theme .actor.sheet .item-list .category .content-link {
   color: var(--system-dark-color-1);
   background-color: #FFF;
 }
-.werewolf-theme .actor.sheet .item-list .category .discipline-description,
-.werewolf-theme .actor.sheet .item-list .category .edge-description,
-.werewolf-theme .actor.sheet .item-list .category .gift-description {
+.wod-werewolf-theme .actor.sheet .item-list .category .discipline-description,
+.wod-werewolf-theme .actor.sheet .item-list .category .edge-description,
+.wod-werewolf-theme .actor.sheet .item-list .category .gift-description {
   color: var(--system-dark-color-4);
 }
-.werewolf-theme .dialog-app .window-content,
-.werewolf-theme .item.sheet .window-content,
-.werewolf-theme .dialog .window-content {
+.wod-werewolf-theme .dialog-app .window-content,
+.wod-werewolf-theme .item.sheet .window-content,
+.wod-werewolf-theme .dialog .window-content {
   background: var(--system-dark-color-2);
 }
-.werewolf-theme .dialog-app input,
-.werewolf-theme .item.sheet input,
-.werewolf-theme .dialog input {
+.wod-werewolf-theme .dialog-app input,
+.wod-werewolf-theme .item.sheet input,
+.wod-werewolf-theme .dialog input {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.werewolf-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
-.werewolf-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
+.wod-werewolf-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
+.wod-werewolf-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.werewolf-theme .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
-.werewolf-theme .actor.sheet.vampire .tabs-container .item[data-tab="blood"] {
-  color: var(--system-dark-color-6);
+.wod-werewolf-theme .sheet.werewolf .resource-value .resource-value-step.active,
+.wod-werewolf-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
+.wod-werewolf-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
+  background-color: var(--werewolf-color-3);
 }
-.werewolf-theme .sheet.werewolf .resource-value .resource-value-step.active,
-.werewolf-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
-.werewolf-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: #e97244;
-}
-.werewolf-theme .sheet.werewolf button.rage-button:hover {
+.wod-werewolf-theme .sheet.werewolf button.rage-button:hover {
   background-color: #752e11ea;
 }
-.werewolf-theme .actor.sheet.werewolf .tabs-container .active.item .navicon {
+.wod-werewolf-theme .actor.sheet.werewolf .tabs-container .active.item .navicon {
   background-color: #752e11ea;
 }
-.werewolf-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
-.werewolf-theme .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
+.wod-werewolf-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
+.wod-werewolf-theme .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.werewolf-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
-.werewolf-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
-  color: #e97244;
+.wod-werewolf-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
+.wod-werewolf-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
+  color: var(--werewolf-color-3);
 }
-.werewolf-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
-.werewolf-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
+.wod-werewolf-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
+.wod-werewolf-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.werewolf-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form.form-active {
+.wod-werewolf-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form.form-active {
   background-color: #833501e0;
 }
-.werewolf-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
+.wod-werewolf-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.werewolf-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
-  color: #ff8f00;
+.wod-werewolf-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
+  color: var(--hunter-color-3);
 }
-.werewolf-theme prose-mirror button.icon.toggle {
+.wod-werewolf-theme prose-mirror button.icon.toggle {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-1);
 }
-.werewolf-theme #sidebar {
-  background: var(--sidebar-background-dark) repeat;
+.wod-werewolf-theme .journal-entry .directory input[type="search"] {
+  background: transparent;
 }
-.werewolf-theme #controls ol.control-tools > li {
-  background: var(--ui-background-werewolf-texture);
+.wod-werewolf-theme .app.journal-entry .journal-entry-content {
+  background-color: #121212;
+  background-blend-mode: color;
 }
-.werewolf-theme #controls ol.control-tools .has-notes::after {
+.wod-werewolf-theme #controls ol.control-tools .has-notes::after {
   color: var(--system-dark-color-1);
-}
-.werewolf-theme #navigation #scene-list .scene,
-.werewolf-theme #navigation #scene-list .scene.view,
-.werewolf-theme #navigation #scene-list .scene.context,
-.werewolf-theme #navigation #scene-list .scene.gm,
-.werewolf-theme #navigation .nav-item,
-.werewolf-theme #navigation #nav-toggle {
-  background: var(--ui-background-werewolf-texture);
-}
-.werewolf-theme #hotbar .macro {
-  background: var(--ui-background-werewolf-color);
-}
-.werewolf-theme #hotbar .bar-controls {
-  background: var(--ui-background-werewolf-texture);
-}
-.werewolf-theme .app {
-  background: var(--ui-background-werewolf-texture);
 }

@@ -1,4 +1,4 @@
-/* global CONFIG, Hooks, Actors, ActorSheet, ChatMessage, Items, ItemSheet, game, ui, CONST */
+/* global CONFIG, Hooks, Actors, ActorSheet, ChatMessage, Items, ItemSheet, game, ui, CONST, jscolor */
 
 // Actor sheets
 import { WoDActor } from './actor/actor.js'
@@ -36,6 +36,7 @@ import { Renown } from './api/def/renown.js'
 import { WereForms } from './api/def/were-forms.js'
 import { Gifts } from './api/def/gifts.js'
 import { _rollItem } from './actor/scripts/item-roll.js'
+import { _updateCSSVariable, cssVariablesRecord } from './scripts/update-css-variables.js'
 
 // Anything that needs to be ran alongside the initialisation of the world
 Hooks.once('init', async function () {
@@ -117,6 +118,13 @@ Hooks.once('ready', async function () {
   // modify elements based on locale if needed
   document.body.classList.add(game.settings.get('core', 'language'))
 
+  // Set default presets for JS Color
+  jscolor.presets.default = {
+    format: 'hexa',
+    backgroundColor: '#000',
+    palette: '#FF2B2B80 #650202 #d84343 #f51f1f #D18125 #cc6d28 #ffb762 #ff8f00 #BE660080 #4e2100 #994101 #e97244'
+  }
+
   // Activate the API
   window.WOD5E = {
     api: {
@@ -146,6 +154,23 @@ Hooks.once('ready', async function () {
 
   // Migration functions
   migrateWorld()
+
+  // Set up any splat colour changes
+  const cssVariables = cssVariablesRecord()
+  Object.keys(cssVariables).forEach(theme => {
+    const settings = cssVariables[theme].settings
+
+    // Go through all the settings in each theme
+    Object.keys(settings).forEach(settingKey => {
+      const { settingId, cssVariable } = settings[settingKey]
+
+      // Get the current value of the setting
+      const settingValue = game.settings.get('vtm5e', settingId)
+
+      // Update the CSS variable
+      _updateCSSVariable(settingId, cssVariable, settingValue)
+    })
+  })
 })
 
 Hooks.once('setup', () => {

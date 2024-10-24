@@ -7,6 +7,7 @@ import { getSituationalModifiers } from './rolls/situational-modifiers.js'
 import { _damageWillpower } from './rolls/willpower-damage.js'
 import { _increaseHunger } from './rolls/increase-hunger.js'
 import { _decreaseRage } from './rolls/decrease-rage.js'
+import { _applyOblivionStains } from './rolls/apply-oblivion-stains.js'
 
 class WOD5eDice {
   /**
@@ -61,6 +62,20 @@ class WOD5eDice {
     const _roll = async (inputBasicDice, inputAdvancedDice, $form) => {
       // Get the difficulty and store it
       difficulty = $form ? $form.find('[id=inputDifficulty]').val() : difficulty
+
+      // Prevent trying to roll 0 dice; all dice pools should roll at least 1 die
+      if (parseInt(inputBasicDice) === 0 && parseInt(inputAdvancedDice) === 0) {
+        if (system === 'vampire' && actor.system.hunger.value > 0) {
+          // Vampires with hunger above 0 should be rolling 1 hunger die
+          inputAdvancedDice = 1
+        } else if (system === 'werewolf' && actor.system.rage.value > 0) {
+          // Werewolves with rage above 0 should be rolling 1 rage die
+          inputAdvancedDice = 1
+        } else {
+          // In all other cases, we just roll one basic die
+          inputBasicDice = 1
+        }
+      }
 
       // Construct the proper roll formula by sending it to the generateRollFormula function
       const rollFormula = await generateRollFormula({
@@ -165,9 +180,6 @@ class WOD5eDice {
           decreaseRage: system === 'werewolf'
         })
       }
-
-      // The below isn't needed if there's no dice being rolled
-      if (parseInt(inputBasicDice) === 0 && parseInt(inputAdvancedDice) === 0) return roll
 
       // The below isn't needed if disableMessageOutput is set to true
       if (disableMessageOutput && game.dice3d) {
@@ -319,6 +331,7 @@ class WOD5eDice {
                 // Determine the input
                 const modCheckbox = $(event.target)
                 const modifier = parseInt(event.currentTarget.dataset.value)
+                const modifierIsNegative = modifier < 0
 
                 // Get the values of basic and advanced dice
                 const basicValue = basicDiceInput.val() ? parseInt(basicDiceInput.val()) : 0
@@ -328,20 +341,31 @@ class WOD5eDice {
                 // Determine whether any alterations need to be made to basic dice or advanced dice
                 // Either use the current applyDiceTo (if set), or default to 'basic'
                 let applyDiceTo = event.currentTarget.dataset.applyDiceTo || 'basic'
-                // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
-                if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
-                  applyDiceTo = 'advanced'
+
+                if (modifierIsNegative) {
+                  // Apply dice to basicDice unless basicDice is 0
+                  if ((system === 'vampire' || system === 'werewolf') && basicValue === 0) {
+                    applyDiceTo = 'advanced'
+                  }
+                } else {
+                  // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
+                  if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
+                    applyDiceTo = 'advanced'
+                  }
                 }
 
-                // Determine the new input depending on if the bonus is getting added (checked)
-                // or not (unchecked)
+                // Determine the new input depending on if the modifier is adding or subtracting
+                // Checked and modifier is NOT negative = Add
+                // Unchecked and modifier is negative = Add
+                // Checked and modifier is negative = Subtract
+                // Unchecked and modifier is NOT negative = Subtract
                 let newValue = 0
                 let checkValue = 0
-                if (modCheckbox.prop('checked')) {
+                if ((modCheckbox.prop('checked') && !modifierIsNegative) || (!modCheckbox.prop('checked') && modifierIsNegative)) {
                   // Adding the modifier
                   if (applyDiceTo === 'advanced') {
                     // Apply the modifier to advancedDice
-                    newValue = advancedValue + modifier
+                    newValue = advancedValue + Math.abs(modifier)
 
                     // Determine what we're checking against
                     if (system === 'vampire') {
@@ -362,7 +386,7 @@ class WOD5eDice {
                     advancedDiceInput.val(newValue)
                   } else {
                     // If advancedDice is already at its max, apply the whole modifier to just basicDice
-                    newValue = basicValue + modifier
+                    newValue = basicValue + Math.abs(modifier)
                     basicDiceInput.val(newValue)
                   }
 
@@ -372,7 +396,7 @@ class WOD5eDice {
                   // Removing the modifier
                   if (applyDiceTo === 'advanced') {
                     // Apply the modifier to advancedDice
-                    newValue = advancedValue - modifier
+                    newValue = advancedValue - Math.abs(modifier)
 
                     if (newValue < 0) {
                       // Check for any deficit and apply it to basicDice
@@ -384,7 +408,7 @@ class WOD5eDice {
                     // Update the advancedDice in the menu
                     advancedDiceInput.val(newValue)
                   } else {
-                    newValue = basicValue - modifier
+                    newValue = basicValue - Math.abs(modifier)
                     if (newValue < 0) {
                       const deficit = Math.abs(newValue)
                       newValue = 0
@@ -451,6 +475,15 @@ class WOD5eDice {
           _increaseHunger(actor, failures)
         } else if (system === 'werewolf' && decreaseRage && game.settings.get('vtm5e', 'automatedRage')) {
           _decreaseRage(actor, failures)
+        }
+      }
+
+      // Handle Oblivion rouse checks here
+      if (selectors.includes('oblivion-rouse') && game.settings.get('vtm5e', 'automatedOblivion')) {
+        const oblivionTriggers = diceResults.filter(result => [1, 10].includes(result.result) && !result.discarded).length
+
+        if (oblivionTriggers > 0) {
+          _applyOblivionStains(actor, oblivionTriggers)
         }
       }
     }

@@ -3,6 +3,15 @@
     <div class="header-fields">
         <input class="itemname" name="name" type="text" value="{{name}}" placeholder="{{localize 'WOD5E.Name'}}"/>
         <div class="flexrow">
+            <!-- Current number of uses -->
+            {{#if uses.enabled}}
+                <div class="flexcol level flex-center item-resource">
+                    <div>
+                        <b>{{localize "WOD5E.ItemsList.UsesRemaining"}}</b>
+                    </div>
+                    <input name="system.uses.current" value="{{uses.current}}" type="number" min="0" max="{{uses.max}}"/>
+                </div>
+            {{/if}}
             <div class="flexcol level flex-center item-resource">
                 <div>
                     <b>
@@ -18,15 +27,6 @@
                     </b>
                 </div>
                 <input name="system.weaponvalue" value="{{weaponvalue}}" type="number" min="0"/>
-            </div>
-            <!-- Select the type this weapon belongs to -->
-            <div class="flexcol feature-type flex-center item-resource">
-                <label>
-                    <b>{{localize "WOD5E.EquipmentList.WeaponType"}}</b>
-                </label>
-                <select name="system.weaponType" data-type="String">
-                    {{selectOptions weaponTypeOptions selected=weaponTypeSelected localize=true}}
-                </select>
             </div>
         </div>
     </div>

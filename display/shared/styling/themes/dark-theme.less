@@ -5,14 +5,36 @@
   --system-dark-color-3: #686767;
   --system-dark-color-4: #fff;
   --system-dark-color-5: #ffffff9c;
-  --system-dark-color-6: #ff0000;
   --system-dark-color-7: #505050;
   --system-dark-color-8: #e6e6e6;
-  --ui-background-dark-texture: url("/systems/vtm5e/assets/ui/ui_background_dark_texture.webp");
-  --sidebar-background-dark: url(/systems/vtm5e/assets/ui/sidebar_dark.webp);
+
+  --dark-theme-filter: rgba(43, 43, 43, 0.5);
+  --actor-background-dark: url(/systems/vtm5e/assets/actor/actor_background_dark.webp);
 }
 
-.dark-theme {
+.wod-dark-theme {
+  .sheet {
+    .window-content {
+      background: var(--actor-background-dark) repeat;
+    }
+  }
+
+  /* All places that use a filter to apply the theme colour */
+  .app,
+  #sidebar,
+  #controls ol.control-tools > li,
+  #navigation #scene-list .scene,
+  #navigation #scene-list .scene.view,
+  #navigation #scene-list .scene.context,
+  #navigation #scene-list .scene.gm,
+  #navigation .nav-item,
+  #navigation #nav-toggle,
+  #hotbar .bar-controls {
+    background-color: var(--dark-theme-filter);
+    background-blend-mode: color-dodge;
+  }
+
+  /* Form groups adjustments */
   .standard-form {
     .form-group,
     .form-group:hover {
@@ -43,9 +65,7 @@
 
     .journal-entry-content,
     .window-content {
-      background-color: var(--system-dark-color-1);
       color: var(--system-dark-color-4);
-      background-blend-mode: hard-light;
 
       input,
       .actor-header,
@@ -232,11 +252,6 @@
       .active .navicon .wod5e-symbol {
         color: var(--system-dark-color-4);
       }
-
-      .navicon .wod5e-symbol,
-      .item[data-tab="blood"] {
-        color: var(--system-dark-color-6);
-      }
     }
   }
 
@@ -245,7 +260,7 @@
     .resource-value .resource-value-step.active,
     .resource-value-static .resource-value-static-step.active,
     .resource-counter .resource-counter-step[data-state="-"] {
-      background-color: #e97244;
+      background-color: var(--werewolf-color-3);
     }
 
     button.rage-button:hover {
@@ -266,7 +281,7 @@
 
       .navicon .wod5e-symbol,
       .item[data-tab="wolf"] {
-        color: #e97244;
+        color: var(--werewolf-color-3);
       }
     }
 
@@ -291,7 +306,7 @@
       }
 
       .navicon .wod5e-symbol {
-        color: #ff8f00;
+        color: var(--hunter-color-3);
       }
     }
   }
@@ -303,38 +318,26 @@
     }
   }
 
-  /* Sidebar */
-  #sidebar {
-    background: var(--sidebar-background-dark) repeat;
+  /* Journals */
+  .journal-entry {
+    .directory input[type="search"] {
+      background: transparent;
+    }
+  }
+
+  .app.journal-entry {
+    .journal-entry-content {
+      background-color: #121212;
+      background-blend-mode: color;
+    }
   }
 
   /* Foundry Controls UI */
-  #controls ol.control-tools > li {
-    background: var(--ui-background-dark-texture);
-  }
-
   #controls ol.control-tools .has-notes::after {
     color: var(--system-dark-color-1);
   }
 
-  #navigation #scene-list .scene,
-  #navigation #scene-list .scene.view,
-  #navigation #scene-list .scene.context,
-  #navigation #scene-list .scene.gm,
-  #navigation .nav-item,
-  #navigation #nav-toggle {
-    background: var(--ui-background-dark-texture);
-  }
-
   #hotbar .macro {
-    background: rgba(43, 43, 43, 0.5);
-  }
-
-  #hotbar .bar-controls {
-    background: var(--ui-background-dark-texture);
-  }
-
-  .app {
-    background: var(--ui-background-dark-texture);
+    background: var(--dark-theme-filter);
   }
 }

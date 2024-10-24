@@ -10,6 +10,15 @@
                 </div>
                 <input name="system.points" value="{{points}}" type="number" min="0" max="5"/>
             </div>
+            <!-- Current number of uses -->
+            {{#if uses.enabled}}
+                <div class="flexcol level flex-center item-resource">
+                    <div>
+                        <b>{{localize "WOD5E.ItemsList.UsesRemaining"}}</b>
+                    </div>
+                    <input name="system.uses.current" value="{{uses.current}}" type="number" min="0" max="{{uses.max}}"/>
+                </div>
+            {{/if}}
             <!-- Select the type this feature belongs to -->
             <div class="flexcol feature-type flex-center item-resource">
                 <label>

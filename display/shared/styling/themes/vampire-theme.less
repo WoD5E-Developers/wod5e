@@ -1,16 +1,41 @@
 /* Variables */
 :root {
-  --ui-background-vampire-texture: url("/systems/vtm5e/assets/ui/ui_background_vampire_texture.webp");
-  --sidebar-background-vampire: url("/systems/vtm5e/assets/ui/sidebar_vampire.webp");
-  --ui-background-vampire-color: rgba(255, 43, 43, 0.5);
   --logo-vampire: url("/systems/vtm5e/assets/ui/VtM_Logo.webp");
+  --vampire-theme-filter: #FF2B2B80;
 }
 
-.vampire-theme {
+.wod-vampire-theme {
+  .sheet {
+    .window-content {
+      background: var(--actor-background-dark) repeat;
+    }
+  }
+
+  /* All places that use a filter to apply the theme colour */
+  .app,
+  #sidebar,
+  #controls ol.control-tools > li,
+  #navigation #scene-list .scene,
+  #navigation #scene-list .scene.view,
+  #navigation #scene-list .scene.context,
+  #navigation #scene-list .scene.gm,
+  #navigation .nav-item,
+  #navigation #nav-toggle,
+  #hotbar .bar-controls {
+    background-color: var(--vampire-theme-filter);
+    background-blend-mode: difference;
+  }
+
+  #hotbar {
+    .macro {
+      background: var(--vampire-theme-filter);
+    }
+  }
+
   /* Logo */
   #logo {
     content: var(--logo-vampire);
-    filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 0 10px var(--ui-background-vampire-color)) drop-shadow(0 0 15px #ffffff);
+    filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 0 10px var(--vampire-theme-filter)) drop-shadow(0 0 15px #ffffff);
   }
 
   .standard-form {
@@ -43,9 +68,7 @@
 
     .journal-entry-content,
     .window-content {
-      background-color: var(--system-dark-color-1);
       color: var(--system-dark-color-4);
-      background-blend-mode: hard-light;
 
       input,
       .actor-header,
@@ -232,11 +255,6 @@
       .active .navicon .wod5e-symbol {
         color: var(--system-dark-color-4);
       }
-
-      .navicon .wod5e-symbol,
-      .item[data-tab="blood"] {
-        color: var(--system-dark-color-6);
-      }
     }
   }
 
@@ -245,7 +263,7 @@
     .resource-value .resource-value-step.active,
     .resource-value-static .resource-value-static-step.active,
     .resource-counter .resource-counter-step[data-state="-"] {
-      background-color: #e97244;
+      background-color: var(--werewolf-color-3);
     }
 
     button.rage-button:hover {
@@ -266,7 +284,7 @@
 
       .navicon .wod5e-symbol,
       .item[data-tab="wolf"] {
-        color: #e97244;
+        color: var(--werewolf-color-3);
       }
     }
 
@@ -291,7 +309,7 @@
       }
 
       .navicon .wod5e-symbol {
-        color: #ff8f00;
+        color: var(--hunter-color-3);
       }
     }
   }
@@ -303,38 +321,26 @@
     }
   }
 
-  /* Sidebar */
-  #sidebar {
-    background: var(--sidebar-background-dark) repeat;
+  /* Journals */
+  .journal-entry {
+    .directory input[type="search"] {
+      background: transparent;
+    }
+  }
+
+  .app.journal-entry {
+    .journal-entry-content {
+      background-color: #121212;
+      background-blend-mode: color;
+    }
   }
 
   /* Foundry Controls UI */
-  #controls ol.control-tools > li {
-    background: var(--ui-background-vampire-texture);
-  }
-
   #controls ol.control-tools .has-notes::after {
     color: var(--system-dark-color-1);
   }
 
-  #navigation #scene-list .scene,
-  #navigation #scene-list .scene.view,
-  #navigation #scene-list .scene.context,
-  #navigation #scene-list .scene.gm,
-  #navigation .nav-item,
-  #navigation #nav-toggle {
-    background: var(--ui-background-vampire-texture);
-  }
-
   #hotbar .macro {
-    background: var(--ui-background-vampire-color);
-  }
-
-  #hotbar .bar-controls {
-    background: var(--ui-background-vampire-texture);
-  }
-
-  .app {
-    background: var(--ui-background-vampire-texture);
+    background: var(--vampire-theme-filter);
   }
 }

@@ -10,6 +10,8 @@ import { Skills } from '../api/def/skills.js'
 import { Disciplines } from '../api/def/disciplines.js'
 import { Edges } from '../api/def/edges.js'
 import { Gifts } from '../api/def/gifts.js'
+import { SplatColorsMenu } from './menus/splat-colors-menu.js'
+import { cssVariablesRecord } from './update-css-variables.js'
 
 /**
  * Define all game settings here
@@ -262,10 +264,20 @@ export const loadSettings = async function () {
     })
   }
 
+  // Automatically collapse chat message descriptions
+  game.settings.register('vtm5e', 'autoCollapseDescriptions', {
+    name: game.i18n.localize('WOD5E.Settings.AutoCollapseDescriptions'),
+    hint: game.i18n.localize('WOD5E.Settings.AutoCollapseDescriptionsHint'),
+    scope: 'client',
+    config: true,
+    default: false,
+    type: Boolean
+  })
+
   // Override for the default actor header image
   game.settings.register('vtm5e', 'actorHeaderOverride', {
-    name: game.i18n.localize('WOD5E.Settings.actorHeaderOverride'),
-    hint: game.i18n.localize('WOD5E.Settings.actorHeaderOverrideHint'),
+    name: game.i18n.localize('WOD5E.Settings.ActorHeaderOverride'),
+    hint: game.i18n.localize('WOD5E.Settings.ActorHeaderOverrideHint'),
     scope: 'world',
     config: true,
     default: '',
@@ -285,6 +297,38 @@ export const loadSettings = async function () {
     config: true,
     default: '1.5',
     type: String
+  })
+
+  /*
+    Splat Colors Menu
+  */
+
+  // Register the splat colors menu
+  game.settings.registerMenu('vtm5e', 'splatColorsMenu', {
+    name: game.i18n.localize('WOD5E.Settings.SplatColorsMenu'),
+    hint: game.i18n.localize('WOD5E.Settings.SplatColorsHint'),
+    label: game.i18n.localize('WOD5E.Settings.SplatColorsMenu'),
+    icon: 'fa-solid fa-palette',
+    type: SplatColorsMenu,
+    restricted: true
+  })
+
+  // Register variable settings
+  const cssVariables = cssVariablesRecord()
+  Object.keys(cssVariables).forEach(theme => {
+    const settings = cssVariables[theme].settings
+
+    Object.keys(settings).forEach(settingKey => {
+      const { settingId, defaultColor } = settings[settingKey]
+
+      // Register the setting
+      game.settings.register('vtm5e', settingId, {
+        scope: 'world',
+        config: true,
+        default: defaultColor,
+        type: String
+      })
+    })
   })
 }
 
@@ -306,12 +350,12 @@ export const _updatePreferredColorScheme = async function () {
 
   // Determine which theme we're using - if it's not set by the client, we base the theme
   // off of the browser's prefers-color-scheme
-  if (clientSetting) theme = `${clientSetting}-theme`
-  else if (matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark-theme'
-  else if (matchMedia('(prefers-color-scheme: light)').matches) theme = 'theme-light'
+  if (clientSetting) theme = `wod-${clientSetting}-theme`
+  else if (matchMedia('(prefers-color-scheme: dark)').matches) theme = 'wod-dark-theme'
+  else if (matchMedia('(prefers-color-scheme: light)').matches) theme = 'wod-light-theme'
 
   // Remove existing theme classes
-  document.body.classList.remove('theme-light', 'dark-theme', 'vampire-theme', 'hunter-theme', 'werewolf-theme')
+  document.body.classList.remove('wod-light-theme', 'wod-dark-theme', 'wod-vampire-theme', 'wod-hunter-theme', 'wod-werewolf-theme')
 
   // Append the theme class to the document body
   if (theme) document.body.classList.add(theme)

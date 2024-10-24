@@ -72,6 +72,8 @@
       "NoPowerSelected": "No Power Selected",
       "Obfuscate": "Obfuscate",
       "Oblivion": "Oblivion",
+      "OblivionStainsContent": "The effects of Oblivion take their toll. {actor}'s humanity has been stained by {amount}.",
+      "OblivionStainsTitle": "Oblivion Stains",
       "Portillon": "Portillon",
       "PossibleBestialFailure": "Possible Bestial Failure",
       "PossibleMessyCritical": "Possible Messy Critical",

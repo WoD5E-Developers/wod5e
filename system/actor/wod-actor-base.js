@@ -19,6 +19,7 @@ import { _onCreateItem, _onItemChat, _onItemEdit, _onItemDelete } from './script
 import { _onWillpowerRoll } from './scripts/on-willpower-roll.js'
 import { _onToggleCollapse } from './scripts/on-toggle-collapse.js'
 import { _onToggleLimited } from './scripts/on-toggle-limited.js'
+import { _onRestoreItemUses, _onExpendItemUse } from './scripts/item-uses.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
@@ -62,6 +63,8 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       itemChat: _onItemChat,
       itemEdit: _onItemEdit,
       itemDelete: _onItemDelete,
+      expendItemUse: _onExpendItemUse,
+      restoreItemUses: _onRestoreItemUses,
 
       // Various other sheet functions
       editImage: _onEditImage,
@@ -168,7 +171,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       }
 
       // Calculate item modifiers and shuffle them into system.itemModifiers
-      if (!foundry.utils.isEmpty(item.system.bonuses)) {
+      if (!foundry.utils.isEmpty(item.system.bonuses) && !item?.system?.suppressed) {
         sheetData.system.itemModifiers = sheetData.system.itemModifiers.concat(item.system.bonuses)
       }
     })
@@ -257,12 +260,16 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       // Handle numbers and strings properly
       if (target.type === 'number') {
         value = parseInt(target.value)
-
-        // Make the update for the field
-        this.actor.update({
-          [`${target.name}`]: value
-        })
+      } else if (target.type === 'checkbox') {
+        value = target.checked
+      } else {
+        value = target.value
       }
+
+      // Make the update for the field
+      this.actor.update({
+        [`${target.name}`]: value
+      })
     } else {
       // Process submit data
       const submitData = this._prepareSubmitData(event, form, formData)

@@ -62,7 +62,8 @@ export class WoDActor extends Actor {
     const systemData = actorData.system
 
     // Prepare the effects from condition items onto the actor
-    const conditions = actorData.items.filter(item => item.type === 'condition')
+    // Ignore suppressed conditions
+    const conditions = actorData.items.filter(item => item.type === 'condition' && !item.system.suppressed)
     conditions.forEach((condition) => {
       // Iterate through each effect on the condition
       for (const [, effect] of Object.entries(condition.system.effects)) {

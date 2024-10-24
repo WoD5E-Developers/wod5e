@@ -88,6 +88,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/shared/items/parts/modifiers.hbs',
     'systems/vtm5e/display/shared/items/parts/modifier-display.hbs',
     'systems/vtm5e/display/shared/items/parts/data-item-id.hbs',
+    'systems/vtm5e/display/shared/items/parts/item-uses.hbs',
 
     // Item Sheet Partials (Dropdowns)
     'systems/vtm5e/display/shared/items/parts/skills.hbs',

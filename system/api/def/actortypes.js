@@ -35,7 +35,7 @@ export class ActorTypes extends BaseDefinitionClass {
   }
 
   static vampire = {
-    label: 'WOD5E.VTM.Label',
+    label: 'TYPES.Actor.vampire',
     types: ['vampire'],
     sheetClass: VampireActorSheet
   }
@@ -47,13 +47,13 @@ export class ActorTypes extends BaseDefinitionClass {
   }
 
   static hunter = {
-    label: 'WOD5E.HTR.Label',
+    label: 'TYPES.Actor.hunter',
     types: ['hunter'],
     sheetClass: HunterActorSheet
   }
 
   static werewolf = {
-    label: 'WOD5E.WTA.Label',
+    label: 'TYPES.Actor.werewolf',
     types: ['werewolf'],
     sheetClass: WerewolfActorSheet
   }

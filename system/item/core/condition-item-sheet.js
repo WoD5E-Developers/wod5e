@@ -69,6 +69,10 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   async _prepareContext () {
     // Top-level variables
     const data = await super._prepareContext()
+    const item = this.item
+    const itemData = item.system
+
+    data.suppressed = itemData.suppressed
 
     return data
   }

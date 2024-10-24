@@ -78,16 +78,23 @@ export class WoDChatMessage extends ChatMessage {
           flavor: this.flags.flavor || '',
           difficulty: this.flags.difficulty || 0,
           activeModifiers: this.flags.activeModifiers || {},
-          data: this.flags.data || {}
+          data: this.flags.data || {},
+          isContentVisible: this.isContentVisible
         })
 
         html.find('.message-content').html(messageContent)
 
+        const autoCollapse = game.settings.get('vtm5e', 'autoCollapseDescriptions')
+
+        if (!autoCollapse) {
+          const content = html.find('.collapsible-content')
+
+          content.css('maxHeight', 'unset')
+        }
+
         // Add collapsible toggle event listener
         html.find('.collapsible').click(async event => {
           event.preventDefault()
-
-          html.find('.collapsible').toggleClass('active')
 
           const content = html.find('.collapsible-content')
 
