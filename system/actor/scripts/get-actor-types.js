@@ -3,19 +3,19 @@ export const getActorTypes = async function (actor) {
 
   const playerTypes = {
     mortal: 'WOD5E.Mortal',
-    vampire: 'WOD5E.VTM.Label',
+    vampire: 'TYPES.Actor.vampire',
     ghoul: 'WOD5E.VTM.Ghoul',
-    werewolf: 'WOD5E.WTA.Label',
-    hunter: 'WOD5E.HTR.Label'
+    werewolf: 'TYPES.Actor.werewolf',
+    hunter: 'TYPES.Actor.hunter'
   }
 
   const spcTypes = {
     mortal: 'WOD5E.Mortal',
     ghoul: 'WOD5E.VTM.Ghoul',
-    vampire: 'WOD5E.VTM.Label',
-    werewolf: 'WOD5E.WTA.Label',
+    vampire: 'TYPES.Actor.vampire',
+    werewolf: 'TYPES.Actor.werewolf',
     spirit: 'WOD5E.WTA.Spirit',
-    hunter: 'WOD5E.HTR.Label'
+    hunter: 'TYPES.Actor.hunter'
   }
 
   const groupTypes = {

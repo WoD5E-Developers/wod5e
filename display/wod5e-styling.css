@@ -1,6 +1,7 @@
 :root {
   --hunter-color-1: #cc6d28;
   --hunter-color-2: #ffb762;
+  --hunter-color-3: #ff8f00;
   --cell-group-header: rgba(204, 109, 40, 0.8);
 }
 /* Define splat-specific colours for the WOD5E Symbols */
@@ -961,6 +962,7 @@ h3.item-name {
 :root {
   --werewolf-color-1: #4e2100;
   --werewolf-color-2: #994101;
+  --werewolf-color-3: var(--werewolf-color-3);
   --pack-group-header: rgba(78, 33, 0, 0.8);
 }
 /* Define splat-specific colours for the WOD5E Symbols */
@@ -2711,7 +2713,6 @@ prose-mirror .editor-menu button {
   --system-dark-color-3: #686767;
   --system-dark-color-4: #fff;
   --system-dark-color-5: #ffffff9c;
-  --system-dark-color-6: #ff0000;
   --system-dark-color-7: #505050;
   --system-dark-color-8: #e6e6e6;
   --dark-theme-filter: rgba(43, 43, 43, 0.5);
@@ -2894,14 +2895,10 @@ prose-mirror .editor-menu button {
 .wod-dark-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.wod-dark-theme .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
-.wod-dark-theme .actor.sheet.vampire .tabs-container .item[data-tab="blood"] {
-  color: var(--system-dark-color-6);
-}
 .wod-dark-theme .sheet.werewolf .resource-value .resource-value-step.active,
 .wod-dark-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
 .wod-dark-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: #e97244;
+  background-color: var(--werewolf-color-3);
 }
 .wod-dark-theme .sheet.werewolf button.rage-button:hover {
   background-color: #752e11ea;
@@ -2915,7 +2912,7 @@ prose-mirror .editor-menu button {
 }
 .wod-dark-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
 .wod-dark-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
-  color: #e97244;
+  color: var(--werewolf-color-3);
 }
 .wod-dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
 .wod-dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
@@ -2929,7 +2926,7 @@ prose-mirror .editor-menu button {
   color: var(--system-dark-color-4);
 }
 .wod-dark-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
-  color: #ff8f00;
+  color: var(--hunter-color-3);
 }
 .wod-dark-theme prose-mirror button.icon.toggle {
   color: var(--system-dark-color-4);
@@ -3180,14 +3177,10 @@ prose-mirror .editor-menu button {
 .wod-vampire-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.wod-vampire-theme .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
-.wod-vampire-theme .actor.sheet.vampire .tabs-container .item[data-tab="blood"] {
-  color: var(--system-dark-color-6);
-}
 .wod-vampire-theme .sheet.werewolf .resource-value .resource-value-step.active,
 .wod-vampire-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
 .wod-vampire-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: #e97244;
+  background-color: var(--werewolf-color-3);
 }
 .wod-vampire-theme .sheet.werewolf button.rage-button:hover {
   background-color: #752e11ea;
@@ -3201,7 +3194,7 @@ prose-mirror .editor-menu button {
 }
 .wod-vampire-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
 .wod-vampire-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
-  color: #e97244;
+  color: var(--werewolf-color-3);
 }
 .wod-vampire-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
 .wod-vampire-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
@@ -3215,7 +3208,7 @@ prose-mirror .editor-menu button {
   color: var(--system-dark-color-4);
 }
 .wod-vampire-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
-  color: #ff8f00;
+  color: var(--hunter-color-3);
 }
 .wod-vampire-theme prose-mirror button.icon.toggle {
   color: var(--system-dark-color-4);
@@ -3424,14 +3417,10 @@ prose-mirror .editor-menu button {
 .wod-werewolf-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.wod-werewolf-theme .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
-.wod-werewolf-theme .actor.sheet.vampire .tabs-container .item[data-tab="blood"] {
-  color: var(--system-dark-color-6);
-}
 .wod-werewolf-theme .sheet.werewolf .resource-value .resource-value-step.active,
 .wod-werewolf-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
 .wod-werewolf-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: #e97244;
+  background-color: var(--werewolf-color-3);
 }
 .wod-werewolf-theme .sheet.werewolf button.rage-button:hover {
   background-color: #752e11ea;
@@ -3445,7 +3434,7 @@ prose-mirror .editor-menu button {
 }
 .wod-werewolf-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
 .wod-werewolf-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
-  color: #e97244;
+  color: var(--werewolf-color-3);
 }
 .wod-werewolf-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
 .wod-werewolf-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
@@ -3459,7 +3448,7 @@ prose-mirror .editor-menu button {
   color: var(--system-dark-color-4);
 }
 .wod-werewolf-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
-  color: #ff8f00;
+  color: var(--hunter-color-3);
 }
 .wod-werewolf-theme prose-mirror button.icon.toggle {
   color: var(--system-dark-color-4);

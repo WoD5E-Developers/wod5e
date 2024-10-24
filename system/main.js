@@ -36,6 +36,7 @@ import { Renown } from './api/def/renown.js'
 import { WereForms } from './api/def/were-forms.js'
 import { Gifts } from './api/def/gifts.js'
 import { _rollItem } from './actor/scripts/item-roll.js'
+import { _updateCSSVariable, cssVariablesRecord } from './scripts/update-css-variables.js'
 
 // Anything that needs to be ran alongside the initialisation of the world
 Hooks.once('init', async function () {
@@ -146,6 +147,23 @@ Hooks.once('ready', async function () {
 
   // Migration functions
   migrateWorld()
+
+  // Set up any splat colour changes
+  const cssVariables = cssVariablesRecord()
+  Object.keys(cssVariables).forEach(theme => {
+    const settings = cssVariables[theme].settings
+
+    // Go through all the settings in each theme
+    Object.keys(settings).forEach(settingKey => {
+      const { settingId, cssVariable } = settings[settingKey]
+
+      // Get the current value of the setting
+      const settingValue = game.settings.get('vtm5e', settingId)
+
+      // Update the CSS variable
+      _updateCSSVariable(settingId, cssVariable, settingValue)
+    })
+  })
 })
 
 Hooks.once('setup', () => {

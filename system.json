@@ -31,7 +31,8 @@
   ],
   "esmodules": [
     "system/main.js",
-    "lib/jquery-flexdatalist/jquery.flexdatalist.min.js"
+    "lib/jquery-flexdatalist/jquery.flexdatalist.min.js",
+    "lib/jscolor/jscolor.min.js"
   ],
   "styles": [
     "display/wod5e-styling.css",

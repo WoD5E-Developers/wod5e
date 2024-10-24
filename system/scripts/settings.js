@@ -10,6 +10,8 @@ import { Skills } from '../api/def/skills.js'
 import { Disciplines } from '../api/def/disciplines.js'
 import { Edges } from '../api/def/edges.js'
 import { Gifts } from '../api/def/gifts.js'
+import { SplatColorsMenu } from './menus/splat-colors-menu.js'
+import { cssVariablesRecord } from './update-css-variables.js'
 
 /**
  * Define all game settings here
@@ -295,6 +297,38 @@ export const loadSettings = async function () {
     config: true,
     default: '1.5',
     type: String
+  })
+
+  /*
+    Splat Colors Menu
+  */
+
+  // Register the splat colors menu
+  game.settings.registerMenu('vtm5e', 'splatColorsMenu', {
+    name: game.i18n.localize('WOD5E.Settings.SplatColorsMenu'),
+    hint: game.i18n.localize('WOD5E.Settings.SplatColorsHint'),
+    label: game.i18n.localize('WOD5E.Settings.SplatColorsMenu'),
+    icon: 'fa-solid fa-palette',
+    type: SplatColorsMenu,
+    restricted: true
+  })
+
+  // Register variable settings
+  const cssVariables = cssVariablesRecord()
+  Object.keys(cssVariables).forEach(theme => {
+    const settings = cssVariables[theme].settings
+
+    Object.keys(settings).forEach(settingKey => {
+      const { settingId, defaultColor } = settings[settingKey]
+
+      // Register the setting
+      game.settings.register('vtm5e', settingId, {
+        scope: 'world',
+        config: true,
+        default: defaultColor,
+        type: String
+      })
+    })
   })
 }
 
