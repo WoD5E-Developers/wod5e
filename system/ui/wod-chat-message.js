@@ -85,8 +85,6 @@ export class WoDChatMessage extends ChatMessage {
 
         const autoCollapse = game.settings.get('vtm5e', 'autoCollapseDescriptions')
 
-        console.log(autoCollapse)
-
         if (!autoCollapse) {
           const content = html.find('.collapsible-content')
 
