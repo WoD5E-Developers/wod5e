@@ -307,16 +307,16 @@
       "SkillType": "Skill Type",
       "SortDefAlphabetically": "Alphabetical Sorting",
       "SortDefAlphabeticallyHint": "Determine which aspects of the system are sorted. By default, everything except attributes will be sorted alphabetically.",
+      "SplatColorsMenu": "Splat Colors Menu",
       "StorytellerMenu": "Storyteller Menu",
       "StorytellerMenuHint": "Modify the system, such as renaming existing and creating custom skills and attributes.",
-      "WorldVersion": "World Version",
-      "WorldVersionHint": "Automatically upgrades data when the system.json is upgraded.",
-      "StringStyling": "{string} Styling",
       "StringBaseColor": "{string} Base Color",
       "StringPrimaryColor": "{string} Primary Color",
       "StringSecondaryColor": "{string} Secondary Color",
+      "StringStyling": "{string} Styling",
       "StringTertiaryColor": "{string} Tertiary Color",
-      "SplatColorsMenu": "Splat Colors Menu"
+      "WorldVersion": "World Version",
+      "WorldVersionHint": "Automatically upgrades data when the system.json is upgraded."
     },
     "SkillsList": {
       "Academics": "Academics",
