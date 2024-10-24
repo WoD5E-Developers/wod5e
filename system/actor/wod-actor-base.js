@@ -168,7 +168,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       }
 
       // Calculate item modifiers and shuffle them into system.itemModifiers
-      if (!foundry.utils.isEmpty(item.system.bonuses)) {
+      if (!foundry.utils.isEmpty(item.system.bonuses) && !item?.system?.suppressed) {
         sheetData.system.itemModifiers = sheetData.system.itemModifiers.concat(item.system.bonuses)
       }
     })
