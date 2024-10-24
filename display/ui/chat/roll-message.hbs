@@ -1,5 +1,5 @@
 <div class="collapsible-container">
-    <p class="roll-label uppercase collapsible">{{title}}</p>
+    <p class="roll-label uppercase collapsible{{#unless autoCollapseDescriptions}} active{{/unless}}">{{title}}</p>
     <div class="dice-roll">
         <div class="modifiers">
             {{#each activeModifiers as |mod key|}}

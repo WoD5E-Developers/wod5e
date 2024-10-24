@@ -262,10 +262,20 @@ export const loadSettings = async function () {
     })
   }
 
+  // Automatically collapse chat message descriptions
+  game.settings.register('vtm5e', 'autoCollapseDescriptions', {
+    name: game.i18n.localize('WOD5E.Settings.AutoCollapseDescriptions'),
+    hint: game.i18n.localize('WOD5E.Settings.AutoCollapseDescriptionsHint'),
+    scope: 'client',
+    config: true,
+    default: false,
+    type: Boolean
+  })
+
   // Override for the default actor header image
   game.settings.register('vtm5e', 'actorHeaderOverride', {
-    name: game.i18n.localize('WOD5E.Settings.actorHeaderOverride'),
-    hint: game.i18n.localize('WOD5E.Settings.actorHeaderOverrideHint'),
+    name: game.i18n.localize('WOD5E.Settings.ActorHeaderOverride'),
+    hint: game.i18n.localize('WOD5E.Settings.ActorHeaderOverrideHint'),
     scope: 'world',
     config: true,
     default: '',
