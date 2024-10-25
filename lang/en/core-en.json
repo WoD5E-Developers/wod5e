@@ -307,6 +307,7 @@
       "SkillType": "Skill Type",
       "SortDefAlphabetically": "Alphabetical Sorting",
       "SortDefAlphabeticallyHint": "Determine which aspects of the system are sorted. By default, everything except attributes will be sorted alphabetically.",
+      "SplatColorsHint": "Allows for the storyteller to edit the colours associated with each individual splat in the system.",
       "SplatColorsMenu": "Splat Colors Menu",
       "StorytellerMenu": "Storyteller Menu",
       "StorytellerMenuHint": "Modify the system, such as renaming existing and creating custom skills and attributes.",
