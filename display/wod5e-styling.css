@@ -367,7 +367,7 @@
 /* ProseMirror Alterations */
 prose-mirror {
   width: -webkit-fill-available;
-  height: -webkit-fill-available;
+  height: inherit;
 }
 prose-mirror .editor-menu {
   height: 35px;
