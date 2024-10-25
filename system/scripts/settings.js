@@ -324,7 +324,7 @@ export const loadSettings = async function () {
       // Register the setting
       game.settings.register('vtm5e', settingId, {
         scope: 'world',
-        config: true,
+        config: false,
         default: defaultColor,
         type: String
       })
