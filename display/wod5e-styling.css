@@ -2200,10 +2200,13 @@ body.uk .actor.sheet {
   margin-top: 2px;
   text-align: center;
 }
+.tab[data-tab="features"] .dot-tracker {
+  display: contents;
+}
 .tab[data-tab="features"] .resource-value,
 .tab[data-tab="features"] .resource-value-static {
-  margin-top: 2px;
-  text-align: center;
+  text-align: right;
+  margin-left: auto;
 }
 .actor.sheet .resource-value-empty {
   margin-left: -16px;
@@ -2821,6 +2824,7 @@ prose-mirror .editor-menu button {
   border-color: var(--system-dark-color-4);
 }
 .wod-dark-theme .actor.sheet {
+  /* Collapsible Descriptions */
   /* Navbar */
   /* Resource Counters */
 }
@@ -2833,6 +2837,10 @@ prose-mirror .editor-menu button {
 .wod-dark-theme .actor.sheet .stats-container .stats-footer {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
+}
+.wod-dark-theme .actor.sheet .collapsible-content {
+  color: var(--system-dark-color-4);
+  background: var(--system-dark-color-2);
 }
 .wod-dark-theme .actor.sheet .sheet-tabs .navicon,
 .wod-dark-theme .actor.sheet .sheet-tabs .lock-btn {
@@ -3103,6 +3111,7 @@ prose-mirror .editor-menu button {
   border-color: var(--system-dark-color-4);
 }
 .wod-vampire-theme .actor.sheet {
+  /* Collapsible Descriptions */
   /* Navbar */
   /* Resource Counters */
 }
@@ -3115,6 +3124,10 @@ prose-mirror .editor-menu button {
 .wod-vampire-theme .actor.sheet .stats-container .stats-footer {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
+}
+.wod-vampire-theme .actor.sheet .collapsible-content {
+  color: var(--system-dark-color-4);
+  background: var(--system-dark-color-2);
 }
 .wod-vampire-theme .actor.sheet .sheet-tabs .navicon,
 .wod-vampire-theme .actor.sheet .sheet-tabs .lock-btn {
@@ -3343,6 +3356,7 @@ prose-mirror .editor-menu button {
   border-color: var(--system-dark-color-4);
 }
 .wod-werewolf-theme .actor.sheet {
+  /* Collapsible Descriptions */
   /* Navbar */
   /* Resource Counters */
 }
@@ -3355,6 +3369,10 @@ prose-mirror .editor-menu button {
 .wod-werewolf-theme .actor.sheet .stats-container .stats-footer {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
+}
+.wod-werewolf-theme .actor.sheet .collapsible-content {
+  color: var(--system-dark-color-4);
+  background: var(--system-dark-color-2);
 }
 .wod-werewolf-theme .actor.sheet .sheet-tabs .navicon,
 .wod-werewolf-theme .actor.sheet .sheet-tabs .lock-btn {
