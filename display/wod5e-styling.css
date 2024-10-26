@@ -2825,6 +2825,7 @@ prose-mirror .editor-menu button {
 }
 .wod-dark-theme .actor.sheet {
   /* Collapsible Descriptions */
+  /* Limited View Toggle Button */
   /* Navbar */
   /* Resource Counters */
 }
@@ -2841,6 +2842,12 @@ prose-mirror .editor-menu button {
 .wod-dark-theme .actor.sheet .collapsible-content {
   color: var(--system-dark-color-4);
   background: var(--system-dark-color-2);
+}
+.wod-dark-theme .actor.sheet .toggle-limited {
+  color: var(--system-dark-color-4);
+}
+.wod-dark-theme .actor.sheet .toggle-limited:not(.visible) {
+  color: var(--system-dark-color-8);
 }
 .wod-dark-theme .actor.sheet .sheet-tabs .navicon,
 .wod-dark-theme .actor.sheet .sheet-tabs .lock-btn {
@@ -3112,6 +3119,7 @@ prose-mirror .editor-menu button {
 }
 .wod-vampire-theme .actor.sheet {
   /* Collapsible Descriptions */
+  /* Limited View Toggle Button */
   /* Navbar */
   /* Resource Counters */
 }
@@ -3128,6 +3136,12 @@ prose-mirror .editor-menu button {
 .wod-vampire-theme .actor.sheet .collapsible-content {
   color: var(--system-dark-color-4);
   background: var(--system-dark-color-2);
+}
+.wod-vampire-theme .actor.sheet .toggle-limited {
+  color: var(--system-dark-color-4);
+}
+.wod-vampire-theme .actor.sheet .toggle-limited:not(.visible) {
+  color: var(--system-dark-color-8);
 }
 .wod-vampire-theme .actor.sheet .sheet-tabs .navicon,
 .wod-vampire-theme .actor.sheet .sheet-tabs .lock-btn {
@@ -3357,6 +3371,7 @@ prose-mirror .editor-menu button {
 }
 .wod-werewolf-theme .actor.sheet {
   /* Collapsible Descriptions */
+  /* Limited View Toggle Button */
   /* Navbar */
   /* Resource Counters */
 }
@@ -3373,6 +3388,12 @@ prose-mirror .editor-menu button {
 .wod-werewolf-theme .actor.sheet .collapsible-content {
   color: var(--system-dark-color-4);
   background: var(--system-dark-color-2);
+}
+.wod-werewolf-theme .actor.sheet .toggle-limited {
+  color: var(--system-dark-color-4);
+}
+.wod-werewolf-theme .actor.sheet .toggle-limited:not(.visible) {
+  color: var(--system-dark-color-8);
 }
 .wod-werewolf-theme .actor.sheet .sheet-tabs .navicon,
 .wod-werewolf-theme .actor.sheet .sheet-tabs .lock-btn {
