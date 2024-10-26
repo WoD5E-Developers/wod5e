@@ -118,7 +118,7 @@ export const _onGiftToChat = async function (event, target) {
   await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
     name: gift.displayName,
     img: 'icons/svg/dice-target.svg',
-    description: gift.description
+    description: gift?.description || ''
   }).then(html => {
     ChatMessage.create({
       content: html

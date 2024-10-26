@@ -9,9 +9,9 @@ export const preparePatronSpiritContext = async function (context, item) {
 
   // Part-specific data
   context.patronSpirit = patronSpirit
-  context.enrichedPatronSpiritDescription = await TextEditor.enrichHTML(patronSpirit.description)
-  context.enrichedFavor = await TextEditor.enrichHTML(patronSpirit.favor)
-  context.enrichedBan = await TextEditor.enrichHTML(patronSpirit.ban)
+  context.enrichedPatronSpiritDescription = await TextEditor.enrichHTML(patronSpirit?.description || '')
+  context.enrichedFavor = await TextEditor.enrichHTML(patronSpirit?.favor || '')
+  context.enrichedBan = await TextEditor.enrichHTML(patronSpirit?.ban || '')
 
   return context
 }

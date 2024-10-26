@@ -89,7 +89,7 @@ export const _onDisciplineToChat = async function (event, target) {
   await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
     name: discipline.displayName,
     img: 'icons/svg/dice-target.svg',
-    description: discipline.description
+    description: discipline?.description
   }).then(html => {
     ChatMessage.create({
       content: html

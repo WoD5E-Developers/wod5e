@@ -9,8 +9,8 @@ export const prepareDescriptionContext = async function (context, item) {
   context.tab = context.tabs.description
 
   // Part-specific data
-  context.description = itemData.description
-  context.enrichedDescription = await TextEditor.enrichHTML(itemData.description)
+  context.description = itemData?.description
+  context.enrichedDescription = await TextEditor.enrichHTML(itemData?.description)
 
   return context
 }

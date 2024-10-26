@@ -16,7 +16,7 @@ export const prepareGifts = async function (actor) {
         id,
         value: actorGifts[id].value,
         powers: actorGifts[id].powers || [],
-        description: actorGifts[id].description,
+        description: actorGifts[id]?.description || '',
         visible: actorGifts[id].visible,
         selected: actorGifts[id].selected || false
       }, value)

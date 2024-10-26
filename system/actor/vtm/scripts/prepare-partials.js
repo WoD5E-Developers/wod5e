@@ -15,7 +15,7 @@ export const prepareDisciplinesContext = async function (context, actor) {
   // Get discipline data if any discipline is currently selected
   if (actorData?.selectedDiscipline) {
     context.selectedDiscipline = actorData.disciplines[actorData.selectedDiscipline]
-    context.enrichedSelectedDisciplineDescription = await TextEditor.enrichHTML(context.selectedDiscipline.description)
+    context.enrichedSelectedDisciplineDescription = await TextEditor.enrichHTML(context.selectedDiscipline?.description || '')
   }
 
   // Get power data if any power is currently selected

@@ -16,7 +16,7 @@ export const prepareEdges = async function (actor) {
         value: actorEdges[id].value,
         perks: actorEdges[id].perks || [],
         pools: actorEdges[id].pools || [],
-        description: actorEdges[id].description,
+        description: actorEdges[id]?.description || '',
         visible: actorEdges[id].visible,
         selected: actorEdges[id].selected || false
       }, value)

@@ -100,7 +100,7 @@ export const handleFormChange = async function (actor, form, diceCount) {
     await WOD5eDice.Roll({
       advancedDice: diceCount + activeModifiers.totalValue,
       title: form,
-      flavor: formData.description,
+      flavor: formData?.description || '',
       actor,
       data: actor.system,
       quickRoll: true,
@@ -133,7 +133,7 @@ export const _onFormToChat = async function (event, target, originActor) {
   // Secondary variables
   const formData = actor.system.forms[form]
   const formName = formData.displayName
-  const formDescription = formData.description ? `<p>${formData.description}</p>` : ''
+  const formDescription = formData?.description ? `<p>${formData?.description}</p>` : ''
   const formAbilities = formData.attributes
 
   // Define the chat message

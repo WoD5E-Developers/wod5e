@@ -166,7 +166,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     // Do data manipulation we need to do for ALL items here
     sheetData.items.forEach(async (item) => {
       // Enrich item descriptions
-      if (item.system.description) {
+      if (item.system?.description) {
         item.system.enrichedDescription = await TextEditor.enrichHTML(item.system.description)
       }
 

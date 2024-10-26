@@ -87,7 +87,7 @@ export const _onEdgeToChat = async function (event, target) {
   await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
     name: edge.displayName,
     img: 'icons/svg/dice-target.svg',
-    description: edge.description
+    description: edge?.description || ''
   }).then(html => {
     ChatMessage.create({
       content: html
