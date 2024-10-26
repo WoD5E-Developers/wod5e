@@ -57,11 +57,11 @@
                                     {{/if}}
                                     {{#if item.system.uses.enabled}}
                                         <!-- Icon to consume a use of the feature -->
-                                        <a class="item-control item-edit" data-action="expendItemUse" data-item-id="{{item._id}}" title="{{localize 'WOD5E.ItemsList.ExpendUse'}}">
+                                        <a class="item-control item-use" data-action="expendItemUse" data-item-id="{{item._id}}" title="{{localize 'WOD5E.ItemsList.ExpendUse'}}">
                                             <i class="fa-solid fa-angle-down"></i>
                                         </a>
                                         <!-- Icon to restore the uses of the feature back to max -->
-                                        <a class="item-control item-edit" data-action="restoreItemUses" data-item-id="{{item._id}}" title="{{localize 'WOD5E.ItemsList.ResetUses'}}">
+                                        <a class="item-control item-restore" data-action="restoreItemUses" data-item-id="{{item._id}}" title="{{localize 'WOD5E.ItemsList.ResetUses'}}">
                                             <i class="fa-solid fa-rotate-left"></i>
                                         </a>
                                     {{/if}}
