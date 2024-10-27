@@ -180,6 +180,8 @@
       "ShowToChat": "Показати в чат",
       "_Static": "",
       "_SuppressCondition": "",
+      "_SyncFromDataItem": "",
+      "_SyncToDataItems": "",
       "Type": "Тип",
       "_Upgrade": "",
       "UseSkill": "Використовує Навички",

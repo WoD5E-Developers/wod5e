@@ -180,6 +180,8 @@
       "ShowToChat": "Show to Chat",
       "Static": "Static",
       "SuppressCondition": "Suppress Condition",
+      "SyncFromDataItem": "Sync From Data Item",
+      "SyncToDataItems": "Sync To Data Items",
       "Type": "Type",
       "Upgrade": "Upgrade",
       "UseSkill": "Use Skills",

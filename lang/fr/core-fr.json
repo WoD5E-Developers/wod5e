@@ -180,6 +180,8 @@
       "ShowToChat": "Afficher pour discuter",
       "_Static": "",
       "_SuppressCondition": "",
+      "_SyncFromDataItem": "",
+      "_SyncToDataItems": "",
       "Type": "Type",
       "_Upgrade": "",
       "UseSkill": "Utiliser des Compétences",

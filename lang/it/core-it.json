@@ -180,6 +180,8 @@
       "ShowToChat": "Mostra in chat",
       "_Static": "",
       "_SuppressCondition": "",
+      "_SyncFromDataItem": "",
+      "_SyncToDataItems": "",
       "Type": "Tipo",
       "_Upgrade": "",
       "UseSkill": "Usa Abilità",

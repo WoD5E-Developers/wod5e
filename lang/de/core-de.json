@@ -180,6 +180,8 @@
       "ShowToChat": "An Chat senden",
       "_Static": "",
       "_SuppressCondition": "",
+      "_SyncFromDataItem": "",
+      "_SyncToDataItems": "",
       "Type": "Typ",
       "_Upgrade": "",
       "UseSkill": "Fähigkeiten einsetzen",

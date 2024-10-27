@@ -8,6 +8,7 @@ import { _onAddModifier, _onDeleteModifier, _onEditModifier } from './scripts/it
 import { _onAddDice, _onRemoveDice } from './scripts/dicepools.js'
 import { _onEditImage } from './scripts/on-edit-image.js'
 import { _onFormatDataId } from './scripts/on-format-data-id.js'
+import { _onSyncFromDataItem, _onSyncToDataItems } from './scripts/item-syncing.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
@@ -41,12 +42,31 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
       deleteModifier: _onDeleteModifier,
       editModifier: _onEditModifier,
       editImage: _onEditImage,
-      formatDataId: _onFormatDataId
+      formatDataId: _onFormatDataId,
+      syncFromDataItem: _onSyncFromDataItem,
+      syncToDataItems: _onSyncToDataItems
     }
   }
 
   _getHeaderControls () {
     const controls = super._getHeaderControls()
+    const item = this.item
+
+    if (item.isOwned) {
+      // Allow this item to have its item updated from an existing data item
+      controls.push({
+        icon: 'fa-solid fa-down-long',
+        label: 'WOD5E.ItemsList.SyncFromDataItem',
+        action: 'syncFromDataItem'
+      })
+    } else {
+      // Allow this item to update all data items
+      controls.push({
+        icon: 'fa-solid fa-up-long',
+        label: 'WOD5E.ItemsList.SyncToDataItems',
+        action: 'syncToDataItems'
+      })
+    }
 
     return controls
   }
