@@ -138,7 +138,10 @@
       "Legacy": "Legacy",
       "NewExperience": "New Experience",
       "Remaining": "Remaining EXP",
-      "Total": "Total EXP"
+      "SpendExperience": "Spend Experience",
+      "Total": "Total EXP",
+      "XPGained": "XP Gained",
+      "XPSpent": "XP Spent"
     },
     "ItemsList": {
       "Add": "Add",

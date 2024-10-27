@@ -138,7 +138,10 @@
       "_Legacy": "",
       "_NewExperience": "",
       "_Remaining": "",
-      "_Total": ""
+      "_SpendExperience": "",
+      "_Total": "",
+      "_XPGained": "",
+      "_XPSpent": ""
     },
     "ItemsList": {
       "_Add": "",

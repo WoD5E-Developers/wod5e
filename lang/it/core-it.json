@@ -138,7 +138,10 @@
       "Legacy": "",
       "NewExperience": "nuova esperienza",
       "Remaining": "EXP rimanenti",
-      "Total": "Totale"
+      "_SpendExperience": "",
+      "Total": "Totale",
+      "_XPGained": "",
+      "_XPSpent": ""
     },
     "ItemsList": {
       "_Add": "",
