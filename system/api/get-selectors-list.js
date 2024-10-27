@@ -68,86 +68,80 @@ export const getSelectorsList = (document) => {
   }
 
   // Vampire
-  if (gamesystem === 'vampire') {
-    const disciplines = WOD5E.Disciplines.getList({
-      prependType: true
+  const disciplines = WOD5E.Disciplines.getList({
+    prependType: true
+  })
+  // "All Disciplines" selector
+  selectorsList.push({
+    id: 'disciplines',
+    displayName: game.i18n.format('WOD5E.Modifier.AllString', {
+      string: game.i18n.localize('WOD5E.VTM.Disciplines')
     })
-    // "All Disciplines" selector
+  })
+  // Individual disciplines
+  for (const [key, value] of Object.entries(disciplines)) {
     selectorsList.push({
-      id: 'disciplines',
-      displayName: game.i18n.format('WOD5E.Modifier.AllString', {
-        string: game.i18n.localize('WOD5E.VTM.Disciplines')
-      })
+      id: key,
+      displayName: value.displayName
     })
-    // Individual disciplines
-    for (const [key, value] of Object.entries(disciplines)) {
-      selectorsList.push({
-        id: key,
-        displayName: value.displayName
-      })
-    }
   }
 
   // Hunter
-  if (gamesystem === 'hunter') {
-    const edges = WOD5E.Edges.getList({
-      prependType: true
+  const edges = WOD5E.Edges.getList({
+    prependType: true
+  })
+  // "All Edges" selector
+  selectorsList.push({
+    id: 'edges',
+    displayName: game.i18n.format('WOD5E.Modifier.AllString', {
+      string: game.i18n.localize('WOD5E.HTR.Edges')
     })
-    // "All Edges" selector
+  })
+  // Individual edges
+  for (const [key, value] of Object.entries(edges)) {
     selectorsList.push({
-      id: 'edges',
-      displayName: game.i18n.format('WOD5E.Modifier.AllString', {
-        string: game.i18n.localize('WOD5E.HTR.Edges')
-      })
+      id: key,
+      displayName: value.displayName
     })
-    // Individual edges
-    for (const [key, value] of Object.entries(edges)) {
-      selectorsList.push({
-        id: key,
-        displayName: value.displayName
-      })
-    }
   }
 
   // Werewolf
-  if (gamesystem === 'werewolf') {
-    // Renown
-    const renown = WOD5E.Renown.getList({
-      prependType: true
+  // Renown
+  const renown = WOD5E.Renown.getList({
+    prependType: true
+  })
+  // "All Renown" selector
+  selectorsList.push({
+    id: 'renown',
+    displayName: game.i18n.format('WOD5E.Modifier.AllString', {
+      string: game.i18n.localize('WOD5E.WTA.Renown')
     })
-    // "All Renown" selector
+  })
+  // Individual renown
+  for (const [key, value] of Object.entries(renown)) {
     selectorsList.push({
-      id: 'renown',
-      displayName: game.i18n.format('WOD5E.Modifier.AllString', {
-        string: game.i18n.localize('WOD5E.WTA.Renown')
-      })
+      id: key,
+      displayName: value.displayName
     })
-    // Individual renown
-    for (const [key, value] of Object.entries(renown)) {
-      selectorsList.push({
-        id: key,
-        displayName: value.displayName
-      })
-    }
+  }
 
-    // Gifts
-    const gifts = WOD5E.Gifts.getList({
-      prependType: true
+  // Gifts
+  const gifts = WOD5E.Gifts.getList({
+    prependType: true
+  })
+  // "All Gifts" selector
+  selectorsList.push({
+    id: 'gifts',
+    displayName: game.i18n.format('WOD5E.Modifier.AllString', {
+      string: game.i18n.localize('WOD5E.WTA.Gifts')
     })
-    // "All Gifts" selector
+  })
+  // Individual gifts
+  for (const [key, value] of Object.entries(gifts)) {
     selectorsList.push({
-      id: 'gifts',
-      displayName: game.i18n.format('WOD5E.Modifier.AllString', {
-        string: game.i18n.localize('WOD5E.WTA.Gifts')
-      })
+      id: key,
+      displayName: value.displayName
     })
-    // Individual gifts
-    for (const [key, value] of Object.entries(gifts)) {
-      selectorsList.push({
-        id: key,
-        displayName: value.displayName
-      })
-    }
   }
 
   return selectorsList
