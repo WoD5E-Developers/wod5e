@@ -1,0 +1,46 @@
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="flexrow">
+        <div class="character-details flexcol">
+            <div class="flexcol flex-group-center">
+                <div class="flexcol detail-row">
+                    <label class="resource-label field-header">{{localize "WOD5E.BiographyList.Concept"}}</label>
+                    <input type="text" name="system.headers.concept" value="{{concept}}" placeholder="{{localize 'WOD5E.BiographyList.Concept'}}" />
+                </div>
+                <div class="flexcol detail-row">
+                    <label class="resource-label field-header">{{localize "WOD5E.BiographyList.Chronicle"}}</label>
+                    <input type="text" name="system.headers.chronicle" value="{{chronicle}}" placeholder="{{localize 'WOD5E.BiographyList.Chronicle'}}" />
+                </div>
+                <div class="description-field">
+                    <div class="flex-center field-header">
+                        <label class="resource-label">
+                            {{localize "WOD5E.BiographyList.ChronicleTenets"}}
+                        </label>
+                    </div>
+                    <div class="description-content resource">
+                        <prose-mirror name="system.headers.tenets" value="{{tenets}}"
+                            toggled="true" compact="true">
+                            {{{enrichedTenets}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+                <div class="description-field">
+                    <div class="flex-center field-header">
+                        <label class="resource-label">
+                            {{localize "WOD5E.BiographyList.History"}}
+                        </label>
+                    </div>
+                    <div class="description-content resource">
+                        <prose-mirror name="system.biography" value="{{biography}}"
+                            toggled="true" compact="true">
+                            {{{enrichedBiography}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="features-list item-list">
+            <!-- Core features -->
+            {{> "systems/vtm5e/display/shared/actors/parts/core-features.hbs"}}
+        </div>
+    </div>
+</section>

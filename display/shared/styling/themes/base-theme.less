@@ -1,0 +1,665 @@
+/* Variables */
+:root {
+  --system-color-1: #302d5bf0;
+  --system-color-2: #d2dfebf0;
+  --system-color-3: #827dcaf0;
+  --system-color-4: #ededec;
+  --system-color-5: #000;
+  --system-color-6: #fff;
+  --system-color-7: #333;
+  --system-color-8: #c4c4c4;
+  --system-color-9: #e02b2b;
+  --system-color-10: #4b4b4b;
+  --system-color-11: #181818;
+
+  --base-theme-filter: rgb(24 51 103 / 50%);
+
+  --ui-background-texture: url(/systems/vtm5e/assets/ui/base_ui_background_texture.webp);
+  --sidebar-background: url(/systems/vtm5e/assets/ui/base_sidebar.webp);
+
+  --actor-background-default: url(/systems/vtm5e/assets/actor/actor_background.webp);
+  --actor-header-default: url(/systems/vtm5e/assets/ui/Actor_Header_Background.webp);
+  --logo-default: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
+}
+
+/* All places that use a filter to apply the theme colour */
+.app,
+#controls ol.control-tools > li,
+#navigation #scene-list .scene,
+#navigation #scene-list .scene.view,
+#navigation #scene-list .scene.context,
+#navigation #scene-list .scene.gm,
+#navigation .nav-item,
+#navigation #nav-toggle,
+#hotbar .bar-controls {
+  background: var(--ui-background-texture);
+}
+
+#sidebar {
+  background: var(--sidebar-background) repeat;
+}
+
+/* Apply light theme colour */
+.wod-light-theme {
+  .app,
+  #sidebar,
+  #controls ol.control-tools > li,
+  #navigation #scene-list .scene,
+  #navigation #scene-list .scene.view,
+  #navigation #scene-list .scene.context,
+  #navigation #scene-list .scene.gm,
+  #navigation .nav-item,
+  #navigation #nav-toggle,
+  #hotbar .bar-controls {
+    background-color: var(--base-theme-filter);
+    background-blend-mode: color-dodge;
+  }
+
+  #hotbar {
+    .macro {
+      background: var(--base-theme-filter);
+    }
+  }
+}
+
+/* Form groups adjustments */
+.standard-form {
+  .form-group,
+  .form-group:hover {
+    > label {
+      color: var(--system-color-5);
+    }
+
+    .hint {
+      color: var(--system-color-7);
+    }
+  }
+
+  input[type=range] {
+    --range-thumb-background-color: var(--system-color-5);
+    --range-thumb-border-color: var(--system-dark-color-1);
+  }
+}
+
+.application {
+  .window-header {
+    background: var(--system-color-1);
+  }
+}
+
+.application ::selection,
+.application ::placeholder {
+  color: #000000ab;
+}
+
+.window-content {
+  box-shadow: 0 0 5px var(--system-color-1);
+
+  select,
+  input,
+  .actor-header,
+  .tab {
+    color: var(--system-color-5);
+    --input-text-color: var(--system-color-5);
+  }
+}
+
+#logo {
+  content: var(--logo-default);
+  filter: drop-shadow(0 -5px 10px #cacaca85) drop-shadow(0 -10px 10px var(--system-color-3)) drop-shadow(0 0 10px #ffffff8f);
+}
+
+#pause {
+  figcaption {
+    color: #e4e4e4a9;
+  }
+}
+
+prose-mirror {
+  button.icon.toggle {
+    background-color: var(--system-color-6);
+  }
+
+  .editor-menu {
+    background: var(--system-color-7);
+
+    button {
+      color: var(--system-color-6);
+    }
+  }
+}
+
+/* Actor Sheets */
+.sheet {
+  .window-content {
+    background: var(--actor-background-default) repeat;
+  }
+
+  /* Input and resource fields */
+  input:not(.sound-volume),
+  .resource {
+    background-color: var(--system-color-4);
+    border: 1px solid var(--system-color-5);
+  }
+
+  .limited-description-body {
+    background-color: var(--system-color-4);
+    border: 1px solid var(--system-color-5);
+    color: var(--system-color-7);
+  }
+
+  /* Actor Header */
+  .actor-header {
+    background: var(--actor-header-default) center;
+    border-bottom: 2px solid var(--system-color-1);
+
+    .field-header {
+      color: var(--system-color-6);
+    }
+
+    .name-field {
+      color: var(--system-color-6);
+    }
+  }
+
+  /* Collapsible Descriptions */
+  .collapsible-content {
+    color: hwb(0deg 7% 98% / 100%);
+    background: var(--system-color-4);
+  }
+
+  /* Limited View Toggle Button */
+  .toggle-limited {
+    color: var(--system-color-5);
+  }
+
+  .toggle-limited:not(.visible) {
+    color: var(--system-color-7);
+  }
+
+  /* Sheet Banner */
+  .sheet-banner {
+    background-color: var(--system-color-1);
+
+    .actor-type-field {
+      select {
+        background-color: var(--system-color-4);
+      }
+    }
+  }
+
+  .tabs-container {
+    background-color: var(--system-color-4);
+  }
+
+  .sheet-tabs {
+    .lock-btn,
+    > [data-tab] .navicon {
+      color: var(--system-color-5);
+      background-color: var(--system-color-6);
+      border: 1px solid var(--system-color-5);
+    }
+
+    .lock-btn:hover {
+      color: var(--system-color-5);
+    }
+  }
+
+  /* Basic Item List Layout */
+  .item-list .category {
+    background-color: var(--system-color-4);
+    border: 2px solid #1b1b1b;
+
+    .item {
+      .item-image {
+        img {
+          border: 1px solid var(--system-color-5);
+        }
+      }
+    }
+  }
+
+  .item-image img {
+    border: 1px solid var(--system-color-6);
+  }
+
+  /* General Resources */
+  .resource-header {
+    border-bottom: 1px solid var(--system-color-5);
+  }
+
+  .clickable:hover,
+  .rollable:hover,
+  .rollable-item:hover,
+  .system-rollable:hover {
+    text-shadow: 0 0 5px var(--system-color-9);
+    filter: saturate(250%) drop-shadow(2px 4px 6px black);
+  }
+
+  /* Statistics Page */
+  .stats-container {
+    background-color: var(--system-color-4);
+    border: 2px solid #1b1b1b;
+  }
+
+  .specialty {
+    text-shadow: 0 0 5px var(--system-color-9);
+  }
+
+  .stats-content {
+    .side-panel {
+      .item-image {
+        img {
+          border: 1px inset var(--system-color-5);
+        }
+      }
+    }
+
+    .stats-container {
+      .stats-footer {
+        background-color: var(--system-color-8);
+      }
+    }
+
+    .stats-container.attributes .stats-footer {
+      border-bottom: 1px solid var(--system-color-5);
+    }
+
+    .stats-container.skills .stats-footer {
+      border-top: 1px solid var(--system-color-5);
+    }
+  }
+
+  select {
+    background-color: var(--system-color-4);
+  }
+
+  .clickable {
+    cursor: pointer
+  }
+}
+
+/* Resource Counters */
+.resource-value .resource-value-step {
+  border: 1px solid var(--system-color-5);
+  background-color: #00000047;
+}
+
+.resource-value-static .resource-value-static-step {
+  border: 1px solid var(--system-color-5);
+}
+
+.resource-value .resource-value-empty {
+  border: 1px solid var(--system-color-5);
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    transparent 43%,
+    var(--system-color-5) 45%,
+    var(--system-color-5) 55%,
+    transparent 57%,
+    transparent 100%
+  ),
+  linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 43%,
+    var(--system-color-5) 45%,
+    var(--system-color-5) 55%,
+    transparent 57%,
+    transparent 100%
+  );
+}
+
+.resource-counter .resource-counter-step {
+  border: 1px solid var(--system-color-5);
+}
+
+.resource-counter .resource-counter-step[data-state="/"] {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 43%,
+    var(--system-color-5) 45%,
+    var(--system-color-5) 55%,
+    transparent 57%,
+    transparent 100%
+  );
+}
+
+.resource-counter .resource-counter-step[data-state="x"] {
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    transparent 43%,
+    var(--system-color-5) 45%,
+    var(--system-color-5) 55%,
+    transparent 57%,
+    transparent 100%
+  ),
+  linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 43%,
+    var(--system-color-5) 45%,
+    var(--system-color-5) 55%,
+    transparent 57%,
+    transparent 100%
+  );
+}
+
+.cell-resource-counter .cell-resource-counter-step {
+  border: 1px solid var(--system-color-5);
+}
+
+.cell-resource-counter .cell-resource-counter-step[data-state="/"] {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 43%,
+    var(--system-color-5) 45%,
+    var(--system-color-5) 55%,
+    transparent 57%,
+    transparent 100%
+  );
+}
+
+.cell-resource-counter .cell-resource-counter-step[data-state="x"] {
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    transparent 43%,
+    var(--system-color-5) 45%,
+    var(--system-color-5) 55%,
+    transparent 57%,
+    transparent 100%
+  ),
+  linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 43%,
+    var(--system-color-5) 45%,
+    var(--system-color-5) 55%,
+    transparent 57%,
+    transparent 100%
+  );
+}
+
+/* Item Sheets */
+.dialog-app,
+.item.sheet {
+  .sheet-tabs {
+    background-color: var(--system-color-6);
+
+    a {
+      color: var(--system-color-5);
+    }
+  }
+}
+
+/* Sidebar */
+/* General Sidebar Styling */
+#sidebar-tabs {
+  background: var(--system-color-5);
+  border-bottom: 1px solid var(--system-color-6);
+}
+
+#sidebar-tabs > .item.active {
+  background: #690a0a;
+}
+
+.directory .action-buttons button {
+  background: #2e2d77;
+  color: var(--system-color-6);
+}
+
+.subdirectory {
+  background: var(--system-color-11);
+}
+
+/* Headers */
+.combat-sidebar .combat-tracker-header,
+.directory .directory-header {
+  border-bottom: 2px groove #CCC;
+  background: var(--system-color-11);
+}
+
+/* Footers */
+.directory .directory-footer:not(:empty) {
+  background: rgba(0, 0, 0, 0.836);
+}
+
+/* Settings Sidebar */
+.settings-sidebar {
+  h2 {
+    border-bottom: 2px groove #CCC;
+    background: var(--system-color-11);
+  }
+
+  #game-details,
+  #settings-game,
+  #settings-documentation,
+  #settings-access,
+  #license-information {
+    background: #000000a6;
+  }
+}
+
+/* Roll Dialogs */
+.dialog-contents {
+  .dice-group-header {
+    color: var(--system-color-4);
+  }
+
+  .dice-input img {
+    background-color: var(--system-color-5);
+  }
+
+  .dialog-control:hover,
+  .dialog-control:focus {
+      color: var(--system-color-5);
+  }
+
+  .situational-modifiers {
+    background-color: var(--system-color-6);
+    box-shadow: 0 0 10px var(--color-shadow-dark);
+  }
+}
+
+/* Actors Sidebar */
+.actors-sidebar {
+  // Groups
+  .group-item {
+    border-left: 1px solid var(--color-border-dark-1);
+
+    .context {
+      background-color: transparent !important;
+      border-color: var(--color-border-highlight);
+    }
+
+    > .group-header {
+      background: rgba(255 255 255 20%);
+      border-top: 1px sod var(--color-border-dark);
+      border-bottom: 1px sod var(--color-border-dark);
+
+      h3 {
+        color: var(--color-text-ght-highght);
+        font-size: var(--font-size-16);
+      }
+
+      .create-button {
+        .fa-plus {
+          background: var(--system-color-5);
+          color: var(--color-text-ght-highght);
+        }
+      }
+
+      .create-button:hover .fa-plus {
+        color: var(--color-text-hypernk);
+      }
+    }
+  }
+
+  .group-item.collapsed {
+    > .group-header {
+      background: rgba(0 0 0 50%);
+    }
+  }
+
+  .group-item.droptarget > header {
+    h3 {
+      text-shadow: 1px 1px 3px var(--color-shadow-dark);
+
+      i {
+        text-shadow: 0 0 4px var(--color-shadow-color-1);
+      }
+    }
+  }
+}
+
+/* Chat */
+#chat-log .message {
+  border-top: 2px double var(--system-color-6);
+}
+
+.chat-message.whisper {
+  background-color: var(--system-color-11);
+}
+
+.chat-message.blind {
+  background-color: var(--system-color-10);
+}
+
+.chat-message {
+  background-color: var(--system-color-7);
+  color: var(--system-color-6);
+
+  .message-header {
+    color: var(--system-color-6);
+  }
+
+  a.content-link,
+  a.inline-roll {
+    color: var(--system-color-5);
+  }
+
+  .modifiers .mod {
+    background-color: var(--system-color-6);
+    border: 1px solid #424242;
+    color: var(--system-color-5);
+  }
+
+  .total-and-difficulty {
+    border: 1px solid var(--system-color-5);
+  }
+  .roll-result-label {
+    border: 1px solid var(--system-color-5);
+    background: #222;
+    text-shadow: 0 0 5px var(--system-color-5);
+  }
+
+  .roll-result-label.success,
+  .roll-result-label.critical-success {
+    background-color: #065200;
+    color: #dbd6d6;
+  }
+
+  .roll-result-label.messy-critical {
+    background-color: #f10808;
+    color: var(--system-color-6);
+  }
+
+  .roll-result-label.failure,
+  .roll-result-label.critical-failure,
+  .roll-result-label.bestial-failure {
+    background-color: #900;
+    color: #dbdbdb;
+  }
+
+  .roll-result-label.desperation-success,
+  .roll-result-label.desperation-failure {
+    background-color: #e97c00;
+  }
+
+  .roll-result-label.rage-failure {
+    background-color: #783b01;
+    color: #dbdbdb;
+  }
+}
+
+.roll-img.mortal-dice {
+  background: rgb(20, 20, 20);
+  border-color: rgb(15, 55, 5);
+}
+
+.roll-img.vampire-dice {
+  background: rgb(20, 20, 20);
+  border-color: rgb(200, 200, 200);
+}
+
+.roll-img.hunger-dice,
+.roll-img.rage-dice {
+  background: #9b0b00;
+  border-color: #330300;
+}
+
+.roll-img.hunter-dice {
+  background: #ee7e1f;
+  border-color: var(--system-color-5);
+}
+
+.roll-img.desperation-dice {
+  background: var(--system-color-5);
+  border-color: #cc6d28;
+}
+
+.roll-img.werewolf-dice {
+  background: #5d651a;
+  border-color: #131405;
+}
+
+.roll-img.rerolled {
+  background: #7b7b7b80;
+}
+
+.roll-img.hunger-dice.rerolled,
+.roll-img.rage-dice.rerolled {
+  border-color: #d3d3d3;
+}
+
+.roll-label {
+  .danger {
+    color: #831515;
+  }
+
+  .success {
+    color: #18520b;
+  }
+}
+
+/* Journals */
+.app.journal-entry {
+  .journal-entry-content {
+    background-color: var(--system-color-8);
+    background-blend-mode: color;
+  }
+}
+
+/* Foundry Controls UI */
+#controls {
+  ol.control-tools > li {
+    box-shadow: 0 0 10px var(--system-color-3);
+    border: 1px solid var(--system-color-2);
+  }
+
+  ol.control-tools > li.active,
+  ol.control-tools > li:hover {
+    filter: drop-shadow(0px 0px 2px white);
+  }
+}
+
+#navigation {
+  #scene-list .scene.active {
+    filter: drop-shadow(0px 0px 2px white);
+  }
+}

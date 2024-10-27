@@ -2,7 +2,7 @@
 # World of Darkness 5e System
 
 [![Foundry Version Support]][System URL]
-[![MIT License]][MIT URL]
+[![GNU GPL v3 License]][License URL]
 [![GitHub Super-Linter]][Super-Linter URL]
 
 This system is for playing multiple World of Darkness 5th edition systems on the Foundry Virtual Tabletop System. For a list of the latest changes, see the [Changelog](https://wod5e-developers.github.io/wod5e-docs/changelog.html). You can also read further about the system in general on the [WOD5E Docs](https://wod5e-developers.github.io/wod5e-docs/index.html) site!
@@ -45,11 +45,29 @@ There's lots of other people who contribute to the system, too, and you can find
 
 Licensed WoD 5e materials will not be provided as this system is provided for public usage, for free. We have made every effort to keep the Dark Pack guidelines as posted at [Dark Pack Agreement].
 
+# System License
+
+World of Darkness 5e System for Foundry VTT
+Copyright (C) 2024, World of Darkness 5e Developers
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 [Foundry Version Support]: https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dplastic%26url%3Dhttps%3A%2F%2Fgithub.com%2FWoD5E-Developers%2Fwod5e%2Freleases%2Flatest%2Fdownload%2Fsystem.json
 [System URL]: https://foundryvtt.com/packages/vtm5e/
 
-[MIT License]: https://img.shields.io/badge/License-MIT-green
-[MIT URL]: https://github.com/WoD5E-Developers/wod5e/blob/main/LICENSE
+[GNU GPL v3 License]: https://img.shields.io/badge/License-GNU_GPL_v3-green
+[License URL]: ./LICENSE.md
 
 [GitHub Super-Linter]: https://github.com/WoD5E-Developers/wod5e/workflows/Super-Linter/badge.svg
 [Super-Linter URL]: https://github.com/marketplace/actions/super-linter

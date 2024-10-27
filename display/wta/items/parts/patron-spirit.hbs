@@ -1,0 +1,31 @@
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="flex-group-center flexrow">
+        <div class="field-header">
+            {{localize 'WOD5E.WTA.PatronSpirit'}}
+        </div>
+        <div>
+            <input name="system.patronSpirit.name" type="text" value="{{patronSpirit.name}}"/>
+        </div>
+    </div>
+
+    <div class="field-header flex-group-center">
+        {{localize 'WOD5E.Tabs.Description'}}
+    </div>
+    <prose-mirror name="system.patronSpirit.description" value="{{patronSpirit.description}}" toggled="true" compact="true">
+        {{{enrichedPatronSpiritDescription}}}
+    </prose-mirror>
+
+    <div class="field-header flex-group-center">
+        {{localize 'WOD5E.WTA.Favor'}}
+    </div>
+    <prose-mirror name="system.patronSpirit.favor" value="{{patronSpirit.favor}}" toggled="true" compact="true">
+        {{{enrichedFavor}}}
+    </prose-mirror>
+
+    <div class="field-header flex-group-center">
+        {{localize 'WOD5E.WTA.Ban'}}
+    </div>
+    <prose-mirror name="system.patronSpirit.ban" value="{{patronSpirit.ban}}" toggled="true" compact="true">
+        {{{enrichedBan}}}
+    </prose-mirror>
+</section>

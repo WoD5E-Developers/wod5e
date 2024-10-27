@@ -1,33 +1,39 @@
-<div class="resource flex-group-center balance wolf-resource no-border">
-    <div class="harano">
-        <label
-            for="actor.system.balance.harano"
-            class="resource-label system-rollable harano-roll"
-        >    
-            {{localize "WOD5E.WTA.Harano"}}
+<div class="wolf-resource flexrow">
+    <div class="harano flex-center">
+        <label for="actor.system.balance.harano" class="system-rollable harano-roll" data-action="haranoRoll">
+            <span class="field-header">
+                {{localize "WOD5E.WTA.Harano"}}
+            </span>
+            <i class="fa-solid fa-dice-d10"></i>
         </label>
-        <div class="resource-content flexrow flex-center flex-between">
-            <div class="resource-value" data-value="{{actor.system.balance.harano.value}}" data-name="system.balance.harano.value">
-                <span class="resource-value-empty harano-value"></span>
-                {{#numLoop 5}}
-                <span class="resource-value-step harano-value" data-index="{{this}}"></span>
-                {{/numLoop}}
+        <div class="harano flex-group-center">
+            <div class="resource-content resource">
+                <div class="resource-value" data-value="{{balance.harano.value}}" data-name="system.balance.harano.value">
+                    <span class="resource-value-empty harano-value" data-action="dotCounterEmpty"></span>
+                    {{#numLoop 5}}
+                        <span class="resource-value-step harano-value" data-action="dotCounterChange" data-index="{{this}}"></span>
+                    {{/numLoop}}
+                </div>
             </div>
         </div>
     </div>
-    <div class="hauglosk">
-        <label
-            for="actor.system.balance.hauglosk"
-            class="resource-label system-rollable hauglosk-roll"
-        >    
-            {{localize "WOD5E.WTA.Hauglosk"}}
+</div>
+<div class="wolf-resource flexrow">
+    <div class="hauglosk flex-center">
+        <label for="actor.system.balance.hauglosk" class="system-rollable hauglosk-roll" data-action="haugloskRoll">
+            <span class="field-header">
+                {{localize "WOD5E.WTA.Hauglosk"}}
+            </span>
+            <i class="fa-solid fa-dice-d10"></i>
         </label>
-        <div class="resource-content flexrow flex-center flex-between">
-            <div class="resource-value" data-value="{{actor.system.balance.hauglosk.value}}" data-name="system.balance.hauglosk.value">
-                <span class="resource-value-empty hauglosk-value"></span>
-                {{#numLoop 5}}
-                <span class="resource-value-step hauglosk-value" data-index="{{this}}"></span>
-                {{/numLoop}}
+        <div class="hauglosk flex-group-center">
+            <div class="resource-content resource">
+                <div class="resource-value" data-value="{{balance.hauglosk.value}}" data-name="system.balance.hauglosk.value">
+                    <span class="resource-value-empty hauglosk-value" data-action="dotCounterEmpty"></span>
+                    {{#numLoop 5}}
+                        <span class="resource-value-step hauglosk-value" data-action="dotCounterChange" data-index="{{this}}"></span>
+                    {{/numLoop}}
+                </div>
             </div>
         </div>
     </div>

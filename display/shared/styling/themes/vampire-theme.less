@@ -1,0 +1,346 @@
+/* Variables */
+:root {
+  --logo-vampire: url("/systems/vtm5e/assets/ui/VtM_Logo.webp");
+  --vampire-theme-filter: #FF2B2B80;
+}
+
+.wod-vampire-theme {
+  .sheet {
+    .window-content {
+      background: var(--actor-background-dark) repeat;
+    }
+  }
+
+  /* All places that use a filter to apply the theme colour */
+  .app,
+  #sidebar,
+  #controls ol.control-tools > li,
+  #navigation #scene-list .scene,
+  #navigation #scene-list .scene.view,
+  #navigation #scene-list .scene.context,
+  #navigation #scene-list .scene.gm,
+  #navigation .nav-item,
+  #navigation #nav-toggle,
+  #hotbar .bar-controls {
+    background-color: var(--vampire-theme-filter);
+    background-blend-mode: difference;
+  }
+
+  #hotbar {
+    .macro {
+      background: var(--vampire-theme-filter);
+    }
+  }
+
+  /* Logo */
+  #logo {
+    content: var(--logo-vampire);
+    filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 0 10px var(--vampire-theme-filter)) drop-shadow(0 0 15px #ffffff);
+  }
+
+  .standard-form {
+    .form-group,
+    .form-group:hover {
+      > label {
+        color: var(--system-dark-color-4);
+      }
+
+      .hint {
+        color: var(--system-dark-color-8);
+      }
+    }
+
+    .sheet-tabs {
+      color: var(--system-dark-color-4);
+    }
+
+    input[type=range] {
+      --range-thumb-background-color: var(--system-dark-color-4);
+      --range-thumb-border-color: var(--system-dark-color-1);
+    }
+  }
+
+  .sheet,
+  .dialog {
+    .window-header {
+      background-color: var(--system-dark-color-1);
+    }
+
+    .journal-entry-content,
+    .window-content {
+      color: var(--system-dark-color-4);
+
+      input,
+      .actor-header,
+      .tab {
+        color: #ffffff;
+        --input-text-color: #ffffff;
+      }
+    }
+
+    select,
+    input {
+      color: var(--system-dark-color-4);
+      background-color: var(--system-dark-color-2);
+      border-color: var(--system-dark-color-4);
+    }
+
+    select,
+    select optgroup {
+      background-color: var(--system-dark-color-2);
+    }
+
+    select option {
+      background-color: var(--system-dark-color-3);
+    }
+
+    button {
+      background-color: var(--system-dark-color-3);
+      color: var(--system-color-6);
+    }
+
+    button.default,
+    button:hover {
+      background-color: var(--system-dark-color-2);
+    }
+
+    ::placeholder {
+      color: var(--system-dark-color-5);
+    }
+  }
+
+  .situational-modifiers {
+    background-color: var(--system-dark-color-2);
+    border-color: var(--system-dark-color-4);
+  }
+
+  .actor.sheet {
+    .item-list .item,
+    .resource,
+    prose-mirror .editor-content,
+    .actor-header input,
+    .actor-header .resource,
+    .stats-container,
+    .stats-container .stats-footer {
+      background-color: var(--system-dark-color-2);
+      border-color: var(--system-dark-color-4);
+    }
+
+    /* Navbar */
+    .sheet-tabs {
+      .navicon,
+      .lock-btn {
+        color: var(--system-dark-color-4);
+      }
+    }
+
+    .sheet-tabs .lock-btn,
+    .sheet-tabs > [data-tab] .navicon {
+      background-color: var(--system-dark-color-1);
+      border: 1px solid var(--system-dark-color-4);
+    }
+
+    .lock-btn:hover {
+      color: #ffffff;
+    }
+
+    .sheet-tabs > [data-tab].active .navicon {
+      background: var(--system-dark-color-7);
+      border: 1px solid var(--system-dark-color-1);
+    }
+
+    /* Resource Counters */
+    .resource-value {
+      .resource-value-step:not(.active) {
+        background-color: var(--system-dark-color-3);
+      }
+
+      .resource-value-empty {
+        border: 1px solid var(--system-dark-color-3);
+        background: linear-gradient(
+          45deg,
+          transparent 0%,
+          transparent 43%,
+          rgb(165, 165, 165) 45%,
+          rgb(165, 165, 165) 55%,
+          transparent 57%,
+          transparent 100%
+        ),
+        linear-gradient(
+          135deg,
+          transparent 0%,
+          transparent 43%,
+          rgb(165, 165, 165) 45%,
+          rgb(165, 165, 165) 55%,
+          transparent 57%,
+          transparent 100%
+        );
+      }
+    }
+
+    .resource-counter {
+      .resource-counter-step {
+        border: 1px solid var(--system-dark-color-4);
+      }
+
+      .resource-counter-step[data-state="/"] {
+        background: linear-gradient(
+          135deg,
+          transparent 0%,
+          transparent 43%,
+          var(--system-dark-color-4) 45%,
+          var(--system-dark-color-4) 55%,
+          transparent 57%,
+          transparent 100%
+        );
+      }
+
+      .resource-counter-step[data-state="x"] {
+        background: linear-gradient(
+          45deg,
+          transparent 0%,
+          transparent 43%,
+          var(--system-dark-color-4) 45%,
+          var(--system-dark-color-4) 55%,
+          transparent 57%,
+          transparent 100%
+        ),
+        linear-gradient(
+          135deg,
+          transparent 0%,
+          transparent 43%,
+          var(--system-dark-color-4) 45%,
+          var(--system-dark-color-4) 55%,
+          transparent 57%,
+          transparent 100%
+        );
+      }
+    }
+
+    .item-list .category {
+      background-color: var(--system-dark-color-2);
+      border-color: var(--system-dark-color-4);
+
+      .content-link {
+        color: var(--system-dark-color-1);
+        background-color: #FFF;
+      }
+
+      /* Power Descriptions */
+      .discipline-description,
+      .edge-description,
+      .gift-description {
+        color: var(--system-dark-color-4);
+      }
+    }
+  }
+
+  .dialog-app,
+  .item.sheet,
+  .dialog {
+    .window-content {
+      background: var(--system-dark-color-2);
+    }
+
+    input {
+      background-color: var(--system-dark-color-2);
+      border-color: var(--system-dark-color-4);
+    }
+  }
+
+  /* Vampire Styling */
+  .actor.sheet.vampire {
+    .tabs-container {
+      .active.item[data-tab="blood"],
+      .active .navicon .wod5e-symbol {
+        color: var(--system-dark-color-4);
+      }
+    }
+  }
+
+  /* Werewolf Styling */
+  .sheet.werewolf {
+    .resource-value .resource-value-step.active,
+    .resource-value-static .resource-value-static-step.active,
+    .resource-counter .resource-counter-step[data-state="-"] {
+      background-color: var(--werewolf-color-3);
+    }
+
+    button.rage-button:hover {
+      background-color: #752e11ea;
+    }
+  }
+
+  .actor.sheet.werewolf {
+    .tabs-container {
+      .active.item .navicon {
+        background-color: #752e11ea;
+      }
+
+      .active.item[data-tab="wolf"],
+      .active .navicon .wod5e-symbol {
+        color: var(--system-dark-color-4);
+      }
+
+      .navicon .wod5e-symbol,
+      .item[data-tab="wolf"] {
+        color: var(--werewolf-color-3);
+      }
+    }
+
+    .tab[data-tab="wolf"] {
+      .resource input,
+      .resource.form {
+        background-color: var(--system-dark-color-2);
+        border-color: var(--system-dark-color-4);
+      }
+
+      .resource.form.form-active {
+        background-color: #833501e0;
+      }
+    }
+  }
+
+  /* Hunter Styling */
+  .actor.sheet.hunter {
+    .tabs-container {
+      .active .navicon .wod5e-symbol {
+        color: var(--system-dark-color-4);
+      }
+
+      .navicon .wod5e-symbol {
+        color: var(--hunter-color-3);
+      }
+    }
+  }
+
+  prose-mirror {
+    button.icon.toggle {
+      color: var(--system-dark-color-4);
+      background-color: var(--system-dark-color-1);
+    }
+  }
+
+  /* Journals */
+  .journal-entry {
+    .directory input[type="search"] {
+      background: transparent;
+    }
+  }
+
+  .app.journal-entry {
+    .journal-entry-content {
+      background-color: #121212;
+      background-blend-mode: color;
+    }
+  }
+
+  /* Foundry Controls UI */
+  #controls ol.control-tools .has-notes::after {
+    color: var(--system-dark-color-1);
+  }
+
+  #hotbar .macro {
+    background: var(--vampire-theme-filter);
+  }
+}

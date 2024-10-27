@@ -1,0 +1,87 @@
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="flexrow">
+        <div class="equipment-notes flexcol">
+            <div class="flexcol">
+                <div class="description-field">
+                    <div class="flex-center">
+                        <label class="resource-label field-header">
+                            {{localize "WOD5E.EquipmentList.EquipmentNotes"}}
+                        </label>
+                    </div>
+                    <div class="description-content resource">
+                        <prose-mirror name="system.equipment" value="{{equipment}}"
+                            toggled="true" compact="true">
+                            {{{enrichedEquipment}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="equipment-list item-list">
+            {{#each equipmentItems as |equipment key|}}
+                <div class="category">
+                    <div class="equipment">
+                        <div class="flexrow item-header">
+                            <div class="item-name">
+                                {{localize (concat 'TYPES.Item.' key)}}
+                            </div>
+                            <!-- Item controls for gift item sections -->
+                            <div class="item-controls">
+                                <!-- Add new equipment item -->
+                                <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.Add'}}" data-type="{{key}}">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {{#each equipment as |item key|}}
+                        <div class="collapsible-container">
+                            <div class="flexrow item" data-drag="true" data-item-id="{{item.id}}" data-document-uuid="{{item.uuid}}" data-type="Item">
+                                <div class="item-image">
+                                    <img src="{{item.img}}" class="clickable" data-action="itemChat" data-item-id="{{item._id}}" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
+                                </div>
+                                <div class="item-name{{#if item.system.enrichedDescription}} collapsible{{/if}}" {{#if item.system.enrichedDescription}}data-action="toggleCollapse"{{/if}}>
+                                    {{item.name}}
+                                    {{#if item.system.uses.enabled}}
+                                        ({{item.system.uses.current}}/{{item.system.uses.max}})
+                                    {{/if}}
+                                </div>
+                                <div class="item-controls">
+                                    <!-- Icon to roll the item if a dicepool is available -->
+                                    {{#if item.system.dicepool}}
+                                        {{#if (isNotEmpty item.system.dicepool)}}
+                                            <a class="item-image rollable-item" data-action="rollItem" data-item-uuid="{{item.uuid}}">
+                                                <i class="fa-solid fa-dice-d10"></i>
+                                            </a>
+                                        {{/if}}
+                                    {{/if}}
+                                    {{#if item.system.uses.enabled}}
+                                        <!-- Icon to consume a use of the feature -->
+                                        <a class="item-control item-edit" data-action="expendItemUse" data-item-id="{{item._id}}" title="{{localize 'WOD5E.ItemsList.ExpendUse'}}">
+                                            <i class="fa-solid fa-angle-down"></i>
+                                        </a>
+                                        <!-- Icon to restore the uses of the feature back to max -->
+                                        <a class="item-control item-edit" data-action="restoreItemUses" data-item-id="{{item._id}}" title="{{localize 'WOD5E.ItemsList.ResetUses'}}">
+                                            <i class="fa-solid fa-rotate-left"></i>
+                                        </a>
+                                    {{/if}}
+                                    <!-- Icon to edit the item -->
+                                    <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{item._id}}" title="{{localize 'WOD5E.Edit'}}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <!-- Icon to delete the item -->
+                                    <a class="item-control item-delete" data-action="itemDelete" data-item-id="{{item._id}}" title="{{localize 'WOD5E.Delete'}}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="collapsible-content item-description">
+                                {{{item.system.enrichedDescription}}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

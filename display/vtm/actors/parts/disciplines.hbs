@@ -1,106 +1,159 @@
-<div class="tab disciplines" data-group="primary" data-tab="disciplines">
-    <ol class="items-list">
-        <!-- Header of the disciplines lists -->
-        <li class="item flexrow item-header">
-            <div class="item-name">{{localize "WOD5E.Name"}}</div>
-            <div class="item-name header-level">{{localize "WOD5E.Level"}}</div>
-            <!-- Item controls for adding new discipline lists -->
-            <div class="item-controls">
-                <a class="item-control discipline-create item-create" title="{{localize 'WOD5E.VTM.AddDiscipline'}}" data-type="power">
-                    <i class="fas fa-plus"></i>
-                    {{localize "WOD5E.VTM.AddDiscipline"}}
-                </a>
-            </div>
-        </li>
-        <!-- Iterate through each of the discipline lists -->
-        {{#each actor.system.disciplines as |discipline key|}}
-            {{#if discipline.visible}}
-                <div class="collapsible-container">
-                    <li class="flexrow item-header">
-                        <div class="item-name collapsible">
-                            {{discipline.label}}
-                        </div>
-                        <!-- All non-ritual/ceremony powers need dots displayed in the middle -->
-                        {{#if (and (ne key "rituals") (ne key "ceremonies"))}}
-                            <div class="resource-value" data-value="{{discipline.value}}" data-name="system.disciplines.{{key}}.value">
-                                <!-- Empty box (for setting back to 0), and then iterate through the rest of the discipline dots -->
-                                <span class="resource-value-empty"></span>
-                                {{#numLoop 5}}
-                                    <span class="resource-value-step" data-index="{{this}}"></span>
-                                {{/numLoop}}
-                            </div>
-                        {{/if}}
-                        <!-- Item controls for Discipline sections -->
-                        <div class="item-controls">
-                            <!-- Add new discipline power -->
-                            <a class="item-control item-create" title="{{localize 'WOD5E.VTM.AddPower'}}" data-type="power" data-subtype="{{key}}">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                            <!-- Icon to roll the discipline with an attribute -->
-                            <a class="rollable discipline-dice" title="{{localize 'WOD5E.RollList.Label'}}" data-value-paths="disciplines.{{key}}.value"
-                                data-label="{{discipline.label}}" data-selectors="discipline disciplines.{{key}}" data-discipline="{{key}}" data-select-dialog="true">
-                                <i class="fas fa-dice-d20"></i>
-                            </a>
-                            <!-- Icon to show the discipline description to the chat-->
-                            <a class="item-control discipline-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-type="power" data-discipline="{{key}}">
-                                <i class="fas fa-comment-alt"></i>
-                            </a>
-                            <!-- Icon to delete the discipline (as long as it doesn't have any powers) -->
-                            <a class="item-control discipline-delete" title="{{localize 'WOD5E.Delete'}}" data-discipline="{{key}}">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
-                    </li>
-                    <!-- Discipline description -->
-                    <div class="collapsible-content">
-                        <textarea class="discipline-description" name="system.disciplines.{{key}}.description">{{discipline.description}}</textarea>
-                    </div>
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="flexrow">
+        <div class="item-list">
+            <div class="flexrow flex-center">
+                <div class="item-header">{{localize 'WOD5E.VTM.Disciplines'}}</div>
+                <div class="item-controls">
+                    <a class="item-control add-discipline flex-center" title="{{localize 'WOD5E.VTM.AddDiscipline'}}" data-action="addDiscipline">
+                        <i class="fas fa-plus"></i>
+                        {{localize "WOD5E.VTM.AddDiscipline"}}
+                    </a>
                 </div>
-                <!-- Iterate through each of the discipline powers -->
-                {{#each (lookup ../actor.system.disciplines_list key) as |item id|}}
-                    <li class="item flexcol collapsible-container" data-item-id="{{item._id}}">
-                        <div class="flexrow">
-                            <!-- Whether the button is clickable or not to post the power in chat -->
-                            {{#if item.system.rollable}}
-                                <div class="item-image power-rollable" data-id="{{item._id}}" data-use-hunger="1">
-                                    <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" alt="{{item.name}}"/>
-                                </div>
-                            {{else}}
-                                <div class="item-image" data-id="{{item._id}}">
-                                    <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" alt="{{item.name}}"/>
-                                </div>
-                            {{/if}}
-                            <!-- Discipline power name -->
-                            <h4 class="item-name collapsible">{{item.name}}</h4>
-                            <!-- Item controls for discipline powers -->
+            </div>
+            <ul class="powers-display-tree category">
+                {{#each disciplines as |discipline key|}}
+                    {{#if discipline.visible}}
+                        <span class="parent flexrow">
+                            <div class="icon category-select{{#if discipline.selected}} selected{{/if}}" data-action="selectDiscipline" data-discipline="{{key}}"></div>
+                            <a class="select-label" data-action="selectDiscipline" data-discipline="{{key}}">{{discipline.displayName}}</a>
                             <div class="item-controls">
-                                <!-- Icon to roll the power's rouse check, if applicable -->
-                                {{#if item.system.rouse}}
-                                    <a class="item-control item-rouse" title="{{localize 'WOD5E.VTM.RollRouse'}}" data-cost="{{discipline.cost}}">
-                                        <i class="fas fa-dice-d20"></i>
+                                <!-- Icon to roll the discipline with an attribute and/or skill combination -->
+                                {{#if (and (ne key "rituals") (ne key "ceremonies"))}}
+                                    <a class="rollable discipline-dice" data-action="roll" title="{{localize 'WOD5E.RollList.Label'}}" data-value-paths="disciplines.{{key}}.value"
+                                        data-label="{{discipline.displayName}}" data-selectors="disciplines disciplines.{{key}}" data-discipline="{{key}}" data-select-dialog="true">
+                                        <i class="fa-solid fa-dice-d10"></i>
                                     </a>
                                 {{/if}}
-                                <!-- Icon to edit the power-->
-                                <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
+                                <!-- Icon to show the discipline description to the chat-->
+                                <a class="item-control discipline-chat" data-action="disciplineChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-discipline="{{key}}">
+                                    <i class="fas fa-comment-alt"></i>
+                                </a>
+                                <!-- Icon to delete the discipline (as long as it doesn't have any powers) -->
+                                {{#if (eq discipline.powers.length 0)}}
+                                    <a class="item-control discipline-delete" data-action="removeDiscipline" title="{{localize 'WOD5E.Delete'}}" data-discipline="{{key}}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                {{/if}}
+                            </div>
+                            {{#if (and (ne key "rituals") (ne key "ceremonies"))}}
+                                <!-- Discipline dots -->
+                                <div class="power-resource-dots">
+                                    <div class="resource-value" data-value="{{discipline.value}}" data-name="system.disciplines.{{key}}.value">
+                                        <!-- Empty box (for setting back to 0), and then iterate through the rest of the discipline dots -->
+                                        <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                        {{#numLoop 5}}
+                                            <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                                        {{/numLoop}}
+                                    </div>
+                                </div>
+                            {{/if}}
+                        </span>
+                        <ul>
+                            {{#each discipline.powers as |power key|}}
+                                <li>
+                                    <span>
+                                        <div class="icon power-select{{#if power.system.selected}} selected{{/if}}" data-action="selectDisciplinePower" data-power="{{power.id}}" style="background-image: url('{{power.img}}');"></div>
+                                        <a class="select-label" data-action="selectDisciplinePower" data-power="{{power.id}}">{{power.name}}</a>
+                                    </span>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+        <div class="powers-list item-list">
+            {{#if selectedDiscipline}}
+                <div class="discipline category collapsible-container">
+                    <div class="flex-center item-header collapsible" data-action="toggleCollapse">
+                        <div class="item-name">
+                            {{selectedDiscipline.displayName}}
+                            <!-- Add new discipline power -->
+                            <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.VTM.AddDiscipline'}}" data-type="power" data-subtype="{{selectedDiscipline.id}}">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="discipline-description collapsible-content">
+                        <prose-mirror name="system.disciplines.{{selectedDiscipline.id}}.description" value="{{selectedDiscipline.description}}"
+                            toggled="true" compact="true">
+                            {{{enrichedSelectedDisciplineDescription}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+            {{else}}
+                <div class="discipline category flex-center">
+                    {{localize 'WOD5E.VTM.NoDisciplineSelected'}}
+                </div>
+            {{/if}}
+
+            {{#if selectedDisciplinePower}}
+                <div class="discipline category">
+                    <div class="flex-center">
+                        <div class="flexrow">
+                            <span class="item-name item-header">
+                                <!-- Icon to roll a power's dicepool -->
+                                {{#if (isNotEmpty selectedDisciplinePower.system.dicepool)}}
+                                    <a class="item-image rollable-item" data-action="rollItem" data-item-uuid="{{selectedDisciplinePower.uuid}}">
+                                        <i class="fa-solid fa-dice-d10"></i>
+                                    </a>
+                                {{/if}}
+                                {{selectedDisciplinePower.name}}
+                            </span>
+                            <div class="item-controls flex-group-right">
+                                <!-- Icon to edit the power -->
+                                <a class="item-control item-edit" data-action="itemEdit" title="{{localize 'WOD5E.Edit'}}" data-item-id="{{selectedDisciplinePower._id}}">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <!-- Icon to display the power in chat -->
-                                <a class="item-control item-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
+                                <a class="item-control item-chat" data-action="itemChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-item-id="{{selectedDisciplinePower._id}}">
                                     <i class="fas fa-comment-alt"></i>
                                 </a>
                                 <!-- Icon to delete the power -->
-                                <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}">
+                                <a class="item-control item-delete" data-action="itemDelete" title="{{localize 'WOD5E.Delete'}}" data-item-id="{{selectedDisciplinePower._id}}">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </div>
                         </div>
-                        <!-- Power description, expandable by a collapse -->
-                        <div class="collapsible-content">
-                            {{{item.system.enrichedDescription}}}
+                    </div>
+                    <div class="discipline-description">
+                        <div class="flex-center flexrow">
+                            <div class="flex-center">
+                                <div>
+                                    <b>
+                                        {{localize "WOD5E.Level"}}: {{selectedDisciplinePower.system.level}}
+                                    </b>
+                                </div>
+                            </div>
+                            {{#ifgr selectedDisciplinePower.system.cost 0}}
+                                <div class="flex-center">
+                                    <div>
+                                        <b>
+                                            {{localize 'WOD5E.ItemsList.Cost'}}:
+                                            {{selectedDisciplinePower.system.cost}} {{localize 'WOD5E.VTM.RouseChecks'}}
+                                            <!-- Icon to roll a power's dicepool -->
+                                            <a class="item-image rollable-item" data-action="roll" data-disable-basic-dice="true" data-use-absolute-value="true" data-selectors="rouse{{#ifeq selectedDiscipline.id 'oblivion'}} oblivion-rouse{{/ifeq}}"
+                                                data-absolute-value="{{selectedDisciplinePower.system.cost}}" data-label="{{localize 'WOD5E.VTM.RousingBlood'}} - {{selectedDisciplinePower.name}}" data-increase-hunger="true"
+                                                title="{{localize 'WOD5E.VTM.RollRouse'}}">
+                                                <i class="fa-solid fa-dice-d10"></i>
+                                            </a>
+                                        </b>
+                                    </div>
+                                </div>
+                            {{/ifgr}}
                         </div>
-                    </li>
-                {{/each}}
+                        {{#if selectedDisciplinePower.system.enrichedDescription}}
+                            <div class="power-description">
+                                {{{selectedDisciplinePower.system.enrichedDescription}}}
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+            {{else}}
+                <div class="discipline category flex-center">
+                    {{localize 'WOD5E.VTM.NoPowerSelected'}}
+                </div>
             {{/if}}
-        {{/each}}
-    </ol>
-</div>
+        </div>
+    </div>
+</section>

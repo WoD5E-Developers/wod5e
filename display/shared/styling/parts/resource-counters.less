@@ -1,0 +1,68 @@
+.resource-value {
+  align-self: flex-end;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.resource-value .resource-value-step {
+  height: 14px;
+  width: 14px;
+  display: inline-block;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.resource-value-static .resource-value-static-step {
+  height: 14px;
+  width: 14px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.resource-value .resource-value-empty {
+  height: 14px;
+  width: 14px;
+  display: inline-block;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.resource-counter .resource-counter-step {
+  height: 14px;
+  width: 14px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.flex-group-center:not(.flexrow) .resource-value,
+.flex-group-center:not(.flexrow) .resource-counter {
+  margin-top: 5px;
+}
+
+.cell-resource-counter .cell-resource-counter-step {
+  height: 14px;
+  width: 14px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.flex-group-center:not(.flexrow) .resource-value,
+.flex-group-center:not(.flexrow) .cell-resource-counter {
+  margin-top: 5px;
+}
+
+.tab[data-tab="disciplines"] .resource-value,
+.tab[data-tab="edges"] .resource-value {
+  margin-top: 2px;
+  text-align: center;
+}
+
+.tab[data-tab="features"] .resource-value,
+.tab[data-tab="features"] .resource-value-static {
+  margin-top: 2px;
+  text-align: center;
+}
+
+.actor.sheet .resource-value-empty {
+  margin-left: -16px;
+}

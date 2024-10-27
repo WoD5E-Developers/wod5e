@@ -1,36 +1,28 @@
-/* global game, Hooks */
+/* global Hooks */
 
-export class Renown {
-  // Function to help with quickly grabbing all the listed values;
-  // Will only retrieve objects (definitions)
-  static getList () {
-    return Object.entries(this)
-      .filter(([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value))
-      .reduce((accumulator, [key, value]) => {
-        accumulator[key] = value
-        return accumulator
-      }, {})
-  }
+import { BaseDefinitionClass } from './base-definition-class.js'
 
-  // Localize the labels
-  static initializeLabels () {
-    for (const [, value] of Object.entries(this)) {
-      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
-        value.label = game.i18n.localize(value.label)
-      }
-
-      // Handle which label to display
-      if (value.rename) {
-        value.displayName = value.rename
-      } else {
-        value.displayName = value.label
-      }
-    }
-  }
+export class Renown extends BaseDefinitionClass {
+  static type = 'renown'
+  static defCategory = 'Renown'
 
   // Run any necessary compilation on ready
   static onReady () {
+    Renown.setSortAlphabetically()
     Renown.initializeLabels()
+    Renown.initializePaths()
+  }
+
+  static initializePaths () {
+    // Cycle through each entry in the definition file to initialize the paths on each
+    // Quickly filter out any non-object, non-null, non-array values
+    const definitionEntries = Object.entries(this).filter(([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value))
+    for (const [key, value] of definitionEntries) {
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        // Set the path
+        value.path = `system.renown.${key}.value`
+      }
+    }
   }
 
   static glory = {

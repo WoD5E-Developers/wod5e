@@ -1,8 +1,8 @@
 <div class="tab flex-center" data-group="primary">
     <div class="flexrow spc-pool-header">
-        <label class="resource-label">{{localize "WOD5E.WTA.Gifts"}}</label>
+        <label class="resource-label field-header">{{localize "WOD5E.WTA.Gifts"}}</label>
         <div class="item-controls spc-item-header">
-            <a class="item-control power-create" title="{{localize 'WOD5E.VTM.AddGift'}}" data-type="gift">
+            <a class="item-control power-create" data-action="createSPCPower" title="{{localize 'WOD5E.VTM.AddGift'}}" data-type="gift">
                 <i class="fas fa-plus"></i>
                 {{localize "WOD5E.WTA.AddGift"}}
             </a>
@@ -10,19 +10,20 @@
     </div>
     <ol class="items-list">
         <!-- Iterate through each of the gift lists -->
-        {{#each actor.system.gifts as |gift key|}}
+        {{#each gifts as |gift key|}}
             {{#if gift.visible}}
                 <li class="flexrow spc-item-header">
-                    <label for="{{gift.name}}" class="resource-label rollable" data-use-absolute-value="true"
-                      data-absolute-value="{{gift.value}}" data-label="{{generateLocalizedLabel key}}">{{generateLocalizedLabel key}}
+                    <label for="{{gift.name}}" class="resource-label rollable" data-action="roll" data-use-absolute-value="true"
+                      data-absolute-value="{{gift.value}}" data-label="{{generateLocalizedLabel key 'gifts'}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
+                      {{generateLocalizedLabel key 'gifts'}}
                     </label>
                     <div class="resource-value">
-                        <input type="number" name="system.gifts.{{key}}.value" 
+                        <input type="number" name="system.gifts.{{key}}.value"
                         value="{{gift.value}}" data-name="system.gifts.{{key}}.value" />
                     </div>
                     <!-- Item controls for Gift sections -->
                     <div class="item-controls">
-                        <!-- Icon to delete the gift (as long as it doesn't have any powers) -->
+                        <!-- Icon to delete the gift -->
                         <a class="item-control power-delete" title="{{localize 'WOD5E.Delete'}}" data-type="gift" data-id="{{key}}">
                             <i class="fas fa-trash"></i>
                         </a>

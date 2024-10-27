@@ -1,0 +1,16 @@
+<header class="item-header">
+    <img class="profile-img" data-action="editImage" src="{{img}}" data-edit="img" title="{{name}}" alt="Item Image" />
+    <div class="header-fields">
+        <input class="itemname" name="name" type="text" value="{{name}}" placeholder="{{localize 'WOD5E.Name'}}"/>
+        <div class="flexrow level flex-center item-resource">
+            <div>
+                <b>
+                    {{localize "WOD5E.ItemsList.SuppressCondition"}}
+                </b>
+            </div>
+            <div>
+                <input name="system.suppressed" type="checkbox"{{#if suppressed}} checked{{/if}}/>
+            </div>
+        </div>
+    </div>
+</header>

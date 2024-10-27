@@ -1,0 +1,673 @@
+/* The actor sheet itself */
+.actor.sheet:not(.minimized):not(.group) {
+  min-width: 850px;
+  min-height: 300px;
+}
+
+.group.sheet {
+  min-width: 650px;
+  min-height: 300px;
+}
+
+.actor.sheet {
+  position: fixed;
+  overflow: hidden;
+  border-radius: 0;
+
+  .window-content {
+    padding: 0;
+    padding-bottom: 20px;
+
+    .actor-header,
+    .tab {
+      margin-left: 45px;
+    }
+
+    section.tab {
+      overflow-y: scroll;
+      align-items: flex-start;
+      height: 100%;
+    }
+  }
+
+  /* Input and resource fields */
+  input,
+  .resource {
+    display: flex;
+  }
+
+  .resource {
+    padding: 5px;
+    position: relative;
+    place-content: center;
+    min-height: 30px;
+
+    .data-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 85%;
+    }
+
+    .edit-data-item,
+    .add-data-item {
+      position: absolute;
+      right: 3px;
+    }
+
+    .remove-data-item {
+      position: absolute;
+      right: 23px;
+    }
+  }
+
+  /* Limited Sheet */
+  .limited-actor-header {
+    display: flex;
+    flex-grow: 0;
+
+    .header-content {
+      flex-grow: 1;
+      text-align: center;
+      margin-top: auto;
+    }
+  }
+
+  .limited-description-body {
+    padding: 10px;
+  }
+
+  /* Actor Header */
+  .actor-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    flex-grow: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0 5px 0 5px;
+
+    input,
+    .resource {
+      margin-bottom: 5px;
+      min-height: 30px;
+    }
+
+    .header-profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+
+      .name-field {
+        width: 250px;
+        position: absolute;
+        height: 100%;
+        align-items: flex-end;
+      }
+
+      .name-field:not(.clickthrough) {
+        height: 35px;
+        bottom: 0;
+      }
+
+      .clickthrough {
+        pointer-events: none;
+      }
+    }
+
+    .header-profile-img {
+      margin-bottom: 10px;
+      width: 240px;
+      height: 200px;
+
+      img {
+        height: fit-content;
+        cursor: pointer;
+        max-width: 240px;
+        max-height: 200px;
+        min-width: 50px;
+        min-height: 50px;
+      }
+    }
+
+    .charname:not(input) {
+      font-size: 35px;
+      font-family: "Modesto Condensed", serif;
+      width: 100%;
+      text-align: center;
+      backdrop-filter: blur(2px);
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: rgb(0, 0, 0);
+    }
+
+    input.charname {
+      font-size: 30px;
+    }
+
+    .header-fields {
+      display: flex;
+      width: 100%;
+      align-self: flex-end;
+
+      .header-fields-left,
+      .header-fields-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+
+        .field-section {
+          margin-bottom: 5px;
+          width: 250px;
+
+          .shared-row {
+            max-width: 125px;
+            margin-left: 2px;
+            margin-right: 2px;
+          }
+        }
+      }
+
+      .header-fields-left {
+        padding-right: 10px;
+      }
+
+      .header-fields-right {
+        padding-left: 10px;
+      }
+    }
+
+    .field-header {
+      justify-content: center;
+      margin-bottom: 0;
+    }
+  }
+
+  /* Experience Tab */
+  .tab[data-tab="experience"] {
+    .experience-trackers {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+
+      .tracker {
+        margin-bottom: 10px;
+        text-wrap: nowrap;
+
+        .exp-tracker {
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+
+        input {
+          max-width: 50px;
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .field-header {
+          font-size: 15pt;
+        }
+      }
+    }
+
+    .xp-controls {
+      text-align: right;
+    }
+
+    .add-experience {
+      font-size: 13pt;
+      margin-left: auto;
+    }
+  }
+
+  /* Features tab */
+  .tab[data-tab="features"] {
+    .character-details {
+      max-width: 400px;
+      margin-left: 10px;
+      margin-right: 10px;
+      align-self: flex-start;
+
+      .field-header {
+        font-size: 16pt;
+      }
+
+      .detail-row {
+        width: 100%;
+        margin-bottom: 5px;
+
+        .shared-row {
+          margin-left: 2px;
+          margin-right: 2px;
+        }
+      }
+
+      .description-field {
+        width: -webkit-fill-available;
+        width: -moz-available;
+
+        .resource-label {
+          flex-wrap: nowrap;
+          display: inline-flex;
+        }
+
+        .description-content {
+          text-align: initial;
+        }
+      }
+    }
+
+    .features-list {
+      .category {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  /* Equipment Tab */
+  .tab[data-tab="equipment"] {
+    .equipment-notes {
+      max-width: 400px;
+      margin-left: 10px;
+      margin-right: 10px;
+      align-self: flex-start;
+
+      .field-header {
+        font-size: 16pt;
+      }
+    }
+
+    .equipment-list {
+      .category {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  /* Biography Tab */
+  .tab[data-tab="biography"] {
+    .detailed-section {
+      display: inline-flex;
+      align-self: flex-start;
+
+      .details-header {
+        text-align: center;
+      }
+
+      .detail {
+        width: 50%;
+        margin-bottom: 5px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      input {
+        text-align: center;
+      }
+
+      input.number {
+        min-width: 100px;
+      }
+    }
+
+    .descriptive-section {
+      .field-header {
+        font-size: 16pt;
+      }
+
+      .description-field {
+        margin-bottom: 5px;
+      }
+
+      .resource-label {
+        flex-wrap: nowrap;
+        display: inline-flex;
+      }
+    }
+  }
+
+  /* Notes Tab */
+  .tab[data-tab="notepad"] {
+    .note-container {
+      padding: 3px;
+      margin: 5px;
+      width: 50%;
+
+      .field-header {
+        font-size: 16pt;
+      }
+
+      prose-mirror {
+        height: 400px;
+      }
+    }
+  }
+
+  /* Limited View Toggle Button */
+  .toggle-limited {
+    font-size: 13pt;
+    margin-left: 5px;
+    margin-top: 3px;
+    cursor: pointer;
+  }
+
+  /* Power Descriptions */
+  .discipline-description,
+  .edge-description,
+  .gift-description {
+    width: 100%;
+    resize: none;
+    font-family: Vollkorn, serif;
+    line-height: 1.6em;
+    word-spacing: 0.05em;
+    font-size: 1em;
+    border: 0;
+    height: auto;
+    font-weight: 500;
+    margin-bottom: -5px;
+  }
+
+  /* Sheet Banner */
+  .sheet-banner {
+    text-align: center;
+    margin: -10px -10px 0 0;
+    font-size: 14pt;
+    padding: 3px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    .actor-type-field {
+      text-align: left;
+      padding-left: 5px;
+    }
+
+    .sheet-label {
+      text-align: right;
+      padding-right: 5px;
+    }
+  }
+
+  .resource-plus,
+  .resource-minus {
+    cursor: pointer;
+    flex-grow: 0;
+  }
+
+  .resource-plus {
+    margin-left: 5px;
+  }
+
+  .resource-minus {
+    margin-right: 5px;
+  }
+
+  .lock-btn {
+    max-width: 40px;
+    height: 40px;
+    align-self: center;
+  }
+
+  .lock-btn i {
+    margin: auto;
+  }
+
+  /* Sheet tabs */
+  section .tab {
+    padding: 8px;
+  }
+
+  .tabs-container {
+    position: absolute;
+    height: 100%;
+    left: -2px;
+    overflow: hidden;
+  }
+
+  .sheet-tabs {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 30px);
+    align-items: flex-start;
+    width: 50px;
+    justify-content: flex-start;
+    overflow: hidden;
+    gap: unset;
+    border-top: 0;
+    border-bottom: 0;
+
+    > [data-tab] {
+      display: flex;
+      height: 50px;
+      width: 50px;
+      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+      font-size: 15pt;
+      padding: 5px;
+    }
+
+    > [data-tab] .navicon {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    > [data-tab] .navicon i,
+    > [data-tab] .navicon .wod5e-symbol {
+      width: 100%;
+    }
+  }
+
+  /* Basic Item List Layout */
+  .item-list {
+    align-self: flex-start;
+
+    .category {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 425px;
+      margin: 5px;
+      padding: 5px;
+
+      .item-description {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      .item {
+        .item-image {
+          flex-grow: 0;
+
+          img {
+            border-radius: 50%;
+            padding: 2px;
+          }
+        }
+
+        .item-header {
+          font-size: 16pt;
+          font-weight: bold;
+
+          .item-controls {
+            text-align-last: right;
+          }
+        }
+
+        .item-name {
+          text-align: left;
+          padding: 3px;
+          margin-left: 10px;
+          text-overflow: ellipsis;
+          overflow-x: hidden;
+        }
+
+        .item-controls {
+          text-align: right;
+          display: contents;
+
+          .item-control {
+            margin-left: 3px;
+          }
+        }
+      }
+    }
+  }
+
+  /* Apply these to all "items," even ones not in "item-list"s */
+  .item-header {
+    font-size: 16pt;
+    font-weight: bold;
+
+    .item-controls {
+      text-align-last: right;
+    }
+  }
+
+  .item-name {
+    text-wrap: nowrap;
+  }
+
+  .item-image img {
+    border-radius: 50%;
+    padding: 2px;
+    min-width: 25px;
+    min-height: 25px;
+    max-width: 25px;
+    max-height: 25px;
+  }
+
+  /* General Resources */
+  .resource-header {
+    display: block;
+    font-weight: 200;
+    font-size: 20pt;
+    width: 90%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-wrap: nowrap;
+  }
+
+  .rollable:hover,
+  .rollable-item:hover,
+  .system-rollable:hover {
+    cursor: pointer;
+  }
+
+  /* Statistics Page */
+  .stats-container {
+    display: flex;
+    flex-flow: column;
+    margin: 5px;
+
+    .stats-list {
+      display: flex;
+      flex-flow: column;
+      flex-grow: 1;
+      flex-shrink: 0;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      .attribute,
+      .skill {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .specialty {
+    position: relative;
+    top: -5px;
+    font-size: 10pt;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .stats-content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+
+    .skills-attributes,
+    .side-panel {
+      flex: 1 1 auto;
+    }
+
+    .side-panel {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 300px;
+
+      .items-list {
+        flex: 1 1 auto;
+        padding: 5px;
+      }
+
+      .item-image {
+        max-width: 30px;
+
+        img {
+          border-radius: 0;
+        }
+      }
+
+      .item-name {
+        flex-grow: 1;
+        margin-left: 5px;
+        margin-right: 5px;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .item-controls {
+        text-align-last: right;
+        max-width: 30px;
+      }
+    }
+
+    .edit-skill {
+      margin-left: -15px;
+    }
+
+    .stats-container {
+      .skill-attribute-input {
+        height: 20px;
+      }
+
+      .stats-footer {
+        text-align: center;
+      }
+    }
+  }
+}
+
+/* Suppressed view for a condition item */
+.suppressed {
+  filter: grayscale(1) opacity(0.8);
+}
+
+.field-header.big-header {
+  font-size: 16pt;
+}
+
+/* Vampire Font in the sheet banners */
+.vampire-font-headers.en {
+  .sheet-banner,
+  .field-header,
+  .resource-header,
+  .item-header,
+  .specialty {
+    font-family: "vampireRevised", "sans-serif";
+  }
+}

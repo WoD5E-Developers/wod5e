@@ -1,0 +1,72 @@
+/* Actors Sidebar */
+.actors-sidebar {
+  // Groups
+  .group-item {
+    border: none;
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+
+    > .group-header {
+      padding: 6px;
+      line-height: 24px;
+
+      h3 {
+        margin: 0;
+        line-height: 24px;
+
+        > i {
+          margin-right: 10px;
+        }
+      }
+
+      .create-button {
+        position: relative;
+        flex: 0 0 20px;
+        margin-left: 3px;
+        text-align: center;
+
+        .fa-plus {
+          position: absolute;
+          top: -2px;
+          right: -2px;
+          font-size: 0.5rem;
+          padding: 1px;
+        }
+      }
+
+      .create-button.create-folder {
+        font-size: 120%;
+      }
+    }
+  }
+  
+  .group-item.collapsed {
+    .subdirectory {
+      display: none;
+    }
+
+    > .group-header {
+      h3 {
+        text-shadow: none;
+
+        > i::before {
+          content: "\f07b";
+        }
+      }
+
+      .create-folder {
+        display: none;
+      }
+    }
+  }
+  
+  .group-item.droptarget > header {
+    h3 {
+      font-size: 1.2em;
+
+      i {
+        transform: scale(1.2);
+      }
+    }
+  }
+}

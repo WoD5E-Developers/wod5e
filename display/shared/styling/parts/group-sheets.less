@@ -1,0 +1,157 @@
+.group.sheet {
+  .actor-header {
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 5px;
+
+    .header-profile {
+      min-width: 250px;
+    }
+
+    .resource {
+      min-height: 35px;
+
+      .resource-counter {
+        text-wrap: nowrap;
+      }
+    }
+
+    .main-section {
+      flex-grow: 1;
+
+      .header-profile-img {
+        margin-bottom: 0;
+        align-self: center;
+      }
+
+      .group-core-details {
+        place-self: flex-end;
+
+        .name-and-lock {
+          flex-wrap: nowrap;
+
+          .charname {
+            min-width: 300px;
+          }
+        }
+      }
+    }
+
+    .group-type-container {
+      width: 100%;
+
+      .group-type-label {
+        font-size: 16pt;
+        line-height: 0;
+      }
+
+      select {
+        height: 100%;
+        font-weight: bold;
+      }
+    }
+
+    .field-header {
+      font-size: 16pt;
+    }
+
+    .coterie-features,
+    .cell-features,
+    .pack-features {
+      > div {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+
+      .resource {
+        padding: 8px;
+      }
+
+      .resource,
+      .field-header {
+        max-width: 150px;
+      }
+    }
+  }
+
+  .tab[data-tab="members"] {
+    .group-member {
+      .group-sheet .members .group-member {
+        padding: 5px 0;
+      }
+
+      .actor-name {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .actor-image {
+        max-width: 60px;
+
+        img {
+          margin: 0 3px;
+          cursor: pointer;
+        }
+      }
+
+      .sub-item {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 5px;
+        padding-right: 5px;
+
+        .sub-item-name {
+          font-weight: bold;
+        }
+      }
+
+      .sup-item {
+        flex-grow: 0;
+        display: flex;
+
+        a {
+          margin-left: 2.5px;
+          margin-right: 2.5px;
+        }
+      }
+
+      .sup-item.type {
+        text-transform: uppercase;
+        margin-right: 10px;
+        text-wrap: nowrap;
+      }
+    }
+  }
+
+  .coterie-features {
+    align-items: flex-end;
+
+    .resource-value {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hunting-difficulty {
+      .resource-value {
+        font-size: 15pt;
+        font-weight: bold;
+      }
+    }
+
+    .hunting-difficulty,
+    .lien,
+    .chasse,
+    .portilion {
+      width: 200px;
+    }
+  }
+
+  .member-hunger.active {
+    background-color: var(--vampire-color-3) !important;
+  }
+
+  .member-rage.active {
+    background-color: var(--werewolf-color-2) !important;
+  }
+}

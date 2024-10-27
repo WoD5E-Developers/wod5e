@@ -1,0 +1,318 @@
+:root {
+  --werewolf-color-1: #4e2100;
+  --werewolf-color-2: #994101;
+  --werewolf-color-3: var(--werewolf-color-3);
+  --pack-group-header: rgba(78, 33, 0, 0.8);
+}
+
+/* Define splat-specific colours for the WOD5E Symbols */
+.wod5e .wod5e-symbol.werewolf {
+  color: var(--werewolf-color-1);
+}
+
+/* Actor Sheet */
+.actor.sheet.werewolf {
+  .actor-header {
+    border-bottom: 2px solid var(--werewolf-color-1);
+  }
+
+  .profile-img,
+  .actor-header input,
+  .actor-header .resource {
+    border: 1px solid var(--werewolf-color-1);
+  }
+
+  .sheet-banner {
+    background-color: var(--werewolf-color-1);
+    color: var(--system-color-6);
+  }
+
+  prose-mirror {
+    .editor-menu button:hover {
+      background-color: var(--werewolf-color-2);
+    }
+
+    .editor-content {
+      scrollbar-color: var(--werewolf-color-2) var(--color-scrollbar-track);
+    }
+  }
+
+  .tabs-container {
+    background-color: var(--werewolf-color-2);
+
+    .navicon .wod5e-symbol,
+    .item[data-tab="wolf"] {
+        color: var(--werewolf-color-2);
+    }
+
+    .active .navicon {
+      background-color: var(--werewolf-color-1);
+      color: var(--system-color-6);
+
+      .wod5e-symbol {
+        color: var(--system-color-6);
+      }
+    }
+  }
+
+  .item-image {
+    flex-grow: 0;
+
+    img {
+      background-color: var(--werewolf-theme-filter);
+    }
+  }
+
+  .tab[data-tab="gifts"] {
+    .powers-display-tree {
+      ul:before {
+        background-color: var(--werewolf-color-2);
+      }
+
+      li:before {
+        background-color: var(--werewolf-color-2);
+      }
+    }
+
+    .gift-description {
+      margin-bottom: 5px;
+      border-bottom: 1px solid var(--system-color-5);
+    }
+  }
+
+  .tab[data-tab="wolf"] {
+    .resource input,
+    .resource .resource-contents,
+    .resource.form {
+      background-color: var(--system-color-6);
+      border: 1px solid var(--werewolf-color-1);
+      flex-direction: column;
+    }
+
+    .garou-forms-label {
+      margin-top: 10px;
+      font-size: 20pt;
+      text-align: center;
+    }
+
+    .were-form-name,
+    .were-form-title {
+      text-align: center;
+
+      h3 {
+        margin-bottom: 3px;
+      }
+    }
+
+    .were-form-title {
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    .forms {
+      align-items: flex-start;
+
+      .form {
+        border-radius: 0;
+        background-color: var(--system-color-6);
+        border: 1px solid var(--system-color-5);
+
+        hr {
+          margin-top: 2px;
+          margin-bottom: 2px;
+        }
+
+        .form-description {
+          text-align: center;
+          padding: 3px;
+        }
+
+        .form-attributes {
+          list-style: none;
+          padding: 0;
+          text-align: center;
+
+          li {
+            padding: 1px;
+          }
+        }
+      }
+
+      .form-active {
+        background: #eca0589a;
+      }
+    }
+  }
+}
+
+/* All Sheets with the Werewolf styling, including itemsheets */
+.sheet.werewolf {
+  box-shadow: 0 0 10px var(--werewolf-color-1);
+
+  .window-header {
+    background: var(--werewolf-color-1);
+  }
+
+  .window-content {
+    scrollbar-color: var(--werewolf-color-2) var(--werewolf-color-1);
+  }
+
+  .resource-value .resource-value-step.active,
+  .resource-value-static .resource-value-static-step.active,
+  .resource-counter .resource-counter-step[data-state="-"] {
+    background-color: var(--werewolf-color-2);
+  }
+
+  .powers-display-tree .icon.selected,
+  button.rollable {
+    background-color: var(--werewolf-color-2);
+    border: 1px solid var(--werewolf-color-1);
+  }
+
+  .rage-button {
+    max-width: 35px;
+    height: 35px;
+    margin-top: -5px;
+
+    .wod5e-symbol {
+      vertical-align: middle;
+      color: var(--system-color-6);
+    }
+  }
+
+  button.werewolf-button {
+    background: var(--werewolf-color-1);
+    color: var(--system-color-6);
+    font-family: cormorantLight, serif;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border: none;
+    box-shadow: none;
+    border: 1px solid var(--system-color-5);
+    margin: 0;
+    border-radius: 0;
+    padding: 3px;
+  }
+
+  button.werewolf-button:hover {
+    background: #bb6a30ef;
+  }
+
+  button.werewolf-button.active,
+  button.werewolf-button.active:hover {
+    font-size: 20pt;
+    color: var(--system-color-6);
+    cursor: default;
+    background: #a14503;
+  }
+
+  button.werewolf-button.disabled-form,
+  button.werewolf-button.disabled-form:hover {
+    color: var(--system-color-5);
+    cursor: default;
+    background: #562f13ef;
+  }
+
+  /* Balance Trackers */
+  .balance-trackers {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+
+    .field-header {
+      font-size: 16pt;
+    }
+
+    .wolf-resource {
+      max-width: 200px;
+      margin-left: 30px;
+      margin-right: 30px;
+
+      .resource-value {
+        align-self: center;
+        padding: 3px;
+      }
+    }
+  }
+
+  .renown {
+    .resource-content {
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  .frenzy {
+    .field-header {
+      font-size: 16pt;
+
+      .frenzy-status {
+        font-weight: bold;
+      }
+
+      .frenzy-status.active {
+        color: rgb(199, 15, 15);
+        text-shadow: 0 0 10px var(--system-color-4);
+      }
+    }
+
+    button {
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+/* Group Sheets */
+.group-header.pack {
+  background-color: var(--pack-group-header) !important;
+}
+
+/* Dialogs Windows */
+.werewolf.dialog.window-app {
+  border: 4px solid var(--werewolf-color-1);
+
+  .window-header {
+    background: var(--werewolf-color-1);
+    border-bottom: 4px double var(--system-color-6);
+  }
+
+  .window-content section .tab .resource-label,
+  .items-list .item-header,
+  .items-list .spc-item-header,
+  .spc-pool-header,
+  .actor-header .profile-img-zone h1 {
+    color: var(--werewolf-color-1);
+    border-color: var(--werewolf-color-1);
+  }
+
+  .dialog-contents .dice-group-header {
+    background-color: var(--werewolf-color-1);
+  }
+
+  input,
+  select {
+    border: 1px solid var(--werewolf-color-1);
+  }
+
+  .base-dice-group {
+    border: 1px solid var(--werewolf-color-2);
+  }
+}
+
+.sheet.spc .balance-trackers {
+  .wolf-resource {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+
+.vampire-font-headers .werewolf-button,
+.vampire-font-headers .garou-forms-label,
+.vampire-font-headers .forms .were-form-name {
+  font-family: "vampireRevised", "sans-serif";
+}

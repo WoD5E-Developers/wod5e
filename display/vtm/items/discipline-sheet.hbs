@@ -1,0 +1,32 @@
+<header class="item-header">
+    <img class="profile-img" data-action="editImage" src="{{img}}" data-edit="img" title="{{name}}" alt="Item Image" />
+    <div class="header-fields">
+        <input class="itemname" name="name" type="text" value="{{name}}" placeholder="{{localize 'WOD5E.Name'}}"/>
+        <div class="flexrow">
+            <!-- Input the level of the discipline -->
+            <div class="flexcol level flex-center item-resource">
+                <div>
+                    <b>
+                        {{localize "WOD5E.Level"}}
+                    </b>
+                </div>
+                <input name="system.level" value="{{level}}" type="number" min="0" max="5"/>
+            </div>
+            <div class="flexcol flex-center item-resource">
+                <div>
+                    <b>{{localize 'WOD5E.ItemsList.Cost'}}</b>
+                </div>
+                <input name="system.cost" type="number" value="{{cost}}" placeholder="0"/>
+            </div>
+            <!-- Select the discipline this power belongs to -->
+            <div class="flexcol discipline flex-center item-resource">
+                <label>
+                    <b>{{localize "WOD5E.VTM.DisciplineType"}}</b>
+                </label>
+                <select name="system.discipline" data-type="String">
+                    {{selectOptions disciplineOptions selected=selectedDiscipline localize=true}}
+                </select>
+            </div>
+        </div>
+    </div>
+</header>
