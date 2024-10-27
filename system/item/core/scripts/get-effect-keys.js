@@ -111,6 +111,11 @@ export const getEffectKeys = () => {
       displayName: value.displayName
     })
   }
+  // "Rage Max" key
+  keysList.push({
+    id: 'system.rage.max',
+    displayName: game.i18n.localize('WOD5E.WTA.MaxRage')
+  })
 
   return keysList
 }

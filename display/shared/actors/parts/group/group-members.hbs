@@ -67,13 +67,13 @@
                       {{#if member.isOwner}}
                         <div class="resource-value" data-value="{{member.system.hunger.value}}" data-name="system.hunger.value">
                             <span class="resource-value-empty member-hunger" data-action="dotCounterEmpty" data-actor-id="{{member.id}}"></span>
-                            {{#numLoop 5}}
+                            {{#numLoop member.system.hunger.max}}
                             <span class="resource-value-step member-hunger" data-action="dotCounterChange" data-index="{{this}}" data-actor-id="{{member.id}}"></span>
                             {{/numLoop}}
                         </div>
                       {{else}}
                         <div class="resource-value">
-                            {{#numLoop 5}}
+                            {{#numLoop member.system.hunger.max}}
                             <span class="resource-value-step member-hunger" data-action="dotCounterChange" data-index="{{this}}" data-actor-id="{{member.id}}"></span>
                             {{/numLoop}}
                         </div>
@@ -90,13 +90,13 @@
                       {{#if member.isOwner}}
                         <div class="resource-value" data-value="{{member.system.rage.value}}" data-name="system.rage.value">
                             <span class="resource-value-empty member-rage" data-action="dotCounterEmpty" data-actor-id="{{member.id}}"></span>
-                            {{#numLoop 5}}
+                            {{#numLoop member.system.rage.max}}
                             <span class="resource-value-step member-rage" data-action="dotCounterChange" data-index="{{this}}" data-actor-id="{{member.id}}"></span>
                             {{/numLoop}}
                         </div>
                       {{else}}
                         <div class="resource-value">
-                            {{#numLoop 5}}
+                            {{#numLoop member.system.rage.max}}
                             <span class="resource-value-step member-rage" data-action="dotCounterChange" data-index="{{this}}" data-actor-id="{{member.id}}"></span>
                             {{/numLoop}}
                         </div>
