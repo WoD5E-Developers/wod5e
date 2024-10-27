@@ -150,6 +150,7 @@ export class wod5eAPI {
               // Compile the selected data and send it to the roll function
               const skillSelect = html.find('[id=skillSelect]').val()
               const attributeSelect = html.find('[id=attributeSelect]').val()
+              const attributeSelect2 = html.find('[id=attributeSelect2]').val()
               const disciplineSelect = html.find('[id=disciplineSelect]').val()
               const bloodSurgeCheckbox = html.find('[id=bloodSurge]')
               const renownSelect = html.find('[id=renownSelect]').val()
@@ -192,6 +193,20 @@ export class wod5eAPI {
                 // Add the attribute selectors to the roll
                 selectorsArray = selectorsArray.concat(['attributes', `attributes.${attributeSelect}`, `${WOD5E.Attributes.getList({})[attributeSelect].type}`])
               }
+              // Handle adding a second attribute to the dicepool
+              if (attributeSelect2) {
+                // Add it to the label
+                labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect2, type: 'attributes' }))
+
+                // Add it to the value path if applicable
+                valueArray.push(`attributes.${attributeSelect2}.value`)
+
+                // If using absolute values instead of value paths, add the values together
+                if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.attributes[attributeSelect2].value
+
+                // Add the attribute selectors to the roll
+                selectorsArray = selectorsArray.concat(['attributes', `attributes.${attributeSelect2}`, `${WOD5E.Attributes.getList({})[attributeSelect2].type}`])
+              }
               // Handle adding a discipline to the dicepool
               if (disciplineSelect) {
                 // Add it to the label
@@ -209,6 +224,10 @@ export class wod5eAPI {
               // Handle adding a blood surge to the roll
               if (bloodSurgeCheckbox[0]?.checked) {
                 selectorsArray.push('blood-surge')
+              }
+              // Handle adding the resistance selector to the roll
+              if (dataset?.resistance) {
+                selectorsArray.push('resistance')
               }
               // Handle adding a renown to the dicepool
               if (renownSelect) {

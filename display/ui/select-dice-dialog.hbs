@@ -1,7 +1,6 @@
 <form class="dialog-contents">
   <div class="selectors-group">
     {{#unless (or skill attribute)}}
-      <!-- Unless a skill/attribute is already selected, show skill selection -->
       <div class="primary-selector">
         <div class="selector-title">
           {{localize "WOD5E.SkillsList.Label"}}
@@ -14,7 +13,6 @@
         </div>
       </div>
     {{else}}
-      <!-- If a skill/attribute is already selected, present its label -->
       <div class="primary-selector">
         {{#if skill}}
           <div class="selector-title">
@@ -31,9 +29,9 @@
             {{localize "WOD5E.AttributesList.Label"}}
           </div>
           <div class="selector-content">
-            <select id="attributeSelect">
+            <select id="attributeSelect2">
                 <option value="">{{localize "WOD5E.None"}}</option>
-                {{selectOptions attributeOptions selected=attribute}}
+                {{selectOptions attributeOptions selected=attribute2}}
             </select>
           </div>
         {{/if}}
