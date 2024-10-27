@@ -38,6 +38,8 @@ export const _onSyncFromDataItem = async function (event) {
 
     // Ignore "points" because those are customized per-actor
     delete itemToSyncFrom.system?.points
+    // Ignore "uses" because those can also be customized per-actor
+    delete itemToSyncFrom.system?.uses
 
     const updates = {
       name: itemToSyncFrom.name,
