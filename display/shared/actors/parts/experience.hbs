@@ -62,10 +62,24 @@
                     {{localize "WOD5E.Experience.History"}}
                 </div>
             </div>
+            <div class="xp-header flexrow">
+                <div class="xp-label">
+                    Name
+                </div>
+                <div class="xp-amount">
+                    Amount
+                </div>
+                <div class="xp-controls">
+                    Controls
+                </div>
+            </div>
             {{#each experiences as |experience key|}}
                 <div class="flexrow{{#ifgr experience.value 0}} experience-gain{{/ifgr}}{{#ifless experience.value 0}} experience-spend{{/ifless}}">
-                    <div class="label">
-                        {{experience.name}} ({{experience.value}} {{localize "WOD5E.Exp"}})
+                    <div class="xp-label">
+                        {{experience.name}}
+                    </div>
+                    <div class="xp-amount">
+                        {{experience.value}}
                     </div>
                     <div class="xp-controls">
                         <!-- Icon to edit the perk-->
