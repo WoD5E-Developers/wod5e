@@ -147,6 +147,8 @@
       "Boon": "Gefallen",
       "Boons": "Gefallen",
       "_Conditions": "",
+      "_ConfirmOverwrite": "",
+      "_ConfirmOverwriteString": "",
       "Cost": "Kosten",
       "CustomRoll": "Benutzerdefinierter Wurf",
       "CustomRolls": "Benutzerdefinierte Würfe",

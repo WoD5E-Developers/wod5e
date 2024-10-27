@@ -147,6 +147,8 @@
       "Boon": "Долг",
       "Boons": "Долги",
       "_Conditions": "",
+      "_ConfirmOverwrite": "",
+      "_ConfirmOverwriteString": "",
       "Cost": "Стоимость",
       "CustomRoll": "Уникальная проверка",
       "CustomRolls": "Уникальные проверки",

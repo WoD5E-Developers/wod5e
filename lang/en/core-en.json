@@ -147,6 +147,8 @@
       "Boon": "Boon",
       "Boons": "Boons",
       "Conditions": "Conditions",
+      "ConfirmOverwrite": "Confirm Overwrite",
+      "ConfirmOverwriteString": "This action will overwrite {string} existing items. Are you sure you want to proceed?",
       "Cost": "Cost",
       "CustomRoll": "Custom Roll",
       "CustomRolls": "Custom Rolls",

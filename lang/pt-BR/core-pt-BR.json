@@ -147,6 +147,8 @@
       "Boon": "Favor",
       "Boons": "Favores",
       "_Conditions": "",
+      "_ConfirmOverwrite": "",
+      "_ConfirmOverwriteString": "",
       "Cost": "Custo",
       "CustomRoll": "Rolagem Personalizada",
       "CustomRolls": "Rolagens Personalizadas",

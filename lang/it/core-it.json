@@ -147,6 +147,8 @@
       "Boon": "Favore",
       "Boons": "Favori",
       "_Conditions": "",
+      "_ConfirmOverwrite": "",
+      "_ConfirmOverwriteString": "",
       "Cost": "Costo",
       "CustomRoll": "Tiro personalizzato",
       "CustomRolls": "Tiri personalizzati",

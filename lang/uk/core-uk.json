@@ -147,6 +147,8 @@
       "Boon": "Милість",
       "Boons": "Милості",
       "_Conditions": "",
+      "_ConfirmOverwrite": "",
+      "_ConfirmOverwriteString": "",
       "_Cost": "",
       "CustomRoll": "Власна перевірка",
       "CustomRolls": "Власні перевірки",

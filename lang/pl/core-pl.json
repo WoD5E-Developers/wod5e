@@ -147,6 +147,8 @@
       "Boon": "Przysługa",
       "Boons": "Przysługi",
       "_Conditions": "",
+      "_ConfirmOverwrite": "",
+      "_ConfirmOverwriteString": "",
       "_Cost": "",
       "CustomRoll": "Własny Rzut",
       "CustomRolls": "Własne Rzuty",

@@ -147,6 +147,8 @@
       "Boon": "Dette",
       "Boons": "Dettes",
       "_Conditions": "",
+      "_ConfirmOverwrite": "",
+      "_ConfirmOverwriteString": "",
       "Cost": "Coût",
       "CustomRoll": "Jet Personnalisé",
       "CustomRolls": "Jets Personnalisés",

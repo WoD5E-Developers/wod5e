@@ -147,6 +147,8 @@
       "Boon": "Bendición",
       "Boons": "Favores",
       "_Conditions": "",
+      "_ConfirmOverwrite": "",
+      "_ConfirmOverwriteString": "",
       "Cost": "Coste",
       "CustomRoll": "Tirada Personalizadas",
       "CustomRolls": "Tiradas Personalizadas",
