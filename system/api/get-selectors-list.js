@@ -4,9 +4,8 @@
  * Function to handle getting the list of available selectors for any given document
  * @param document
  */
-export const getSelectorsList = (document) => {
+export const getSelectorsList = () => {
   const selectorsList = []
-  const gamesystem = document.system?.gamesystem || 'mortal'
 
   // Attributes
   const attributes = WOD5E.Attributes.getList({

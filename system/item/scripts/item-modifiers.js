@@ -84,7 +84,7 @@ export const _onAddModifier = async function (event) {
         // Input for the list of selectors
         const input = html.find('.modifier-selectors')
         // Handle formatting the input for selectors
-        const data = getSelectorsList(item)
+        const data = getSelectorsList()
         input.flexdatalist({
           selectionRequired: 1,
           minLength: 1,
@@ -201,7 +201,7 @@ export const _onEditModifier = async function (event, target) {
         // Input for the list of selectors
         const input = html.find('.modifier-selectors')
         // Handle formatting the input for selectors
-        const data = getSelectorsList(item)
+        const data = getSelectorsList()
         input.flexdatalist({
           selectionRequired: 1,
           minLength: 1,

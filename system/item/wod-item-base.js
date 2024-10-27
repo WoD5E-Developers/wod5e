@@ -111,7 +111,7 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
     // Input for the list of selectors
     const input = html.find('.modifier-selectors')
     // Style the selectors properly
-    const data = getSelectorsList(this.item)
+    const data = getSelectorsList()
     input.flexdatalist({
       selectionRequired: 1,
       minLength: 1,
