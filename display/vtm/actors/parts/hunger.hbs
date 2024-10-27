@@ -2,7 +2,7 @@
     <div class="resource-content flexrow flex-center flex-between">
         <div class="resource-value" data-value="{{hunger.value}}" data-name="system.hunger.value">
             <span class="resource-value-empty hunger-value" data-action="dotCounterEmpty"></span>
-            {{#numLoop 5}}
+            {{#numLoop hunger.max}}
             <span class="resource-value-step hunger-value" data-action="dotCounterChange" data-index="{{this}}"></span>
             {{/numLoop}}
         </div>

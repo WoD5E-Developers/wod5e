@@ -64,6 +64,7 @@
       "Level4": "Livello 4 o meno",
       "Level5": "Livello 5 o meno",
       "Lien": "Lien",
+      "_MaxHunger": "",
       "MendAmount": "Danni risanati",
       "MessyCritical": "Critico Caotico",
       "NewStringPower": "Nuovo potere {string}",
