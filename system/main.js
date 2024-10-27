@@ -37,6 +37,7 @@ import { WereForms } from './api/def/were-forms.js'
 import { Gifts } from './api/def/gifts.js'
 import { _rollItem } from './actor/scripts/item-roll.js'
 import { _updateCSSVariable, cssVariablesRecord } from './scripts/update-css-variables.js'
+import { _updateToken } from './actor/wta/scripts/forms.js'
 
 // Anything that needs to be ran alongside the initialisation of the world
 Hooks.once('init', async function () {
@@ -192,6 +193,18 @@ Hooks.once('setup', () => {
 // DiceSoNice functionality
 Hooks.once('diceSoNiceReady', (dice3d) => {
   loadDiceSoNice(dice3d)
+})
+
+Hooks.on('canvasReady', (canvas) => {
+  const tokens = canvas.scene.tokens
+
+  tokens.forEach((token) => {
+    if (token?.actor && token?.actor?.type === 'werewolf') {
+      const activeForm = token.actor.system.activeForm
+
+      _updateToken(token.actor, activeForm)
+    }
+  })
 })
 
 // Display the willpower reroll option in the chat when messages are right clicked

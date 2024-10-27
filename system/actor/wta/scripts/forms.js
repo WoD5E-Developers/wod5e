@@ -25,12 +25,14 @@ export const _onLostTheWolf = async function (actor) {
       label: 'Homid',
       callback: async () => {
         actor.update({ 'system.activeForm': 'homid' })
+        _updateToken(actor, 'homid')
       }
     },
     lupus: {
       label: 'Lupus',
       callback: async () => {
         actor.update({ 'system.activeForm': 'lupus' })
+        _updateToken(actor, 'lupus')
       }
     },
     override: {
@@ -71,10 +73,12 @@ export const _onShiftForm = async function (event, target) {
       break
     case 'lupus':
       actor.update({ 'system.activeForm': 'lupus' })
+      _updateToken(actor, 'lupus')
       _onFormToChat(event, target, actor)
       break
     default:
       actor.update({ 'system.activeForm': 'homid' })
+      _updateToken(actor, 'homid')
       _onFormToChat(event, target, actor)
   }
 }
@@ -117,6 +121,7 @@ export const handleFormChange = async function (actor, form, diceCount) {
         // If rolling rage dice didn't reduce the actor to 0 rage, then update the current form
         if (newRageAmount > 0) {
           actor.update({ 'system.activeForm': form })
+          _updateToken(actor, form)
         }
       }
     })
@@ -183,10 +188,11 @@ export const _onInsufficientRage = async function (actor, form) {
       icon: '<i class="fas fa-check"></i>',
       label: 'Shift Anyway',
       callback: async () => {
-        await actor.update({
+        actor.update({
           'system.activeForm': form,
           'system.formOverride': true
         })
+        _updateToken(actor, form)
       }
     },
     cancel: {
@@ -204,4 +210,38 @@ export const _onInsufficientRage = async function (actor, form) {
   {
     classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
   }).render(true)
+}
+
+export const _updateToken = async function (actor, form) {
+  // Original image
+  let originalImage = ''
+  if (actor.system.activeForm === 'homid') {
+    originalImage = actor.prototypeToken.texture.src
+    // Make sure that the homid image is the original token image
+    actor.update({
+      'system.forms.homid.token.img': originalImage
+    })
+  } else {
+    originalImage = actor.system.forms['homid'].token.img
+  }
+  // New image
+  const tokenImg = actor.system.forms[form].token.img
+
+  if (tokenImg) {
+    // Update the actor itself
+    actor.update({
+      'prototypeToken.texture.src': tokenImg
+    })
+
+    const activeTokens = actor.getActiveTokens()
+
+    // Update tokens
+    activeTokens.forEach((token) => {
+      token.document.update({
+        'texture.src': tokenImg
+      })
+    })
+  } else {
+    // Default to the actor's original image
+  }
 }
