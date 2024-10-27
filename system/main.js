@@ -130,6 +130,7 @@ Hooks.once('ready', async function () {
   window.WOD5E = {
     api: {
       Roll: wod5eAPI.Roll,
+      PromptRoll: wod5eAPI.PromptRoll,
       RollFromDataset: wod5eAPI.RollFromDataset,
       getBasicDice: wod5eAPI.getBasicDice,
       getAdvancedDice: wod5eAPI.getAdvancedDice,
