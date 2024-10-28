@@ -193,7 +193,7 @@ export const _onEditExperience = async function (event, target) {
 
 export const getDerivedExperience = async function (systemData) {
   const exp = systemData.exp
-  const experiences = systemData.experiences
+  const experiences = systemData?.experiences
 
   // If there's no experiences to calculate from, just end the statement early
   if (!experiences) return
