@@ -144,27 +144,6 @@ class WOD5eDice {
       // Handle willpower damage
       if (willpowerDamage > 0 && game.settings.get('vtm5e', 'automatedWillpower')) _damageWillpower(null, null, actor, willpowerDamage)
 
-      // Send the results of the roll back to any functions that need it
-      if (callback) {
-        callback(
-          null,
-          {
-            ...roll,
-            system,
-            difficulty,
-            rollSuccessful: (roll.total >= difficulty) || (roll.total > 0 && difficulty === 0)
-          }
-        )
-      }
-
-      // Run any macros that need to be ran
-      if (macro && game.macros.get(macro)) {
-        game.macros.get(macro).execute({
-          actor,
-          token: actor.token ?? actor.getActiveTokens[0]
-        })
-      }
-
       // Roll any advanced check dice that need to be rolled in a separate rollmessage
       if (advancedCheckDice > 0) {
         await this.Roll({
@@ -217,6 +196,27 @@ class WOD5eDice {
       {
         rollMode: $form ? $form.find('[name=rollMode]').val() : rollMode
       })
+
+      // Send the results of the roll back to any functions that need it
+      if (callback) {
+        callback(
+          null,
+          {
+            ...roll,
+            system,
+            difficulty,
+            rollSuccessful: (roll.total >= difficulty) || (roll.total > 0 && difficulty === 0)
+          }
+        )
+      }
+
+      // Run any macros that need to be ran
+      if (macro && game.macros.get(macro)) {
+        game.macros.get(macro).execute({
+          actor,
+          token: actor.token ?? actor.getActiveTokens[0]
+        })
+      }
 
       return roll
     }
