@@ -77,7 +77,7 @@ export class wod5eAPI {
     })
   }
 
-  static async PromptRoll({
+  static async PromptRoll ({
     actor = game.actors.get(ChatMessage.getSpeaker().actor)
   }) {
     // Warn that we couldn't get an actor

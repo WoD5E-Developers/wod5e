@@ -222,7 +222,7 @@ export const _updateToken = async function (actor, form) {
       'system.forms.homid.token.img': originalImage
     })
   } else {
-    originalImage = actor.system.forms['homid'].token.img
+    originalImage = actor.system.forms.homid.token.img
   }
   // New image
   const tokenImg = actor.system.forms[form].token.img
