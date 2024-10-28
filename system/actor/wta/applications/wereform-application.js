@@ -109,8 +109,8 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
         context.tab = context.tabs.description
 
         // Part-specific data
-        context.formDescription = context.formData.description
-        context.enrichedDescription = await TextEditor.enrichHTML(context.formData.description)
+        context.formDescription = context.formData?.description || ''
+        context.enrichedDescription = await TextEditor.enrichHTML(context.formData?.description || '')
 
         break
 

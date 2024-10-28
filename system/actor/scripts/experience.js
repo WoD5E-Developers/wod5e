@@ -1,10 +1,11 @@
 /* global game, renderTemplate, foundry, Dialog */
 
-export const _onAddExperience = async function (event) {
+export const _onAddExperience = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   const actor = this.actor
+  const isSpendingXP = target.getAttribute('data-operation') === 'spend'
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
   const system = actor.system.gamesystem
@@ -12,14 +13,14 @@ export const _onAddExperience = async function (event) {
   // Render the template
   const experienceTemplate = 'systems/vtm5e/display/shared/actors/parts/experience-display.hbs'
   const experienceData = {
-    name: game.i18n.localize('WOD5E.Experience.NewExperience'),
+    name: isSpendingXP ? game.i18n.localize('WOD5E.Experience.XPSpent') : game.i18n.localize('WOD5E.Experience.XPGained'),
     value: 0
   }
   const experienceContent = await renderTemplate(experienceTemplate, experienceData)
 
   new Dialog(
     {
-      title: game.i18n.localize('WOD5E.Experience.AddExperience'),
+      title: isSpendingXP ? game.i18n.localize('WOD5E.Experience.SpendExperience') : game.i18n.localize('WOD5E.Experience.AddExperience'),
       content: experienceContent,
       buttons: {
         add: {
@@ -35,7 +36,8 @@ export const _onAddExperience = async function (event) {
             newExperience = {
               id: foundry.utils.randomID(8),
               name,
-              value
+              value: isSpendingXP ? -Math.abs(value) : Math.abs(value),
+              timestamp: Date.now()
             }
 
             // Define the existing list of experiences
@@ -191,7 +193,7 @@ export const _onEditExperience = async function (event, target) {
 
 export const getDerivedExperience = async function (systemData) {
   const exp = systemData.exp
-  const experiences = systemData.experiences
+  const experiences = systemData?.experiences
 
   // If there's no experiences to calculate from, just end the statement early
   if (!experiences) return

@@ -1235,6 +1235,11 @@ body.uk .actor.sheet {
   min-width: 950px;
 }
 
+:root {
+  --xp-gain-icon: url("/systems/vtm5e/assets/icons/sheet/exp-gain.webp");
+  --xp-spend-icon: url("/systems/vtm5e/assets/icons/sheet/exp-spend.webp");
+  --xp-neutral-icon: url("/systems/vtm5e/assets/icons/sheet/exp-neutral.webp");
+}
 /* The actor sheet itself */
 .actor.sheet:not(.minimized):not(.group) {
   min-width: 850px;
@@ -1305,6 +1310,9 @@ body.uk .actor.sheet {
 .actor.sheet .limited-actor-header {
   display: flex;
   flex-grow: 0;
+}
+.actor.sheet .limited-actor-header .charname {
+  font-size: 20pt;
 }
 .actor.sheet .limited-actor-header .header-content {
   flex-grow: 1;
@@ -1428,12 +1436,44 @@ body.uk .actor.sheet {
 .actor.sheet .tab[data-tab="experience"] .experience-trackers .tracker .field-header {
   font-size: 15pt;
 }
+.actor.sheet .tab[data-tab="experience"] .xp-header {
+  font-weight: bold;
+  font-size: 14pt;
+}
+.actor.sheet .tab[data-tab="experience"] .xp-icon {
+  width: 20px;
+  max-width: 20px;
+  height: 20px;
+  max-height: 20px;
+  margin-right: 10px;
+  background-size: cover;
+  border-radius: 50%;
+  padding: 2px;
+}
+.actor.sheet .tab[data-tab="experience"] .xp-spend-icon {
+  content: var(--xp-spend-icon);
+}
+.actor.sheet .tab[data-tab="experience"] .xp-gain-icon {
+  content: var(--xp-gain-icon);
+}
+.actor.sheet .tab[data-tab="experience"] .xp-neutral-icon {
+  content: var(--xp-neutral-icon);
+}
+.actor.sheet .tab[data-tab="experience"] .xp-amount {
+  text-align: right;
+  min-width: 50px;
+}
+.actor.sheet .tab[data-tab="experience"] .xp-amount:not(.xp-header-label) {
+  flex-grow: 0;
+}
 .actor.sheet .tab[data-tab="experience"] .xp-controls {
   text-align: right;
 }
+.actor.sheet .tab[data-tab="experience"] .spend-experience,
 .actor.sheet .tab[data-tab="experience"] .add-experience {
   font-size: 13pt;
   margin-left: auto;
+  font-weight: bold;
 }
 .actor.sheet .tab[data-tab="features"] .character-details {
   max-width: 400px;
@@ -2046,6 +2086,8 @@ body.uk .actor.sheet {
 .locked .add-discipline,
 .locked .discipline-delete,
 .locked .add-gift,
+.locked .xp-control,
+.locked .xp-controls,
 .locked .resource-plus,
 .locked .resource-minus,
 .locked .resource-value-empty:not(.hunger-value, .rage-value),
@@ -2200,10 +2242,13 @@ body.uk .actor.sheet {
   margin-top: 2px;
   text-align: center;
 }
+.tab[data-tab="features"] .dot-tracker {
+  display: contents;
+}
 .tab[data-tab="features"] .resource-value,
 .tab[data-tab="features"] .resource-value-static {
-  margin-top: 2px;
-  text-align: center;
+  text-align: right;
+  margin-left: auto;
 }
 .actor.sheet .resource-value-empty {
   margin-left: -16px;
@@ -2467,6 +2512,11 @@ prose-mirror .editor-menu button {
 }
 .sheet .clickable {
   cursor: pointer;
+}
+/* Experience Tab */
+.tab[data-tab="experience"] .xp-icon {
+  background-color: #1c1c1c;
+  border: 1px solid white;
 }
 /* Resource Counters */
 .resource-value .resource-value-step {
@@ -2821,6 +2871,8 @@ prose-mirror .editor-menu button {
   border-color: var(--system-dark-color-4);
 }
 .wod-dark-theme .actor.sheet {
+  /* Collapsible Descriptions */
+  /* Limited View Toggle Button */
   /* Navbar */
   /* Resource Counters */
 }
@@ -2833,6 +2885,16 @@ prose-mirror .editor-menu button {
 .wod-dark-theme .actor.sheet .stats-container .stats-footer {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
+}
+.wod-dark-theme .actor.sheet .collapsible-content {
+  color: var(--system-dark-color-4);
+  background: var(--system-dark-color-2);
+}
+.wod-dark-theme .actor.sheet .toggle-limited {
+  color: var(--system-dark-color-4);
+}
+.wod-dark-theme .actor.sheet .toggle-limited:not(.visible) {
+  color: var(--system-dark-color-8);
 }
 .wod-dark-theme .actor.sheet .sheet-tabs .navicon,
 .wod-dark-theme .actor.sheet .sheet-tabs .lock-btn {
@@ -3103,6 +3165,8 @@ prose-mirror .editor-menu button {
   border-color: var(--system-dark-color-4);
 }
 .wod-vampire-theme .actor.sheet {
+  /* Collapsible Descriptions */
+  /* Limited View Toggle Button */
   /* Navbar */
   /* Resource Counters */
 }
@@ -3115,6 +3179,16 @@ prose-mirror .editor-menu button {
 .wod-vampire-theme .actor.sheet .stats-container .stats-footer {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
+}
+.wod-vampire-theme .actor.sheet .collapsible-content {
+  color: var(--system-dark-color-4);
+  background: var(--system-dark-color-2);
+}
+.wod-vampire-theme .actor.sheet .toggle-limited {
+  color: var(--system-dark-color-4);
+}
+.wod-vampire-theme .actor.sheet .toggle-limited:not(.visible) {
+  color: var(--system-dark-color-8);
 }
 .wod-vampire-theme .actor.sheet .sheet-tabs .navicon,
 .wod-vampire-theme .actor.sheet .sheet-tabs .lock-btn {
@@ -3343,6 +3417,8 @@ prose-mirror .editor-menu button {
   border-color: var(--system-dark-color-4);
 }
 .wod-werewolf-theme .actor.sheet {
+  /* Collapsible Descriptions */
+  /* Limited View Toggle Button */
   /* Navbar */
   /* Resource Counters */
 }
@@ -3355,6 +3431,16 @@ prose-mirror .editor-menu button {
 .wod-werewolf-theme .actor.sheet .stats-container .stats-footer {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
+}
+.wod-werewolf-theme .actor.sheet .collapsible-content {
+  color: var(--system-dark-color-4);
+  background: var(--system-dark-color-2);
+}
+.wod-werewolf-theme .actor.sheet .toggle-limited {
+  color: var(--system-dark-color-4);
+}
+.wod-werewolf-theme .actor.sheet .toggle-limited:not(.visible) {
+  color: var(--system-dark-color-8);
 }
 .wod-werewolf-theme .actor.sheet .sheet-tabs .navicon,
 .wod-werewolf-theme .actor.sheet .sheet-tabs .lock-btn {

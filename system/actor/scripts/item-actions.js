@@ -191,7 +191,7 @@ export const _onItemChat = async function (event, target) {
   renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
     name: item.name,
     img: item.img,
-    description: item.system.description
+    description: item.system?.description || ''
   }).then(html => {
     ChatMessage.create({
       content: html

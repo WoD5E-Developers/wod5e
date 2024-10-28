@@ -1,3 +1,9 @@
+:root {
+  --xp-gain-icon: url("/systems/vtm5e/assets/icons/sheet/exp-gain.webp");
+  --xp-spend-icon: url("/systems/vtm5e/assets/icons/sheet/exp-spend.webp");
+  --xp-neutral-icon: url("/systems/vtm5e/assets/icons/sheet/exp-neutral.webp");
+}
+
 /* The actor sheet itself */
 .actor.sheet:not(.minimized):not(.group) {
   min-width: 850px;
@@ -64,6 +70,10 @@
   .limited-actor-header {
     display: flex;
     flex-grow: 0;
+
+    .charname {
+      font-size: 20pt;
+    }
 
     .header-content {
       flex-grow: 1;
@@ -213,13 +223,52 @@
       }
     }
 
+    .xp-header {
+      font-weight: bold;
+      font-size: 14pt;
+    }
+
+    .xp-icon {
+      width: 20px;
+      max-width: 20px;
+      height: 20px;
+      max-height: 20px;
+      margin-right: 10px;
+      background-size: cover;
+      border-radius: 50%;
+      padding: 2px;
+    }
+
+    .xp-spend-icon {
+      content: var(--xp-spend-icon);
+    }
+
+    .xp-gain-icon {
+      content: var(--xp-gain-icon);
+    }
+
+    .xp-neutral-icon {
+      content: var(--xp-neutral-icon);
+    }
+
+    .xp-amount {
+      text-align: right;
+      min-width: 50px;
+    }
+
+    .xp-amount:not(.xp-header-label) {
+      flex-grow: 0;
+    }
+
     .xp-controls {
       text-align: right;
     }
 
+    .spend-experience,
     .add-experience {
       font-size: 13pt;
       margin-left: auto;
+      font-weight: bold;
     }
   }
 

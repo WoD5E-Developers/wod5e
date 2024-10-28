@@ -2,6 +2,7 @@
 
 // Data preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
+import { getActorBackground } from './scripts/get-actor-background.js'
 import { getActorTypes } from './scripts/get-actor-types.js'
 // Definition file
 import { ItemTypes } from '../api/def/itemtypes.js'
@@ -150,6 +151,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       displayBanner: game.settings.get('vtm5e', 'actorBanner'),
 
       headerbg: await getActorHeader(actor),
+      actorbg: actor.system?.settings?.background,
 
       baseActorType: actorTypeData.baseActorType,
       currentActorType: actorTypeData.currentActorType,
@@ -166,7 +168,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     // Do data manipulation we need to do for ALL items here
     sheetData.items.forEach(async (item) => {
       // Enrich item descriptions
-      if (item.system.description) {
+      if (item.system?.description) {
         item.system.enrichedDescription = await TextEditor.enrichHTML(item.system.description)
       }
 
@@ -310,6 +312,30 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
     // Update the window title (since ActorSheetV2 doesn't do it automatically)
     $(this.window.title).text(this.title)
+
+    // Update the actor background if it's not the default
+    const actorBackground = await getActorBackground(this.actor)
+    if (actorBackground) {
+      html.find('section.window-content').css('background', `url("/${actorBackground}")`)
+    }
+
+    html.find('.actor-header-bg-filepicker input').on('focusout', function (event) {
+      event.preventDefault()
+
+      const filepicker = event.target.parentElement
+      const value = event?.target?.value
+
+      $(filepicker).val(value)
+    })
+
+    html.find('.actor-background-filepicker input').on('focusout', function (event) {
+      event.preventDefault()
+
+      const filepicker = event.target.parentElement
+      const value = event?.target?.value
+
+      $(filepicker).val(value)
+    })
 
     // Toggle whether the sheet is locked or not
     html.toggleClass('locked', this.actor.system.locked)

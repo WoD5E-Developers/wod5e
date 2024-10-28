@@ -86,6 +86,11 @@ export const getEffectKeys = () => {
       displayName: value.displayName
     })
   }
+  // "Hunger Max" key
+  keysList.push({
+    id: 'system.hunger.max',
+    displayName: game.i18n.localize('WOD5E.VTM.MaxHunger')
+  })
 
   // Werewolf
   // Renown
@@ -106,6 +111,11 @@ export const getEffectKeys = () => {
       displayName: value.displayName
     })
   }
+  // "Rage Max" key
+  keysList.push({
+    id: 'system.rage.max',
+    displayName: game.i18n.localize('WOD5E.WTA.MaxRage')
+  })
 
   return keysList
 }

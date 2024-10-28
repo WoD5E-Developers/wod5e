@@ -22,7 +22,14 @@ export const prepareExperienceContext = async function (context, actor) {
   context.tab = context.tabs.experience
 
   // Part-specific data
-  context.experiences = actorData.experiences
+  if (actorData?.experiences) {
+    context.experiences = actorData.experiences.sort(function (xp1, xp2) {
+      const timestamp1 = xp1?.timestamp || 0
+      const timestamp2 = xp2?.timestamp || 0
+
+      return timestamp2 - timestamp1
+    })
+  }
   context.exp = actorData.exp
   context.derivedXP = actorData.derivedXP
 

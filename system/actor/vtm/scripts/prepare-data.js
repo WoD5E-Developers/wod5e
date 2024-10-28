@@ -15,7 +15,7 @@ export const prepareDisciplines = async function (actor) {
         id,
         value: actorDisciplines[id].value || 0,
         powers: actorDisciplines[id].powers || [],
-        description: actorDisciplines[id].description,
+        description: actorDisciplines[id]?.description || '',
         visible: actorDisciplines[id].visible,
         selected: actorDisciplines[id].selected || false
       }, value)

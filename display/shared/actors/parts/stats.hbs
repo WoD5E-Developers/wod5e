@@ -18,7 +18,7 @@
                             {{#each type as |attribute key|}}
                                 <div class="attribute">
                                     <label for="actor.system.attributes.{{attribute.id}}.value" class="resource-label rollable" data-action="roll" data-value-paths="attributes.{{attribute.id}}.value" data-select-dialog="true"
-                                        data-label="{{attribute.displayName}}" data-selectors="attributes attributes.{{attribute.id}} {{attribute.type}}" data-attribute="{{attribute.id}}">{{attribute.displayName}}</label>
+                                        data-attribute="{{attribute.id}}">{{attribute.displayName}}</label>
                                     {{#if ../../settings.skillAttributeInputs}}
                                         {{#if ../../locked}}
                                             <b>
@@ -54,7 +54,7 @@
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <label for="actor.system.skills.{{skill.id}}.value" class="rollable{{#if skill.bonuses}} specialty-available{{/if}}" data-action="roll" data-value-paths="skills.{{skill.id}}.value"
-                                        data-label="{{skill.displayName}}" data-selectors="skills skills.{{skill.id}}" data-skill="{{skill.id}}" data-select-dialog="true"
+                                        data-skill="{{skill.id}}" data-select-dialog="true"
                                         data-use-flavor-path="true" data-flavor-path="skills.{{skill.id}}.description" data-macroid="{{skill.macroid}}">{{skill.displayName}}</label>
                                         {{#if hasSpecialties}}
                                             <label class="specialty" title="{{localize "WOD5E.SkillsList.Specialties"}}:{{#each skill.specialtiesList as |bonus|}} {{bonus}}{{#unless @last}},{{/unless}}{{/each}}">S</label>

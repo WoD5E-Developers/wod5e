@@ -22,31 +22,20 @@
                     </div>
                     <div class="item-name{{#if item.system.enrichedDescription}} collapsible{{/if}}" {{#if item.system.enrichedDescription}}data-action="toggleCollapse"{{/if}}>
                         {{item.name}}
-                        {{#if item.system.uses.enabled}}
-                            ({{item.system.uses.current}}/{{item.system.uses.max}})
-                        {{/if}}
                     </div>
-                    {{#ifnoteq item.system.featuretype 'boon'}}
-                        <div class="dot-tracker">
-                            <div class="resource-value" data-value="{{item.system.points}}" data-name="items.{{item._id}}">
-                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
-                                {{#numLoop 5}}
-                                    <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
-                                {{/numLoop}}
+                    {{#if ../../locked}}
+                        {{#ifnoteq item.system.featuretype 'boon'}}
+                            <div class="dot-tracker">
+                                <div class="resource-value" data-value="{{item.system.points}}" data-name="items.{{item._id}}">
+                                    <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                    {{#numLoop 5}}
+                                        <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                                    {{/numLoop}}
+                                </div>
                             </div>
-                        </div>
-                    {{/ifnoteq}}
+                        {{/ifnoteq}}
+                    {{/if}}
                     <div class="item-controls">
-                        {{#if item.system.uses.enabled}}
-                            <!-- Icon to consume a use of the feature -->
-                            <a class="item-control item-edit" data-action="expendItemUse" data-item-id="{{item._id}}" title="{{localize 'WOD5E.ItemsList.ExpendUse'}}">
-                                <i class="fa-solid fa-angle-down"></i>
-                            </a>
-                            <!-- Icon to restore the uses of the feature back to max -->
-                            <a class="item-control item-edit" data-action="restoreItemUses" data-item-id="{{item._id}}" title="{{localize 'WOD5E.ItemsList.ResetUses'}}">
-                                <i class="fa-solid fa-rotate-left"></i>
-                            </a>
-                        {{/if}}
                         <!-- Icon to edit the item -->
                         <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{item._id}}" title="{{localize 'WOD5E.Edit'}}">
                             <i class="fas fa-edit"></i>
@@ -56,6 +45,35 @@
                             <i class="fas fa-trash"></i>
                         </a>
                     </div>
+                </div>
+                <div class="flexrow">
+                    {{#if item.system.uses.enabled}}
+                        <div>
+                            <span>
+                                {{localize "WOD5E.ItemsList.UsesRemaining"}}: {{item.system.uses.current}}/{{item.system.uses.max}}
+                            </span>
+                            <!-- Icon to consume a use of the feature -->
+                            <a class="item-control item-use" data-action="expendItemUse" data-item-id="{{item._id}}" title="{{localize 'WOD5E.ItemsList.ExpendUse'}}">
+                                <i class="fa-solid fa-angle-down"></i>
+                            </a>
+                            <!-- Icon to restore the uses of the feature back to max -->
+                            <a class="item-control item-restore" data-action="restoreItemUses" data-item-id="{{item._id}}" title="{{localize 'WOD5E.ItemsList.ResetUses'}}">
+                                <i class="fa-solid fa-rotate-left"></i>
+                            </a>
+                        </div>
+                    {{/if}}
+                    {{#unless ../../locked}}
+                        {{#ifnoteq item.system.featuretype 'boon'}}
+                            <div class="dot-tracker">
+                                <div class="resource-value" data-value="{{item.system.points}}" data-name="items.{{item._id}}">
+                                    <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                    {{#numLoop 5}}
+                                        <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                                    {{/numLoop}}
+                                </div>
+                            </div>
+                        {{/ifnoteq}}
+                    {{/unless}}
                 </div>
                 <div class="collapsible-content item-description">
                     {{{item.system.enrichedDescription}}}

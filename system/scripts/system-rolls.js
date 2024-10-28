@@ -144,6 +144,22 @@ class WOD5eDice {
       // Handle willpower damage
       if (willpowerDamage > 0 && game.settings.get('vtm5e', 'automatedWillpower')) _damageWillpower(null, null, actor, willpowerDamage)
 
+      // Roll any advanced check dice that need to be rolled in a separate rollmessage
+      if (advancedCheckDice > 0) {
+        await this.Roll({
+          actor,
+          data,
+          title: `${game.i18n.localize('WOD5E.VTM.RousingBlood')} - ${title}`,
+          system,
+          disableBasicDice: true,
+          advancedDice: advancedCheckDice,
+          rollMode,
+          quickRoll: true,
+          increaseHunger: system === 'vampire',
+          decreaseRage: system === 'werewolf'
+        })
+      }
+
       // Send the results of the roll back to any functions that need it
       if (callback) {
         callback(
@@ -162,22 +178,6 @@ class WOD5eDice {
         game.macros.get(macro).execute({
           actor,
           token: actor.token ?? actor.getActiveTokens[0]
-        })
-      }
-
-      // Roll any advanced check dice that need to be rolled in a separate rollmessage
-      if (advancedCheckDice > 0) {
-        await this.Roll({
-          actor,
-          data,
-          title: `${game.i18n.localize('WOD5E.VTM.RousingBlood')} - ${title}`,
-          system,
-          disableBasicDice: true,
-          advancedDice: advancedCheckDice,
-          rollMode,
-          quickRoll: true,
-          increaseHunger: system === 'vampire',
-          decreaseRage: system === 'werewolf'
         })
       }
 

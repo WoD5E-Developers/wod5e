@@ -120,8 +120,8 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
         context.tab = context.tabs.description
 
         // Part-specific data
-        context.description = context.skillData.description
-        context.enrichedDescription = await TextEditor.enrichHTML(context.skillData.description)
+        context.description = context.skillData?.description
+        context.enrichedDescription = await TextEditor.enrichHTML(context.skillData?.description)
 
         break
 

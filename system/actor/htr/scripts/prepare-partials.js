@@ -14,7 +14,7 @@ export const prepareEdgesContext = async function (context, actor) {
   // Get discipline data if any discipline is currently selected
   if (actorData?.selectedEdge) {
     context.selectedEdge = actorData.edges[actorData.selectedEdge]
-    context.enrichedSelectedEdgeDescription = await TextEditor.enrichHTML(context.selectedEdge.description)
+    context.enrichedSelectedEdgeDescription = await TextEditor.enrichHTML(context.selectedEdge?.description || '')
   }
 
   // Get power data if any power is currently selected

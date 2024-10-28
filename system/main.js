@@ -16,7 +16,7 @@ import { WoDHotbar } from './ui/wod-hotbar.js'
 import { preloadHandlebarsTemplates } from './scripts/templates.js'
 import { loadDiceSoNice } from './dice/dice-so-nice.js'
 import { loadHelpers } from './scripts/helpers.js'
-import { loadSettings, _updatePreferredColorScheme, _updateHeaderFontPreference } from './scripts/settings.js'
+import { loadSettings, _updatePreferredColorScheme, _updateHeaderFontPreference, _updateXpIconOverrides } from './scripts/settings.js'
 import { PauseChanges } from './ui/pause.js'
 // WOD5E functions and classes
 import { MortalDie, VampireDie, VampireHungerDie, HunterDie, HunterDesperationDie, WerewolfDie, WerewolfRageDie } from './dice/splat-dice.js'
@@ -37,6 +37,7 @@ import { WereForms } from './api/def/were-forms.js'
 import { Gifts } from './api/def/gifts.js'
 import { _rollItem } from './actor/scripts/item-roll.js'
 import { _updateCSSVariable, cssVariablesRecord } from './scripts/update-css-variables.js'
+import { _updateToken } from './actor/wta/scripts/forms.js'
 
 // Anything that needs to be ran alongside the initialisation of the world
 Hooks.once('init', async function () {
@@ -99,6 +100,9 @@ Hooks.once('init', async function () {
   // Initialize header font preference on game init
   _updateHeaderFontPreference()
 
+  // Initialize the alterations to any XP icons
+  _updateXpIconOverrides()
+
   // Initialize the alterations to the actors sidebar
   RenderActorSidebar()
 
@@ -129,6 +133,7 @@ Hooks.once('ready', async function () {
   window.WOD5E = {
     api: {
       Roll: wod5eAPI.Roll,
+      PromptRoll: wod5eAPI.PromptRoll,
       RollFromDataset: wod5eAPI.RollFromDataset,
       getBasicDice: wod5eAPI.getBasicDice,
       getAdvancedDice: wod5eAPI.getAdvancedDice,
@@ -192,6 +197,18 @@ Hooks.once('setup', () => {
 // DiceSoNice functionality
 Hooks.once('diceSoNiceReady', (dice3d) => {
   loadDiceSoNice(dice3d)
+})
+
+Hooks.on('canvasReady', (canvas) => {
+  const tokens = canvas.scene.tokens
+
+  tokens.forEach((token) => {
+    if (token?.actor && token?.actor?.type === 'werewolf') {
+      const activeForm = token.actor.system.activeForm
+
+      _updateToken(token.actor, activeForm)
+    }
+  })
 })
 
 // Display the willpower reroll option in the chat when messages are right clicked
