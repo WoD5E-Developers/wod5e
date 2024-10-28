@@ -1458,9 +1458,10 @@ body.uk .actor.sheet {
 }
 .actor.sheet .tab[data-tab="experience"] .xp-amount {
   text-align: right;
+  min-width: 50px;
 }
 .actor.sheet .tab[data-tab="experience"] .xp-amount:not(.xp-header-label) {
-  margin-right: 50px;
+  flex-grow: 0;
 }
 .actor.sheet .tab[data-tab="experience"] .xp-controls {
   text-align: right;
