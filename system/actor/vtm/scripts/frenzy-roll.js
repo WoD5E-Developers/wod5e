@@ -1,4 +1,4 @@
-/* global game, foundry */
+/* global game, foundry, renderTemplate, ChatMessage */
 
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 
@@ -44,12 +44,48 @@ export const _onFrenzyRoll = async function (event) {
 
         if (!result.rollSuccessful) {
           actor.update({ 'system.frenzyActive': true })
+
+          await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+            name: game.i18n.localize('WOD5E.VTM.ResistingFrenzyFailed'),
+            img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+            description: game.i18n.format('WOD5E.VTM.ResistingFrenzyFailedDescription', {
+              actor: actor.name
+            })
+          }).then(html => {
+            ChatMessage.create({
+              content: html
+            })
+          })
+        } else {
+          await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+            name: game.i18n.localize('WOD5E.VTM.ResistingFrenzySuccess'),
+            img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+            description: game.i18n.format('WOD5E.VTM.ResistingFrenzySuccessDescription', {
+              actor: actor.name
+            })
+          }).then(html => {
+            ChatMessage.create({
+              content: html
+            })
+          })
         }
       }
     })
   } else {
     // Automatically enter frenzy
     actor.update({ 'system.frenzyActive': true })
+
+    await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+      name: game.i18n.localize('WOD5E.VTM.RidingTheWave'),
+      img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+      description: game.i18n.format('WOD5E.VTM.RidingTheWaveDescription', {
+        actor: actor.name
+      })
+    }).then(html => {
+      ChatMessage.create({
+        content: html
+      })
+    })
   }
 }
 
