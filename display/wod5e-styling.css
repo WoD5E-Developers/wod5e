@@ -1430,14 +1430,11 @@ body.uk .actor.sheet {
 }
 .actor.sheet .tab[data-tab="experience"] .xp-header {
   font-weight: bold;
-}
-.actor.sheet .tab[data-tab="experience"] .xp-label {
-  font-weight: bold;
+  font-size: 14pt;
 }
 .actor.sheet .tab[data-tab="experience"] .xp-amount {
   max-width: 30px;
   text-align: right;
-  font-weight: bold;
 }
 .actor.sheet .tab[data-tab="experience"] .xp-controls {
   text-align: right;
@@ -2483,13 +2480,6 @@ prose-mirror .editor-menu button {
 }
 .sheet .clickable {
   cursor: pointer;
-}
-/* Experience Tab */
-.tab[data-tab="experience"] .experience-gain .xp-label {
-  filter: drop-shadow(0px 0px 4px var(--system-color-3));
-}
-.tab[data-tab="experience"] .experience-spend .xp-label {
-  filter: drop-shadow(0px 0px 4px var(--system-color-9));
 }
 /* Resource Counters */
 .resource-value .resource-value-step {
