@@ -160,6 +160,27 @@ class WOD5eDice {
         })
       }
 
+      // Send the results of the roll back to any functions that need it
+      if (callback) {
+        callback(
+          null,
+          {
+            ...roll,
+            system,
+            difficulty,
+            rollSuccessful: (roll.total >= difficulty) || (roll.total > 0 && difficulty === 0)
+          }
+        )
+      }
+
+      // Run any macros that need to be ran
+      if (macro && game.macros.get(macro)) {
+        game.macros.get(macro).execute({
+          actor,
+          token: actor.token ?? actor.getActiveTokens[0]
+        })
+      }
+
       // The below isn't needed if disableMessageOutput is set to true
       if (disableMessageOutput && game.dice3d) {
         // Send notice to DiceSoNice because we're not making a new chat message
@@ -196,27 +217,6 @@ class WOD5eDice {
       {
         rollMode: $form ? $form.find('[name=rollMode]').val() : rollMode
       })
-
-      // Send the results of the roll back to any functions that need it
-      if (callback) {
-        callback(
-          null,
-          {
-            ...roll,
-            system,
-            difficulty,
-            rollSuccessful: (roll.total >= difficulty) || (roll.total > 0 && difficulty === 0)
-          }
-        )
-      }
-
-      // Run any macros that need to be ran
-      if (macro && game.macros.get(macro)) {
-        game.macros.get(macro).execute({
-          actor,
-          token: actor.token ?? actor.getActiveTokens[0]
-        })
-      }
 
       return roll
     }
