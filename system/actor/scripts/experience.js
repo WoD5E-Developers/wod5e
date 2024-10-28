@@ -36,7 +36,8 @@ export const _onAddExperience = async function (event, target) {
             newExperience = {
               id: foundry.utils.randomID(8),
               name,
-              value: isSpendingXP ? -Math.abs(value) : Math.abs(value)
+              value: isSpendingXP ? -Math.abs(value) : Math.abs(value),
+              timestamp: Date.now()
             }
 
             // Define the existing list of experiences

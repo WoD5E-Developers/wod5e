@@ -74,18 +74,27 @@
                 </div>
             </div>
             <div class="xp-header flexrow">
-                <div class="xp-label">
+                <div class="xp-label xp-header-label">
                     Name
                 </div>
-                <div class="xp-amount">
+                <div class="xp-amount xp-header-label">
                     Amount
                 </div>
-                <div class="xp-controls">
+                <div class="xp-controls xp-header-label">
                     Controls
                 </div>
             </div>
             {{#each experiences as |experience key|}}
                 <div class="flexrow{{#ifgr experience.value 0}} experience-gain{{/ifgr}}{{#ifless experience.value 0}} experience-spend{{/ifless}}">
+                    {{#ifgr experience.value 0}}
+                        <img class="xp-icon" src="systems/vtm5e/assets/icons/sheet/exp-gain.webp"/>
+                    {{/ifgr}}
+                    {{#ifeq experience.value 0}}
+                        <img class="xp-icon"  src="systems/vtm5e/assets/icons/sheet/exp-neutral.webp"/>
+                    {{/ifeq}}
+                    {{#ifless experience.value 0}}
+                        <img class="xp-icon"  src="systems/vtm5e/assets/icons/sheet/exp-spend.webp"/>
+                    {{/ifless}}
                     <div class="xp-label">
                         {{experience.name}}
                     </div>
