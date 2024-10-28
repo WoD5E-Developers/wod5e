@@ -191,7 +191,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       displayBanner: game.settings.get('vtm5e', 'actorBanner'),
 
       headerbg: await getActorHeader(actor),
-      actorbg: await getActorBackground(actor),
+      actorbg: actor.system?.settings?.background,
 
       baseActorType: actorTypeData.baseActorType,
       currentActorType: actorTypeData.currentActorType,
@@ -321,7 +321,27 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
 
     // Update the actor background if it's not the default
     const actorBackground = await getActorBackground(this.actor)
-    if (actorBackground) html.find('section.window-content').css('background', `url("/${actorBackground}")`)
+    if (actorBackground) {
+      html.find('section.window-content').css('background', `url("/${actorBackground}")`)
+    }
+
+    html.find('.actor-header-bg-filepicker input').on('focusout', function (event) {
+      event.preventDefault()
+
+      const filepicker = event.target.parentElement
+      const value = event?.target?.value
+
+      $(filepicker).val(value)
+    })
+
+    html.find('.actor-background-filepicker input').on('focusout', function (event) {
+      event.preventDefault()
+
+      const filepicker = event.target.parentElement
+      const value = event?.target?.value
+
+      $(filepicker).val(value)
+    })
 
     // Toggle whether the sheet is locked or not
     html.toggleClass('locked', this.actor.system.locked)
