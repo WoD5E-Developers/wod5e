@@ -16,7 +16,7 @@ import { WoDHotbar } from './ui/wod-hotbar.js'
 import { preloadHandlebarsTemplates } from './scripts/templates.js'
 import { loadDiceSoNice } from './dice/dice-so-nice.js'
 import { loadHelpers } from './scripts/helpers.js'
-import { loadSettings, _updatePreferredColorScheme, _updateHeaderFontPreference } from './scripts/settings.js'
+import { loadSettings, _updatePreferredColorScheme, _updateHeaderFontPreference, _updateXpIconOverrides } from './scripts/settings.js'
 import { PauseChanges } from './ui/pause.js'
 // WOD5E functions and classes
 import { MortalDie, VampireDie, VampireHungerDie, HunterDie, HunterDesperationDie, WerewolfDie, WerewolfRageDie } from './dice/splat-dice.js'
@@ -99,6 +99,9 @@ Hooks.once('init', async function () {
 
   // Initialize header font preference on game init
   _updateHeaderFontPreference()
+
+  // Initialize the alterations to any XP icons
+  _updateXpIconOverrides()
 
   // Initialize the alterations to the actors sidebar
   RenderActorSidebar()

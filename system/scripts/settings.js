@@ -289,6 +289,60 @@ export const loadSettings = async function () {
     }
   })
 
+  // Override for the "Gain" XP Icon
+  game.settings.register('vtm5e', 'gainXpIconOverride', {
+    name: game.i18n.localize('WOD5E.Settings.GainXpIconOverride'),
+    hint: game.i18n.localize('WOD5E.Settings.GainXpIconOverrideHint'),
+    scope: 'world',
+    config: true,
+    default: '',
+    type: String,
+    filePicker: 'image',
+    onChange: async (newIcon) => {
+      if (newIcon) {
+        document.documentElement.style.setProperty('--xp-gain-icon', `url("/${newIcon}")`)
+      } else {
+        document.documentElement.style.removeProperty('--xp-gain-icon')
+      }
+    }
+  })
+
+  // Override for the "Spend" XP Icon
+  game.settings.register('vtm5e', 'spendXpIconOverride', {
+    name: game.i18n.localize('WOD5E.Settings.SpendXpIconOverride'),
+    hint: game.i18n.localize('WOD5E.Settings.SpendXpIconOverrideHint'),
+    scope: 'world',
+    config: true,
+    default: '',
+    type: String,
+    filePicker: 'image',
+    onChange: async (newIcon) => {
+      if (newIcon) {
+        document.documentElement.style.setProperty('--xp-spend-icon', `url("/${newIcon}")`)
+      } else {
+        document.documentElement.style.removeProperty('--xp-spend-icon')
+      }
+    }
+  })
+
+  // Override for the "Neutral" XP Icon
+  game.settings.register('vtm5e', 'neutralXpIconOverride', {
+    name: game.i18n.localize('WOD5E.Settings.NeutralXpIconOverride'),
+    hint: game.i18n.localize('WOD5E.Settings.NeutralXpIconOverrideHint'),
+    scope: 'world',
+    config: true,
+    default: '',
+    type: String,
+    filePicker: 'image',
+    onChange: async (newIcon) => {
+      if (newIcon) {
+        document.documentElement.style.setProperty('--xp-neutral-icon', `url("/${newIcon}")`)
+      } else {
+        document.documentElement.style.removeProperty('--xp-neutral-icon')
+      }
+    }
+  })
+
   // World Version, only really needed by developers
   game.settings.register('vtm5e', 'worldVersion', {
     name: game.i18n.localize('WOD5E.Settings.WorldVersion'),
@@ -373,5 +427,26 @@ export const _updateHeaderFontPreference = async function () {
   } else {
     // Append the class to the document body
     document.body.classList.add('vampire-font-headers')
+  }
+}
+
+/**
+ * Update the XP icons
+ */
+export const _updateXpIconOverrides = async function () {
+  const spendIcon = game.settings.get('vtm5e', 'spendXpIconOverride')
+  const gainIcon = game.settings.get('vtm5e', 'gainXpIconOverride')
+  const neutralIcon = game.settings.get('vtm5e', 'neutralXpIconOverride')
+
+  if (spendIcon) {
+    document.documentElement.style.setProperty('--xp-spend-icon', `url("/${spendIcon}")`)
+  }
+
+  if (gainIcon) {
+    document.documentElement.style.setProperty('--xp-gain-icon', `url("/${gainIcon}")`)
+  }
+
+  if (neutralIcon) {
+    document.documentElement.style.setProperty('--xp-neutral-icon', `url("/${neutralIcon}")`)
   }
 }
