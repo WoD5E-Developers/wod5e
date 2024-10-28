@@ -1311,6 +1311,9 @@ body.uk .actor.sheet {
   display: flex;
   flex-grow: 0;
 }
+.actor.sheet .limited-actor-header .charname {
+  font-size: 20pt;
+}
 .actor.sheet .limited-actor-header .header-content {
   flex-grow: 1;
   text-align: center;
