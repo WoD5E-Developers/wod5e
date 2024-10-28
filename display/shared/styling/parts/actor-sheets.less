@@ -1,3 +1,9 @@
+:root {
+  --xp-gain-icon: url("/systems/vtm5e/assets/icons/sheet/exp-gain.webp");
+  --xp-spend-icon: url("/systems/vtm5e/assets/icons/sheet/exp-spend.webp");
+  --xp-neutral-icon: url("/systems/vtm5e/assets/icons/sheet/exp-neutral.webp");
+}
+
 /* The actor sheet itself */
 .actor.sheet:not(.minimized):not(.group) {
   min-width: 850px;
@@ -227,6 +233,18 @@
       background-size: cover;
       border-radius: 50%;
       padding: 2px;
+    }
+
+    .xp-spend-icon {
+      content: var(--xp-spend-icon);
+    }
+
+    .xp-gain-icon {
+      content: var(--xp-gain-icon);
+    }
+
+    .xp-neutral-icon {
+      content: var(--xp-neutral-icon);
     }
 
     .xp-amount {

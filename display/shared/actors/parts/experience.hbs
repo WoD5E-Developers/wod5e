@@ -87,13 +87,13 @@
             {{#each experiences as |experience key|}}
                 <div class="flexrow{{#ifgr experience.value 0}} experience-gain{{/ifgr}}{{#ifless experience.value 0}} experience-spend{{/ifless}}">
                     {{#ifgr experience.value 0}}
-                        <img class="xp-icon" src="systems/vtm5e/assets/icons/sheet/exp-gain.webp"/>
+                        <img class="xp-icon xp-gain-icon"/>
                     {{/ifgr}}
                     {{#ifeq experience.value 0}}
-                        <img class="xp-icon"  src="systems/vtm5e/assets/icons/sheet/exp-neutral.webp"/>
+                        <img class="xp-icon xp-neutral-icon"/>
                     {{/ifeq}}
                     {{#ifless experience.value 0}}
-                        <img class="xp-icon"  src="systems/vtm5e/assets/icons/sheet/exp-spend.webp"/>
+                        <img class="xp-icon xp-spend-icon"/>
                     {{/ifless}}
                     <div class="xp-label">
                         {{experience.name}}
