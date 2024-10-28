@@ -66,6 +66,16 @@
     "Value": "Valore",
     "Wiki": "Wiki",
     "Willpower": "Volontà",
+    "ActorSettings": {
+      "_ActorBackground": "",
+      "_ActorHeaderBackground": "",
+      "_ActorType": "",
+      "_ShowDisciplines": "",
+      "_ShowEdges": "",
+      "_ShowGeneralDifficulty": "",
+      "_ShowGifts": "",
+      "_UseInputFieldsForStats": ""
+    },
     "AttributesList": {
       "Attributes": "Attributi",
       "Charisma": "Carisma",

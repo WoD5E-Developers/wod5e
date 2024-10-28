@@ -66,6 +66,16 @@
     "_Value": "",
     "_Wiki": "",
     "_Willpower": "",
+    "ActorSettings": {
+      "_ActorBackground": "",
+      "_ActorHeaderBackground": "",
+      "_ActorType": "",
+      "_ShowDisciplines": "",
+      "_ShowEdges": "",
+      "_ShowGeneralDifficulty": "",
+      "_ShowGifts": "",
+      "_UseInputFieldsForStats": ""
+    },
     "AttributesList": {
       "_Attributes": "",
       "_Charisma": "",

@@ -66,6 +66,16 @@
     "Value": "Wartość",
     "_Wiki": "",
     "Willpower": "Siła Woli",
+    "ActorSettings": {
+      "_ActorBackground": "",
+      "_ActorHeaderBackground": "",
+      "_ActorType": "",
+      "_ShowDisciplines": "",
+      "_ShowEdges": "",
+      "_ShowGeneralDifficulty": "",
+      "_ShowGifts": "",
+      "_UseInputFieldsForStats": ""
+    },
     "AttributesList": {
       "Attributes": "Atrybuty",
       "Charisma": "Charyzma",

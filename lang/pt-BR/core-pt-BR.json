@@ -66,6 +66,16 @@
     "Value": "Valor",
     "_Wiki": "",
     "Willpower": "Força de Vontade",
+    "ActorSettings": {
+      "_ActorBackground": "",
+      "_ActorHeaderBackground": "",
+      "_ActorType": "",
+      "_ShowDisciplines": "",
+      "_ShowEdges": "",
+      "_ShowGeneralDifficulty": "",
+      "_ShowGifts": "",
+      "_UseInputFieldsForStats": ""
+    },
     "AttributesList": {
       "Attributes": "Atributos",
       "Charisma": "Carisma",

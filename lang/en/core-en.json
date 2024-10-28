@@ -66,6 +66,16 @@
     "Value": "Value",
     "Wiki": "Wiki",
     "Willpower": "Willpower",
+    "ActorSettings": {
+      "ActorBackground": "Actor Background",
+      "ActorHeaderBackground": "Actor Header Background",
+      "ActorType": "Actor Type",
+      "ShowDisciplines": "Show Disciplines",
+      "ShowEdges": "Show Edges",
+      "ShowGeneralDifficulty": "Show General Difficulty",
+      "ShowGifts": "Show Gifts",
+      "UseInputFieldsForStats": "Use Input Fields For Stats"
+    },
     "AttributesList": {
       "Attributes": "Attributes",
       "Charisma": "Charisma",
