@@ -247,6 +247,8 @@
       "Total": "Total"
     },
     "Settings": {
+      "ActorBackgroundOverride": "Default Actor Background",
+      "ActorBackgroundOverrideHint": "Determine the default image used for actor backgrounds.",
       "ActorBanner": "Enable Character Type Banner",
       "ActorBannerHint": "Display a banner at the top of actor sheets to represent the character type.",
       "ActorHeaderOverride": "Default Actor Header",

@@ -247,6 +247,8 @@
       "Total": "Totale"
     },
     "Settings": {
+      "_ActorBackgroundOverride": "",
+      "_ActorBackgroundOverrideHint": "",
       "ActorBanner": "Banner tipo personaggio",
       "ActorBannerHint": "Mostra un Banner sulla scheda che rappresenta il tipo di personaggio.",
       "_ActorHeaderOverride": "",

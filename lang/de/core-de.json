@@ -247,6 +247,8 @@
       "Total": "Gesamt"
     },
     "Settings": {
+      "_ActorBackgroundOverride": "",
+      "_ActorBackgroundOverrideHint": "",
       "ActorBanner": "Charakter-Typ-Banner anzeigen",
       "ActorBannerHint": "Zeigt einen farbigen Banner oben am Charakterbogen, der den Typ von Wesen anzeigt.",
       "_ActorHeaderOverride": "",

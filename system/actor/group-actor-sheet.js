@@ -2,6 +2,7 @@
 
 // Preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
+import { getActorBackground } from './scripts/get-actor-background.js'
 import { getActorTypes } from './scripts/get-actor-types.js'
 import { prepareGroupFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareGroupMembersContext } from './scripts/prepare-partials.js'
 // Definition file
@@ -190,6 +191,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       displayBanner: game.settings.get('vtm5e', 'actorBanner'),
 
       headerbg: await getActorHeader(actor),
+      actorbg: await getActorBackground(actor),
 
       baseActorType: actorTypeData.baseActorType,
       currentActorType: actorTypeData.currentActorType,
@@ -311,11 +313,15 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     await this.actor.update(submitData)
   }
 
-  _onRender () {
+  async _onRender () {
     const html = $(this.element)
 
     // Update the window title (since ActorSheetV2 doesn't do it automatically)
     $(this.window.title).text(this.title)
+
+    // Update the actor background if it's not the default
+    const actorBackground = await getActorBackground(this.actor)
+    if (actorBackground) html.find('section.window-content').css('background', `url("/${actorBackground}")`)
 
     // Toggle whether the sheet is locked or not
     html.toggleClass('locked', this.actor.system.locked)

@@ -760,6 +760,7 @@
       "settings": {
         "settings": {
           "headerbg": "",
+          "background": "",
           "limited": {
             "biography": true,
             "appearance": true,

@@ -247,6 +247,8 @@
       "Total": "Результат"
     },
     "Settings": {
+      "_ActorBackgroundOverride": "",
+      "_ActorBackgroundOverrideHint": "",
       "_ActorBanner": "",
       "_ActorBannerHint": "",
       "_ActorHeaderOverride": "",

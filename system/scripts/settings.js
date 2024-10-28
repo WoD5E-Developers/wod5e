@@ -289,6 +289,21 @@ export const loadSettings = async function () {
     }
   })
 
+  // Override for the default actor backgrounds
+  game.settings.register('vtm5e', 'actorBackgroundOverride', {
+    name: game.i18n.localize('WOD5E.Settings.ActorBackgroundOverride'),
+    hint: game.i18n.localize('WOD5E.Settings.ActorBackgroundOverrideHint'),
+    scope: 'world',
+    config: true,
+    default: '',
+    type: String,
+    filePicker: 'image',
+    onChange: async () => {
+      // Reload actorsheets
+      resetActors()
+    }
+  })
+
   // Override for the "Gain" XP Icon
   game.settings.register('vtm5e', 'gainXpIconOverride', {
     name: game.i18n.localize('WOD5E.Settings.GainXpIconOverride'),
