@@ -2191,6 +2191,9 @@ body.uk .actor.sheet {
   flex-grow: 0;
   text-wrap: nowrap;
 }
+.power-description {
+  overflow-wrap: break-word;
+}
 
 .resource-value {
   align-self: flex-end;
