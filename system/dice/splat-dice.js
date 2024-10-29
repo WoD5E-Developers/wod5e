@@ -10,7 +10,16 @@ import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDi
 export class MortalDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
-    termData.modifiers = ['cs>5']
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
 
     super(termData)
   }
@@ -42,7 +51,16 @@ export class MortalDie extends foundry.dice.terms.Die {
 export class VampireDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
-    termData.modifiers = ['cs>5']
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
 
     super(termData)
   }
@@ -74,7 +92,16 @@ export class VampireDie extends foundry.dice.terms.Die {
 export class VampireHungerDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
-    termData.modifiers = ['cs>5']
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
 
     super(termData)
   }
@@ -106,7 +133,16 @@ export class VampireHungerDie extends foundry.dice.terms.Die {
 export class HunterDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
-    termData.modifiers = ['cs>5']
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
 
     super(termData)
   }
@@ -138,7 +174,16 @@ export class HunterDie extends foundry.dice.terms.Die {
 export class HunterDesperationDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
-    termData.modifiers = ['cs>5']
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
 
     super(termData)
   }
@@ -170,7 +215,16 @@ export class HunterDesperationDie extends foundry.dice.terms.Die {
 export class WerewolfDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
-    termData.modifiers = ['cs>5']
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
 
     super(termData)
   }
@@ -202,7 +256,16 @@ export class WerewolfDie extends foundry.dice.terms.Die {
 export class WerewolfRageDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
-    termData.modifiers = ['cs>5']
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
 
     super(termData)
   }
