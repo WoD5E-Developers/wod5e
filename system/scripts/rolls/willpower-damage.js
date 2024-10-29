@@ -58,7 +58,7 @@ export async function _damageWillpower (event, target, actor, willpowerDamage) {
     })
   }
 
-  renderTemplate('systems/vtm5e/display/ui/chat/willpower-damage.hbs', {
+  renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
     name: `${prependTitle}${game.i18n.localize('WOD5E.Chat.WillpowerDamage')}`,
     img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
     description: `${game.i18n.format('WOD5E.Chat.HasReceivedWillpowerDamage', {

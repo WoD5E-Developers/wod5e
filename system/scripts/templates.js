@@ -118,7 +118,6 @@ export const preloadHandlebarsTemplates = async function () {
 
     // Chat Message Partials
     'systems/vtm5e/display/ui/chat/roll-message.hbs',
-    'systems/vtm5e/display/ui/chat/willpower-damage.hbs',
     'systems/vtm5e/display/ui/chat/willpower-reroll.hbs',
 
     // Menu Partials
