@@ -133,6 +133,8 @@ export const _rollItem = async function (actor, item) {
     macro,
     advancedCheckDice,
     callback: async (err, roll) => {
+      if (err) console.log(err)
+
       if (system === 'vampire' && itemData.cost > 0) {
         _onRouseCheck(actor, item, roll.rollMode)
       } else if (system === 'werewolf' && (itemData.cost > 0 || itemData.willpowercost > 0)) {
