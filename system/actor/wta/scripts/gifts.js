@@ -78,11 +78,14 @@ export const _onRemoveGift = async function (event, target) {
   })
 }
 
-export const _onGiftCost = async function (actor, item) {
+export const _onGiftCost = async function (actor, item, rollMode) {
   // Secondary variables
   const cost = item.system.cost
   const willpowerCost = item.system.willpowercost
   let selectors = []
+
+  // Apply rollMode from chat if none is set
+  if (!rollMode) rollMode = game.settings.get('core', 'rollMode')
 
   if (cost > 0) {
     selectors = ['rage']
@@ -99,6 +102,7 @@ export const _onGiftCost = async function (actor, item) {
     advancedDice: cost + activeModifiers.totalValue,
     title: `${game.i18n.localize('WOD5E.WTA.RageDice')} - ${item.name}`,
     actor,
+    rollMode,
     disableBasicDice: true,
     decreaseRage: true,
     selectors,

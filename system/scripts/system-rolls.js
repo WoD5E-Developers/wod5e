@@ -170,7 +170,8 @@ class WOD5eDice {
             ...roll,
             system,
             difficulty,
-            rollSuccessful: (roll.total >= difficulty) || (roll.total > 0 && difficulty === 0)
+            rollSuccessful: (roll.total >= difficulty) || (roll.total > 0 && difficulty === 0),
+            rollMode
           }
         )
       }
@@ -475,9 +476,9 @@ class WOD5eDice {
 
       if (failures > 0) {
         if (system === 'vampire' && increaseHunger && game.settings.get('vtm5e', 'automatedHunger')) {
-          _increaseHunger(actor, failures)
+          _increaseHunger(actor, failures, rollMode)
         } else if (system === 'werewolf' && decreaseRage && game.settings.get('vtm5e', 'automatedRage')) {
-          _decreaseRage(actor, failures)
+          _decreaseRage(actor, failures, rollMode)
         }
       }
 
@@ -486,7 +487,7 @@ class WOD5eDice {
         const oblivionTriggers = diceResults.filter(result => [1, 10].includes(result.result) && !result.discarded).length
 
         if (oblivionTriggers > 0) {
-          _applyOblivionStains(actor, oblivionTriggers)
+          _applyOblivionStains(actor, oblivionTriggers, rollMode)
         }
       }
     }

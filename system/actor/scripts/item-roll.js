@@ -132,11 +132,11 @@ export const _rollItem = async function (actor, item) {
     selectors,
     macro,
     advancedCheckDice,
-    callback: async () => {
+    callback: async (err, roll) => {
       if (system === 'vampire' && itemData.cost > 0) {
-        _onRouseCheck(actor, item)
+        _onRouseCheck(actor, item, roll.rollMode)
       } else if (system === 'werewolf' && (itemData.cost > 0 || itemData.willpowercost > 0)) {
-        _onGiftCost(actor, item)
+        _onGiftCost(actor, item, roll.rollMode)
       }
     }
   })

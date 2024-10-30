@@ -4,11 +4,14 @@ import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
 import { potencyToRouse } from './blood-potency.js'
 
-export const _onRouseCheck = async function (actor, item) {
+export const _onRouseCheck = async function (actor, item, rollMode) {
   // Secondary variables
   const level = item.system.level
   const cost = item.system.cost > 0 ? item.system.cost : 1
   const selectors = ['rouse']
+
+  // Apply rollMode from chat if none is set
+  if (!rollMode) rollMode = game.settings.get('core', 'rollMode')
 
   if (item.system.discipline === 'oblivion' && cost > 0) {
     selectors.push('oblivion-rouse')
@@ -34,6 +37,7 @@ export const _onRouseCheck = async function (actor, item) {
       rerollHunger: rouseRerolls,
       increaseHunger: true,
       selectors,
+      rollMode,
       quickRoll: true
     })
   } else if (actor.type === 'ghoul' && level > 1) {
