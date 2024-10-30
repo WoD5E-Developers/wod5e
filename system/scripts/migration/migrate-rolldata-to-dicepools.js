@@ -1,17 +1,46 @@
-/* global ui, game, WOD5E, foundry, Item */
+/* global ui, game, WOD5E, foundry, Item, Actor */
 
 export const MigrateRolldataToDicepools = async function () {
-  const compendiumsList = game.packs.filter(compendium => compendium.metadata.type === 'Item')
+  const compendiumsActorsList = game.packs.filter(compendium => compendium.metadata.type === 'Actor')
+  const compendiumsItemsList = game.packs.filter(compendium => compendium.metadata.type === 'Item')
   const actorsList = game.actors
   const itemsList = game.items
-  const totalIterations = actorsList.size + compendiumsList.size + itemsList.size
+  const totalIterations = actorsList.size + compendiumsItemsList.size + itemsList.size
   const migrationIDs = []
 
   // If there's nothing to go through, then just resolve and move on.
   if (totalIterations === 0) { return [] }
 
+  // Fix dicepools of rollable items in actors in compendiums
+  for (const compendium of compendiumsActorsList) {
+    const docs = await compendium.getDocuments()
+
+    for (const actor of docs) {
+      const actorItems = actor.items
+      const updatedActorItems = []
+      let hasFixedItems = false
+
+      for (const item of actorItems) {
+        // If the item was previously rollable and doesn't already have a filled dicepool, migrate the rolldata to the new format
+        if ((item.system?.rollable || item.type === 'customRoll') && foundry.utils.isEmpty(item.system?.dicepool)) {
+          hasFixedItems = true
+
+          // Push the updated item to the array
+          updatedActorItems.push(fixItemData(item))
+        }
+      }
+
+      if (hasFixedItems) {
+        // Update the actor's data with the new information
+        actor.updateEmbeddedDocuments('Item', updatedActorItems)
+        ui.notifications.info(`Fixing actor ${actor.name}: Migrating roll data of items.`)
+        migrationIDs.push(actor.id)
+      }
+    }
+  }
+
   // Fix dicepools of rollable items in compendiums
-  for (const compendium of compendiumsList) {
+  for (const compendium of compendiumsItemsList) {
     const docs = await compendium.getDocuments()
 
     const updates = docs
