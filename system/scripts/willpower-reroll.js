@@ -89,6 +89,8 @@ export const willpowerReroll = async (roll) => {
     // messages that call for a WillpowerReroll without an associated actor
     const message = game.messages.get(roll.attr('data-message-id'))
     const actor = game.actors.get(message.speaker.actor)
+    // Get the rollMode associated with the message
+    const rollMode = message?.flags?.rollMode || game.settings.get('core', 'rollMode')
 
     // If there is at least 1 die selected and aren't any more than 3 die selected, reroll the total number of die and generate a new message.
     if ((diceSelected.length > 0) && (diceSelected.length < 4)) {
@@ -99,6 +101,7 @@ export const willpowerReroll = async (roll) => {
         actor,
         willpowerDamage: actor ? 1 : 0, // If no actor is set, we don't need to damage any willpower
         quickRoll: true,
+        rollMode,
         selectors,
         disableMessageOutput: true,
         system: message.flags.gamesystem,

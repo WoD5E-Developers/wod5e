@@ -1,6 +1,6 @@
 /* global ChatMessage, renderTemplate, game */
 
-export async function _damageWillpower (event, target, actor, willpowerDamage) {
+export async function _damageWillpower (event, target, actor, willpowerDamage, rollMode) {
   if (event) event.preventDefault()
 
   // If no actor is provided, try and assume this is being done from an actor
@@ -8,6 +8,9 @@ export async function _damageWillpower (event, target, actor, willpowerDamage) {
 
   // If no willpower damage is provided, try and assume we're getitng data from a dataset
   if (!willpowerDamage) willpowerDamage = target.getAttribute('data-willpower-damage')
+
+  // If no rollMode is provided, use the user's default
+  if (!rollMode) rollMode = game.settings.get('core', 'rollMode')
 
   // If we have a label, define it so we can append it to the title of the chatcard
   let prependTitle = ''
@@ -39,7 +42,7 @@ export async function _damageWillpower (event, target, actor, willpowerDamage) {
         img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
         description: game.i18n.localize('WOD5E.Chat.WillpowerFull')
       }).then(html => {
-        const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
+        const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, rollMode)
         ChatMessage.create(message)
       })
 
@@ -64,7 +67,7 @@ export async function _damageWillpower (event, target, actor, willpowerDamage) {
       willpowerDamage
     })}`
   }).then(html => {
-    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
+    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, rollMode)
     ChatMessage.create(message)
   })
 }

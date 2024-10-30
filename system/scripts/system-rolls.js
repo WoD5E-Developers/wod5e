@@ -62,6 +62,8 @@ class WOD5eDice {
     const _roll = async (inputBasicDice, inputAdvancedDice, $form) => {
       // Get the difficulty and store it
       difficulty = $form ? $form.find('[id=inputDifficulty]').val() : difficulty
+      // Get the rollMode and store it
+      rollMode = $form ? $form.find('[name=rollMode]').val() : rollMode
 
       // Prevent trying to roll 0 dice; all dice pools should roll at least 1 die
       if (parseInt(inputBasicDice) === 0 && parseInt(inputAdvancedDice) === 0) {
@@ -142,7 +144,7 @@ class WOD5eDice {
       if (roll.terms[2]) await handleFailure(system, roll.terms[2].results)
 
       // Handle willpower damage
-      if (willpowerDamage > 0 && game.settings.get('vtm5e', 'automatedWillpower')) _damageWillpower(null, null, actor, willpowerDamage)
+      if (willpowerDamage > 0 && game.settings.get('vtm5e', 'automatedWillpower')) _damageWillpower(null, null, actor, willpowerDamage, rollMode)
 
       // Roll any advanced check dice that need to be rolled in a separate rollmessage
       if (advancedCheckDice > 0) {
@@ -211,11 +213,12 @@ class WOD5eDice {
           system,
           title,
           flavor,
-          activeModifiers
+          activeModifiers,
+          rollMode
         }
       },
       {
-        rollMode: $form ? $form.find('[name=rollMode]').val() : rollMode
+        rollMode
       })
 
       return roll
