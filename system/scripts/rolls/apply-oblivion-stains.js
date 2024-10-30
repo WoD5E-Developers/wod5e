@@ -13,10 +13,8 @@ export async function _applyOblivionStains (actor, amount) {
     })}</p>`
 
     // Post the message to the chat
-    ChatMessage.create({
-      speaker: ChatMessage.getSpeaker({ actor }),
-      content: chatMessage
-    })
+    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: chatMessage }, game.settings.get('core', 'rollMode'))
+    ChatMessage.create(message)
 
     // Update the actor with the new amount of stains
     actor.update({ 'system.humanity.stains': newStains })

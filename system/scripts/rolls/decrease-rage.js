@@ -10,10 +10,8 @@ export async function _decreaseRage (actor, amount) {
     <p class="roll-content result-rage result-possible">${game.i18n.localize('WOD5E.WTA.LostWolfWarning')}</p>`
 
     // Post the message to the chat
-    ChatMessage.create({
-      speaker: ChatMessage.getSpeaker({ actor }),
-      content: chatMessage
-    })
+    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: chatMessage }, game.settings.get('core', 'rollMode'))
+    ChatMessage.create(message)
   }
 
   // Update the actor with the new amount of rage

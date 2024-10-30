@@ -91,9 +91,8 @@ export const _onDisciplineToChat = async function (event, target) {
     img: 'icons/svg/dice-target.svg',
     description: discipline?.description
   }).then(html => {
-    ChatMessage.create({
-      content: html
-    })
+    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
+    ChatMessage.create(message)
   })
 }
 

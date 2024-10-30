@@ -39,10 +39,8 @@ export async function _damageWillpower (event, target, actor, willpowerDamage) {
         img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
         description: game.i18n.localize('WOD5E.Chat.WillpowerFull')
       }).then(html => {
-        ChatMessage.create({
-          speaker: ChatMessage.getSpeaker({ actor }),
-          content: html
-        })
+        const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
+        ChatMessage.create(message)
       })
 
       // End the function here
@@ -66,9 +64,7 @@ export async function _damageWillpower (event, target, actor, willpowerDamage) {
       willpowerDamage
     })}`
   }).then(html => {
-    ChatMessage.create({
-      speaker: ChatMessage.getSpeaker({ actor }),
-      content: html
-    })
+    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
+    ChatMessage.create(message)
   })
 }

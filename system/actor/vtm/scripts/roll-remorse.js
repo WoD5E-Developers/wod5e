@@ -41,9 +41,8 @@ export const _onRemorseRoll = async function (event) {
             actor: actor.name
           })
         }).then(html => {
-          ChatMessage.create({
-            content: html
-          })
+          const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
+          ChatMessage.create(message)
         })
       }
     }

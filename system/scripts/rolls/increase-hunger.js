@@ -14,10 +14,8 @@ export async function _increaseHunger (actor, amount) {
       img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
       description: game.i18n.localize('WOD5E.VTM.HungerFull2')
     }).then(html => {
-      ChatMessage.create({
-        speaker: ChatMessage.getSpeaker({ actor }),
-        content: html
-      })
+      const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
+      ChatMessage.create(message)
     })
   }
 

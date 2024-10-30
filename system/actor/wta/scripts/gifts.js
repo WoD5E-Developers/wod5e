@@ -120,9 +120,8 @@ export const _onGiftToChat = async function (event, target) {
     img: 'icons/svg/dice-target.svg',
     description: gift?.description || ''
   }).then(html => {
-    ChatMessage.create({
-      content: html
-    })
+    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
+    ChatMessage.create(message)
   })
 }
 

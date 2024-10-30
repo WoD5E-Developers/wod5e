@@ -52,9 +52,8 @@ export const _onFrenzyRoll = async function (event) {
               actor: actor.name
             })
           }).then(html => {
-            ChatMessage.create({
-              content: html
-            })
+            const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
+            ChatMessage.create(message)
           })
         } else {
           await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
@@ -64,9 +63,8 @@ export const _onFrenzyRoll = async function (event) {
               actor: actor.name
             })
           }).then(html => {
-            ChatMessage.create({
-              content: html
-            })
+            const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
+            ChatMessage.create(message)
           })
         }
       }
@@ -82,9 +80,8 @@ export const _onFrenzyRoll = async function (event) {
         actor: actor.name
       })
     }).then(html => {
-      ChatMessage.create({
-        content: html
-      })
+      const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
+      ChatMessage.create(message)
     })
   }
 }
