@@ -333,7 +333,7 @@
       "SkillType": "Skill Type",
       "SortDefAlphabetically": "Alphabetical Sorting",
       "SortDefAlphabeticallyHint": "Determine which aspects of the system are sorted. By default, everything except attributes will be sorted alphabetically.",
-      "SpendXpIconOverride": "SPent XP Icon",
+      "SpendXpIconOverride": "Spent XP Icon",
       "SpendXpIconOverrideHint": "Replaces the default icon for spent XP.",
       "SplatColorsHint": "Allows for the storyteller to edit the colours associated with each individual splat in the system.",
       "SplatColorsMenu": "Splat Colors Menu",
