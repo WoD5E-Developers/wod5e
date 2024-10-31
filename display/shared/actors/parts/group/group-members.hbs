@@ -1,10 +1,10 @@
-<div class="tab members" data-group="primary" data-tab="members">
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
   {{#if groupMembers}}
     {{#each groupMembers as |member id|}}
       <div class="flexcol group-member">
         <div class="flexrow">
           <div class="actor-image">
-            <img src="{{member.img}}" title="{{member.name}}" width="50" height="50" class="open-sheet" data-uuid="{{member.uuid}}"
+            <img src="{{member.img}}" title="{{member.name}}" width="50" height="50" class="open-sheet" data-action="openActorSheet" data-uuid="{{member.uuid}}"
               alt="{{member.name}}" />
           </div>
           <div class="flexcol">
@@ -12,13 +12,13 @@
               <div class="actor-name">
                 {{member.name}}
               </div>
-              <div class="sup-item type">{{generateLocalizedLabel member.type}}</div>
+              <div class="sup-item type">{{generateLocalizedLabel member.type 'actortypes'}}</div>
               <div class="sup-item">
-                <a class="open-sheet" data-uuid="{{member.uuid}}" title="{{localize 'WOD5E.OpenSheet'}}">
+                <a class="open-sheet" data-action="openActorSheet" data-uuid="{{member.uuid}}" title="{{localize 'WOD5E.OpenSheet'}}">
                   <i class="fas fa-user"></i>
                 </a>
                 {{#unless actor.limited}}
-                  <a class="remove-actor" data-uuid="{{member.uuid}}" title="{{localize 'WOD5E.RemoveFromGroup'}}">
+                  <a class="remove-actor" data-action="removeMember" data-uuid="{{member.uuid}}" title="{{localize 'WOD5E.RemoveFromGroup'}}">
                     <i class="fas fa-times"></i>
                   </a>
                 {{/unless}}
@@ -32,14 +32,14 @@
                       <div class="resource-counter" data-states="/:superficial,x:aggravated" data-max="{{member.system.health.max}}"
                           data-superficial="{{member.system.health.superficial}}" data-aggravated="{{member.system.health.aggravated}}">
                           {{#numLoop member.system.health.max}}
-                            <span class="resource-counter-step" data-index="{{this}}" data-state=""></span>
+                            <span class="resource-counter-step" data-action="squareCounterChange" data-index="{{this}}" data-state=""></span>
                           {{/numLoop}}
                       </div>
                       {{#ifeq member.system.activeForm "crinos"}}
                       <div class="resource-counter crinos-health" data-states="/:superficial,x:aggravated" data-max="{{member.system.crinosHealth.max}}"
                           data-superficial="{{member.system.crinosHealth.superficial}}" data-aggravated="{{member.system.crinosHealth.aggravated}}">
                           {{#numLoop member.system.crinosHealth.max}}
-                            <span class="resource-counter-step" data-index="{{this}}" data-state=""></span>
+                            <span class="resource-counter-step" data-action="squareCounterChange" data-index="{{this}}" data-state=""></span>
                           {{/numLoop}}
                       </div>
                       {{/ifeq}}
@@ -53,7 +53,7 @@
                       <div class="resource-counter" data-states="/:superficial,x:aggravated" data-max="{{member.system.willpower.max}}"
                           data-superficial="{{member.system.willpower.superficial}}" data-aggravated="{{member.system.willpower.aggravated}}">
                           {{#numLoop member.system.willpower.max}}
-                              <span class="resource-counter-step" data-index="{{this}}" data-state=""></span>
+                              <span class="resource-counter-step" data-action="squareCounterChange" data-index="{{this}}" data-state=""></span>
                           {{/numLoop}}
                       </div>
                   </div>
@@ -66,15 +66,15 @@
                     <div class="vampire-member-resource resource-content flexrow flex-center flex-between">
                       {{#if member.isOwner}}
                         <div class="resource-value" data-value="{{member.system.hunger.value}}" data-name="system.hunger.value">
-                            <span class="resource-value-empty member-hunger" data-actor-id="{{member.id}}"></span>
-                            {{#numLoop 5}}
-                            <span class="resource-value-step member-hunger" data-index="{{this}}" data-actor-id="{{member.id}}"></span>
+                            <span class="resource-value-empty member-hunger" data-action="dotCounterEmpty" data-actor-id="{{member.id}}"></span>
+                            {{#numLoop member.system.hunger.max}}
+                            <span class="resource-value-step member-hunger" data-action="dotCounterChange" data-index="{{this}}" data-actor-id="{{member.id}}"></span>
                             {{/numLoop}}
                         </div>
                       {{else}}
                         <div class="resource-value">
-                            {{#numLoop 5}}
-                            <span class="resource-value-step member-hunger" data-index="{{this}}" data-actor-id="{{member.id}}"></span>
+                            {{#numLoop member.system.hunger.max}}
+                            <span class="resource-value-step member-hunger" data-action="dotCounterChange" data-index="{{this}}" data-actor-id="{{member.id}}"></span>
                             {{/numLoop}}
                         </div>
                       {{/if}}
@@ -89,15 +89,15 @@
                     <div class="werewolf-member-resource resource-content flexrow flex-center flex-between">
                       {{#if member.isOwner}}
                         <div class="resource-value" data-value="{{member.system.rage.value}}" data-name="system.rage.value">
-                            <span class="resource-value-empty member-rage" data-actor-id="{{member.id}}"></span>
-                            {{#numLoop 5}}
-                            <span class="resource-value-step member-rage" data-index="{{this}}" data-actor-id="{{member.id}}"></span>
+                            <span class="resource-value-empty member-rage" data-action="dotCounterEmpty" data-actor-id="{{member.id}}"></span>
+                            {{#numLoop member.system.rage.max}}
+                            <span class="resource-value-step member-rage" data-action="dotCounterChange" data-index="{{this}}" data-actor-id="{{member.id}}"></span>
                             {{/numLoop}}
                         </div>
                       {{else}}
                         <div class="resource-value">
-                            {{#numLoop 5}}
-                            <span class="resource-value-step member-rage" data-index="{{this}}" data-actor-id="{{member.id}}"></span>
+                            {{#numLoop member.system.rage.max}}
+                            <span class="resource-value-step member-rage" data-action="dotCounterChange" data-index="{{this}}" data-actor-id="{{member.id}}"></span>
                             {{/numLoop}}
                         </div>
                       {{/if}}
@@ -112,4 +112,4 @@
   {{else}}
     <h2 class="flex-center">{{localize "WOD5E.NoGroupMembers"}}</h2>
   {{/if}}
-</div>
+</section>

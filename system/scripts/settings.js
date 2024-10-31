@@ -1,35 +1,77 @@
-/* global game, ui, WOD5E */
+/* global game, ui, foundry */
 
 import { AutomationMenu } from './menus/automation-menu.js'
 import { StorytellerMenu } from './menus/storyteller-menu.js'
 import { resetActors } from './reset-actors.js'
+
+/* Definitions */
+import { Attributes } from '../api/def/attributes.js'
+import { Skills } from '../api/def/skills.js'
+import { Disciplines } from '../api/def/disciplines.js'
+import { Edges } from '../api/def/edges.js'
+import { Gifts } from '../api/def/gifts.js'
+import { SplatColorsMenu } from './menus/splat-colors-menu.js'
+import { cssVariablesRecord } from './update-css-variables.js'
 
 /**
  * Define all game settings here
  * @return {Promise}
  */
 export const loadSettings = async function () {
-  game.settings.register('vtm5e', 'worldVersion', {
-    name: game.i18n.localize('WOD5E.Settings.WorldVersion'),
-    hint: game.i18n.localize('WOD5E.Settings.WorldVersionHint'),
-    scope: 'world',
+  // Color Scheme
+  // Custom written to allow for usage of extra themes
+  game.settings.register('vtm5e', 'colorScheme', {
+    name: 'WOD5E.Settings.ColorScheme',
+    hint: 'WOD5E.Settings.ColorSchemeHint',
+    scope: 'client',
     config: true,
-    default: '1.5',
-    type: String
+    type: new foundry.data.fields.StringField({
+      required: true,
+      blank: true,
+      initial: '',
+      choices: {
+        '': 'WOD5E.Settings.ColorSchemeDefault',
+        light: 'WOD5E.Settings.ColorSchemeLight',
+        dark: 'WOD5E.Settings.ColorSchemeDark',
+        vampire: 'WOD5E.Settings.ColorSchemeVampire',
+        hunter: 'WOD5E.Settings.ColorSchemeHunter',
+        werewolf: 'WOD5E.Settings.ColorSchemeWerewolf'
+      }
+    }),
+    onChange: () => _updatePreferredColorScheme()
   })
 
-  game.settings.register('vtm5e', 'darkTheme', {
-    name: game.i18n.localize('WOD5E.Settings.DarkTheme'),
-    hint: game.i18n.localize('WOD5E.Settings.DarkThemeHint'),
+  // Whether definitions will be sorted alphabetically based on the currently selected language
+  game.settings.register('vtm5e', 'sortDefAlphabetically', {
+    name: game.i18n.localize('WOD5E.Settings.SortDefAlphabetically'),
+    hint: game.i18n.localize('WOD5E.Settings.SortDefAlphabeticallyHint'),
+    scope: 'world',
+    config: true,
+    type: new foundry.data.fields.StringField({
+      required: true,
+      blank: false,
+      initial: 'default',
+      choices: {
+        default: 'WOD5E.Settings.Default',
+        all: 'WOD5E.Settings.All',
+        none: 'WOD5E.Settings.None'
+      }
+    }),
+    requiresReload: true
+  })
+
+  // Deactivate Vampire Revised Font
+  game.settings.register('vtm5e', 'disableVampireFont', {
+    name: game.i18n.localize('WOD5E.Settings.DisableVampireFont'),
+    hint: game.i18n.localize('WOD5E.Settings.DisableVampireFontHint'),
     scope: 'client',
     config: true,
     default: false,
     type: Boolean,
-    onChange: (value) => {
-      document.body.classList.toggle('dark-theme', value)
-    }
+    onChange: () => _updateHeaderFontPreference()
   })
 
+  // Whether the actor banner will appear on sheets or not
   game.settings.register('vtm5e', 'actorBanner', {
     name: game.i18n.localize('WOD5E.Settings.ActorBanner'),
     hint: game.i18n.localize('WOD5E.Settings.ActorBannerHint'),
@@ -67,6 +109,7 @@ export const loadSettings = async function () {
     Automation Settings
   */
 
+  // Automation Menu
   game.settings.registerMenu('vtm5e', 'automationMenu', {
     name: game.i18n.localize('WOD5E.Settings.AutomationSettings'),
     hint: game.i18n.localize('WOD5E.Settings.AutomationSettingsHint'),
@@ -76,6 +119,7 @@ export const loadSettings = async function () {
     restricted: true
   })
 
+  // Disable All Automation
   game.settings.register('vtm5e', 'disableAutomation', {
     name: game.i18n.localize('WOD5E.Settings.DisableAutomation'),
     hint: game.i18n.localize('WOD5E.Settings.DisableAutomationHint'),
@@ -104,6 +148,7 @@ export const loadSettings = async function () {
     }
   })
 
+  // Automated Willpower
   game.settings.register('vtm5e', 'automatedWillpower', {
     name: game.i18n.localize('WOD5E.Settings.AutomateWillpower'),
     hint: game.i18n.localize('WOD5E.Settings.AutomateWillpowerHint'),
@@ -113,6 +158,7 @@ export const loadSettings = async function () {
     type: Boolean
   })
 
+  // Automated Hunger
   game.settings.register('vtm5e', 'automatedHunger', {
     name: game.i18n.localize('WOD5E.Settings.AutomateHunger'),
     hint: game.i18n.localize('WOD5E.Settings.AutomateHungerHint'),
@@ -122,6 +168,7 @@ export const loadSettings = async function () {
     type: Boolean
   })
 
+  // Automated Oblivion Rolls
   game.settings.register('vtm5e', 'automatedOblivion', {
     name: game.i18n.localize('WOD5E.Settings.AutomateOblivion'),
     hint: game.i18n.localize('WOD5E.Settings.AutomateOblivionHint'),
@@ -131,6 +178,7 @@ export const loadSettings = async function () {
     type: Boolean
   })
 
+  // Automated Rage
   game.settings.register('vtm5e', 'automatedRage', {
     name: game.i18n.localize('WOD5E.Settings.AutomateRage'),
     hint: game.i18n.localize('WOD5E.Settings.AutomateRageHint'),
@@ -154,90 +202,202 @@ export const loadSettings = async function () {
     restricted: true
   })
 
-  // Register the modified attributes
-  game.settings.register('vtm5e', 'modifiedAttributes', {
-    name: game.i18n.localize('WOD5E.Settings.ModifiedAttributes'),
-    hint: game.i18n.localize('WOD5E.Settings.ModifiedAttributesHint'),
+  const modCustomList = {
+    attribute: {
+      defCategory: 'Attributes',
+      defClass: Attributes
+    },
+    skill: {
+      defCategory: 'Skills',
+      defClass: Skills
+    },
+    discipline: {
+      defCategory: 'Disciplines',
+      defClass: Disciplines
+    },
+    edge: {
+      defCategory: 'Edges',
+      defClass: Edges
+    },
+    gift: {
+      defCategory: 'Gifts',
+      defClass: Gifts
+    }
+  }
+
+  for (const [, value] of Object.entries(modCustomList)) {
+    // Register the modification
+    game.settings.register('vtm5e', `modified${value.defCategory}`, {
+      name: game.i18n.localize(`WOD5E.Settings.Modified${value.defCategory}`),
+      hint: game.i18n.localize(`WOD5E.Settings.Modified${value.defCategory}Hint`),
+      scope: 'world',
+      config: false,
+      default: [],
+      type: Array,
+      onChange: async () => {
+        // Re-render the storyteller menu window once settings are updated
+        _rerenderStorytellerWindow()
+
+        // Re-init labels
+        await value.defClass.initializeLabels()
+      }
+    })
+
+    // Register the custom subtype
+    game.settings.register('vtm5e', `custom${value.defCategory}`, {
+      name: game.i18n.localize(`WOD5E.Settings.Custom${value.defCategory}`),
+      hint: game.i18n.localize(`WOD5E.Settings.Custom${value.defCategory}Hint`),
+      scope: 'world',
+      config: false,
+      default: [],
+      type: Array,
+      onChange: async (custom) => {
+        // Re-render the storyteller menu window once settings are updated
+        _rerenderStorytellerWindow()
+
+        // Grab the custom attributes and send them to the function to update the list
+        await value.defClass.addCustom(custom)
+
+        // Re-init labels
+        await value.defClass.initializeLabels()
+      }
+    })
+  }
+
+  // Automatically collapse chat message descriptions
+  game.settings.register('vtm5e', 'autoCollapseDescriptions', {
+    name: game.i18n.localize('WOD5E.Settings.AutoCollapseDescriptions'),
+    hint: game.i18n.localize('WOD5E.Settings.AutoCollapseDescriptionsHint'),
+    scope: 'client',
+    config: true,
+    default: false,
+    type: Boolean
+  })
+
+  // Override for the default actor header image
+  game.settings.register('vtm5e', 'actorHeaderOverride', {
+    name: game.i18n.localize('WOD5E.Settings.ActorHeaderOverride'),
+    hint: game.i18n.localize('WOD5E.Settings.ActorHeaderOverrideHint'),
     scope: 'world',
-    config: false,
-    default: [],
-    type: Array,
+    config: true,
+    default: '',
+    type: String,
+    filePicker: 'image',
     onChange: async () => {
-      // Re-render the storyteller menu window once settings are updated
-      _rerenderStorytellerWindow()
-
-      // Re-init labels
-      WOD5E.Attributes.initializeLabels()
-
       // Reload actorsheets
       resetActors()
     }
   })
 
-  // Register the custom attributes
-  game.settings.register('vtm5e', 'customAttributes', {
-    name: game.i18n.localize('WOD5E.Settings.CustomAttributes'),
-    hint: game.i18n.localize('WOD5E.Settings.CustomAttributes'),
+  // Override for the default actor backgrounds
+  game.settings.register('vtm5e', 'actorBackgroundOverride', {
+    name: game.i18n.localize('WOD5E.Settings.ActorBackgroundOverride'),
+    hint: game.i18n.localize('WOD5E.Settings.ActorBackgroundOverrideHint'),
     scope: 'world',
-    config: false,
-    default: [],
-    type: Array,
-    onChange: async (customAttributes) => {
-      // Re-render the storyteller menu window once settings are updated
-      _rerenderStorytellerWindow()
-
-      // Grab the custom attributes and send them to the function to update the list
-      WOD5E.Attributes.addCustom(customAttributes)
-
-      // Re-init labels
-      WOD5E.Attributes.initializeLabels()
-
-      // Reload actorsheets
-      resetActors()
-    }
-  })
-
-  // Register the modified skills
-  game.settings.register('vtm5e', 'modifiedSkills', {
-    name: game.i18n.localize('WOD5E.Settings.ModifiedSkills'),
-    hint: game.i18n.localize('WOD5E.Settings.ModifiedSkillsHint'),
-    scope: 'world',
-    config: false,
-    default: [],
-    type: Array,
+    config: true,
+    default: '',
+    type: String,
+    filePicker: 'image',
     onChange: async () => {
-      // Re-render the storyteller menu window once settings are updated
-      _rerenderStorytellerWindow()
-
-      // Re-init labels
-      WOD5E.Skills.initializeLabels()
-
       // Reload actorsheets
       resetActors()
     }
   })
 
-  // Register the custom attributes
-  game.settings.register('vtm5e', 'customSkills', {
-    name: game.i18n.localize('WOD5E.Settings.CustomSkills'),
-    hint: game.i18n.localize('WOD5E.Settings.CustomSkillsHint'),
+  // Override for the "Gain" XP Icon
+  game.settings.register('vtm5e', 'gainXpIconOverride', {
+    name: game.i18n.localize('WOD5E.Settings.GainXpIconOverride'),
+    hint: game.i18n.localize('WOD5E.Settings.GainXpIconOverrideHint'),
     scope: 'world',
-    config: false,
-    default: [],
-    type: Array,
-    onChange: async (customSkills) => {
-      // Re-render the storyteller menu window once settings are updated
-      _rerenderStorytellerWindow()
-
-      // Grab the custom skills and send them to the function to update the list
-      WOD5E.Skills.addCustom(customSkills)
-
-      // Re-init labels
-      WOD5E.Skills.initializeLabels()
-
-      // Reload actorsheets
-      resetActors()
+    config: true,
+    default: '',
+    type: String,
+    filePicker: 'image',
+    onChange: async (newIcon) => {
+      if (newIcon) {
+        document.documentElement.style.setProperty('--xp-gain-icon', `url("/${newIcon}")`)
+      } else {
+        document.documentElement.style.removeProperty('--xp-gain-icon')
+      }
     }
+  })
+
+  // Override for the "Spend" XP Icon
+  game.settings.register('vtm5e', 'spendXpIconOverride', {
+    name: game.i18n.localize('WOD5E.Settings.SpendXpIconOverride'),
+    hint: game.i18n.localize('WOD5E.Settings.SpendXpIconOverrideHint'),
+    scope: 'world',
+    config: true,
+    default: '',
+    type: String,
+    filePicker: 'image',
+    onChange: async (newIcon) => {
+      if (newIcon) {
+        document.documentElement.style.setProperty('--xp-spend-icon', `url("/${newIcon}")`)
+      } else {
+        document.documentElement.style.removeProperty('--xp-spend-icon')
+      }
+    }
+  })
+
+  // Override for the "Neutral" XP Icon
+  game.settings.register('vtm5e', 'neutralXpIconOverride', {
+    name: game.i18n.localize('WOD5E.Settings.NeutralXpIconOverride'),
+    hint: game.i18n.localize('WOD5E.Settings.NeutralXpIconOverrideHint'),
+    scope: 'world',
+    config: true,
+    default: '',
+    type: String,
+    filePicker: 'image',
+    onChange: async (newIcon) => {
+      if (newIcon) {
+        document.documentElement.style.setProperty('--xp-neutral-icon', `url("/${newIcon}")`)
+      } else {
+        document.documentElement.style.removeProperty('--xp-neutral-icon')
+      }
+    }
+  })
+
+  // World Version, only really needed by developers
+  game.settings.register('vtm5e', 'worldVersion', {
+    name: game.i18n.localize('WOD5E.Settings.WorldVersion'),
+    hint: game.i18n.localize('WOD5E.Settings.WorldVersionHint'),
+    scope: 'world',
+    config: true,
+    default: '1.5',
+    type: String
+  })
+
+  /*
+    Splat Colors Menu
+  */
+
+  // Register the splat colors menu
+  game.settings.registerMenu('vtm5e', 'splatColorsMenu', {
+    name: game.i18n.localize('WOD5E.Settings.SplatColorsMenu'),
+    hint: game.i18n.localize('WOD5E.Settings.SplatColorsHint'),
+    label: game.i18n.localize('WOD5E.Settings.SplatColorsMenu'),
+    icon: 'fa-solid fa-palette',
+    type: SplatColorsMenu,
+    restricted: true
+  })
+
+  // Register variable settings
+  const cssVariables = cssVariablesRecord()
+  Object.keys(cssVariables).forEach(theme => {
+    const settings = cssVariables[theme].settings
+
+    Object.keys(settings).forEach(settingKey => {
+      const { settingId, defaultColor } = settings[settingKey]
+
+      // Register the setting
+      game.settings.register('vtm5e', settingId, {
+        scope: 'world',
+        config: false,
+        default: defaultColor,
+        type: String
+      })
+    })
   })
 }
 
@@ -246,5 +406,62 @@ function _rerenderStorytellerWindow () {
 
   if (storytellerWindow) {
     storytellerWindow.render()
+  }
+}
+
+/**
+ * Set the global CSS theme according to the user's preferred color scheme settings.
+ * Custom written to allow for usage of extra themes
+ */
+export const _updatePreferredColorScheme = async function () {
+  let theme
+  const clientSetting = game.settings.get('vtm5e', 'colorScheme')
+
+  // Determine which theme we're using - if it's not set by the client, we base the theme
+  // off of the browser's prefers-color-scheme
+  if (clientSetting) theme = `wod-${clientSetting}-theme`
+  else if (matchMedia('(prefers-color-scheme: dark)').matches) theme = 'wod-dark-theme'
+  else if (matchMedia('(prefers-color-scheme: light)').matches) theme = 'wod-light-theme'
+
+  // Remove existing theme classes
+  document.body.classList.remove('wod-light-theme', 'wod-dark-theme', 'wod-vampire-theme', 'wod-hunter-theme', 'wod-werewolf-theme')
+
+  // Append the theme class to the document body
+  if (theme) document.body.classList.add(theme)
+}
+
+/**
+ * Set whether the system uses the vampireRevised font for headers or not
+ */
+export const _updateHeaderFontPreference = async function () {
+  const clientSetting = game.settings.get('vtm5e', 'disableVampireFont')
+
+  if (clientSetting) {
+    // Remove the class from the document body
+    document.body.classList.remove('vampire-font-headers')
+  } else {
+    // Append the class to the document body
+    document.body.classList.add('vampire-font-headers')
+  }
+}
+
+/**
+ * Update the XP icons
+ */
+export const _updateXpIconOverrides = async function () {
+  const spendIcon = game.settings.get('vtm5e', 'spendXpIconOverride')
+  const gainIcon = game.settings.get('vtm5e', 'gainXpIconOverride')
+  const neutralIcon = game.settings.get('vtm5e', 'neutralXpIconOverride')
+
+  if (spendIcon) {
+    document.documentElement.style.setProperty('--xp-spend-icon', `url("/${spendIcon}")`)
+  }
+
+  if (gainIcon) {
+    document.documentElement.style.setProperty('--xp-gain-icon', `url("/${gainIcon}")`)
+  }
+
+  if (neutralIcon) {
+    document.documentElement.style.setProperty('--xp-neutral-icon', `url("/${neutralIcon}")`)
   }
 }

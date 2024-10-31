@@ -1,4 +1,4 @@
-/* global Die */
+/* global foundry */
 
 // Import dice face-related variables for icon paths
 import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces } from './icons.js'
@@ -7,9 +7,20 @@ import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDi
  * Extend the basic Die for the Mortal (m) dice
  * @extends {Die}
  */
-export class MortalDie extends Die {
+export class MortalDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
+
     super(termData)
   }
 
@@ -37,9 +48,20 @@ export class MortalDie extends Die {
  * Extend the basic Die for the Vampire (v) dice
  * @extends {Die}
  */
-export class VampireDie extends Die {
+export class VampireDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
+
     super(termData)
   }
 
@@ -67,9 +89,20 @@ export class VampireDie extends Die {
  * Extend the basic Die for the Hunger (g) dice
  * @extends {Die}
  */
-export class VampireHungerDie extends Die {
+export class VampireHungerDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
+
     super(termData)
   }
 
@@ -97,9 +130,20 @@ export class VampireHungerDie extends Die {
  * Extend the basic Die for the Hunter (h) dice
  * @extends {Die}
  */
-export class HunterDie extends Die {
+export class HunterDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
+
     super(termData)
   }
 
@@ -127,9 +171,20 @@ export class HunterDie extends Die {
  * Extend the basic Die for the Desperation (s) dice
  * @extends {Die}
  */
-export class HunterDesperationDie extends Die {
+export class HunterDesperationDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
+
     super(termData)
   }
 
@@ -157,9 +212,20 @@ export class HunterDesperationDie extends Die {
  * Extend the basic Die for the Werewolf (w) dice
  * @extends {Die}
  */
-export class WerewolfDie extends Die {
+export class WerewolfDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
+
     super(termData)
   }
 
@@ -187,9 +253,20 @@ export class WerewolfDie extends Die {
  * Extend the basic Die for the Rage (r) dice
  * @extends {Die}
  */
-export class WerewolfRageDie extends Die {
+export class WerewolfRageDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
+
     super(termData)
   }
 

@@ -1,103 +1,79 @@
-<div class="tab" data-group="primary" data-tab="description">
-    {{#if isCharacter}}
-    <div class="resource flexrow grid grid-4col">
-        <div class="flex-group-center no-border">
-            <label class="resource-label">{{localize "WOD5E.BiographyList.Concept"}}</label>
-            <input type="text" name="system.headers.concept" value="{{actor.system.headers.concept}}" placeholder="{{localize 'WOD5E.BiographyList.Concept'}}" />
-        </div>
-        <div class="flex-group-center no-border">
-            <label class="resource-label">{{localize "WOD5E.BiographyList.Chronicle"}}</label>
-            <input type="text" name="system.headers.chronicle" value="{{actor.system.headers.chronicle}}" placeholder="{{localize 'WOD5E.BiographyList.Chronicle'}}" />
-        </div>
-        <div class="flex-group-center no-border">
-            <label class="resource-label">{{localize "WOD5E.BiographyList.Ambition"}}</label>
-            <input type="text" name="system.headers.ambition" value="{{actor.system.headers.ambition}}" placeholder="{{localize 'WOD5E.BiographyList.Ambition'}}" />
-        </div>
-        <div class="flex-group-center no-border">
-            <label class="resource-label">{{localize "WOD5E.BiographyList.Desire"}}</label>
-            <input type="text" name="system.headers.desire" value="{{actor.system.headers.desire}}" placeholder="{{localize 'WOD5E.BiographyList.Desire'}}" />
-        </div>
-    </div>
-    <div class="resource flexrow grid grid-2col">
-        {{#ifeq actor.system.gamesystem 'hunter'}}
-        <div class="flex-group-center no-border">
-            <label class="resource-label">{{localize "WOD5E.HTR.Creed"}}</label>
-            <input type="text" name="system.creed.value" value="{{actor.system.creed.value}}" placeholder="{{localize 'WOD5E.HTR.Creed'}}" />
-        </div>
-        <div class="flex-group-center no-border">
-            <label class="resource-label">{{localize "WOD5E.HTR.Redemption"}}</label>
-            <input type="text" name="system.redemption.value" value="{{actor.system.redemption.value}}" placeholder="{{localize 'WOD5E.HTR.Redemption'}}" />
-        </div>
-        {{/ifeq}}
-    </div>
-    {{#ifeq actor.system.gamesystem 'hunter'}}
-    <div class="resource flexrow grid grid-3col" style="min-height: 264px;">
-        <div class="flex-group-left">
-            <div class="flex-center">
-                <label class="resource-label ">{{localize "WOD5E.BiographyList.ChronicleTenets"}}</label>
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="flexrow">
+        <div class="detailed-section flexcol">
+            <div class="details-header field-header flex-center big-header">{{localize "WOD5E.BiographyList.PersonalInformation"}}</div>
+            <div class="detail flexrow">
+                <label>
+                    <b>{{localize "WOD5E.BiographyList.Age"}}:</b>
+                </label>
+                <input type="text" class="number" name="system.bio.age.trueage" value="{{bio.age.trueage}}"{{#if locked}} disabled="true"{{/if}}/>
             </div>
-            <div class="description-content">
-                {{editor enrichedTenets target="system.headers.tenets" button=true editable=editable}}
+            {{#ifeq currentActorType 'vampire'}}
+                <div class="detail flexrow">
+                    <label>
+                        <b>{{localize "WOD5E.BiographyList.ApparentAge"}}:</b>
+                    </label>
+                    <input type="text" class="number" name="system.bio.age.apparent" value="{{bio.age.apparent}}"{{#if locked}} disabled="true"{{/if}}/>
+                </div>
+            {{/ifeq}}
+            <div class="detail flexrow">
+                <label>
+                    <b>{{localize "WOD5E.BiographyList.DateOfBirth"}}:</b>
+                </label>
+                <input type="text" class="number" name="system.bio.dateof.birth" value="{{bio.dateof.birth}}"{{#if locked}} disabled="true"{{/if}}/>
             </div>
+            {{#ifeq currentActorType 'vampire'}}
+                <div class="detail flexrow">
+                    <label>
+                        <b>{{localize "WOD5E.BiographyList.DateOfDeath"}}:</b>
+                    </label>
+                    <input type="text" class="number" name="system.bio.dateof.death" value="{{bio.dateof.death}}"{{#if locked}} disabled="true"{{/if}}/>
+                </div>
+            {{/ifeq}}
         </div>
-        <div class="flex-group-left">
-            <div class="flex-center">
-                <label class="resource-label">{{localize "WOD5E.BiographyList.TouchstonesAndConvictions"}}</label>
+        <div class="descriptive-section flexcol">
+            <div class="description-field">
+                <div class="flex-center field-header">
+                    <label class="resource-label">
+                        {{localize "WOD5E.BiographyList.Label"}}
+                        <div class="toggle-limited{{#if settings.limited.biography}} visible{{/if}}" data-action="toggleLimited" data-name="system.settings.limited.biography"
+                            title="{{#if settings.limited.biography}}{{localize "WOD5E.Tabs.IsVisible"}}{{else}}{{localize "WOD5E.Tabs.IsNotVisible"}}{{/if}}">
+                            {{#if settings.limited.biography}}
+                                <i class="fa-solid fa-eye"></i>
+                            {{else}}
+                                <i class="fa-solid fa-eye-slash"></i>
+                            {{/if}}
+                        </div>
+                    </label>
+                </div>
+                <div class="description-content resource">
+                    <prose-mirror name="system.biography" value="{{biography}}"
+                        toggled="true" compact="true">
+                        {{{enrichedBiography}}}
+                    </prose-mirror>
+                </div>
             </div>
-            <div class="description-content">
-                {{editor enrichedTouchstones target="system.headers.touchstones" button=true editable=editable}}
-            </div>
-        </div>
-        {{#ifeq actor.system.gamesystem 'hunter'}}
-        <div class="flex-group-left">
-            <div class="flex-center">
-                <label class="resource-label">{{localize "WOD5E.HTR.CreedFields"}}</label>
-            </div>
-            <div class="description-content">
-                {{editor enrichedCreedFields target="system.headers.creedfields" button=true editable=editable}}
-            </div>
-        </div>
-        {{/ifeq}}
-    </div>
-    {{else}}
-    <div class="resource flexrow grid grid-2col" style="min-height: 264px;">
-        <div class="flex-group-left">
-            <div class="flex-center">
-                <label class="resource-label ">{{localize "WOD5E.BiographyList.ChronicleTenets"}}</label>
-            </div>
-            <div class="description-content">
-                {{editor enrichedTenets target="system.headers.tenets" button=true editable=editable}}
-            </div>
-        </div>
-        <div class="flex-group-left">
-            <div class="flex-center">
-                <label class="resource-label">{{localize "WOD5E.BiographyList.TouchstonesAndConvictions"}}</label>
-            </div>
-            <div class="description-content">
-                {{editor enrichedTouchstones target="system.headers.touchstones" button=true editable=editable}}
+            <div class="description-field">
+                <div class="flex-center field-header">
+                    <label class="resource-label">
+                        {{localize "WOD5E.BiographyList.Appearance"}}
+                        <div class="toggle-limited{{#if settings.limited.appearance}} visible{{/if}}" data-action="toggleLimited" data-name="system.settings.limited.appearance"
+                            title="{{#if settings.limited.appearance}}{{localize "WOD5E.Tabs.IsVisible"}}{{else}}{{localize "WOD5E.Tabs.IsNotVisible"}}{{/if}}">
+                            {{#if settings.limited.appearance}}
+                                <i class="fa-solid fa-eye"></i>
+                            {{else}}
+                                <i class="fa-solid fa-eye-slash"></i>
+                            {{/if}}
+                        </div>
+                    </label>
+                </div>
+                <div class="description-content resource">
+                    <prose-mirror name="system.appearance" value="{{appearance}}"
+                        toggled="true" compact="true">
+                        {{{enrichedAppearance}}}
+                    </prose-mirror>
+                </div>
             </div>
         </div>
     </div>
-    {{/ifeq}}
-    {{/if}}
-    {{#if isCharacter}}
-    <div class="resource flexrow grid grid-2col" style="min-height: 264px;"> 
-        <div class="flex-group-left">
-            <div class="flex-center">
-                <label class="resource-label">{{localize "WOD5E.BiographyList.Label"}}</label>
-            </div>
-            <div class="description-content">
-                {{editor enrichedBiography target="system.biography" button=true editable=editable}}
-            </div>
-        </div>
-        <div class="flex-group-left">
-            <div class="flex-center">
-                <label class="resource-label">{{localize "WOD5E.BiographyList.Appearance"}}</label>
-            </div>
-            <div class="description-content">
-                {{editor enrichedAppearance target="system.appearance" button=true editable=editable}}
-            </div>
-        </div>
-    </div>
-    {{/if}}
-</div>
+</section>

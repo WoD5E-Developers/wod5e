@@ -1,0 +1,10 @@
+<div class="flexcol flex-center">
+    <label class="resource-label field-header">{{localize 'WOD5E.VTM.BloodPotency'}}</label>
+    {{#if locked}}
+        <div class="resource stat-resource-background">
+            {{bloodpotency}}
+        </div>
+    {{else}}
+        <input type="number" min="0" max="10" name="system.blood.potency" value="{{bloodpotency}}" data-dtype="Number"/>
+    {{/if}}
+</div>

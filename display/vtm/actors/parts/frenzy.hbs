@@ -1,8 +1,19 @@
-<div class="resource flex-group-center frenzy">
-    <label for="placeholder" class="resource-label">{{localize "WOD5E.VTM.Frenzy"}}</label>
-    <div class="resource-content flexrow flex-center flex-between">
-        <button class="system-rollable frenzy-roll" title="{{localize 'WOD5E.VTM.RollFrenzy'}}">
-            {{localize "WOD5E.RollList.Label"}}
-        </button>
+<div class="flexrow frenzy">
+    <div class="flexcol">
+        <div class="field-header">
+            {{localize "WOD5E.VTM.FrenzyStatus"}}
+            <span class="frenzy-status{{#if frenzyActive}} active{{/if}}">
+                {{#if frenzyActive}}
+                    {{localize "WOD5E.Active"}}
+                {{else}}
+                    {{localize "WOD5E.Inactive"}}
+                {{/if}}
+            </span>
+        </div>
+        {{#if frenzyActive}}
+            <button class="vampire-button end-frenzy" data-action="endFrenzy" type="button" name="endfrenzy">{{localize "WOD5E.VTM.EndFrenzy"}}</button>
+        {{else}}
+            <button class="vampire-button frenzy-roll" data-action="resistFrenzy" type="button" name="resistfrenzy">{{localize "WOD5E.VTM.ResistFrenzy"}}</button>
+        {{/if}}
     </div>
 </div>

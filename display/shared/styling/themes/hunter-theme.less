@@ -1,0 +1,53 @@
+/* Variables */
+:root {
+  --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.webp);
+  --hunter-theme-filter: #D18125;
+}
+
+.wod-hunter-theme {
+  .sheet {
+    .window-content {
+      background: var(--actor-background-default) repeat;
+    }
+  }
+
+  /* All places that use a filter to apply the theme colour */
+  .app,
+  #sidebar,
+  #controls ol.control-tools > li,
+  #navigation #scene-list .scene,
+  #navigation #scene-list .scene.view,
+  #navigation #scene-list .scene.context,
+  #navigation #scene-list .scene.gm,
+  #navigation .nav-item,
+  #navigation #nav-toggle,
+  #hotbar .bar-controls {
+    background-color: var(--hunter-theme-filter);
+    background-blend-mode: difference;
+  }
+
+  #hotbar {
+    .macro {
+      background: var(--hunter-theme-filter);
+    }
+  }
+
+  /* Logo */
+  #logo {
+    content: var(--logo-hunter);
+    filter: drop-shadow(0 -5px 10px #cacacac4) drop-shadow(0 -10px 10px var(--hunter-theme-filter)) drop-shadow(0 0 10px #ffffffb4);
+  }
+
+  .sheet,
+  .dialog {
+    .window-header {
+      background-color: var(--hunter-color-1);
+    }
+  }
+
+  /* Foundry Controls UI */
+  .directory .action-buttons button {
+    background: #020202;
+    color: var(--system-color-6);
+  }
+}

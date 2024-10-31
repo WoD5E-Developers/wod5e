@@ -1,0 +1,19 @@
+<form autocomplete="off" class="wod5e-config-form splat-colors-menu">
+    {{!-- Menu Body --}}
+    <section class="sheet-body">
+        {{#each cssVariablesRecord as |record|}}
+            <div class="field-header big-header">
+                {{localize record.label}}
+            </div>
+            {{#each record.settings as |setting|}}
+                <div class="flexrow">
+                    <div>
+                        <b>{{localize setting.settingName}}</b>
+                    </div>
+                    <input id="{{setting.id}}" class="color-input" data-setting-id="{{setting.settingId}}" data-css-variable="{{setting.cssVariable}}" value="{{lookup ../.. @key}}" data-jscolor="">
+                </div>
+            {{/each}}
+            <hr>
+        {{/each}}
+    </section>
+</form>

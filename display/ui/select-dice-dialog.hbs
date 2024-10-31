@@ -1,34 +1,38 @@
 <form class="dialog-contents">
   <div class="selectors-group">
     {{#unless (or skill attribute)}}
-      <!-- Unless a skill/attribute is already selected, show skill selection -->
       <div class="primary-selector">
-        <div class="selector-sitle">
+        <div class="selector-title">
           {{localize "WOD5E.SkillsList.Label"}}
         </div>
         <div class="selector-content">
           <select id="skillSelect">
             <option value="">{{localize "WOD5E.None"}}</option>
-            {{> "systems/vtm5e/display/shared/items/parts/skills.hbs"}}
+            {{selectOptions skillOptions selected=skill}}
           </select>
         </div>
       </div>
     {{else}}
-      <!-- If a skill/attribute is already selected, present its label -->
       <div class="primary-selector">
         {{#if skill}}
           <div class="selector-title">
             {{localize "WOD5E.SkillsList.Label"}}
           </div>
           <div class="selector-content">
-            {{generateLocalizedLabel skill}}
+            <select id="skillSelect">
+                <option value="">{{localize "WOD5E.None"}}</option>
+                {{selectOptions skillOptions selected=skill}}
+            </select>
           </div>
         {{else if attribute}}
           <div class="selector-title">
             {{localize "WOD5E.AttributesList.Label"}}
           </div>
           <div class="selector-content">
-            {{generateLocalizedLabel attribute}}
+            <select id="attributeSelect2">
+                <option value="">{{localize "WOD5E.None"}}</option>
+                {{selectOptions attributeOptions selected=attribute2}}
+            </select>
           </div>
         {{/if}}
       </div>
@@ -44,7 +48,7 @@
         <div class="selector-content">
           <select id="attributeSelect">
             <option value="">{{localize "WOD5E.None"}}</option>
-            {{> "systems/vtm5e/display/shared/items/parts/attributes.hbs"}}
+            {{selectOptions attributeOptions selected=attribute}}
           </select>
         </div>
     </div>
@@ -54,24 +58,17 @@
   {{#ifeq system "vampire"}}
     <hr>
     <div class="flexrow">
-      <!-- If a discipline is already selected, display the selected discipline -->
-      {{#if discipline}}
         <div class="secondary-selector">
-          <b>{{generateLocalizedLabel discipline}}</b>
-        </div>
-      {{else}}
-        <div class="secondary-selector">
-          <div class="selector-title">{{localize "WOD5E.VTM.AddDiscipline"}}</div>
-          <select id="disciplineSelect">
+            <div class="selector-title">{{localize "WOD5E.VTM.AddDiscipline"}}</div>
+            <select id="disciplineSelect">
             <option value="">{{localize "WOD5E.None"}}</option>
-            {{> "systems/vtm5e/display/shared/items/parts/disciplines.hbs"}}
-          </select>
+            {{selectOptions disciplineOptions selected=discipline}}
+            </select>
         </div>
-      {{/if}}
 
       <!-- If the actor isn't a ghoul and isn't at max hunger, show blood surge option -->
       {{#ifnoteq actorType 'ghoul'}}
-        {{#ifnoteq hungerValue 5}}
+        {{#ifnoteq hungerValue actor.system.hunger.max}}
           <div class="secondary-selector">
             <div class="selector-title">{{localize "WOD5E.VTM.BloodSurge"}}</div>
               <div class="flexrow flex-center">
@@ -86,19 +83,12 @@
   <!-- If the actor is a werewolf, show option to add Renown dots-->
   {{#ifeq system "werewolf"}}
     <hr>
-    <!-- If renown is already selected, display the selected renown -->
-    {{#if renown}}
-      <div class="secondary-selector">
-        <b>{{generateLocalizedLabel renown}}</b>
-      </div>
-    {{else}}
-      <div class="secondary-selector">
+    <div class="secondary-selector">
         <div>{{localize "WOD5E.WTA.AddRenown"}}</div>
         <select id="renownSelect">
-          <option value="">{{localize "WOD5E.None"}}</option>
-          {{> "systems/vtm5e/display/shared/items/parts/renown.hbs"}}
+            <option value="">{{localize "WOD5E.None"}}</option>
+            {{selectOptions renownOptions selected=renown}}
         </select>
-      </div>
-    {{/if}}
+    </div>
   {{/ifeq}}
 </form>

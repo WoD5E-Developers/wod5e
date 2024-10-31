@@ -1,45 +1,41 @@
-<form class="{{cssClass}} flexcol{{#if locked}} locked{{/if}}" autocomplete="off">
-  {{!-- Coterie Sheet Header --}}
-  <header class="actor-header">
-      <div class="header-fields-top">
-      <div class="header-profile-img">
-        {{!-- Actor image and sheet lock toggle button --}}
-        {{> "systems/vtm5e/display/shared/actors/parts/profile-img.hbs"}}
-      </div>
-      <div class="header-rows-top">
-        <div class="header-row-1">
-          {{!-- Text input header fields --}}
-          <h1 class="charname">
-            <input class="no-border" name="name" type="text" value="{{actor.name}}"
-              placeholder="{{localize 'WOD5E.Name'}}" />
-          </h1>
-            
-          {{> "systems/vtm5e/display/shared/actors/parts/group/type-selector.hbs"}}
+<div class="flexrow pack-features grid-2col">
+    <div class="territory">
+        <div class="flexrow field-header">
+            <label for="system.territory.value" class="resource-label">{{localize "WOD5E.WTA.Territory"}}</label>
         </div>
-      </div>
+        <div class="resource resource-content">
+            <div class="resource-value" data-value="{{territory.value}}" data-name="system.territory.value">
+                <span class="resource-value-empty"></span>
+                {{#numLoop 5}}
+                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                {{/numLoop}}
+            </div>
+        </div>
     </div>
-  </header>
-
-  {{!-- Coterie Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    <div class="item" data-tab="members">{{localize "WOD5E.Tabs.Members"}}</div>
-    <div class="item" data-tab="features">{{localize "WOD5E.Tabs.Features"}}</div>
-    <div class="item" data-tab="description">{{localize "WOD5E.Tabs.Description"}}</div>
-    <div class="item" data-tab="other">{{localize "WOD5E.Tabs.Other"}}</div>
-  </nav>
-
-  {{!-- Coterie Sheet Body --}}
-  <section class="sheet-body">
-    {{!-- Group Members Tab --}}
-    {{> "systems/vtm5e/display/shared/actors/parts/group/group-members.hbs"}}
-
-    {{!-- Shared Features Tab --}}
-    {{> "systems/vtm5e/display/shared/actors/parts/features.hbs"}}
-
-    {{!-- Description Tab --}}
-    {{> "systems/vtm5e/display/shared/actors/parts/group/description.hbs"}}
-
-    {{!-- Other Tab --}}
-    {{> "systems/vtm5e/display/shared/actors/parts/other.hbs"}}
-  </section>
-</form>
+    <div class="community">
+        <div class="flexrow field-header">
+            <label for="system.community.value" class="resource-label">{{localize "WOD5E.WTA.Community"}}</label>
+        </div>
+        <div class="resource resource-content">
+            <div class="resource-value" data-value="{{community.value}}" data-name="system.community.value">
+                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                {{#numLoop 5}}
+                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                {{/numLoop}}
+            </div>
+        </div>
+    </div>
+    <div class="spirit">
+        <div class="flexrow field-header">
+            <label for="system.spirit.value" class="resource-label">{{localize "WOD5E.WTA.Spirit"}}</label>
+        </div>
+        <div class="resource resource-content">
+            <div class="resource-value" data-value="{{spirit.value}}" data-name="system.spirit.value">
+                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                {{#numLoop 5}}
+                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                {{/numLoop}}
+            </div>
+        </div>
+    </div>
+</div>

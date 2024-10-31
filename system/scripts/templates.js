@@ -8,24 +8,34 @@ export const preloadHandlebarsTemplates = async function () {
 
   // Define template paths to load
   const templatePaths = [
+    // Generic partials
+    'templates/generic/tab-navigation.hbs',
+
     // Base Sheet Partials
+    'systems/vtm5e/display/shared/actors/parts/lock-button.hbs',
+    'systems/vtm5e/display/shared/actors/parts/header-profile.hbs',
     'systems/vtm5e/display/shared/actors/parts/biography.hbs',
-    'systems/vtm5e/display/shared/actors/parts/exp.hbs',
     'systems/vtm5e/display/shared/actors/parts/features.hbs',
     'systems/vtm5e/display/shared/actors/parts/health.hbs',
-    'systems/vtm5e/display/shared/actors/parts/profile-img.hbs',
-    'systems/vtm5e/display/shared/actors/parts/other.hbs',
+    'systems/vtm5e/display/shared/actors/parts/notepad.hbs',
     'systems/vtm5e/display/shared/actors/parts/stats.hbs',
     'systems/vtm5e/display/shared/actors/parts/willpower.hbs',
-    'systems/vtm5e/display/shared/actors/parts/notes.hbs',
-    'systems/vtm5e/display/shared/actors/parts/skill-dialog.hbs',
-    'systems/vtm5e/display/shared/actors/parts/specialty-display.hbs',
+    'systems/vtm5e/display/shared/actors/parts/actor-settings.hbs',
+    'systems/vtm5e/display/shared/actors/parts/core-features.hbs',
+    'systems/vtm5e/display/shared/actors/parts/core-details.hbs',
+    'systems/vtm5e/display/shared/actors/parts/chronicle-tenets.hbs',
+    'systems/vtm5e/display/shared/actors/parts/touchstones-convictions.hbs',
+    'systems/vtm5e/display/shared/actors/parts/experience.hbs',
+    'systems/vtm5e/display/shared/actors/limited-sheet.hbs',
 
     // Hunter Sheet Partials
     'systems/vtm5e/display/htr/actors/parts/danger.hbs',
     'systems/vtm5e/display/htr/actors/parts/despair.hbs',
     'systems/vtm5e/display/htr/actors/parts/desperation.hbs',
     'systems/vtm5e/display/htr/actors/parts/edges.hbs',
+    'systems/vtm5e/display/htr/actors/parts/features.hbs',
+    'systems/vtm5e/display/htr/actors/parts/redemption.hbs',
+    'systems/vtm5e/display/htr/actors/parts/creed-fields.hbs',
 
     // Vampire Sheet Partials
     'systems/vtm5e/display/vtm/actors/parts/disciplines.hbs',
@@ -44,31 +54,49 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/wta/actors/parts/rage-value.hbs',
     'systems/vtm5e/display/wta/actors/parts/renown.hbs',
     'systems/vtm5e/display/wta/actors/parts/forms.hbs',
+    'systems/vtm5e/display/wta/actors/parts/features.hbs',
+    'systems/vtm5e/display/wta/actors/parts/patron-spirit.hbs',
+    'systems/vtm5e/display/wta/actors/parts/favor.hbs',
+    'systems/vtm5e/display/wta/actors/parts/ban.hbs',
 
     // SPC Sheet Partials
+    'systems/vtm5e/display/shared/actors/parts/spc/stats.hbs',
     'systems/vtm5e/display/shared/actors/parts/spc/standard-dice-pools.hbs',
     'systems/vtm5e/display/shared/actors/parts/spc/exceptional-dice-pools.hbs',
     'systems/vtm5e/display/shared/actors/parts/spc/generaldifficulty.hbs',
     'systems/vtm5e/display/shared/actors/parts/spc/spc-disciplines.hbs',
     'systems/vtm5e/display/shared/actors/parts/spc/spc-gifts.hbs',
     'systems/vtm5e/display/shared/actors/parts/spc/spc-edges.hbs',
-    'systems/vtm5e/display/shared/actors/parts/spc/type-selector.hbs',
+    'systems/vtm5e/display/shared/actors/parts/spc/blood-potency.hbs',
 
     // Group Sheet Partials
-    'systems/vtm5e/display/shared/actors/parts/group/type-selector.hbs',
+    'systems/vtm5e/display/vtm/actors/coterie-sheet.hbs',
+    'systems/vtm5e/display/htr/actors/cell-sheet.hbs',
+    'systems/vtm5e/display/wta/actors/pack-sheet.hbs',
     'systems/vtm5e/display/shared/actors/parts/group/group-members.hbs',
-    'systems/vtm5e/display/shared/actors/parts/group/description.hbs',
+    'systems/vtm5e/display/shared/actors/parts/group/features.hbs',
 
-    // Item Sheet Partials
+    // Application Partials
+    'systems/vtm5e/display/wta/applications/wereform-application/wereform-application.hbs',
+    'systems/vtm5e/display/shared/applications/skill-application/skill-application.hbs',
+    'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs',
+
+    // Item Sheet Partials (Tabs)
+    'systems/vtm5e/display/shared/items/parts/description.hbs',
+    'systems/vtm5e/display/shared/items/parts/dicepool.hbs',
+    'systems/vtm5e/display/shared/items/parts/macro.hbs',
+    'systems/vtm5e/display/shared/items/parts/modifiers.hbs',
+    'systems/vtm5e/display/shared/items/parts/modifier-display.hbs',
+    'systems/vtm5e/display/shared/items/parts/data-item-id.hbs',
+    'systems/vtm5e/display/shared/items/parts/item-uses.hbs',
+
+    // Item Sheet Partials (Dropdowns)
     'systems/vtm5e/display/shared/items/parts/skills.hbs',
     'systems/vtm5e/display/shared/items/parts/disciplines.hbs',
     'systems/vtm5e/display/shared/items/parts/edges.hbs',
     'systems/vtm5e/display/shared/items/parts/attributes.hbs',
     'systems/vtm5e/display/shared/items/parts/gifts.hbs',
     'systems/vtm5e/display/shared/items/parts/renown.hbs',
-    'systems/vtm5e/display/shared/items/parts/bonuses.hbs',
-    'systems/vtm5e/display/shared/items/parts/bonus-display.hbs',
-    'systems/vtm5e/display/shared/items/parts/macro.hbs',
 
     // Dice Tray Partials
     // 'systems/vtm5e/display/ui/parts/select-character.hbs',
@@ -90,7 +118,6 @@ export const preloadHandlebarsTemplates = async function () {
 
     // Chat Message Partials
     'systems/vtm5e/display/ui/chat/roll-message.hbs',
-    'systems/vtm5e/display/ui/chat/willpower-damage.hbs',
     'systems/vtm5e/display/ui/chat/willpower-reroll.hbs',
 
     // Menu Partials

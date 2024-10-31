@@ -1,0 +1,25 @@
+<div class="description-field">
+    <div class="flex-center field-header">
+        <label class="resource-label">
+            {{#ifeq gamesystem 'vampire'}}
+                {{localize "WOD5E.BiographyList.TouchstonesAndConvictions"}}
+            {{else}}
+                {{localize "WOD5E.BiographyList.Touchstones"}}
+            {{/ifeq}}
+            <div class="toggle-limited{{#if settings.limited.touchstones}} visible{{/if}}" data-action="toggleLimited" data-name="system.settings.limited.touchstones"
+                title="{{#if settings.limited.touchstones}}{{localize "WOD5E.Tabs.IsVisible"}}{{else}}{{localize "WOD5E.Tabs.IsNotVisible"}}{{/if}}">
+                {{#if settings.limited.touchstones}}
+                    <i class="fa-solid fa-eye"></i>
+                {{else}}
+                    <i class="fa-solid fa-eye-slash"></i>
+                {{/if}}
+            </div>
+        </label>
+    </div>
+    <div class="description-content resource">
+        <prose-mirror name="system.headers.touchstones" value="{{touchstones}}"
+            toggled="true" compact="true">
+            {{{enrichedTouchstones}}}
+        </prose-mirror>
+    </div>
+</div>

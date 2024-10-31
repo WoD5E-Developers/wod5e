@@ -1,4 +1,4 @@
-/* global ChatMessage, Roll, game, renderTemplate, CONFIG, Dialog, WOD5E */
+/* global ChatMessage, Roll, game, renderTemplate, CONFIG, Dialog */
 
 // Import various helper functions
 import { generateRollFormula } from './rolls/roll-formula.js'
@@ -7,6 +7,7 @@ import { getSituationalModifiers } from './rolls/situational-modifiers.js'
 import { _damageWillpower } from './rolls/willpower-damage.js'
 import { _increaseHunger } from './rolls/increase-hunger.js'
 import { _decreaseRage } from './rolls/decrease-rage.js'
+import { _applyOblivionStains } from './rolls/apply-oblivion-stains.js'
 
 class WOD5eDice {
   /**
@@ -54,21 +55,29 @@ class WOD5eDice {
     selectors = [],
     macro = '',
     disableMessageOutput = false,
-    advancedCheckDice = 0
+    advancedCheckDice = 0,
+    system = actor?.system?.gamesystem || 'mortal'
   }) {
-    // Define the actor's gamesystem, defaulting to 'mortal' if it's not in the systems list
-    const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
-
-    // Handle getting any situational modifiers
-    const situationalModifiers = await getSituationalModifiers({
-      actor,
-      selectors
-    })
-
     // Inner roll function
     const _roll = async (inputBasicDice, inputAdvancedDice, $form) => {
       // Get the difficulty and store it
       difficulty = $form ? $form.find('[id=inputDifficulty]').val() : difficulty
+      // Get the rollMode and store it
+      rollMode = $form ? $form.find('[name=rollMode]').val() : rollMode
+
+      // Prevent trying to roll 0 dice; all dice pools should roll at least 1 die
+      if (parseInt(inputBasicDice) === 0 && parseInt(inputAdvancedDice) === 0) {
+        if (system === 'vampire' && actor.system.hunger.value > 0) {
+          // Vampires with hunger above 0 should be rolling 1 hunger die
+          inputAdvancedDice = 1
+        } else if (system === 'werewolf' && actor.system.rage.value > 0) {
+          // Werewolves with rage above 0 should be rolling 1 rage die
+          inputAdvancedDice = 1
+        } else {
+          // In all other cases, we just roll one basic die
+          inputBasicDice = 1
+        }
+      }
 
       // Construct the proper roll formula by sending it to the generateRollFormula function
       const rollFormula = await generateRollFormula({
@@ -135,18 +144,7 @@ class WOD5eDice {
       if (roll.terms[2]) await handleFailure(system, roll.terms[2].results)
 
       // Handle willpower damage
-      if (willpowerDamage > 0 && game.settings.get('vtm5e', 'automatedWillpower')) _damageWillpower(actor, willpowerDamage)
-
-      // Send the results of the roll back to any functions that need it
-      if (callback) callback(roll)
-
-      // Run any macros that need to be ran
-      if (macro && game.macros.get(macro)) {
-        game.macros.get(macro).execute({
-          actor,
-          token: actor.token ?? actor.getActiveTokens[0]
-        })
-      }
+      if (willpowerDamage > 0 && game.settings.get('vtm5e', 'automatedWillpower')) _damageWillpower(null, null, actor, willpowerDamage, rollMode)
 
       // Roll any advanced check dice that need to be rolled in a separate rollmessage
       if (advancedCheckDice > 0) {
@@ -164,8 +162,27 @@ class WOD5eDice {
         })
       }
 
-      // The below isn't needed if there's no dice being rolled
-      if (parseInt(inputBasicDice) === 0 && parseInt(inputAdvancedDice) === 0) return roll
+      // Send the results of the roll back to any functions that need it
+      if (callback) {
+        callback(
+          null,
+          {
+            ...roll,
+            system,
+            difficulty,
+            rollSuccessful: (roll.total >= difficulty) || (roll.total > 0 && difficulty === 0),
+            rollMode
+          }
+        )
+      }
+
+      // Run any macros that need to be ran
+      if (macro && game.macros.get(macro)) {
+        game.macros.get(macro).execute({
+          actor,
+          token: actor.token ?? actor.getActiveTokens[0]
+        })
+      }
 
       // The below isn't needed if disableMessageOutput is set to true
       if (disableMessageOutput && game.dice3d) {
@@ -197,11 +214,12 @@ class WOD5eDice {
           system,
           title,
           flavor,
-          activeModifiers
+          activeModifiers,
+          rollMode
         }
       },
       {
-        rollMode: $form ? $form.find('[name=rollMode]').val() : rollMode
+        rollMode
       })
 
       return roll
@@ -209,6 +227,9 @@ class WOD5eDice {
 
     // Check if the user wants to bypass the roll dialog
     if (!quickRoll) {
+      // Handle getting any situational modifiers
+      const situationalModifiers = actor ? await getSituationalModifiers({ actor, selectors }) : {}
+
       // Roll dialog template
       const dialogTemplate = `systems/vtm5e/display/ui/${system}-roll-dialog.hbs`
       // Data that the dialog template needs
@@ -314,6 +335,7 @@ class WOD5eDice {
                 // Determine the input
                 const modCheckbox = $(event.target)
                 const modifier = parseInt(event.currentTarget.dataset.value)
+                const modifierIsNegative = modifier < 0
 
                 // Get the values of basic and advanced dice
                 const basicValue = basicDiceInput.val() ? parseInt(basicDiceInput.val()) : 0
@@ -321,21 +343,33 @@ class WOD5eDice {
                 const aCDValue = event.currentTarget.dataset.advancedCheckDice ? parseInt(event.currentTarget.dataset.advancedCheckDice) : 0
 
                 // Determine whether any alterations need to be made to basic dice or advanced dice
-                let applyDiceTo = 'basic'
-                // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
-                if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
-                  applyDiceTo = 'advanced'
+                // Either use the current applyDiceTo (if set), or default to 'basic'
+                let applyDiceTo = event.currentTarget.dataset.applyDiceTo || 'basic'
+
+                if (modifierIsNegative) {
+                  // Apply dice to basicDice unless basicDice is 0
+                  if ((system === 'vampire' || system === 'werewolf') && basicValue === 0) {
+                    applyDiceTo = 'advanced'
+                  }
+                } else {
+                  // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
+                  if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
+                    applyDiceTo = 'advanced'
+                  }
                 }
 
-                // Determine the new input depending on if the bonus is getting added (checked)
-                // or not (unchecked)
+                // Determine the new input depending on if the modifier is adding or subtracting
+                // Checked and modifier is NOT negative = Add
+                // Unchecked and modifier is negative = Add
+                // Checked and modifier is negative = Subtract
+                // Unchecked and modifier is NOT negative = Subtract
                 let newValue = 0
                 let checkValue = 0
-                if (modCheckbox.prop('checked')) {
+                if ((modCheckbox.prop('checked') && !modifierIsNegative) || (!modCheckbox.prop('checked') && modifierIsNegative)) {
                   // Adding the modifier
                   if (applyDiceTo === 'advanced') {
                     // Apply the modifier to advancedDice
-                    newValue = advancedValue + modifier
+                    newValue = advancedValue + Math.abs(modifier)
 
                     // Determine what we're checking against
                     if (system === 'vampire') {
@@ -345,7 +379,7 @@ class WOD5eDice {
                       checkValue = actorData?.rage.value
                     }
 
-                    if (newValue > actorData?.hunger.value || newValue > checkValue) {
+                    if ((newValue > actorData?.hunger.value || newValue > checkValue) && !(event.currentTarget.dataset.applyDiceTo === 'advanced')) {
                       // Check for any excess and apply it to basicDice
                       const excess = newValue - checkValue
                       newValue = checkValue
@@ -356,7 +390,7 @@ class WOD5eDice {
                     advancedDiceInput.val(newValue)
                   } else {
                     // If advancedDice is already at its max, apply the whole modifier to just basicDice
-                    newValue = basicValue + modifier
+                    newValue = basicValue + Math.abs(modifier)
                     basicDiceInput.val(newValue)
                   }
 
@@ -364,9 +398,9 @@ class WOD5eDice {
                   advancedCheckDice = advancedCheckDice + aCDValue
                 } else {
                   // Removing the modifier
-                  if (applyDiceTo === 'advanced' && advancedValue > 0) {
+                  if (applyDiceTo === 'advanced') {
                     // Apply the modifier to advancedDice
-                    newValue = advancedValue - modifier
+                    newValue = advancedValue - Math.abs(modifier)
 
                     if (newValue < 0) {
                       // Check for any deficit and apply it to basicDice
@@ -378,7 +412,7 @@ class WOD5eDice {
                     // Update the advancedDice in the menu
                     advancedDiceInput.val(newValue)
                   } else {
-                    newValue = basicValue - modifier
+                    newValue = basicValue - Math.abs(modifier)
                     if (newValue < 0) {
                       const deficit = Math.abs(newValue)
                       newValue = 0
@@ -397,7 +431,7 @@ class WOD5eDice {
                 if (advancedDiceInput.val() < 0) advancedDiceInput.val(0)
               })
 
-              // Add event listener to the add custo mmodifier button
+              // Add event listener to the add custom modifier button
               html.find('.add-custom-mod').click(function (event) {
                 event.preventDefault()
 
@@ -415,11 +449,19 @@ class WOD5eDice {
 
                 // Append a new custom modifier element to the list
                 customModList.append(customModElement)
+
+                customModList.find('.mod-delete').on('click', (event) => {
+                  event.preventDefault()
+
+                  const element = event.target.closest('.custom-modifier')
+
+                  element.remove()
+                })
               })
             }
           },
           {
-            classes: ['wod5e', `${system}-dialog`, `${system}-sheet`]
+            classes: ['wod5e', system, 'dialog']
           }
         ).render(true)
       })
@@ -434,9 +476,18 @@ class WOD5eDice {
 
       if (failures > 0) {
         if (system === 'vampire' && increaseHunger && game.settings.get('vtm5e', 'automatedHunger')) {
-          _increaseHunger(actor, failures)
+          _increaseHunger(actor, failures, rollMode)
         } else if (system === 'werewolf' && decreaseRage && game.settings.get('vtm5e', 'automatedRage')) {
-          _decreaseRage(actor, failures)
+          _decreaseRage(actor, failures, rollMode)
+        }
+      }
+
+      // Handle Oblivion rouse checks here
+      if (selectors.includes('oblivion-rouse') && game.settings.get('vtm5e', 'automatedOblivion')) {
+        const oblivionTriggers = diceResults.filter(result => [1, 10].includes(result.result) && !result.discarded).length
+
+        if (oblivionTriggers > 0) {
+          _applyOblivionStains(actor, oblivionTriggers, rollMode)
         }
       }
     }

@@ -1,80 +1,133 @@
-<div class="tab edges" data-group="primary" data-tab="edges">
-    <ol class="items-list">
-        <!-- Header of the edges lists -->
-        <li class="item flexrow item-header">
-            <div class="item-name">{{localize "WOD5E.Name"}}</div>
-            <!-- Item controls for adding new edge lists -->
-            <div class="item-controls">
-                <a class="item-control edge-create item-create" data-type="perk" title="{{localize 'WOD5E.HTR.AddEdge'}}">
-                    <i class="fas fa-plus"></i>
-                    {{localize "WOD5E.HTR.AddEdge"}}
-                </a>
-            </div>
-        </li>
-        <!-- Iterate through each of the edge lists -->
-        {{#each actor.system.edgesList as |edge key|}}
-            {{#if edge.powers}}
-                <div class="collapsible-container">
-                    <li class="flexrow item-header">
-                        <div class="item-name collapsible">
-                            {{edge.label}}
-                        </div>
-                        <!-- Item controls for Edge sections -->
-                        <div class="item-controls">
-                            <!-- Add new edge perk -->
-                            <a class="item-control edge-create item-create" title="{{localize 'WOD5E.HTR.AddPerk'}}" data-type="perk" data-subtype="{{key}}">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                            <!-- Icon to show the edge description to the chat-->
-                            <a class="item-control edge-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-type="perk" data-edge="{{key}}">
-                                <i class="fas fa-comment-alt"></i>
-                            </a>
-                        </div>
-                    </li>
-                    <!-- Edge description -->
-                    <div class="collapsible-content">
-                        <textarea class="edge-description" name="system.edges.{{key}}.description">{{{edge.enrichedDescription}}}</textarea>
-                    </div>
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="flexrow">
+        <div class="item-list">
+            <div class="flexrow flex-center">
+                <div class="item-header">{{localize 'WOD5E.HTR.Edges'}}</div>
+                <div class="item-controls">
+                    <a class="item-control add-edge flex-center" title="{{localize 'WOD5E.HTR.AddEdge'}}" data-action="addEdge">
+                        <i class="fas fa-plus"></i>
+                        {{localize "WOD5E.HTR.AddEdge"}}
+                    </a>
                 </div>
-                <!-- Iterate through each of the edge perks -->
-                {{#each edge.powers as |item id|}}
-                    <li class="item flexcol collapsible-container" data-item-id="{{item._id}}">
-                        <div class="flexrow">
-                            <!-- Whether the button is clickable or not to post the perk in chat -->
-                            {{#if item.system.rollable}}
-                                <div class="item-image edge-rollable" data-id="{{item._id}}">
-                                    <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" alt="{{item.name}}"/>
-                                </div>
-                            {{else}}
-                                <div class="item-image" data-id="{{item._id}}">
-                                    <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" alt="{{item.name}}"/>
-                                </div>
-                            {{/if}}
-                            <!-- Edge perk name -->
-                            <h4 class="item-name collapsible">{{item.name}}</h4>
-                            <!-- Item controls for edge perks -->
+            </div>
+            <ul class="powers-display-tree category">
+                {{#each edges as |edge key|}}
+                    {{#if edge.visible}}
+                        <span class="parent flexrow">
+                            <div class="icon category-select{{#if edge.selected}} selected{{/if}}" data-action="selectEdge" data-edge="{{key}}"></div>
+                            <a class="select-label" data-action="selectEdge" data-edge="{{key}}">{{edge.displayName}}</a>
                             <div class="item-controls">
-                                <!-- Icon to edit the perk-->
-                                <a class="item-control item-edit" title="{{localize 'WOD5E.Edit'}}">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <!-- Icon to display the perk in chat -->
-                                <a class="item-control item-chat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}">
+                                <!-- Icon to show the edge description to the chat-->
+                                <a class="item-control edge-chat" data-action="edgeChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-edge="{{key}}">
                                     <i class="fas fa-comment-alt"></i>
                                 </a>
-                                <!-- Icon to delete the perk -->
-                                <a class="item-control item-delete" title="{{localize 'WOD5E.Delete'}}">
+                                <!-- Icon to delete the edge (as long as it doesn't have any powers) -->
+                                {{#if (eq edge.perks.length 0)}}
+                                    <a class="item-control edge-delete" data-action="removeEdge" title="{{localize 'WOD5E.Delete'}}" data-edge="{{key}}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                {{/if}}
+                            </div>
+                        </span>
+                        <ul>
+                            {{#each edge.perks as |perk key|}}
+                                <li>
+                                    <span>
+                                        <div class="icon power-select{{#if perk.system.selected}} selected{{/if}}" data-action="selectEdgePerk" data-perk="{{perk.id}}" style="background-image: url('{{perk.img}}');"></div>
+                                        <a class="select-label" data-action="selectEdgePerk" data-perk="{{perk.id}}">{{perk.name}}</a>
+                                    </span>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+        <div class="powers-list item-list">
+            {{#if selectedEdge}}
+                <div class="edge category collapsible-container">
+                    <div class="flex-center item-header collapsible" data-action="toggleCollapse">
+                        <div class="item-name">
+                            {{selectedEdge.displayName}}
+                            <!-- Add new edge power -->
+                            <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.HTR.AddEdge'}}" data-type="perk" data-subtype="{{selectedEdge.id}}">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="edge-description collapsible-content">
+                        <prose-mirror name="system.edges.{{selectedEdge.id}}.description" value="{{selectedEdge.description}}"
+                            toggled="true" compact="true">
+                            {{{enrichedSelectedEdgeDescription}}}
+                        </prose-mirror>
+                    </div>
+                    <div class="edge-pools flexcol flex-center">
+                        {{#each selectedEdge.pools as |pool key|}}
+                            <div class="edge-pool flexrow item" data-drag="true" data-item-id="{{pool.id}}" data-document-uuid="{{pool.uuid}}" data-type="Item">
+                                <div class="edge-pool-label rollable-item" data-action="rollItem" data-item-uuid="{{pool.uuid}}">
+                                    {{pool.name}}
+                                    <i class="fa-solid fa-dice-d10"></i>
+                                </div>
+                                <div class="item-controls">
+                                    <!-- Icon to edit the edge pool -->
+                                    <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{pool._id}}" title="{{localize 'WOD5E.Edit'}}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <!-- Icon to delete the edge pool -->
+                                    <a class="item-control item-delete" data-action="itemDelete" data-item-id="{{pool._id}}" title="{{localize 'WOD5E.Delete'}}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                    <a class="flex-center add-edge-pool item-create" data-action="createItem" data-type="edgepool" data-subtype="{{selectedEdge.id}}">
+                        <i class="fas fa-plus"></i>
+                        {{localize "WOD5E.HTR.AddEdgePool"}}
+                    </a>
+                </div>
+            {{else}}
+                <div class="edge category flex-center">
+                    {{localize 'WOD5E.HTR.NoEdgeSelected'}}
+                </div>
+            {{/if}}
+
+            {{#if selectedEdgePerk}}
+                <div class="edge category">
+                    <div class="flex-center">
+                        <div class="flexrow">
+                            <span class="item-name item-header">
+                                {{selectedEdgePerk.name}}
+                            </span>
+                            <div class="item-controls flex-group-right">
+                                <!-- Icon to edit the power -->
+                                <a class="item-control item-edit" data-action="itemEdit" title="{{localize 'WOD5E.Edit'}}" data-item-id="{{selectedEdgePerk._id}}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <!-- Icon to display the power in chat -->
+                                <a class="item-control item-chat" data-action="itemChat" title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-item-id="{{selectedEdgePerk._id}}">
+                                    <i class="fas fa-comment-alt"></i>
+                                </a>
+                                <!-- Icon to delete the power -->
+                                <a class="item-control item-delete" data-action="itemDelete" title="{{localize 'WOD5E.Delete'}}" data-item-id="{{selectedEdgePerk._id}}">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </div>
                         </div>
-                        <!-- Perk description, expandable by a collapse -->
-                        <div class="collapsible-content">
-                            {{{item.system.enrichedDescription}}}
-                        </div>
-                    </li>
-                {{/each}}
+                    </div>
+                    <div class="perk-description">
+                        {{#if selectedEdgePerk.system.enrichedDescription}}
+                            <div class="power-description">
+                                {{{selectedEdgePerk.system.enrichedDescription}}}
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+            {{else}}
+                <div class="edge category flex-center">
+                    {{localize 'WOD5E.HTR.NoPerkSelected'}}
+                </div>
             {{/if}}
-        {{/each}}
-    </ol>
-</div>
+        </div>
+    </div>
+</section>

@@ -4,7 +4,7 @@
     </div>
     <div class="dice-tray-custom-rolls">
         <div>
-            {{#if (eq pool1Type "abilities")}}
+            {{#if (eq pool1Type "attributes")}}
                 {{> "systems/vtm5e/display/ui/parts/pool1-select-attribute.hbs"}}
             {{else if (eq pool1Type "skills")}}
                 {{> "systems/vtm5e/display/ui/parts/pool1-select-skill.hbs"}}
@@ -14,7 +14,7 @@
         </div>
         <span class="dice-tray-concatenate">+</span>
         <div>
-            {{#if (eq pool2Type "abilities")}}
+            {{#if (eq pool2Type "attributes")}}
                 {{> "systems/vtm5e/display/ui/parts/pool2-select-attribute.hbs"}}
             {{else if (eq pool2Type "skills")}}
                 {{> "systems/vtm5e/display/ui/parts/pool2-select-skill.hbs"}}
@@ -30,7 +30,7 @@
         {{text value=pool1Selection}}
         <div class="dice-tray-pool-filters flexrow pool1-filters">
             <button class="dice-tray-button small-button" title="{{localize 'WOD5E.AttributesList.Attributes'}}">
-                <input type="radio" id="pool1Attr" name="pool1Type" value="abilities" {{attrIf "checked" pool1Type 'abilities' }} />
+                <input type="radio" id="pool1Attr" name="pool1Type" value="attributes" {{attrIf "checked" pool1Type 'attributes' }} />
                 <label for="pool1Attr">{{localize 'WOD5E.DiceRoller.AttributeShortLabel'}}</label>
             </button>
             <button class="dice-tray-button small-button" title="{{localize 'WOD5E.SkillsList.Skills'}}">
@@ -45,7 +45,7 @@
         </div>
         <div class="dice-tray-pool-filters flexrow pool2-filters">
             <button class="dice-tray-button small-button" title="{{localize 'WOD5E.AttributesList.Attributes'}}">
-                <input type="radio" id="pool2Attr" name="pool2Type" value="abilities" {{attrIf "checked" pool2Type 'abilities' }} />
+                <input type="radio" id="pool2Attr" name="pool2Type" value="attributes" {{attrIf "checked" pool2Type 'attributes' }} />
                 <label for="pool2Attr">{{localize 'WOD5E.DiceRoller.AttributeShortLabel'}}</label>
             </button>
             <button class="dice-tray-button small-button" title="{{localize 'WOD5E.SkillsList.Skills'}}">

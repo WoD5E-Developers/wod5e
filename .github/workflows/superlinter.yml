@@ -36,10 +36,15 @@ jobs:
       - name: Super-Linter
         uses: github/super-linter/slim@v6
         env:
+          ESLINT_USE_FLAT_CONFIG: false
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_JSCPD: false 
+          VALIDATE_JSCPD: false
           VALIDATE_GITLEAKS: false
           # System uses Less as a preprocessor and it doesn't play well with CSS linters
           VALIDATE_CSS: false
+          # Too many false positives
+          VALIDATE_JSON: false
+          # Ignore the license file and the lib folder
+          FILTER_REGEX_EXCLUDE: "(./LICENSE.md|.*/lib/.*)"

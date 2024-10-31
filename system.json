@@ -2,10 +2,10 @@
   "id": "vtm5e",
   "title": "World of Darkness 5e",
   "description": "World of Darkness 5e system for Foundry VTT",
-  "version": "4.5.3",
+  "version": "5.0.0",
   "compatibility": {
-    "minimum": "11",
-    "verified": "12.330",
+    "minimum": "12",
+    "verified": "12.331",
     "maximum": ""
   },
   "authors": [
@@ -30,14 +30,13 @@
     }
   ],
   "esmodules": [
-    "system/main.js"
+    "system/main.js",
+    "lib/jquery-flexdatalist/jquery.flexdatalist.min.js",
+    "lib/jscolor/jscolor.min.js"
   ],
   "styles": [
-    "display/shared/styling/wod5e.css",
-    "display/shared/styling/themes/dark-theme.css",
-    "display/vtm/styling/vampire-styling.css",
-    "display/htr/styling/hunter-styling.css",
-    "display/wta/styling/werewolf-styling.css"
+    "display/wod5e-styling.css",
+    "lib/jquery-flexdatalist/jquery.flexdatalist.min.css"
   ],
   "languages": [
     {
@@ -232,6 +231,17 @@
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
+    },
+    {
+      "label": "Conditions",
+      "type": "Item",
+      "name": "conditions",
+      "path": "packs/conditions",
+      "system": "vtm5e",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "packFolders": [
@@ -239,7 +249,8 @@
       "name": "World of Darkness 5e",
       "sorting": "m",
       "packs": [
-        "macros"
+        "macros",
+        "conditions"
       ],
       "color": "#8c0303"
     }
@@ -252,12 +263,12 @@
   },
   "initiative": "1d10",
   "changelog": "https://wod5e-developers.github.io/wod5e-docs/changelog.html",
-  "license": "./LICENSE",
+  "license": "./LICENSE.md",
   "url": "https://github.com/WoD5E-Developers/wod5e",
   "bugs": "https://github.com/WoD5E-Developers/wod5e/issues",
   "background": "systems/vtm5e/assets/images/wodcity.jpg",
-  "manifest": "https://github.com/WoD5E-Developers/wod5e/releases/download/4.5.3/system.json",
-  "download": "https://github.com/WoD5E-Developers/wod5e/releases/download/4.5.3/vtm5e.zip",
+  "manifest": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.0.0/system.json",
+  "download": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.0.0/vtm5e.zip",
   "flags": {
     "hotReload": {
       "extensions": [

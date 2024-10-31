@@ -1,0 +1,33 @@
+<header class="item-header">
+    <img class="profile-img" data-action="editImage" src="{{img}}" data-edit="img" title="{{name}}" alt="Item Image" />
+    <div class="header-fields">
+        <input class="itemname" name="name" type="text" value="{{name}}" placeholder="{{localize 'WOD5E.Name'}}"/>
+        <div class="flexrow">
+            <!-- Input the dots of the feature -->
+            <div class="flexcol level flex-center item-resource">
+                <div>
+                    <b>{{localize "WOD5E.ItemsList.Points"}}</b>
+                </div>
+                <input name="system.points" value="{{points}}" type="number" min="0" max="5"/>
+            </div>
+            <!-- Current number of uses -->
+            {{#if uses.enabled}}
+                <div class="flexcol level flex-center item-resource">
+                    <div>
+                        <b>{{localize "WOD5E.ItemsList.UsesRemaining"}}</b>
+                    </div>
+                    <input name="system.uses.current" value="{{uses.current}}" type="number" min="0" max="{{uses.max}}"/>
+                </div>
+            {{/if}}
+            <!-- Select the type this feature belongs to -->
+            <div class="flexcol feature-type flex-center item-resource">
+                <label>
+                    <b>{{localize "WOD5E.ItemsList.FeatureType"}}</b>
+                </label>
+                <select name="system.featuretype" data-type="String">
+                    {{selectOptions featureTypeOptions selected=featureTypeSelected localize=true}}
+                </select>
+            </div>
+        </div>
+    </div>
+</header>
