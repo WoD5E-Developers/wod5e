@@ -12,7 +12,7 @@ export const MigrateGeneralDifficulty = async function () {
   for (const actor of actorsList) {
     const actorData = actor.system
 
-    // Check if the actor has animal ken (the broken skill)
+    // Check if the actor has both normal and strongest general difficulties using the old values
     if (hasProperty(actorData, 'generaldifficulty.normal.value') && hasProperty(actorData, 'generaldifficulty.strongest.value')) {
       const generaldifficulty = {
         normal: actorData.generaldifficulty.normal.value,
