@@ -8,6 +8,7 @@ import { MigrateGroupSheets } from './migration/migrate-group-sheets.js'
 import { MigrateAbilitiesToAttributes } from './migration/migrate-abilities-to-attributes.js'
 import { MigrateRolldataToDicepools } from './migration/migrate-rolldata-to-dicepools.js'
 import { MigrateOldDetailsToNewItems } from './migration/migrate-old-details-to-new-items.js'
+import { MigrateGeneralDifficulty } from './migration/migrate-general-difficulty.js'
 
 export const migrateWorld = async () => {
   // Only allow the Game Master to run this script
@@ -59,6 +60,10 @@ export const migrateWorld = async () => {
         // Migrate old actor data to new items
         const migrationIDs12 = await MigrateOldDetailsToNewItems()
         updates.push(...migrationIDs12)
+
+        // Migrate General Difficulty of SPC sheets
+        const migrationIDs13 = await MigrateGeneralDifficulty()
+        updates.push(...migrationIDs13)
 
         // Only reload if there's 1 or more updates
         if (updates.length > 0) {
