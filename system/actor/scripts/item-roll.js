@@ -48,8 +48,8 @@ export const _rollItem = async function (actor, item) {
 
   // Iterate through the dicepool and add to valuePaths and selectors as needed
   for (const dice in dicepool) {
-    selectors.push(dicepool[dice].path)
-    selectors.push(dicepool[dice].path.split('.'))
+    selectors.push(dicepool[dice]?.path)
+    selectors.push(dicepool[dice]?.path?.split('.'))
 
     valuePaths.push(`${dicepool[dice].path}.value`)
   }
