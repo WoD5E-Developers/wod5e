@@ -8,6 +8,9 @@
             {{#each record.settings as |setting|}}
                 <div class="flexrow">
                     <div>
+                        <a class="reset-color" data-input-id="{{setting.id}}" data-setting-id="{{setting.settingId}}" data-css-variable="{{setting.cssVariable}}" title="{{localize 'WOD5E.Reset'}}">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </a>
                         <b>{{localize setting.settingName}}</b>
                     </div>
                     <input id="{{setting.id}}" class="color-input" data-setting-id="{{setting.settingId}}" data-css-variable="{{setting.cssVariable}}" value="{{lookup ../.. @key}}" data-jscolor="">
