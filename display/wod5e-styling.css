@@ -1564,6 +1564,7 @@ body.uk .actor.sheet {
 }
 .actor.sheet .tab[data-tab="notepad"] .note-container prose-mirror {
   height: 400px;
+  min-width: 100%;
 }
 .actor.sheet .toggle-limited {
   font-size: 13pt;
