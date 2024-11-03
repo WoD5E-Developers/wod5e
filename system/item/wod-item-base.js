@@ -52,7 +52,7 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
     const controls = super._getHeaderControls()
     const item = this.item
 
-    if (item.isOwned) {
+    if (item?.isOwned) {
       // Allow this item to have its item updated from an existing data item
       controls.push({
         icon: 'fa-solid fa-down-long',

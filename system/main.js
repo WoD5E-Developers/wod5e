@@ -118,6 +118,12 @@ Hooks.once('init', async function () {
 
 // Anything that needs to run once the world is ready
 Hooks.once('ready', async function () {
+  // Forced panning is intrinsically annoying: change default to false
+  game.settings.settings.get('core.chatBubblesPan').default = false
+
+  // Improve discoverability of map notes
+  game.settings.settings.get('core.notesDisplayToggle').default = true
+
   // Apply the currently selected language as a CSS class so we can
   // modify elements based on locale if needed
   document.body.classList.add(game.settings.get('core', 'language'))
@@ -179,12 +185,6 @@ Hooks.once('ready', async function () {
 })
 
 Hooks.once('setup', () => {
-  // Forced panning is intrinsically annoying: change default to false
-  game.settings.settings.get('core.chatBubblesPan').default = false
-
-  // Improve discoverability of map notes
-  game.settings.settings.get('core.notesDisplayToggle').default = true
-
   // Set Hover by Owner as defaults for Default Token Configuration
   const defaultTokenSettingsDefaults = game.settings.settings.get('core.defaultToken').default
   defaultTokenSettingsDefaults.displayName = CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER
