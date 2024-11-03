@@ -7,6 +7,7 @@
 export const getDicepoolList = async (document) => {
   const masterList = []
   const gamesystem = document.system?.gamesystem || 'mortal'
+  const isNotEmbedded = !game.items.get('ScZcmxk1WGC0GAQu').isEmbedded
 
   // Attributes
   const attributes = WOD5E.Attributes.getList({})
@@ -29,7 +30,7 @@ export const getDicepoolList = async (document) => {
   }
 
   // Vampire
-  if (gamesystem === 'vampire') {
+  if (gamesystem === 'vampire' || isNotEmbedded) {
     const disciplines = WOD5E.Disciplines.getList({})
     for (const [key, value] of Object.entries(disciplines)) {
       masterList.push({
@@ -41,7 +42,7 @@ export const getDicepoolList = async (document) => {
   }
 
   // Werewolf
-  if (gamesystem === 'werewolf') {
+  if (gamesystem === 'werewolf' || isNotEmbedded) {
     const renown = WOD5E.Renown.getList({})
     for (const [key, value] of Object.entries(renown)) {
       masterList.push({
