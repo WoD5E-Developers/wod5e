@@ -76,12 +76,12 @@ export const migrateWorld = async () => {
         } else {
           ui.notifications.info('Welcome to version ' + currentVersion)
         }
-
-        // Update game version
-        game.settings.set('vtm5e', 'worldVersion', currentVersion)
       } catch (error) {
         console.error('Error during update:', error)
       }
+
+      // Update game version, no matter if we error or not
+      game.settings.set('vtm5e', 'worldVersion', currentVersion)
     }
   }
 

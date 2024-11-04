@@ -2,6 +2,7 @@
 
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
+import { _damageWillpower } from '../../../scripts/rolls/willpower-damage.js'
 
 export const _onAddGift = async function (event) {
   event.preventDefault()
@@ -87,28 +88,31 @@ export const _onGiftCost = async function (actor, item, rollMode) {
   // Apply rollMode from chat if none is set
   if (!rollMode) rollMode = game.settings.get('core', 'rollMode')
 
-  if (cost > 0) {
+  // If we're rolling no rage dice and
+  if (cost < 1 && willpowerCost > 0) {
+    _damageWillpower(null, null, actor, willpowerCost, rollMode)
+  } else if (cost > 0 && willpowerCost > 0) {
     selectors = ['rage']
+
+    // Handle getting any situational modifiers
+    const activeModifiers = await getActiveModifiers({
+      actor,
+      selectors
+    })
+
+    // Send the roll to the system
+    WOD5eDice.Roll({
+      advancedDice: cost + activeModifiers.totalValue,
+      title: `${game.i18n.localize('WOD5E.WTA.RageDice')} - ${item.name}`,
+      actor,
+      rollMode,
+      disableBasicDice: true,
+      decreaseRage: true,
+      selectors,
+      quickRoll: true,
+      willpowerDamage: willpowerCost
+    })
   }
-
-  // Handle getting any situational modifiers
-  const activeModifiers = await getActiveModifiers({
-    actor,
-    selectors
-  })
-
-  // Send the roll to the system
-  WOD5eDice.Roll({
-    advancedDice: cost + activeModifiers.totalValue,
-    title: `${game.i18n.localize('WOD5E.WTA.RageDice')} - ${item.name}`,
-    actor,
-    rollMode,
-    disableBasicDice: true,
-    decreaseRage: true,
-    selectors,
-    quickRoll: true,
-    willpowerDamage: willpowerCost
-  })
 }
 
 /** Post Gift description to the chat */

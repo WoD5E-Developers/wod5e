@@ -68,6 +68,22 @@ export const getEffectKeys = () => {
     })
   }
 
+  // "Health Max" key
+  keysList.push({
+    id: 'system.health.max',
+    displayName: game.i18n.format('WOD5E.MaxString', {
+      string: game.i18n.localize('WOD5E.Health')
+    })
+  })
+
+  // "Willpower Max" key
+  keysList.push({
+    id: 'system.willpower.max',
+    displayName: game.i18n.format('WOD5E.MaxString', {
+      string: game.i18n.localize('WOD5E.Willpower')
+    })
+  })
+
   // Vampire
   const disciplines = WOD5E.Disciplines.getList({
     useValuePath: true
@@ -89,7 +105,9 @@ export const getEffectKeys = () => {
   // "Hunger Max" key
   keysList.push({
     id: 'system.hunger.max',
-    displayName: game.i18n.localize('WOD5E.VTM.MaxHunger')
+    displayName: game.i18n.format('WOD5E.MaxString', {
+      string: game.i18n.localize('WOD5E.VTM.Hunger')
+    })
   })
 
   // Werewolf
@@ -114,7 +132,9 @@ export const getEffectKeys = () => {
   // "Rage Max" key
   keysList.push({
     id: 'system.rage.max',
-    displayName: game.i18n.localize('WOD5E.WTA.MaxRage')
+    displayName: game.i18n.format('WOD5E.MaxString', {
+      string: game.i18n.localize('WOD5E.WTA.Rage')
+    })
   })
 
   return keysList

@@ -774,7 +774,7 @@ h3.item-name {
 }
 /* Define splat-specific colours for the WOD5E Symbols */
 .wod5e .wod5e-symbol.vampire {
-  color: var(--vampire-color-1);
+  color: var(--vampire-color-3);
 }
 /* Vampire Actor Sheet */
 .actor.sheet.vampire .actor-header {
@@ -820,8 +820,8 @@ h3.item-name {
   background-color: var(--vampire-color-2);
 }
 .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
-.actor.sheet.vampire .tabs-container .item[data-tab="blood"] {
-  color: var(--vampire-color-1);
+.actor.sheet.vampire .tabs-container [data-tab="blood"] .navicon {
+  color: var(--vampire-color-2);
 }
 .actor.sheet.vampire .tabs-container .active .navicon {
   background-color: var(--vampire-color-1);
@@ -1564,6 +1564,7 @@ body.uk .actor.sheet {
 }
 .actor.sheet .tab[data-tab="notepad"] .note-container prose-mirror {
   height: 400px;
+  min-width: 100%;
 }
 .actor.sheet .toggle-limited {
   font-size: 13pt;
@@ -2406,7 +2407,8 @@ body.uk .actor.sheet {
   color: #e4e4e4a9;
 }
 prose-mirror button.icon.toggle {
-  background-color: var(--system-color-6);
+  background-color: var(--system-color-1);
+  color: var(--system-color-2);
 }
 prose-mirror .editor-menu {
   background: var(--system-color-7);
@@ -2981,7 +2983,7 @@ prose-mirror .editor-menu button {
   color: var(--system-dark-color-4);
 }
 .wod-dark-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
-.wod-dark-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
+.wod-dark-theme .actor.sheet.werewolf .tabs-container [data-tab="wolf"] .navicon {
   color: var(--werewolf-color-3);
 }
 .wod-dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,

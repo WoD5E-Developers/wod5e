@@ -316,7 +316,9 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     // Update the actor background if it's not the default
     const actorBackground = await getActorBackground(this.actor)
     if (actorBackground) {
-      html.find('section.window-content').css('background', `url("/${actorBackground}")`)
+      html.find('section.window-content').css('background', `url("${actorBackground}")`)
+    } else {
+      html.find('section.window-content').css('background', '')
     }
 
     html.find('.actor-header-bg-filepicker input').on('focusout', function (event) {

@@ -65,6 +65,16 @@ export const getSelectorsList = () => {
       displayName: value.displayName
     })
   }
+  // Willpower
+  selectorsList.push({
+    id: 'willpower',
+    displayName: game.i18n.localize('WOD5E.Willpower')
+  })
+  // Willpower Re-roll
+  selectorsList.push({
+    id: 'willpower-reroll',
+    displayName: game.i18n.localize('WOD5E.Chat.Willpower')
+  })
 
   // Vampire
   const disciplines = WOD5E.Disciplines.getList({
@@ -84,6 +94,16 @@ export const getSelectorsList = () => {
       displayName: value.displayName
     })
   }
+  // Frenzy
+  selectorsList.push({
+    id: 'frenzy',
+    displayName: game.i18n.localize('WOD5E.VTM.Frenzy')
+  })
+  // Remorse
+  selectorsList.push({
+    id: 'humanity',
+    displayName: game.i18n.localize('WOD5E.VTM.Remorse')
+  })
 
   // Hunter
   const edges = WOD5E.Edges.getList({

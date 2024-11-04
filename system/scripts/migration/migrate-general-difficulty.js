@@ -13,7 +13,7 @@ export const MigrateGeneralDifficulty = async function () {
     const actorData = actor.system
 
     // Check if the actor has both normal and strongest general difficulties using the old values
-    if (hasProperty(actorData, 'generaldifficulty.normal.value') && hasProperty(actorData, 'generaldifficulty.strongest.value')) {
+    if (actorData?.generaldifficulty?.normal?.value && actorData?.generaldifficulty?.strongest?.value) {
       const generaldifficulty = {
         normal: actorData.generaldifficulty.normal.value,
         strongest: actorData.generaldifficulty.strongest.value
@@ -29,9 +29,4 @@ export const MigrateGeneralDifficulty = async function () {
   }
 
   return migrationIDs
-
-  // Quick function to check if a property exists on an object
-  function hasProperty (obj, path) {
-    return path.split('.').every(prop => prop in obj && (obj = obj[prop]))
-  }
 }

@@ -59,5 +59,21 @@ export class SplatColorsMenu extends FormApplication {
 
       _updateCSSVariable(setting, cssVariable, value)
     })
+
+    html.find('.reset-color').click(async event => {
+      event.preventDefault()
+
+      const inputId = event.currentTarget.dataset.inputId
+      const settingId = event.currentTarget.dataset.settingId
+      const cssVariable = event.currentTarget.dataset.cssVariable
+
+      if (inputId && settingId) {
+        const inputElement = html.find(`#${inputId}`)
+        const defaultColor = game.settings.settings.get(`vtm5e.${settingId}`).default
+
+        inputElement[0].jscolor.fromString(defaultColor)
+        _updateCSSVariable(settingId, cssVariable, defaultColor)
+      }
+    })
   }
 }
