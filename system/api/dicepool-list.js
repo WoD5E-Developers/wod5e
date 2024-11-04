@@ -7,7 +7,7 @@
 export const getDicepoolList = async (document) => {
   const masterList = []
   const gamesystem = document.system?.gamesystem || 'mortal'
-  const isNotEmbedded = !game.items.get('ScZcmxk1WGC0GAQu').isEmbedded
+  const isNotEmbedded = !game.items.get('ScZcmxk1WGC0GAQu')?.isEmbedded
 
   // Attributes
   const attributes = WOD5E.Attributes.getList({})
