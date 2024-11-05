@@ -52,8 +52,8 @@
       "Ghoul": "Гуль",
       "GiveIn": "Сдаться",
       "Humanity": "Человечность",
+      "HumanityStains": "Пятна человечности",
       "Hunger": "Голод",
-	  "HumanityStains": "Пятна человечности",
       "HungerDice": "Кости голода",
       "HungerFull1": "Полный голод",
       "HungerFull2": "Голод и так на максимуме, нельзя увеличить Голод.",
@@ -106,7 +106,7 @@
       "RousingBlood": "Проверка Голода",
       "SelectDiscipline": "Дисциплина",
       "Sire": "Сир",
-      "_StringPowers": "{string} Силы",
+      "_StringPowers": "",
       "ThinBloodAlchemy": "Алхимия слабокровных",
       "VampireDice": "Кости вампира"
     }
