@@ -55,7 +55,6 @@ export const _rollItem = async function (actor, item) {
     // Push the full selector
     selectors.push(dicepool[dice]?.path)
 
-
     // Push the value path
     valuePaths.push(`${dicepool[dice].path}.value`)
   }
