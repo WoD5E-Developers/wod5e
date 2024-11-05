@@ -41,16 +41,21 @@ export const _rollItem = async function (actor, item) {
   const flavor = itemData?.description || ''
   const flatMod = itemData?.modifier || 0
   const macro = itemData.macroid
-  const selectors = []
+  let selectors = []
 
   // Variables yet to be defined
   let basicDice, advancedDice
 
   // Iterate through the dicepool and add to valuePaths and selectors as needed
   for (const dice in dicepool) {
-    selectors.push(dicepool[dice]?.path)
-    selectors.push(dicepool[dice]?.path?.split('.'))
+    const splitPath = dicepool[dice]?.path?.split('.')
+    // Push each of the individual sub-selectors
+    selectors = selectors.concat(splitPath)
 
+    // Push the full selector
+    selectors.push(dicepool[dice]?.path)
+
+    // Push the value path
     valuePaths.push(`${dicepool[dice].path}.value`)
   }
 

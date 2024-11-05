@@ -99,7 +99,9 @@ export async function getSituationalModifiers ({
       if (check === 'isEqual') {
         const pathValue = path.split('.').reduce((obj, key) => obj[key], data)
         modifier.isActive = true
-        showModifier = String(pathValue) === value
+
+        // Check both number and string values
+        showModifier = String(pathValue) === String(value) || Number(pathValue) === Number(value)
       }
 
       // If the qualifier is the path, the modifier will be active
