@@ -21,6 +21,10 @@ export const prepareGiftsContext = async function (context, actor) {
   // Get power data if any power is currently selected
   if (actorData?.selectedGiftPower) {
     context.selectedGiftPower = await actor.items.get(actorData.selectedGiftPower)
+
+    if (context.selectedGiftPower?.system?.description) {
+      context.selectedGiftPowerDescription = await TextEditor.enrichHTML(context.selectedGiftPower.system.description)
+    }
   }
 
   return context
