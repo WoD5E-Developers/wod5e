@@ -22,7 +22,9 @@ export const prepareDisciplinesContext = async function (context, actor) {
   if (actorData?.selectedDisciplinePower) {
     context.selectedDisciplinePower = await actor.items.get(actorData.selectedDisciplinePower)
 
-    context.selectedDisciplinePowerDescription = await TextEditor.enrichHTML(context.selectedDisciplinePower.system.description)
+    if (context.selectedDisciplinePower?.system?.description) {
+      context.selectedDisciplinePowerDescription = await TextEditor.enrichHTML(context.selectedDisciplinePower.system.description)
+    }
   }
 
   return context
