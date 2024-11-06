@@ -311,17 +311,17 @@
 /* Fonts */
 @font-face {
   font-family: "cormorantLight";
-  src: url("/systems/vtm5e/assets/fonts/Cormorant-Light-webfont.woff") format("woff");
+  src: url("../assets/fonts/Cormorant-Light-webfont.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "wod5eSymbols";
-  src: url("/systems/vtm5e/assets/fonts/wod5e-symbols.ttf") format("truetype");
+  src: url("../assets/fonts/wod5e-symbols.ttf") format("truetype");
 }
 @font-face {
   font-family: "vampireRevised";
-  src: url("/systems/vtm5e/assets/fonts/vampire-revised.ttf") format("truetype");
+  src: url("../assets/fonts/vampire-revised.ttf") format("truetype");
 }
 /* Define the class that will be used for WOD5E symbols */
 .wod5e-symbol {
@@ -2331,11 +2331,11 @@ body.uk .actor.sheet {
   --system-color-10: #4b4b4b;
   --system-color-11: #181818;
   --base-theme-filter: rgba(24, 51, 103, 0.5);
-  --ui-background-texture: url(/systems/vtm5e/assets/ui/base_ui_background_texture.webp);
-  --sidebar-background: url(/systems/vtm5e/assets/ui/base_sidebar.webp);
-  --actor-background-default: url(/systems/vtm5e/assets/actor/actor_background.webp);
-  --actor-header-default: url(/systems/vtm5e/assets/ui/Actor_Header_Background.webp);
-  --logo-default: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
+  --ui-background-texture: url("../assets/ui/base_ui_background_texture.webp");
+  --sidebar-background: url("../assets/ui/base_sidebar.webp");
+  --actor-background-default: url("../assets/actor/actor_background.webp");
+  --actor-header-default: url("../assets/ui/Actor_Header_Background.webp");
+  --logo-default: url("../assets/ui/WoD_Logo.webp");
 }
 /* All places that use a filter to apply the theme colour */
 .app,
@@ -3020,7 +3020,7 @@ prose-mirror .editor-menu button {
 
 /* Variables */
 :root {
-  --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.webp);
+  --logo-hunter: url(../assets/ui/HtR_Logo.webp);
   --hunter-theme-filter: #D18125;
 }
 .wod-hunter-theme {
@@ -3062,7 +3062,7 @@ prose-mirror .editor-menu button {
 
 /* Variables */
 :root {
-  --logo-vampire: url("/systems/vtm5e/assets/ui/VtM_Logo.webp");
+  --logo-vampire: url("../assets/ui/VtM_Logo.webp");
   --vampire-theme-filter: #FF2B2B80;
 }
 .wod-vampire-theme {
@@ -3314,7 +3314,7 @@ prose-mirror .editor-menu button {
 
 /* Variables */
 :root {
-  --logo-werewolf: url("/systems/vtm5e/assets/ui/WtA_Logo.webp");
+  --logo-werewolf: url("../assets/ui/WtA_Logo.webp");
   --werewolf-theme-filter: #BE660080;
 }
 .wod-werewolf-theme {
