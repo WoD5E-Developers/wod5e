@@ -1290,6 +1290,7 @@ body.uk .actor.sheet {
 }
 .actor.sheet prose-mirror {
   min-width: 100%;
+  resize: vertical;
 }
 .actor.sheet prose-mirror .editor-content {
   max-width: 100%;
