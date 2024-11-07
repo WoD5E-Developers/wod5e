@@ -37,6 +37,14 @@
   }
 
   /* Input and resource fields */
+  prose-mirror {
+    min-width: 100%;
+
+    .editor-content {
+      max-width: 100%;
+    }
+  }
+
   input,
   .resource {
     display: flex;
@@ -386,14 +394,10 @@
       padding: 3px;
       margin: 5px;
       width: 50%;
+      align-self: flex-start;
 
       .field-header {
         font-size: 16pt;
-      }
-
-      prose-mirror {
-        height: 400px;
-        min-width: 100%;
       }
     }
   }

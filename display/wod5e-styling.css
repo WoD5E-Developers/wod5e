@@ -1288,6 +1288,12 @@ body.uk .actor.sheet {
   align-items: flex-start;
   height: 100%;
 }
+.actor.sheet prose-mirror {
+  min-width: 100%;
+}
+.actor.sheet prose-mirror .editor-content {
+  max-width: 100%;
+}
 .actor.sheet input,
 .actor.sheet .resource {
   display: flex;
@@ -1558,13 +1564,10 @@ body.uk .actor.sheet {
   padding: 3px;
   margin: 5px;
   width: 50%;
+  align-self: flex-start;
 }
 .actor.sheet .tab[data-tab="notepad"] .note-container .field-header {
   font-size: 16pt;
-}
-.actor.sheet .tab[data-tab="notepad"] .note-container prose-mirror {
-  height: 400px;
-  min-width: 100%;
 }
 .actor.sheet .toggle-limited {
   font-size: 13pt;
@@ -3020,7 +3023,7 @@ prose-mirror .editor-menu button {
 
 /* Variables */
 :root {
-  --logo-hunter: url(../assets/ui/HtR_Logo.webp);
+  --logo-hunter: url("../assets/ui/HtR_Logo.webp");
   --hunter-theme-filter: #D18125;
 }
 .wod-hunter-theme {
