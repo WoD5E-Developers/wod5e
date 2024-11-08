@@ -37,6 +37,7 @@ export const _onFrenzyRoll = async function (event) {
       basicDice: dicePool,
       title: game.i18n.localize('WOD5E.VTM.ResistingFrenzy'),
       actor,
+      selectors: ['frenzy'],
       data: actor.system,
       disableAdvancedDice: true,
       callback: async (err, result) => {
