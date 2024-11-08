@@ -170,7 +170,7 @@ class WOD5eDice {
             ...roll,
             system,
             difficulty,
-            rollSuccessful: (roll.total >= difficulty) || (roll.total > 0 && difficulty === 0),
+            rollSuccessful: roll.total > 0 && ((roll.total >= difficulty) || (difficulty === 0)),
             rollMode
           }
         )
