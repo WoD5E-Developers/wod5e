@@ -2794,6 +2794,10 @@ prose-mirror .editor-menu button {
 .wod-dark-theme .sheet .window-content {
   background: var(--actor-background-dark) repeat;
 }
+.wod-dark-theme .content-link {
+  color: var(--system-dark-color-1);
+  background-color: #FFF;
+}
 .wod-dark-theme .app,
 .wod-dark-theme #sidebar,
 .wod-dark-theme #controls ol.control-tools > li,
@@ -2947,10 +2951,6 @@ prose-mirror .editor-menu button {
   border-color: var(--system-dark-color-4);
   /* Power Descriptions */
 }
-.wod-dark-theme .actor.sheet .item-list .category .content-link {
-  color: var(--system-dark-color-1);
-  background-color: #FFF;
-}
 .wod-dark-theme .actor.sheet .item-list .category .discipline-description,
 .wod-dark-theme .actor.sheet .item-list .category .edge-description,
 .wod-dark-theme .actor.sheet .item-list .category .gift-description {
@@ -3080,6 +3080,10 @@ prose-mirror .editor-menu button {
 }
 .wod-vampire-theme .sheet .window-content {
   background: var(--actor-background-dark) repeat;
+}
+.wod-vampire-theme .content-link {
+  color: var(--system-dark-color-1);
+  background-color: #FFF;
 }
 .wod-vampire-theme .app,
 .wod-vampire-theme #sidebar,
@@ -3241,10 +3245,6 @@ prose-mirror .editor-menu button {
   border-color: var(--system-dark-color-4);
   /* Power Descriptions */
 }
-.wod-vampire-theme .actor.sheet .item-list .category .content-link {
-  color: var(--system-dark-color-1);
-  background-color: #FFF;
-}
 .wod-vampire-theme .actor.sheet .item-list .category .discipline-description,
 .wod-vampire-theme .actor.sheet .item-list .category .edge-description,
 .wod-vampire-theme .actor.sheet .item-list .category .gift-description {
@@ -3332,6 +3332,10 @@ prose-mirror .editor-menu button {
 }
 .wod-werewolf-theme .sheet .window-content {
   background: var(--actor-background-dark) repeat;
+}
+.wod-werewolf-theme .content-link {
+  color: var(--system-dark-color-1);
+  background-color: #FFF;
 }
 .wod-werewolf-theme .app,
 .wod-werewolf-theme #sidebar,
@@ -3492,10 +3496,6 @@ prose-mirror .editor-menu button {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
   /* Power Descriptions */
-}
-.wod-werewolf-theme .actor.sheet .item-list .category .content-link {
-  color: var(--system-dark-color-1);
-  background-color: #FFF;
 }
 .wod-werewolf-theme .actor.sheet .item-list .category .discipline-description,
 .wod-werewolf-theme .actor.sheet .item-list .category .edge-description,
