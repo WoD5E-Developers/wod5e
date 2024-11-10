@@ -31,7 +31,7 @@ export const _onRoll = async function (event, target) {
 */
 export const _onConfirmRoll = async function (dataset, actor) {
   // Secondary variables
-  const { willpowerDamage, difficulty, disableBasicDice, disableAdvancedDice, quickRoll, rerollHunger, useAbsoluteValue, increaseHunger, decreaseRage } = dataset
+  const { willpowerDamage, difficulty, disableBasicDice, quickRoll, rerollHunger, useAbsoluteValue, increaseHunger, decreaseRage } = dataset
   const title = dataset.label
   const data = dataset.itemId ? actor.items.get(dataset.itemId).system : actor.system
   const flavor = dataset.useFlavorPath ? await WOD5E.api.getFlavorDescription({ valuePath: dataset.flavorPath, data }) : dataset.flavor
@@ -39,10 +39,16 @@ export const _onConfirmRoll = async function (dataset, actor) {
   const absoluteValue = parseInt(dataset.absoluteValue) || 0
   const selectors = dataset.selectors ? dataset.selectors.split(' ') : []
   const macro = dataset.itemId ? data.macroid : dataset.macroid
+  let disableAdvancedDice = dataset.disableAdvancedDice || false
 
   // Add despair to the selectors if the Hunter is in despair
   if (actor.type === 'hunter' && actor.system.despair.value === 1) {
     selectors.push('despair')
+  }
+
+  // Disable advanced dice for ghouls, SPC, and group sheets
+  if (['ghoul', 'group'].includes(actor.type)) {
+    disableAdvancedDice = true
   }
 
   // Variables yet to be defined

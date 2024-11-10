@@ -31,7 +31,7 @@ export const _rollItem = async function (actor, item) {
   const willpowerDamage = 0
   const difficulty = 0
   const disableBasicDice = false
-  const disableAdvancedDice = false
+  const disableAdvancedDice = ['ghoul', 'group'].includes(actor.type)
   const quickRoll = false
   const rerollHunger = false
   const valuePaths = []
@@ -97,7 +97,7 @@ export const _rollItem = async function (actor, item) {
   // Some quick modifications to vampire and werewolf rolls
   // in order to properly display the dice in the dialog window
   if (!disableBasicDice) {
-    if (system === 'vampire') {
+    if (system === 'vampire' && actor.type !== 'ghoul') {
       // Ensure that the number of hunger dice doesn't exceed the
       // total number of dice, unless it's a rouse check that needs
       // rerolls, which requires twice the number of normal hunger

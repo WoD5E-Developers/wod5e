@@ -75,24 +75,33 @@
     }
   }
 
+
   /* Limited Sheet */
-  .limited-actor-header {
-    display: flex;
-    flex-grow: 0;
+  section[data-application-part="limited"] {
+    overflow-y: scroll;
 
-    .charname {
-      font-size: 20pt;
+    .limited-actor-header {
+      display: flex;
+      flex-grow: 0;
+
+      .charname {
+        font-size: 20pt;
+      }
+
+      .header-content {
+        flex-grow: 1;
+        text-align: center;
+        margin-top: auto;
+      }
     }
 
-    .header-content {
-      flex-grow: 1;
-      text-align: center;
-      margin-top: auto;
+    .description-content {
+      align-self: flex-start;
     }
-  }
 
-  .limited-description-body {
-    padding: 10px;
+    .limited-description-body {
+      padding: 10px;
+    }
   }
 
   /* Actor Header */
