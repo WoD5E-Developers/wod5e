@@ -1319,19 +1319,25 @@ body.uk .actor.sheet {
   position: absolute;
   right: 23px;
 }
-.actor.sheet .limited-actor-header {
+.actor.sheet section[data-application-part="limited"] {
+  overflow-y: scroll;
+}
+.actor.sheet section[data-application-part="limited"] .limited-actor-header {
   display: flex;
   flex-grow: 0;
 }
-.actor.sheet .limited-actor-header .charname {
+.actor.sheet section[data-application-part="limited"] .limited-actor-header .charname {
   font-size: 20pt;
 }
-.actor.sheet .limited-actor-header .header-content {
+.actor.sheet section[data-application-part="limited"] .limited-actor-header .header-content {
   flex-grow: 1;
   text-align: center;
   margin-top: auto;
 }
-.actor.sheet .limited-description-body {
+.actor.sheet section[data-application-part="limited"] .description-content {
+  align-self: flex-start;
+}
+.actor.sheet section[data-application-part="limited"] .limited-description-body {
   padding: 10px;
 }
 .actor.sheet .actor-header {
