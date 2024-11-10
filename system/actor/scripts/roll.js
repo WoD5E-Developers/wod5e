@@ -47,7 +47,7 @@ export const _onConfirmRoll = async function (dataset, actor) {
   }
 
   // Disable advanced dice for ghouls, SPC, and group sheets
-  if (['ghoul', 'spc', 'group'].includes(actor.type)) {
+  if (['ghoul', 'group'].includes(actor.type)) {
     disableAdvancedDice = true
   }
 
