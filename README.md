@@ -5,7 +5,7 @@
 [![GNU GPL v3 License]][License URL]
 [![GitHub Super-Linter]][Super-Linter URL]
 
-This system is for playing multiple World of Darkness 5th edition systems on the Foundry Virtual Tabletop System. For a list of the latest changes, see the [Changelog](https://wod5e-developers.github.io/wod5e-docs/changelog.html). You can also read further about the system in general on the [WOD5E Docs](https://wod5e-developers.github.io/wod5e-docs/index.html) site!
+This system is for playing multiple World of Darkness 5th edition systems on the Foundry Virtual Tabletop System. For a list of the latest changes, see the [Changelog](https://github.com/WoD5E-Developers/wod5e/releases). You can also read further about the system in general on the [WOD5E Documentation](https://wod5e-developers.github.io/) site!
 
 Current supported systems include:
 * Vampire the Masquerade, 5th Edition

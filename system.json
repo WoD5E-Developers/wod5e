@@ -262,7 +262,7 @@
     "distance": 5
   },
   "initiative": "1d10",
-  "changelog": "https://wod5e-developers.github.io/wod5e-docs/changelog.html",
+  "changelog": "https://github.com/WoD5E-Developers/wod5e/releases",
   "license": "./LICENSE.md",
   "url": "https://github.com/WoD5E-Developers/wod5e",
   "bugs": "https://github.com/WoD5E-Developers/wod5e/issues",
