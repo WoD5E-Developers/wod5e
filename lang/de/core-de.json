@@ -243,7 +243,7 @@
       "CustomModifiers": "Eigene Modifikatoren",
       "Difficulty": "Schwierigkeit",
       "Fail": "Fehlschlag",
-      "FailureBy": "Verfehlt um {string}",
+      "FailureBy": "Fehlschlag mit Differenz {string}",
       "Label": "Wurf",
       "Margin": "Differenz",
       "Modifier": "Modifikator",
@@ -254,7 +254,7 @@
       "SelectRoll": "Wurf auswählen",
       "Source": "Quelle",
       "Success": "Erfolg",
-      "SuccessBy": "Erfolg um {string}",
+      "SuccessBy": "Erfolg mit Differenz {string}",
       "Successes": "Erfolge",
       "Total": "Gesamt"
     },
