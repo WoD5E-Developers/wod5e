@@ -211,7 +211,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
           acc[featuretype] = [item]
         }
       } else if (item.type === 'boon') {
-        acc['boon'].push(item)
+        acc.boon.push(item)
       }
 
       return acc
