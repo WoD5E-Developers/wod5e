@@ -145,11 +145,11 @@
     },
     "Experience": {
       "AddExperience": "Ajouter points d'exp.",
-      "Calculated": "Calculer",
+      "Calculated": "Utilisé avant 5.0",
       "EditExperience": "Éditer",
       "History": "Historique d'exp.",
       "Label": "Expérience",
-      "Legacy": "Legacy",
+      "Legacy": "Distribué avant 5.0",
       "NewExperience": "Distribuer points d'exp.",
       "Remaining": "Restant",
       "SpendExperience": "Dépenser points d'exp.",
