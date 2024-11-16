@@ -1,11 +1,11 @@
 {
   "WOD5E": {
     "VTM": {
-      "1SuperficialDamage": "1 Punkt Leichter Schaden",
-      "2SuperficialDamage": "2 Punkte Leichter Schaden",
-      "3SuperficialDamage": "3 Punkte Leichter Schaden",
-      "4SuperficialDamage": "4 Punkte Leichter Schaden",
-      "5SuperficialDamage": "5 Punkte Leichter Schaden",
+      "1SuperficialDamage": "1 Leichter Schaden",
+      "2SuperficialDamage": "2 Leichter Schaden",
+      "3SuperficialDamage": "3 Leichter Schaden",
+      "4SuperficialDamage": "4 Leichter Schaden",
+      "5SuperficialDamage": "5 Leichter Schaden",
       "Add1Dice": "1 zusätzlicher Würfel",
       "Add2Dice": "2 zusätzliche Würfel",
       "Add3Dice": "3 zusätzliche Würfel",
