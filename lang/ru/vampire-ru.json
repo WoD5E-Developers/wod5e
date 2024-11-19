@@ -77,7 +77,7 @@
       "OblivionStainsTitle": "Пятня Обливиона",
       "Portillon": "Портильон",
       "PossibleBestialFailure": "Возможный кровавый провал",
-      "PossibleMessyCritical": "Возможный критический беспорядок",
+      "PossibleMessyCritical": "Возможный кровавый триумф",
       "Potence": "Мощь",
       "PowerBonus": "Модификатор пула Дисциплин",
       "PredatorType": "Стиль охоты",
@@ -85,7 +85,7 @@
       "Protean": "Метаморфозы",
       "Remorse": "Муки совести",
       "RemorseFailed": "Неудачное раскаяние",
-      "RemorseFailedDescription": "{actor} не прошел(ла) проверку на раскаяние. Пятна были очищены, а человечность уменьшена на 1.",
+      "RemorseFailedDescription": "{actor} не прошел(-ла) проверку на раскаяние. Пятна были очищены, а человечность уменьшена на 1.",
       "ResistFrenzy": "Удержать зверя",
       "ResistingFrenzy": "Сопротивление Ярости",
       "ResistingFrenzyFailed": "Неудачное сопротивление Ярости",
@@ -106,7 +106,7 @@
       "RousingBlood": "Проверка Голода",
       "SelectDiscipline": "Дисциплина",
       "Sire": "Сир",
-      "_StringPowers": "",
+      "StringPowers": "{string} Силы",
       "ThinBloodAlchemy": "Алхимия слабокровных",
       "VampireDice": "Кости вампира"
     }

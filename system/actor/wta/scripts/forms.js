@@ -22,21 +22,21 @@ export const _onLostTheWolf = async function (actor) {
   // Define the buttons and push them to the buttons variable
   buttons = {
     homid: {
-      label: 'Homid',
+      label: game.i18n.localize('WOD5E.WTA.HomidName'),
       callback: async () => {
         actor.update({ 'system.activeForm': 'homid' })
         _updateToken(actor, 'homid')
       }
     },
     lupus: {
-      label: 'Lupus',
+      label: game.i18n.localize('WOD5E.WTA.LupusName'),
       callback: async () => {
         actor.update({ 'system.activeForm': 'lupus' })
         _updateToken(actor, 'lupus')
       }
     },
     override: {
-      label: 'Stay In Current Form',
+      label: game.i18n.localize('WOD5E.WTA.StayInCurrentForm'),
       callback: async () => {
         actor.update({ 'system.formOverride': true })
       }

@@ -240,6 +240,11 @@ export class WoDActor extends Actor {
     if (actorData.type === 'hunter') {
       systemData.bonuses = await getHunterModifiers(systemData)
     }
+
+    // Force a ghoul's hunger value to be 0
+    if (actorData.type === 'ghoul' && systemData.hunger.value > 0) {
+      systemData.hunger.value = 0
+    }
   }
 
   /**

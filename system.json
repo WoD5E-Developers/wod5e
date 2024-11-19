@@ -2,7 +2,7 @@
   "id": "vtm5e",
   "title": "World of Darkness 5e",
   "description": "World of Darkness 5e system for Foundry VTT",
-  "version": "5.0.8",
+  "version": "5.0.9",
   "compatibility": {
     "minimum": "12",
     "verified": "12.331",
@@ -10,23 +10,15 @@
   },
   "authors": [
     {
-      "name": "Ray",
-      "url": "https://github.com/Rayji96",
-      "email": "rayji96@gmail.com",
-      "discord": "weinerdolphin#3175"
-    },
-    {
       "name": "Veilza",
       "url": "https://github.com/Veilza",
       "discord": "veilza"
     },
     {
-      "name": "LorduFreeman",
-      "discord": "LorduFreeman#8747"
-    },
-    {
-      "name": "MrDionysus",
-      "url": "https://github.com/MrDionysus"
+      "name": "Ray",
+      "url": "https://github.com/Rayji96",
+      "email": "rayji96@gmail.com",
+      "discord": "weinerdolphin#3175"
     }
   ],
   "esmodules": [
@@ -267,8 +259,8 @@
   "url": "https://github.com/WoD5E-Developers/wod5e",
   "bugs": "https://github.com/WoD5E-Developers/wod5e/issues",
   "background": "systems/vtm5e/assets/images/wodcity.jpg",
-  "manifest": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.0.8/system.json",
-  "download": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.0.8/vtm5e.zip",
+  "manifest": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.0.9/system.json",
+  "download": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.0.9/vtm5e.zip",
   "flags": {
     "hotReload": {
       "extensions": [
