@@ -103,13 +103,13 @@ export class WoDActor extends Actor {
             if (actorData.type === 'spc') {
               change.key = 'system.standarddicepools.social.value'
             } else {
-              change.key = Attributes.getList({ type: 'physical', useValuePath: true })
+              change.key = Attributes.getList({ type: 'social', useValuePath: true })
             }
           } else if (change.key === 'mental') {
             if (actorData.type === 'spc') {
               change.key = 'system.standarddicepools.mental.value'
             } else {
-              change.key = Attributes.getList({ type: 'physical', useValuePath: true })
+              change.key = Attributes.getList({ type: 'mental', useValuePath: true })
             }
           }
 
