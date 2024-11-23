@@ -224,6 +224,8 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
           // Create new array if it doesn't exist
           acc[featuretype] = [item]
         }
+      } else if (item.type === 'boon') {
+        acc.boon.push(item)
       }
 
       return acc

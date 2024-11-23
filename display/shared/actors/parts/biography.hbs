@@ -1,37 +1,37 @@
 <section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
-    <div class="flexrow">
-        <div class="detailed-section flexcol">
-            <div class="details-header field-header flex-center big-header">{{localize "WOD5E.BiographyList.PersonalInformation"}}</div>
-            <div class="detail flexrow">
+    <div class="flexcol">
+        <div class="details-header field-header flex-center big-header">{{localize "WOD5E.BiographyList.PersonalInformation"}}</div>
+        <div class="detailed-section flexrow">
+            <div class="detail">
                 <label>
-                    <b>{{localize "WOD5E.BiographyList.Age"}}:</b>
+                    <b>{{localize "WOD5E.BiographyList.Age"}}</b>
                 </label>
                 <input type="text" class="number" name="system.bio.age.trueage" value="{{bio.age.trueage}}"{{#if locked}} disabled="true"{{/if}}/>
             </div>
             {{#ifeq currentActorType 'vampire'}}
-                <div class="detail flexrow">
+                <div class="detail">
                     <label>
-                        <b>{{localize "WOD5E.BiographyList.ApparentAge"}}:</b>
+                        <b>{{localize "WOD5E.BiographyList.ApparentAge"}}</b>
                     </label>
                     <input type="text" class="number" name="system.bio.age.apparent" value="{{bio.age.apparent}}"{{#if locked}} disabled="true"{{/if}}/>
                 </div>
             {{/ifeq}}
-            <div class="detail flexrow">
+            <div class="detail">
                 <label>
-                    <b>{{localize "WOD5E.BiographyList.DateOfBirth"}}:</b>
+                    <b>{{localize "WOD5E.BiographyList.DateOfBirth"}}</b>
                 </label>
                 <input type="text" class="number" name="system.bio.dateof.birth" value="{{bio.dateof.birth}}"{{#if locked}} disabled="true"{{/if}}/>
             </div>
             {{#ifeq currentActorType 'vampire'}}
-                <div class="detail flexrow">
+                <div class="detail">
                     <label>
-                        <b>{{localize "WOD5E.BiographyList.DateOfDeath"}}:</b>
+                        <b>{{localize "WOD5E.BiographyList.DateOfDeath"}}</b>
                     </label>
                     <input type="text" class="number" name="system.bio.dateof.death" value="{{bio.dateof.death}}"{{#if locked}} disabled="true"{{/if}}/>
                 </div>
             {{/ifeq}}
         </div>
-        <div class="descriptive-section flexcol">
+        <div class="descriptive-section flexrow">
             <div class="description-field">
                 <div class="flex-center field-header">
                     <label class="resource-label">

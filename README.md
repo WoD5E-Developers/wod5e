@@ -16,28 +16,30 @@ Current supported systems include:
 
 ## Dice
 
-The system has integration with Dice So Nice!
-
-The information for how to roll the splat-unique dice is like so:
+To roll the splat-unique dice, replace the usual roll formula like so:
 * To roll Vampire dice, roll `1dv`. To roll Hunger dice, roll `1dg`.
 * To roll Hunter dice, roll `1dh`. To roll Desperation dice, roll `1ds`.
 * To roll Werewolf dice, roll `1dw`. To roll Rage dice, roll `1dr`.
 
-Replace the 1s with however many you want to roll for each type, and let the dice roll!
+Replace the 1s with however many you want to roll for each type, and let the dice roll! We also have compatibility with the [Dice So Nice!](https://foundryvtt.com/packages/dice-so-nice/) module, so whenever you roll splat dice you'll get the World of Darkness 5th edition symbols on the 3D dice faces.
 
 ## Feedback
 
 Bugs or feature requests created to this repository are greatly appreciate. Please use the [Issues](https://github.com/WoD5E-Developers/wod5e/issues) page for these!
 
-You can also reach out to "weinerdolphin" or "veilza" on Discord, or leave a message in the #wod channel in the official Foundry Discord server, with any issues. We'd love to help you get your game running smoothly!
+You can also reach out to Veilza on Discord, or leave a message in the #wod channel in the official Foundry Discord server, with any issues. We'd love to help you get your game running smoothly!
 
 Please check the issues list before suggesting new features.
 
-## Contributors
+## Contributors & Contributing
 
 The lead system developer is [Veilza](https://github.com/Veilza), and the original creator of the system is [Rayji96](https://github.com/Rayji96).
 
 There's lots of other people who contribute to the system, too, and you can find the full list of them down [here](https://github.com/WoD5E-Developers/.github/blob/main/contributors.md)!
+
+If you'd like to help contribute too, just open a pull request any time!
+
+If you'd like to help contribute localization updates, you can either open up an issue with the "Localization" issue type, or you can do a pull request with updates as needed.
 
 ## Dark Pack
 

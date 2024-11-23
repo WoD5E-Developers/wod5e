@@ -12,11 +12,11 @@ export const MigrateGeneralDifficulty = async function () {
   for (const actor of actorsList) {
     const actorData = actor.system
 
-    // Check if the actor has both normal and strongest general difficulties using the old values
-    if (actorData?.generaldifficulty?.normal?.value && actorData?.generaldifficulty?.strongest?.value) {
+    // Check if the actor has both normal and strongest general difficulties using the old values, or the old values are null
+    if ((actorData?.generaldifficulty?.normal?.value && actorData?.generaldifficulty?.strongest?.value) || (actorData?.generaldifficulty?.normal?.value === null || actorData?.generaldifficulty?.strongest?.value === null)) {
       const generaldifficulty = {
-        normal: actorData.generaldifficulty.normal.value,
-        strongest: actorData.generaldifficulty.strongest.value
+        normal: actorData.generaldifficulty.normal.value || 0,
+        strongest: actorData.generaldifficulty.strongest.value || 0
       }
 
       // Update the actor's data with the new information

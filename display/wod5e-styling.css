@@ -1539,17 +1539,17 @@ body.uk .actor.sheet {
   margin-right: auto;
 }
 .actor.sheet .tab[data-tab="biography"] .detailed-section {
-  display: inline-flex;
   align-self: flex-start;
+  margin-left: auto;
+  margin-right: auto;
 }
 .actor.sheet .tab[data-tab="biography"] .detailed-section .details-header {
   text-align: center;
 }
 .actor.sheet .tab[data-tab="biography"] .detailed-section .detail {
-  width: 50%;
-  margin-bottom: 5px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
 }
 .actor.sheet .tab[data-tab="biography"] .detailed-section input {
   text-align: center;
@@ -1557,11 +1557,16 @@ body.uk .actor.sheet {
 .actor.sheet .tab[data-tab="biography"] .detailed-section input.number {
   min-width: 100px;
 }
+.actor.sheet .tab[data-tab="biography"] .descriptive-section {
+  margin-top: 10px;
+  align-items: flex-start;
+}
 .actor.sheet .tab[data-tab="biography"] .descriptive-section .field-header {
   font-size: 16pt;
 }
 .actor.sheet .tab[data-tab="biography"] .descriptive-section .description-field {
   margin-bottom: 5px;
+  padding: 5px;
 }
 .actor.sheet .tab[data-tab="biography"] .descriptive-section .resource-label {
   flex-wrap: nowrap;
@@ -2800,6 +2805,9 @@ prose-mirror .editor-menu button {
 .wod-dark-theme .sheet .window-content {
   background: var(--actor-background-dark) repeat;
 }
+.wod-dark-theme .macro-sheet .window-content textarea {
+  color: var(--system-dark-color-4);
+}
 .wod-dark-theme .content-link {
   color: var(--system-dark-color-1);
   background-color: #FFF;
@@ -3087,6 +3095,9 @@ prose-mirror .editor-menu button {
 .wod-vampire-theme .sheet .window-content {
   background: var(--actor-background-dark) repeat;
 }
+.wod-vampire-theme .macro-sheet .window-content textarea {
+  color: var(--system-dark-color-4);
+}
 .wod-vampire-theme .content-link {
   color: var(--system-dark-color-1);
   background-color: #FFF;
@@ -3338,6 +3349,9 @@ prose-mirror .editor-menu button {
 }
 .wod-werewolf-theme .sheet .window-content {
   background: var(--actor-background-dark) repeat;
+}
+.wod-werewolf-theme .macro-sheet .window-content textarea {
+  color: var(--system-dark-color-4);
 }
 .wod-werewolf-theme .content-link {
   color: var(--system-dark-color-1);

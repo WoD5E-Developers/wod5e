@@ -129,7 +129,10 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     }
 
     data.generalDifficultyEnabled = actorData.settings.generalDifficultyEnabled
-    data.generaldifficulty = actorData.generaldifficulty
+    data.generaldifficulty = {
+      strongest: actorData.generaldifficulty.strongest || 0,
+      normal: actorData.generaldifficulty.normal || 0
+    }
 
     return data
   }
