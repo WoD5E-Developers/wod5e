@@ -59,7 +59,6 @@ export class WoDActor extends Actor {
    */
   async prepareBaseData () {
     const actorData = this
-    const systemData = actorData.system
 
     // Prepare the effects from condition items onto the actor
     // Ignore suppressed conditions
@@ -125,27 +124,6 @@ export class WoDActor extends Actor {
         })
       }
     })
-
-    if (systemData.hasSkillAttributeData) {
-      // Handle attribute preparation
-      const attributesPrep = await prepareAttributes(actorData)
-
-      // Set attribute data
-      systemData.attributes = attributesPrep.attributes
-      systemData.sortedAttributes = attributesPrep.sortedAttributes
-
-      // Handle skill preparation
-      const skillsPrep = await prepareSkills(actorData)
-
-      // Set skill data
-      systemData.skills = skillsPrep.skills
-      systemData.sortedSkills = skillsPrep.sortedSkills
-    }
-
-    // Handle prepping exceptional dicepools
-    if (actorData.type === 'spc') {
-      systemData.exceptionaldicepools = await prepareExceptionalDicePools(actorData)
-    }
   }
 
   async prepareEmbeddedDocuments () {
@@ -180,6 +158,27 @@ export class WoDActor extends Actor {
     } else if (actorData.type !== 'group') {
       // Set the gamesystem of a non-SPC non-group character
       systemData.gamesystem = typeMapping[actorData.type] || 'mortal'
+    }
+
+    if (systemData?.hasSkillAttributeData) {
+      // Handle attribute preparation
+      const attributesPrep = await prepareAttributes(actorData)
+
+      // Set attribute data
+      systemData.attributes = attributesPrep.attributes
+      systemData.sortedAttributes = attributesPrep.sortedAttributes
+
+      // Handle skill preparation
+      const skillsPrep = await prepareSkills(actorData)
+
+      // Set skill data
+      systemData.skills = skillsPrep.skills
+      systemData.sortedSkills = skillsPrep.sortedSkills
+    }
+
+    // Handle prepping exceptional dicepools
+    if (actorData.type === 'spc') {
+      systemData.exceptionaldicepools = await prepareExceptionalDicePools(actorData)
     }
 
     // Set discipline data
