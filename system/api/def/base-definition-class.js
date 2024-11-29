@@ -96,17 +96,19 @@ export class BaseDefinitionClass {
 
   // Method to add extra definitions to a category
   static async addCustom (customDefinitions) {
-    for (const [, value] of Object.entries(customDefinitions)) {
-      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
-        // Note this definition as being custom
-        value.custom = true
+    if (customDefinitions.length > 0) {
+      for (const [, value] of Object.entries(customDefinitions)) {
+        if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+          // Note this definition as being custom
+          value.custom = true
 
-        this[value.id] = value
+          this[value.id] = value
+        }
       }
-    }
 
-    // Reload actorsheets
-    resetActors()
+      // Reload actorsheets
+      resetActors()
+    }
   }
 
   static setSortAlphabetically () {
