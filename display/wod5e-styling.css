@@ -1250,10 +1250,6 @@ body.uk .actor.sheet {
   min-width: 850px;
   min-height: 300px;
 }
-.group.sheet {
-  min-width: 650px;
-  min-height: 300px;
-}
 .actor.sheet {
   position: fixed;
   overflow: hidden;
@@ -1847,6 +1843,10 @@ body.uk .actor.sheet {
   text-align: center;
 }
 
+.group.sheet:not(.minimized) {
+  min-width: 650px;
+  min-height: 300px;
+}
 .group.sheet .actor-header {
   align-items: flex-end;
   justify-content: space-between;
