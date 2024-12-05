@@ -49,6 +49,10 @@ export class WoDActor extends Actor {
    * prepareDerivedData().
    */
   prepareData () {
+    if (game.actors.invalidDocumentIds.has(this.id)) {
+      return
+    }
+
     super.prepareData()
   }
 
