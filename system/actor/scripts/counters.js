@@ -54,8 +54,6 @@ function parseCounterStates (states) {
 
 // Handle assigning a new value to the appropriate actor field
 export const _assignToActorField = async (fields, value, actor) => {
-  const actorData = foundry.utils.duplicate(actor)
-
   // Handle updating actor owned items
   if (fields.length === 2 && fields[0] === 'items') {
     const itemId = fields[1]
