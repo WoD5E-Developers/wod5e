@@ -30,10 +30,6 @@ export const prepareAttributes = async function (actor) {
         id,
         value: 1
       }, value)
-
-      actor.update({
-        [`system.attributes.${id}`]: attributeData
-      })
     }
 
     // Ensure the attribute exists

@@ -40,10 +40,6 @@ export const prepareSkills = async function (actor) {
         hasSpecialties,
         specialtiesList
       }, value)
-
-      actor.update({
-        [`system.skills.${id}`]: skillData
-      })
     }
 
     // Ensure the skill exists
