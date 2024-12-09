@@ -49,6 +49,10 @@ export class WoDActor extends Actor {
    * prepareDerivedData().
    */
   prepareData () {
+    // This exists because if an actor exists from another system (such as "Vampire" from WOD20),
+    // the prepareData function will get stuck in a loop. For some reason Foundry isn't registering
+    // those kinds of actors as invalid, and thus this is a quick way to make sure people can
+    // still load their worlds with those invalid actors.
     if (game.actors.invalidDocumentIds.has(this.id)) {
       return
     }
