@@ -2,6 +2,7 @@
 
 import { WOD5eDice } from '../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../scripts/rolls/situational-modifiers.js'
+import { potencyToRouse } from '../vtm/scripts/blood-potency.js'
 
 /**
    * Handle clickable rolls activated through buttons
@@ -96,10 +97,8 @@ export const _onConfirmRoll = async function (dataset, actor) {
   if (!disableBasicDice) {
     if (system === 'vampire') {
       // Ensure that the number of hunger dice doesn't exceed the
-      // total number of dice, unless it's a rouse check that needs
-      // rerolls, which requires twice the number of normal hunger
-      // dice and only the highest will be kept
-      advancedDice = rerollHunger ? advancedDice * 2 : Math.min(basicDice, advancedDice)
+      // total number of dice
+      advancedDice = Math.min(basicDice, advancedDice)
 
       // Calculate the number of normal dice to roll by subtracting
       // the number of hunger dice from them, minimum zero
@@ -128,7 +127,7 @@ export const _onConfirmRoll = async function (dataset, actor) {
     difficulty,
     flavor,
     quickRoll,
-    rerollHunger,
+    rerollHunger: dataset?.itemId && await potencyToRouse(actor.system.blood.potency, data.level) ? true : rerollHunger,
     increaseHunger,
     decreaseRage,
     selectors,
