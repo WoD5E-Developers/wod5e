@@ -72,7 +72,6 @@ export const _assignToActorField = async (fields, value, actor) => {
       })
     } catch (error) {
       console.error(`Error updating actor field: ${error.message}`)
-      return
     }
   }
 }
