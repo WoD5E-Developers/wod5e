@@ -1,4 +1,4 @@
-/* global Hooks */
+/* global Hooks, game */
 
 // Update the pause image
 export const PauseChanges = async () => {
@@ -6,7 +6,7 @@ export const PauseChanges = async () => {
     const updatedPauseImage = `
         <img class="fa-spin pause-border" src="/systems/vtm5e/assets/ui/Pause_Border.webp">
         <img class="pause-overlay" src="/systems/vtm5e/assets/ui/Pause_Overlay.webp">
-        <figcaption>Game Paused</figcaption>
+        <figcaption>${game.i18n.localize('WOD5E.GamePaused')}</figcaption>
     `
 
     html.html(updatedPauseImage)

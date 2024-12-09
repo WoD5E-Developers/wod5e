@@ -54,35 +54,26 @@ function parseCounterStates (states) {
 
 // Handle assigning a new value to the appropriate actor field
 export const _assignToActorField = async (fields, value, actor) => {
-  const actorData = foundry.utils.duplicate(actor)
-
   // Handle updating actor owned items
   if (fields.length === 2 && fields[0] === 'items') {
     const itemId = fields[1]
-    const item = actorData.items.find(item => item._id === itemId)
+    const item = actor.items.find(item => item._id === itemId)
     if (item) {
-      item.system.points = value
+      item.update({
+        'system.points': value
+      })
     } else {
       console.warn(`Item with ID ${itemId} not found.`)
     }
   } else {
     try {
-      const lastField = fields.pop()
-      const target = fields.reduce((data, field) => {
-        if (!(field in data)) {
-          throw new Error(`Field "${field}" not found in actor data.`)
-        }
-        return data[field]
-      }, actorData)
-      target[lastField] = value
+      actor.update({
+        [`${fields.join('.')}`]: value
+      })
     } catch (error) {
       console.error(`Error updating actor field: ${error.message}`)
-      return
     }
   }
-
-  // Update the actor data
-  actor.update(actorData)
 }
 
 /**

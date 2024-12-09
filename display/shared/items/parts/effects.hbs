@@ -1,7 +1,7 @@
 <section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
     <div class="flexrow flex-center">
         <div class="field-header big-header">
-            {{localize 'WOD5E.Modifiers.FlatModifier'}}
+            {{localize 'WOD5E.Modifier.FlatModifier'}}
         </div>
         <a data-action="addEffect" data-type="flatModifier">
             {{localize 'WOD5E.Add'}}
@@ -20,13 +20,13 @@
                         <input name="system.effects.{{effect.id}}.intValue" type="number" value="{{effect.intValue}}"/>
                     </div>
                     <div class="flexcol">
-                        <b class="label">{{localize 'WOD5E.Modifiers.FlatModifierSource'}}</b>
+                        <b class="label">{{localize 'WOD5E.Modifier.FlatModifierSource'}}</b>
                         <select name="system.effects.{{effect.id}}.flatSource" data-type="String">
                             {{selectOptions ../flatSourceOptions selected=effect.flatSource localize=true}}
                         </select>
                     </div>
                     <div class="flexcol">
-                        <b class="label">{{localize 'WOD5E.Modifiers.Mode'}}</b>
+                        <b class="label">{{localize 'WOD5E.Modifier.Mode'}}</b>
                         <select name="system.effects.{{effect.id}}.mode" data-type="String">
                             {{selectOptions ../modeOptions selected=effect.mode localize=true}}
                         </select>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="flex-center">
                     <a data-action="removeEffect" data-effect-id="{{effect.id}}">
-                        <b>{{localize 'WOD5E.Modifiers.RemoveEffect'}}</b>
+                        <b>{{localize 'WOD5E.Modifier.RemoveEffect'}}</b>
                     </a>
                 </div>
             </div>

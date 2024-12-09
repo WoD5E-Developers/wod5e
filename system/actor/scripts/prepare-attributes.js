@@ -8,49 +8,45 @@ export const prepareAttributes = async function (actor) {
   const attributesList = Attributes.getList({
     disableSort: game.settings.get('vtm5e', 'sortDefAlphabetically') === 'default'
   })
-  const attributes = actor.system?.attributes
+  const actorAttributes = actor.system?.attributes
+  const computedAttributes = {}
   const sortedAttributes = {
     physical: [],
     social: [],
     mental: []
   }
 
-  if (attributes) {
-    // Clean up non-existent attributes, such as custom ones that no longer exist
-    const validAttributes = new Set(Object.keys(attributesList))
-    for (const id of Object.keys(attributes)) {
-      if (!validAttributes.has(id)) {
-        delete attributes[id]
-      }
+  for (const [id, value] of Object.entries(attributesList)) {
+    let attributeData = {}
+
+    // If the actor has an attribute with the key, grab its current values
+    if (Object.prototype.hasOwnProperty.call(actorAttributes, id)) {
+      attributeData = Object.assign({
+        id,
+        value: actorAttributes[id].value
+      }, value)
+    } else { // Otherwise, add it to the actor and set it as some default data
+      attributeData = Object.assign({
+        id,
+        value: 1
+      }, value)
     }
 
-    for (const [id, value] of Object.entries(attributesList)) {
-      let attributeData = {}
+    // Ensure the attribute exists
+    if (!computedAttributes[id]) computedAttributes[id] = {}
+    // Apply the attribute's data
+    computedAttributes[id] = attributeData
 
-      // If the actor has an attribute with the key, grab its current values
-      if (Object.prototype.hasOwnProperty.call(attributes, id)) {
-        attributeData = Object.assign({
-          id,
-          value: attributes[id].value
-        }, value)
-      } else { // Otherwise, add it to the actor and set it as some default data
-        attributeData = Object.assign({
-          id,
-          value: 1
-        }, value)
-      }
-
-      // Push to the container in the appropriate type
-      // as long as the attribute isn't "hidden"
-      if (!attributeData.hidden) {
-        if (!sortedAttributes[value.type]) sortedAttributes[value.type] = [] // Ensure the type exists
-        sortedAttributes[value.type].push(attributeData)
-      }
+    // Push to the container in the appropriate type
+    // as long as the attribute isn't "hidden"
+    if (!attributeData.hidden) {
+      if (!sortedAttributes[value.type]) sortedAttributes[value.type] = [] // Ensure the type exists
+      sortedAttributes[value.type].push(attributeData)
     }
   }
 
   return {
-    attributes,
+    attributes: computedAttributes,
     sortedAttributes
   }
 }

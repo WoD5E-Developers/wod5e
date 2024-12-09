@@ -15,7 +15,7 @@
                 <li class="flexrow spc-item-header">
                     <label for="{{discipline.name}}" class="resource-label rollable" data-action="roll" data-use-absolute-value="true"
                       data-absolute-value="{{discipline.value}}" data-label="{{generateLocalizedLabel key 'disciplines'}}"
-                      {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
+                      {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}} data-selectors="disciplines disciplines.{{key}}">
                       {{generateLocalizedLabel key 'disciplines'}}
                     </label>
                     <div class="resource-value">
