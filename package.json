@@ -12,7 +12,7 @@
   "browserslist": [
     "last 3 versions"
   ],
-  "author": "Ray Ji",
+  "author": "Veilza",
   "license": "MIT",
   "private": true,
   "devDependencies": {

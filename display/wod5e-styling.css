@@ -311,17 +311,17 @@
 /* Fonts */
 @font-face {
   font-family: "cormorantLight";
-  src: url("/systems/vtm5e/assets/fonts/Cormorant-Light-webfont.woff") format("woff");
+  src: url("../assets/fonts/Cormorant-Light-webfont.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "wod5eSymbols";
-  src: url("/systems/vtm5e/assets/fonts/wod5e-symbols.ttf") format("truetype");
+  src: url("../assets/fonts/wod5e-symbols.ttf") format("truetype");
 }
 @font-face {
   font-family: "vampireRevised";
-  src: url("/systems/vtm5e/assets/fonts/vampire-revised.ttf") format("truetype");
+  src: url("../assets/fonts/vampire-revised.ttf") format("truetype");
 }
 /* Define the class that will be used for WOD5E symbols */
 .wod5e-symbol {
@@ -1250,10 +1250,6 @@ body.uk .actor.sheet {
   min-width: 850px;
   min-height: 300px;
 }
-.group.sheet {
-  min-width: 650px;
-  min-height: 300px;
-}
 .actor.sheet {
   position: fixed;
   overflow: hidden;
@@ -1288,6 +1284,13 @@ body.uk .actor.sheet {
   align-items: flex-start;
   height: 100%;
 }
+.actor.sheet prose-mirror {
+  min-width: 100%;
+  resize: vertical;
+}
+.actor.sheet prose-mirror .editor-content {
+  max-width: 100%;
+}
 .actor.sheet input,
 .actor.sheet .resource {
   display: flex;
@@ -1312,19 +1315,25 @@ body.uk .actor.sheet {
   position: absolute;
   right: 23px;
 }
-.actor.sheet .limited-actor-header {
+.actor.sheet section[data-application-part="limited"] {
+  overflow-y: scroll;
+}
+.actor.sheet section[data-application-part="limited"] .limited-actor-header {
   display: flex;
   flex-grow: 0;
 }
-.actor.sheet .limited-actor-header .charname {
+.actor.sheet section[data-application-part="limited"] .limited-actor-header .charname {
   font-size: 20pt;
 }
-.actor.sheet .limited-actor-header .header-content {
+.actor.sheet section[data-application-part="limited"] .limited-actor-header .header-content {
   flex-grow: 1;
   text-align: center;
   margin-top: auto;
 }
-.actor.sheet .limited-description-body {
+.actor.sheet section[data-application-part="limited"] .description-content {
+  align-self: flex-start;
+}
+.actor.sheet section[data-application-part="limited"] .limited-description-body {
   padding: 10px;
 }
 .actor.sheet .actor-header {
@@ -1526,17 +1535,17 @@ body.uk .actor.sheet {
   margin-right: auto;
 }
 .actor.sheet .tab[data-tab="biography"] .detailed-section {
-  display: inline-flex;
   align-self: flex-start;
+  margin-left: auto;
+  margin-right: auto;
 }
 .actor.sheet .tab[data-tab="biography"] .detailed-section .details-header {
   text-align: center;
 }
 .actor.sheet .tab[data-tab="biography"] .detailed-section .detail {
-  width: 50%;
-  margin-bottom: 5px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
 }
 .actor.sheet .tab[data-tab="biography"] .detailed-section input {
   text-align: center;
@@ -1544,11 +1553,16 @@ body.uk .actor.sheet {
 .actor.sheet .tab[data-tab="biography"] .detailed-section input.number {
   min-width: 100px;
 }
+.actor.sheet .tab[data-tab="biography"] .descriptive-section {
+  margin-top: 10px;
+  align-items: flex-start;
+}
 .actor.sheet .tab[data-tab="biography"] .descriptive-section .field-header {
   font-size: 16pt;
 }
 .actor.sheet .tab[data-tab="biography"] .descriptive-section .description-field {
   margin-bottom: 5px;
+  padding: 5px;
 }
 .actor.sheet .tab[data-tab="biography"] .descriptive-section .resource-label {
   flex-wrap: nowrap;
@@ -1558,13 +1572,10 @@ body.uk .actor.sheet {
   padding: 3px;
   margin: 5px;
   width: 50%;
+  align-self: flex-start;
 }
 .actor.sheet .tab[data-tab="notepad"] .note-container .field-header {
   font-size: 16pt;
-}
-.actor.sheet .tab[data-tab="notepad"] .note-container prose-mirror {
-  height: 400px;
-  min-width: 100%;
 }
 .actor.sheet .toggle-limited {
   font-size: 13pt;
@@ -1832,6 +1843,10 @@ body.uk .actor.sheet {
   text-align: center;
 }
 
+.group.sheet:not(.minimized) {
+  min-width: 650px;
+  min-height: 300px;
+}
 .group.sheet .actor-header {
   align-items: flex-end;
   justify-content: space-between;
@@ -2331,11 +2346,11 @@ body.uk .actor.sheet {
   --system-color-10: #4b4b4b;
   --system-color-11: #181818;
   --base-theme-filter: rgba(24, 51, 103, 0.5);
-  --ui-background-texture: url(/systems/vtm5e/assets/ui/base_ui_background_texture.webp);
-  --sidebar-background: url(/systems/vtm5e/assets/ui/base_sidebar.webp);
-  --actor-background-default: url(/systems/vtm5e/assets/actor/actor_background.webp);
-  --actor-header-default: url(/systems/vtm5e/assets/ui/Actor_Header_Background.webp);
-  --logo-default: url(/systems/vtm5e/assets/ui/WoD_Logo.webp);
+  --ui-background-texture: url("../assets/ui/base_ui_background_texture.webp");
+  --sidebar-background: url("../assets/ui/base_sidebar.webp");
+  --actor-background-default: url("../assets/actor/actor_background.webp");
+  --actor-header-default: url("../assets/ui/Actor_Header_Background.webp");
+  --logo-default: url("../assets/ui/WoD_Logo.webp");
 }
 /* All places that use a filter to apply the theme colour */
 .app,
@@ -2790,6 +2805,13 @@ prose-mirror .editor-menu button {
 .wod-dark-theme .sheet .window-content {
   background: var(--actor-background-dark) repeat;
 }
+.wod-dark-theme .macro-sheet .window-content textarea {
+  color: var(--system-dark-color-4);
+}
+.wod-dark-theme .content-link {
+  color: var(--system-dark-color-1);
+  background-color: #FFF;
+}
 .wod-dark-theme .app,
 .wod-dark-theme #sidebar,
 .wod-dark-theme #controls ol.control-tools > li,
@@ -2943,10 +2965,6 @@ prose-mirror .editor-menu button {
   border-color: var(--system-dark-color-4);
   /* Power Descriptions */
 }
-.wod-dark-theme .actor.sheet .item-list .category .content-link {
-  color: var(--system-dark-color-1);
-  background-color: #FFF;
-}
 .wod-dark-theme .actor.sheet .item-list .category .discipline-description,
 .wod-dark-theme .actor.sheet .item-list .category .edge-description,
 .wod-dark-theme .actor.sheet .item-list .category .gift-description {
@@ -3020,7 +3038,7 @@ prose-mirror .editor-menu button {
 
 /* Variables */
 :root {
-  --logo-hunter: url(/systems/vtm5e/assets/ui/HtR_Logo.webp);
+  --logo-hunter: url("../assets/ui/HtR_Logo.webp");
   --hunter-theme-filter: #D18125;
 }
 .wod-hunter-theme {
@@ -3062,7 +3080,7 @@ prose-mirror .editor-menu button {
 
 /* Variables */
 :root {
-  --logo-vampire: url("/systems/vtm5e/assets/ui/VtM_Logo.webp");
+  --logo-vampire: url("../assets/ui/VtM_Logo.webp");
   --vampire-theme-filter: #FF2B2B80;
 }
 .wod-vampire-theme {
@@ -3076,6 +3094,13 @@ prose-mirror .editor-menu button {
 }
 .wod-vampire-theme .sheet .window-content {
   background: var(--actor-background-dark) repeat;
+}
+.wod-vampire-theme .macro-sheet .window-content textarea {
+  color: var(--system-dark-color-4);
+}
+.wod-vampire-theme .content-link {
+  color: var(--system-dark-color-1);
+  background-color: #FFF;
 }
 .wod-vampire-theme .app,
 .wod-vampire-theme #sidebar,
@@ -3237,10 +3262,6 @@ prose-mirror .editor-menu button {
   border-color: var(--system-dark-color-4);
   /* Power Descriptions */
 }
-.wod-vampire-theme .actor.sheet .item-list .category .content-link {
-  color: var(--system-dark-color-1);
-  background-color: #FFF;
-}
 .wod-vampire-theme .actor.sheet .item-list .category .discipline-description,
 .wod-vampire-theme .actor.sheet .item-list .category .edge-description,
 .wod-vampire-theme .actor.sheet .item-list .category .gift-description {
@@ -3314,7 +3335,7 @@ prose-mirror .editor-menu button {
 
 /* Variables */
 :root {
-  --logo-werewolf: url("/systems/vtm5e/assets/ui/WtA_Logo.webp");
+  --logo-werewolf: url("../assets/ui/WtA_Logo.webp");
   --werewolf-theme-filter: #BE660080;
 }
 .wod-werewolf-theme {
@@ -3328,6 +3349,13 @@ prose-mirror .editor-menu button {
 }
 .wod-werewolf-theme .sheet .window-content {
   background: var(--actor-background-dark) repeat;
+}
+.wod-werewolf-theme .macro-sheet .window-content textarea {
+  color: var(--system-dark-color-4);
+}
+.wod-werewolf-theme .content-link {
+  color: var(--system-dark-color-1);
+  background-color: #FFF;
 }
 .wod-werewolf-theme .app,
 .wod-werewolf-theme #sidebar,
@@ -3488,10 +3516,6 @@ prose-mirror .editor-menu button {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
   /* Power Descriptions */
-}
-.wod-werewolf-theme .actor.sheet .item-list .category .content-link {
-  color: var(--system-dark-color-1);
-  background-color: #FFF;
 }
 .wod-werewolf-theme .actor.sheet .item-list .category .discipline-description,
 .wod-werewolf-theme .actor.sheet .item-list .category .edge-description,

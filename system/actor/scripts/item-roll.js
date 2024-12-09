@@ -31,7 +31,7 @@ export const _rollItem = async function (actor, item) {
   const willpowerDamage = 0
   const difficulty = 0
   const disableBasicDice = false
-  const disableAdvancedDice = false
+  const disableAdvancedDice = ['ghoul', 'group'].includes(actor.type)
   const quickRoll = false
   const rerollHunger = false
   const valuePaths = []
@@ -41,16 +41,21 @@ export const _rollItem = async function (actor, item) {
   const flavor = itemData?.description || ''
   const flatMod = itemData?.modifier || 0
   const macro = itemData.macroid
-  const selectors = []
+  let selectors = []
 
   // Variables yet to be defined
   let basicDice, advancedDice
 
   // Iterate through the dicepool and add to valuePaths and selectors as needed
   for (const dice in dicepool) {
-    selectors.push(dicepool[dice]?.path)
-    selectors.push(dicepool[dice]?.path?.split('.'))
+    const splitPath = dicepool[dice]?.path?.split('.')
+    // Push each of the individual sub-selectors
+    selectors = selectors.concat(splitPath)
 
+    // Push the full selector
+    selectors.push(dicepool[dice]?.path)
+
+    // Push the value path
     valuePaths.push(`${dicepool[dice].path}.value`)
   }
 
@@ -92,7 +97,7 @@ export const _rollItem = async function (actor, item) {
   // Some quick modifications to vampire and werewolf rolls
   // in order to properly display the dice in the dialog window
   if (!disableBasicDice) {
-    if (system === 'vampire') {
+    if (system === 'vampire' && actor.type !== 'ghoul') {
       // Ensure that the number of hunger dice doesn't exceed the
       // total number of dice, unless it's a rouse check that needs
       // rerolls, which requires twice the number of normal hunger

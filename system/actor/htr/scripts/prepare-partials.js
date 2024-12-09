@@ -20,6 +20,10 @@ export const prepareEdgesContext = async function (context, actor) {
   // Get power data if any power is currently selected
   if (actorData?.selectedEdgePerk) {
     context.selectedEdgePerk = await actor.items.get(actorData.selectedEdgePerk)
+
+    if (context.selectedEdgePerk?.system?.description) {
+      context.selectedEdgePerkDescription = await TextEditor.enrichHTML(context.selectedEdgePerk.system.description)
+    }
   }
 
   return context
