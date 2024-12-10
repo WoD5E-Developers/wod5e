@@ -111,6 +111,7 @@
     },
     "Chat": {
       "HasReceivedWillpowerDamage": "{actor} Ha ricevuto {willpowerDamage} danni alla forza di volontà.",
+      "_Reroll": "",
       "Rolling": "Tirando",
       "RollingWillpower": "Tirando forza di volontà",
       "RollWillpower": "Tira Volontà",

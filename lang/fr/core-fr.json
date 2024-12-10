@@ -111,6 +111,7 @@
     },
     "Chat": {
       "HasReceivedWillpowerDamage": "{actor} a reçu {willpowerDamage} dégâts de volonté.",
+      "_Reroll": "",
       "Rolling": "Jet",
       "RollingWillpower": "Jet de Volonté",
       "RollWillpower": "Test la volonté",

@@ -111,6 +111,7 @@
     },
     "Chat": {
       "HasReceivedWillpowerDamage": "{actor} получил(-а) {willpowerDamage} очков стресса.",
+      "_Reroll": "",
       "Rolling": "Проверка",
       "RollingWillpower": "Проверка Воли",
       "RollWillpower": "Бросок проверки Воли",

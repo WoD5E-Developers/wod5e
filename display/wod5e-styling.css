@@ -552,9 +552,11 @@ p.roll-label.uppercase {
   letter-spacing: 0.03rem;
   line-height: 1.4rem;
 }
-.willpower-reroll .die {
+.reroll .die-select,
+.willpower-reroll .die-select {
   flex: 0;
 }
+.reroll .selected img,
 .willpower-reroll .selected img {
   border: 2px solid var(--system-color-3);
   filter: invert(1);

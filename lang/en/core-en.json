@@ -111,6 +111,7 @@
     },
     "Chat": {
       "HasReceivedWillpowerDamage": "{actor} has received {willpowerDamage} willpower damage.",
+      "Reroll": "Reroll",
       "Rolling": "Rolling",
       "RollingWillpower": "Rolling Willpower",
       "RollWillpower": "Roll Willpower Check",

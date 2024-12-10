@@ -111,6 +111,7 @@
     },
     "Chat": {
       "HasReceivedWillpowerDamage": "{actor} hat {willpowerDamage} Punkte Willenskraft-Schaden erlitten",
+      "_Reroll": "",
       "Rolling": "Würfeln",
       "RollingWillpower": "Würfle Willenskraft",
       "RollWillpower": "Willenskraft würfeln",

@@ -111,6 +111,7 @@
     },
     "Chat": {
       "_HasReceivedWillpowerDamage": "",
+      "_Reroll": "",
       "Rolling": "Rzucanie",
       "RollingWillpower": "Test Siły Woli",
       "RollWillpower": "Test Siły Woli",

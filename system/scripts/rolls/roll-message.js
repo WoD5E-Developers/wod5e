@@ -65,7 +65,7 @@ export async function generateRollMessage ({
     basicDice.forEach((die, index) => {
       // Variables
       let dieResult, dieImg, dieAltText
-      const dieClasses = ['roll-img', 'rerollable']
+      const dieClasses = ['die', 'roll-img', 'rerollable']
 
       // Mark any die that were rerolled / not used
       if (die.discarded) dieClasses.push(['rerolled'])
@@ -128,7 +128,7 @@ export async function generateRollMessage ({
     advancedDice.forEach((die, index) => {
       // Variables
       let dieResult, dieImg, dieAltText, dieFace
-      const dieClasses = ['roll-img']
+      const dieClasses = ['die', 'roll-img']
 
       // Mark any die that were rerolled / not used
       if (die.discarded) dieClasses.push(['rerolled'])

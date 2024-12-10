@@ -22,6 +22,7 @@ import { PauseChanges } from './ui/pause.js'
 import { MortalDie, VampireDie, VampireHungerDie, HunterDie, HunterDesperationDie, WerewolfDie, WerewolfRageDie } from './dice/splat-dice.js'
 import { migrateWorld } from './scripts/migration.js'
 import { willpowerReroll } from './scripts/willpower-reroll.js'
+import { anyReroll } from './scripts/any-reroll.js'
 import { wod5eAPI } from './api/wod5e-api.js'
 // WOD5E Definitions
 import { Systems } from './api/def/systems.js'
@@ -211,7 +212,7 @@ Hooks.on('canvasReady', (canvas) => {
   })
 })
 
-// Display the willpower reroll option in the chat when messages are right clicked
+// Display the reroll options in the chat when messages are right clicked
 Hooks.on('getChatLogEntryContext', (html, options) => {
   options.push({
     name: game.i18n.localize('WOD5E.Chat.WillpowerReroll'),
@@ -230,6 +231,24 @@ Hooks.on('getChatLogEntryContext', (html, options) => {
       return (game.user.isGM || message.isAuthor) && (rerollableDice > 0) && (rerolledDice === 0)
     },
     callback: li => willpowerReroll(li)
+  },
+  {
+    name: game.i18n.localize('WOD5E.Chat.Reroll'),
+    icon: '<i class="fas fa-redo"></i>',
+    condition: li => {
+      // Only show this context menu if the person is GM or author of the message
+      const message = game.messages.get(li.attr('data-message-id'))
+
+      // Only show this context menu if there are dice in the message
+      const dice = li.find('.die').length
+
+      // Only show this context menu if there's not any already rerolled dice in the message
+      const rerolledDice = li.find('.rerolled').length
+
+      // All must be true to show the reroll dialog
+      return (game.user.isGM || message.isAuthor) && (dice > 0) && (rerolledDice === 0)
+    },
+    callback: li => anyReroll(li)
   })
 })
 
