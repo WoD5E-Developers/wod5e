@@ -55,7 +55,7 @@ export const prepareSkills = async function (actor) {
 
       // Create a shallow copy of the skillData - excluding the 'bonuses' property
       // eslint-disable-next-line no-unused-vars
-      const { bonuses, ...filteredSkillData } = skillData;
+      const { bonuses, ...filteredSkillData } = skillData
       sortedSkills[value.type].push(filteredSkillData)
     }
   }
