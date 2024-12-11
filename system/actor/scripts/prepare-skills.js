@@ -31,7 +31,8 @@ export const prepareSkills = async function (actor) {
         value: actorSkills[id].value || 0,
         hasSpecialties,
         specialtiesList,
-        macroid: actorSkills[id].macroid
+        macroid: actorSkills[id].macroid,
+        bonuses: actorSkills[id].bonuses
       }, value)
     } else { // Otherwise, add it to the actor and set it as some default data
       skillData = Object.assign({
@@ -51,7 +52,11 @@ export const prepareSkills = async function (actor) {
     // as long as the skill isn't "hidden"
     if (!skillData.hidden) {
       if (!sortedSkills[value.type]) sortedSkills[value.type] = [] // Ensure the type exists
-      sortedSkills[value.type].push(skillData)
+
+      // Create a shallow copy of the skillData - excluding the 'bonuses' property
+      // eslint-disable-next-line no-unused-vars
+      const { bonuses, ...filteredSkillData } = skillData;
+      sortedSkills[value.type].push(filteredSkillData)
     }
   }
 
