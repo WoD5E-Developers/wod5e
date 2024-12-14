@@ -32,7 +32,8 @@ export const prepareSkills = async function (actor) {
         hasSpecialties,
         specialtiesList,
         macroid: actorSkills[id].macroid,
-        bonuses: actorSkills[id].bonuses
+        bonuses: actorSkills[id].bonuses,
+        description: actorSkills[id].description
       }, value)
     } else { // Otherwise, add it to the actor and set it as some default data
       skillData = Object.assign({
