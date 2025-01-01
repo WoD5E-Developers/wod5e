@@ -3,7 +3,7 @@ const mortalDiceLocation = 'systems/vtm5ec/assets/icons/dice/mortal/'
 const vampireDiceLocation = 'systems/vtm5ec/assets/icons/dice/vampire/'
 const werewolfDiceLocation = 'systems/vtm5ec/assets/icons/dice/werewolf/'
 const hunterDiceLocation = 'systems/vtm5ec/assets/icons/dice/hunter/'
-const changelingDiceLocation = 'systems/vtm5ec/assets/icons/dice/changeling'
+const changelingDiceLocation = 'systems/vtm5ec/assets/icons/dice/changeling/'
 
 // Baseline dice variables and icon filenames
 const normalDiceFaces = {

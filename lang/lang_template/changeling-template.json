@@ -14,7 +14,10 @@
             "NightmareDice": "",
             "WyrdCritical": "",
             "PossibleWyrdFailure": "",
-            "PossibleWyrdCritical": ""
+            "PossibleWyrdCritical": "",
+
+            "NightmareFull1": "",
+            "NightmareFull2": ""
         }
     }
 }

@@ -1,7 +1,7 @@
 /* global game, renderTemplate, TextEditor */
 
 // Import dice face-related variables for icon paths
-import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces } from '../../dice/icons.js'
+import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces, changelingDiceLocation, nightmareDiceFaces } from '../../dice/icons.js'
 import { getRollFooter } from './roll-labels/get-label.js'
 
 /**
@@ -95,6 +95,11 @@ export async function generateRollMessage ({
           dieImg = `${hunterDiceLocation}${dieFace}`
           dieClasses.push(['hunter-dice'])
           break
+        case 'changeling':
+          // Changeling data
+          dieImg = `${changelingDiceLocation}${dieFace}`
+          dieClasses.push(['changeling-dice'])
+          break
         default:
           // Mortal data
           dieImg = `${mortalDiceLocation}${dieFace}`
@@ -164,6 +169,18 @@ export async function generateRollMessage ({
           dieFace = hungerDiceFaces[dieResult]
           dieImg = `${vampireDiceLocation}${dieFace}`
           dieClasses.push(['hunger-dice'])
+          break
+        case 'changeling':
+          // Changeling die results
+          if (die.result === 10) dieResult = 'critical' // Critical successes
+          else if (die.result < 10 && die.result > 5) dieResult = 'success' // Successes
+          else if (die.result < 6 && die.result > 1) dieResult = 'failure' // Failures
+          else dieResult = 'nightmare' // Bestial failures
+
+          // Changeling data
+          dieFace = nightmareDiceFaces[dieResult]
+          dieImg = `${changelingDiceLocation}${dieFace}`
+          dieClasses.push(['nightmare-dice'])
           break
         case 'hunter':
           // Hunter die results

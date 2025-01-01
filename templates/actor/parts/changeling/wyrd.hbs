@@ -1,0 +1,13 @@
+<div class="resource flex-group-center wyrd">
+    <label for="actor.system.wyrd.value" class="resource-label system-rollable remorse-roll" title="{{localize 'WOD5E.CTD.RollRemorse'}}">
+        {{localize "WOD5E.CTD.Wyrd"}}
+    </label>
+    
+    <div class="resource-content flexrow flex-center flex-between">
+        <div class="resource-counter editable" data-states="/:banality,-:value" data-value="{{actor.system.wyrd.value}}" data-banality="{{actor.system.wyrd.banality}}" data-name="system.wyrd">
+            {{#numLoop 10}}
+            <span class="resource-counter-step" data-index="{{this}}" data-state=""></span>
+            {{/numLoop}}
+        </div>
+    </div>
+</div>

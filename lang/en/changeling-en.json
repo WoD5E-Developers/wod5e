@@ -14,7 +14,10 @@
             "NightmareDice": "Nightmare Dice",
             "WyrdCritical": "Wyrd Critical",
             "PossibleWyrdFailure": "Possible Wyrd Failure",
-            "PossibleWyrdCritical": "Possible Wyrd Critical"
+            "PossibleWyrdCritical": "Possible Wyrd Critical",
+
+            "NightmareFull1": "Nightmare Full",
+            "NightmareFull2": "Nightmare is already full and cannot be increased further."
         }
     }
 }

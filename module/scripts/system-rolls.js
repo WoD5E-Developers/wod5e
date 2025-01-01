@@ -6,6 +6,7 @@ import { generateRollMessage } from './rolls/roll-message.js'
 import { getSituationalModifiers } from './rolls/situational-modifiers.js'
 import { _damageWillpower } from './rolls/willpower-damage.js'
 import { _increaseHunger } from './rolls/increase-hunger.js'
+import { _increaseNightmare } from './rolls/increase-nightmare.js'
 import { _decreaseRage } from './rolls/decrease-rage.js'
 
 class WOD5eDice {
@@ -54,7 +55,8 @@ class WOD5eDice {
     selectors = [],
     macro = '',
     disableMessageOutput = false,
-    advancedCheckDice = 0
+    advancedCheckDice = 0,
+    increaseNightmare = false
   }) {
     // Define the actor's gamesystem, defaulting to 'mortal' if it's not in the systems list
     const system = actor.system.gamesystem in WOD5E.Systems.getList() ? actor.system.gamesystem : 'mortal'
@@ -160,7 +162,8 @@ class WOD5eDice {
           rollMode,
           quickRoll: true,
           increaseHunger: system === 'vampire',
-          decreaseRage: system === 'werewolf'
+          decreaseRage: system === 'werewolf',
+          increaseNightmare: system === 'changeling'
           // TODO handle changeling nightmare
         })
       }
@@ -441,8 +444,8 @@ class WOD5eDice {
           _increaseHunger(actor, failures)
         } else if (system === 'werewolf' && decreaseRage && game.settings.get('vtm5ec', 'automatedRage')) {
           _decreaseRage(actor, failures)
-        } else if (system === 'changeling' && decreaseRage && game.settings.get('vtm5ec', 'automatedNightmare')) {
-          _increaseHunger(actor, failures) // TODO Change to Nightmare
+        } else if (system === 'changeling' && increaseNightmare && game.settings.get('vtm5ec', 'automatedNightmare')) {
+          _increaseNightmare(actor, failures)
         }
       }
     }

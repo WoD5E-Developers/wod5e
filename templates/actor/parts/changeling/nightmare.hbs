@@ -1,0 +1,11 @@
+<div class="resource flex-group-center nightmare">
+    <label for="actor.system.nightmare.value" class="resource-label">{{localize "WOD5E.CTD.Nightmare"}}</label>
+    <div class="resource-content flexrow flex-center flex-between">
+        <div class="resource-value" data-value="{{actor.system.nightmare.value}}" data-name="system.nightmare.value">
+            <span class="resource-value-empty nightmare-value"></span>
+            {{#numLoop 5}}
+            <span class="resource-value-step nightmare-value" data-index="{{this}}"></span>
+            {{/numLoop}}
+        </div>
+    </div>
+</div>
