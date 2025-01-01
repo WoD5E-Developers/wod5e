@@ -335,6 +335,11 @@ export class wod5eAPI {
       const rageDice = Math.max(actorData?.rage?.value, 0)
 
       return rageDice
+    } else if (actor.system.gamesystem === "changeling") {
+      // Define actor's nightmare dice, ensuring it can't go below 0
+      const nightmareDice = Math.max(actorData?.nightmare?.value, 0)
+
+      return nightmareDice
     } else {
       // Hunters will handle their Desperation dice in the roll dialog
       // Mortals and ghouls don't need this

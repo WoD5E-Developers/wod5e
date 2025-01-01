@@ -212,3 +212,85 @@ export class WerewolfRageDie extends Die {
     }[result]
   }
 }
+
+/**
+ * Extend the basic Die for the Changeling (c) dice
+ * @extends {Die}
+ */
+export class ChangelingDie extends foundry.dice.terms.Die {
+  constructor (termData) {
+    termData.faces = 10
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
+
+    super(termData)
+  }
+
+  /** @override */
+  static DENOMINATION = 'c'
+
+  /** @override */
+  static getResultLabel (result) {
+    return {
+      1: `<img src="${changelingDiceLocation + normalDiceFaces.failure}" />`,
+      2: `<img src="${changelingDiceLocation + normalDiceFaces.failure}" />`,
+      3: `<img src="${changelingDiceLocation + normalDiceFaces.failure}" />`,
+      4: `<img src="${changelingDiceLocation + normalDiceFaces.failure}" />`,
+      5: `<img src="${changelingDiceLocation + normalDiceFaces.failure}" />`,
+      6: `<img src="${changelingDiceLocation + normalDiceFaces.success}" />`,
+      7: `<img src="${changelingDiceLocation + normalDiceFaces.success}" />`,
+      8: `<img src="${changelingDiceLocation + normalDiceFaces.success}" />`,
+      9: `<img src="${changelingDiceLocation + normalDiceFaces.success}" />`,
+      10: `<img src="${changelingDiceLocation + normalDiceFaces.critical}" />`
+    }[result]
+  }
+}
+
+/**
+ * Extend the basic Die for the Nightmare (n) dice
+ * @extends {Die}
+ */
+export class ChangelingNightmareDie extends foundry.dice.terms.Die {
+  constructor (termData) {
+    termData.faces = 10
+
+    // If we have modifiers, append cs>5 to it
+    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
+      termData.modifiers.push('cs>5')
+    }
+
+    // If we have no modifiers, just set modifiers to only cs>5
+    if (!termData?.modifiers) {
+      termData.modifiers = ['cs>5']
+    }
+
+    super(termData)
+  }
+
+  /** @override */
+  static DENOMINATION = 'n'
+
+  /** @override */
+  static getResultLabel (result) {
+    return {
+      1: `<img src="${changelingDiceLocation + nightmareDiceFaces.bestial}" />`,
+      2: `<img src="${changelingDiceLocation + nightmareDiceFaces.failure}" />`,
+      3: `<img src="${changelingDiceLocation + nightmareDiceFaces.failure}" />`,
+      4: `<img src="${changelingDiceLocation + nightmareDiceFaces.failure}" />`,
+      5: `<img src="${changelingDiceLocation + nightmareDiceFaces.failure}" />`,
+      6: `<img src="${changelingDiceLocation + nightmareDiceFaces.success}" />`,
+      7: `<img src="${changelingDiceLocation + nightmareDiceFaces.success}" />`,
+      8: `<img src="${changelingDiceLocation + nightmareDiceFaces.success}" />`,
+      9: `<img src="${changelingDiceLocation + nightmareDiceFaces.success}" />`,
+      10: `<img src="${changelingDiceLocation + nightmareDiceFaces.critical}" />`
+    }[result]
+  }
+}

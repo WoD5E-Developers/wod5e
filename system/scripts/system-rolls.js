@@ -73,6 +73,9 @@ class WOD5eDice {
         } else if (system === 'werewolf' && actor.system.rage.value > 0) {
           // Werewolves with rage above 0 should be rolling 1 rage die
           inputAdvancedDice = 1
+        } else if (system === 'changeling' && actor.system.nightmare.value > 0) {
+          // Changelings with nightmare above 0 should be rolling 1 nightmare die
+          inputAdvancedDice = 1
         } else {
           // In all other cases, we just roll one basic die
           inputBasicDice = 1
@@ -159,6 +162,7 @@ class WOD5eDice {
           quickRoll: true,
           increaseHunger: system === 'vampire',
           decreaseRage: system === 'werewolf'
+          // TODO handle changeling nightmare
         })
       }
 
@@ -348,12 +352,12 @@ class WOD5eDice {
 
                 if (modifierIsNegative) {
                   // Apply dice to basicDice unless basicDice is 0
-                  if ((system === 'vampire' || system === 'werewolf') && basicValue === 0) {
+                  if ((system === 'vampire' || system === 'werewolf' || system === 'changeling') && basicValue === 0) {
                     applyDiceTo = 'advanced'
                   }
                 } else {
                   // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
-                  if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
+                  if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value) || (system === 'changeling' && advancedValue < actorData?.nightmare.value)) {
                     applyDiceTo = 'advanced'
                   }
                 }
@@ -374,6 +378,9 @@ class WOD5eDice {
                     // Determine what we're checking against
                     if (system === 'vampire') {
                       checkValue = actorData?.hunger.value
+                    }
+                    if (system === 'changeling') {
+                      checkValue = actorData?.nightmare.value
                     }
                     if (system === 'werewolf') {
                       checkValue = actorData?.rage.value
@@ -479,6 +486,8 @@ class WOD5eDice {
           _increaseHunger(actor, failures, rollMode)
         } else if (system === 'werewolf' && decreaseRage && game.settings.get('vtm5ec', 'automatedRage')) {
           _decreaseRage(actor, failures, rollMode)
+        } else if (system === 'changeling' && decreaseRage && game.settings.get('vtm5ec', 'automatedNightmare')) {
+          _increaseHunger(actor, failures) // TODO Change to Nightmare
         }
       }
 

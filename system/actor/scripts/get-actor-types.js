@@ -6,7 +6,8 @@ export const getActorTypes = async function (actor) {
     vampire: 'TYPES.Actor.vampire',
     ghoul: 'WOD5E.VTM.Ghoul',
     werewolf: 'TYPES.Actor.werewolf',
-    hunter: 'TYPES.Actor.hunter'
+    hunter: 'TYPES.Actor.hunter',
+    changeling: 'TYPES.Actor.changeling'
   }
 
   const spcTypes = {
@@ -15,7 +16,8 @@ export const getActorTypes = async function (actor) {
     vampire: 'TYPES.Actor.vampire',
     werewolf: 'TYPES.Actor.werewolf',
     spirit: 'WOD5E.WTA.Spirit',
-    hunter: 'TYPES.Actor.hunter'
+    hunter: 'TYPES.Actor.hunter',
+    changeling: 'TYPES.Actor.changeling'
   }
 
   const groupTypes = {

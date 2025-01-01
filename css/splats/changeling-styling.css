@@ -1,0 +1,24 @@
+:root {
+    --changeling-primary: #790813;
+}
+
+.item-image.power-rollable img {
+    box-shadow: inset 1px 1px 4px 0 red;
+    border: 1px solid var(--changeling-primary);
+    filter: drop-shadow(2px 2px 1px grey);
+    border-radius: 4px;
+}
+
+.wod5e .resource .resource-control:hover,
+.wod5e .resource .resource-control:focus {
+    text-shadow: 0 0 10px red;
+}
+
+.sheet.changeling .unleash-button {
+    max-width: 35px;
+    height: 35px;
+    margin-top: -5px;
+}
+.sheet.changeling .unleash-button .wod5e-symbol {
+    vertical-align: middle;
+}

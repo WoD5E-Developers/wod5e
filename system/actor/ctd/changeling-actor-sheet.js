@@ -45,12 +45,12 @@ export class ChangelingActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     experience: {
       template: 'systems/vtm5ec/display/shared/actors/parts/experience.hbs'
     },
-    disciplines: {
-      template: 'systems/vtm5ec/display/vtm/actors/parts/disciplines.hbs'
-    },
-    blood: {
-      template: 'systems/vtm5ec/display/vtm/actors/parts/blood.hbs'
-    },
+    // disciplines: {
+    //   template: 'systems/vtm5ec/display/vtm/actors/parts/disciplines.hbs'
+    // },
+    // blood: {
+    //   template: 'systems/vtm5ec/display/vtm/actors/parts/blood.hbs'
+    // },
     features: {
       template: 'systems/vtm5ec/display/shared/actors/parts/features.hbs'
     },
@@ -87,18 +87,18 @@ export class ChangelingActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       title: 'WOD5E.Tabs.Experience',
       icon: '<i class="fa-solid fa-file-contract"></i>'
     },
-    disciplines: {
-      id: 'disciplines',
-      group: 'primary',
-      title: 'WOD5E.VTM.Disciplines',
-      icon: '<span class="wod5e-symbol">b</span>'
-    },
-    blood: {
-      id: 'blood',
-      group: 'primary',
-      title: 'WOD5E.VTM.Blood',
-      icon: '<i class="fa-solid fa-droplet"></i>'
-    },
+    // disciplines: {
+    //   id: 'disciplines',
+    //   group: 'primary',
+    //   title: 'WOD5E.VTM.Disciplines',
+    //   icon: '<span class="wod5e-symbol">b</span>'
+    // },
+    // blood: {
+    //   id: 'blood',
+    //   group: 'primary',
+    //   title: 'WOD5E.VTM.Blood',
+    //   icon: '<i class="fa-solid fa-droplet"></i>'
+    // },
     features: {
       id: 'features',
       group: 'primary',
@@ -138,13 +138,14 @@ export class ChangelingActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     const actorData = actor.system
 
     // Filters for item-specific data
-    const clanFilter = actor.items.filter(item => item.type === 'clan')
+    const kithFilter = actor.items.filter(item => item.type === 'kith')
+    const legacyFilter = actor.items.filter(item => item.type === 'legacy')
 
     // Prepare changeling-specific items
-    data.domitor = actorData.headers.domitor
-    data.humanity = actorData.humanity
+    data.wyrd = actorData.wyrd
     data.nightmare = actorData.nightmare
-    data.clan = clanFilter[0]
+    data.kith = kithFilter[0]
+    data.legacy = legacyFilter[0]
     data.frenzyActive = actorData.frenzyActive
 
     return data

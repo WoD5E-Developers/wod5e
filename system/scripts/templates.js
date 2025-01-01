@@ -45,6 +45,11 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5ec/display/vtm/actors/parts/hunger.hbs',
     'systems/vtm5ec/display/vtm/actors/parts/rouse.hbs',
 
+    // Changeling Sheet Partials
+    'systems/vtm5ec/display/ctd/actors/parts/nightmare.hbs',
+    'systems/vtm5ec/display/ctd/actors/parts/unleash.hbs',
+    'systems/vtm5ec/display/ctd/actors/parts/wyrd.hbs',
+
     // Werewolf Sheet Partials
     'systems/vtm5ec/display/wta/actors/parts/gifts-rites.hbs',
     'systems/vtm5ec/display/wta/actors/parts/wolf.hbs',

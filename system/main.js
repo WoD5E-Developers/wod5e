@@ -19,7 +19,7 @@ import { loadHelpers } from './scripts/helpers.js'
 import { loadSettings, _updatePreferredColorScheme, _updateHeaderFontPreference, _updateXpIconOverrides } from './scripts/settings.js'
 import { PauseChanges } from './ui/pause.js'
 // WOD5E functions and classes
-import { MortalDie, VampireDie, VampireHungerDie, HunterDie, HunterDesperationDie, WerewolfDie, WerewolfRageDie } from './dice/splat-dice.js'
+import { MortalDie, VampireDie, VampireHungerDie, HunterDie, HunterDesperationDie, WerewolfDie, WerewolfRageDie, ChangelingDie, ChangelingNightmareDie } from './dice/splat-dice.js'
 import { migrateWorld } from './scripts/migration.js'
 import { willpowerReroll } from './scripts/willpower-reroll.js'
 import { wod5eAPI } from './api/wod5e-api.js'
@@ -56,6 +56,8 @@ Hooks.once('init', async function () {
   CONFIG.Dice.terms.s = HunterDesperationDie
   CONFIG.Dice.terms.w = WerewolfDie
   CONFIG.Dice.terms.r = WerewolfRageDie
+  CONFIG.Dice.terms.c = ChangelingDie
+  CONFIG.Dice.terms.n = ChangelingNightmareDie
 
   // Register actor sheet application classes
   Actors.unregisterSheet('core', ActorSheet)

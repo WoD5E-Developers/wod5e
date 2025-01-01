@@ -3,7 +3,18 @@
         "CTD": {
             "Label": "Changeling",
 
-            "Nightmare": "Nightmare"
+            "Legacy": "Legacy",
+            "Kith": "Kith",
+            "Nightmare": "Nightmare",
+            "Wyrd": "Wyrd",
+
+            "UnleashWyrd": "Unleashing Wyrd",
+            "RollUnleash": "Roll Unleash Check",
+            "WyrdDice": "Wyrd Dice",
+            "NightmareDice": "Nightmare Dice",
+            "WyrdCritical": "Wyrd Critical",
+            "PossibleWyrdFailure": "Possible Wyrd Failure",
+            "PossibleWyrdCritical": "Possible Wyrd Critical"
         }
     }
 }

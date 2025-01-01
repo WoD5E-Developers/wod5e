@@ -161,6 +161,7 @@ class WOD5eDice {
           quickRoll: true,
           increaseHunger: system === 'vampire',
           decreaseRage: system === 'werewolf'
+          // TODO handle changeling nightmare
         })
       }
 
@@ -323,7 +324,7 @@ class WOD5eDice {
                 // Determine whether any alterations need to be made to basic dice or advanced dice
                 let applyDiceTo = 'basic'
                 // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
-                if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
+                if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value) || (system === 'changeling' && advancedValue < actorData?.nightmare.value)) {
                   applyDiceTo = 'advanced'
                 }
 
@@ -341,11 +342,14 @@ class WOD5eDice {
                     if (system === 'vampire') {
                       checkValue = actorData?.hunger.value
                     }
+                    if (system === 'changeling') {
+                      checkValue = actorData?.nightmare.value
+                    }
                     if (system === 'werewolf') {
                       checkValue = actorData?.rage.value
                     }
 
-                    if (newValue > actorData?.hunger.value || newValue > checkValue) {
+                    if (newValue > actorData?.hunger.value || newValue > actorData?.nightmare.value || newValue > checkValue) {
                       // Check for any excess and apply it to basicDice
                       const excess = newValue - checkValue
                       newValue = checkValue
@@ -437,6 +441,8 @@ class WOD5eDice {
           _increaseHunger(actor, failures)
         } else if (system === 'werewolf' && decreaseRage && game.settings.get('vtm5ec', 'automatedRage')) {
           _decreaseRage(actor, failures)
+        } else if (system === 'changeling' && decreaseRage && game.settings.get('vtm5ec', 'automatedNightmare')) {
+          _increaseHunger(actor, failures) // TODO Change to Nightmare
         }
       }
     }

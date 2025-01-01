@@ -16,30 +16,55 @@
                 <div class="field-section flexrow">
                     <div class="flexrow nowrap flexend">
                         <div class="flexcol shared-row">
-                            <label class="resource-label field-header">{{localize 'WOD5E.VTM.Clan'}}</label>
+                            <label class="resource-label field-header">{{localize 'WOD5E.CTD.Legacy'}}</label>
                             <div class="resource resource-content">
-                                {{#if clan}}
+                                {{#if legacy}}
                                     <span class="data-item nowrap">
-                                        {{clan.name}}
+                                        {{legacy.name}}
                                     </span>
-                                    <a class="edit-data-item" data-action="itemEdit" data-item-id="{{clan.id}}">
+                                    <a class="edit-data-item" data-action="itemEdit" data-item-id="{{legacy.id}}">
                                         <i class="fa-solid fa-pen-nib"></i>
                                     </a>
                                 {{else}}
-                                    <a class="add-data-item" data-action="createItem" data-type="clan">
+                                    <a class="add-data-item" data-action="createItem" data-type="legacy">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </a>
+                                {{/if}}
+                            </div>
+                        </div>
+                        <div class="flexcol shared-row">
+                            <label class="resource-label field-header">{{localize 'WOD5E.CTD.Kith'}}</label>
+                            <div class="resource resource-content">
+                                {{#if kith}}
+                                    <span class="data-item nowrap">
+                                        {{kith.name}}
+                                    </span>
+                                    <a class="edit-data-item" data-action="itemEdit" data-item-id="{{kith.id}}">
+                                        <i class="fa-solid fa-pen-nib"></i>
+                                    </a>
+                                {{else}}
+                                    <a class="add-data-item" data-action="createItem" data-type="kith">
                                         <i class="fa-solid fa-plus"></i>
                                     </a>
                                 {{/if}}
                             </div>
                         </div>
                     </div>
-                    {{> "systems/vtm5ec/display/vtm/actors/parts/frenzy.hbs"}}
                 </div>
                 <div class="flexcol field-section">
                     <label class="resource-label field-header">{{localize "WOD5E.CTD.Nightmare"}}</label>
                     <div class="flexrow">
                         {{> "systems/vtm5ec/display/ctd/actors/parts/nightmare.hbs"}}
-                        {{> "systems/vtm5ec/display/vtm/actors/parts/rouse.hbs"}}
+                        {{> "systems/vtm5ec/display/ctd/actors/parts/unleash.hbs"}}
+                    </div>
+                </div>
+                <div class="flexcol field-section">
+                    <div class="system-rollable remorse-roll" data-action="remorseRoll" title="{{localize 'WOD5E.VTM.RollRemorse'}}">
+                        <label class="resource-label field-header">{{localize "WOD5E.CTD.Wyrd"}}</label>
+                        <i class="fa-solid fa-dice-d10"></i>
+                    </div>
+                    <div class="flexrow">
+                        {{> "systems/vtm5ec/display/ctd/actors/parts/wyrd.hbs"}}
                     </div>
                 </div>
             </div>

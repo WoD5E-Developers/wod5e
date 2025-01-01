@@ -1,5 +1,5 @@
 // Import dice classes for their denominations
-import { MortalDie, VampireDie, VampireHungerDie, HunterDie, HunterDesperationDie, WerewolfDie, WerewolfRageDie } from '../../dice/splat-dice.js'
+import { MortalDie, VampireDie, VampireHungerDie, HunterDie, HunterDesperationDie, WerewolfDie, WerewolfRageDie, ChangelingDie, ChangelingNightmareDie } from '../../dice/splat-dice.js'
 
 /**
    * Function to help construct the roll formula from given sets of dice
@@ -30,6 +30,16 @@ export async function generateRollFormula ({
 
     // Construct the Vampire roll formula by merging Vampire Dice, Hunger Dice, and any possible rouse reroll modifiers
     rollFormula = `${basicDice}d${VampireDie.DENOMINATION}${successFormula} + ${advancedDice}d${VampireHungerDie.DENOMINATION}${successFormula}${rouseReroll}`
+  } else if (system === 'changeling') {
+    // Compose the roll string.
+    // First, rolling changeling dice (dv) and count successes (cs>5)
+    // Then, roll nightmare dice (dg) and count successes (cs>5) as well as
+    // rerolling those nightmare dice to keep the highest (kh)
+    const wyrdReroll = rerollHunger ? `kh${advancedDice}` : ''
+    if(rerollHunger) advancedDice = advancedDice * 2
+
+    // Construct the Changeling roll formula by merging Changeling Dice, Nightmare Dice, and any possible rouse reroll modifiers
+    rollFormula = `${basicDice}d${ChangelingDie.DENOMINATION}${successFormula} + ${advancedDice}d${ChangelingNightmareDie.DENOMINATION}${successFormula}${wyrdReroll}`
   } else if (system === 'werewolf') {
     // Construct the Werewolf roll formula by merging Werewolf Dice and Rage Dice
     rollFormula = `${basicDice}d${WerewolfDie.DENOMINATION}${successFormula} + ${advancedDice}d${WerewolfRageDie.DENOMINATION}${successFormula}`

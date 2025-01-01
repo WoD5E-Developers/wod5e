@@ -1,7 +1,7 @@
 /* global game, renderTemplate, TextEditor */
 
 // Import dice face-related variables for icon paths
-import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces } from '../../dice/icons.js'
+import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces, changelingDiceLocation, nightmareDiceFaces } from '../../dice/icons.js'
 
 /**
  * Function to help generate the chat message after a roll is made
@@ -87,6 +87,11 @@ export async function generateRollMessage ({
           dieImg = `${vampireDiceLocation}${dieFace}`
           dieClasses.push(['vampire-dice'])
           break
+        case 'changeling':
+          // Changeling data
+          dieImg = `${changelingDiceLocation}${dieFace}`
+          dieClasses.push(['changeling-dice'])
+          break
         case 'hunter':
           // Hunter data
           dieImg = `${hunterDiceLocation}${dieFace}`
@@ -162,6 +167,18 @@ export async function generateRollMessage ({
           dieImg = `${vampireDiceLocation}${dieFace}`
           dieClasses.push(['hunger-dice'])
           break
+        case 'changeling':
+          // Changeling die results
+          if (die.result === 10) dieResult = 'critical' // Critical successes
+          else if (die.result < 10 && die.result > 5) dieResult = 'success' // Successes
+          else if (die.result < 6 && die.result > 1) dieResult = 'failure' // Failures
+          else dieResult = 'nightmare' // Bestial failures
+
+          // Changeling data
+          dieFace = nightmareDiceFaces[dieResult]
+          dieImg = `${changelingDiceLocation}${dieFace}`
+          dieClasses.push(['nightmare-dice'])
+          break
         case 'hunter':
           // Hunter die results
           if (die.result === 10) dieResult = 'critical' // Critical successes
@@ -183,7 +200,7 @@ export async function generateRollMessage ({
 
       // Increase the number of criticals collected across the dice
       if (dieResult === 'critical' && !die.discarded) criticals++
-      if ((dieResult === 'criticalFailure' || dieResult === 'bestial' || dieResult === 'brutal') && !die.discarded) critFails++
+      if ((dieResult === 'criticalFailure' || dieResult === 'bestial' || dieResult === 'nightmare' || dieResult === 'brutal') && !die.discarded) critFails++
 
       die.index = index
     })
@@ -247,7 +264,9 @@ export async function generateRollMessage ({
     if (totalResult < difficulty || difficulty === 0) { // Handle failures...
       if (system === 'vampire' && advancedDice.critFails > 0) { // Handle bestial failures
         resultLabel += totalAndDifficulty + `<div class="roll-result-label bestial-failure">${game.i18n.localize('WOD5E.VTM.PossibleBestialFailure')}</div>`
-      } else if (system === 'werewolf' && advancedDice.critFails > 1) { // Handle brutal outcomes
+      } else if (system === 'changeling' && advancedDice.critFails > 0) {
+        resultLabel += totalAndDifficulty + `<div class="roll-result-label wyrd-failure">${game.i18n.localize('WOD5E.CTD.PossibleWyrdFailure')}</div>`
+      }else if (system === 'werewolf' && advancedDice.critFails > 1) { // Handle brutal outcomes
         resultLabel += totalAndDifficulty + `<div class="roll-result-label rage-failure">${game.i18n.localize('WOD5E.WTA.PossibleRageFailure')}</div>`
       } else if (system === 'hunter' && advancedDice.critFails > 0) { // Handle desperation failures
         resultLabel += totalAndDifficulty + `<div class="roll-result-label desperation-failure">${game.i18n.localize('WOD5E.HTR.PossibleDesperationFailure')}</div>`
@@ -273,7 +292,9 @@ export async function generateRollMessage ({
         } else if (critTotal > 0) { // If there's at least one set of critical dice...
           if (system === 'vampire' && (advancedDice.criticals > 1 || (basicDice.criticals > 0 && advancedDice.criticals > 0))) { // Handle messy criticals
             resultLabel = totalAndDifficulty + `<div class="roll-result-label messy-critical">${game.i18n.localize('WOD5E.VTM.MessyCritical')}</div>`
-          } else { // Everything else is just a normal critical success
+          } else if (system === 'changeling' && (advancedDice.criticals > 1 || (basicDice.criticals > 0 && advancedDice.criticals > 0))) {
+            resultLabel = totalAndDifficulty + `<div class="roll-result-label cyrd-critical">${game.i18n.localize('WOD5E.CTD.WyrdCritical')}</div>`
+          }else { // Everything else is just a normal critical success
             resultLabel = totalAndDifficulty + `<div class="roll-result-label critical-success">${game.i18n.localize('WOD5E.RollList.CriticalSuccess')}</div>`
           }
         } else { // Normal success

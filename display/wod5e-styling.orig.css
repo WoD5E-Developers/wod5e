@@ -3584,33 +3584,3 @@ prose-mirror .editor-menu button {
 .wod-werewolf-theme #controls ol.control-tools .has-notes::after {
   color: var(--system-dark-color-1);
 }
-
-:root {
-  --changeling-color-1: #38563B;
-  --changeling-color-2: #619465;
-  --changeling-color-3: #59885D;
-}
-
-.actor.sheet.changeling .tabs-container {
-  background-color: var(--changeling-color-2);
-}
-.sheet.changeling .unleash-button {
-  max-width: 35px;
-  height: 35px;
-  margin-top: -5px;
-}
-.sheet.changeling .unleash-button .wod5e-symbol {
-  vertical-align: middle;
-}
-.sheet.changeling .resource-value .resource-value-step.active,
-.sheet.changeling .resource-value-static .resource-value-static-step.active,
-.sheet.changeling .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: var(--changeling-color-3);
-}
-.sheet.changeling .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: var(--changeling-color-3);
-}
-.actor.sheet.changeling .sheet-banner {
-  background-color: var(--changeling-color-1);
-  color: var(--system-color-6);
-}

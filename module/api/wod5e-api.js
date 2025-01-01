@@ -114,6 +114,7 @@ export class wod5eAPI {
       attributesList,
       skillsList,
       hungerValue: system === 'vampire' && actor.type !== 'ghoul' && actor.type !== 'spc' ? actor.system.hunger.value : 0,
+      nightmareValue: system === 'changeling' && actor.type !== 'spc' ? actor.system.nightmare.value : 0,
       actorType: actor.type
     }
     // Render the template

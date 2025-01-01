@@ -3,7 +3,18 @@
         "CTD": {
             "Label": "",
 
-            "Nightmare": ""
+            "Legacy": "",
+            "Kith": "",
+            "Nightmare": "",
+            "Wyrd": "",
+
+            "UnleashWyrd": "",
+            "RollUnleash": "",
+            "WyrdDice": "",
+            "NightmareDice": "",
+            "WyrdCritical": "",
+            "PossibleWyrdFailure": "",
+            "PossibleWyrdCritical": ""
         }
     }
 }
