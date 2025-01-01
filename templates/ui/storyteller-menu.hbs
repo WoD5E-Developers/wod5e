@@ -1,0 +1,22 @@
+<form autocomplete="off" class="wod5e-config-form storyteller-menu">
+  {{!-- Cell Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <div class="item" data-tab="modifications">{{localize 'WOD5E.Settings.Modifications'}}</div>
+    <div class="item" data-tab="custom">{{localize 'WOD5E.Settings.Custom'}}</div>
+  </nav>
+
+  {{!-- Menu Body --}}
+  <section class="sheet-body">
+    {{!-- Modifications Tab --}}
+    {{> "systems/vtm5ec/templates/ui/parts/storyteller-menu/modification-menu.hbs"}}
+
+    {{!-- Custom Tab --}}
+    {{> "systems/vtm5ec/templates/ui/parts/storyteller-menu/custom-menu.hbs"}}
+
+    {{!-- Save button --}}
+    <hr>
+    <div>
+      <button class="save-modifications">{{localize 'WOD5E.Settings.SaveChanges'}}</button>
+    </div>
+  </section>
+</form>

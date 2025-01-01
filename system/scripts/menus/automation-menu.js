@@ -6,7 +6,7 @@ export class AutomationMenu extends FormApplication {
       title: game.i18n.localize('WOD5E.Settings.AutomationSettings'),
       id: 'wod5e-automation',
       classes: ['wod5e'],
-      template: 'systems/vtm5e/display/ui/automation-menu.hbs',
+      template: 'systems/vtm5ec/display/ui/automation-menu.hbs',
       width: 500,
       height: 'auto',
       resizable: true,
@@ -21,11 +21,11 @@ export class AutomationMenu extends FormApplication {
     const data = await super.getData()
 
     // Encrich editor content
-    data.disableAutomation = game.settings.get('vtm5e', 'disableAutomation')
-    data.automatedWillpower = game.settings.get('vtm5e', 'automatedWillpower')
-    data.automatedHunger = game.settings.get('vtm5e', 'automatedHunger')
-    data.automatedOblivion = game.settings.get('vtm5e', 'automatedOblivion')
-    data.automatedRage = game.settings.get('vtm5e', 'automatedRage')
+    data.disableAutomation = game.settings.get('vtm5ec', 'disableAutomation')
+    data.automatedWillpower = game.settings.get('vtm5ec', 'automatedWillpower')
+    data.automatedHunger = game.settings.get('vtm5ec', 'automatedHunger')
+    data.automatedOblivion = game.settings.get('vtm5ec', 'automatedOblivion')
+    data.automatedRage = game.settings.get('vtm5ec', 'automatedRage')
 
     return data
   }
@@ -42,7 +42,7 @@ export class AutomationMenu extends FormApplication {
         const settingId = data.id
         const value = event.target.checked
 
-        game.settings.set('vtm5e', settingId, value)
+        game.settings.set('vtm5ec', settingId, value)
       }
     })
   }

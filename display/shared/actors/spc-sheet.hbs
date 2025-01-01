@@ -3,28 +3,28 @@
     <div class="header-fields">
         <div class="header-fields-left">
             {{!-- Health Tracker --}}
-            {{> "systems/vtm5e/display/shared/actors/parts/health.hbs"}}
+            {{> "systems/vtm5ec/display/shared/actors/parts/health.hbs"}}
 
             {{!-- Willpower Tracker --}}
-            {{> "systems/vtm5e/display/shared/actors/parts/willpower.hbs"}}
+            {{> "systems/vtm5ec/display/shared/actors/parts/willpower.hbs"}}
         </div>
     </div>
     <!-- Middle of the header -->
-    {{> "systems/vtm5e/display/shared/actors/parts/header-profile.hbs"}}
+    {{> "systems/vtm5ec/display/shared/actors/parts/header-profile.hbs"}}
     <div class="header-fields">
         <div class="header-fields-right">
             <div class="flexcol">
                 {{#if generalDifficultyEnabled}}
-                    {{> "systems/vtm5e/display/shared/actors/parts/spc/generaldifficulty.hbs"}}
+                    {{> "systems/vtm5ec/display/shared/actors/parts/spc/generaldifficulty.hbs"}}
                 {{/if}}
 
                 {{#ifeq currentActorType 'vampire'}}
                     <div class="flexrow field-section">
                         <div class="flexcol">
                             <label class="resource-label field-header">{{localize 'WOD5E.VTM.Hunger'}}</label>
-                            {{> "systems/vtm5e/display/vtm/actors/parts/hunger.hbs"}}
+                            {{> "systems/vtm5ec/display/vtm/actors/parts/hunger.hbs"}}
                         </div>
-                        {{> "systems/vtm5e/display/shared/actors/parts/spc/blood-potency.hbs"}}
+                        {{> "systems/vtm5ec/display/shared/actors/parts/spc/blood-potency.hbs"}}
                     </div>
                 {{/ifeq}}
 
@@ -32,7 +32,7 @@
                     <div class="field-section">
                         <div class="flexcol">
                             <label class="resource-label field-header">{{localize 'WOD5E.HTR.Despair'}}</label>
-                            {{> "systems/vtm5e/display/htr/actors/parts/despair.hbs"}}
+                            {{> "systems/vtm5ec/display/htr/actors/parts/despair.hbs"}}
                         </div>
                     </div>
                 {{/ifeq}}
@@ -41,7 +41,7 @@
                     <div class="field-section">
                         <div class="flexcol">
                             <label class="resource-label field-header">{{localize 'WOD5E.WTA.Rage'}}</label>
-                            {{> "systems/vtm5e/display/wta/actors/parts/rage-value.hbs"}}
+                            {{> "systems/vtm5ec/display/wta/actors/parts/rage-value.hbs"}}
                         </div>
                     </div>
                 {{/ifeq}}

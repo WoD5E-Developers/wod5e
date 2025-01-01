@@ -86,7 +86,7 @@ export const _onDisciplineToChat = async function (event, target) {
   const actor = this.actor
   const discipline = actor.system.disciplines[target.getAttribute('data-discipline')]
 
-  await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+  await renderTemplate('systems/vtm5ec/display/ui/chat/chat-message.hbs', {
     name: discipline.displayName,
     img: 'icons/svg/dice-target.svg',
     description: discipline?.description

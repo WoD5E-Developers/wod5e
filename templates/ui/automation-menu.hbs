@@ -1,0 +1,56 @@
+<form autocomplete="off" class="wod5e-config-form">
+  <div class="config-category">
+    <h2>World of Darkness</h2>
+    <div class="subcategory">
+      <div class="form-group">
+        <label>{{localize 'WOD5E.Settings.DisableAutomation'}}</label>
+        <div class="form-fields">
+          <input type="checkbox" data-id="disableAutomation" data-dtype="Boolean"{{#if disableAutomation}} checked{{/if}}>
+        </div>
+        <p class="notes">{{localize 'WOD5E.Settings.DisableAutomationHint'}}</p>
+      </div>
+    </div>
+
+    {{#unless disableAutomation}}
+      <div class="subcategory">
+        <div class="form-group">
+          <label>{{localize 'WOD5E.Settings.AutomateWillpower'}}</label>
+          <div class="form-fields">
+            <input type="checkbox" data-id="automatedWillpower" data-dtype="Boolean"{{#if automatedWillpower}} checked{{/if}}>
+          </div>
+          <p class="notes">{{localize 'WOD5E.Settings.AutomateWillpowerHint'}}</p>
+        </div>
+      </div>
+
+      <h2>Vampire the Masquerade</h2>
+      <div class="subcategory">
+        <div class="form-group">
+          <label>{{localize 'WOD5E.Settings.AutomateHunger'}}</label>
+          <div class="form-fields">
+            <input type="checkbox" data-id="automatedHunger" data-dtype="Boolean"{{#if automatedHunger}} checked{{/if}}>
+          </div>
+          <p class="notes">{{localize 'WOD5E.Settings.AutomateHungerHint'}}</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>{{localize 'WOD5E.Settings.AutomateOblivion'}}</label>
+        <div class="form-fields">
+          <input type="checkbox" data-id="automatedOblivion" data-dtype="Boolean"{{#if automatedOblivion}} checked{{/if}}>
+        </div>
+        <p class="notes">{{localize 'WOD5E.Settings.AutomateOblivionHint'}}</p>
+      </div>
+
+      <h2>Werewolf the Apocalypse</h2>
+      <div class="subcategory">
+        <div class="form-group">
+          <label>{{localize 'WOD5E.Settings.AutomateRage'}}</label>
+          <div class="form-fields">
+            <input type="checkbox" data-id="automatedRage" data-dtype="Boolean"{{#if automatedRage}} checked{{/if}}>
+          </div>
+          <p class="notes">{{localize 'WOD5E.Settings.AutomateRageHint'}}</p>
+        </div>
+      </div>
+    {{/unless}}
+  </div>
+</form>

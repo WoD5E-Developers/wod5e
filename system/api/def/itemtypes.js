@@ -36,7 +36,7 @@ export class ItemTypes extends BaseDefinitionClass {
 
   static feature = {
     label: 'TYPES.Item.feature',
-    img: 'systems/vtm5e/assets/icons/items/feature.svg',
+    img: 'systems/vtm5ec/assets/icons/items/feature.svg',
     types: ['feature'],
     sheetClass: FeatureItemSheet,
     restrictedActorTypes: [],
@@ -45,7 +45,7 @@ export class ItemTypes extends BaseDefinitionClass {
 
   static customRoll = {
     label: 'TYPES.Item.customRoll',
-    img: 'systems/vtm5e/assets/icons/items/custom-roll.png',
+    img: 'systems/vtm5ec/assets/icons/items/custom-roll.png',
     types: ['customRoll'],
     sheetClass: CustomRollItemSheet,
     restrictedActorTypes: [],
@@ -130,7 +130,7 @@ export class ItemTypes extends BaseDefinitionClass {
 
   static power = {
     label: 'TYPES.Item.power',
-    img: 'systems/vtm5e/assets/icons/items/discipline.png',
+    img: 'systems/vtm5ec/assets/icons/items/discipline.png',
     types: ['power'],
     sheetClass: DisciplineItemSheet,
     restrictedActorTypes: ['vampire', 'ghoul'],
@@ -139,7 +139,7 @@ export class ItemTypes extends BaseDefinitionClass {
 
   static boon = {
     label: 'TYPES.Item.boon',
-    img: 'systems/vtm5e/assets/icons/items/boon.svg',
+    img: 'systems/vtm5ec/assets/icons/items/boon.svg',
     types: ['boon'],
     sheetClass: BoonItemSheet,
     restrictedActorTypes: ['vampire', 'ghoul'],
@@ -169,7 +169,7 @@ export class ItemTypes extends BaseDefinitionClass {
 
   static perk = {
     label: 'TYPES.Item.perk',
-    img: 'systems/vtm5e/assets/icons/items/edge.png',
+    img: 'systems/vtm5ec/assets/icons/items/edge.png',
     types: ['perk'],
     sheetClass: PerkItemSheet,
     restrictedActorTypes: ['hunter'],
@@ -178,7 +178,7 @@ export class ItemTypes extends BaseDefinitionClass {
 
   static edgepool = {
     label: 'TYPES.Item.edgepool',
-    img: 'systems/vtm5e/assets/icons/items/edgepool.png',
+    img: 'systems/vtm5ec/assets/icons/items/edgepool.png',
     types: ['edgepool'],
     sheetClass: EdgePoolItemSheet,
     restrictedActorTypes: ['hunter'],
@@ -217,7 +217,7 @@ export class ItemTypes extends BaseDefinitionClass {
 
   static gift = {
     label: 'TYPES.Item.gift',
-    img: 'systems/vtm5e/assets/icons/items/gift.png',
+    img: 'systems/vtm5ec/assets/icons/items/gift.png',
     types: ['gift'],
     sheetClass: GiftItemSheet,
     restrictedActorTypes: ['werewolf'],

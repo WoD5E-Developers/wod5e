@@ -1,0 +1,285 @@
+{
+    "TYPES": {
+        "Actor": {
+            "vampire": "",
+            "ghoul": "",
+            "mortal": "",
+            "hunter": "",
+            "werewolf": "",
+            "changeling": "",
+            "spc": "",
+            "group": ""
+        },
+        "Item": {
+            "boon": "",
+            "customRoll": "",
+            "feature": "",
+            "gift": "",
+            "perk": "",
+            "power": ""
+        }
+    },
+  
+    "WOD5E": {
+        "Name": "",
+        "Confirm": "",
+        "Close": "",
+        "Save": "",
+        "Submit": "",
+        "System": "",
+        "Edit": "",
+        "Delete": "",
+        "Level": "",
+        "Add": "",
+        "Cancel": "",
+        "Health": "",
+        "Willpower": "",
+        "Exp": "",
+        "None": "",
+        "Value": "",
+        "Label": "",
+
+        "New": "{string}",
+
+        "Mortal": "",
+        "GroupSheet": "",
+
+        "OpenSheet": "",
+        "RemoveFromGroup": "",
+        "NoGroupMembers": "",
+
+        "RollList": {
+            "Label": "",
+            "RollMode": "",
+            "MortalDice": "",
+            "SelectRoll": "",
+            "Success": "",
+            "Successes": "",
+            "CriticalSuccess": "",
+            "Fail": "",
+            "Modifier": "",
+            "Difficulty": "",
+            "SelectableModifiers": "",
+            "Source": "",
+            "Active": "",
+            "CustomModifiers": "",
+            "AddCustomModifier": "",
+            "Total": ""
+        },
+
+        "Bonus": {
+            "NewSpecialty": "",
+            "AddNewSpecialty": "",
+            "NewBonus": "",
+            "AddNewBonus": "",
+            "Active": "",
+            "ActiveWhen": "",
+            "Always": "",
+            "Never": "",
+            "IfEquals": "",
+            "Path": "",
+            "PathsSeparatedBySemicolons": "",
+            "DisplayWhenInactive": "",
+            "Unless": "",
+            "PathToCheck": "",
+            "ValueToCheck": "",
+            "IfPathIs": ""
+        },
+
+        "SPC": {
+            "Label": "",
+            "GeneralDifficulty": "",
+            "StandardDicePools": "",
+            "ExceptionalDicePools": "",
+            "Physical": "",
+            "Mental": "",
+            "Social": "",
+            "AddSkill": "",
+            "SelectSkill": ""
+        },
+
+        "Damage": {
+            "Superficial": "",
+            "Aggravated": "",
+            "Stains": "",
+            "Max": ""
+        },
+
+        "Tabs": {
+            "Members": "",
+            "Stats": "",
+            "Features": "",
+            "Description": "",
+            "Equipment": "",
+            "Notes": "",
+            "Other": ""
+        },
+
+        "AttributesList": {
+            "Label": "",
+            "Attributes": "",
+            "Strength": "",
+            "Charisma": "",
+            "Intelligence": "",
+            "Dexterity": "",
+            "Manipulation": "",
+            "Wits": "",
+            "Stamina": "",
+            "Composure": "",
+            "Resolve": ""
+        },
+
+        "SkillsList": {
+            "Label": "",
+            "Skills": "",
+            "Specialty": "",
+            "Specialties": "",
+            "Athletics": "",
+            "AnimalKen": "",
+            "Academics": "",
+            "Brawl": "",
+            "Etiquette": "",
+            "Awareness": "",
+            "Craft": "",
+            "Insight": "",
+            "Finance": "",
+            "Drive": "",
+            "Intimidation": "",
+            "Investigation": "",
+            "Firearms": "",
+            "Leadership": "",
+            "Medicine": "",
+            "Melee": "",
+            "Performance": "",
+            "Occult": "",
+            "Larceny": "",
+            "Persuasion": "",
+            "Politics": "",
+            "Stealth": "",
+            "Streetwise": "",
+            "Science": "",
+            "Survival": "",
+            "Subterfuge": "",
+            "Technology": ""
+        },
+
+        "ItemsList": {
+            "Label": "",
+            "ShowToChat": "",
+            "CustomRoll": "",
+            "CustomRolls": "",
+            "Merit": "",
+            "Cost": "",
+            "Flaw": "",
+            "Bonuses": "",
+            "Background": "",
+            "Points": "",
+            "UseSkill": "",
+            "Rollable": "",
+            "Feature": "",
+            "FeatureType": "",
+            "Type": "",
+            "NewSpecialty": "",
+            "Boon": "",
+            "Boons": "",
+            "Macro": "",
+            "SelectFeature": ""
+        },
+
+        "BiographyList": {
+            "Label": "",
+            "Concept": "",
+            "Chronicle": "",
+            "Ambition": "",
+            "Desire": "",
+            "ChronicleTenets": "",
+            "TouchstonesAndConvictions": "",
+            "Appearance": "",
+            "History": ""
+        },
+
+        "DiceRoller": {
+            "AttributeShortLabel": "",
+            "SkillShortLabel": "",
+            "DisciplineShortLabel": "",
+            "NothingShortLabel": "⊘",
+            "SelectAbility": ""
+        },
+
+        "Chat": {
+            "RollingWillpower": "",
+            "Rolling": "",
+            "RollWillpower": "",
+            "WillpowerReroll": "",
+            "WillpowerFullTitle": "",
+            "WillpowerFull": "",
+            "WillpowerDamage": "",
+            "HasReceivedWillpowerDamage": "{actor} {willpowerDamage}"
+        },
+
+        "Macro": {
+            "MacroID": "",
+            "MacroNote": ""
+        },
+
+        "Settings": {
+            "SaveChanges": "",
+    
+            "Modifications": "",
+            "Custom": "",
+    
+            "Rename": "",
+            "Hidden": "",
+    
+            "AddAttributeModification": "",
+            "AddSkillModification": "",
+            "AddCustomAttribute": "",
+            "AddCustomSkill": "",
+    
+            "AttributeType": "",
+            "SkillType": "",
+    
+            "WorldVersion": "",
+            "WorldVersionHint": "",
+    
+            "DarkTheme": "",
+            "DarkThemeHint": "",
+    
+            "ActorBanner": "",
+            "ActorBannerHint": "",
+    
+            "AutomationSettings": "",
+            "AutomationSettingsHint": "",
+    
+            "DisableAutomation": "",
+            "DisableAutomationHint": "",
+    
+            "AutomateWillpower": "",
+            "AutomateWillpowerHint": "",
+    
+            "AutomateHunger": "",
+            "AutomateHungerHint": "",
+    
+            "AutomateOblivion": "",
+            "AutomateOblivionHint": "",
+    
+            "AutomateRage": "",
+            "AutomateRageHint": "",
+    
+            "StorytellerMenu": "",
+            "StorytellerMenuHint": "",
+    
+            "ModifiedAttributes": "",
+            "ModifiedAttributesHint": "",
+    
+            "ModifiedSkills": "",
+            "ModifiedSkillsHint": "",
+    
+            "CustomAttributes": "",
+            "CustomAttributesHint": "",
+    
+            "CustomSkills": "",
+            "CustomSkillsHint": ""
+        }
+    }
+}

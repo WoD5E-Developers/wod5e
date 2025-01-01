@@ -20,22 +20,22 @@ export class FeatureItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/shared/items/feature-sheet.hbs'
+      template: 'systems/vtm5ec/display/shared/items/feature-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
     },
     description: {
-      template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/description.hbs'
     },
     macro: {
-      template: 'systems/vtm5e/display/shared/items/parts/macro.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/macro.hbs'
     },
     modifiers: {
-      template: 'systems/vtm5e/display/shared/items/parts/modifiers.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/modifiers.hbs'
     },
     settings: {
-      template: 'systems/vtm5e/display/shared/items/parts/feature-settings.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/feature-settings.hbs'
     }
   }
 

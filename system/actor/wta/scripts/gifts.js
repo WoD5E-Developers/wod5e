@@ -123,7 +123,7 @@ export const _onGiftToChat = async function (event, target) {
   const actor = this.actor
   const gift = actor.system.gifts[target.getAttribute('data-gift')]
 
-  await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+  await renderTemplate('systems/vtm5ec/display/ui/chat/chat-message.hbs', {
     name: gift.displayName,
     img: 'icons/svg/dice-target.svg',
     description: gift?.description || ''

@@ -34,9 +34,9 @@ export const _onRemorseRoll = async function (event) {
         await actor.update({ 'system.humanity.value': Math.max(humanity - 1, 0) })
         await actor.update({ 'system.humanity.stains': 0 })
 
-        await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+        await renderTemplate('systems/vtm5ec/display/ui/chat/chat-message.hbs', {
           name: game.i18n.localize('WOD5E.VTM.RemorseFailed'),
-          img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+          img: 'systems/vtm5ec/assets/icons/dice/vampire/bestial-failure.png',
           description: game.i18n.format('WOD5E.VTM.RemorseFailedDescription', {
             actor: actor.name
           })

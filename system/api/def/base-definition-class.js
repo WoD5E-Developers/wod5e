@@ -56,7 +56,7 @@ export class BaseDefinitionClass {
 
     // Check if modifications are enabled
     if (this.modsEnabled && this.defCategory) {
-      modifications = game.settings.get('vtm5e', `modified${this.defCategory}`)
+      modifications = game.settings.get('vtm5ec', `modified${this.defCategory}`)
     }
 
     // Cycle through each entry in the definition file to initialize the labels on each
@@ -113,7 +113,7 @@ export class BaseDefinitionClass {
 
   static setSortAlphabetically () {
     // This will set the static property on the class that calls this method
-    const sortingSetting = game.settings.get('vtm5e', 'sortDefAlphabetically')
+    const sortingSetting = game.settings.get('vtm5ec', 'sortDefAlphabetically')
 
     if (sortingSetting === 'all' || sortingSetting === 'default') {
       this.sortAlphabetically = true

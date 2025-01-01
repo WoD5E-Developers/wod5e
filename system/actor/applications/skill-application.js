@@ -46,19 +46,19 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
 
   static PARTS = {
     form: {
-      template: 'systems/vtm5e/display/shared/applications/skill-application/skill-application.hbs'
+      template: 'systems/vtm5ec/display/shared/applications/skill-application/skill-application.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
     },
     description: {
-      template: 'systems/vtm5e/display/shared/applications/skill-application/parts/description.hbs'
+      template: 'systems/vtm5ec/display/shared/applications/skill-application/parts/description.hbs'
     },
     macro: {
-      template: 'systems/vtm5e/display/shared/applications/skill-application/parts/macro.hbs'
+      template: 'systems/vtm5ec/display/shared/applications/skill-application/parts/macro.hbs'
     },
     modifiers: {
-      template: 'systems/vtm5e/display/shared/applications/skill-application/parts/modifiers.hbs'
+      template: 'systems/vtm5ec/display/shared/applications/skill-application/parts/modifiers.hbs'
     }
   }
 

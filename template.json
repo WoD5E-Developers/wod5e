@@ -1,6 +1,15 @@
 {
   "Actor": {
-    "types": ["mortal", "vampire", "ghoul", "hunter", "werewolf", "group", "spc"],
+    "types": [
+      "mortal",
+      "vampire",
+      "ghoul",
+      "hunter",
+      "werewolf",
+      "changeling",
+      "group",
+      "spc"
+    ],
     "templates": {
       "base": {
         "locked": false,
@@ -21,12 +30,12 @@
           "history": ""
         },
         "headers": {
-          "concept":"",
-          "chronicle":"",
-          "ambition":"",
-          "desire":"",
-          "touchstones":"",
-          "tenets":""
+          "concept": "",
+          "chronicle": "",
+          "ambition": "",
+          "desire": "",
+          "touchstones": "",
+          "tenets": ""
         },
         "exp": {
           "value": 0,
@@ -660,6 +669,148 @@
           }
         }
       },
+      "arts": {
+        "autumn": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "chicanery": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "chronos": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "contract": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "dragonsIre": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "legerdemain": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "metamorphosis": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "naming": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "oneiromancy": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "primal": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "pyretics": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "skycraft": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "soothsay": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "sovereign": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "spring": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "summer": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "wayfare": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "winter": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        }
+      },
+      "realms": {
+        "actor": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "nature": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "prop": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "scene": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        },
+        "time": {
+          "description": "",
+          "value": 0,
+          "powers": [],
+          "visible": false
+        }
+      },
       "vampire_traits": {
         "bio": {
           "age": {
@@ -669,9 +820,9 @@
             "death": ""
           }
         },
-        "headers":{
-          "sire":"",
-          "generation":""
+        "headers": {
+          "sire": "",
+          "generation": ""
         },
         "blood": {
           "potency": 0,
@@ -682,10 +833,16 @@
           "max": 5
         }
       },
+      "changeling_traits": {
+        "nightmare": {
+          "value": 1,
+          "max": 5
+        }
+      },
       "ghoul_traits": {
-        "headers":{
-          "domitor":"",
-          "creedfields":""
+        "headers": {
+          "domitor": "",
+          "creedfields": ""
         }
       },
       "werewolf_traits": {
@@ -722,7 +879,7 @@
         }
       },
       "hunter_traits": {
-        "headers":{
+        "headers": {
           "cellname": ""
         }
       },
@@ -772,41 +929,128 @@
       }
     },
     "mortal": {
-      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "werewolfForms", "gifts", "hunter_traits", "edges", "settings"],
+      "templates": [
+        "base",
+        "vampire_traits",
+        "ghoul_traits",
+        "disciplines",
+        "werewolf_traits",
+        "werewolfForms",
+        "gifts",
+        "hunter_traits",
+        "edges",
+        "settings"
+      ],
       "gamesystem": "mortal"
     },
     "vampire": {
-      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "werewolfForms", "gifts", "hunter_traits", "edges", "settings"],
+      "templates": [
+        "base",
+        "vampire_traits",
+        "ghoul_traits",
+        "disciplines",
+        "werewolf_traits",
+        "werewolfForms",
+        "gifts",
+        "hunter_traits",
+        "edges",
+        "settings"
+      ],
       "gamesystem": "vampire"
     },
+    "changeling": {
+      "templates": [
+        "base",
+        "changeling_traits",
+        "vampire_traits",
+        "ghoul_traits",
+        "disciplines",
+        "werewolf_traits",
+        "werewolfForms",
+        "gifts",
+        "hunter_traits",
+        "edges",
+        "settings"
+      ],
+      "gamesystem": "changeling"
+    },
     "werewolf": {
-      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "werewolfForms", "gifts", "hunter_traits", "edges", "settings"],
+      "templates": [
+        "base",
+        "vampire_traits",
+        "ghoul_traits",
+        "disciplines",
+        "werewolf_traits",
+        "werewolfForms",
+        "gifts",
+        "hunter_traits",
+        "edges",
+        "settings"
+      ],
       "gamesystem": "werewolf"
     },
     "hunter": {
-      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "werewolfForms", "gifts", "hunter_traits", "edges", "settings"],
+      "templates": [
+        "base",
+        "vampire_traits",
+        "ghoul_traits",
+        "disciplines",
+        "werewolf_traits",
+        "werewolfForms",
+        "gifts",
+        "hunter_traits",
+        "edges",
+        "settings"
+      ],
       "gamesystem": "hunter"
     },
     "ghoul": {
-      "templates": ["base", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "werewolfForms", "gifts", "hunter_traits", "edges", "settings"],
+      "templates": [
+        "base",
+        "vampire_traits",
+        "ghoul_traits",
+        "disciplines",
+        "werewolf_traits",
+        "werewolfForms",
+        "gifts",
+        "hunter_traits",
+        "edges",
+        "settings"
+      ],
       "gamesystem": "vampire"
     },
     "group": {
-      "templates": ["cell_traits", "coterie_traits", "pack_traits", "settings"],
+      "templates": [
+        "cell_traits",
+        "coterie_traits",
+        "pack_traits",
+        "settings"
+      ],
       "locked": false,
       "groupType": "coterie",
       "biography": "",
       "equipment": "",
       "notes": "",
       "privatenotes": "",
-      "headers":{
+      "headers": {
         "concept": ""
       },
       "members": [],
       "collapsed": true
     },
     "spc": {
-      "templates": ["abbreviated", "vampire_traits", "ghoul_traits", "disciplines", "werewolf_traits", "werewolfForms", "gifts", "hunter_traits", "edges", "settings"],
+      "templates": [
+        "abbreviated",
+        "vampire_traits",
+        "ghoul_traits",
+        "disciplines",
+        "werewolf_traits",
+        "werewolfForms",
+        "gifts",
+        "hunter_traits",
+        "edges",
+        "settings"
+      ],
       "spcType": "mortal",
       "gamesystem": "mortal",
       "manifestation": "",
@@ -824,10 +1068,26 @@
   },
   "Item": {
     "types": [
-      "feature", "customRoll", "armor", "weapon", "gear", "trait", "condition",
-      "power", "boon", "clan", "predatorType", "resonance",
-      "perk", "edgepool", "creed", "drive",
-      "gift", "tribe", "auspice", "talisman"
+      "feature",
+      "customRoll",
+      "armor",
+      "weapon",
+      "gear",
+      "trait",
+      "condition",
+      "power",
+      "boon",
+      "clan",
+      "predatorType",
+      "resonance",
+      "perk",
+      "edgepool",
+      "creed",
+      "drive",
+      "gift",
+      "tribe",
+      "auspice",
+      "talisman"
     ],
     "templates": {
       "base": {
@@ -846,56 +1106,86 @@
       }
     },
     "feature": {
-      "templates": ["base", "itemUses"],
+      "templates": [
+        "base",
+        "itemUses"
+      ],
       "featuretype": "merit",
       "points": 0
     },
     "boon": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "boontype": "Trivial",
       "gamesystem": "vampire"
     },
     "customRoll": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "dicepool": {},
       "modifier": 0
     },
     "armor": {
-      "templates": ["base", "equipment"],
+      "templates": [
+        "base",
+        "equipment"
+      ],
       "armorvalue": 0
     },
     "weapon": {
-      "templates": ["base", "equipment", "itemUses"],
+      "templates": [
+        "base",
+        "equipment",
+        "itemUses"
+      ],
       "weaponvalue": 0
     },
     "gear": {
-      "templates": ["base", "equipment", "itemUses"]
+      "templates": [
+        "base",
+        "equipment",
+        "itemUses"
+      ]
     },
     "trait": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "dice": 0
     },
     "condition": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "effects": {},
       "suppressed": false
     },
     "clan": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "gamesystem": "vampire",
       "bane": ""
     },
     "predatorType": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "gamesystem": "vampire"
     },
     "resonance": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "gamesystem": "vampire",
       "dyscrasia": ""
     },
     "power": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "discipline": "animalism",
       "duration": "",
       "level": 1,
@@ -904,19 +1194,25 @@
       "gamesystem": "vampire"
     },
     "creed": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "gamesystem": "hunter",
       "edges": "",
       "drives": "",
       "desperationFields": ""
     },
     "drive": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "gamesystem": "hunter",
       "redemption": ""
     },
     "perk": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "edge": "arsenal",
       "duration": "",
       "dicepool": {},
@@ -924,13 +1220,17 @@
       "gamesystem": "hunter"
     },
     "edgepool": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "edge": "arsenal",
       "dicepool": {},
       "gamesystem": "hunter"
     },
     "tribe": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "gamesystem": "werewolf",
       "patronSpirit": {
         "name": "",
@@ -940,15 +1240,22 @@
       }
     },
     "auspice": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "gamesystem": "werewolf"
     },
     "talisman": {
-      "templates": ["base", "equipment"],
+      "templates": [
+        "base",
+        "equipment"
+      ],
       "gamesystem": "werewolf"
     },
     "gift": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "giftType": "native",
       "renown": "honor",
       "level": 1,

@@ -21,25 +21,25 @@ export class GiftItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/wta/items/gift-sheet.hbs'
+      template: 'systems/vtm5ec/display/wta/items/gift-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
     },
     description: {
-      template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/description.hbs'
     },
     dicepool: {
-      template: 'systems/vtm5e/display/shared/items/parts/dicepool.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/dicepool.hbs'
     },
     macro: {
-      template: 'systems/vtm5e/display/shared/items/parts/macro.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/macro.hbs'
     },
     modifiers: {
-      template: 'systems/vtm5e/display/shared/items/parts/modifiers.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/modifiers.hbs'
     },
     settings: {
-      template: 'systems/vtm5e/display/wta/items/parts/gift-settings.hbs'
+      template: 'systems/vtm5ec/display/wta/items/parts/gift-settings.hbs'
     }
   }
 

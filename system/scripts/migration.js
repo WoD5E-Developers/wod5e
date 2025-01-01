@@ -17,7 +17,7 @@ export const migrateWorld = async () => {
   // Store current loaded version of the system
   const currentVersion = game.system.version
   // Store the world version pre-migration
-  const worldVersion = game.settings.get('vtm5e', 'worldVersion') || '1.5'
+  const worldVersion = game.settings.get('vtm5ec', 'worldVersion') || '1.5'
 
   console.log('Current SchreckNet Layer v' + worldVersion)
 
@@ -81,7 +81,7 @@ export const migrateWorld = async () => {
       }
 
       // Update game version, no matter if we error or not
-      game.settings.set('vtm5e', 'worldVersion', currentVersion)
+      game.settings.set('vtm5ec', 'worldVersion', currentVersion)
     }
   }
 

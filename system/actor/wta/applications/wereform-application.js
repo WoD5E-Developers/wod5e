@@ -39,16 +39,16 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
 
   static PARTS = {
     form: {
-      template: 'systems/vtm5e/display/wta/applications/wereform-application/wereform-application.hbs'
+      template: 'systems/vtm5ec/display/wta/applications/wereform-application/wereform-application.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
     },
     description: {
-      template: 'systems/vtm5e/display/wta/applications/wereform-application/parts/description.hbs'
+      template: 'systems/vtm5ec/display/wta/applications/wereform-application/parts/description.hbs'
     },
     tokenSettings: {
-      template: 'systems/vtm5e/display/wta/applications/wereform-application/parts/token-settings.hbs'
+      template: 'systems/vtm5ec/display/wta/applications/wereform-application/parts/token-settings.hbs'
     }
   }
 

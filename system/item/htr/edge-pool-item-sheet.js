@@ -20,19 +20,19 @@ export class EdgePoolItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/htr/items/edge-pool-sheet.hbs'
+      template: 'systems/vtm5ec/display/htr/items/edge-pool-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
     },
     description: {
-      template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/description.hbs'
     },
     dicepool: {
-      template: 'systems/vtm5e/display/shared/items/parts/dicepool.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/dicepool.hbs'
     },
     settings: {
-      template: 'systems/vtm5e/display/shared/items/parts/item-settings.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/item-settings.hbs'
     }
   }
 

@@ -8,7 +8,7 @@ export class SplatColorsMenu extends FormApplication {
       title: game.i18n.localize('WOD5E.Settings.SplatColorsMenu'),
       id: 'wod5e-splat-colors',
       classes: ['wod5e'],
-      template: 'systems/vtm5e/display/ui/splat-colors-menu.hbs',
+      template: 'systems/vtm5ec/display/ui/splat-colors-menu.hbs',
       width: 500,
       height: 450,
       resizable: true,
@@ -35,7 +35,7 @@ export class SplatColorsMenu extends FormApplication {
         const { settingId } = settings[settingKey]
 
         // Get the setting and assign it, making it available within the menu
-        data[settingId] = game.settings.get('vtm5e', settingId)
+        data[settingId] = game.settings.get('vtm5ec', settingId)
       })
     })
 

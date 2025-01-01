@@ -14,6 +14,8 @@ import { GhoulActorSheet } from '../../actor/vtm/ghoul-actor-sheet.js'
 import { HunterActorSheet } from '../../actor/htr/hunter-actor-sheet.js'
 // Werewolf system
 import { WerewolfActorSheet } from '../../actor/wta/werewolf-actor-sheet.js'
+// Changeling system
+import { ChangelingActorSheet } from '../../actor/ctd/changeling-actor-sheet.js'
 
 export class ActorTypes extends BaseDefinitionClass {
   // Run any necessary compilation on ready
@@ -56,6 +58,12 @@ export class ActorTypes extends BaseDefinitionClass {
     label: 'TYPES.Actor.werewolf',
     types: ['werewolf'],
     sheetClass: WerewolfActorSheet
+  }
+
+  static changeling = {
+    label: 'TYPES.Actor.changeling',
+    types: ['changeling'],
+    sheetClass: ChangelingActorSheet
   }
 
   static group = {

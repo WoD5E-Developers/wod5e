@@ -144,7 +144,7 @@ class WOD5eDice {
       if (roll.terms[2]) await handleFailure(system, roll.terms[2].results)
 
       // Handle willpower damage
-      if (willpowerDamage > 0 && game.settings.get('vtm5e', 'automatedWillpower')) _damageWillpower(null, null, actor, willpowerDamage, rollMode)
+      if (willpowerDamage > 0 && game.settings.get('vtm5ec', 'automatedWillpower')) _damageWillpower(null, null, actor, willpowerDamage, rollMode)
 
       // Roll any advanced check dice that need to be rolled in a separate rollmessage
       if (advancedCheckDice > 0) {
@@ -231,7 +231,7 @@ class WOD5eDice {
       const situationalModifiers = actor ? await getSituationalModifiers({ actor, selectors }) : {}
 
       // Roll dialog template
-      const dialogTemplate = `systems/vtm5e/display/ui/${system}-roll-dialog.hbs`
+      const dialogTemplate = `systems/vtm5ec/display/ui/${system}-roll-dialog.hbs`
       // Data that the dialog template needs
       const dialogData = {
         system,
@@ -475,15 +475,15 @@ class WOD5eDice {
       const failures = diceResults.filter(result => result.success === false && !result.discarded).length
 
       if (failures > 0) {
-        if (system === 'vampire' && increaseHunger && game.settings.get('vtm5e', 'automatedHunger')) {
+        if (system === 'vampire' && increaseHunger && game.settings.get('vtm5ec', 'automatedHunger')) {
           _increaseHunger(actor, failures, rollMode)
-        } else if (system === 'werewolf' && decreaseRage && game.settings.get('vtm5e', 'automatedRage')) {
+        } else if (system === 'werewolf' && decreaseRage && game.settings.get('vtm5ec', 'automatedRage')) {
           _decreaseRage(actor, failures, rollMode)
         }
       }
 
       // Handle Oblivion rouse checks here
-      if (selectors.includes('oblivion-rouse') && game.settings.get('vtm5e', 'automatedOblivion')) {
+      if (selectors.includes('oblivion-rouse') && game.settings.get('vtm5ec', 'automatedOblivion')) {
         const oblivionTriggers = diceResults.filter(result => [1, 10].includes(result.result) && !result.discarded).length
 
         if (oblivionTriggers > 0) {

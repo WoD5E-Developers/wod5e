@@ -30,40 +30,40 @@ export class HunterActorSheet extends HandlebarsApplicationMixin(WoDActor) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/htr/actors/hunter-sheet.hbs'
+      template: 'systems/vtm5ec/display/htr/actors/hunter-sheet.hbs'
     },
     tabs: {
-      template: 'systems/vtm5e/display/shared/actors/parts/tab-navigation.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/tab-navigation.hbs'
     },
     stats: {
-      template: 'systems/vtm5e/display/shared/actors/parts/stats.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/stats.hbs'
     },
     experience: {
-      template: 'systems/vtm5e/display/shared/actors/parts/experience.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/experience.hbs'
     },
     edges: {
-      template: 'systems/vtm5e/display/htr/actors/parts/edges.hbs'
+      template: 'systems/vtm5ec/display/htr/actors/parts/edges.hbs'
     },
     features: {
-      template: 'systems/vtm5e/display/htr/actors/parts/features.hbs'
+      template: 'systems/vtm5ec/display/htr/actors/parts/features.hbs'
     },
     equipment: {
-      template: 'systems/vtm5e/display/shared/actors/parts/equipment.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/equipment.hbs'
     },
     biography: {
-      template: 'systems/vtm5e/display/shared/actors/parts/biography.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/biography.hbs'
     },
     notepad: {
-      template: 'systems/vtm5e/display/shared/actors/parts/notepad.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/notepad.hbs'
     },
     settings: {
-      template: 'systems/vtm5e/display/shared/actors/parts/actor-settings.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/actor-settings.hbs'
     },
     banner: {
-      template: 'systems/vtm5e/display/shared/actors/parts/type-banner.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/type-banner.hbs'
     },
     limited: {
-      template: 'systems/vtm5e/display/shared/actors/limited-sheet.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/limited-sheet.hbs'
     }
   }
 

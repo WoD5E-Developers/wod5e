@@ -84,7 +84,7 @@ export const _onEdgeToChat = async function (event, target) {
   const actor = this.actor
   const edge = actor.system.edges[target.getAttribute('data-edge')]
 
-  await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+  await renderTemplate('systems/vtm5ec/display/ui/chat/chat-message.hbs', {
     name: edge.displayName,
     img: 'icons/svg/dice-target.svg',
     description: edge?.description || ''

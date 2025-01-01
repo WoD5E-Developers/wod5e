@@ -4,7 +4,7 @@ export const _onSyncFromDataItem = async function (event) {
   event.preventDefault()
 
   const item = this.item
-  const dataItemId = item.getFlag('vtm5e', 'dataItemId')
+  const dataItemId = item.getFlag('vtm5ec', 'dataItemId')
 
   // Search for an applicable data item - there should only be one
   const compendiumsList = game.packs.filter(compendium => compendium.metadata.type === 'Item')
@@ -17,7 +17,7 @@ export const _onSyncFromDataItem = async function (event) {
     compendiumDataItems.push(...foundItems)
   }
 
-  const worldDataItems = game.items.filter((item) => (item.getFlag('vtm5e', 'dataItemId') === dataItemId))
+  const worldDataItems = game.items.filter((item) => (item.getFlag('vtm5ec', 'dataItemId') === dataItemId))
 
   const allDataItems = compendiumDataItems.concat(worldDataItems)
   const totalCount = allDataItems.length
@@ -60,7 +60,7 @@ export const _onSyncToDataItems = async function (event) {
   event.preventDefault()
 
   const item = this.item
-  const dataItemId = item.getFlag('vtm5e', 'dataItemId')
+  const dataItemId = item.getFlag('vtm5ec', 'dataItemId')
 
   const actorsList = game.actors
   const actorDataItems = []

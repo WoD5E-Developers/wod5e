@@ -1,0 +1,15 @@
+{{> "systems/vtm5ec/templates/ui/parts/situational-modifiers.hbs"}}
+<div class="form-group">
+  <label>{{localize 'WOD5E.RollList.Difficulty' }}</label>
+  <input type="text" min="0" id="inputDifficulty" value="{{difficulty}}">
+</div>
+<div class="form-group">
+  <label>{{localize 'WOD5E.RollList.RollMode'}}</label>
+  <select name="rollMode">
+    {{#select rollMode}}
+      {{#each rollModes as |label mode|}}
+        <option value="{{mode}}">{{localize label}}</option>
+      {{/each}}
+    {{/select}}
+  </select>
+</div>

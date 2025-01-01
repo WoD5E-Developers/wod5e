@@ -1,0 +1,10 @@
+<div class="resource flex-group-center nightmare">
+    <div class="resource-content flexrow flex-center flex-between">
+        <div class="resource-value" data-value="{{nightmare.value}}" data-name="system.nightmare.value">
+            <span class="resource-value-empty nightmare-value" data-action="dotCounterEmpty"></span>
+            {{#numLoop nightmare.max}}
+            <span class="resource-value-step nightmare-value" data-action="dotCounterChange" data-index="{{this}}"></span>
+            {{/numLoop}}
+        </div>
+    </div>
+</div>

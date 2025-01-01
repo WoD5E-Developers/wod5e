@@ -1,20 +1,20 @@
 {{!-- Group Sheet Header --}}
 <header class="actor-header" {{#if headerbg}} style="background: url({{headerbg}}) center;"{{/if}}>
     <!-- Middle of the header -->
-    {{> "systems/vtm5e/display/shared/actors/parts/header-profile.hbs"}}
+    {{> "systems/vtm5ec/display/shared/actors/parts/header-profile.hbs"}}
     <div class="header-fields">
         <div class="header-fields-right">
             <div class="flexcol">
                 {{#ifeq currentActorType 'coterie'}}
-                    {{> "systems/vtm5e/display/vtm/actors/coterie-sheet.hbs"}}
+                    {{> "systems/vtm5ec/display/vtm/actors/coterie-sheet.hbs"}}
                 {{/ifeq}}
 
                 {{#ifeq currentActorType 'cell'}}
-                    {{> "systems/vtm5e/display/htr/actors/cell-sheet.hbs"}}
+                    {{> "systems/vtm5ec/display/htr/actors/cell-sheet.hbs"}}
                 {{/ifeq}}
 
                 {{#ifeq currentActorType 'pack'}}
-                    {{> "systems/vtm5e/display/wta/actors/pack-sheet.hbs"}}
+                    {{> "systems/vtm5ec/display/wta/actors/pack-sheet.hbs"}}
                 {{/ifeq}}
             </div>
         </div>

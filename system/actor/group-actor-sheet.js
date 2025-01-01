@@ -79,28 +79,28 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/shared/actors/group-sheet.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/group-sheet.hbs'
     },
     tabs: {
-      template: 'systems/vtm5e/display/shared/actors/parts/tab-navigation.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/tab-navigation.hbs'
     },
     members: {
-      template: 'systems/vtm5e/display/shared/actors/parts/group/group-members.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/group/group-members.hbs'
     },
     features: {
-      template: 'systems/vtm5e/display/shared/actors/parts/group/features.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/group/features.hbs'
     },
     equipment: {
-      template: 'systems/vtm5e/display/shared/actors/parts/equipment.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/equipment.hbs'
     },
     notepad: {
-      template: 'systems/vtm5e/display/shared/actors/parts/notepad.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/notepad.hbs'
     },
     settings: {
-      template: 'systems/vtm5e/display/shared/actors/parts/actor-settings.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/actor-settings.hbs'
     },
     banner: {
-      template: 'systems/vtm5e/display/shared/actors/parts/type-banner.hbs'
+      template: 'systems/vtm5ec/display/shared/actors/parts/type-banner.hbs'
     }
   }
 
@@ -188,7 +188,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
 
       features: actorData.features,
 
-      displayBanner: game.settings.get('vtm5e', 'actorBanner'),
+      displayBanner: game.settings.get('vtm5ec', 'actorBanner'),
 
       headerbg: await getActorHeader(actor),
       actorbg: actor.system?.settings?.background,

@@ -110,7 +110,7 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
 
       gamesystem: itemData.gamesystem || 'mortal',
 
-      dataItemId: item.getFlag('vtm5e', 'dataItemId') || ''
+      dataItemId: item.getFlag('vtm5ec', 'dataItemId') || ''
     }
   }
 

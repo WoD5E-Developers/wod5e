@@ -148,7 +148,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
       features: actorData.features,
 
-      displayBanner: game.settings.get('vtm5e', 'actorBanner'),
+      displayBanner: game.settings.get('vtm5ec', 'actorBanner'),
 
       headerbg: await getActorHeader(actor),
       actorbg: actor.system?.settings?.background,

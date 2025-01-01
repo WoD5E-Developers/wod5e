@@ -21,25 +21,25 @@ export class WeaponItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/shared/items/weapon-sheet.hbs'
+      template: 'systems/vtm5ec/display/shared/items/weapon-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
     },
     description: {
-      template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/description.hbs'
     },
     dicepool: {
-      template: 'systems/vtm5e/display/shared/items/parts/dicepool.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/dicepool.hbs'
     },
     macro: {
-      template: 'systems/vtm5e/display/shared/items/parts/macro.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/macro.hbs'
     },
     modifiers: {
-      template: 'systems/vtm5e/display/shared/items/parts/modifiers.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/modifiers.hbs'
     },
     settings: {
-      template: 'systems/vtm5e/display/shared/items/parts/weapon-settings.hbs'
+      template: 'systems/vtm5ec/display/shared/items/parts/weapon-settings.hbs'
     }
   }
 

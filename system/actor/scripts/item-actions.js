@@ -188,7 +188,7 @@ export const _onItemChat = async function (event, target) {
 
   const itemId = target.getAttribute('data-item-id')
   const item = actor.getEmbeddedDocument('Item', itemId)
-  renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+  renderTemplate('systems/vtm5ec/display/ui/chat/chat-message.hbs', {
     name: item.name,
     img: item.img,
     description: item.system?.description || ''

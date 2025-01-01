@@ -24,6 +24,10 @@ export class Systems extends BaseDefinitionClass {
   static hunter = {
     label: 'TYPES.Actor.hunter'
   }
+
+  static changeling = {
+    label: 'TYPES.Actor.changeling'
+  }
 }
 
 // Hook to call onReady when the game is ready

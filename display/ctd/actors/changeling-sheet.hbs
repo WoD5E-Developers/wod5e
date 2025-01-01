@@ -1,0 +1,48 @@
+{{!-- Changeling Sheet Header --}}
+<header class="actor-header" {{#if headerbg}} style="background: url({{headerbg}}) center;"{{/if}}>
+    <div class="header-fields">
+        <div class="header-fields-left">
+            {{!-- Health Tracker --}}
+            {{> "systems/vtm5ec/display/shared/actors/parts/health.hbs"}}
+            {{!-- Willpower Tracker --}}
+            {{> "systems/vtm5ec/display/shared/actors/parts/willpower.hbs"}}
+        </div>
+    </div>
+    <!-- Middle of the header -->
+    {{> "systems/vtm5ec/display/shared/actors/parts/header-profile.hbs"}}
+    <div class="header-fields">
+        <div class="header-fields-right">
+            <div class="flexcol">
+                <div class="field-section flexrow">
+                    <div class="flexrow nowrap flexend">
+                        <div class="flexcol shared-row">
+                            <label class="resource-label field-header">{{localize 'WOD5E.VTM.Clan'}}</label>
+                            <div class="resource resource-content">
+                                {{#if clan}}
+                                    <span class="data-item nowrap">
+                                        {{clan.name}}
+                                    </span>
+                                    <a class="edit-data-item" data-action="itemEdit" data-item-id="{{clan.id}}">
+                                        <i class="fa-solid fa-pen-nib"></i>
+                                    </a>
+                                {{else}}
+                                    <a class="add-data-item" data-action="createItem" data-type="clan">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </a>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                    {{> "systems/vtm5ec/display/vtm/actors/parts/frenzy.hbs"}}
+                </div>
+                <div class="flexcol field-section">
+                    <label class="resource-label field-header">{{localize "WOD5E.CTD.Nightmare"}}</label>
+                    <div class="flexrow">
+                        {{> "systems/vtm5ec/display/ctd/actors/parts/nightmare.hbs"}}
+                        {{> "systems/vtm5ec/display/vtm/actors/parts/rouse.hbs"}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

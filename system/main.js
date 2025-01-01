@@ -64,7 +64,7 @@ Hooks.once('init', async function () {
   for (const [, value] of Object.entries(actorTypesList)) {
     const { label, types, sheetClass } = value
 
-    Actors.registerSheet('vtm5e', sheetClass, {
+    Actors.registerSheet('vtm5ec', sheetClass, {
       label,
       types,
       makeDefault: true
@@ -78,7 +78,7 @@ Hooks.once('init', async function () {
   for (const [, value] of Object.entries(itemTypesList)) {
     const { label, types, sheetClass } = value
 
-    Items.registerSheet('vtm5e', sheetClass, {
+    Items.registerSheet('vtm5ec', sheetClass, {
       label,
       types,
       makeDefault: true
@@ -176,7 +176,7 @@ Hooks.once('ready', async function () {
       const { settingId, cssVariable } = settings[settingKey]
 
       // Get the current value of the setting
-      const settingValue = game.settings.get('vtm5e', settingId)
+      const settingValue = game.settings.get('vtm5ec', settingId)
 
       // Update the CSS variable
       _updateCSSVariable(settingId, cssVariable, settingValue)

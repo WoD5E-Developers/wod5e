@@ -27,7 +27,7 @@ export const _onAddModifier = async function (event) {
   }
 
   // Render the template
-  const bonusTemplate = 'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs'
+  const bonusTemplate = 'systems/vtm5ec/display/shared/applications/skill-application/parts/specialty-display.hbs'
   const bonusContent = await renderTemplate(bonusTemplate, bonusData)
 
   new Dialog(
@@ -147,7 +147,7 @@ export const _onEditModifier = async function (event, target) {
   const system = actor.system.gamesystem
 
   // Render the template
-  const bonusTemplate = 'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs'
+  const bonusTemplate = 'systems/vtm5ec/display/shared/applications/skill-application/parts/specialty-display.hbs'
   const bonusContent = await renderTemplate(bonusTemplate, bonusData)
 
   new Dialog(

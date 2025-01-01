@@ -10,6 +10,8 @@ import { Skills } from '../api/def/skills.js'
 import { Disciplines } from '../api/def/disciplines.js'
 import { Edges } from '../api/def/edges.js'
 import { Gifts } from '../api/def/gifts.js'
+import { Arts } from '../api/def/arts.js'
+import { Realms } from '../api/def/realms.js'
 import { SplatColorsMenu } from './menus/splat-colors-menu.js'
 import { cssVariablesRecord } from './update-css-variables.js'
 
@@ -20,7 +22,7 @@ import { cssVariablesRecord } from './update-css-variables.js'
 export const loadSettings = async function () {
   // Color Scheme
   // Custom written to allow for usage of extra themes
-  game.settings.register('vtm5e', 'colorScheme', {
+  game.settings.register('vtm5ec', 'colorScheme', {
     name: 'WOD5E.Settings.ColorScheme',
     hint: 'WOD5E.Settings.ColorSchemeHint',
     scope: 'client',
@@ -42,7 +44,7 @@ export const loadSettings = async function () {
   })
 
   // Whether definitions will be sorted alphabetically based on the currently selected language
-  game.settings.register('vtm5e', 'sortDefAlphabetically', {
+  game.settings.register('vtm5ec', 'sortDefAlphabetically', {
     name: game.i18n.localize('WOD5E.Settings.SortDefAlphabetically'),
     hint: game.i18n.localize('WOD5E.Settings.SortDefAlphabeticallyHint'),
     scope: 'world',
@@ -61,7 +63,7 @@ export const loadSettings = async function () {
   })
 
   // Deactivate Vampire Revised Font
-  game.settings.register('vtm5e', 'disableVampireFont', {
+  game.settings.register('vtm5ec', 'disableVampireFont', {
     name: game.i18n.localize('WOD5E.Settings.DisableVampireFont'),
     hint: game.i18n.localize('WOD5E.Settings.DisableVampireFontHint'),
     scope: 'client',
@@ -72,7 +74,7 @@ export const loadSettings = async function () {
   })
 
   // Whether the actor banner will appear on sheets or not
-  game.settings.register('vtm5e', 'actorBanner', {
+  game.settings.register('vtm5ec', 'actorBanner', {
     name: game.i18n.localize('WOD5E.Settings.ActorBanner'),
     hint: game.i18n.localize('WOD5E.Settings.ActorBannerHint'),
     scope: 'client',
@@ -86,7 +88,7 @@ export const loadSettings = async function () {
   })
 
   /* Chat roller is disabled until it can be fixed
-  game.settings.register('vtm5e', 'useChatRoller', {
+  game.settings.register('vtm5ec', 'useChatRoller', {
     name: 'Chat Roller',
     hint: 'Display dice roller in chat window.',
     scope: 'world',
@@ -95,7 +97,7 @@ export const loadSettings = async function () {
     type: Boolean
   })
 
-  game.settings.register('vtm5e', 'chatRollerSortAbilities', {
+  game.settings.register('vtm5ec', 'chatRollerSortAbilities', {
     name: 'Sort Abilities in Chat Roller',
     hint: 'Sort abilities (Attributes, Skills, Disciplines, Edges) alphabetically in the chat roller. Disable to sort in the order on the character sheet (grouping physical, social, and mental).',
     scope: 'client',
@@ -110,7 +112,7 @@ export const loadSettings = async function () {
   */
 
   // Automation Menu
-  game.settings.registerMenu('vtm5e', 'automationMenu', {
+  game.settings.registerMenu('vtm5ec', 'automationMenu', {
     name: game.i18n.localize('WOD5E.Settings.AutomationSettings'),
     hint: game.i18n.localize('WOD5E.Settings.AutomationSettingsHint'),
     label: game.i18n.localize('WOD5E.Settings.AutomationSettings'),
@@ -120,7 +122,7 @@ export const loadSettings = async function () {
   })
 
   // Disable All Automation
-  game.settings.register('vtm5e', 'disableAutomation', {
+  game.settings.register('vtm5ec', 'disableAutomation', {
     name: game.i18n.localize('WOD5E.Settings.DisableAutomation'),
     hint: game.i18n.localize('WOD5E.Settings.DisableAutomationHint'),
     scope: 'world',
@@ -129,15 +131,15 @@ export const loadSettings = async function () {
     type: Boolean,
     onChange: async (value) => {
       if (value) {
-        await game.settings.set('vtm5e', 'automatedWillpower', false)
-        await game.settings.set('vtm5e', 'automatedHunger', false)
-        await game.settings.set('vtm5e', 'automatedOblivion', false)
-        await game.settings.set('vtm5e', 'automatedRage', false)
+        await game.settings.set('vtm5ec', 'automatedWillpower', false)
+        await game.settings.set('vtm5ec', 'automatedHunger', false)
+        await game.settings.set('vtm5ec', 'automatedOblivion', false)
+        await game.settings.set('vtm5ec', 'automatedRage', false)
       } else {
-        await game.settings.set('vtm5e', 'automatedWillpower', true)
-        await game.settings.set('vtm5e', 'automatedHunger', true)
-        await game.settings.set('vtm5e', 'automatedOblivion', true)
-        await game.settings.set('vtm5e', 'automatedRage', true)
+        await game.settings.set('vtm5ec', 'automatedWillpower', true)
+        await game.settings.set('vtm5ec', 'automatedHunger', true)
+        await game.settings.set('vtm5ec', 'automatedOblivion', true)
+        await game.settings.set('vtm5ec', 'automatedRage', true)
       }
 
       // Re-render the automation window once settings are updated
@@ -149,7 +151,7 @@ export const loadSettings = async function () {
   })
 
   // Automated Willpower
-  game.settings.register('vtm5e', 'automatedWillpower', {
+  game.settings.register('vtm5ec', 'automatedWillpower', {
     name: game.i18n.localize('WOD5E.Settings.AutomateWillpower'),
     hint: game.i18n.localize('WOD5E.Settings.AutomateWillpowerHint'),
     scope: 'world',
@@ -159,7 +161,7 @@ export const loadSettings = async function () {
   })
 
   // Automated Hunger
-  game.settings.register('vtm5e', 'automatedHunger', {
+  game.settings.register('vtm5ec', 'automatedHunger', {
     name: game.i18n.localize('WOD5E.Settings.AutomateHunger'),
     hint: game.i18n.localize('WOD5E.Settings.AutomateHungerHint'),
     scope: 'world',
@@ -169,7 +171,7 @@ export const loadSettings = async function () {
   })
 
   // Automated Oblivion Rolls
-  game.settings.register('vtm5e', 'automatedOblivion', {
+  game.settings.register('vtm5ec', 'automatedOblivion', {
     name: game.i18n.localize('WOD5E.Settings.AutomateOblivion'),
     hint: game.i18n.localize('WOD5E.Settings.AutomateOblivionHint'),
     scope: 'world',
@@ -179,7 +181,7 @@ export const loadSettings = async function () {
   })
 
   // Automated Rage
-  game.settings.register('vtm5e', 'automatedRage', {
+  game.settings.register('vtm5ec', 'automatedRage', {
     name: game.i18n.localize('WOD5E.Settings.AutomateRage'),
     hint: game.i18n.localize('WOD5E.Settings.AutomateRageHint'),
     scope: 'world',
@@ -193,7 +195,7 @@ export const loadSettings = async function () {
   */
 
   // Register the storyteller menu
-  game.settings.registerMenu('vtm5e', 'storytellerMenu', {
+  game.settings.registerMenu('vtm5ec', 'storytellerMenu', {
     name: game.i18n.localize('WOD5E.Settings.StorytellerMenu'),
     hint: game.i18n.localize('WOD5E.Settings.StorytellerMenuHint'),
     label: game.i18n.localize('WOD5E.Settings.StorytellerMenu'),
@@ -222,12 +224,20 @@ export const loadSettings = async function () {
     gift: {
       defCategory: 'Gifts',
       defClass: Gifts
+    },
+    art: {
+      defCategory: 'Arts',
+      defClass: Arts
+    },
+    realm: {
+      defCategory: 'Realms',
+      defClass: Realms
     }
   }
 
   for (const [, value] of Object.entries(modCustomList)) {
     // Register the modification
-    game.settings.register('vtm5e', `modified${value.defCategory}`, {
+    game.settings.register('vtm5ec', `modified${value.defCategory}`, {
       name: game.i18n.localize(`WOD5E.Settings.Modified${value.defCategory}`),
       hint: game.i18n.localize(`WOD5E.Settings.Modified${value.defCategory}Hint`),
       scope: 'world',
@@ -244,7 +254,7 @@ export const loadSettings = async function () {
     })
 
     // Register the custom subtype
-    game.settings.register('vtm5e', `custom${value.defCategory}`, {
+    game.settings.register('vtm5ec', `custom${value.defCategory}`, {
       name: game.i18n.localize(`WOD5E.Settings.Custom${value.defCategory}`),
       hint: game.i18n.localize(`WOD5E.Settings.Custom${value.defCategory}Hint`),
       scope: 'world',
@@ -265,7 +275,7 @@ export const loadSettings = async function () {
   }
 
   // Automatically collapse chat message descriptions
-  game.settings.register('vtm5e', 'autoCollapseDescriptions', {
+  game.settings.register('vtm5ec', 'autoCollapseDescriptions', {
     name: game.i18n.localize('WOD5E.Settings.AutoCollapseDescriptions'),
     hint: game.i18n.localize('WOD5E.Settings.AutoCollapseDescriptionsHint'),
     scope: 'client',
@@ -275,7 +285,7 @@ export const loadSettings = async function () {
   })
 
   // Override for the default actor header image
-  game.settings.register('vtm5e', 'actorHeaderOverride', {
+  game.settings.register('vtm5ec', 'actorHeaderOverride', {
     name: game.i18n.localize('WOD5E.Settings.ActorHeaderOverride'),
     hint: game.i18n.localize('WOD5E.Settings.ActorHeaderOverrideHint'),
     scope: 'world',
@@ -290,7 +300,7 @@ export const loadSettings = async function () {
   })
 
   // Override for the default actor backgrounds
-  game.settings.register('vtm5e', 'actorBackgroundOverride', {
+  game.settings.register('vtm5ec', 'actorBackgroundOverride', {
     name: game.i18n.localize('WOD5E.Settings.ActorBackgroundOverride'),
     hint: game.i18n.localize('WOD5E.Settings.ActorBackgroundOverrideHint'),
     scope: 'world',
@@ -305,7 +315,7 @@ export const loadSettings = async function () {
   })
 
   // Override for the "Gain" XP Icon
-  game.settings.register('vtm5e', 'gainXpIconOverride', {
+  game.settings.register('vtm5ec', 'gainXpIconOverride', {
     name: game.i18n.localize('WOD5E.Settings.GainXpIconOverride'),
     hint: game.i18n.localize('WOD5E.Settings.GainXpIconOverrideHint'),
     scope: 'world',
@@ -323,7 +333,7 @@ export const loadSettings = async function () {
   })
 
   // Override for the "Spend" XP Icon
-  game.settings.register('vtm5e', 'spendXpIconOverride', {
+  game.settings.register('vtm5ec', 'spendXpIconOverride', {
     name: game.i18n.localize('WOD5E.Settings.SpendXpIconOverride'),
     hint: game.i18n.localize('WOD5E.Settings.SpendXpIconOverrideHint'),
     scope: 'world',
@@ -341,7 +351,7 @@ export const loadSettings = async function () {
   })
 
   // Override for the "Neutral" XP Icon
-  game.settings.register('vtm5e', 'neutralXpIconOverride', {
+  game.settings.register('vtm5ec', 'neutralXpIconOverride', {
     name: game.i18n.localize('WOD5E.Settings.NeutralXpIconOverride'),
     hint: game.i18n.localize('WOD5E.Settings.NeutralXpIconOverrideHint'),
     scope: 'world',
@@ -359,7 +369,7 @@ export const loadSettings = async function () {
   })
 
   // World Version, only really needed by developers
-  game.settings.register('vtm5e', 'worldVersion', {
+  game.settings.register('vtm5ec', 'worldVersion', {
     name: game.i18n.localize('WOD5E.Settings.WorldVersion'),
     hint: game.i18n.localize('WOD5E.Settings.WorldVersionHint'),
     scope: 'world',
@@ -373,7 +383,7 @@ export const loadSettings = async function () {
   */
 
   // Register the splat colors menu
-  game.settings.registerMenu('vtm5e', 'splatColorsMenu', {
+  game.settings.registerMenu('vtm5ec', 'splatColorsMenu', {
     name: game.i18n.localize('WOD5E.Settings.SplatColorsMenu'),
     hint: game.i18n.localize('WOD5E.Settings.SplatColorsHint'),
     label: game.i18n.localize('WOD5E.Settings.SplatColorsMenu'),
@@ -391,7 +401,7 @@ export const loadSettings = async function () {
       const { settingId, defaultColor } = settings[settingKey]
 
       // Register the setting
-      game.settings.register('vtm5e', settingId, {
+      game.settings.register('vtm5ec', settingId, {
         scope: 'world',
         config: false,
         default: defaultColor,
@@ -415,7 +425,7 @@ function _rerenderStorytellerWindow () {
  */
 export const _updatePreferredColorScheme = async function () {
   let theme
-  const clientSetting = game.settings.get('vtm5e', 'colorScheme')
+  const clientSetting = game.settings.get('vtm5ec', 'colorScheme')
 
   // Determine which theme we're using - if it's not set by the client, we base the theme
   // off of the browser's prefers-color-scheme
@@ -434,7 +444,7 @@ export const _updatePreferredColorScheme = async function () {
  * Set whether the system uses the vampireRevised font for headers or not
  */
 export const _updateHeaderFontPreference = async function () {
-  const clientSetting = game.settings.get('vtm5e', 'disableVampireFont')
+  const clientSetting = game.settings.get('vtm5ec', 'disableVampireFont')
 
   if (clientSetting) {
     // Remove the class from the document body
@@ -449,9 +459,9 @@ export const _updateHeaderFontPreference = async function () {
  * Update the XP icons
  */
 export const _updateXpIconOverrides = async function () {
-  const spendIcon = game.settings.get('vtm5e', 'spendXpIconOverride')
-  const gainIcon = game.settings.get('vtm5e', 'gainXpIconOverride')
-  const neutralIcon = game.settings.get('vtm5e', 'neutralXpIconOverride')
+  const spendIcon = game.settings.get('vtm5ec', 'spendXpIconOverride')
+  const gainIcon = game.settings.get('vtm5ec', 'gainXpIconOverride')
+  const neutralIcon = game.settings.get('vtm5ec', 'neutralXpIconOverride')
 
   if (spendIcon) {
     document.documentElement.style.setProperty('--xp-spend-icon', `url("/${spendIcon}")`)

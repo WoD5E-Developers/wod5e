@@ -1,31 +1,31 @@
 <section class="dice-tray">
     <div class="dice-tray-character">
-        {{> "systems/vtm5e/display/ui/parts/select-character.hbs"}}
+        {{> "systems/vtm5ec/display/ui/parts/select-character.hbs"}}
     </div>
     <div class="dice-tray-custom-rolls">
         <div>
             {{#if (eq pool1Type "attributes")}}
-                {{> "systems/vtm5e/display/ui/parts/pool1-select-attribute.hbs"}}
+                {{> "systems/vtm5ec/display/ui/parts/pool1-select-attribute.hbs"}}
             {{else if (eq pool1Type "skills")}}
-                {{> "systems/vtm5e/display/ui/parts/pool1-select-skill.hbs"}}
+                {{> "systems/vtm5ec/display/ui/parts/pool1-select-skill.hbs"}}
             {{else if (eq pool1Type "disciplines")}}
-                {{> "systems/vtm5e/display/ui/parts/pool1-select-discipline.hbs"}}
+                {{> "systems/vtm5ec/display/ui/parts/pool1-select-discipline.hbs"}}
             {{/if}}
         </div>
         <span class="dice-tray-concatenate">+</span>
         <div>
             {{#if (eq pool2Type "attributes")}}
-                {{> "systems/vtm5e/display/ui/parts/pool2-select-attribute.hbs"}}
+                {{> "systems/vtm5ec/display/ui/parts/pool2-select-attribute.hbs"}}
             {{else if (eq pool2Type "skills")}}
-                {{> "systems/vtm5e/display/ui/parts/pool2-select-skill.hbs"}}
+                {{> "systems/vtm5ec/display/ui/parts/pool2-select-skill.hbs"}}
             {{else if (eq pool2Type "disciplines")}}
-                {{> "systems/vtm5e/display/ui/parts/pool2-select-discipline.hbs"}}
+                {{> "systems/vtm5ec/display/ui/parts/pool2-select-discipline.hbs"}}
             {{else if (eq pool2Type "nothing")}}
-                {{> "systems/vtm5e/display/ui/parts/pool2-nothing.hbs"}}
+                {{> "systems/vtm5ec/display/ui/parts/pool2-nothing.hbs"}}
             {{/if}}
         </div>
         <button class="dice-tray-button roll-button" title="{{localize 'WOD5E.RollList.Label'}}">
-            <img class="roll-image" alt="{{localize 'WOD5E.RollList.Label'}}" src="systems/vtm5e/assets/images/dice.svg" />
+            <img class="roll-image" alt="{{localize 'WOD5E.RollList.Label'}}" src="systems/vtm5ec/assets/images/dice.svg" />
         </button>
         {{text value=pool1Selection}}
         <div class="dice-tray-pool-filters flexrow pool1-filters">

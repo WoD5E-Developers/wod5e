@@ -11,7 +11,7 @@ export const _onAddExperience = async function (event, target) {
   const system = actor.system.gamesystem
 
   // Render the template
-  const experienceTemplate = 'systems/vtm5e/display/shared/actors/parts/experience-display.hbs'
+  const experienceTemplate = 'systems/vtm5ec/display/shared/actors/parts/experience-display.hbs'
   const experienceData = {
     name: isSpendingXP ? game.i18n.localize('WOD5E.Experience.XPSpent') : game.i18n.localize('WOD5E.Experience.XPGained'),
     value: 0
@@ -144,7 +144,7 @@ export const _onEditExperience = async function (event, target) {
   }
 
   // Render the template with the current experience data
-  const experienceTemplate = 'systems/vtm5e/display/shared/actors/parts/experience-display.hbs'
+  const experienceTemplate = 'systems/vtm5ec/display/shared/actors/parts/experience-display.hbs'
   const experienceData = {
     name: experienceToEdit.name,
     value: experienceToEdit.value

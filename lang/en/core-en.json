@@ -7,7 +7,8 @@
       "mortal": "Mortal",
       "spc": "Story Character",
       "vampire": "Vampire",
-      "werewolf": "Werewolf"
+      "werewolf": "Werewolf",
+      "changeling": "Changeling"
     },
     "Item": {
       "armor": "Armor",

@@ -10,7 +10,7 @@ export class Gifts extends BaseDefinitionClass {
   // Run any necessary compilation on ready
   static onReady () {
     // Handle adding custom disciplines from the game settings
-    let customGifts = game.settings.get('vtm5e', 'customGifts') || {}
+    let customGifts = game.settings.get('vtm5ec', 'customGifts') || {}
 
     // Handle adding custom disciplines from any active modules
     const activeModules = game.modules.filter(module => module.active === true && module.flags.wod5e)

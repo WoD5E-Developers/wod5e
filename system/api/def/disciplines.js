@@ -10,7 +10,7 @@ export class Disciplines extends BaseDefinitionClass {
   // Run any necessary compilation on ready
   static onReady () {
     // Handle adding custom disciplines from the game settings
-    let customDisciplines = game.settings.get('vtm5e', 'customDisciplines') || {}
+    let customDisciplines = game.settings.get('vtm5ec', 'customDisciplines') || {}
 
     // Handle adding custom disciplines from any active modules
     const activeModules = game.modules.filter(module => module.active === true && module.flags.wod5e)
