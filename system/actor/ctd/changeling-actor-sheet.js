@@ -146,7 +146,6 @@ export class ChangelingActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     data.nightmare = actorData.nightmare
     data.kith = kithFilter[0]
     data.legacy = legacyFilter[0]
-    data.frenzyActive = actorData.frenzyActive
 
     return data
   }

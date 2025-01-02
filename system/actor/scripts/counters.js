@@ -131,7 +131,7 @@ export const _onDotCounterChange = async function (event) {
 
   // Make sure that the dot counter can only be changed if the sheet is
   // unlocked or if it's the hunger/rage track.
-  if (this.actor.system.locked && !parent.has('.hunger-value').length && !parent.has('.rage-value').length) {
+  if (this.actor.system.locked && !parent.has('.hunger-value').length && !parent.has('.rage-value').length && !parent.has('.nightmare-value').length) {
     ui.notifications.warn(game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
       string: actor.name
     }))
@@ -170,7 +170,7 @@ export const _onDotCounterEmpty = async function (event) {
   // Make sure that the dot counter can only be changed if the sheet is
   // unlocked or if it's the hunger track.
   // Bypass this if this function is being called from a group sheet
-  if (!(this.actor.type === 'group') && actor.system.locked && !parent.has('.hunger-value').length && !parent.has('.rage-value')) {
+  if (!(this.actor.type === 'group') && actor.system.locked && !parent.has('.hunger-value').length && !parent.has('.rage-value') && !parent.has('.nightmare-value')) {
     ui.notifications.warn(game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
       string: actor.name
     }))
@@ -195,6 +195,7 @@ export const _setupSquareCounters = async function (html) {
     const despair = data.name === 'system.despair'
     const desperation = data.name === 'system.desperation'
     const danger = data.name === 'system.danger'
+    const wyrd = data.name == 'system.wyrd'
 
     const fulls = parseInt(data[states['-']]) || 0
     const halfs = parseInt(data[states['/']]) || 0
@@ -209,7 +210,7 @@ export const _setupSquareCounters = async function (html) {
       values = new Array(fulls)
 
       values.fill('-', 0, fulls)
-    } else if (humanity || desperation || danger) { // Vampire-specific
+    } else if (humanity || desperation || danger || wyrd) { // Vampire-specific
       values = new Array(fulls + halfs)
 
       values.fill('-', 0, fulls)
@@ -341,17 +342,18 @@ function updateStateCounters (oldState, newState, data, states, index) {
   const despair = data.name === 'system.despair'
   const desperation = data.name === 'system.desperation'
   const danger = data.name === 'system.danger'
+  const wyrd = data.name === 'system.wyrd'
 
   const fulls = parseInt(data[states['-']]) || 0
   const halfs = parseInt(data[states['/']]) || 0
   const crossed = parseInt(data[states.x]) || 0
 
-  if ((oldState !== '' && oldState !== '-') || humanity || desperation || danger) {
+  if ((oldState !== '' && oldState !== '-') || humanity || desperation || danger || wyrd) {
     data[states[oldState]] = (parseInt(data[states[oldState]]) || 0) - 1
   }
 
   // Adjust maximum count if the step was removed
-  if (oldState !== '' && newState === '' && !humanity && !despair && !desperation && !danger) {
+  if (oldState !== '' && newState === '' && !humanity && !despair && !desperation && !danger && !wyrd) {
     data[states['-']] = (parseInt(data[states['-']]) || 0) - 1
   }
 

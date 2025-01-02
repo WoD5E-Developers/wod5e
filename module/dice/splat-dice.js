@@ -1,7 +1,7 @@
 /* global Die */
 
 // Import dice face-related variables for icon paths
-import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces } from './icons.js'
+import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces, changelingDiceLocation, nightmareDiceFaces } from './icons.js'
 
 /**
  * Extend the basic Die for the Mortal (m) dice
@@ -220,17 +220,6 @@ export class WerewolfRageDie extends Die {
 export class ChangelingDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
-
-    // If we have modifiers, append cs>5 to it
-    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
-      termData.modifiers.push('cs>5')
-    }
-
-    // If we have no modifiers, just set modifiers to only cs>5
-    if (!termData?.modifiers) {
-      termData.modifiers = ['cs>5']
-    }
-
     super(termData)
   }
 
@@ -261,17 +250,6 @@ export class ChangelingDie extends foundry.dice.terms.Die {
 export class ChangelingNightmareDie extends foundry.dice.terms.Die {
   constructor (termData) {
     termData.faces = 10
-
-    // If we have modifiers, append cs>5 to it
-    if (termData?.modifiers && termData?.modifiers.indexOf('cs>5') === -1) {
-      termData.modifiers.push('cs>5')
-    }
-
-    // If we have no modifiers, just set modifiers to only cs>5
-    if (!termData?.modifiers) {
-      termData.modifiers = ['cs>5']
-    }
-
     super(termData)
   }
 

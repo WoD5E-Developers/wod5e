@@ -3614,3 +3614,6 @@ prose-mirror .editor-menu button {
   background-color: var(--changeling-color-1);
   color: var(--system-color-6);
 }
+.roll-img.nightmare-dice.rerolled {
+  filter: invert(1);
+}

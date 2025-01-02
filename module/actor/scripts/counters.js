@@ -67,6 +67,7 @@ export const _setupSquareCounters = async function (html) {
     const despair = data.name === 'system.despair'
     const desperation = data.name === 'system.desperation'
     const danger = data.name === 'system.danger'
+    const wyrd = data.name === 'system.wyrd'
 
     const fulls = parseInt(data[states['-']]) || 0
     const halfs = parseInt(data[states['/']]) || 0
@@ -81,7 +82,7 @@ export const _setupSquareCounters = async function (html) {
       values = new Array(fulls)
 
       values.fill('-', 0, fulls)
-    } else if (humanity || desperation || danger) { // Vampire-specific
+    } else if (humanity || desperation || danger || wyrd) { // Vampire-specific
       values = new Array(fulls + halfs)
 
       values.fill('-', 0, fulls)
@@ -204,6 +205,7 @@ export const _onSquareCounterChange = async function (event) {
   const despair = data.name === 'system.despair'
   const desperation = data.name === 'system.desperation'
   const danger = data.name === 'system.danger'
+  const wyrd = data.name === 'system.wyrd'
 
   if (index < 0 || index > steps.length) {
     return
@@ -218,12 +220,12 @@ export const _onSquareCounterChange = async function (event) {
   const newState = allStates[(currentState + 1) % allStates.length]
   steps[index].dataset.state = newState
 
-  if ((oldState !== '' && oldState !== '-') || (oldState !== '' && humanity) || (oldState !== '' && desperation) || (oldState !== '' && danger)) {
+  if ((oldState !== '' && oldState !== '-') || (oldState !== '' && humanity) || (oldState !== '' && desperation) || (oldState !== '' && danger) || (oldState !== '' && wyrd) ) {
     data[states[oldState]] = parseInt(data[states[oldState]]) - 1
   }
 
   // If the step was removed we also need to subtract from the maximum.
-  if (oldState !== '' && newState === '' && !humanity && !despair && !desperation && !danger) {
+  if (oldState !== '' && newState === '' && !humanity && !despair && !desperation && !danger && !wyrd) {
     data[states['-']] = parseInt(data[states['-']]) - 1
   }
 
