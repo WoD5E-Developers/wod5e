@@ -6,6 +6,8 @@ import { Skills } from './def/skills.js'
 import { Features } from './def/features.js'
 import { Weapons } from './def/weapons.js'
 import { Disciplines } from './def/disciplines.js'
+import { Arts } from './def/arts.js'
+import { Realms } from './def/realms.js'
 import { Gifts } from './def/gifts.js'
 import { WereForms } from './def/were-forms.js'
 import { Renown } from './def/renown.js'
@@ -35,6 +37,12 @@ export const generateLocalizedLabel = function (string = '', type = '') {
   } else if (type === 'disciplines' || type === 'discipline' || type === 'power') { // Disciplines
     const disciplines = Disciplines.getList({})
     return findLabel(disciplines, string)
+  } else if (type === 'arts' || type === 'art') { // Arts
+    const arts = Arts.getList({})
+    return findLabel(arts, string)
+  } else if (type === 'realms' || type === 'realm') { // Disciplines
+    const realms = Realms.getList({})
+    return findLabel(realms, string)
   } else if (type === 'gifts' || type === 'gift') { // Gifts
     const gifts = Gifts.getList({})
     return findLabel(gifts, string)

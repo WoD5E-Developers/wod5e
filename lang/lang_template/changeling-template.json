@@ -4,20 +4,62 @@
             "Label": "",
 
             "Legacy": "",
+            "LegacyBan": "",
             "Kith": "",
+            "KithFrailty": "",
             "Nightmare": "",
             "Wyrd": "",
+
+            "Powers": "",
+            "Arts": "",
+            "Realms": "",
+            "AddArt": "",
+            "AddRealm": "",
+            "AddLowestRealm": "",
+            "SelectArt": "",
+            "SelectRealm": "",
 
             "UnleashWyrd": "",
             "RollUnleash": "",
             "WyrdDice": "",
             "NightmareDice": "",
+            "WyrdFailure": "",
             "WyrdCritical": "",
             "PossibleWyrdFailure": "",
             "PossibleWyrdCritical": "",
 
             "NightmareFull1": "",
-            "NightmareFull2": ""
+            "NightmareFull2": "",
+            "Creativity": "",
+            "RollCreativity": "",
+            "RollingCreativity": "",
+            "CreativityFailed": "",
+            "CreativityFailedDescription": "",
+
+            "Autumn": "",
+            "Chicanery": "",
+            "Chronos": "",
+            "Contract": "",
+            "DragonsIre": "",
+            "Legerdemain": "",
+            "Metamorphosis": "",
+            "Naming": "",
+            "Oneiromancy": "",
+            "Primal": "",
+            "Pyretics": "",
+            "Skycraft": "",
+            "Soothsay": "",
+            "Sovereign": "",
+            "Spring": "",
+            "Summer": "",
+            "Wayfare": "",
+            "Winter": "",
+
+            "Actor": "",
+            "Nature": "",
+            "Prop": "",
+            "Scene": "",
+            "Time": ""
         }
     }
 }

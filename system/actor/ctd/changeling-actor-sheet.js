@@ -2,12 +2,10 @@
 
 // Preparation functions
 import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from '../scripts/prepare-partials.js'
-import { prepareArtsContext, prepareRealmsContext } from './scripts/prepare-partials.js'
+import { preparePowersContext } from './scripts/prepare-partials.js'
 // Various button functions
-//import { _onAddDiscipline, _onDisciplineToChat, _onRemoveDiscipline, _onSelectDiscipline, _onSelectDisciplinePower } from './scripts/disciplines.js'
-//import { _onFrenzyRoll } from './scripts/frenzy-roll.js'
-//import { _onEndFrenzy } from './scripts/end-frenzy.js'
-//import { _onRemorseRoll } from './scripts/roll-remorse.js'
+import { _onAddArt, _onArtToChat, _onRemoveArt, _onSelectArt, _onSelectArtPower, _onAddRealm, _onRealmToChat, _onRemoveRealm, _onSelectRealm, _onSelectRealmPower } from '../ctd/scripts/powers.js'
+import { _onCreativityRoll } from './scripts/roll-creativity.js'
 // Base actor sheet to extend from
 import { WoDActor } from '../wod-actor-base.js'
 // Mixin
@@ -21,14 +19,17 @@ export class ChangelingActorSheet extends HandlebarsApplicationMixin(WoDActor) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'actor', 'sheet', 'changeling'],
     actions: {
-      //addDiscipline: _onAddDiscipline,
-      //removeDiscipline: _onRemoveDiscipline,
-      //disciplineChat: _onDisciplineToChat,
-      //selectDiscipline: _onSelectDiscipline,
-      //selectDisciplinePower: _onSelectDisciplinePower
-      //resistFrenzy: _onFrenzyRoll,
-      //endFrenzy: _onEndFrenzy,
-      //remorseRoll: _onRemorseRoll
+      addArt: _onAddArt,
+      removeArt: _onRemoveArt,
+      artChat: _onArtToChat,
+      selectArt: _onSelectArt,
+      selectArtPower: _onSelectArtPower,
+      addRealm: _onAddRealm,
+      removeRealm: _onRemoveRealm,
+      realmChat: _onRealmToChat,
+      selectRealm: _onSelectRealm,
+      selectRealmPower: _onSelectRealmPower,
+      creativityRoll: _onCreativityRoll
     }
   }
 
@@ -45,12 +46,9 @@ export class ChangelingActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     experience: {
       template: 'systems/vtm5ec/display/shared/actors/parts/experience.hbs'
     },
-    // disciplines: {
-    //   template: 'systems/vtm5ec/display/vtm/actors/parts/disciplines.hbs'
-    // },
-    // blood: {
-    //   template: 'systems/vtm5ec/display/vtm/actors/parts/blood.hbs'
-    // },
+    powers: {
+      template: 'systems/vtm5ec/display/ctd/actors/parts/powers.hbs'
+    },
     features: {
       template: 'systems/vtm5ec/display/shared/actors/parts/features.hbs'
     },
@@ -87,18 +85,12 @@ export class ChangelingActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       title: 'WOD5E.Tabs.Experience',
       icon: '<i class="fa-solid fa-file-contract"></i>'
     },
-    // disciplines: {
-    //   id: 'disciplines',
-    //   group: 'primary',
-    //   title: 'WOD5E.VTM.Disciplines',
-    //   icon: '<span class="wod5e-symbol">b</span>'
-    // },
-    // blood: {
-    //   id: 'blood',
-    //   group: 'primary',
-    //   title: 'WOD5E.VTM.Blood',
-    //   icon: '<i class="fa-solid fa-droplet"></i>'
-    // },
+    powers: {
+      id: 'powers',
+      group: 'primary',
+      title: 'WOD5E.Tabs.Powers',
+      icon: '<span class="wod5e-symbol">e</span>'
+    },
     features: {
       id: 'features',
       group: 'primary',
@@ -167,13 +159,9 @@ export class ChangelingActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       case 'experience':
         return prepareExperienceContext(context, actor)
 
-      // Disciplines
-      //case 'disciplines':
-      //  return prepareDisciplinesContext(context, actor)
-
-      // Disciplines
-      //case 'blood':
-      //  return prepareBloodContext(context, actor)
+      // Powers
+      case 'powers':
+        return preparePowersContext(context, actor)
 
       // Features
       case 'features':

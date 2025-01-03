@@ -4,6 +4,7 @@ import { WOD5eDice } from '../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../scripts/rolls/situational-modifiers.js'
 import { _onRouseCheck } from '../vtm/scripts/rouse.js'
 import { _onGiftCost } from '../wta/scripts/gifts.js'
+import { _onChannelWyrd } from '../ctd/scripts/roll-channelWyrd.js'
 
 /**
  * Proxy for transforming data from a data action into data we can use to roll with
@@ -37,6 +38,7 @@ export const _rollItem = async function (actor, item) {
   const valuePaths = []
   const increaseHunger = false
   const decreaseRage = false
+  const increaseNightmare = false
   const title = item.name
   const flavor = itemData?.description || ''
   const flatMod = itemData?.modifier || 0
@@ -80,6 +82,11 @@ export const _rollItem = async function (actor, item) {
     selectors.push(`gifts.${itemData.giftType}`)
   }
 
+  if (item.type === 'art') {
+    selectors.push('arts')
+    selectors.push(`arts.${itemData.art}`)
+  }
+
   // Handle getting any situational modifiers
   const activeModifiers = await getActiveModifiers({
     actor,
@@ -115,6 +122,16 @@ export const _rollItem = async function (actor, item) {
       // Calculate the number of normal dice to roll by subtracting
       // the number of rage dice from them, minimum zero
       basicDice = Math.max(basicDice - advancedDice, 0)
+    } else if (system === 'changeling') {
+      // Ensure that the number of nightmare dice doesn't exceed the
+      // total number of dice, unless it's a rouse check that needs
+      // rerolls, which requires twice the number of normal nightmare
+      // dice and only the highest will be kept
+      advancedDice = rerollHunger ? advancedDice * 2 : Math.min(basicDice, advancedDice)
+
+      // Calculate the number of normal dice to roll by subtracting
+      // the number of hunger dice from them, minimum zero
+      basicDice = Math.max(basicDice - advancedDice, 0)
     }
   }
 
@@ -137,6 +154,7 @@ export const _rollItem = async function (actor, item) {
     selectors,
     macro,
     advancedCheckDice,
+    increaseNightmare: increaseNightmare,
     callback: async (err, roll) => {
       if (err) console.log(err)
 
@@ -144,6 +162,8 @@ export const _rollItem = async function (actor, item) {
         _onRouseCheck(actor, item, roll.rollMode)
       } else if (system === 'werewolf' && (itemData.cost > 0 || itemData.willpowercost > 0)) {
         _onGiftCost(actor, item, roll.rollMode)
+      } else if (system === 'changeling' && itemData.cost > 0) {
+        _onChannelWyrd(actor, item, roll.rollMode)
       }
     }
   })

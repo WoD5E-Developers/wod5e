@@ -3,6 +3,8 @@
 // Definition classes
 import { ItemTypes } from '../../api/def/itemtypes.js'
 import { Disciplines } from '../../api/def/disciplines.js'
+import { Arts } from '../../api/def/arts.js'
+import { Realms } from '../../api/def/realms.js'
 import { Edges } from '../../api/def/edges.js'
 import { Gifts } from '../../api/def/gifts.js'
 import { Features } from '../../api/def/features.js'
@@ -61,7 +63,7 @@ export const _onCreateItem = async function (event, target) {
       itemOptions = Weapons.getList({})
       break
   }
-
+  
   // Create item if subtype is already defined or not needed
   if (subtype || foundry.utils.isEmpty(itemOptions)) {
     // Generate the item name

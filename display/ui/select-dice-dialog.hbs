@@ -80,6 +80,28 @@
     </div>
   {{/ifeq}}
 
+    <!-- If the actor is a changeling, show option to add Arts and Realms dots -->
+  {{#ifeq system "changeling"}}
+    <hr>
+    <div class="flexrow">
+      <div class="secondary-selector">
+          <div class="selector-title">{{localize "WOD5E.CTD.AddArt"}}</div>
+          <select id="artSelect">
+          <option value="">{{localize "WOD5E.None"}}</option>
+          {{selectOptions artOptions selected=art}}
+          </select>
+      </div>
+
+      <div class="secondary-selector">
+          <div class="selector-title">{{localize "WOD5E.CTD.AddLowestRealm"}}</div>
+          <select id="realmSelect">
+          <option value="">{{localize "WOD5E.None"}}</option>
+          {{selectOptions realmOptions selected=realm}}
+          </select>
+      </div>
+    </div>
+  {{/ifeq}}
+
   <!-- If the actor is a werewolf, show option to add Renown dots-->
   {{#ifeq system "werewolf"}}
     <hr>

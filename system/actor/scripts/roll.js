@@ -111,6 +111,14 @@ export const _onConfirmRoll = async function (dataset, actor) {
       // Calculate the number of normal dice to roll by subtracting
       // the number of rage dice from them, minimum zero
       basicDice = Math.max(basicDice - advancedDice, 0)
+    } else if (system === 'changeling') {
+      // Ensure that the number of nightmare dice doesn't exceed the
+      // total number of dice
+      advancedDice = Math.min(basicDice, advancedDice)
+
+      // Calculate the number of normal dice to roll by subtracting
+      // the number of hunger dice from them, minimum zero
+      basicDice = Math.max(basicDice - advancedDice, 0)
     }
   }
 

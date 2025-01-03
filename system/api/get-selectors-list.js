@@ -105,6 +105,48 @@ export const getSelectorsList = () => {
     displayName: game.i18n.localize('WOD5E.VTM.Remorse')
   })
 
+  // Changeling
+  const arts = WOD5E.Arts.getList({
+    prependType: true
+  })
+  // "All Arts" selector
+  selectorsList.push({
+    id: 'arts',
+    displayName: game.i18n.format('WOD5E.Modifier.AllString', {
+      string: game.i18n.localize('WOD5E.CTD.Arts')
+    })
+  })
+  // Individual arts
+  for (const [key, value] of Object.entries(arts)) {
+    selectorsList.push({
+      id: key,
+      displayName: value.displayName
+    })
+  }
+
+  const realms = WOD5E.Realms.getList({
+    prependType: true
+  })
+  // "All Realms" selector
+  selectorsList.push({
+    id: 'realms',
+    displayName: game.i18n.format('WOD5E.Modifier.AllString', {
+      string: game.i18n.localize('WOD5E.CTD.Realms')
+    })
+  })
+  // Individual realms
+  for (const [key, value] of Object.entries(realms)) {
+    selectorsList.push({
+      id: key,
+      displayName: value.displayName
+    })
+  }
+  // Creativity
+  selectorsList.push({
+    id: 'wyrd',
+    displayName: game.i18n.localize('WOD5E.CTD.Creativity')
+  })
+
   // Hunter
   const edges = WOD5E.Edges.getList({
     prependType: true

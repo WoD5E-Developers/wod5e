@@ -7,11 +7,11 @@ export const prepareArts = async function (actor) {
     const actorArts = actor.system?.Arts
     const computedArts = {}
 
-    for (const [id, value] of Object.entries(ArtsList)) {
+    for (const [id, value] of Object.entries(artsList)) {
         let artData = {}
 
         // If the actor has a art with the key, grab its current values
-        if (Object.prototype.hasOwnProperty.call(actorArts, id)) {
+        if (actorArts && Object.prototype.hasOwnProperty.call(actorArts, id)) {
             artData = Object.assign({
                 id,
                 value: actorArts[id].value || 0,
@@ -95,7 +95,7 @@ export const prepareRealms = async function (actor) {
         let realmData = {}
 
         // If the actor has a realm with the key, grab its current values
-        if (Object.prototype.hasOwnProperty.call(actorRealms, id)) {
+        if (actorRealms && Object.prototype.hasOwnProperty.call(actorRealms, id)) {
             realmData = Object.assign({
                 id,
                 value: actorRealms[id].value || 0,

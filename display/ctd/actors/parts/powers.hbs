@@ -1,0 +1,143 @@
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="flexrow">
+        <div class="item-list">
+            <div class="flexrow flex-center">
+                <div class="item-header">{{localize 'WOD5E.CTD.Arts'}}</div>
+                <div class="item-controls">
+                    <a class="item-control add-art flex-center" title="{{localize 'WOD5E.CTD.AddArt'}}"
+                        data-action="addArt">
+                        <i class="fas fa-plus"></i>
+                        {{localize "WOD5E.CTD.AddArt"}}
+                    </a>
+                </div>
+            </div>
+            <ul class="powers-display-tree category">
+                {{#each arts as |art key|}}
+                {{#if art.visible}}
+                <span class="parent flexrow">
+                    <!--<div class="icon category-select{{#if art.selected}} selected{{/if}}" data-action="selectArt"
+                        data-art="{{key}}"></div>-->
+                    <a class="select-label" data-action="selectArt" data-art="{{key}}">{{art.displayName}}</a>
+                    <div class="item-controls">
+                        <!-- Icon to roll the art with an attribute and/or skill combination -->
+                        {{#if (and (ne key "rituals") (ne key "ceremonies"))}}
+                        <a class="rollable art-dice" data-action="roll" title="{{localize 'WOD5E.RollList.Label'}}"
+                            data-value-paths="arts.{{key}}.value" data-art="{{key}}" data-select-dialog="true">
+                            <i class="fa-solid fa-dice-d10"></i>
+                        </a>
+                        {{/if}}
+                        <!-- Icon to show the art description to the chat-->
+                        <a class="item-control art-chat" data-action="artChat"
+                            title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-art="{{key}}">
+                            <i class="fas fa-comment-alt"></i>
+                        </a>
+                        <!-- Icon to delete the art (as long as it doesn't have any powers) -->
+                        {{#if (eq art.powers.length 0)}}
+                        <a class="item-control art-delete" data-action="removeArt" title="{{localize 'WOD5E.Delete'}}"
+                            data-art="{{key}}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                        {{/if}}
+                    </div>
+                    {{#if (and (ne key "rituals") (ne key "ceremonies"))}}
+                    <!-- Art dots -->
+                    <div class="power-resource-dots">
+                        <div class="resource-value" data-value="{{art.value}}" data-name="system.Arts.{{key}}.value">
+                            <!-- Empty box (for setting back to 0), and then iterate through the rest of the art dots -->
+                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                            {{#numLoop 5}}
+                            <span class="resource-value-step" data-action="dotCounterChange"
+                                data-index="{{this}}"></span>
+                            {{/numLoop}}
+                        </div>
+                    </div>
+                    {{/if}}
+                </span>
+                <!--<ul>
+                    {{#each art.powers as |power key|}}
+                    <li>
+                        <span>
+                            <div class="icon power-select{{#if power.system.selected}} selected{{/if}}"
+                                data-action="selectArtPower" data-power="{{power.id}}"
+                                style="background-image: url('{{power.img}}');"></div>
+                            <a class="select-label" data-action="selectArtPower"
+                                data-power="{{power.id}}">{{power.name}}</a>
+                        </span>
+                    </li>
+                    {{/each}}
+                </ul>-->
+                {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+        <div class="item-list">
+            <div class="flexrow flex-center">
+                <div class="item-header">{{localize 'WOD5E.CTD.Realms'}}</div>
+                <div class="item-controls">
+                    <a class="item-control add-realm flex-center" title="{{localize 'WOD5E.CTD.AddRealm'}}"
+                        data-action="addRealm">
+                        <i class="fas fa-plus"></i>
+                        {{localize "WOD5E.CTD.AddRealm"}}
+                    </a>
+                </div>
+            </div>
+            <ul class="powers-display-tree category">
+                {{#each realms as |realm key|}}
+                {{#if realm.visible}}
+                <span class="parent flexrow">
+                    <!--<div class="icon category-select{{#if realm.selected}} selected{{/if}}" data-action="selectRealm"
+                        data-realm="{{key}}"></div>-->
+                    <a class="select-label" data-action="selectRealm" data-realm="{{key}}">{{realm.displayName}}</a>
+                    <div class="item-controls">
+                        <!-- Icon to roll the realm with an attribute and/or skill combination -->
+                        {{#if (and (ne key "rituals") (ne key "ceremonies"))}}
+                        <!--<a class="rollable realm-dice" data-action="roll" title="{{localize 'WOD5E.RollList.Label'}}"
+                            data-value-paths="realms.{{key}}.value" data-realm="{{key}}" data-select-dialog="true">
+                            <i class="fa-solid fa-dice-d10"></i>
+                        </a>-->
+                        {{/if}}
+                        <!-- Icon to show the realm description to the chat-->
+                        <a class="item-control realm-chat" data-action="realmChat"
+                            title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-realm="{{key}}">
+                            <i class="fas fa-comment-alt"></i>
+                        </a>
+                        <!-- Icon to delete the realm (as long as it doesn't have any powers) -->
+                        {{#if (eq realm.powers.length 0)}}
+                        <a class="item-control realm-delete" data-action="removeRealm"
+                            title="{{localize 'WOD5E.Delete'}}" data-realm="{{key}}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                        {{/if}}
+                    </div>
+                    {{#if (and (ne key "rituals") (ne key "ceremonies"))}}
+                    <!-- Realm dots -->
+                    <div class="power-resource-dots">
+                        <div class="resource-value" data-value="{{realm.value}}"
+                            data-name="system.Realms.{{key}}.value">
+                            <!-- Empty box (for setting back to 0), and then iterate through the rest of the realm dots -->
+                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                            {{#numLoop 5}}
+                            <span class="resource-value-step" data-action="dotCounterChange"
+                                data-index="{{this}}"></span>
+                            {{/numLoop}}
+                        </div>
+                    </div>
+                    {{/if}}
+                </span>
+                <!--<ul>
+                    {{#each realm.powers as |power key|}}
+                    <li>
+                        <span>
+                        <div class="icon power-select{{#if power.system.selected}} selected{{/if}}" data-action="selectRealmPower"
+                            data-power="{{power.id}}" style="background-image: url('{{power.img}}');"></div>
+                        <a class="select-label" data-action="selectRealmPower" data-power="{{power.id}}">{{power.name}}</a>
+                        </span>
+                    </li>
+                    {{/each}}
+                </ul>-->
+                {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</section>

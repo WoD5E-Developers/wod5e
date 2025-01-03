@@ -3614,6 +3614,44 @@ prose-mirror .editor-menu button {
   background-color: var(--changeling-color-1);
   color: var(--system-color-6);
 }
+.roll-img.changeling-dice {
+  background: var(--changeling-color-1);
+  border-color: #c8c8c8;
+}
 .roll-img.nightmare-dice.rerolled {
   filter: invert(1);
+}
+.roll-img.nightmare-dice,
+.roll-img.nightmare-dice {
+  background: #9b0b00;
+  border-color: #330300;
+}
+/* Dialogs Windows */
+.changeling.dialog.window-app {
+  border: 4px solid var(--changeling-color-1);
+}
+.changeling.dialog.window-app .window-header {
+  background: var(--changeling-color-1);
+  border-bottom: 4px double var(--system-color-6);
+}
+.changeling.dialog.window-app .window-content section .tab .resource-label,
+.changeling.dialog.window-app .items-list .item-header,
+.changeling.dialog.window-app .items-list .spc-item-header,
+.changeling.dialog.window-app .spc-pool-header,
+.changeling.dialog.window-app .actor-header .profile-img-zone h1 {
+  color: var(--changeling-color-1);
+  border-color: var(--changeling-color-1);
+}
+.changeling.dialog.window-app .dialog-contents .dice-group-header {
+  background-color: var(--changeling-color-1);
+}
+.changeling.dialog.window-app input,
+.changeling.dialog.window-app select {
+  border: 1px solid var(--changeling-color-1);
+}
+.changeling.dialog.window-app .base-dice-group {
+  border: 1px solid var(--changeling-color-2);
+}
+.changeling-font-headers.en .vampire-button {
+  font-family: "vampireRevised", "sans-serif";
 }

@@ -4,20 +4,62 @@
             "Label": "Changeling",
 
             "Legacy": "Legacy",
+            "LegacyBan": "Ban",
             "Kith": "Kith",
+            "KithFrailty": "Frailty",
             "Nightmare": "Nightmare",
             "Wyrd": "Wyrd",
+
+            "Powers": "Powers",
+            "Arts": "Arts",
+            "Realms": "Realms",
+            "AddArt": "Add Art",
+            "AddRealm": "Add Realm",
+            "AddLowestRealm": "Add Lowest Realm",
+            "SelectArt": "Select Art",
+            "SelectRealm": "Select Realm",
 
             "UnleashWyrd": "Unleashing Wyrd",
             "RollUnleash": "Roll Unleash Check",
             "WyrdDice": "Wyrd Dice",
             "NightmareDice": "Nightmare Dice",
+            "WyrdFailure": "Wyrd Failure",
             "WyrdCritical": "Wyrd Critical",
             "PossibleWyrdFailure": "Possible Wyrd Failure",
             "PossibleWyrdCritical": "Possible Wyrd Critical",
 
             "NightmareFull1": "Nightmare Full",
-            "NightmareFull2": "Nightmare is already full and cannot be increased further."
+            "NightmareFull2": "Nightmare is already full and cannot be increased further.",
+            "Creativity": "Creativity",
+            "RollCreativity": "Roll Creativity Roll",
+            "RollingCreativity": "Rolling Creativity",
+            "CreativityFailed": "Creativity Failed",
+            "CreativityFailedDescription": "{actor} has failed their Creativity check. Their banality have been cleared and their wyrd has been reduced by 1.",
+
+            "Autumn": "Autumn",
+            "Chicanery": "Chicanery",
+            "Chronos": "Chronos",
+            "Contract": "Contract",
+            "DragonsIre": "DragonsIre",
+            "Legerdemain": "Legerdemain",
+            "Metamorphosis": "Metamorphosis",
+            "Naming": "Naming",
+            "Oneiromancy": "Oneiromancy",
+            "Primal": "Primal",
+            "Pyretics": "Pyretics",
+            "Skycraft": "Skycraft",
+            "Soothsay": "Soothsay",
+            "Sovereign": "Sovereign",
+            "Spring": "Spring",
+            "Summer": "Summer",
+            "Wayfare": "Wayfare",
+            "Winter": "Winter",
+            
+            "Actor": "Actor",
+            "Nature": "Nature",
+            "Prop": "Prop",
+            "Scene": "Scene",
+            "Time": "Time"
         }
     }
 }

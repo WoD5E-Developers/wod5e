@@ -108,7 +108,7 @@ export class wod5eAPI {
     if (!dataset.selectDialog) return _onConfirmRoll(dataset, actor)
 
     // Variables
-    const { skill, attribute, discipline, renown } = dataset
+    const { skill, attribute, discipline, renown, art } = dataset
 
     // Attribute definitions
     const attributeOptions = WOD5E.Attributes.getList({})
@@ -116,6 +116,10 @@ export class wod5eAPI {
     const skillOptions = WOD5E.Skills.getList({})
     // Discipline definitions
     const disciplineOptions = WOD5E.Disciplines.getList({})
+    // Arts definitions
+    const artOptions = WOD5E.Arts.getList({})
+    // Realms definitions
+    const realmOptions = WOD5E.Realms.getList({})
     // Renown definitions
     const renownOptions = WOD5E.Renown.getList({})
 
@@ -131,6 +135,9 @@ export class wod5eAPI {
       skillOptions,
       disciplineOptions,
       renownOptions,
+      artOptions,
+      realmOptions,
+      art,
       hungerValue: actor.system.gamesystem === 'vampire' && actor.type !== 'ghoul' ? actor.system.hunger.value : 0,
       actorType: actor.type
     }
@@ -153,6 +160,8 @@ export class wod5eAPI {
               const attributeSelect2 = html.find('[id=attributeSelect2]').val()
               const disciplineSelect = html.find('[id=disciplineSelect]').val()
               const bloodSurgeCheckbox = html.find('[id=bloodSurge]')
+              const artSelect = html.find('[id=artSelect]').val()
+              const realmSelect = html.find('[id=realmSelect]').val()
               const renownSelect = html.find('[id=renownSelect]').val()
 
               // Keep manipulated dataset data in a separate variable
@@ -224,6 +233,32 @@ export class wod5eAPI {
               // Handle adding a blood surge to the roll
               if (bloodSurgeCheckbox[0]?.checked) {
                 selectorsArray.push('blood-surge')
+              }
+              if (artSelect) {
+                // Add it to the label
+                labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: artSelect, type: 'art' }))
+
+                // Add it to the value path if applicable
+                valueArray.push(`arts.${artSelect}.value`)
+
+                // If using absolute values instead of value paths, add the values together
+                if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.arts[artSelect].value
+
+                // Add the art and potency selectors to the roll
+                selectorsArray = selectorsArray.concat(['arts', `arts.${disciplineSelect}`])
+              }
+              if (realmSelect) {
+                // Add it to the label
+                labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: realmSelect, type: 'realm' }))
+
+                // Add it to the value path if applicable
+                valueArray.push(`realms.${realmSelect}.value`)
+
+                // If using absolute values instead of value paths, add the values together
+                if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.realms[realmSelect].value
+
+                // Add the realm and potency selectors to the roll
+                selectorsArray = selectorsArray.concat(['realms', `realms.${realmSelect}`])
               }
               // Handle adding the resistance selector to the roll
               if (dataset?.resistance) {

@@ -78,7 +78,7 @@ export class BaseDefinitionClass {
             value.hidden = checkModification[0].hidden
           }
         }
-
+        
         value.label = game.i18n.localize(value.label)
       }
 

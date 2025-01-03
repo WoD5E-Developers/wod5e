@@ -14,6 +14,8 @@ import { prepareExceptionalDicePools } from './scripts/prepare-exceptional-dice-
 import { getVampireModifiers } from './vtm/scripts/vampire-bonuses.js'
 import { getHunterModifiers } from './htr/scripts/hunter-bonuses.js'
 import { Disciplines } from '../api/def/disciplines.js'
+import { Arts } from '../api/def/arts.js'
+import { Realms } from '../api/def/realms.js'
 import { Skills } from '../api/def/skills.js'
 import { Attributes } from '../api/def/attributes.js'
 import { Renown } from '../api/def/renown.js'
@@ -98,6 +100,12 @@ export class WoDActor extends Actor {
           } else if (change.key === 'disciplines') {
             // Apply to all disciplines
             change.key = Disciplines.getList({ useValuePath: true })
+          } else if (change.key === 'arts') {
+            // Apply to all arts
+            change.key = Arts.getList({ useValuePath: true })
+          } else if (change.key === 'realms') {
+            // Apply to all realms
+            change.key = Realms.getList({ useValuePath: true })
           } else if (change.key === 'renown') {
             // Apply to all renown
             change.key = Renown.getList({ useValuePath: true })
@@ -211,7 +219,7 @@ export class WoDActor extends Actor {
       }
     }
 
-    if (systemData?.gamesyste === 'changeling') {
+    if (systemData?.gamesystem === 'changeling') {
       systemData.arts = await prepareArts(actorData)
       systemData.realms = await prepareRealms(actorData)
     }

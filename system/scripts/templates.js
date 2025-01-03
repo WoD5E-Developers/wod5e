@@ -47,6 +47,7 @@ export const preloadHandlebarsTemplates = async function () {
 
     // Changeling Sheet Partials
     'systems/vtm5ec/display/ctd/actors/parts/nightmare.hbs',
+    'systems/vtm5ec/display/ctd/actors/parts/powers.hbs',
     'systems/vtm5ec/display/ctd/actors/parts/unleash.hbs',
     'systems/vtm5ec/display/ctd/actors/parts/wyrd.hbs',
 

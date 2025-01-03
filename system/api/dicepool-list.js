@@ -41,6 +41,26 @@ export const getDicepoolList = async (document) => {
     }
   }
 
+  // Changeling
+  if (gamesystem === 'changeling' || isNotEmbedded) {
+    const arts = WOD5E.Arts.getList({})
+    for (const [key, value] of Object.entries(arts)) {
+      masterList.push({
+        value: `arts.${key}`,
+        label: value.displayName,
+        group: game.i18n.localize('WOD5E.CTD.Arts')
+      })
+    }
+    const realms = WOD5E.Realms.getList({})
+    for (const [key, value] of Object.entries(realms)) {
+      masterList.push({
+        value: `realms.${key}`,
+        label: value.displayName,
+        group: game.i18n.localize('WOD5E.CTD.Realms')
+      })
+    }
+  }
+
   // Werewolf
   if (gamesystem === 'werewolf' || isNotEmbedded) {
     const renown = WOD5E.Renown.getList({})

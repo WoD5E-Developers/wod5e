@@ -389,6 +389,7 @@ class WOD5eDice {
                       checkValue = actorData?.rage.value
                     }
 
+                    // actorData?.hunger.value === checkValue if the system is vampire so i have no idea why this is here. my guess is dealing with mortals
                     if ((newValue > actorData?.hunger.value || newValue > checkValue) && !(event.currentTarget.dataset.applyDiceTo === 'advanced')) {
                       // Check for any excess and apply it to basicDice
                       const excess = newValue - checkValue
@@ -490,7 +491,7 @@ class WOD5eDice {
         } else if (system === 'werewolf' && decreaseRage && game.settings.get('vtm5ec', 'automatedRage')) {
           _decreaseRage(actor, failures, rollMode)
         } else if (system === 'changeling' && increaseNightmare && game.settings.get('vtm5ec', 'automatedNightmare')) {
-          _increaseNightmare(actor, failures)
+          _increaseNightmare(actor, failures, rollMode)
         }
       }
 

@@ -1,9 +1,12 @@
 /* global ChatMessage, renderTemplate, game */
 
-export async function _increaseNightmare (actor, amount) {
+export async function _increaseNightmare (actor, amount, rollMode) {
     // Automatically add nightmare to the actor on a failure (for rouse checks)
     const currentNightmare = actor.system.nightmare.value
     const newNightmareAmount = Math.min(currentNightmare + amount, 5)
+
+    // If no rollMode is provided, use the user's default
+    if (!rollMode) rollMode = game.settings.get('core', 'rollMode')
   
     // If the actor is already at max nightmare, send a message in the chat to warn them
     // that their nightmare cannot be increased further
@@ -16,11 +19,10 @@ export async function _increaseNightmare (actor, amount) {
         ChatMessage.create({
           speaker: ChatMessage.getSpeaker({ actor }),
           content: html
-        })
+        }, rollMode)
       })
     }
   
     // Update the actor with the new amount of rage
     actor.update({ 'system.nightmare.value': newNightmareAmount })
   }
-  

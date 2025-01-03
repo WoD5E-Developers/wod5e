@@ -16,6 +16,9 @@ import { PredatorTypeItemSheet } from '../../item/vtm/predator-type-item-sheet.j
 import { ClanItemSheet } from '../../item/vtm/clan-item-sheet.js'
 import { DisciplineItemSheet } from '../../item/vtm/discipline-item-sheet.js'
 import { BoonItemSheet } from '../../item/vtm/boon-item-sheet.js'
+// Changeling system
+import { LegacyItemSheet } from '../../item/ctd/legacy-item-sheet.js'
+import { KithItemSheet } from '../../item/ctd/kith-legacy-sheet.js'
 // Hunter system
 import { DriveItemSheet } from '../../item/htr/drive-item-sheet.js'
 import { CreedItemSheet } from '../../item/htr/creed-item-sheet.js'
@@ -144,6 +147,27 @@ export class ItemTypes extends BaseDefinitionClass {
     sheetClass: BoonItemSheet,
     restrictedActorTypes: ['vampire', 'ghoul'],
     excludedActorTypes: ['spc']
+  }
+
+  // Changeling Items
+  static legacy = {
+    label: 'TYPES.Item.legacy',
+    img: '',
+    types: ['legacy'],
+    sheetClass: LegacyItemSheet,
+    restrictedActorTypes: ['changeling'],
+    excludedActorTypes: ['spc'],
+    limitOnePerActor: true
+  }
+
+  static kith = {
+    label: 'TYPES.Item.kith',
+    img: '',
+    types: ['kith'],
+    sheetClass: KithItemSheet,
+    restrictedActorTypes: ['changeling'],
+    excludedActorTypes: ['spc'],
+    limitOnePerActor: true
   }
 
   // Hunter Items

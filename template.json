@@ -674,145 +674,149 @@
         }
       },
       "arts": {
-        "autumn": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "chicanery": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "chronos": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "contract": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "dragonsIre": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "legerdemain": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "metamorphosis": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "naming": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "oneiromancy": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "primal": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "pyretics": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "skycraft": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "soothsay": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "sovereign": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "spring": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "summer": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "wayfare": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "winter": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
+        "arts": {
+          "autumn": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "chicanery": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "chronos": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "contract": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "dragonsIre": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "legerdemain": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "metamorphosis": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "naming": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "oneiromancy": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "primal": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "pyretics": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "skycraft": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "soothsay": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "sovereign": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "spring": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "summer": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "wayfare": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "winter": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          }
         }
       },
       "realms": {
-        "actor": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "nature": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "prop": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "scene": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
-        },
-        "time": {
-          "description": "",
-          "value": 0,
-          "powers": [],
-          "visible": false
+        "realms": {
+          "actor": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "nature": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "prop": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "scene": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "time": {
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          }
         }
       },
       "vampire_traits": {
@@ -943,6 +947,8 @@
         "gifts",
         "hunter_traits",
         "changeling_traits",
+        "arts",
+        "realms",
         "edges",
         "settings"
       ],
@@ -959,6 +965,8 @@
         "gifts",
         "hunter_traits",
         "changeling_traits",
+        "arts",
+        "realms",
         "edges",
         "settings"
       ],
@@ -975,6 +983,8 @@
         "gifts",
         "hunter_traits",
         "changeling_traits",
+        "arts",
+        "realms",
         "edges",
         "settings"
       ],
@@ -991,6 +1001,8 @@
         "gifts",
         "hunter_traits",
         "changeling_traits",
+        "arts",
+        "realms",
         "edges",
         "settings"
       ],
@@ -1007,6 +1019,8 @@
         "gifts",
         "hunter_traits",
         "changeling_traits",
+        "arts",
+        "realms",
         "edges",
         "settings"
       ],
@@ -1023,6 +1037,8 @@
         "gifts",
         "hunter_traits",
         "changeling_traits",
+        "arts",
+        "realms",
         "edges",
         "settings"
       ],

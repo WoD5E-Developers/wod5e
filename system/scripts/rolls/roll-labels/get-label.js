@@ -2,6 +2,7 @@ import { getHunterLabel } from './hunter-labels.js'
 import { getBaseLabel } from './base-labels.js'
 import { getVampireLabel } from './vampire-labels.js'
 import { getWerewolfLabel } from './werewolf-labels.js'
+import { getChangelingLabel } from './changeling-labels.js'
 
 export const getRollFooter = async function (system, data) {
   const labelData = await getLabel(system, data)
@@ -22,6 +23,9 @@ export const getLabel = async function (system, data) {
     // Vampire results
     case 'vampire':
       return await getVampireLabel(data)
+
+    case 'changeling':
+      return await getChangelingLabel(data)
 
     // Hunter results
     case 'hunter':

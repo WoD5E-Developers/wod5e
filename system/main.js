@@ -31,6 +31,8 @@ import { Features } from './api/def/features.js'
 import { ActorTypes } from './api/def/actortypes.js'
 import { ItemTypes } from './api/def/itemtypes.js'
 import { Disciplines } from './api/def/disciplines.js'
+import { Arts } from './api/def/arts.js'
+import { Realms } from './api/def/realms.js'
 import { Edges } from './api/def/edges.js'
 import { Renown } from './api/def/renown.js'
 import { WereForms } from './api/def/were-forms.js'
@@ -159,6 +161,8 @@ Hooks.once('ready', async function () {
     ActorTypes,
     ItemTypes,
     Disciplines,
+    Arts,
+    Realms,
     Edges,
     Renown,
     Gifts,
