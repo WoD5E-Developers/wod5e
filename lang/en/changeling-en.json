@@ -4,11 +4,16 @@
             "Label": "Changeling",
 
             "Legacy": "Legacy",
-            "LegacyBan": "Ban",
+            "LegacyBan": "Legacy Ban",
             "Kith": "Kith",
-            "KithFrailty": "Frailty",
+            "KithFrailty": "Kith Frailty",
             "Nightmare": "Nightmare",
             "Wyrd": "Wyrd",
+            "Dreamers": "Dreamers",
+            "DreamersAndSeemings": "Dreamers and Seemings",
+            "Journey": "Journey",
+            "Quest": "Quest",
+            "PersonalBans": "Personal Bans",
 
             "Powers": "Powers",
             "Arts": "Arts",

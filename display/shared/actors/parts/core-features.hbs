@@ -82,3 +82,39 @@
         {{/each}}
     </div>
 {{/each}}
+
+{{#ifeq gamesystem 'changeling'}}
+    <div class="flex-group-center">
+        <div class="flex-center">
+            <label class="resource-label field-header">{{localize "WOD5E.CTD.LegacyBan"}}</label>
+        </div>
+        <div class="resource-contents prosemirror-resource resource bane">
+            <div>
+                {{{enrichedBan}}}
+            </div>
+        </div>
+    </div>
+        <div class="flex-group-center">
+        <div class="flex-center">
+            <label class="resource-label field-header">{{localize "WOD5E.CTD.KithFrailty"}}</label>
+        </div>
+        <div class="resource-contents prosemirror-resource resource bane">
+            <div>
+                {{{enrichedFrailty}}}
+            </div>
+        </div>
+    </div>
+    <div class="description-field">
+        <div class="flex-center field-header">
+            <label class="resource-label">
+                {{localize "WOD5E.CTD.PersonalBans"}}
+            </label>
+        </div>
+        <div class="description-content resource">
+            <prose-mirror name="system.headers.personalBans" value="{{personalBans}}"
+                toggled="true" compact="true">
+                {{{enrichedPersonalBans}}}
+            </prose-mirror>
+        </div>
+    </div>
+{{/ifeq}}

@@ -4,7 +4,11 @@
             {{#ifeq gamesystem 'vampire'}}
                 {{localize "WOD5E.BiographyList.TouchstonesAndConvictions"}}
             {{else}}
-                {{localize "WOD5E.BiographyList.Touchstones"}}
+                {{#ifeq gamesystem 'changeling'}}
+                    {{localize "WOD5E.CTD.DreamersAndSeemings"}}
+                {{else}}
+                    {{localize "WOD5E.CTD.Touchstones"}}
+                {{/ifeq}}
             {{/ifeq}}
             <div class="toggle-limited{{#if settings.limited.touchstones}} visible{{/if}}" data-action="toggleLimited" data-name="system.settings.limited.touchstones"
                 title="{{#if settings.limited.touchstones}}{{localize "WOD5E.Tabs.IsVisible"}}{{else}}{{localize "WOD5E.Tabs.IsNotVisible"}}{{/if}}">

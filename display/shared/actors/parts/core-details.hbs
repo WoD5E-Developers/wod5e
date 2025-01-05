@@ -9,11 +9,11 @@
 {{#if showAmbitionDesire}}
     <div class="flexrow detail-row">
         <div class="flexcol shared-row">
-            <label class="resource-label field-header">{{localize "WOD5E.BiographyList.Ambition"}}</label>
+            <label class="resource-label field-header">{{#ifeq gamesystem 'changeling'}}{{localize "WOD5E.CTD.Journey"}}{{else}}{{localize "WOD5E.BiographyList.Ambition"}}{{/ifeq}}</label>
             <input type="text" name="system.headers.ambition" value="{{ambition}}" placeholder="{{localize 'WOD5E.BiographyList.Ambition'}}" />
         </div>
         <div class="flexcol shared-row">
-            <label class="resource-label field-header">{{localize "WOD5E.BiographyList.Desire"}}</label>
+            <label class="resource-label field-header">{{#ifeq gamesystem 'changeling'}}{{localize "WOD5E.CTD.Quest"}}{{else}}{{localize "WOD5E.BiographyList.Desire"}}{{/ifeq}}</label>
             <input type="text" name="system.headers.desire" value="{{desire}}" placeholder="{{localize 'WOD5E.BiographyList.Desire'}}" />
         </div>
     </div>

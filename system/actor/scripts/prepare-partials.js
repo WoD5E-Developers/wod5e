@@ -64,6 +64,18 @@ export const prepareFeaturesContext = async function (context, actor) {
     context.enrichedBan = await TextEditor.enrichHTML(context.ban)
   }
 
+  if (actorData.gamesystem === 'changeling') {
+    context.ban = context.legacy?.system?.ban || ''
+    context.enrichedBan = await TextEditor.enrichHTML(context.ban)
+    
+    context.frailty = context.kith?.system?.frailty || ''
+    context.enrichedFrailty = await TextEditor.enrichHTML(context.frailty)
+
+    debugger
+    context.personalBans = actorHeaders.personalBans
+    context.enrichedPersonalBans = await TextEditor.enrichHTML(context.personalBans)
+  }
+
   return context
 }
 
