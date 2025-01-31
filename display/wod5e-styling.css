@@ -2409,6 +2409,10 @@ body.uk .actor.sheet {
 .application ::placeholder {
   color: #000000ab;
 }
+form .notes,
+form .hint {
+  color: var(--system-color-5);
+}
 .window-content {
   box-shadow: 0 0 5px var(--system-color-1);
 }
@@ -2903,6 +2907,12 @@ prose-mirror .editor-menu button {
 .wod-dark-theme .dialog ::placeholder {
   color: var(--system-dark-color-5);
 }
+.wod-dark-theme .sheet form .notes,
+.wod-dark-theme .dialog form .notes,
+.wod-dark-theme .sheet form .hint,
+.wod-dark-theme .dialog form .hint {
+  color: var(--system-dark-color-4);
+}
 .wod-dark-theme .situational-modifiers {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
@@ -3200,6 +3210,12 @@ prose-mirror .editor-menu button {
 .wod-vampire-theme .dialog ::placeholder {
   color: var(--system-dark-color-5);
 }
+.wod-vampire-theme .sheet form .notes,
+.wod-vampire-theme .dialog form .notes,
+.wod-vampire-theme .sheet form .hint,
+.wod-vampire-theme .dialog form .hint {
+  color: var(--system-dark-color-4);
+}
 .wod-vampire-theme .situational-modifiers {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
@@ -3454,6 +3470,12 @@ prose-mirror .editor-menu button {
 .wod-werewolf-theme .sheet ::placeholder,
 .wod-werewolf-theme .dialog ::placeholder {
   color: var(--system-dark-color-5);
+}
+.wod-werewolf-theme .sheet form .notes,
+.wod-werewolf-theme .dialog form .notes,
+.wod-werewolf-theme .sheet form .hint,
+.wod-werewolf-theme .dialog form .hint {
+  color: var(--system-dark-color-4);
 }
 .wod-werewolf-theme .situational-modifiers {
   background-color: var(--system-dark-color-2);
