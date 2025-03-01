@@ -535,11 +535,15 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
   // Save the maxHeight of all collapsible-content elements if it's greater than 0
   async _saveCollapsibleStates () {
+    // Clear out the old states
     this._collapsibleStates.clear()
+
+    // Iterate through each collapsible element in the page
     $(this.element).find('.collapsible-content').each((index, content) => {
       const contentElement = $(content)
       const maxHeight = parseFloat(contentElement.css('maxHeight'))
 
+      // Check if max height is greater than 0, and if it is, we save its maxHeight state
       if (maxHeight > 0) {
         this._collapsibleStates.set(contentElement.attr('data-id') || index, maxHeight)
       }
