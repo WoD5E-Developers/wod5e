@@ -143,7 +143,7 @@ function describePool (poolNumber, data) {
 }
 
 function rollDice () {
-  console.log("This function doesn't work just yet.")
+  console.log('World of Darkness 5e | This function doesn\'t work just yet.')
 }
 
 export function prepareRouseShortcut ($content, data) {

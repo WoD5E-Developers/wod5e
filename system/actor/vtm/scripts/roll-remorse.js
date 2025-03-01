@@ -23,7 +23,7 @@ export const _onRemorseRoll = async function (event) {
     quickRoll: true,
     disableAdvancedDice: true,
     callback: async (err, rollData) => {
-      if (err) console.log(err)
+      if (err) console.log('World of Darkness 5e | ' + err)
 
       const hasSuccess = rollData.terms[0].results.some(result => result.success)
 

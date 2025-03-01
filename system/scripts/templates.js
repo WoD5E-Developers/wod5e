@@ -4,7 +4,7 @@
  * @return {Promise}
  */
 export const preloadHandlebarsTemplates = async function () {
-  console.log('Schrecknet : loading subroutines')
+  console.log('World of Darkness 5e | SchreckNet: loading subroutines')
 
   // Define template paths to load
   const templatePaths = [

@@ -41,7 +41,7 @@ export const _onFrenzyRoll = async function (event) {
       data: actor.system,
       disableAdvancedDice: true,
       callback: async (err, result) => {
-        if (err) console.log(err)
+        if (err) console.log('World of Darkness 5e | ' + err)
 
         if (!result.rollSuccessful) {
           actor.update({ 'system.frenzyActive': true })

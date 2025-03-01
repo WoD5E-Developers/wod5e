@@ -282,7 +282,7 @@ export class WoDActor extends Actor {
         for (const memberUuid of actor.system.members) {
           const member = fromUuidSync(memberUuid)
           if (!member) {
-            console.warn(`Member with UUID ${memberUuid} not found.`)
+            console.warn(`World of Darkness 5e | Member with UUID ${memberUuid} not found.`)
           }
 
           // Handle updating the group member's Desperation

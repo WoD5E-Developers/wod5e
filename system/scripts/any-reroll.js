@@ -106,7 +106,7 @@ export const anyReroll = async (roll) => {
         disableMessageOutput: true,
         system: message.flags.gamesystem,
         callback: async (err, reroll) => {
-          if (err) console.log(err)
+          if (err) console.log('World of Darkness 5e | ' + err)
 
           const messageRolls = message.rolls
 
@@ -115,7 +115,7 @@ export const anyReroll = async (roll) => {
             const imgElement = dieHTML.find('img')
 
             if (!imgElement.length) {
-              console.error('Image element not found in dieHTML:', dieHTML)
+              console.error('World of Darkness 5e | Image element not found in dieHTML:', dieHTML)
               return // Skip this iteration if image element is not found
             }
 
@@ -129,7 +129,7 @@ export const anyReroll = async (roll) => {
                 die.discarded = true
                 die.active = false
               } else {
-                console.error('Die not found in advanced diceset:', dieIndex)
+                console.error('World of Darkness 5e | Die not found in advanced diceset:', dieIndex)
               }
             } else { // Handle basic dice
               const die = messageRolls[0].terms[0].results.find(die => die.index === dieIndex)
@@ -138,7 +138,7 @@ export const anyReroll = async (roll) => {
                 die.discarded = true
                 die.active = false
               } else {
-                console.error('Die not found in base diceset:', dieIndex)
+                console.error('World of Darkness 5e | Die not found in base diceset:', dieIndex)
               }
             }
           })

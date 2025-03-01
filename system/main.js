@@ -42,7 +42,7 @@ import { _updateToken } from './actor/wta/scripts/forms.js'
 
 // Anything that needs to be ran alongside the initialisation of the world
 Hooks.once('init', async function () {
-  console.log('Initializing Schrecknet...')
+  console.log('World of Darkness 5e | Initializing Schrecknet...')
 
   // Define custom Entity classes
   CONFIG.Actor.documentClass = WoDActor

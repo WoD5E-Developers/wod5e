@@ -76,7 +76,7 @@ export const prepareDisciplinePowers = async function (disciplines) {
           })
         }
       } else {
-        console.warn(`Discipline ${disciplineType} is missing or powers is not an array.`)
+        console.warn(`World of Darkness 5e | Discipline ${disciplineType} is missing or powers is not an array.`)
       }
     }
   }

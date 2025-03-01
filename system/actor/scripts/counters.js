@@ -63,7 +63,7 @@ export const _assignToActorField = async (fields, value, actor) => {
         'system.points': value
       })
     } else {
-      console.warn(`Item with ID ${itemId} not found.`)
+      console.warn(`World of Darkness 5e | Item with ID ${itemId} not found.`)
     }
   } else {
     try {
@@ -71,7 +71,7 @@ export const _assignToActorField = async (fields, value, actor) => {
         [`${fields.join('.')}`]: value
       })
     } catch (error) {
-      console.error(`Error updating actor field: ${error.message}`)
+      console.error(`World of Darkness 5e | Error updating actor field: ${error.message}`)
     }
   }
 }

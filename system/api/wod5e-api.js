@@ -102,7 +102,7 @@ export class wod5eAPI {
     actor = game.actors.get(ChatMessage.getSpeaker().actor)
   }) {
     // If there's no dataset, send an error and then stop the function
-    if (!dataset) return console.error('No dataset defined.')
+    if (!dataset) return console.error('World of Darkness 5e | No dataset defined.')
 
     // If selectDialog isn't set, just skip to the next dialog immediately
     if (!dataset.selectDialog) return _onConfirmRoll(dataset, actor)
