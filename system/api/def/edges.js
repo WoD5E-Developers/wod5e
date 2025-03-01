@@ -19,7 +19,7 @@ export class Edges extends BaseDefinitionClass {
         customEdges = customEdges.concat(module.flags.wod5e.customEdges)
 
         // Log the custom data in the console
-        console.log(`World of Darkness 5e | Custom ${this.defCategory} added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customEdges)}`)
+        console.log(`World of Darkness 5e | Custom Edges added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customEdges)}`)
       }
     })
 

@@ -19,7 +19,7 @@ export class Gifts extends BaseDefinitionClass {
         customGifts = customGifts.concat(module.flags.wod5e.customGifts)
 
         // Log the custom data in the console
-        console.log(`World of Darkness 5e | Custom ${this.defCategory} added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customGifts)}`)
+        console.log(`World of Darkness 5e | Custom Gifts added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customGifts)}`)
       }
     })
 

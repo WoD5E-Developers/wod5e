@@ -19,7 +19,7 @@ export class Disciplines extends BaseDefinitionClass {
         customDisciplines = customDisciplines.concat(module.flags.wod5e.customDisciplines)
 
         // Log the custom data in the console
-        console.log(`World of Darkness 5e | Custom ${this.defCategory} added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customDisciplines)}`)
+        console.log(`World of Darkness 5e | Custom Disciplines added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customDisciplines)}`)
       }
     })
 

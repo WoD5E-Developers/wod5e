@@ -19,7 +19,7 @@ export class Skills extends BaseDefinitionClass {
         customSkills = customSkills.concat(module.flags.wod5e.customSkills)
 
         // Log the custom data in the console
-        console.log(`World of Darkness 5e | Custom ${this.defCategory} added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customSkills)}`)
+        console.log(`World of Darkness 5e | Custom Skills added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customSkills)}`)
       }
     })
 

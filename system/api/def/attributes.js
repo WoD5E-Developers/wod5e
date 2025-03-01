@@ -19,7 +19,7 @@ export class Attributes extends BaseDefinitionClass {
         customAttributes = customAttributes.concat(module.flags.wod5e.customAttributes)
 
         // Log the custom data in the console
-        console.log(`World of Darkness 5e | Custom ${this.defCategory} added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customAttributes)}`)
+        console.log(`World of Darkness 5e | Custom Attributes added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customAttributes)}`)
       }
     })
 
