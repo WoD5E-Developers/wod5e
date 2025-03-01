@@ -56,7 +56,22 @@ export class BaseDefinitionClass {
 
     // Check if modifications are enabled
     if (this.modsEnabled && this.defCategory) {
-      modifications = game.settings.get('vtm5e', `modified${this.defCategory}`)
+      // Get the modifications for a particular defCategory from the game settings
+      modifications = game.settings.get('vtm5e', `modified${this.defCategory}`) || {}
+
+      // Handle adding modifications from any active modules
+      const activeModules = game.modules.filter(module => module.active === true && module.flags.wod5e)
+      activeModules.forEach((module) => {
+        // Check that this module has any modifications for the current definition type
+        if (module.flags.wod5e.modifications[this.type]) {
+          // Push modifications from the module flags by searching up modifications: { defCategory: { ..} }
+          // to follow the same pattern as custom categories
+          modifications = [...modifications, ...module.flags.wod5e.modifications[this.type]]
+
+          // Log the modification data in the console
+          console.log(`World of Darkness 5e | Modified ${this.defCategory} added by ${module.id}: ${JSON.stringify(module.flags.wod5e.modifications[this.type])}`)
+        }
+      })
     }
 
     // Cycle through each entry in the definition file to initialize the labels on each
