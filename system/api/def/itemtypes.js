@@ -27,6 +27,12 @@ import { AuspiceItemSheet } from '../../item/wta/auspice-sheet.js'
 import { TalismanItemSheet } from '../../item/wta/talisman-item-sheet.js'
 import { TribeItemSheet } from '../../item/wta/tribe-item-sheet.js'
 
+/*
+*   Each item type is defined through here; this includes the item's label,
+*   id ('types'), class, restricted actor types (a whitelist), and excluded
+*   actor types (a blacklist.)
+*/
+
 export class ItemTypes extends BaseDefinitionClass {
   // Run any necessary compilation on ready
   static onReady () {
