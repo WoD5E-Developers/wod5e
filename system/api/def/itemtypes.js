@@ -31,6 +31,10 @@ import { TribeItemSheet } from '../../item/wta/tribe-item-sheet.js'
 *   Each item type is defined through here; this includes the item's label,
 *   id ('types'), class, restricted actor types (a whitelist), and excluded
 *   actor types (a blacklist.)
+*
+*   The "limitOnePerActor" property also enforces if an actor isn't supposed
+*   to have more than one of that item, and it'll make the actor sheet delete
+*   the old version of an item from the actor upon being added.
 */
 
 export class ItemTypes extends BaseDefinitionClass {
