@@ -435,7 +435,18 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       const blacklist = itemsList[itemType].excludedActorTypes
 
       // If the whitelist contains any entries, we can check to make sure this actor type is allowed for the item
-      if (!foundry.utils.isEmpty(whitelist) && whitelist.indexOf(actorType) === -1) {
+      // We go through the base actor type, then subtypes - if we match to any of them, we allow the item to be
+      // added to the actor.
+      //
+      // We don't need to add this logic to the blacklist because the blacklist only needs to check against the base types.
+      if (!foundry.utils.isEmpty(whitelist) &&
+        // This is just a general check against the base actorType
+        !whitelist.includes(actorType) &&
+        // If the actor is an SPC, check against the spcType
+        !(actorType === 'spc' && whitelist.includes(this.actor.system.spcType)) &&
+        // If the actor is a Group sheet, check against the groupType
+        !(actorType === 'group' && whitelist.includes(this.actor.system.groupType))
+      ) {
         ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
           string1: itemType,
           string2: actorType

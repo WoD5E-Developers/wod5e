@@ -143,8 +143,7 @@ export class ItemTypes extends BaseDefinitionClass {
     img: 'systems/vtm5e/assets/icons/items/discipline.png',
     types: ['power'],
     sheetClass: DisciplineItemSheet,
-    restrictedActorTypes: ['vampire', 'ghoul'],
-    excludedActorTypes: ['spc']
+    restrictedActorTypes: ['vampire', 'ghoul']
   }
 
   static boon = {
@@ -182,8 +181,7 @@ export class ItemTypes extends BaseDefinitionClass {
     img: 'systems/vtm5e/assets/icons/items/edge.png',
     types: ['perk'],
     sheetClass: PerkItemSheet,
-    restrictedActorTypes: ['hunter'],
-    excludedActorTypes: ['spc']
+    restrictedActorTypes: ['hunter']
   }
 
   static edgepool = {
@@ -230,8 +228,7 @@ export class ItemTypes extends BaseDefinitionClass {
     img: 'systems/vtm5e/assets/icons/items/gift.png',
     types: ['gift'],
     sheetClass: GiftItemSheet,
-    restrictedActorTypes: ['werewolf'],
-    excludedActorTypes: ['spc']
+    restrictedActorTypes: ['werewolf']
   }
 }
 
