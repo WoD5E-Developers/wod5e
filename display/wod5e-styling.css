@@ -2293,7 +2293,8 @@ body.uk .actor.sheet {
   font-size: 16pt;
 }
 .spc.sheet .standard-pools-list,
-.spc.sheet .exceptional-pools-list {
+.spc.sheet .exceptional-pools-list,
+.spc.sheet .description-field {
   margin-bottom: 10px;
 }
 .spc.sheet .general-difficulty {
