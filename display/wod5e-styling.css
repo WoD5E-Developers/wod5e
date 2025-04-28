@@ -260,56 +260,56 @@
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DJGWmmZ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DJGWmmZ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: italic;
   font-weight: 500;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DJ0WmmZ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DJ0WmmZ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: italic;
   font-weight: 600;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DKYXWmZ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DKYXWmZ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: italic;
   font-weight: 700;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DKhXWmZ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DKhXWmZ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2MHGuGQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2MHGuGQ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2AnGuGQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2AnGuGQ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df27nauGQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df27nauGQ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df213auGQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df213auGQ.ttf) format('truetype');
 }
 /* Fonts */
 @font-face {
@@ -2305,6 +2305,7 @@ body.uk .actor.sheet {
   flex-direction: row;
   text-align: center;
   text-align: -webkit-center;
+  flex-flow: wrap;
 }
 .spc.sheet .exceptional-pools-list .spc-item-header {
   font-weight: bold;
@@ -2331,8 +2332,9 @@ body.uk .actor.sheet {
 .locked .exceptional-pools-list {
   place-content: center;
 }
-.locked .exceptional-pools-list a:not(:first-child)::before {
+.locked .exceptional-pools-list a:not(:last-child)::after {
   content: ", ";
+  white-space: pre;
 }
 .exceptional-edit.dialog .exceptional-pool {
   justify-content: space-between;

@@ -26,6 +26,7 @@
     flex-direction: row;
     text-align: center;
     text-align: -webkit-center;
+    flex-flow: wrap;
 
     .spc-item-header {
       font-weight: bold;
@@ -61,8 +62,9 @@
   .exceptional-pools-list {
     place-content: center;
 
-    a:not(:first-child)::before {
+    a:not(:last-child)::after {
       content: ", ";
+      white-space: pre;
     }
   }
 }
