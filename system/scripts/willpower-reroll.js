@@ -71,9 +71,9 @@ export const willpowerReroll = async (roll) => {
   function dieSelect () {
     // If the die isn't already selected and there aren't 3 already selected, add selected to the die
     if (!($(this).hasClass('selected')) && ($('.willpower-reroll .selected').length < 3)) {
-      $(this).addClass('selected')
+      $(this).classList.add('selected')
     } else {
-      $(this).removeClass('selected')
+      $(this).classList.remove('selected')
     }
   }
 
@@ -112,7 +112,7 @@ export const willpowerReroll = async (roll) => {
 
           diceSelected.each(function (index) {
             const dieHTML = diceSelected.eq(index)
-            const imgElement = dieHTML.find('img')
+            const imgElement = dieHTML.querySelectorAll('img')
 
             if (!imgElement.length) {
               console.error('World of Darkness 5e | Image element not found in dieHTML:', dieHTML)

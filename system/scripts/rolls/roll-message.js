@@ -1,4 +1,4 @@
-/* global game, renderTemplate, TextEditor */
+/* global game, foundry */
 
 // Import dice face-related variables for icon paths
 import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces } from '../../dice/icons.js'
@@ -44,16 +44,16 @@ export async function generateRollMessage ({
     advancedDice,
     system,
     title,
-    enrichedFlavor: await TextEditor.enrichHTML(flavor),
+    enrichedFlavor: await foundry.applications.ux.TextEditor.implementation.enrichHTML(flavor),
     difficulty,
     totalResult,
     margin: totalResult > difficulty ? totalResult - difficulty : 0,
-    enrichedResultLabel: await TextEditor.enrichHTML(resultLabel),
+    enrichedResultLabel: await foundry.applications.ux.TextEditor.implementation.enrichHTML(resultLabel),
     activeModifiers,
     isContentVisible
   }
 
-  const chatMessage = await renderTemplate(chatTemplate, chatData)
+  const chatMessage = await foundry.applications.handlebars.renderTemplate(chatTemplate, chatData)
 
   return chatMessage
 

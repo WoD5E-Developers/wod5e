@@ -487,6 +487,10 @@ input[type="number"] {
 .chat-message .dice-result {
   cursor: pointer;
 }
+.chat-message .dice-result .dice-icons {
+  display: flex;
+  flex-flow: row;
+}
 .chat-message .modifiers {
   margin-bottom: 2px;
   display: flex;

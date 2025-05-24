@@ -1,4 +1,4 @@
-/* global ChatMessage, renderTemplate, game */
+/* global ChatMessage, foundry, game */
 
 export async function _increaseHunger (actor, amount, rollMode) {
   // Automatically add hunger to the actor on a failure (for rouse checks)
@@ -12,7 +12,7 @@ export async function _increaseHunger (actor, amount, rollMode) {
   // If the actor is already at max hunger, send a message in the chat to warn them
   // that their hunger cannot be increased further
   if (amount > 0 && currentHunger === hungerMax) {
-    renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+    await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
       name: game.i18n.localize('WOD5E.VTM.HungerFull1'),
       img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
       description: game.i18n.localize('WOD5E.VTM.HungerFull2')

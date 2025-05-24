@@ -70,7 +70,7 @@ gulp.task('watch-localization', function () {
     // Watch English JSON files
     const watcher = gulp.watch('./lang/en/*.json')
 
-    watcher.on('change', function () {
+    watcher.addEventListener('change', function () {
       // Close the watcher before running tasks
       watcher.close()
 

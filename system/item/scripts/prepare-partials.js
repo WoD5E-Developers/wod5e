@@ -1,4 +1,4 @@
-/* global TextEditor */
+/* global foundry*/
 
 import { generateLocalizedLabel } from '../../api/generate-localization.js'
 
@@ -10,7 +10,7 @@ export const prepareDescriptionContext = async function (context, item) {
 
   // Part-specific data
   context.description = itemData?.description
-  context.enrichedDescription = await TextEditor.enrichHTML(itemData?.description)
+  context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(itemData?.description)
 
   return context
 }

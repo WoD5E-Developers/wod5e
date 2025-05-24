@@ -9,7 +9,7 @@ export const RenderActorSidebar = async () => {
       const groups = object.groups
 
       // Define the directory list so that we can modify its structure
-      const directoryList = html.find('.directory-list')
+      const directoryList = html[0].querySelectorAll('.directory-list')
 
       // Iterate through each group and make a "folder-like" element out of them
       groups.forEach(group => {
@@ -33,7 +33,7 @@ export const RenderActorSidebar = async () => {
         groupElement.attr('class', 'directory-item group-item flexcol document')
         // GMs follow the collapsed value, players don't
         if (group.system?.collapsed && game.user.isGM) {
-          groupElement.addClass('collapsed')
+          groupElement.classList.add('collapsed')
         }
         groupElement.find('.entry-name, .thumbnail').remove()
         groupElement.append(headerElement)

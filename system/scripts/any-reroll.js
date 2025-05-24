@@ -71,9 +71,9 @@ export const anyReroll = async (roll) => {
   function dieSelect () {
     // Toggle selection
     if (!($(this).hasClass('selected'))) {
-      $(this).addClass('selected')
+      $(this).classList.add('selected')
     } else {
-      $(this).removeClass('selected')
+      $(this).classList.remove('selected')
     }
   }
 
@@ -112,7 +112,7 @@ export const anyReroll = async (roll) => {
 
           diceSelected.each(function (index) {
             const dieHTML = diceSelected.eq(index)
-            const imgElement = dieHTML.find('img')
+            const imgElement = dieHTML.querySelector('img')
 
             if (!imgElement.length) {
               console.error('World of Darkness 5e | Image element not found in dieHTML:', dieHTML)

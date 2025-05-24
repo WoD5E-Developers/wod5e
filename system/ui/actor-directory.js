@@ -1,10 +1,10 @@
-/* global ActorDirectory, fromUuidSync */
+/* global foundry, fromUuidSync */
 
 /**
  * Extend the base ActorDirectory functionality
  * @extends {ActorDirectory}
  */
-export class WOD5EActorDirectory extends ActorDirectory {
+export class WOD5EActorDirectory extends foundry.applications.sidebar.tabs.ActorDirectory {
   constructor (...args) {
     super(...args)
 

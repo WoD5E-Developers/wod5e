@@ -123,16 +123,16 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
   }
 
   _onRender () {
-    const html = $(this.element)
+    const html = this.element
 
     // Update the window title (since ItemSheetV2 doesn't do it automatically)
-    $(this.window.title).text(this.title)
+    this.window.title.textContent = this.title
 
     // Input for the list of selectors
-    const input = html.find('.modifier-selectors')
+    const input = html[0].querySelector('.modifier-selectors')
     // Style the selectors properly
     const data = getSelectorsList()
-    input.flexdatalist({
+    $(input).flexdatalist({
       selectionRequired: 1,
       minLength: 1,
       searchIn: ['displayName'],
@@ -145,18 +145,18 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
     // Add a new sheet styling depending on the type of sheet
     const gamesystem = this.item.system.gamesystem
     if (gamesystem === 'vampire') {
-      html.removeClass('hunter werewolf mortal')
-      html.addClass('vampire')
+      html.classList.remove('hunter', 'werewolf', 'mortal')
+      html.classList.add('vampire')
     } else if (gamesystem === 'hunter') {
-      html.removeClass('vampire werewolf mortal')
-      html.addClass('hunter')
+      html.classList.remove('vampire', 'werewolf', 'mortal')
+      html.classList.add('hunter')
     } else if (gamesystem === 'werewolf') {
-      html.removeClass('hunter vampire mortal')
-      html.addClass('werewolf')
+      html.classList.remove('hunter', 'vampire', 'mortal')
+      html.classList.add('werewolf')
     } else {
       // Default to a mortal sheet
-      html.removeClass('hunter vampire werewolf')
-      html.addClass('mortal')
+      html.classList.remove('hunter', 'vampire', 'werewolf')
+      html.classList.add('mortal')
     }
   }
 }

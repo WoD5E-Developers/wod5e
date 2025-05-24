@@ -4,7 +4,7 @@
 export const RenderSettings = async () => {
   Hooks.on('renderSettings', async (_app, html) => {
     // Additional system information resources
-    const systemRow = html.find('#game-details li.system')
+    const systemRow = html[0].querySelector('#game-details li.system')
 
     const systemLinks = `<li class='external-system-links'>
         <a href='https://github.com/WoD5E-Developers/wod5e/releases' target='_blank'>${game.i18n.localize('WOD5E.Changelog')}</a>
@@ -12,14 +12,14 @@ export const RenderSettings = async () => {
         <a href='https://wod5e-developers.github.io/' target='_blank'>${game.i18n.localize('WOD5E.Wiki')}</a>
       </li>`
 
-    $(systemLinks).insertAfter(systemRow)
+    systemRow.insertAdjacentHTML('afterend', systemLinks)
 
     // License Section
-    const settingsAccess = html.find('#settings-access')
+    const settingsAccess = html[0].querySelector('#settings-access')
     const licenseInformation = `<h2>${game.i18n.localize('WOD5E.LicensedUnderDarkPack')}</h2>
       <div id='license-information'>
         ${game.i18n.localize('WOD5E.LicensedUnderDarkPackFulltext')}
       </div>`
-    $(licenseInformation).insertAfter(settingsAccess)
+    settingsAccess.insertAdjacentHTML('afterend', licenseInformation)
   })
 }

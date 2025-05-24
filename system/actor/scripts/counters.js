@@ -82,19 +82,19 @@ export const _assignToActorField = async (fields, value, actor) => {
 
 // Handle setting up the dot counters
 export const _setupDotCounters = async function (html) {
-  html.find('.resource-value').each(function () {
-    const value = parseInt(this.dataset.value)
-    $(this).find('.resource-value-step').each(function (i) {
+  html[0].querySelectorAll('.resource-value').forEach(el => {
+    const value = parseInt(el.dataset.value)
+    el.querySelectorAll('.resource-value-step').forEach(function (el, i) {
       if (i + 1 <= value) {
-        $(this).addClass('active')
+        el.classList.add('active')
       }
     })
   })
-  html.find('.resource-value-static').each(function () {
-    const value = parseInt(this.dataset.value)
-    $(this).find('.resource-value-static-step').each(function (i) {
+  html[0].querySelectorAll('.resource-value-static').forEach(el => {
+    const value = parseInt(el.dataset.value)
+    el.querySelectorAll('.resource-value-static-step').forEach(function (el, i) {
       if (i + 1 <= value) {
-        $(this).addClass('active')
+        el.classList.add('active')
       }
     })
   })
@@ -178,7 +178,7 @@ export const _onDotCounterEmpty = async function (event) {
   }
 
   // Update the actor field
-  steps.removeClass('active')
+  steps.classList.remove('active')
   _assignToActorField(fields, 0, actor)
 }
 
@@ -188,8 +188,8 @@ export const _onDotCounterEmpty = async function (event) {
 
 // Set up the square counters
 export const _setupSquareCounters = async function (html) {
-  html.find('.resource-counter').each(function () {
-    const data = this.dataset
+  html[0].querySelectorAll('.resource-counter').forEach(el => {
+    const data = el.dataset
     const states = parseCounterStates(data.states)
     const humanity = data.name === 'system.humanity'
     const despair = data.name === 'system.despair'
@@ -221,11 +221,10 @@ export const _setupSquareCounters = async function (html) {
       values.fill('x', halfs, halfs + crossed)
     }
 
-    // Iterate through the data states now that they're properly defined
-    $(this).find('.resource-counter-step').each(function () {
-      this.dataset.state = ''
-      if (this.dataset.index < values.length) {
-        this.dataset.state = values[this.dataset.index]
+    el.querySelectorAll('.resource-counter-step').forEach(step => {
+      step.dataset.state = ''
+      if (step.dataset.index < values.length) {
+        step.dataset.state = values[step.dataset.index]
       }
     })
   })

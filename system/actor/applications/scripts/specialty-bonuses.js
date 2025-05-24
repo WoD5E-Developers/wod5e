@@ -1,4 +1,4 @@
-/* global renderTemplate, Dialog, game */
+/* global foundry, Dialog, game */
 
 import { Skills } from '../../../api/def/skills.js'
 
@@ -28,7 +28,7 @@ export const _onAddModifier = async function (event) {
 
   // Render the template
   const bonusTemplate = 'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs'
-  const bonusContent = await renderTemplate(bonusTemplate, bonusData)
+  const bonusContent = await foundry.applications.handlebars.renderTemplate(bonusTemplate, bonusData)
 
   new Dialog(
     {
@@ -39,12 +39,15 @@ export const _onAddModifier = async function (event) {
           icon: '<i class="fas fa-check"></i>',
           label: game.i18n.localize('WOD5E.Add'),
           callback: async html => {
+            const dialogHTML = html[0]
+
             // Get the source (name) and the value (modifier) from the dialogue
-            const source = html.find('[id=modifierSource]').val()
-            const value = html.find('[id=modifierValue]').val()
+            const source = dialogHTML.querySelector('[id=modifierSource]').value
+            const value = dialogHTML.querySelector('[id=modifierValue]').value
 
             // Handle the bonus pathing and making it into an array
-            const paths = html.find('[id=modifier]').flexdatalist('value')
+            const paths = $(dialogHTML.querySelector('[id=modifier]')).flexdatalist('value')
+
 
             // displayWhenInactive is ALWAYS true for specialties
             const displayWhenInactive = true
@@ -76,8 +79,10 @@ export const _onAddModifier = async function (event) {
       },
       default: 'add',
       render: (html) => {
+        const dialogHTML = html[0]
+
         // Input for the list of selectors
-        const input = $(html).find('#modifier')
+        const input = dialogHTML.querySelector('#modifier')
         // List of selectors to choose from
         const skillOptions = Skills.getList({
           prependType: true
@@ -93,7 +98,7 @@ export const _onAddModifier = async function (event) {
           displayName: 'All Skills'
         })
 
-        input.flexdatalist({
+        $(input).flexdatalist({
           selectionRequired: 1,
           minLength: 1,
           searchIn: ['displayName'],
@@ -148,7 +153,7 @@ export const _onEditModifier = async function (event, target) {
 
   // Render the template
   const bonusTemplate = 'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs'
-  const bonusContent = await renderTemplate(bonusTemplate, bonusData)
+  const bonusContent = await foundry.applications.handlebars.renderTemplate(bonusTemplate, bonusData)
 
   new Dialog(
     {
@@ -159,12 +164,14 @@ export const _onEditModifier = async function (event, target) {
           icon: '<i class="fas fa-check"></i>',
           label: game.i18n.localize('WOD5E.Save'),
           callback: async html => {
+            const dialogHTML = html[0]
+
             // Get the source (name) and the value (modifier) from the dialogue
-            const source = html.find('[id=modifierSource]').val()
-            const value = html.find('[id=modifierValue]').val()
+            const source = dialogHTML.querySelector('[id=modifierSource]').value
+            const value = dialogHTML.querySelector('[id=modifierValue]').value
 
             // Handle the bonus pathing and making it into an array
-            const paths = html.find('[id=modifier]').flexdatalist('value')
+            const paths = $(dialogHTML.querySelector('[id=modifier]')).flexdatalist('value')
 
             // displayWhenInactive is ALWAYS true for specialties
             const displayWhenInactive = true
@@ -191,8 +198,10 @@ export const _onEditModifier = async function (event, target) {
         }
       },
       render: (html) => {
+        const dialogHTML = html[0]
+
         // Input for the list of selectors
-        const input = $(html).find('#modifier')
+        const input = dialogHTML.querySelector('#modifier')
         // List of selectors to choose from
         const skillOptions = Skills.getList({
           prependType: true
@@ -208,7 +217,7 @@ export const _onEditModifier = async function (event, target) {
           displayName: 'All Skills'
         })
 
-        input.flexdatalist({
+        $(input).flexdatalist({
           selectionRequired: 1,
           minLength: 1,
           searchIn: ['displayName'],

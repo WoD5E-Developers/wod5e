@@ -1,4 +1,4 @@
-/* global game, Dialog, renderTemplate, ChatMessage, Item, foundry */
+/* global game, Dialog, foundry, ChatMessage, Item */
 
 // Definition classes
 import { ItemTypes } from '../../api/def/itemtypes.js'
@@ -123,7 +123,9 @@ export const _onCreateItem = async function (event, target) {
         icon: '<i class="fas fa-check"></i>',
         label: game.i18n.localize('WOD5E.Add'),
         callback: async (html) => {
-          subtype = html.find('#subtypeSelect')[0].value
+          const dialogHTML = html[0]
+
+          subtype = dialogHTML.querySelector('#subtypeSelect').value
           itemData = await appendSubtypeData(type, subtype, itemData)
 
           // Generate the item name
@@ -188,7 +190,7 @@ export const _onItemChat = async function (event, target) {
 
   const itemId = target.getAttribute('data-item-id')
   const item = actor.getEmbeddedDocument('Item', itemId)
-  renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+  await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
     name: item.name,
     img: item.img,
     description: item.system?.description || ''

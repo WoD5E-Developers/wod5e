@@ -1,4 +1,4 @@
-/* global CONFIG, Hooks, Actors, ActorSheet, ChatMessage, Items, ItemSheet, game, ui, CONST, jscolor */
+/* global CONFIG, Hooks, foundry, ChatMessage, game, ui, CONST, jscolor */
 
 // Actor sheets
 import { WoDActor } from './actor/actor.js'
@@ -58,14 +58,12 @@ Hooks.once('init', async function () {
   CONFIG.Dice.terms.w = WerewolfDie
   CONFIG.Dice.terms.r = WerewolfRageDie
 
-  // Register actor sheet application classes
-  Actors.unregisterSheet('core', ActorSheet)
   // Loop through each entry in the actorTypesList and register their sheet classes
   const actorTypesList = ActorTypes.getList({})
   for (const [, value] of Object.entries(actorTypesList)) {
     const { label, types, sheetClass } = value
 
-    Actors.registerSheet('vtm5e', sheetClass, {
+    foundry.documents.collections.Actors.registerSheet('vtm5e', sheetClass, {
       label,
       types,
       makeDefault: true
@@ -73,13 +71,12 @@ Hooks.once('init', async function () {
   }
 
   // Register item sheet application classes
-  Items.unregisterSheet('core', ItemSheet)
   // Loop through each entry in the itemTypesList and register their sheet classes
   const itemTypesList = ItemTypes.getList({})
   for (const [, value] of Object.entries(itemTypesList)) {
     const { label, types, sheetClass } = value
 
-    Items.registerSheet('vtm5e', sheetClass, {
+    foundry.documents.collections.Items.registerSheet('vtm5e', sheetClass, {
       label,
       types,
       makeDefault: true
@@ -183,16 +180,19 @@ Hooks.once('ready', async function () {
       _updateCSSVariable(settingId, cssVariable, settingValue)
     })
   })
-})
 
-Hooks.once('setup', () => {
-  // Set Hover by Owner as defaults for Default Token Configuration
-  const defaultTokenSettingsDefaults = game.settings.settings.get('core.defaultToken').default
-  defaultTokenSettingsDefaults.displayName = CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER
-  defaultTokenSettingsDefaults.displayBars = CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER
-
-  // Default token dispositions to neutral
-  defaultTokenSettingsDefaults.disposition = CONST.TOKEN_DISPOSITIONS.NEUTRAL
+  // Adjust some default game settings
+  game.settings.set('core', 'prototypeTokenOverrides', {
+    // Default tokens to display mode on-owner-hover for token bars and the display name
+    base: {
+      displayName: CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      displayBars: CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER
+    },
+    // Default SPC token dispositions to neutral
+    spc: {
+      disposition: CONST.TOKEN_DISPOSITIONS.NEUTRAL
+    }
+  })
 })
 
 // DiceSoNice functionality

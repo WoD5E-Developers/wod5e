@@ -1,4 +1,4 @@
-/* global game, CONST, CONFIG, TextEditor, renderTemplate, ChatMessage, Hooks */
+/* global game, CONST, CONFIG, foundry, ChatMessage, Hooks */
 
 import { generateRollMessage } from '../scripts/rolls/roll-message.js'
 
@@ -10,7 +10,7 @@ export class WoDChatMessage extends ChatMessage {
   async getHTML () {
     // Determine some metadata
     const data = this.toObject(false)
-    data.content = await TextEditor.enrichHTML(this.content, { rollData: this.getRollData() })
+    data.content = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.content, { rollData: this.getRollData() })
     const isWhisper = this.whisper.length
 
     // Construct message data
@@ -34,13 +34,13 @@ export class WoDChatMessage extends ChatMessage {
     }
 
     // Render message data specifically for ROLL type messages
-    if (this.isRoll) await this._renderRollContent(messageData)
+    if (this.isRoll) await this.#renderRollContent(messageData)
 
     // Define a border color
     if (this.style === CONST.CHAT_MESSAGE_STYLES.OOC) messageData.borderColor = this.author?.color.css
 
     // Render the chat message
-    let html = await renderTemplate(CONFIG.ChatMessage.template, messageData)
+    let html = await foundry.applications.handlebars.renderTemplate(CONFIG.ChatMessage.template, messageData)
 
     html = $(html)
 
@@ -82,33 +82,73 @@ export class WoDChatMessage extends ChatMessage {
           isContentVisible: this.isContentVisible
         })
 
-        html.find('.message-content').html(messageContent)
+        const messageContentElement = document.querySelector('.message-content')
+        if (messageContentElement) messageContentElement.innerHTML = messageContent
 
         const autoCollapse = game.settings.get('vtm5e', 'autoCollapseDescriptions')
-
+        
         if (!autoCollapse) {
-          const content = html.find('.collapsible-content')
-
-          content.css('maxHeight', 'unset')
+          const collapsibleContent = document.querySelector('.collapsible-content')
+          if (collapsibleContent) collapsibleContent.style.maxHeight = 'unset'
         }
-
+        
         // Add collapsible toggle event listener
-        html.find('.collapsible').click(async event => {
-          event.preventDefault()
-
-          const content = html.find('.collapsible-content')
-
-          if (content.css('maxHeight') === '0px') {
-            content.css('maxHeight', content.prop('scrollHeight') + 'px')
-          } else {
-            content.css('maxHeight', '0px')
-          }
-        })
+        document.querySelectorAll('.collapsible').forEach(collapsible => {
+          collapsible.addEventListener('click', async event => {
+            event.preventDefault()
+        
+            const content = document.querySelector('.collapsible-content')
+        
+            if (content.style.maxHeight === '0px') {
+              content.style.maxHeight = content.scrollHeight + 'px'
+            } else {
+              content.style.maxHeight = '0px'
+            }
+          })
+        })        
       }
     }
 
     // Flag expanded state of dice rolls
     Hooks.call('renderChatMessage', this, html, messageData)
     return html
+  }
+
+  // Code pulled from core since this is a private method as of V13
+  async #renderRollContent(messageData) {
+    const data = messageData.message;
+    const renderRolls = async isPrivate => {
+      let html = "";
+      for ( const r of this.rolls ) {
+        html += await r.render({isPrivate});
+      }
+      return html;
+    };
+
+    // Suppress the "to:" whisper flavor for private rolls
+    if ( this.blind || this.whisper.length ) messageData.isWhisper = false;
+
+    // Display standard Roll HTML content
+    if ( this.isContentVisible ) {
+      const el = document.createElement("div");
+      el.innerHTML = data.content;  // Ensure the content does not already contain custom HTML
+      if ( !el.childElementCount && this.rolls.length ) data.content = await this.#renderRollHTML(false);
+    }
+
+    // Otherwise, show "rolled privately" messages for Roll content
+    else {
+      const name = this.author?.name ?? game.i18n.localize("CHAT.UnknownUser");
+      data.flavor = game.i18n.format("CHAT.PrivateRollContent", {user: foundry.utils.escapeHTML(name)});
+      data.content = await renderRolls(true);
+      messageData.alias = name;
+    }
+  }
+
+  async #renderRollHTML(isPrivate) {
+    let html = "";
+    for ( const roll of this.rolls ) {
+      html += await roll.render({isPrivate, message: this});
+    }
+    return html;
   }
 }

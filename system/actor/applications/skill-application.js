@@ -1,4 +1,4 @@
-/* global foundry, game, TextEditor */
+/* global foundry, game */
 
 import { _onAddModifier, _onEditModifier, _onDeleteModifier } from './scripts/specialty-bonuses.js'
 import { generateLocalizedLabel } from '../../api/generate-localization.js'
@@ -121,7 +121,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
 
         // Part-specific data
         context.description = context.skillData?.description
-        context.enrichedDescription = await TextEditor.enrichHTML(context.skillData?.description)
+        context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.skillData?.description)
 
         break
 
@@ -158,10 +158,10 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
   }
 
   _onRender () {
-    const html = $(this.element)
+    const html = this.element
 
     // Input for the list of selectors
-    const input = html.find('.modifier-selectors')
+    const input = html[0].querySelector('.modifier-selectors')
     // List of selectors to choose from
     const skillOptions = Skills.getList({
       prependType: true
@@ -177,7 +177,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
       displayName: 'All Skills'
     })
 
-    input.flexdatalist({
+    $(input).flexdatalist({
       selectionRequired: 1,
       minLength: 1,
       searchIn: ['displayName'],

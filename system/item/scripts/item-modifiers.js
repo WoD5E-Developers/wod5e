@@ -1,4 +1,4 @@
-/* global renderTemplate, Dialog, game */
+/* global foundry, Dialog, game */
 
 import { getSelectorsList } from '../../api/get-selectors-list.js'
 
@@ -24,7 +24,7 @@ export const _onAddModifier = async function (event) {
 
   // Render the template
   const bonusTemplate = 'systems/vtm5e/display/shared/items/parts/modifier-display.hbs'
-  const bonusContent = await renderTemplate(bonusTemplate, bonusData)
+  const bonusContent = await foundry.applications.handlebars.renderTemplate(bonusTemplate, bonusData)
 
   new Dialog(
     {
@@ -35,20 +35,23 @@ export const _onAddModifier = async function (event) {
           icon: '<i class="fas fa-check"></i>',
           label: game.i18n.localize('WOD5E.Add'),
           callback: async html => {
+            const dialogHTML = html[0]
+
             const activeWhen = {}
             let newModifier = {}
 
-            const source = html.find('[id=modifierSource]').val()
-            const value = html.find('[id=modifierValue]').val()
-            const displayWhenInactive = html.find('[id=displayModifierWhenInactive]').is(':checked')
+            const source = dialogHTML.querySelector('#modifierSource')?.value ?? null
+            const value = dialogHTML.querySelector('#modifierValue')?.value ?? null
+            const displayWhenInactive = dialogHTML.querySelector('#displayModifierWhenInactive')?.checked ?? false
 
-            const paths = html.find('[id=modifier]').flexdatalist('value')
+            const modifierEl = dialogHTML.querySelector('#modifier')
+            const paths = modifierEl ? $(modifierEl).flexdatalist('value') : null
 
-            activeWhen.check = html.find('[id=activeWhenCheck]').val()
-            activeWhen.path = html.find('[id=activeWhenPath]').val()
-            activeWhen.value = html.find('[id=activeWhenValue]').val()
+            activeWhen.check = dialogHTML.querySelector('#activeWhenCheck')?.value ?? null
+            activeWhen.path = dialogHTML.querySelector('#activeWhenPath')?.value ?? null
+            activeWhen.value = dialogHTML.querySelector('#activeWhenValue')?.value ?? null
 
-            const unless = html.find('[id=unless]').val()
+            const unless = dialogHTML.querySelector('#unless')?.value ?? null
 
             newModifier = {
               source,
@@ -76,16 +79,18 @@ export const _onAddModifier = async function (event) {
       },
       default: 'add',
       render: (html) => {
+        const dialogHTML = html[0]
+
         // Active When Handler
-        const activeWhenCheck = html.find('#activeWhenCheck')
-        const activeWhenPath = html.find('#activeWhenPath').parent()
-        const activeWhenValue = html.find('#activeWhenValue').parent()
+        const activeWhenCheck = dialogHTML.querySelector('#activeWhenCheck')
+        const activeWhenPath = dialogHTML.querySelector('#activeWhenPath').parentElement
+        const activeWhenValue = dialogHTML.querySelector('#activeWhenValue').parentElement
 
         // Input for the list of selectors
-        const input = html.find('.modifier-selectors')
+        const input = dialogHTML.querySelector('.modifier-selectors')
         // Handle formatting the input for selectors
         const data = getSelectorsList()
-        input.flexdatalist({
+        $(input).flexdatalist({
           selectionRequired: 1,
           minLength: 1,
           searchIn: ['displayName'],
@@ -95,11 +100,11 @@ export const _onAddModifier = async function (event) {
           data
         })
 
-        activeWhenCheck.on('change', function () {
-          if (activeWhenCheck.val() === 'isEqual') {
+        activeWhenCheck.addEventListener('change', function () {
+          if (activeWhenCheck.value === 'isEqual') {
             activeWhenPath.css('visibility', 'visible')
             activeWhenValue.css('visibility', 'visible')
-          } else if (activeWhenCheck.val() === 'isPath') {
+          } else if (activeWhenCheck.value === 'isPath') {
             activeWhenPath.css('visibility', 'visible')
             activeWhenValue.css('visibility', 'hidden')
           } else {
@@ -144,7 +149,7 @@ export const _onEditModifier = async function (event, target) {
 
   // Render the template
   const bonusTemplate = 'systems/vtm5e/display/shared/items/parts/modifier-display.hbs'
-  const bonusContent = await renderTemplate(bonusTemplate, bonusData)
+  const bonusContent = await foundry.applications.handlebars.renderTemplate(bonusTemplate, bonusData)
 
   new Dialog(
     {
@@ -155,19 +160,20 @@ export const _onEditModifier = async function (event, target) {
           icon: '<i class="fas fa-check"></i>',
           label: game.i18n.localize('WOD5E.Save'),
           callback: async html => {
+            const dialogHTML = html[0]
+
             const activeWhen = {}
 
-            const source = html.find('[id=modifierSource]').val()
-            const value = html.find('[id=modifierValue]').val()
-            const displayWhenInactive = html.find('[id=displayModifierWhenInactive]').is(':checked')
+            const source = dialogHTML.querySelector('#modifierSource')?.value ?? null
+            const value = dialogHTML.querySelector('#modifierValue')?.value ?? null
+            const displayWhenInactive = dialogHTML.querySelector('#displayModifierWhenInactive')?.checked ?? false
+            const paths = $(dialogHTML.querySelector('#modifier'))?.flexdatalist('value') ?? null
 
-            const paths = html.find('[id=modifier]').flexdatalist('value')
+            activeWhen.check = dialogHTML.querySelector('#activeWhenCheck')?.value ?? null
+            activeWhen.path = dialogHTML.querySelector('#activeWhenPath')?.value ?? null
+            activeWhen.value = dialogHTML.querySelector('#activeWhenValue')?.value ?? null
 
-            activeWhen.check = html.find('[id=activeWhenCheck]').val()
-            activeWhen.path = html.find('[id=activeWhenPath]').val()
-            activeWhen.value = html.find('[id=activeWhenValue]').val()
-
-            const unless = html.find('[id=unlessValue]').val()
+            const unless = dialogHTML.querySelector('#unlessValue')?.value ?? null
 
             // Define the existing list of modifiers
             const itemModifiers = item.system.bonuses
@@ -193,16 +199,18 @@ export const _onEditModifier = async function (event, target) {
       },
       default: 'save',
       render: (html) => {
+        const dialogHTML = html[0]
+
         // Active When Handler
-        const activeWhenCheck = html.find('#activeWhenCheck')
-        const activeWhenPath = html.find('#activeWhenPath').parent()
-        const activeWhenValue = html.find('#activeWhenValue').parent()
+        const activeWhenCheck = dialogHTML.querySelector('#activeWhenCheck')
+        const activeWhenPath = dialogHTML.querySelector('#activeWhenPath').parentElement
+        const activeWhenValue = dialogHTML.querySelector('#activeWhenValue').parentElement
 
         // Input for the list of selectors
-        const input = html.find('.modifier-selectors')
+        const input = dialogHTML.querySelector('.modifier-selectors')
         // Handle formatting the input for selectors
         const data = getSelectorsList()
-        input.flexdatalist({
+        $(input).flexdatalist({
           selectionRequired: 1,
           minLength: 1,
           searchIn: ['displayName'],
@@ -212,11 +220,11 @@ export const _onEditModifier = async function (event, target) {
           data
         })
 
-        activeWhenCheck.on('change', function () {
-          if (activeWhenCheck.val() === 'isEqual') {
+        activeWhenCheck.addEventListener('change', function () {
+          if (activeWhenCheck.value === 'isEqual') {
             activeWhenPath.css('visibility', 'visible')
             activeWhenValue.css('visibility', 'visible')
-          } else if (activeWhenCheck.val() === 'isPath') {
+          } else if (activeWhenCheck.value === 'isPath') {
             activeWhenPath.css('visibility', 'visible')
             activeWhenValue.css('visibility', 'hidden')
           } else {

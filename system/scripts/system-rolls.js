@@ -1,4 +1,4 @@
-/* global ChatMessage, Roll, game, renderTemplate, CONFIG, Dialog */
+/* global ChatMessage, Roll, game, foundry, CONFIG, Dialog */
 
 // Import various helper functions
 import { generateRollFormula } from './rolls/roll-formula.js'
@@ -61,9 +61,9 @@ class WOD5eDice {
     // Inner roll function
     const _roll = async (inputBasicDice, inputAdvancedDice, $form) => {
       // Get the difficulty and store it
-      difficulty = $form ? $form.find('[id=inputDifficulty]').val() : difficulty
+      difficulty = $form ? $form.find('[id=inputDifficulty]').value : difficulty
       // Get the rollMode and store it
-      rollMode = $form ? $form.find('[name=rollMode]').val() : rollMode
+      rollMode = $form ? $form.find('[name=rollMode]').value : rollMode
 
       // Prevent trying to roll 0 dice; all dice pools should roll at least 1 die
       if (parseInt(inputBasicDice) === 0 && parseInt(inputAdvancedDice) === 0) {
@@ -94,13 +94,13 @@ class WOD5eDice {
       if ($form) {
         const modifiersList = $form.find('.mod-checkbox')
         if (modifiersList.length > 0) {
-          modifiersList.each(function () {
-            const isChecked = $(this).prop('checked')
+          modifiersList.each(el => {
+            const isChecked = el.checked
 
             if (isChecked) {
               // Get the dataset values
-              const label = this.dataset.label
-              const value = this.dataset.value
+              const label = el.dataset.label
+              const value = el.dataset.value
 
               // Add a plus sign if the value is positive
               const valueWithSign = (value > 0 ? '+' : '') + value
@@ -119,8 +119,8 @@ class WOD5eDice {
           // Go through each custom modifier and add it to the array
           customModifiersList.each(function () {
             // Get the label and value from the current .custom-modifier element
-            const label = $(this).find('.mod-name').val()
-            const value = $(this).find('.mod-value').val()
+            const label = $(this).find('.mod-name').value
+            const value = $(this).find('.mod-value').value
 
             // Add a plus sign if the value is positive
             const valueWithSign = (value > 0 ? '+' : '') + value
@@ -245,7 +245,7 @@ class WOD5eDice {
         situationalModifiers
       }
       // Render the dialog
-      const content = await renderTemplate(dialogTemplate, dialogData)
+      const content = await foundry.applications.handlebars.renderTemplate(dialogTemplate, dialogData)
 
       // Promise to handle the roll after the dialog window is closed
       // as well as any callbacks or other functions with the roll
@@ -260,21 +260,23 @@ class WOD5eDice {
                 icon: '<i class="fas fa-dice"></i>',
                 label: game.i18n.localize('WOD5E.RollList.Label'),
                 callback: async html => {
+                  const dialogHTML = html[0]
+
                   // Obtain the input fields
-                  const basicDiceInput = html.find('#inputBasicDice')
-                  const advancedDiceInput = html.find('#inputAdvancedDice')
+                  const basicDiceInput = dialogHTML.querySelector('#inputBasicDice')
+                  const advancedDiceInput = dialogHTML.querySelector('#inputAdvancedDice')
 
                   // Get the values
-                  let basicValue = basicDiceInput.val() ? basicDiceInput.val() : 0
-                  const advancedValue = advancedDiceInput.val() ? advancedDiceInput.val() : 0
+                  let basicValue = basicDiceInput.value ? basicDiceInput.value : 0
+                  const advancedValue = advancedDiceInput.value ? advancedDiceInput.value : 0
 
                   // Add any custom modifiers
-                  const customModifiersList = html.find('.custom-modifier')
+                  const customModifiersList = dialogHTML.querySelectorAll('.custom-modifier')
                   if (customModifiersList.length > 0) {
                     // Go through each custom modifier and add it to the array
                     customModifiersList.each(function () {
                       // Get the value from the current .custom-modifier element
-                      const value = $(this).find('.mod-value').val()
+                      const value = $(this).find('.mod-value').value
 
                       // Add the value to the basicValue
                       basicValue = parseInt(basicValue) + parseInt(value)
@@ -295,167 +297,177 @@ class WOD5eDice {
               resolve(roll)
             },
             render: (html) => {
+              const dialogHTML = html[0]
+
               // Obtain the input fields for basic and advanced dice
-              const basicDiceInput = html.find('#inputBasicDice')
-              const advancedDiceInput = html.find('#inputAdvancedDice')
+              const basicDiceInput = dialogHTML.querySelector('#inputBasicDice')
+              const advancedDiceInput = dialogHTML.querySelector('#inputAdvancedDice')
 
               // Add event listeners to plus and minus signs on the dice in the dialog
-              html.find('.dialog-plus').click(function (event) {
-                event.preventDefault()
+              dialogHTML.querySelectorAll('.dialog-plus').forEach(function (el) {
+                el.addEventListener('click', function (event) {
+                  event.preventDefault()
 
-                // Determine the input
-                const input = $(`#${event.currentTarget.dataset.resource}`)
+                  // Determine the input
+                  const input = document.querySelector(`#${event.currentTarget.dataset.resource}`)
 
-                // Add one to the value
-                const newValue = parseInt(input.val()) + 1
+                  // Add one to the value
+                  const newValue = parseInt(input.value) + 1
 
-                // Plug in the new value to the input
-                input.val(newValue)
+                  // Plug in the new value to the input
+                  input.value = newValue
+                })
               })
-              html.find('.dialog-minus').click(function (event) {
-                event.preventDefault()
+              dialogHTML.querySelectorAll('.dialog-minus').forEach(function (el) {
+                el.addEventListener('click', function (event) {
+                  event.preventDefault()
 
-                // Determine the input
-                const input = $(`#${event.currentTarget.dataset.resource}`)
+                  // Determine the input
+                  const input = document.querySelector(`#${event.currentTarget.dataset.resource}`)
 
-                // Prevent negative amounts of dice when getting the new value
-                const newValue = Math.max(parseInt(input.val()) - 1, 0)
+                  // Prevent negative amounts of dice when getting the new value
+                  const newValue = Math.max(parseInt(input.value) - 1, 0)
 
-                // Plug in the new value to the input
-                input.val(newValue)
+                  // Plug in the new value to the input
+                  input.value = newValue
+                })
               })
 
               // Add event listeners to the situational modifier toggles
-              html.find('.mod-checkbox').on('change', function (event) {
-                event.preventDefault()
-
-                // Actor data
-                const actorData = actor.system
-
-                // Determine the input
-                const modCheckbox = $(event.target)
-                const modifier = parseInt(event.currentTarget.dataset.value)
-                const modifierIsNegative = modifier < 0
-
-                // Get the values of basic and advanced dice
-                const basicValue = basicDiceInput.val() ? parseInt(basicDiceInput.val()) : 0
-                const advancedValue = advancedDiceInput.val() ? parseInt(advancedDiceInput.val()) : 0
-                const aCDValue = event.currentTarget.dataset.advancedCheckDice ? parseInt(event.currentTarget.dataset.advancedCheckDice) : 0
-
-                // Determine whether any alterations need to be made to basic dice or advanced dice
-                // Either use the current applyDiceTo (if set), or default to 'basic'
-                let applyDiceTo = event.currentTarget.dataset.applyDiceTo || 'basic'
-
-                if (modifierIsNegative) {
-                  // Apply dice to basicDice unless basicDice is 0
-                  if ((system === 'vampire' || system === 'werewolf') && basicValue === 0) {
-                    applyDiceTo = 'advanced'
-                  }
-                } else {
-                  // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
-                  if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
-                    applyDiceTo = 'advanced'
-                  }
-                }
-
-                // Determine the new input depending on if the modifier is adding or subtracting
-                // Checked and modifier is NOT negative = Add
-                // Unchecked and modifier is negative = Add
-                // Checked and modifier is negative = Subtract
-                // Unchecked and modifier is NOT negative = Subtract
-                let newValue = 0
-                let checkValue = 0
-                if ((modCheckbox.prop('checked') && !modifierIsNegative) || (!modCheckbox.prop('checked') && modifierIsNegative)) {
-                  // Adding the modifier
-                  if (applyDiceTo === 'advanced') {
-                    // Apply the modifier to advancedDice
-                    newValue = advancedValue + Math.abs(modifier)
-
-                    // Determine what we're checking against
-                    if (system === 'vampire') {
-                      checkValue = actorData?.hunger.value
-                    }
-                    if (system === 'werewolf') {
-                      checkValue = actorData?.rage.value
-                    }
-
-                    if ((newValue > actorData?.hunger.value || newValue > checkValue) && !(event.currentTarget.dataset.applyDiceTo === 'advanced')) {
-                      // Check for any excess and apply it to basicDice
-                      const excess = newValue - checkValue
-                      newValue = checkValue
-                      basicDiceInput.val(basicValue + excess)
-                    }
-
-                    // Update the advancedDice in the menu
-                    advancedDiceInput.val(newValue)
-                  } else {
-                    // If advancedDice is already at its max, apply the whole modifier to just basicDice
-                    newValue = basicValue + Math.abs(modifier)
-                    basicDiceInput.val(newValue)
-                  }
-
-                  // Apply the advancedCheckDice value
-                  advancedCheckDice = advancedCheckDice + aCDValue
-                } else {
-                  // Removing the modifier
-                  if (applyDiceTo === 'advanced') {
-                    // Apply the modifier to advancedDice
-                    newValue = advancedValue - Math.abs(modifier)
-
-                    if (newValue < 0) {
-                      // Check for any deficit and apply it to basicDice
-                      const deficit = Math.abs(newValue)
-                      newValue = 0
-                      basicDiceInput.val(Math.max(basicValue - deficit, 0))
-                    }
-
-                    // Update the advancedDice in the menu
-                    advancedDiceInput.val(newValue)
-                  } else {
-                    newValue = basicValue - Math.abs(modifier)
-                    if (newValue < 0) {
-                      const deficit = Math.abs(newValue)
-                      newValue = 0
-                      advancedDiceInput.val(Math.max(advancedValue - deficit, 0))
-                    }
-
-                    basicDiceInput.val(newValue)
-                  }
-
-                  // Apply the advancedCheckDice value while ensuring the value can't go below 0
-                  advancedCheckDice = Math.max(advancedCheckDice - aCDValue, 0)
-                }
-
-                // Ensure that there can't be negative dice
-                if (basicDiceInput.val() < 0) basicDiceInput.val(0)
-                if (advancedDiceInput.val() < 0) advancedDiceInput.val(0)
-              })
-
-              // Add event listener to the add custom modifier button
-              html.find('.add-custom-mod').click(function (event) {
-                event.preventDefault()
-
-                // Define the custom modifiers list and a custom modifier element
-                const customModList = $('#custom-modifiers-list')
-                const customModElement = `<div class="form-group custom-modifier">
-                    <div class="mod-label">
-                      <a class="mod-delete" title="` + game.i18n.localize('WOD5E.Delete') + `">
-                        <i class="fas fa-trash"></i>
-                      </a>
-                      <input class="mod-name" type="text" value="Custom"/>
-                    </div>
-                    <input class="mod-value" type="number" value="1"/>
-                  </div>`
-
-                // Append a new custom modifier element to the list
-                customModList.append(customModElement)
-
-                customModList.find('.mod-delete').on('click', (event) => {
+              dialogHTML.querySelectorAll('.mod-checkbox').forEach(function (el) {
+                  el.addEventListener('change', function (event) {
                   event.preventDefault()
 
-                  const element = event.target.closest('.custom-modifier')
+                  // Actor data
+                  const actorData = actor.system
 
-                  element.remove()
+                  // Determine the input
+                  const modCheckbox = $(event.target)
+                  const modifier = parseInt(event.currentTarget.dataset.value)
+                  const modifierIsNegative = modifier < 0
+
+                  // Get the values of basic and advanced dice
+                  const basicValue = basicDiceInput.value ? parseInt(basicDiceInput.value) : 0
+                  const advancedValue = advancedDiceInput.value ? parseInt(advancedDiceInput.value) : 0
+                  const aCDValue = event.currentTarget.dataset.advancedCheckDice ? parseInt(event.currentTarget.dataset.advancedCheckDice) : 0
+
+                  // Determine whether any alterations need to be made to basic dice or advanced dice
+                  // Either use the current applyDiceTo (if set), or default to 'basic'
+                  let applyDiceTo = event.currentTarget.dataset.applyDiceTo || 'basic'
+
+                  if (modifierIsNegative) {
+                    // Apply dice to basicDice unless basicDice is 0
+                    if ((system === 'vampire' || system === 'werewolf') && basicValue === 0) {
+                      applyDiceTo = 'advanced'
+                    }
+                  } else {
+                    // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
+                    if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
+                      applyDiceTo = 'advanced'
+                    }
+                  }
+
+                  // Determine the new input depending on if the modifier is adding or subtracting
+                  // Checked and modifier is NOT negative = Add
+                  // Unchecked and modifier is negative = Add
+                  // Checked and modifier is negative = Subtract
+                  // Unchecked and modifier is NOT negative = Subtract
+                  let newValue = 0
+                  let checkValue = 0
+                  if ((modCheckbox.checked && !modifierIsNegative) || (!modCheckbox.checked && modifierIsNegative)) {
+                    // Adding the modifier
+                    if (applyDiceTo === 'advanced') {
+                      // Apply the modifier to advancedDice
+                      newValue = advancedValue + Math.abs(modifier)
+
+                      // Determine what we're checking against
+                      if (system === 'vampire') {
+                        checkValue = actorData?.hunger.value
+                      }
+                      if (system === 'werewolf') {
+                        checkValue = actorData?.rage.value
+                      }
+
+                      if ((newValue > actorData?.hunger.value || newValue > checkValue) && !(event.currentTarget.dataset.applyDiceTo === 'advanced')) {
+                        // Check for any excess and apply it to basicDice
+                        const excess = newValue - checkValue
+                        newValue = checkValue
+                        basicDiceInput.val(basicValue + excess)
+                      }
+
+                      // Update the advancedDice in the menu
+                      advancedDiceInput.val(newValue)
+                    } else {
+                      // If advancedDice is already at its max, apply the whole modifier to just basicDice
+                      newValue = basicValue + Math.abs(modifier)
+                      basicDiceInput.val(newValue)
+                    }
+
+                    // Apply the advancedCheckDice value
+                    advancedCheckDice = advancedCheckDice + aCDValue
+                  } else {
+                    // Removing the modifier
+                    if (applyDiceTo === 'advanced') {
+                      // Apply the modifier to advancedDice
+                      newValue = advancedValue - Math.abs(modifier)
+
+                      if (newValue < 0) {
+                        // Check for any deficit and apply it to basicDice
+                        const deficit = Math.abs(newValue)
+                        newValue = 0
+                        basicDiceInput.val(Math.max(basicValue - deficit, 0))
+                      }
+
+                      // Update the advancedDice in the menu
+                      advancedDiceInput.val(newValue)
+                    } else {
+                      newValue = basicValue - Math.abs(modifier)
+                      if (newValue < 0) {
+                        const deficit = Math.abs(newValue)
+                        newValue = 0
+                        advancedDiceInput.val(Math.max(advancedValue - deficit, 0))
+                      }
+
+                      basicDiceInput.val(newValue)
+                    }
+
+                    // Apply the advancedCheckDice value while ensuring the value can't go below 0
+                    advancedCheckDice = Math.max(advancedCheckDice - aCDValue, 0)
+                  }
+
+                  // Ensure that there can't be negative dice
+                  if (basicDiceInput.value < 0) basicDiceInput.val(0)
+                  if (advancedDiceInput.value < 0) advancedDiceInput.val(0)
+                })
+
+                // Add event listener to the add custom modifier button
+                dialogHTML.querySelector('.add-custom-mod').addEventListener('click', function (event) {
+                  event.preventDefault()
+
+                  // Define the custom modifiers list and a custom modifier element
+                  const customModList = document.querySelector('#custom-modifiers-list')
+                  const customModElement = `<div class="form-group custom-modifier">
+                      <div class="mod-label">
+                        <a class="mod-delete" title="` + game.i18n.localize('WOD5E.Delete') + `">
+                          <i class="fas fa-trash"></i>
+                        </a>
+                        <input class="mod-name" type="text" value="Custom"/>
+                      </div>
+                      <input class="mod-value" type="number" value="1"/>
+                    </div>`
+
+                  // Append a new custom modifier element to the list
+                  customModList.insertAdjacentHTML('beforeend', customModElement)
+
+                  customModList.querySelectorAll('.mod-delete').forEach(function (deleteBtn) {
+                    deleteBtn.addEventListener('click', (event) => {
+                      event.preventDefault()
+
+                      const element = event.target.closest('.custom-modifier')
+
+                      element.remove()
+                    })
+                  })
                 })
               })
             }
