@@ -133,12 +133,10 @@ export class WoDChatMessage extends ChatMessage {
     // Display standard Roll HTML content
     if (this.isContentVisible) {
       const el = document.createElement('div')
-      el.innerHTML = data.content  // Ensure the content does not already contain custom HTML
+      el.innerHTML = data.content // Ensure the content does not already contain custom HTML
       if (!el.childElementCount && this.rolls.length) data.content = await this.#renderRollHTML(false)
-    }
-
-    // Otherwise, show "rolled privately" messages for Roll content
-    else {
+    } else {
+      // Otherwise, show "rolled privately" messages for Roll content
       const name = this.author?.name ?? game.i18n.localize('CHAT.UnknownUser')
       data.flavor = game.i18n.format('CHAT.PrivateRollContent', {
         user: foundry.utils.escapeHTML(name)
@@ -149,7 +147,7 @@ export class WoDChatMessage extends ChatMessage {
   }
 
   async #renderRollHTML (isPrivate) {
-    let html = ""
+    let html = ''
 
     for (const roll of this.rolls) {
       html += await roll.render({
