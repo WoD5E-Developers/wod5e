@@ -342,14 +342,6 @@
   line-height: 20px;
   padding-top: 2px;
 }
-/* Top-left Logo */
-#logo {
-  width: auto;
-}
-/* Adjust the UI top offset to compensate for the bigger logo */
-#ui-top.offset {
-  margin-left: 15px;
-}
 /* Hide the color scheme option in core Foundry settings
 * because WOD5E defines its own for users to use */
 #client-settings .form-group[data-setting-id="core.colorScheme"] {
@@ -2430,10 +2422,6 @@ form .hint {
 .window-content {
   box-shadow: 0 0 5px var(--system-color-1);
 }
-#logo {
-  content: var(--logo-default);
-  filter: drop-shadow(0 -5px 10px #cacaca85) drop-shadow(0 -10px 10px var(--system-color-3)) drop-shadow(0 0 10px #ffffff8f);
-}
 #pause figcaption {
   color: #e4e4e4a9;
 }
@@ -3068,7 +3056,6 @@ prose-mirror .editor-menu button {
 }
 .wod-hunter-theme {
   /* All places that use a filter to apply the theme colour */
-  /* Logo */
   /* Foundry Controls UI */
 }
 .wod-hunter-theme .sheet .window-content {
@@ -3090,10 +3077,6 @@ prose-mirror .editor-menu button {
 .wod-hunter-theme #hotbar .macro {
   background: var(--hunter-theme-filter);
 }
-.wod-hunter-theme #logo {
-  content: var(--logo-hunter);
-  filter: drop-shadow(0 -5px 10px #cacacac4) drop-shadow(0 -10px 10px var(--hunter-theme-filter)) drop-shadow(0 0 10px #ffffffb4);
-}
 .wod-hunter-theme .sheet .window-header,
 .wod-hunter-theme .dialog .window-header {
   background-color: var(--hunter-color-1);
@@ -3110,7 +3093,6 @@ prose-mirror .editor-menu button {
 }
 .wod-vampire-theme {
   /* All places that use a filter to apply the theme colour */
-  /* Logo */
   /* Vampire Styling */
   /* Werewolf Styling */
   /* Hunter Styling */
@@ -3142,10 +3124,6 @@ prose-mirror .editor-menu button {
 }
 .wod-vampire-theme #hotbar .macro {
   background: var(--vampire-theme-filter);
-}
-.wod-vampire-theme #logo {
-  content: var(--logo-vampire);
-  filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 0 10px var(--vampire-theme-filter)) drop-shadow(0 0 15px #ffffff);
 }
 .wod-vampire-theme .standard-form .form-group > label,
 .wod-vampire-theme .standard-form .form-group:hover > label {
@@ -3374,7 +3352,6 @@ prose-mirror .editor-menu button {
 }
 .wod-werewolf-theme {
   /* All places that use a filter to apply the theme colour */
-  /* Logo */
   /* Vampire Styling */
   /* Werewolf Styling */
   /* Hunter Styling */
@@ -3406,10 +3383,6 @@ prose-mirror .editor-menu button {
 }
 .wod-werewolf-theme #hotbar .macro {
   background: var(--werewolf-theme-filter);
-}
-.wod-werewolf-theme #logo {
-  content: var(--logo-werewolf);
-  filter: drop-shadow(0 -5px 10px #cacacad3) drop-shadow(0 -10px 10px var(--ui-background-werewolf-color)) drop-shadow(0 0 10px #ffffffe3);
 }
 .wod-werewolf-theme .standard-form .form-group > label,
 .wod-werewolf-theme .standard-form .form-group:hover > label {
