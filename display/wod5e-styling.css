@@ -359,8 +359,11 @@
 #pause {
   background: none;
 }
+#pause img {
+  position: absolute;
+}
 #pause figcaption {
-  margin-top: 55px;
+  margin-top: 150px;
   font-weight: bold;
 }
 /* Only use this font with the .vampire-font-headers class enabled */
@@ -748,6 +751,7 @@ h3.item-name {
 }
 #sidebar-tabs {
   margin: 0;
+  padding: 8px 2px;
 }
 #sidebar-tabs > .item {
   border-radius: 0;
