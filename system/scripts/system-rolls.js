@@ -267,8 +267,8 @@ class WOD5eDice {
                   const advancedDiceInput = dialogHTML.querySelector('#inputAdvancedDice')
 
                   // Get the values
-                  let basicValue = basicDiceInput.value ? basicDiceInput.value : 0
-                  const advancedValue = advancedDiceInput.value ? advancedDiceInput.value : 0
+                  let basicValue = basicDiceInput ? basicDiceInput?.value : 0
+                  const advancedValue = advancedDiceInput ? advancedDiceInput?.value : 0
 
                   // Add any custom modifiers
                   const customModifiersList = dialogHTML.querySelectorAll('.custom-modifier')
