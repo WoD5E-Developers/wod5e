@@ -1,4 +1,4 @@
-/* global foundry, fromUuidSync */
+/* global game, foundry, fromUuidSync */
 
 /**
  * Extend the base ActorDirectory functionality
@@ -8,24 +8,14 @@ export class WOD5EActorDirectory extends foundry.applications.sidebar.tabs.Actor
   constructor (...args) {
     super(...args)
 
-    this.groups = {}
-  }
-
-  activateListeners (html) {
-    super.activateListeners(html)
-  }
-
-  async getData () {
-    const data = await super.getData()
-
     // The structure of the sidebar we're going to be manipulating
-    const sidebarStructure = data.tree
+    const actorStructure = game.actors.tree
 
     // List of actors in groups
     const actorsInGroups = []
 
     // Push each group sheet into the groupsList
-    this.groups = sidebarStructure.entries.filter(actor => actor.type === 'group')
+    this.groups = actorStructure.entries.filter(actor => actor.type === 'group')
 
     // Iterate through each group's members list
     this.groups.forEach(group => {
@@ -46,7 +36,5 @@ export class WOD5EActorDirectory extends foundry.applications.sidebar.tabs.Actor
         })
       }
     })
-
-    return data
   }
 }
