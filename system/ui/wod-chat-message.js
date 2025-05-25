@@ -115,40 +115,49 @@ export class WoDChatMessage extends ChatMessage {
   }
 
   // Code pulled from core since this is a private method as of V13
-  async #renderRollContent(messageData) {
-    const data = messageData.message;
+  async #renderRollContent (messageData) {
+    const data = messageData.message
     const renderRolls = async isPrivate => {
-      let html = "";
-      for ( const r of this.rolls ) {
-        html += await r.render({isPrivate});
+      let html = ''
+      for (const r of this.rolls) {
+        html += await r.render({
+          isPrivate
+        })
       }
-      return html;
-    };
+      return html
+    }
 
     // Suppress the "to:" whisper flavor for private rolls
-    if ( this.blind || this.whisper.length ) messageData.isWhisper = false;
+    if (this.blind || this.whisper.length) messageData.isWhisper = false
 
     // Display standard Roll HTML content
-    if ( this.isContentVisible ) {
-      const el = document.createElement("div");
-      el.innerHTML = data.content;  // Ensure the content does not already contain custom HTML
-      if ( !el.childElementCount && this.rolls.length ) data.content = await this.#renderRollHTML(false);
+    if (this.isContentVisible) {
+      const el = document.createElement('div')
+      el.innerHTML = data.content  // Ensure the content does not already contain custom HTML
+      if (!el.childElementCount && this.rolls.length) data.content = await this.#renderRollHTML(false)
     }
 
     // Otherwise, show "rolled privately" messages for Roll content
     else {
-      const name = this.author?.name ?? game.i18n.localize("CHAT.UnknownUser");
-      data.flavor = game.i18n.format("CHAT.PrivateRollContent", {user: foundry.utils.escapeHTML(name)});
-      data.content = await renderRolls(true);
-      messageData.alias = name;
+      const name = this.author?.name ?? game.i18n.localize('CHAT.UnknownUser')
+      data.flavor = game.i18n.format('CHAT.PrivateRollContent', {
+        user: foundry.utils.escapeHTML(name)
+      })
+      data.content = await renderRolls(true)
+      messageData.alias = name
     }
   }
 
-  async #renderRollHTML(isPrivate) {
-    let html = "";
-    for ( const roll of this.rolls ) {
-      html += await roll.render({isPrivate, message: this});
+  async #renderRollHTML (isPrivate) {
+    let html = ""
+
+    for (const roll of this.rolls) {
+      html += await roll.render({
+        isPrivate,
+        message: this
+      })
     }
-    return html;
+
+    return html
   }
 }
