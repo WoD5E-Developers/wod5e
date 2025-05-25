@@ -381,7 +381,6 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       el.addEventListener('click', _onDotCounterEmpty.bind(this))
     })
 
-
     // Drag and drop functionality
     this.#dragDrop.forEach((d) => d.bind(this.element))
 
@@ -401,7 +400,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
         dragover: this._onDragOver.bind(this),
         drop: this._onDrop.bind(this)
       }
-      return new foundry.applications.ux.DragDrop.implementation(d)
+      return new foundry.applications.ux.DragDrop(d)
     })
   }
 

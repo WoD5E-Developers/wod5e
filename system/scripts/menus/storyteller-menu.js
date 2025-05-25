@@ -215,7 +215,7 @@ export class StorytellerMenu extends FormApplication {
           label: game.i18n.localize('WOD5E.Add'),
           callback: async html => {
             const dialogHTML = html[0]
-            
+
             const id = dialogHTML.querySelector('[id=optionSelect]').value
             const label = list[id]?.label || id
             const modifiedKey = `modified${this.listKeys[type].defCategory}`

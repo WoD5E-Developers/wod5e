@@ -86,26 +86,26 @@ export class WoDChatMessage extends ChatMessage {
         if (messageContentElement) messageContentElement.innerHTML = messageContent
 
         const autoCollapse = game.settings.get('vtm5e', 'autoCollapseDescriptions')
-        
+
         if (!autoCollapse) {
           const collapsibleContent = document.querySelector('.collapsible-content')
           if (collapsibleContent) collapsibleContent.style.maxHeight = 'unset'
         }
-        
+
         // Add collapsible toggle event listener
         document.querySelectorAll('.collapsible').forEach(collapsible => {
           collapsible.addEventListener('click', async event => {
             event.preventDefault()
-        
+
             const content = document.querySelector('.collapsible-content')
-        
+
             if (content.style.maxHeight === '0px') {
               content.style.maxHeight = content.scrollHeight + 'px'
             } else {
               content.style.maxHeight = '0px'
             }
           })
-        })        
+        })
       }
     }
 

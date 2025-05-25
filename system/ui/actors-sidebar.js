@@ -46,7 +46,7 @@ export const RenderActorSidebar = async () => {
 
       // Add an event listener for toggling the group collapse
       groupElement.querySelector('.group-header')?.addEventListener('click', async event => {
-        event.preventDefault();
+        event.preventDefault()
 
         const collapsed = !group.system.collapsed
 
@@ -56,7 +56,7 @@ export const RenderActorSidebar = async () => {
         if (game.user.isGM) {
           await group.update({ 'system.collapsed': collapsed })
         }
-      });
+      })
 
       // Add an event listener for opening the group sheet
       groupElement.querySelector('.open-sheet')?.addEventListener('click', async event => {

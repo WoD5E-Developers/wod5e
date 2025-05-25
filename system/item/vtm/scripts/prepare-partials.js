@@ -1,4 +1,4 @@
-/* global foundry*/
+/* global foundry */
 
 export const prepareBaneContext = async function (context, item) {
   const itemData = item.system

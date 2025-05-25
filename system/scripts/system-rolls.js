@@ -335,7 +335,7 @@ class WOD5eDice {
 
               // Add event listeners to the situational modifier toggles
               dialogHTML.querySelectorAll('.mod-checkbox').forEach(function (el) {
-                  el.addEventListener('change', function (event) {
+                el.addEventListener('change', function (event) {
                   event.preventDefault()
 
                   // Actor data

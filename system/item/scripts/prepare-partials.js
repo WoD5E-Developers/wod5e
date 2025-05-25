@@ -1,4 +1,4 @@
-/* global foundry*/
+/* global foundry */
 
 import { generateLocalizedLabel } from '../../api/generate-localization.js'
 

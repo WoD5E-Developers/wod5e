@@ -329,7 +329,6 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       html.querySelector('section.window-content').style.background = ''
     }
 
-
     html[0].querySelectorAll('.actor-header-bg-filepicker input').forEach(input => {
       input.addEventListener('focusout', function (event) {
         event.preventDefault()
@@ -402,7 +401,6 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       html.classList.add('mortal')
     }
 
-
     // Drag and drop functionality
     this.#dragDrop.forEach((d) => d.bind(this.element))
   }
@@ -419,7 +417,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
         dragover: this._onDragOver.bind(this),
         drop: this._onDrop.bind(this)
       }
-      return new foundry.applications.ux.DragDrop.implementation(d)
+      return new foundry.applications.ux.DragDrop(d)
     })
   }
 

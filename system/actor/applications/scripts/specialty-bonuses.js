@@ -48,7 +48,6 @@ export const _onAddModifier = async function (event) {
             // Handle the bonus pathing and making it into an array
             const paths = $(dialogHTML.querySelector('[id=modifier]')).flexdatalist('value')
 
-
             // displayWhenInactive is ALWAYS true for specialties
             const displayWhenInactive = true
 
