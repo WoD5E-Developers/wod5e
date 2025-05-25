@@ -154,7 +154,7 @@ export class wod5eAPI {
               const attributeSelect = dialogHTML.querySelector('#attributeSelect')?.value
               const attributeSelect2 = dialogHTML.querySelector('#attributeSelect2')?.value
               const disciplineSelect = dialogHTML.querySelector('#disciplineSelect')?.value
-              const bloodSurgeCheckbox = dialogHTML.querySelector('#bloodSurge')
+              const bloodSurgeCheckbox = dialogHTML.querySelector('#bloodSurge')?.checked
               const renownSelect = dialogHTML.querySelector('#renownSelect')?.value
 
               // Keep manipulated dataset data in a separate variable
@@ -224,7 +224,7 @@ export class wod5eAPI {
                 selectorsArray = selectorsArray.concat(['disciplines', `disciplines.${disciplineSelect}`])
               }
               // Handle adding a blood surge to the roll
-              if (bloodSurgeCheckbox[0]?.checked) {
+              if (bloodSurgeCheckbox) {
                 selectorsArray.push('blood-surge')
               }
               // Handle adding the resistance selector to the roll
