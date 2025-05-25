@@ -8,7 +8,7 @@ import { prepareGroupFeaturesContext, prepareEquipmentContext, prepareNotepadCon
 // Definition file
 import { ItemTypes } from '../api/def/itemtypes.js'
 // Resource functions
-import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange } from './scripts/counters.js'
+import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange, _onRemoveSquareCounter } from './scripts/counters.js'
 // Various button functions
 import { _onEditImage } from './scripts/on-edit-image.js'
 import { _onToggleLock } from './scripts/on-toggle-lock.js'
@@ -329,7 +329,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       html.querySelector('section.window-content').style.background = ''
     }
 
-    html[0].querySelectorAll('.actor-header-bg-filepicker input').forEach(input => {
+    html.querySelectorAll('.actor-header-bg-filepicker input').forEach(input => {
       input.addEventListener('focusout', function (event) {
         event.preventDefault()
 
@@ -340,7 +340,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       })
     })
 
-    html[0].querySelectorAll('.actor-background-filepicker input').forEach(input => {
+    html.querySelectorAll('.actor-background-filepicker input').forEach(input => {
       input.addEventListener('focusout', function (event) {
         event.preventDefault()
 
@@ -358,31 +358,29 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       html.classList.remove('locked')
     }
 
-    // Resource squares (Health, Willpower)
-    html[0].querySelectorAll('.resource-counter.editable .resource-counter-step').forEach(el => {
+    // Resource square counters
+    html.querySelectorAll('.resource-counter.editable .resource-counter-step').forEach(el => {
       el.addEventListener('click', _onSquareCounterChange.bind(this))
+      el.addEventListener('contextmenu', _onRemoveSquareCounter.bind(this))
     })
-
-    html[0].querySelectorAll('.resource-plus').forEach(el => {
+    html.querySelectorAll('.resource-plus').forEach(el => {
+      el.addEventListener('click', _onResourceChange.bind(this))
+    })
+    html.querySelectorAll('.resource-minus').forEach(el => {
       el.addEventListener('click', _onResourceChange.bind(this))
     })
 
-    html[0].querySelectorAll('.resource-minus').forEach(el => {
-      el.addEventListener('click', _onResourceChange.bind(this))
+    // Resource dot counters
+    html.querySelectorAll('.resource-value .resource-value-step').forEach(el => {
+      el.addEventListener('click', _onDotCounterChange.bind(this))
+    })
+    html.querySelectorAll('.resource-value .resource-value-empty').forEach(el => {
+      el.addEventListener('click', _onDotCounterEmpty.bind(this))
     })
 
     // Activate the setup for the counters
     _setupDotCounters(html)
     _setupSquareCounters(html)
-
-    // Resource dots
-    html[0].querySelectorAll('.resource-value .resource-value-step').forEach(el => {
-      el.addEventListener('click', _onDotCounterChange.bind(this))
-    })
-
-    html[0].querySelectorAll('.resource-value .resource-value-empty').forEach(el => {
-      el.addEventListener('click', _onDotCounterEmpty.bind(this))
-    })
 
     // Add a new sheet styling depending on the type of sheet
     const groupType = this.actor.system.groupType

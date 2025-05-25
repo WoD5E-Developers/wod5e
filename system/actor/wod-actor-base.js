@@ -325,22 +325,22 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       html.querySelector('section.window-content').style.background = ''
     }
 
-    html[0].querySelectorAll('.actor-header-bg-filepicker input').forEach(input => {
+    html.querySelectorAll('.actor-header-bg-filepicker input').forEach(input => {
       input.addEventListener('focusout', function (event) {
         event.preventDefault()
 
-        const filepicker = event.target.parentElement
+        const filepicker = event?.target?.parentElement
         const value = event?.target?.value
 
         filepicker.value = value
       })
     })
 
-    html[0].querySelectorAll('.actor-background-filepicker input').forEach(input => {
+    html.querySelectorAll('.actor-background-filepicker input').forEach(input => {
       input.addEventListener('focusout', function (event) {
         event.preventDefault()
 
-        const filepicker = event.target.parentElement
+        const filepicker = event?.target?.parentElement
         const value = event?.target?.value
 
         filepicker.value = value
@@ -354,32 +354,29 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       html.classList.remove('locked')
     }
 
-    // Resource squares (Health, Willpower)
-    html[0].querySelectorAll('.resource-counter.editable .resource-counter-step').forEach(el => {
+    // Resource square counters
+    html.querySelectorAll('.resource-counter.editable .resource-counter-step').forEach(el => {
       el.addEventListener('click', _onSquareCounterChange.bind(this))
       el.addEventListener('contextmenu', _onRemoveSquareCounter.bind(this))
     })
-
-    html[0].querySelectorAll('.resource-plus').forEach(el => {
+    html.querySelectorAll('.resource-plus').forEach(el => {
+      el.addEventListener('click', _onResourceChange.bind(this))
+    })
+    html.querySelectorAll('.resource-minus').forEach(el => {
       el.addEventListener('click', _onResourceChange.bind(this))
     })
 
-    html[0].querySelectorAll('.resource-minus').forEach(el => {
-      el.addEventListener('click', _onResourceChange.bind(this))
+    // Resource dot counters
+    html.querySelectorAll('.resource-value .resource-value-step').forEach(el => {
+      el.addEventListener('click', _onDotCounterChange.bind(this))
+    })
+    html.querySelectorAll('.resource-value .resource-value-empty').forEach(el => {
+      el.addEventListener('click', _onDotCounterEmpty.bind(this))
     })
 
     // Activate the setup for the counters
     _setupDotCounters(html)
     _setupSquareCounters(html)
-
-    // Resource dots
-    html[0].querySelectorAll('.resource-value .resource-value-step').forEach(el => {
-      el.addEventListener('click', _onDotCounterChange.bind(this))
-    })
-
-    html[0].querySelectorAll('.resource-value .resource-value-empty').forEach(el => {
-      el.addEventListener('click', _onDotCounterEmpty.bind(this))
-    })
 
     // Drag and drop functionality
     this.#dragDrop.forEach((d) => d.bind(this.element))
