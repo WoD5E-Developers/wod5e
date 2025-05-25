@@ -1391,6 +1391,8 @@ body.uk .actor.sheet {
   max-height: 200px;
   min-width: 50px;
   min-height: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .actor.sheet .actor-header .charname:not(input) {
   font-size: 35px;
@@ -1403,6 +1405,7 @@ body.uk .actor.sheet {
 }
 .actor.sheet .actor-header input.charname {
   font-size: 30px;
+  text-align: center;
 }
 .actor.sheet .actor-header .header-fields {
   display: flex;
@@ -3040,6 +3043,9 @@ prose-mirror .editor-menu button {
 .wod-dark-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
   color: var(--hunter-color-3);
 }
+.wod-dark-theme .actor.sheet.hunter .despair-box .despair-toggle {
+  border: 1px solid var(--system-dark-color-4);
+}
 .wod-dark-theme prose-mirror button.icon.toggle {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-1);
@@ -3343,6 +3349,9 @@ prose-mirror .editor-menu button {
 .wod-vampire-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
   color: var(--hunter-color-3);
 }
+.wod-vampire-theme .actor.sheet.hunter .despair-box .despair-toggle {
+  border: 1px solid var(--system-dark-color-4);
+}
 .wod-vampire-theme prose-mirror button.icon.toggle {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-1);
@@ -3603,6 +3612,9 @@ prose-mirror .editor-menu button {
 }
 .wod-werewolf-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
   color: var(--hunter-color-3);
+}
+.wod-werewolf-theme .actor.sheet.hunter .despair-box .despair-toggle {
+  border: 1px solid var(--system-dark-color-4);
 }
 .wod-werewolf-theme prose-mirror button.icon.toggle {
   color: var(--system-dark-color-4);
