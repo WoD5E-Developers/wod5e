@@ -18,29 +18,6 @@ import { cssVariablesRecord } from './update-css-variables.js'
  * @return {Promise}
  */
 export const loadSettings = async function () {
-  // Color Scheme
-  // Custom written to allow for usage of extra themes
-  game.settings.register('vtm5e', 'colorScheme', {
-    name: 'WOD5E.Settings.ColorScheme',
-    hint: 'WOD5E.Settings.ColorSchemeHint',
-    scope: 'client',
-    config: true,
-    type: new foundry.data.fields.StringField({
-      required: true,
-      blank: true,
-      initial: '',
-      choices: {
-        '': 'WOD5E.Settings.ColorSchemeDefault',
-        light: 'WOD5E.Settings.ColorSchemeLight',
-        dark: 'WOD5E.Settings.ColorSchemeDark',
-        vampire: 'WOD5E.Settings.ColorSchemeVampire',
-        hunter: 'WOD5E.Settings.ColorSchemeHunter',
-        werewolf: 'WOD5E.Settings.ColorSchemeWerewolf'
-      }
-    }),
-    onChange: () => _updatePreferredColorScheme()
-  })
-
   // Whether definitions will be sorted alphabetically based on the currently selected language
   game.settings.register('vtm5e', 'sortDefAlphabetically', {
     name: game.i18n.localize('WOD5E.Settings.SortDefAlphabetically'),
@@ -407,27 +384,6 @@ function _rerenderStorytellerWindow () {
   if (storytellerWindow) {
     storytellerWindow.render()
   }
-}
-
-/**
- * Set the global CSS theme according to the user's preferred color scheme settings.
- * Custom written to allow for usage of extra themes
- */
-export const _updatePreferredColorScheme = async function () {
-  let theme
-  const clientSetting = game.settings.get('vtm5e', 'colorScheme')
-
-  // Determine which theme we're using - if it's not set by the client, we base the theme
-  // off of the browser's prefers-color-scheme
-  if (clientSetting) theme = `wod-${clientSetting}-theme`
-  else if (matchMedia('(prefers-color-scheme: dark)').matches) theme = 'wod-dark-theme'
-  else if (matchMedia('(prefers-color-scheme: light)').matches) theme = 'wod-light-theme'
-
-  // Remove existing theme classes
-  document.body.classList.remove('wod-light-theme', 'wod-dark-theme', 'wod-vampire-theme', 'wod-hunter-theme', 'wod-werewolf-theme')
-
-  // Append the theme class to the document body
-  if (theme) document.body.classList.add(theme)
 }
 
 /**
