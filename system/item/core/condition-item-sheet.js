@@ -107,7 +107,7 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     const item = this.item
 
     // Input for the list of keys
-    const input = html[0].querySelector('.effectKeys')
+    const input = html.querySelector('.effectKeys')
 
     // List of keys to choose from
     const data = getEffectKeys()

@@ -161,7 +161,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     const html = this.element
 
     // Input for the list of selectors
-    const input = html[0].querySelector('.modifier-selectors')
+    const input = html.querySelector('.modifier-selectors')
     // List of selectors to choose from
     const skillOptions = Skills.getList({
       prependType: true
