@@ -173,7 +173,7 @@ export const _onEditModifier = async function (event, target) {
             activeWhen.path = dialogHTML.querySelector('#activeWhenPath')?.value ?? null
             activeWhen.value = dialogHTML.querySelector('#activeWhenValue')?.value ?? null
 
-            const unless = dialogHTML.querySelector('#unlessValue')?.value ?? null
+            const unless = dialogHTML.querySelector('#unless')?.value ?? null
 
             // Define the existing list of modifiers
             const itemModifiers = item.system.bonuses
