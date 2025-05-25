@@ -1631,6 +1631,7 @@ body.uk .actor.sheet {
 .actor.sheet .lock-btn {
   max-width: 40px;
   height: 40px;
+  width: 40px;
   align-self: center;
 }
 .actor.sheet .lock-btn i {
