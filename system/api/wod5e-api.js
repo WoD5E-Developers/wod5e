@@ -1,4 +1,4 @@
-/* global renderTemplate, Dialog, ChatMessage, game, ui, WOD5E */
+/* global foundry, Dialog, ChatMessage, game, ui, WOD5E */
 
 import { WOD5eDice } from '../scripts/system-rolls.js'
 import { _onConfirmRoll } from '../actor/scripts/roll.js'
@@ -102,7 +102,7 @@ export class wod5eAPI {
     actor = game.actors.get(ChatMessage.getSpeaker().actor)
   }) {
     // If there's no dataset, send an error and then stop the function
-    if (!dataset) return console.error('No dataset defined.')
+    if (!dataset) return console.error('World of Darkness 5e | No dataset defined.')
 
     // If selectDialog isn't set, just skip to the next dialog immediately
     if (!dataset.selectDialog) return _onConfirmRoll(dataset, actor)
@@ -135,7 +135,7 @@ export class wod5eAPI {
       actorType: actor.type
     }
     // Render the template
-    const content = await renderTemplate(dialogTemplate, dialogData)
+    const content = await foundry.applications.handlebars.renderTemplate(dialogTemplate, dialogData)
 
     // Render the dialog window to select which skill/attribute combo to use
     new Dialog(
@@ -147,13 +147,15 @@ export class wod5eAPI {
             icon: '<i class="fas fa-dice"></i>',
             label: game.i18n.localize('WOD5E.Confirm'),
             callback: async html => {
+              const dialogHTML = html[0]
+
               // Compile the selected data and send it to the roll function
-              const skillSelect = html.find('[id=skillSelect]').val()
-              const attributeSelect = html.find('[id=attributeSelect]').val()
-              const attributeSelect2 = html.find('[id=attributeSelect2]').val()
-              const disciplineSelect = html.find('[id=disciplineSelect]').val()
-              const bloodSurgeCheckbox = html.find('[id=bloodSurge]')
-              const renownSelect = html.find('[id=renownSelect]').val()
+              const skillSelect = dialogHTML.querySelector('#skillSelect')?.value
+              const attributeSelect = dialogHTML.querySelector('#attributeSelect')?.value
+              const attributeSelect2 = dialogHTML.querySelector('#attributeSelect2')?.value
+              const disciplineSelect = dialogHTML.querySelector('#disciplineSelect')?.value
+              const bloodSurgeCheckbox = dialogHTML.querySelector('#bloodSurge')?.checked
+              const renownSelect = dialogHTML.querySelector('#renownSelect')?.value
 
               // Keep manipulated dataset data in a separate variable
               const modifiedDataset = {
@@ -222,7 +224,7 @@ export class wod5eAPI {
                 selectorsArray = selectorsArray.concat(['disciplines', `disciplines.${disciplineSelect}`])
               }
               // Handle adding a blood surge to the roll
-              if (bloodSurgeCheckbox[0]?.checked) {
+              if (bloodSurgeCheckbox) {
                 selectorsArray.push('blood-surge')
               }
               // Handle adding the resistance selector to the roll

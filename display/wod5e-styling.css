@@ -228,22 +228,25 @@
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 300;
+  font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmSU5vAw.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v47/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuaabWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
+  font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Me5Q.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v47/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
+  font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmEU9vAw.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v47/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Amarante';
@@ -257,56 +260,56 @@
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DJGWmmZ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DJGWmmZ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: italic;
   font-weight: 500;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DJ0WmmZ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DJ0WmmZ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: italic;
   font-weight: 600;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DKYXWmZ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DKYXWmZ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: italic;
   font-weight: 700;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DKhXWmZ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybuGDoxxrvAnPhYGxksckM2WMCpRjDj-DKhXWmZ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2MHGuGQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2MHGuGQ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2AnGuGQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2AnGuGQ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df27nauGQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df27nauGQ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vollkorn/v27/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df213auGQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vollkorn/v29/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df213auGQ.ttf) format('truetype');
 }
 /* Fonts */
 @font-face {
@@ -339,25 +342,15 @@
   line-height: 20px;
   padding-top: 2px;
 }
-/* Top-left Logo */
-#logo {
-  width: auto;
-}
-/* Adjust the UI top offset to compensate for the bigger logo */
-#ui-top.offset {
-  margin-left: 15px;
-}
-/* Hide the color scheme option in core Foundry settings
-* because WOD5E defines its own for users to use */
-#client-settings .form-group[data-setting-id="core.colorScheme"] {
-  display: none;
-}
 /* Pause */
 #pause {
   background: none;
 }
+#pause img {
+  position: absolute;
+}
 #pause figcaption {
-  margin-top: 55px;
+  margin-top: 150px;
   font-weight: bold;
 }
 /* Only use this font with the .vampire-font-headers class enabled */
@@ -484,6 +477,10 @@ input[type="number"] {
 .chat-message .dice-result {
   cursor: pointer;
 }
+.chat-message .dice-result .dice-icons {
+  display: flex;
+  flex-flow: wrap;
+}
 .chat-message .modifiers {
   margin-bottom: 2px;
   display: flex;
@@ -552,9 +549,11 @@ p.roll-label.uppercase {
   letter-spacing: 0.03rem;
   line-height: 1.4rem;
 }
-.willpower-reroll .die {
+.reroll .die-select,
+.willpower-reroll .die-select {
   flex: 0;
 }
+.reroll .selected img,
 .willpower-reroll .selected img {
   border: 2px solid var(--system-color-3);
   filter: invert(1);
@@ -739,6 +738,7 @@ h3.item-name {
 }
 #sidebar-tabs {
   margin: 0;
+  padding: 8px 2px;
 }
 #sidebar-tabs > .item {
   border-radius: 0;
@@ -1382,6 +1382,8 @@ body.uk .actor.sheet {
   max-height: 200px;
   min-width: 50px;
   min-height: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .actor.sheet .actor-header .charname:not(input) {
   font-size: 35px;
@@ -1394,6 +1396,7 @@ body.uk .actor.sheet {
 }
 .actor.sheet .actor-header input.charname {
   font-size: 30px;
+  text-align: center;
 }
 .actor.sheet .actor-header .header-fields {
   display: flex;
@@ -1628,6 +1631,7 @@ body.uk .actor.sheet {
 .actor.sheet .lock-btn {
   max-width: 40px;
   height: 40px;
+  width: 40px;
   align-self: center;
 }
 .actor.sheet .lock-btn i {
@@ -2288,7 +2292,8 @@ body.uk .actor.sheet {
   font-size: 16pt;
 }
 .spc.sheet .standard-pools-list,
-.spc.sheet .exceptional-pools-list {
+.spc.sheet .exceptional-pools-list,
+.spc.sheet .description-field {
   margin-bottom: 10px;
 }
 .spc.sheet .general-difficulty {
@@ -2299,6 +2304,7 @@ body.uk .actor.sheet {
   flex-direction: row;
   text-align: center;
   text-align: -webkit-center;
+  flex-flow: wrap;
 }
 .spc.sheet .exceptional-pools-list .spc-item-header {
   font-weight: bold;
@@ -2325,8 +2331,9 @@ body.uk .actor.sheet {
 .locked .exceptional-pools-list {
   place-content: center;
 }
-.locked .exceptional-pools-list a:not(:first-child)::before {
+.locked .exceptional-pools-list a:not(:last-child)::after {
   content: ", ";
+  white-space: pre;
 }
 .exceptional-edit.dialog .exceptional-pool {
   justify-content: space-between;
@@ -2350,73 +2357,14 @@ body.uk .actor.sheet {
   --sidebar-background: url("../assets/ui/base_sidebar.webp");
   --actor-background-default: url("../assets/actor/actor_background.webp");
   --actor-header-default: url("../assets/ui/Actor_Header_Background.webp");
-  --logo-default: url("../assets/ui/WoD_Logo.webp");
-}
-/* All places that use a filter to apply the theme colour */
-.app,
-#controls ol.control-tools > li,
-#navigation #scene-list .scene,
-#navigation #scene-list .scene.view,
-#navigation #scene-list .scene.context,
-#navigation #scene-list .scene.gm,
-#navigation .nav-item,
-#navigation #nav-toggle,
-#hotbar .bar-controls {
-  background: var(--ui-background-texture);
-}
-#sidebar {
-  background: var(--sidebar-background) repeat;
-}
-/* Apply light theme colour */
-.wod-light-theme .app,
-.wod-light-theme #sidebar,
-.wod-light-theme #controls ol.control-tools > li,
-.wod-light-theme #navigation #scene-list .scene,
-.wod-light-theme #navigation #scene-list .scene.view,
-.wod-light-theme #navigation #scene-list .scene.context,
-.wod-light-theme #navigation #scene-list .scene.gm,
-.wod-light-theme #navigation .nav-item,
-.wod-light-theme #navigation #nav-toggle,
-.wod-light-theme #hotbar .bar-controls {
-  background-color: var(--base-theme-filter);
-  background-blend-mode: color-dodge;
-}
-.wod-light-theme #hotbar .macro {
-  background: var(--base-theme-filter);
-}
-/* Form groups adjustments */
-.standard-form .form-group > label,
-.standard-form .form-group:hover > label {
-  color: var(--system-color-5);
-}
-.standard-form .form-group .hint,
-.standard-form .form-group:hover .hint {
-  color: var(--system-color-7);
-}
-.standard-form input[type=range] {
-  --range-thumb-background-color: var(--system-color-5);
-  --range-thumb-border-color: var(--system-dark-color-1);
-}
-.application .window-header {
-  background: var(--system-color-1);
-}
-.application ::selection,
-.application ::placeholder {
-  color: #000000ab;
 }
 .window-content {
   box-shadow: 0 0 5px var(--system-color-1);
 }
-.window-content select,
-.window-content input,
 .window-content .actor-header,
 .window-content .tab {
   color: var(--system-color-5);
   --input-text-color: var(--system-color-5);
-}
-#logo {
-  content: var(--logo-default);
-  filter: drop-shadow(0 -5px 10px #cacaca85) drop-shadow(0 -10px 10px var(--system-color-3)) drop-shadow(0 0 10px #ffffff8f);
 }
 #pause figcaption {
   color: #e4e4e4a9;
@@ -2591,6 +2539,12 @@ prose-mirror .editor-menu button {
 #sidebar-tabs > .item.active {
   background: #690a0a;
 }
+#sidebar-content #chat .chat-scroll {
+  direction: ltr;
+}
+.sidebar-tab {
+  padding-left: 10px;
+}
 .directory .action-buttons button {
   background: #2e2d77;
   color: var(--system-color-6);
@@ -2682,7 +2636,8 @@ prose-mirror .editor-menu button {
   background-color: var(--system-color-7);
   color: var(--system-color-6);
 }
-.chat-message .message-header {
+.chat-message .message-header,
+.chat-message h3 {
   color: var(--system-color-6);
 }
 .chat-message a.content-link,
@@ -2793,7 +2748,7 @@ prose-mirror .editor-menu button {
   --dark-theme-filter: rgba(43, 43, 43, 0.5);
   --actor-background-dark: url(/systems/vtm5e/assets/actor/actor_background_dark.webp);
 }
-.wod-dark-theme {
+.theme-dark {
   /* All places that use a filter to apply the theme colour */
   /* Form groups adjustments */
   /* Vampire Styling */
@@ -2802,248 +2757,252 @@ prose-mirror .editor-menu button {
   /* Journals */
   /* Foundry Controls UI */
 }
-.wod-dark-theme .sheet .window-content {
+.theme-dark .sheet .window-content {
   background: var(--actor-background-dark) repeat;
 }
-.wod-dark-theme .macro-sheet .window-content textarea {
+.theme-dark .macro-sheet .window-content textarea {
   color: var(--system-dark-color-4);
 }
-.wod-dark-theme .content-link {
+.theme-dark .content-link {
   color: var(--system-dark-color-1);
   background-color: #FFF;
 }
-.wod-dark-theme .app,
-.wod-dark-theme #sidebar,
-.wod-dark-theme #controls ol.control-tools > li,
-.wod-dark-theme #navigation #scene-list .scene,
-.wod-dark-theme #navigation #scene-list .scene.view,
-.wod-dark-theme #navigation #scene-list .scene.context,
-.wod-dark-theme #navigation #scene-list .scene.gm,
-.wod-dark-theme #navigation .nav-item,
-.wod-dark-theme #navigation #nav-toggle,
-.wod-dark-theme #hotbar .bar-controls {
+.theme-dark .app,
+.theme-dark #sidebar,
+.theme-dark #controls ol.control-tools > li,
+.theme-dark #navigation #scene-list .scene,
+.theme-dark #navigation #scene-list .scene.view,
+.theme-dark #navigation #scene-list .scene.context,
+.theme-dark #navigation #scene-list .scene.gm,
+.theme-dark #navigation .nav-item,
+.theme-dark #navigation #nav-toggle,
+.theme-dark #hotbar .bar-controls {
   background-color: var(--dark-theme-filter);
   background-blend-mode: color-dodge;
 }
-.wod-dark-theme .standard-form .form-group > label,
-.wod-dark-theme .standard-form .form-group:hover > label {
+.theme-dark .standard-form .form-group > label,
+.theme-dark .standard-form .form-group:hover > label {
   color: var(--system-dark-color-4);
 }
-.wod-dark-theme .standard-form .form-group .hint,
-.wod-dark-theme .standard-form .form-group:hover .hint {
+.theme-dark .standard-form .form-group .hint,
+.theme-dark .standard-form .form-group:hover .hint {
   color: var(--system-dark-color-8);
 }
-.wod-dark-theme .standard-form .sheet-tabs {
+.theme-dark .standard-form .sheet-tabs {
   color: var(--system-dark-color-4);
 }
-.wod-dark-theme .standard-form input[type=range] {
+.theme-dark .standard-form input[type=range] {
   --range-thumb-background-color: var(--system-dark-color-4);
   --range-thumb-border-color: var(--system-dark-color-1);
 }
-.wod-dark-theme .sheet .window-header,
-.wod-dark-theme .dialog .window-header {
+.theme-dark .sheet .window-header,
+.theme-dark .dialog .window-header {
   background-color: var(--system-dark-color-1);
 }
-.wod-dark-theme .sheet .journal-entry-content,
-.wod-dark-theme .dialog .journal-entry-content,
-.wod-dark-theme .sheet .window-content,
-.wod-dark-theme .dialog .window-content {
+.theme-dark .sheet .journal-entry-content,
+.theme-dark .dialog .journal-entry-content,
+.theme-dark .sheet .window-content,
+.theme-dark .dialog .window-content {
   color: var(--system-dark-color-4);
 }
-.wod-dark-theme .sheet .journal-entry-content input,
-.wod-dark-theme .dialog .journal-entry-content input,
-.wod-dark-theme .sheet .window-content input,
-.wod-dark-theme .dialog .window-content input,
-.wod-dark-theme .sheet .journal-entry-content .actor-header,
-.wod-dark-theme .dialog .journal-entry-content .actor-header,
-.wod-dark-theme .sheet .window-content .actor-header,
-.wod-dark-theme .dialog .window-content .actor-header,
-.wod-dark-theme .sheet .journal-entry-content .tab,
-.wod-dark-theme .dialog .journal-entry-content .tab,
-.wod-dark-theme .sheet .window-content .tab,
-.wod-dark-theme .dialog .window-content .tab {
+.theme-dark .sheet .journal-entry-content input,
+.theme-dark .dialog .journal-entry-content input,
+.theme-dark .sheet .window-content input,
+.theme-dark .dialog .window-content input,
+.theme-dark .sheet .journal-entry-content .actor-header,
+.theme-dark .dialog .journal-entry-content .actor-header,
+.theme-dark .sheet .window-content .actor-header,
+.theme-dark .dialog .window-content .actor-header,
+.theme-dark .sheet .journal-entry-content .tab,
+.theme-dark .dialog .journal-entry-content .tab,
+.theme-dark .sheet .window-content .tab,
+.theme-dark .dialog .window-content .tab {
   color: #ffffff;
   --input-text-color: #ffffff;
 }
-.wod-dark-theme .sheet select,
-.wod-dark-theme .dialog select,
-.wod-dark-theme .sheet input,
-.wod-dark-theme .dialog input {
+.theme-dark .sheet select,
+.theme-dark .dialog select,
+.theme-dark .sheet input,
+.theme-dark .dialog input {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.wod-dark-theme .sheet select,
-.wod-dark-theme .dialog select,
-.wod-dark-theme .sheet select optgroup,
-.wod-dark-theme .dialog select optgroup {
+.theme-dark .sheet select,
+.theme-dark .dialog select,
+.theme-dark .sheet select optgroup,
+.theme-dark .dialog select optgroup {
   background-color: var(--system-dark-color-2);
 }
-.wod-dark-theme .sheet select option,
-.wod-dark-theme .dialog select option {
+.theme-dark .sheet select option,
+.theme-dark .dialog select option {
   background-color: var(--system-dark-color-3);
 }
-.wod-dark-theme .sheet button,
-.wod-dark-theme .dialog button {
+.theme-dark .sheet button,
+.theme-dark .dialog button {
   background-color: var(--system-dark-color-3);
   color: var(--system-color-6);
 }
-.wod-dark-theme .sheet button.default,
-.wod-dark-theme .dialog button.default,
-.wod-dark-theme .sheet button:hover,
-.wod-dark-theme .dialog button:hover {
+.theme-dark .sheet button.default,
+.theme-dark .dialog button.default,
+.theme-dark .sheet button:hover,
+.theme-dark .dialog button:hover {
   background-color: var(--system-dark-color-2);
 }
-.wod-dark-theme .sheet ::placeholder,
-.wod-dark-theme .dialog ::placeholder {
+.theme-dark .sheet ::placeholder,
+.theme-dark .dialog ::placeholder {
   color: var(--system-dark-color-5);
 }
-.wod-dark-theme .situational-modifiers {
+.theme-dark .sheet form .notes,
+.theme-dark .dialog form .notes,
+.theme-dark .sheet form .hint,
+.theme-dark .dialog form .hint {
+  color: var(--system-dark-color-4);
+}
+.theme-dark .situational-modifiers {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.wod-dark-theme .actor.sheet {
+.theme-dark .actor.sheet {
   /* Collapsible Descriptions */
   /* Limited View Toggle Button */
   /* Navbar */
   /* Resource Counters */
 }
-.wod-dark-theme .actor.sheet .item-list .item,
-.wod-dark-theme .actor.sheet .resource,
-.wod-dark-theme .actor.sheet prose-mirror .editor-content,
-.wod-dark-theme .actor.sheet .actor-header input,
-.wod-dark-theme .actor.sheet .actor-header .resource,
-.wod-dark-theme .actor.sheet .stats-container,
-.wod-dark-theme .actor.sheet .stats-container .stats-footer {
+.theme-dark .actor.sheet .item-list .item,
+.theme-dark .actor.sheet .resource,
+.theme-dark .actor.sheet prose-mirror .editor-content,
+.theme-dark .actor.sheet .actor-header input,
+.theme-dark .actor.sheet .actor-header .resource,
+.theme-dark .actor.sheet .stats-container,
+.theme-dark .actor.sheet .stats-container .stats-footer {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.wod-dark-theme .actor.sheet .collapsible-content {
+.theme-dark .actor.sheet .collapsible-content {
   color: var(--system-dark-color-4);
   background: var(--system-dark-color-2);
 }
-.wod-dark-theme .actor.sheet .toggle-limited {
+.theme-dark .actor.sheet .toggle-limited {
   color: var(--system-dark-color-4);
 }
-.wod-dark-theme .actor.sheet .toggle-limited:not(.visible) {
+.theme-dark .actor.sheet .toggle-limited:not(.visible) {
   color: var(--system-dark-color-8);
 }
-.wod-dark-theme .actor.sheet .sheet-tabs .navicon,
-.wod-dark-theme .actor.sheet .sheet-tabs .lock-btn {
+.theme-dark .actor.sheet .sheet-tabs .navicon,
+.theme-dark .actor.sheet .sheet-tabs .lock-btn {
   color: var(--system-dark-color-4);
 }
-.wod-dark-theme .actor.sheet .sheet-tabs .lock-btn,
-.wod-dark-theme .actor.sheet .sheet-tabs > [data-tab] .navicon {
+.theme-dark .actor.sheet .sheet-tabs .lock-btn,
+.theme-dark .actor.sheet .sheet-tabs > [data-tab] .navicon {
   background-color: var(--system-dark-color-1);
   border: 1px solid var(--system-dark-color-4);
 }
-.wod-dark-theme .actor.sheet .lock-btn:hover {
+.theme-dark .actor.sheet .lock-btn:hover {
   color: #ffffff;
 }
-.wod-dark-theme .actor.sheet .sheet-tabs > [data-tab].active .navicon {
+.theme-dark .actor.sheet .sheet-tabs > [data-tab].active .navicon {
   background: var(--system-dark-color-7);
   border: 1px solid var(--system-dark-color-1);
 }
-.wod-dark-theme .actor.sheet .resource-value .resource-value-step:not(.active) {
+.theme-dark .actor.sheet .resource-value .resource-value-step:not(.active) {
   background-color: var(--system-dark-color-3);
 }
-.wod-dark-theme .actor.sheet .resource-value .resource-value-empty {
+.theme-dark .actor.sheet .resource-value .resource-value-empty {
   border: 1px solid var(--system-dark-color-3);
   background: linear-gradient(45deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, #a5a5a5 45%, #a5a5a5 55%, transparent 57%, transparent 100%);
 }
-.wod-dark-theme .actor.sheet .resource-counter .resource-counter-step {
+.theme-dark .actor.sheet .resource-counter .resource-counter-step {
   border: 1px solid var(--system-dark-color-4);
 }
-.wod-dark-theme .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
+.theme-dark .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
   background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
-.wod-dark-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
+.theme-dark .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
-.wod-dark-theme .actor.sheet .item-list .category {
+.theme-dark .actor.sheet .item-list .category {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
   /* Power Descriptions */
 }
-.wod-dark-theme .actor.sheet .item-list .category .discipline-description,
-.wod-dark-theme .actor.sheet .item-list .category .edge-description,
-.wod-dark-theme .actor.sheet .item-list .category .gift-description {
+.theme-dark .actor.sheet .item-list .category .discipline-description,
+.theme-dark .actor.sheet .item-list .category .edge-description,
+.theme-dark .actor.sheet .item-list .category .gift-description {
   color: var(--system-dark-color-4);
 }
-.wod-dark-theme .dialog-app .window-content,
-.wod-dark-theme .item.sheet .window-content,
-.wod-dark-theme .dialog .window-content {
+.theme-dark .dialog-app .window-content,
+.theme-dark .item.sheet .window-content,
+.theme-dark .dialog .window-content {
   background: var(--system-dark-color-2);
 }
-.wod-dark-theme .dialog-app input,
-.wod-dark-theme .item.sheet input,
-.wod-dark-theme .dialog input {
+.theme-dark .dialog-app input,
+.theme-dark .item.sheet input,
+.theme-dark .dialog input {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.wod-dark-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
-.wod-dark-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
+.theme-dark .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
+.theme-dark .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.wod-dark-theme .sheet.werewolf .resource-value .resource-value-step.active,
-.wod-dark-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
-.wod-dark-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
+.theme-dark .sheet.werewolf .resource-value .resource-value-step.active,
+.theme-dark .sheet.werewolf .resource-value-static .resource-value-static-step.active,
+.theme-dark .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
   background-color: var(--werewolf-color-3);
 }
-.wod-dark-theme .sheet.werewolf button.rage-button:hover {
+.theme-dark .sheet.werewolf button.rage-button:hover {
   background-color: #752e11ea;
 }
-.wod-dark-theme .actor.sheet.werewolf .tabs-container .active.item .navicon {
+.theme-dark .actor.sheet.werewolf .tabs-container .active.item .navicon {
   background-color: #752e11ea;
 }
-.wod-dark-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
-.wod-dark-theme .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
+.theme-dark .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
+.theme-dark .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.wod-dark-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
-.wod-dark-theme .actor.sheet.werewolf .tabs-container [data-tab="wolf"] .navicon {
+.theme-dark .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
+.theme-dark .actor.sheet.werewolf .tabs-container [data-tab="wolf"] .navicon {
   color: var(--werewolf-color-3);
 }
-.wod-dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
-.wod-dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
+.theme-dark .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
+.theme-dark .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.wod-dark-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form.form-active {
+.theme-dark .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form.form-active {
   background-color: #833501e0;
 }
-.wod-dark-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
+.theme-dark .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
-.wod-dark-theme .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
+.theme-dark .actor.sheet.hunter .tabs-container .navicon .wod5e-symbol {
   color: var(--hunter-color-3);
 }
-.wod-dark-theme prose-mirror button.icon.toggle {
+.theme-dark prose-mirror button.icon.toggle {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-1);
 }
-.wod-dark-theme .journal-entry .directory input[type="search"] {
+.theme-dark .journal-entry .directory input[type="search"] {
   background: transparent;
 }
-.wod-dark-theme .app.journal-entry .journal-entry-content {
+.theme-dark .app.journal-entry .journal-entry-content {
   background-color: #121212;
   background-blend-mode: color;
 }
-.wod-dark-theme #controls ol.control-tools .has-notes::after {
+.theme-dark #controls ol.control-tools .has-notes::after {
   color: var(--system-dark-color-1);
 }
-.wod-dark-theme #hotbar .macro {
+.theme-dark #hotbar .macro {
   background: var(--dark-theme-filter);
 }
 
 /* Variables */
 :root {
-  --logo-hunter: url("../assets/ui/HtR_Logo.webp");
   --hunter-theme-filter: #D18125;
 }
 .wod-hunter-theme {
   /* All places that use a filter to apply the theme colour */
-  /* Logo */
   /* Foundry Controls UI */
 }
 .wod-hunter-theme .sheet .window-content {
@@ -3065,10 +3024,6 @@ prose-mirror .editor-menu button {
 .wod-hunter-theme #hotbar .macro {
   background: var(--hunter-theme-filter);
 }
-.wod-hunter-theme #logo {
-  content: var(--logo-hunter);
-  filter: drop-shadow(0 -5px 10px #cacacac4) drop-shadow(0 -10px 10px var(--hunter-theme-filter)) drop-shadow(0 0 10px #ffffffb4);
-}
 .wod-hunter-theme .sheet .window-header,
 .wod-hunter-theme .dialog .window-header {
   background-color: var(--hunter-color-1);
@@ -3080,12 +3035,10 @@ prose-mirror .editor-menu button {
 
 /* Variables */
 :root {
-  --logo-vampire: url("../assets/ui/VtM_Logo.webp");
   --vampire-theme-filter: #FF2B2B80;
 }
 .wod-vampire-theme {
   /* All places that use a filter to apply the theme colour */
-  /* Logo */
   /* Vampire Styling */
   /* Werewolf Styling */
   /* Hunter Styling */
@@ -3117,10 +3070,6 @@ prose-mirror .editor-menu button {
 }
 .wod-vampire-theme #hotbar .macro {
   background: var(--vampire-theme-filter);
-}
-.wod-vampire-theme #logo {
-  content: var(--logo-vampire);
-  filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 0 10px var(--vampire-theme-filter)) drop-shadow(0 0 15px #ffffff);
 }
 .wod-vampire-theme .standard-form .form-group > label,
 .wod-vampire-theme .standard-form .form-group:hover > label {
@@ -3194,6 +3143,12 @@ prose-mirror .editor-menu button {
 .wod-vampire-theme .sheet ::placeholder,
 .wod-vampire-theme .dialog ::placeholder {
   color: var(--system-dark-color-5);
+}
+.wod-vampire-theme .sheet form .notes,
+.wod-vampire-theme .dialog form .notes,
+.wod-vampire-theme .sheet form .hint,
+.wod-vampire-theme .dialog form .hint {
+  color: var(--system-dark-color-4);
 }
 .wod-vampire-theme .situational-modifiers {
   background-color: var(--system-dark-color-2);
@@ -3335,12 +3290,10 @@ prose-mirror .editor-menu button {
 
 /* Variables */
 :root {
-  --logo-werewolf: url("../assets/ui/WtA_Logo.webp");
   --werewolf-theme-filter: #BE660080;
 }
 .wod-werewolf-theme {
   /* All places that use a filter to apply the theme colour */
-  /* Logo */
   /* Vampire Styling */
   /* Werewolf Styling */
   /* Hunter Styling */
@@ -3372,10 +3325,6 @@ prose-mirror .editor-menu button {
 }
 .wod-werewolf-theme #hotbar .macro {
   background: var(--werewolf-theme-filter);
-}
-.wod-werewolf-theme #logo {
-  content: var(--logo-werewolf);
-  filter: drop-shadow(0 -5px 10px #cacacad3) drop-shadow(0 -10px 10px var(--ui-background-werewolf-color)) drop-shadow(0 0 10px #ffffffe3);
 }
 .wod-werewolf-theme .standard-form .form-group > label,
 .wod-werewolf-theme .standard-form .form-group:hover > label {
@@ -3449,6 +3398,12 @@ prose-mirror .editor-menu button {
 .wod-werewolf-theme .sheet ::placeholder,
 .wod-werewolf-theme .dialog ::placeholder {
   color: var(--system-dark-color-5);
+}
+.wod-werewolf-theme .sheet form .notes,
+.wod-werewolf-theme .dialog form .notes,
+.wod-werewolf-theme .sheet form .hint,
+.wod-werewolf-theme .dialog form .hint {
+  color: var(--system-dark-color-4);
 }
 .wod-werewolf-theme .situational-modifiers {
   background-color: var(--system-dark-color-2);

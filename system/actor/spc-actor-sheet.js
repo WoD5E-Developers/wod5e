@@ -180,23 +180,23 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
 
   _onRender () {
     super._onRender()
-    const html = $(this.element)
+    const html = this.element
 
     // Add a new sheet styling depending on the type of sheet
     const gamesystem = this.actor.system.gamesystem
     if (gamesystem === 'vampire') {
-      html.removeClass('hunter werewolf mortal')
-      html.addClass('vampire')
+      html.classList.remove('hunter', 'werewolf', 'mortal')
+      html.classList.add('vampire')
     } else if (gamesystem === 'hunter') {
-      html.removeClass('vampire werewolf mortal')
-      html.addClass('hunter')
+      html.classList.remove('vampire', 'werewolf', 'mortal')
+      html.classList.add('hunter')
     } else if (gamesystem === 'werewolf') {
-      html.removeClass('hunter vampire mortal')
-      html.addClass('werewolf')
+      html.classList.remove('hunter', 'vampire', 'mortal')
+      html.classList.add('werewolf')
     } else {
       // Default to a mortal sheet
-      html.removeClass('hunter vampire werewolf')
-      html.addClass('mortal')
+      html.classList.remove('hunter', 'vampire', 'werewolf')
+      html.classList.add('mortal')
     }
   }
 }

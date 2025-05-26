@@ -103,16 +103,16 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   async _onRender () {
     super._onRender()
 
-    const html = $(this.element)
+    const html = this.element
     const item = this.item
 
     // Input for the list of keys
-    const input = html.find('.effectKeys')
+    const input = html.querySelector('.effectKeys')
 
     // List of keys to choose from
     const data = getEffectKeys()
 
-    input.flexdatalist({
+    $(input).flexdatalist({
       selectionRequired: 1,
       minLength: 1,
       searchIn: ['displayName'],
@@ -122,7 +122,7 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       data
     })
 
-    input.on('change:flexdatalist', function (event) {
+    $(input).on('change:flexdatalist', function (event) {
       event.preventDefault()
 
       // Input for the list of keys

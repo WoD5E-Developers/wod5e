@@ -13,9 +13,7 @@
                     <a class="exceptional-pool resource-label rollable{{#if ../locked}} locked{{/if}}" data-action="roll" data-value-paths="exceptionaldicepools.{{key}}.value"
                             data-select-dialog="false" data-label="{{exceptionalskill.displayName}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}
                             data-selectors="skills skills.{{key}}">
-                        <b>{{exceptionalskill.displayName}}</b>
-                        <span class="exceptional-value">{{exceptionalskill.value}}</span>
-                    </a>
+                        <b>{{exceptionalskill.displayName}}</b> <span class="exceptional-value">{{exceptionalskill.value}}</span></a>
                 {{/if}}
             {{/each}}
         {{else}}

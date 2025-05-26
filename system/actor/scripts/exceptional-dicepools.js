@@ -34,17 +34,19 @@ export const _onEditExceptionalPools = async function (event) {
       icon: '<i class="fas fa-check"></i>',
       label: game.i18n.localize('WOD5E.Save'),
       callback: async (html) => {
+        const dialogHTML = html[0]
+
         // Store the updated variables here
         const exceptionaldicepools = {}
         // Define the list of pools
-        const exceptionalPool = html.find('.exceptional-pool')
+        const exceptionalPool = dialogHTML.querySelector('.exceptional-pool')
 
         // Make a value in the object to store the checked property
         exceptionalPool.each(function (pool) {
           const id = exceptionalPool[pool].dataset.id
           exceptionaldicepools[id] ??= {}
           exceptionaldicepools[id] = {
-            active: $(exceptionalPool[pool]).find('.exceptional-checkbox').prop('checked')
+            active: $(exceptionalPool[pool]).find('.exceptional-checkbox').checked
           }
         })
 

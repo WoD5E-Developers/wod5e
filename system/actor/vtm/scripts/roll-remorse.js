@@ -1,4 +1,4 @@
-/* global game, renderTemplate, ChatMessage */
+/* global game, foundry, ChatMessage */
 
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 
@@ -23,7 +23,7 @@ export const _onRemorseRoll = async function (event) {
     quickRoll: true,
     disableAdvancedDice: true,
     callback: async (err, rollData) => {
-      if (err) console.log(err)
+      if (err) console.log('World of Darkness 5e | ' + err)
 
       const hasSuccess = rollData.terms[0].results.some(result => result.success)
 
@@ -34,7 +34,7 @@ export const _onRemorseRoll = async function (event) {
         await actor.update({ 'system.humanity.value': Math.max(humanity - 1, 0) })
         await actor.update({ 'system.humanity.stains': 0 })
 
-        await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+        await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
           name: game.i18n.localize('WOD5E.VTM.RemorseFailed'),
           img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
           description: game.i18n.format('WOD5E.VTM.RemorseFailedDescription', {

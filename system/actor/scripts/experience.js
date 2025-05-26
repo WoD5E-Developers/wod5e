@@ -1,4 +1,4 @@
-/* global game, renderTemplate, foundry, Dialog */
+/* global game, foundry, Dialog */
 
 export const _onAddExperience = async function (event, target) {
   event.preventDefault()
@@ -16,7 +16,7 @@ export const _onAddExperience = async function (event, target) {
     name: isSpendingXP ? game.i18n.localize('WOD5E.Experience.XPSpent') : game.i18n.localize('WOD5E.Experience.XPGained'),
     value: 0
   }
-  const experienceContent = await renderTemplate(experienceTemplate, experienceData)
+  const experienceContent = await foundry.applications.handlebars.renderTemplate(experienceTemplate, experienceData)
 
   new Dialog(
     {
@@ -27,9 +27,11 @@ export const _onAddExperience = async function (event, target) {
           icon: '<i class="fas fa-check"></i>',
           label: game.i18n.localize('WOD5E.Add'),
           callback: async html => {
+            const dialogHTML = html[0]
+
             // Get the source (name) and the value (modifier) from the dialogue
-            const name = html.find('[id=xpName]').val()
-            const value = html.find('[id=xpValue]').val()
+            const name = dialogHTML.querySelector('[id=xpName]').value
+            const value = dialogHTML.querySelector('[id=xpValue]').value
 
             // Put the new experience into an object
             let newExperience = {}
@@ -78,7 +80,7 @@ export const _onRemoveExperience = async function (event, target) {
   const experienceToDelete = actorExperiences.find(exp => exp.id === experienceId)
 
   if (!experienceToDelete) {
-    console.error(`Experience with ID ${experienceId} not found.`)
+    console.error(`World of Darkness 5e | Experience with ID ${experienceId} not found.`)
 
     return
   }
@@ -138,7 +140,7 @@ export const _onEditExperience = async function (event, target) {
   const experienceToEdit = (actor.system.experiences || []).find(exp => exp.id === experienceId)
 
   if (!experienceToEdit) {
-    console.error(`Experience with ID ${experienceId} not found.`)
+    console.error(`World of Darkness 5e | Experience with ID ${experienceId} not found.`)
 
     return
   }
@@ -149,7 +151,7 @@ export const _onEditExperience = async function (event, target) {
     name: experienceToEdit.name,
     value: experienceToEdit.value
   }
-  const experienceContent = await renderTemplate(experienceTemplate, experienceData)
+  const experienceContent = await foundry.applications.handlebars.renderTemplate(experienceTemplate, experienceData)
 
   new Dialog(
     {
@@ -160,9 +162,11 @@ export const _onEditExperience = async function (event, target) {
           icon: '<i class="fas fa-check"></i>',
           label: game.i18n.localize('WOD5E.Save'),
           callback: async html => {
+            const dialogHTML = html[0]
+
             // Get the updated name and value from the dialogue
-            const name = html.find('[id=xpName]').val()
-            const value = html.find('[id=xpValue]').val()
+            const name = dialogHTML.querySelector('[id=xpName]').value
+            const value = dialogHTML.querySelector('[id=xpValue]').value
 
             // Update the experience
             experienceToEdit.name = name

@@ -112,7 +112,7 @@ export const handleFormChange = async function (actor, form, diceCount) {
       decreaseRage: true,
       selectors,
       callback: async (err, rollData) => {
-        if (err) console.log(err)
+        if (err) console.log('World of Darkness 5e | ' + err)
 
         // Calculate the number of rage dice the actor has left
         const failures = rollData.terms[2].results.filter(result => !result.success).length

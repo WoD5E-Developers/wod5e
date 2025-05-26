@@ -27,6 +27,16 @@ import { AuspiceItemSheet } from '../../item/wta/auspice-sheet.js'
 import { TalismanItemSheet } from '../../item/wta/talisman-item-sheet.js'
 import { TribeItemSheet } from '../../item/wta/tribe-item-sheet.js'
 
+/*
+*   Each item type is defined through here; this includes the item's label,
+*   id ('types'), class, restricted actor types (a whitelist), and excluded
+*   actor types (a blacklist.)
+*
+*   The "limitOnePerActor" property also enforces if an actor isn't supposed
+*   to have more than one of that item, and it'll make the actor sheet delete
+*   the old version of an item from the actor upon being added.
+*/
+
 export class ItemTypes extends BaseDefinitionClass {
   // Run any necessary compilation on ready
   static onReady () {
@@ -133,8 +143,7 @@ export class ItemTypes extends BaseDefinitionClass {
     img: 'systems/vtm5e/assets/icons/items/discipline.png',
     types: ['power'],
     sheetClass: DisciplineItemSheet,
-    restrictedActorTypes: ['vampire', 'ghoul'],
-    excludedActorTypes: ['spc']
+    restrictedActorTypes: ['vampire', 'ghoul']
   }
 
   static boon = {
@@ -172,8 +181,7 @@ export class ItemTypes extends BaseDefinitionClass {
     img: 'systems/vtm5e/assets/icons/items/edge.png',
     types: ['perk'],
     sheetClass: PerkItemSheet,
-    restrictedActorTypes: ['hunter'],
-    excludedActorTypes: ['spc']
+    restrictedActorTypes: ['hunter']
   }
 
   static edgepool = {
@@ -220,8 +228,7 @@ export class ItemTypes extends BaseDefinitionClass {
     img: 'systems/vtm5e/assets/icons/items/gift.png',
     types: ['gift'],
     sheetClass: GiftItemSheet,
-    restrictedActorTypes: ['werewolf'],
-    excludedActorTypes: ['spc']
+    restrictedActorTypes: ['werewolf']
   }
 }
 

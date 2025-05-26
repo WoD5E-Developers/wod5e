@@ -50,30 +50,34 @@ export class SplatColorsMenu extends FormApplication {
     JSColor.install()
 
     // On input change, update colours
-    html.find('.color-input').on('change', function (event) {
-      event.preventDefault()
+    html[0].querySelectorAll('.color-input').forEach(input => {
+      input.addEventListener('change', function (event) {
+        event.preventDefault()
 
-      const setting = event.target.dataset.settingId
-      const cssVariable = event.target.dataset.cssVariable
-      const value = event.target.value
+        const setting = event.target.dataset.settingId
+        const cssVariable = event.target.dataset.cssVariable
+        const value = event.target.value
 
-      _updateCSSVariable(setting, cssVariable, value)
+        _updateCSSVariable(setting, cssVariable, value)
+      })
     })
 
-    html.find('.reset-color').click(async event => {
-      event.preventDefault()
+    html[0].querySelectorAll('.reset-color').forEach(resetBtn => {
+      resetBtn.addEventListener('click', async event => {
+        event.preventDefault()
 
-      const inputId = event.currentTarget.dataset.inputId
-      const settingId = event.currentTarget.dataset.settingId
-      const cssVariable = event.currentTarget.dataset.cssVariable
+        const inputId = event.currentTarget.dataset.inputId
+        const settingId = event.currentTarget.dataset.settingId
+        const cssVariable = event.currentTarget.dataset.cssVariable
 
-      if (inputId && settingId) {
-        const inputElement = html.find(`#${inputId}`)
-        const defaultColor = game.settings.settings.get(`vtm5e.${settingId}`).default
+        if (inputId && settingId) {
+          const inputElement = document.querySelector(`#${inputId}`)
+          const defaultColor = game.settings.settings.get(`vtm5e.${settingId}`).default
 
-        inputElement[0].jscolor.fromString(defaultColor)
-        _updateCSSVariable(settingId, cssVariable, defaultColor)
-      }
+          inputElement.jscolor.fromString(defaultColor)
+          _updateCSSVariable(settingId, cssVariable, defaultColor)
+        }
+      })
     })
   }
 }

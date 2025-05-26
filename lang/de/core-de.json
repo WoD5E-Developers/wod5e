@@ -50,6 +50,7 @@
     "GroupSheet": "Gruppen-Bogen",
     "Health": "Gesundheit",
     "Inactive": "Inaktiv",
+    "_Issues": "",
     "Label": "Label",
     "Level": "Stufe",
     "_LicensedUnderDarkPack": "",
@@ -111,6 +112,7 @@
     },
     "Chat": {
       "HasReceivedWillpowerDamage": "{actor} hat {willpowerDamage} Punkte Willenskraft-Schaden erlitten",
+      "_Reroll": "",
       "Rolling": "Würfeln",
       "RollingWillpower": "Würfle Willenskraft",
       "RollWillpower": "Willenskraft würfeln",

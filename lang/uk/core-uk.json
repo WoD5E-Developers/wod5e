@@ -50,6 +50,7 @@
     "_GroupSheet": "",
     "Health": "Здоров'я",
     "_Inactive": "",
+    "_Issues": "",
     "_Label": "",
     "Level": "Рівень",
     "_LicensedUnderDarkPack": "",
@@ -111,6 +112,7 @@
     },
     "Chat": {
       "_HasReceivedWillpowerDamage": "",
+      "_Reroll": "",
       "Rolling": "Перевірити",
       "RollingWillpower": "Перевірити Силу волі",
       "RollWillpower": "Пройти перевірку Силу волі",

@@ -50,6 +50,7 @@
     "GroupSheet": "Лист группы",
     "Health": "Здоровье",
     "Inactive": "Неактивный",
+    "_Issues": "",
     "Label": "Элемент",
     "Level": "Уровень",
     "LicensedUnderDarkPack": "Лицензия The Dark Pack",
@@ -111,6 +112,7 @@
     },
     "Chat": {
       "HasReceivedWillpowerDamage": "{actor} получил(-а) {willpowerDamage} очков стресса.",
+      "_Reroll": "",
       "Rolling": "Проверка",
       "RollingWillpower": "Проверка Воли",
       "RollWillpower": "Бросок проверки Воли",

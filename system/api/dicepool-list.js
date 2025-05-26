@@ -33,11 +33,16 @@ export const getDicepoolList = async (document) => {
   if (gamesystem === 'vampire' || isNotEmbedded) {
     const disciplines = WOD5E.Disciplines.getList({})
     for (const [key, value] of Object.entries(disciplines)) {
-      masterList.push({
-        value: `disciplines.${key}`,
-        label: value.displayName,
-        group: game.i18n.localize('WOD5E.VTM.Disciplines')
-      })
+      // Add an exlusion list for disciplines that should not be included here (Ceremonies and Rituals)
+      const excludedDisciplineKeys = ['ceremonies', 'rituals']
+
+      if (excludedDisciplineKeys.indexOf(key) === -1) {
+        masterList.push({
+          value: `disciplines.${key}`,
+          label: value.displayName,
+          group: game.i18n.localize('WOD5E.VTM.Disciplines')
+        })
+      }
     }
   }
 

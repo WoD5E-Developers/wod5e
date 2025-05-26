@@ -50,6 +50,7 @@
     "GroupSheet": "Feuille de groupe",
     "Health": "Santé",
     "Inactive": "Inactive",
+    "_Issues": "",
     "_Label": "",
     "Level": "Niveau",
     "LicensedUnderDarkPack": "Licence Pack World of Darkness",
@@ -111,6 +112,7 @@
     },
     "Chat": {
       "HasReceivedWillpowerDamage": "{actor} a reçu {willpowerDamage} dégâts de volonté.",
+      "_Reroll": "",
       "Rolling": "Jet",
       "RollingWillpower": "Jet de Volonté",
       "RollWillpower": "Test la volonté",
