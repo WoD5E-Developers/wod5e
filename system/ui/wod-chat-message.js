@@ -5,32 +5,47 @@ import { generateRollMessage } from '../scripts/rolls/roll-message.js'
 export class WoDChatMessage extends ChatMessage {
   /**
    * Render the HTML for the ChatMessage which should be added to the log
-   * @returns {Promise<jQuery>}
+   * @param {object} [options]             Additional options passed to the Handlebars template.
+   * @param {boolean} [options.canDelete]  Render a delete button. By default, this is true for GM users.
+   * @param {boolean} [options.canClose]   Render a close button for dismissing chat card notifications.
+   * @returns {Promise<HTMLElement>}
    */
-  async getHTML () {
+  async renderHTML({ canDelete, canClose=false, ...rest }={}) {
+    canDelete ??= game.user.isGM // By default, GM users have the trash-bin icon in the chat log itself
+
+    if (typeof this.system.renderHTML === 'function') {
+      const html = await this.system.renderHTML({ canDelete, canClose, ...rest })
+      Hooks.callAll('renderChatMessageHTML', this, html)
+      return html
+    }
+
     // Determine some metadata
+    const speakerActor = this.speakerActor
     const data = this.toObject(false)
-    data.content = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.content, { rollData: this.getRollData() })
+    data.content = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.content, {
+      rollData: this.getRollData(),
+      secrets: speakerActor?.isOwner ?? game.user.isGM
+    })
     const isWhisper = this.whisper.length
 
     // Construct message data
     const messageData = {
+      ...rest,
+      canDelete,
+      canClose,
       message: data,
       user: game.user,
       author: this.author,
+      speakerActor,
       alias: this.alias,
       cssClass: [
         this.style === CONST.CHAT_MESSAGE_STYLES.IC ? 'ic' : null,
         this.style === CONST.CHAT_MESSAGE_STYLES.EMOTE ? 'emote' : null,
         isWhisper ? 'whisper' : null,
-        this.blind ? 'blind' : null
+        this.blind ? 'blind': null
       ].filterJoin(' '),
       isWhisper: this.whisper.length,
-      canDelete: game.user.isGM, // Only GM users are allowed to have the trash-bin icon in the chat log itself
-      whisperTo: this.whisper.map(u => {
-        const user = game.users.get(u)
-        return user ? user.name : null
-      }).filterJoin(', ')
+      whisperTo: this.whisper.map(u => game.users.get(u)?.name).filterJoin(', ')
     }
 
     // Render message data specifically for ROLL type messages
@@ -41,8 +56,7 @@ export class WoDChatMessage extends ChatMessage {
 
     // Render the chat message
     let html = await foundry.applications.handlebars.renderTemplate(CONFIG.ChatMessage.template, messageData)
-
-    html = $(html)
+    html = foundry.utils.parseHTML(html)
 
     if (this.isRoll) {
       // Append a system value if roll classes are detected
@@ -82,35 +96,22 @@ export class WoDChatMessage extends ChatMessage {
           isContentVisible: this.isContentVisible
         })
 
-        const messageContentElement = document.querySelector('.message-content')
-        if (messageContentElement) messageContentElement.innerHTML = messageContent
-
-        const autoCollapse = game.settings.get('vtm5e', 'autoCollapseDescriptions')
-
-        if (!autoCollapse) {
-          const collapsibleContent = document.querySelector('.collapsible-content')
-          if (collapsibleContent) collapsibleContent.style.maxHeight = 'unset'
-        }
-
-        // Add collapsible toggle event listener
-        document.querySelectorAll('.collapsible').forEach(collapsible => {
-          collapsible.addEventListener('click', async event => {
-            event.preventDefault()
-
-            const content = document.querySelector('.collapsible-content')
-
-            if (content.style.maxHeight === '0px') {
-              content.style.maxHeight = content.scrollHeight + 'px'
-            } else {
-              content.style.maxHeight = '0px'
-            }
-          })
-        })
+        // Create an HTML element with the provided message content
+        const messageHTML = document.createElement('div')
+        messageHTML.innerHTML = messageContent
       }
     }
 
     // Flag expanded state of dice rolls
-    Hooks.call('renderChatMessage', this, html, messageData)
+    Hooks.callAll('renderChatMessageHTML', this, html, messageData)
+
+    // Get whether descriptions should auto-collapse for this user or not and apply the styling
+    const autoCollapse = game.settings.get('vtm5e', 'autoCollapseDescriptions')
+    if (!autoCollapse) {
+      const collapsibleContent = html.querySelector('.collapsible-content')
+      if (collapsibleContent) collapsibleContent.style.maxHeight = 'unset'
+    }
+
     return html
   }
 

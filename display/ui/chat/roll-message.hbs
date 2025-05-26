@@ -1,7 +1,7 @@
 <div class="collapsible-container">
     {{#if isContentVisible}}
-        <p class="roll-label uppercase collapsible">{{title}}</p>
-        <div class="dice-roll">
+        <p class="roll-label uppercase collapsible" data-action="toggleCollapse">{{title}}</p>
+        <div class="dice-roll" data-action="expandRoll">
             <div class="modifiers">
                 {{#each activeModifiers as |mod key|}}
                     <label class="mod">
@@ -26,35 +26,36 @@
                     <hr>
                 {{/if}}
                 <div class="dice-tooltip">
-                    <div class="dice-formula">{{ fullFormula }}</div>
-                    <section class="tooltip-part">
-                        <div class="dice">
-                        <header class="part-header flexrow">
-                            <span class="part-formula">{{basicDice.formula}}</span>
+                    <div class="wrapper">
+                        <section class="tooltip-part">
+                            <div class="dice">
+                            <header class="part-header flexrow">
+                                <span class="part-formula">{{basicDice.formula}}</span>
 
-                            <span class="part-total">{{basicDice.total}}</span>
-                        </header>
-                        <ol class="dice-rolls">
-                            {{#each basicDice.results as |die key|}}
-                            <li class="roll d10">{{die.result}}</li>
-                            {{/each}}
-                        </ol>
-                        </div>
-                    </section>
-                    <section class="tooltip-part">
-                        <div class="dice">
-                        <header class="part-header flexrow">
-                            <span class="part-formula">{{advancedDice.formula}}</span>
+                                <span class="part-total">{{basicDice.total}}</span>
+                            </header>
+                            <ol class="dice-rolls">
+                                {{#each basicDice.results as |die key|}}
+                                <li class="roll d10">{{die.result}}</li>
+                                {{/each}}
+                            </ol>
+                            </div>
+                        </section>
+                        <section class="tooltip-part">
+                            <div class="dice">
+                            <header class="part-header flexrow">
+                                <span class="part-formula">{{advancedDice.formula}}</span>
 
-                            <span class="part-total">{{advancedDice.total}}</span>
-                        </header>
-                        <ol class="dice-rolls">
-                            {{#each advancedDice.results as |die key|}}
-                            <li class="roll werewolfragedie d10">{{die.result}}</li>
-                            {{/each}}
-                        </ol>
-                        </div>
-                    </section>
+                                <span class="part-total">{{advancedDice.total}}</span>
+                            </header>
+                            <ol class="dice-rolls">
+                                {{#each advancedDice.results as |die key|}}
+                                <li class="roll werewolfragedie d10">{{die.result}}</li>
+                                {{/each}}
+                            </ol>
+                            </div>
+                        </section>
+                    </div>
                 </div>
                 {{{enrichedResultLabel}}}
             </div>

@@ -208,19 +208,20 @@ class WOD5eDice {
       // Post the message to the chat
       await roll.toMessage({
         speaker: ChatMessage.getSpeaker({ actor }),
-        content,
-        flags: {
+        content
+      },
+      {
+        rollMode
+      })
+
+      roll.flags = {
           difficulty,
           system,
           title,
           flavor,
           activeModifiers,
           rollMode
-        }
-      },
-      {
-        rollMode
-      })
+      }
 
       return roll
     }

@@ -8,7 +8,8 @@ import { RenderSettings } from './ui/settings-sidebar.js'
 import { ProseMirrorSettings } from './ui/prosemirror.js'
 // Item sheets
 import { WoDItem } from './item/item.js'
-// Chat message class
+// Chat Classes
+import { WoDChatLog } from './ui/wod-chat-log.js'
 import { WoDChatMessage } from './ui/wod-chat-message.js'
 // Hotbar class
 import { WoDHotbar } from './ui/wod-hotbar.js'
@@ -47,6 +48,7 @@ Hooks.once('init', async function () {
   // Define custom Entity classes
   CONFIG.Actor.documentClass = WoDActor
   CONFIG.Item.documentClass = WoDItem
+  CONFIG.ui.chat = WoDChatLog
   CONFIG.ChatMessage.documentClass = WoDChatMessage
   CONFIG.ui.hotbar = WoDHotbar
   CONFIG.ui.actors = WOD5EActorDirectory

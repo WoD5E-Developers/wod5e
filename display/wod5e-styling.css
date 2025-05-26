@@ -479,12 +479,7 @@ input[type="number"] {
 }
 .chat-message .dice-result .dice-icons {
   display: flex;
-  flex-flow: row;
-}
-.chat-message .dice-result .dice-tooltip {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
+  flex-flow: wrap;
 }
 .chat-message .modifiers {
   margin-bottom: 2px;
