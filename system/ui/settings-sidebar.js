@@ -10,6 +10,8 @@ export const RenderSettings = async () => {
         <a href='https://github.com/WoD5E-Developers/wod5e/releases' target='_blank'>${game.i18n.localize('WOD5E.Changelog')}</a>
         |
         <a href='https://wod5e-developers.github.io/' target='_blank'>${game.i18n.localize('WOD5E.Wiki')}</a>
+        |
+        <a href='https://github.com/WoD5E-Developers/wod5e/issues' target='_blank'>${game.i18n.localize('WOD5E.Issues')}</a>
       </div>`
 
     systemRow.insertAdjacentHTML('afterend', systemLinks)
