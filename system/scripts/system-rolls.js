@@ -215,12 +215,12 @@ class WOD5eDice {
       })
 
       roll.flags = {
-          difficulty,
-          system,
-          title,
-          flavor,
-          activeModifiers,
-          rollMode
+        difficulty,
+        system,
+        title,
+        flavor,
+        activeModifiers,
+        rollMode
       }
 
       return roll
