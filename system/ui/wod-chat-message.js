@@ -10,7 +10,7 @@ export class WoDChatMessage extends ChatMessage {
    * @param {boolean} [options.canClose]   Render a close button for dismissing chat card notifications.
    * @returns {Promise<HTMLElement>}
    */
-  async renderHTML( {
+  async renderHTML ({
     canDelete,
     canClose = false,
     ...rest
