@@ -343,7 +343,7 @@ class WOD5eDice {
                   const actorData = actor.system
 
                   // Determine the input
-                  const modCheckbox = $(event.target)
+                  const modCheckbox = event.target
                   const modifier = parseInt(event.currentTarget.dataset.value)
                   const modifierIsNegative = modifier < 0
 
@@ -375,7 +375,7 @@ class WOD5eDice {
                   // Unchecked and modifier is NOT negative = Subtract
                   let newValue = 0
                   let checkValue = 0
-                  if ((modCheckbox.checked && !modifierIsNegative) || (!modCheckbox.checked && modifierIsNegative)) {
+                  if ((modCheckbox?.checked && !modifierIsNegative) || (!modCheckbox?.checked && modifierIsNegative)) {
                     // Adding the modifier
                     if (applyDiceTo === 'advanced') {
                       // Apply the modifier to advancedDice
@@ -393,15 +393,15 @@ class WOD5eDice {
                         // Check for any excess and apply it to basicDice
                         const excess = newValue - checkValue
                         newValue = checkValue
-                        basicDiceInput.val(basicValue + excess)
+                        basicDiceInput.value = basicValue + excess
                       }
 
                       // Update the advancedDice in the menu
-                      advancedDiceInput.val(newValue)
+                      advancedDiceInput.value = newValue
                     } else {
                       // If advancedDice is already at its max, apply the whole modifier to just basicDice
                       newValue = basicValue + Math.abs(modifier)
-                      basicDiceInput.val(newValue)
+                      basicDiceInput.value = newValue
                     }
 
                     // Apply the advancedCheckDice value
@@ -416,20 +416,20 @@ class WOD5eDice {
                         // Check for any deficit and apply it to basicDice
                         const deficit = Math.abs(newValue)
                         newValue = 0
-                        basicDiceInput.val(Math.max(basicValue - deficit, 0))
+                        basicDiceInput.value = Math.max(basicValue - deficit, 0)
                       }
 
                       // Update the advancedDice in the menu
-                      advancedDiceInput.val(newValue)
+                      advancedDiceInput.value = newValue
                     } else {
                       newValue = basicValue - Math.abs(modifier)
                       if (newValue < 0) {
                         const deficit = Math.abs(newValue)
                         newValue = 0
-                        advancedDiceInput.val(Math.max(advancedValue - deficit, 0))
+                        advancedDiceInput.value = Math.max(advancedValue - deficit, 0)
                       }
 
-                      basicDiceInput.val(newValue)
+                      basicDiceInput.value = newValue
                     }
 
                     // Apply the advancedCheckDice value while ensuring the value can't go below 0
@@ -437,8 +437,8 @@ class WOD5eDice {
                   }
 
                   // Ensure that there can't be negative dice
-                  if (basicDiceInput.value < 0) basicDiceInput.val(0)
-                  if (advancedDiceInput.value < 0) advancedDiceInput.val(0)
+                  if (basicDiceInput.value < 0) basicDiceInput.value = 0
+                  if (advancedDiceInput.value < 0) advancedDiceInput.value = 0
                 })
 
                 // Add event listener to the add custom modifier button
