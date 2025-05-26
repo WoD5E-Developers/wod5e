@@ -1,4 +1,4 @@
-/* global game, Dialog, WOD5E, renderTemplate, ChatMessage */
+/* global game, Dialog, WOD5E, foundry, ChatMessage */
 
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
@@ -39,7 +39,9 @@ export const _onAddGift = async function (event) {
       icon: '<i class="fas fa-check"></i>',
       label: game.i18n.localize('WOD5E.Add'),
       callback: async (html) => {
-        giftSelected = html.find('#giftSelect')[0].value
+        const dialogHTML = html[0]
+
+        giftSelected = dialogHTML.querySelector('#giftSelect').value
 
         // Make the edge visible
         actor.update({ [`system.gifts.${giftSelected}.visible`]: true })
@@ -123,7 +125,7 @@ export const _onGiftToChat = async function (event, target) {
   const actor = this.actor
   const gift = actor.system.gifts[target.getAttribute('data-gift')]
 
-  await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+  await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
     name: gift.displayName,
     img: 'icons/svg/dice-target.svg',
     description: gift?.description || ''

@@ -1,4 +1,4 @@
-/* global TextEditor, fromUuidSync */
+/* global foundry, fromUuidSync */
 
 export const prepareStatsContext = async function (context, actor) {
   const actorData = actor.system
@@ -50,18 +50,18 @@ export const prepareFeaturesContext = async function (context, actor) {
   context.desire = actorHeaders.desire
   context.features = actorData.features
   context.tenets = actorHeaders.tenets
-  context.enrichedTenets = await TextEditor.enrichHTML(actorHeaders.tenets)
+  context.enrichedTenets = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorHeaders.tenets)
   context.touchstones = actorHeaders.touchstones
-  context.enrichedTouchstones = await TextEditor.enrichHTML(actorHeaders.touchstones)
+  context.enrichedTouchstones = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorHeaders.touchstones)
   context.showAmbitionDesire = actorData.gamesystem !== 'werewolf' && actor.type !== 'group'
 
   if (actorData.gamesystem === 'werewolf') {
     const tribe = context.tribe
 
     context.favor = tribe?.system?.patronSpirit?.favor || ''
-    context.enrichedFavor = await TextEditor.enrichHTML(context.favor)
+    context.enrichedFavor = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.favor)
     context.ban = tribe?.system?.patronSpirit?.ban || ''
-    context.enrichedBan = await TextEditor.enrichHTML(context.ban)
+    context.enrichedBan = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.ban)
   }
 
   return context
@@ -75,7 +75,7 @@ export const prepareEquipmentContext = async function (context, actor) {
 
   // Part-specific data
   context.equipment = actorData.equipment
-  context.enrichedEquipment = await TextEditor.enrichHTML(actorData.equipment)
+  context.enrichedEquipment = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.equipment)
   context.equipmentItems = actorData.equipmentItems
 
   return context
@@ -90,9 +90,9 @@ export const prepareBiographyContext = async function (context, actor) {
   // Part-specific data
   context.bio = actorData.bio
   context.biography = actorData.biography
-  context.enrichedBiography = await TextEditor.enrichHTML(actorData.biography)
+  context.enrichedBiography = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.biography)
   context.appearance = actorData.appearance
-  context.enrichedAppearance = await TextEditor.enrichHTML(actorData.appearance)
+  context.enrichedAppearance = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.appearance)
 
   return context
 }
@@ -105,9 +105,9 @@ export const prepareNotepadContext = async function (context, actor) {
 
   // Part-specific data
   context.notes = actorData.notes
-  context.enrichedNotes = await TextEditor.enrichHTML(actorData.notes)
+  context.enrichedNotes = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.notes)
   context.privatenotes = actorData.privatenotes
-  context.enrichedPrivateNotes = await TextEditor.enrichHTML(actorData.privatenotes)
+  context.enrichedPrivateNotes = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.privatenotes)
 
   return context
 }
@@ -135,11 +135,11 @@ export const prepareLimitedContext = async function (context, actor) {
   const actorHeaders = actorData.headers
 
   // Part-specific data
-  context.enrichedNotes = await TextEditor.enrichHTML(actorData.notes)
-  context.enrichedAppearance = await TextEditor.enrichHTML(actorData.appearance)
-  context.enrichedTenets = await TextEditor.enrichHTML(actorHeaders.tenets)
-  context.enrichedTouchstones = await TextEditor.enrichHTML(actorHeaders.touchstones)
-  context.enrichedBiography = await TextEditor.enrichHTML(actorData.biography)
+  context.enrichedNotes = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.notes)
+  context.enrichedAppearance = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.appearance)
+  context.enrichedTenets = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorHeaders.tenets)
+  context.enrichedTouchstones = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorHeaders.touchstones)
+  context.enrichedBiography = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.biography)
 
   return context
 }
@@ -174,7 +174,7 @@ export const prepareSpcStatsContext = async function (context, actor) {
 
   if (context.currentActorType === 'spirit') {
     context.manifestation = actorData.manifestation
-    context.enrichedManifestation = await TextEditor.enrichHTML(actorData.manifestation)
+    context.enrichedManifestation = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.manifestation)
   }
 
   return context
@@ -211,9 +211,9 @@ export const prepareGroupFeaturesContext = async function (context, actor) {
   context.chronicle = actorHeaders.chronicle
   context.features = actorData.features
   context.tenets = actorHeaders.tenets
-  context.enrichedTenets = await TextEditor.enrichHTML(actorHeaders.tenets)
+  context.enrichedTenets = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorHeaders.tenets)
   context.biography = actorData.biography
-  context.enrichedBiography = await TextEditor.enrichHTML(actorData.biography)
+  context.enrichedBiography = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.biography)
 
   return context
 }

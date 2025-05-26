@@ -80,7 +80,7 @@ export const prepareEdgePowers = async function (edges) {
           })
         }
       } else {
-        console.warn(`Edge ${edgeType} is missing or perks is not an array.`)
+        console.warn(`World of Darkness 5e | Edge ${edgeType} is missing or perks is not an array.`)
       }
 
       // Edge Pool Sorting
@@ -93,7 +93,7 @@ export const prepareEdgePowers = async function (edges) {
           })
         }
       } else {
-        console.warn(`Edge ${edgeType} is missing or pools is not an array.`)
+        console.warn(`World of Darkness 5e | Edge ${edgeType} is missing or pools is not an array.`)
       }
     }
   }

@@ -1,4 +1,4 @@
-/* global FilePicker */
+/* global foundry */
 
 export const _onEditImage = async function (event) {
   event.preventDefault()
@@ -6,7 +6,7 @@ export const _onEditImage = async function (event) {
   // Top-level variables
   const item = this.item
 
-  new FilePicker({
+  new foundry.applications.apps.FilePicker({
     type: 'image',
     current: item.img,
     callback: async (path) => {

@@ -1,12 +1,12 @@
-/* global game, Hotbar, ui, getDocumentClass, Macro, fromUuidSync, TextEditor, Hooks */
+/* global game, foundry, ui, getDocumentClass, Macro, fromUuidSync, Hooks */
 
-export class WoDHotbar extends Hotbar {
+export class WoDHotbar extends foundry.applications.ui.Hotbar {
   /** @override */
   async _onDrop (event) {
     event.preventDefault()
     const li = event.target.closest('.macro')
     const slot = Number(li.dataset.slot)
-    const data = TextEditor.getDragEventData(event)
+    const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event)
     if (Hooks.call('hotbarDrop', this, data, slot) === false) return
 
     // Forbid overwriting macros if the hotbar is locked.

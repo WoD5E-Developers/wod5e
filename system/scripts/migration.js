@@ -19,14 +19,14 @@ export const migrateWorld = async () => {
   // Store the world version pre-migration
   const worldVersion = game.settings.get('vtm5e', 'worldVersion') || '1.5'
 
-  console.log('Current SchreckNet Layer v' + worldVersion)
+  console.log('World of Darkness 5e | Current SchreckNet Layer v' + worldVersion)
 
   async function updateWorld () {
     if (worldVersion !== currentVersion || worldVersion === '1.5') {
       const updates = []
 
       ui.notifications.info('New version detected. Updating SchreckNet, please wait.')
-      console.log('Obtaining SchreckNet Layer v' + currentVersion)
+      console.log('World of Darkness 5e | Obtaining SchreckNet Layer v' + currentVersion)
 
       try {
         // Migrate legacy sheets
@@ -77,7 +77,7 @@ export const migrateWorld = async () => {
           ui.notifications.info('Welcome to version ' + currentVersion)
         }
       } catch (error) {
-        console.error('Error during update:', error)
+        console.error('World of Darkness 5e | Error during update:', error)
       }
 
       // Update game version, no matter if we error or not

@@ -34,16 +34,18 @@ export class AutomationMenu extends FormApplication {
 
   /** @override */
   activateListeners (html) {
-    html.find('input').on('change', function (event) {
-      event.preventDefault()
-      const data = event.target.dataset
+    html[0].querySelectorAll('input').forEach(input => {
+      input.addEventListener('change', function (event) {
+        event.preventDefault()
+        const data = event.target.dataset
 
-      if (data?.id) {
-        const settingId = data.id
-        const value = event.target.checked
+        if (data?.id) {
+          const settingId = data.id
+          const value = event.target.checked
 
-        game.settings.set('vtm5e', settingId, value)
-      }
+          game.settings.set('vtm5e', settingId, value)
+        }
+      })
     })
   }
 }

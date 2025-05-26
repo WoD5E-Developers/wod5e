@@ -63,7 +63,7 @@ export const _assignToActorField = async (fields, value, actor) => {
         'system.points': value
       })
     } else {
-      console.warn(`Item with ID ${itemId} not found.`)
+      console.warn(`World of Darkness 5e | Item with ID ${itemId} not found.`)
     }
   } else {
     try {
@@ -71,7 +71,7 @@ export const _assignToActorField = async (fields, value, actor) => {
         [`${fields.join('.')}`]: value
       })
     } catch (error) {
-      console.error(`Error updating actor field: ${error.message}`)
+      console.error(`World of Darkness 5e | Error updating actor field: ${error.message}`)
     }
   }
 }
@@ -82,7 +82,7 @@ export const _assignToActorField = async (fields, value, actor) => {
 
 // Handle setting up the dot counters
 export const _setupDotCounters = async function (html) {
-  html.find('.resource-value').each(function () {
+  $(html).find('.resource-value').each(function () {
     const value = parseInt(this.dataset.value)
     $(this).find('.resource-value-step').each(function (i) {
       if (i + 1 <= value) {
@@ -90,7 +90,7 @@ export const _setupDotCounters = async function (html) {
       }
     })
   })
-  html.find('.resource-value-static').each(function () {
+  $(html).find('.resource-value-static').each(function () {
     const value = parseInt(this.dataset.value)
     $(this).find('.resource-value-static-step').each(function (i) {
       if (i + 1 <= value) {
@@ -188,7 +188,7 @@ export const _onDotCounterEmpty = async function (event) {
 
 // Set up the square counters
 export const _setupSquareCounters = async function (html) {
-  html.find('.resource-counter').each(function () {
+  $(html).find('.resource-counter').each(function () {
     const data = this.dataset
     const states = parseCounterStates(data.states)
     const humanity = data.name === 'system.humanity'

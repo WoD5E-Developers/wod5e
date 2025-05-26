@@ -77,7 +77,7 @@ export const prepareGiftPowers = async function (gifts) {
           })
         }
       } else {
-        console.warn(`Gift ${giftType} is missing or powers is not an array.`)
+        console.warn(`World of Darkness 5e | Gift ${giftType} is missing or powers is not an array.`)
       }
     }
   }

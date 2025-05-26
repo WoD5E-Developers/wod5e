@@ -1,4 +1,4 @@
-/* global TextEditor */
+/* global foundry */
 
 import { prepareDisciplinePowers } from './prepare-data.js'
 import { getBloodPotencyText } from './blood-potency.js'
@@ -15,7 +15,7 @@ export const prepareDisciplinesContext = async function (context, actor) {
   // Get discipline data if any discipline is currently selected
   if (actorData?.selectedDiscipline) {
     context.selectedDiscipline = actorData.disciplines[actorData.selectedDiscipline]
-    context.enrichedSelectedDisciplineDescription = await TextEditor.enrichHTML(context.selectedDiscipline?.description || '')
+    context.enrichedSelectedDisciplineDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.selectedDiscipline?.description || '')
   }
 
   // Get power data if any power is currently selected
@@ -23,7 +23,7 @@ export const prepareDisciplinesContext = async function (context, actor) {
     context.selectedDisciplinePower = await actor.items.get(actorData.selectedDisciplinePower)
 
     if (context.selectedDisciplinePower?.system?.description) {
-      context.selectedDisciplinePowerDescription = await TextEditor.enrichHTML(context.selectedDisciplinePower.system.description)
+      context.selectedDisciplinePowerDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.selectedDisciplinePower.system.description)
     }
   }
 
@@ -50,7 +50,7 @@ export const prepareBloodContext = async function (context, actor) {
   context.predator = predatorFilter[0]
   context.resonance = resonanceFilter[0]
   context.bane = clanFilter?.system?.bane || ''
-  context.enrichedBane = await TextEditor.enrichHTML(context.bane)
+  context.enrichedBane = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.bane)
 
   return context
 }

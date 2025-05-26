@@ -5,12 +5,12 @@ import { WOD5eDice } from './system-rolls.js'
 import { generateRollMessage } from './rolls/roll-message.js'
 
 /**
- * Initalise willpower rerolls and its functions
+ * Initalise rerolls of any dice and its functions
 **/
 
-export const willpowerReroll = async (roll) => {
+export const anyReroll = async (roll) => {
   // Variables
-  const dice = roll.find('.rerollable')
+  const dice = roll.find('.die')
   const diceRolls = []
   const message = game.messages.get(roll.attr('data-message-id'))
   const system = message.flags.system || 'mortal'
@@ -32,7 +32,7 @@ export const willpowerReroll = async (roll) => {
             <label><b>Select dice to reroll (Max 3)</b></label>
             <hr>
             <span class="dice-tooltip">
-              <div class="dice-rolls flexrow willpower-reroll">
+              <div class="dice-rolls flexrow reroll">
                 ${diceRolls.join('')}
               </div>
             </span>
@@ -55,11 +55,11 @@ export const willpowerReroll = async (roll) => {
 
   // Dialog object
   new Dialog({
-    title: game.i18n.localize('WOD5E.Chat.WillpowerReroll'),
+    title: game.i18n.localize('WOD5E.Chat.Reroll'),
     content: template,
     buttons,
     render: function () {
-      $('.willpower-reroll .die-select').on('click', dieSelect)
+      $('.reroll .die-select').on('click', dieSelect)
     },
     default: 'submit'
   },
@@ -69,8 +69,8 @@ export const willpowerReroll = async (roll) => {
 
   // Handles selecting and de-selecting the die
   function dieSelect () {
-    // If the die isn't already selected and there aren't 3 already selected, add selected to the die
-    if (!($(this).hasClass('selected')) && ($('.willpower-reroll .selected').length < 3)) {
+    // Toggle selection
+    if (!($(this).hasClass('selected'))) {
       $(this).classList.add('selected')
     } else {
       $(this).classList.remove('selected')
@@ -80,9 +80,11 @@ export const willpowerReroll = async (roll) => {
   // Handles rerolling the number of dice selected
   async function rerollDie (roll) {
     // Variables
-    const diceSelected = $('.willpower-reroll .selected')
-    const rageDiceSelected = $('.willpower-reroll .selected .rage-dice')
-    const selectors = ['willpower-reroll']
+    const diceSelected = $('.reroll .selected')
+    const hungerDiceSelected = $('.reroll .selected .hunger-dice')
+    const rageDiceSelected = $('.reroll .selected .rage-dice')
+    const desperationDiceSelected = $('.reroll .selected .desperation-dice')
+    const totalAdvancedDiceSelected = hungerDiceSelected.length + rageDiceSelected.length + desperationDiceSelected.length
 
     // Get the actor associated with the message
     // Theoretically I should error-check this, but there shouldn't be any
@@ -93,16 +95,14 @@ export const willpowerReroll = async (roll) => {
     const rollMode = message?.flags?.rollMode || game.settings.get('core', 'rollMode')
 
     // If there is at least 1 die selected and aren't any more than 3 die selected, reroll the total number of die and generate a new message.
-    if ((diceSelected.length > 0) && (diceSelected.length < 4)) {
+    if ((diceSelected.length > 0)) {
       WOD5eDice.Roll({
-        basicDice: diceSelected.length - rageDiceSelected.length,
-        advancedDice: rageDiceSelected.length,
-        title: game.i18n.localize('WOD5E.Chat.WillpowerReroll'),
+        basicDice: diceSelected.length - totalAdvancedDiceSelected,
+        advancedDice: totalAdvancedDiceSelected,
+        title: game.i18n.localize('WOD5E.Chat.Reroll'),
         actor,
-        willpowerDamage: actor ? 1 : 0, // If no actor is set, we don't need to damage any willpower
         quickRoll: true,
         rollMode,
-        selectors,
         disableMessageOutput: true,
         system: message.flags.gamesystem,
         callback: async (err, reroll) => {
@@ -112,7 +112,7 @@ export const willpowerReroll = async (roll) => {
 
           diceSelected.each(function (index) {
             const dieHTML = diceSelected.eq(index)
-            const imgElement = dieHTML.querySelectorAll('img')
+            const imgElement = dieHTML.querySelector('img')
 
             if (!imgElement.length) {
               console.error('World of Darkness 5e | Image element not found in dieHTML:', dieHTML)
@@ -121,16 +121,17 @@ export const willpowerReroll = async (roll) => {
 
             const dieIndex = imgElement.data('index')
 
-            if (imgElement.hasClass('rage-dice')) {
+            // Handle advanced dice
+            if (imgElement.hasClass('rage-dice') || imgElement.hasClass('hunger-dice') || imgElement.hasClass('desperation-dice')) {
               const die = messageRolls[0].terms[2].results.find(die => die.index === dieIndex)
 
               if (die) {
                 die.discarded = true
                 die.active = false
               } else {
-                console.error('World of Darkness 5e | Die not found in rage diceset:', dieIndex)
+                console.error('World of Darkness 5e | Die not found in advanced diceset:', dieIndex)
               }
-            } else {
+            } else { // Handle basic dice
               const die = messageRolls[0].terms[0].results.find(die => die.index === dieIndex)
 
               if (die) {

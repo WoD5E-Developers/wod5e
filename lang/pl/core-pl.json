@@ -50,6 +50,7 @@
     "_GroupSheet": "",
     "Health": "Zdrowie",
     "_Inactive": "",
+    "_Issues": "",
     "_Label": "",
     "Level": "Poziom",
     "_LicensedUnderDarkPack": "",
@@ -111,6 +112,7 @@
     },
     "Chat": {
       "_HasReceivedWillpowerDamage": "",
+      "_Reroll": "",
       "Rolling": "Rzucanie",
       "RollingWillpower": "Test Siły Woli",
       "RollWillpower": "Test Siły Woli",

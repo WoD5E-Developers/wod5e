@@ -1,4 +1,4 @@
-/* global game, Dialog, WOD5E, renderTemplate, ChatMessage */
+/* global game, Dialog, WOD5E, foundry, ChatMessage */
 
 /** Handle adding a new discipline to the sheet */
 export const _onAddDiscipline = async function (event) {
@@ -38,7 +38,9 @@ export const _onAddDiscipline = async function (event) {
       icon: '<i class="fas fa-check"></i>',
       label: game.i18n.localize('WOD5E.Add'),
       callback: async (html) => {
-        disciplineSelected = html.find('#disciplineSelect')[0].value
+        const dialogHTML = html[0]
+
+        disciplineSelected = dialogHTML.querySelector('#disciplineSelect').value
 
         // Make the discipline visible
         actor.update({ [`system.disciplines.${disciplineSelected}.visible`]: true })
@@ -86,7 +88,7 @@ export const _onDisciplineToChat = async function (event, target) {
   const actor = this.actor
   const discipline = actor.system.disciplines[target.getAttribute('data-discipline')]
 
-  await renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+  await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
     name: discipline.displayName,
     img: 'icons/svg/dice-target.svg',
     description: discipline?.description

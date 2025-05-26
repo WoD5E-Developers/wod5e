@@ -1,4 +1,4 @@
-/* global game, TextEditor, foundry, DragDrop, Item, SortingHelpers, ui */
+/* global game, foundry, Item, SortingHelpers, ui */
 
 // Data preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
@@ -37,6 +37,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     super(options)
 
     this.#dragDrop = this.#createDragDropHandlers()
+    this._collapsibleStates = new Map()
   }
 
   static DEFAULT_OPTIONS = {
@@ -169,7 +170,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     sheetData.items.forEach(async (item) => {
       // Enrich item descriptions
       if (item.system?.description) {
-        item.system.enrichedDescription = await TextEditor.enrichHTML(item.system.description)
+        item.system.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description)
       }
 
       // Calculate item modifiers and shuffle them into system.itemModifiers
@@ -307,61 +308,81 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
   _preRender () {
     this._saveScrollPositions()
+    this._saveCollapsibleStates()
   }
 
   async _onRender () {
-    const html = $(this.element)
+    const html = this.element
 
     // Update the window title (since ActorSheetV2 doesn't do it automatically)
-    $(this.window.title).text(this.title)
+    this.window.title.textContent = this.title
 
     // Update the actor background if it's not the default
     const actorBackground = await getActorBackground(this.actor)
     if (actorBackground) {
-      html.find('section.window-content').css('background', `url("${actorBackground}")`)
+      html.querySelector('section.window-content').style.background = `url("${actorBackground}")`
     } else {
-      html.find('section.window-content').css('background', '')
+      html.querySelector('section.window-content').style.background = ''
     }
 
-    html.find('.actor-header-bg-filepicker input').on('focusout', function (event) {
-      event.preventDefault()
+    html.querySelectorAll('.actor-header-bg-filepicker input').forEach(input => {
+      input.addEventListener('focusout', function (event) {
+        event.preventDefault()
 
-      const filepicker = event.target.parentElement
-      const value = event?.target?.value
+        const filepicker = event?.target?.parentElement
+        const value = event?.target?.value
 
-      $(filepicker).val(value)
+        filepicker.value = value
+      })
     })
 
-    html.find('.actor-background-filepicker input').on('focusout', function (event) {
-      event.preventDefault()
+    html.querySelectorAll('.actor-background-filepicker input').forEach(input => {
+      input.addEventListener('focusout', function (event) {
+        event.preventDefault()
 
-      const filepicker = event.target.parentElement
-      const value = event?.target?.value
+        const filepicker = event?.target?.parentElement
+        const value = event?.target?.value
 
-      $(filepicker).val(value)
+        filepicker.value = value
+      })
     })
 
     // Toggle whether the sheet is locked or not
-    html.toggleClass('locked', this.actor.system.locked)
+    if (this.actor.system.locked) {
+      html.classList.add('locked')
+    } else {
+      html.classList.remove('locked')
+    }
 
-    // Resource squares (Health, Willpower)
-    html.find('.resource-counter.editable .resource-counter-step').click(_onSquareCounterChange.bind(this))
-    html.find('.resource-counter.editable .resource-counter-step').on('contextmenu', _onRemoveSquareCounter.bind(this))
-    html.find('.resource-plus').click(_onResourceChange.bind(this))
-    html.find('.resource-minus').click(_onResourceChange.bind(this))
+    // Resource square counters
+    html.querySelectorAll('.resource-counter.editable .resource-counter-step').forEach(el => {
+      el.addEventListener('click', _onSquareCounterChange.bind(this))
+      el.addEventListener('contextmenu', _onRemoveSquareCounter.bind(this))
+    })
+    html.querySelectorAll('.resource-plus').forEach(el => {
+      el.addEventListener('click', _onResourceChange.bind(this))
+    })
+    html.querySelectorAll('.resource-minus').forEach(el => {
+      el.addEventListener('click', _onResourceChange.bind(this))
+    })
+
+    // Resource dot counters
+    html.querySelectorAll('.resource-value .resource-value-step').forEach(el => {
+      el.addEventListener('click', _onDotCounterChange.bind(this))
+    })
+    html.querySelectorAll('.resource-value .resource-value-empty').forEach(el => {
+      el.addEventListener('click', _onDotCounterEmpty.bind(this))
+    })
 
     // Activate the setup for the counters
     _setupDotCounters(html)
     _setupSquareCounters(html)
 
-    // Resource dots
-    html.find('.resource-value .resource-value-step').click(_onDotCounterChange.bind(this))
-    html.find('.resource-value .resource-value-empty').click(_onDotCounterEmpty.bind(this))
-
     // Drag and drop functionality
     this.#dragDrop.forEach((d) => d.bind(this.element))
 
     this._restoreScrollPositions()
+    this._restoreCollapsibleStates()
   }
 
   #createDragDropHandlers () {
@@ -376,7 +397,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
         dragover: this._onDragOver.bind(this),
         drop: this._onDrop.bind(this)
       }
-      return new DragDrop(d)
+      return new foundry.applications.ux.DragDrop(d)
     })
   }
 
@@ -409,7 +430,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
   _onDragOver () {}
 
   async _onDrop (event) {
-    const data = TextEditor.getDragEventData(event)
+    const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event)
 
     // Handle different data types
     switch (data.type) {
@@ -432,7 +453,18 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       const blacklist = itemsList[itemType].excludedActorTypes
 
       // If the whitelist contains any entries, we can check to make sure this actor type is allowed for the item
-      if (!foundry.utils.isEmpty(whitelist) && whitelist.indexOf(actorType) === -1) {
+      // We go through the base actor type, then subtypes - if we match to any of them, we allow the item to be
+      // added to the actor.
+      //
+      // We don't need to add this logic to the blacklist because the blacklist only needs to check against the base types.
+      if (!foundry.utils.isEmpty(whitelist) &&
+        // This is just a general check against the base actorType
+        !whitelist.includes(actorType) &&
+        // If the actor is an SPC, check against the spcType
+        !(actorType === 'spc' && whitelist.includes(this.actor.system.spcType)) &&
+        // If the actor is a Group sheet, check against the groupType
+        !(actorType === 'group' && whitelist.includes(this.actor.system.groupType))
+      ) {
         ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
           string1: itemType,
           string2: actorType
@@ -528,5 +560,44 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     const activeList = $(this.element).find('section.tab.active')
 
     return activeList
+  }
+
+  // Save the maxHeight of all collapsible-content elements if it's greater than 0
+  async _saveCollapsibleStates () {
+    // Clear out the old states
+    this._collapsibleStates.clear()
+
+    // Iterate through each collapsible element in the page
+    $(this.element).find('.collapsible-content').each((index, content) => {
+      const contentElement = $(content)
+      const maxHeight = parseFloat(contentElement.css('maxHeight'))
+
+      // Check if max height is greater than 0, and if it is, we save its maxHeight state
+      if (maxHeight > 0) {
+        this._collapsibleStates.set(contentElement.attr('data-id') || index, maxHeight)
+      }
+    })
+  }
+
+  // Restore the maxHeight of previously expanded collapsible-content elements
+  async _restoreCollapsibleStates () {
+    $(this.element).find('.collapsible-content').each((index, content) => {
+      const contentElement = $(content)
+      const key = contentElement.attr('data-id') || index // Match with saved state
+
+      if (this._collapsibleStates.has(key)) {
+        // Disable the transition property before re-setting the max height
+        // This makes it so that on re-render, the user doesn't watch the
+        // collapse animation again
+        contentElement.css('transition', 'none')
+        $(content).css('maxHeight', `${this._collapsibleStates.get(key)}px`)
+
+        // Force a reflow and then re-enable the transition property
+        // We have to tell eslint to ignore the no-void rule because it's genuinely useful here
+        // eslint-disable-next-line no-void
+        void contentElement[0].offsetHeight
+        contentElement.css('transition', '')
+      }
+    })
   }
 }

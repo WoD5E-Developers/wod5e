@@ -1,4 +1,4 @@
-/* global CONFIG, Hooks, Actors, ActorSheet, ChatMessage, Items, ItemSheet, game, ui, CONST, jscolor */
+/* global CONFIG, Hooks, foundry, ChatMessage, game, ui, CONST, jscolor */
 
 // Actor sheets
 import { WoDActor } from './actor/actor.js'
@@ -8,7 +8,8 @@ import { RenderSettings } from './ui/settings-sidebar.js'
 import { ProseMirrorSettings } from './ui/prosemirror.js'
 // Item sheets
 import { WoDItem } from './item/item.js'
-// Chat message class
+// Chat Classes
+import { WoDChatLog } from './ui/wod-chat-log.js'
 import { WoDChatMessage } from './ui/wod-chat-message.js'
 // Hotbar class
 import { WoDHotbar } from './ui/wod-hotbar.js'
@@ -16,12 +17,13 @@ import { WoDHotbar } from './ui/wod-hotbar.js'
 import { preloadHandlebarsTemplates } from './scripts/templates.js'
 import { loadDiceSoNice } from './dice/dice-so-nice.js'
 import { loadHelpers } from './scripts/helpers.js'
-import { loadSettings, _updatePreferredColorScheme, _updateHeaderFontPreference, _updateXpIconOverrides } from './scripts/settings.js'
+import { loadSettings, _updateHeaderFontPreference, _updateXpIconOverrides } from './scripts/settings.js'
 import { PauseChanges } from './ui/pause.js'
 // WOD5E functions and classes
 import { MortalDie, VampireDie, VampireHungerDie, HunterDie, HunterDesperationDie, WerewolfDie, WerewolfRageDie } from './dice/splat-dice.js'
 import { migrateWorld } from './scripts/migration.js'
 import { willpowerReroll } from './scripts/willpower-reroll.js'
+import { anyReroll } from './scripts/any-reroll.js'
 import { wod5eAPI } from './api/wod5e-api.js'
 // WOD5E Definitions
 import { Systems } from './api/def/systems.js'
@@ -41,11 +43,12 @@ import { _updateToken } from './actor/wta/scripts/forms.js'
 
 // Anything that needs to be ran alongside the initialisation of the world
 Hooks.once('init', async function () {
-  console.log('Initializing Schrecknet...')
+  console.log('World of Darkness 5e | Initializing SchreckNet...')
 
   // Define custom Entity classes
   CONFIG.Actor.documentClass = WoDActor
   CONFIG.Item.documentClass = WoDItem
+  CONFIG.ui.chat = WoDChatLog
   CONFIG.ChatMessage.documentClass = WoDChatMessage
   CONFIG.ui.hotbar = WoDHotbar
   CONFIG.ui.actors = WOD5EActorDirectory
@@ -57,14 +60,12 @@ Hooks.once('init', async function () {
   CONFIG.Dice.terms.w = WerewolfDie
   CONFIG.Dice.terms.r = WerewolfRageDie
 
-  // Register actor sheet application classes
-  Actors.unregisterSheet('core', ActorSheet)
   // Loop through each entry in the actorTypesList and register their sheet classes
   const actorTypesList = ActorTypes.getList({})
   for (const [, value] of Object.entries(actorTypesList)) {
     const { label, types, sheetClass } = value
 
-    Actors.registerSheet('vtm5e', sheetClass, {
+    foundry.documents.collections.Actors.registerSheet('vtm5e', sheetClass, {
       label,
       types,
       makeDefault: true
@@ -72,13 +73,12 @@ Hooks.once('init', async function () {
   }
 
   // Register item sheet application classes
-  Items.unregisterSheet('core', ItemSheet)
   // Loop through each entry in the itemTypesList and register their sheet classes
   const itemTypesList = ItemTypes.getList({})
   for (const [, value] of Object.entries(itemTypesList)) {
     const { label, types, sheetClass } = value
 
-    Items.registerSheet('vtm5e', sheetClass, {
+    foundry.documents.collections.Items.registerSheet('vtm5e', sheetClass, {
       label,
       types,
       makeDefault: true
@@ -93,9 +93,6 @@ Hooks.once('init', async function () {
 
   // Load settings into Foundry
   loadSettings()
-
-  // Initialize color scheme on game init
-  _updatePreferredColorScheme()
 
   // Initialize header font preference on game init
   _updateHeaderFontPreference()
@@ -182,16 +179,19 @@ Hooks.once('ready', async function () {
       _updateCSSVariable(settingId, cssVariable, settingValue)
     })
   })
-})
 
-Hooks.once('setup', () => {
-  // Set Hover by Owner as defaults for Default Token Configuration
-  const defaultTokenSettingsDefaults = game.settings.settings.get('core.defaultToken').default
-  defaultTokenSettingsDefaults.displayName = CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER
-  defaultTokenSettingsDefaults.displayBars = CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER
-
-  // Default token dispositions to neutral
-  defaultTokenSettingsDefaults.disposition = CONST.TOKEN_DISPOSITIONS.NEUTRAL
+  // Adjust some default game settings
+  game.settings.set('core', 'prototypeTokenOverrides', {
+    // Default tokens to display mode on-owner-hover for token bars and the display name
+    base: {
+      displayName: CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      displayBars: CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER
+    },
+    // Default SPC token dispositions to neutral
+    spc: {
+      disposition: CONST.TOKEN_DISPOSITIONS.NEUTRAL
+    }
+  })
 })
 
 // DiceSoNice functionality
@@ -211,7 +211,7 @@ Hooks.on('canvasReady', (canvas) => {
   })
 })
 
-// Display the willpower reroll option in the chat when messages are right clicked
+// Display the reroll options in the chat when messages are right clicked
 Hooks.on('getChatLogEntryContext', (html, options) => {
   options.push({
     name: game.i18n.localize('WOD5E.Chat.WillpowerReroll'),
@@ -230,6 +230,24 @@ Hooks.on('getChatLogEntryContext', (html, options) => {
       return (game.user.isGM || message.isAuthor) && (rerollableDice > 0) && (rerolledDice === 0)
     },
     callback: li => willpowerReroll(li)
+  },
+  {
+    name: game.i18n.localize('WOD5E.Chat.Reroll'),
+    icon: '<i class="fas fa-redo"></i>',
+    condition: li => {
+      // Only show this context menu if the person is GM or author of the message
+      const message = game.messages.get(li.attr('data-message-id'))
+
+      // Only show this context menu if there are dice in the message
+      const dice = li.find('.die').length
+
+      // Only show this context menu if there's not any already rerolled dice in the message
+      const rerolledDice = li.find('.rerolled').length
+
+      // All must be true to show the reroll dialog
+      return (game.user.isGM || message.isAuthor) && (dice > 0) && (rerolledDice === 0)
+    },
+    callback: li => anyReroll(li)
   })
 })
 

@@ -1,4 +1,4 @@
-/* global TextEditor */
+/* global foundry */
 
 import { prepareEdgePowers } from './prepare-data.js'
 
@@ -14,7 +14,7 @@ export const prepareEdgesContext = async function (context, actor) {
   // Get discipline data if any discipline is currently selected
   if (actorData?.selectedEdge) {
     context.selectedEdge = actorData.edges[actorData.selectedEdge]
-    context.enrichedSelectedEdgeDescription = await TextEditor.enrichHTML(context.selectedEdge?.description || '')
+    context.enrichedSelectedEdgeDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.selectedEdge?.description || '')
   }
 
   // Get power data if any power is currently selected
@@ -22,7 +22,7 @@ export const prepareEdgesContext = async function (context, actor) {
     context.selectedEdgePerk = await actor.items.get(actorData.selectedEdgePerk)
 
     if (context.selectedEdgePerk?.system?.description) {
-      context.selectedEdgePerkDescription = await TextEditor.enrichHTML(context.selectedEdgePerk.system.description)
+      context.selectedEdgePerkDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.selectedEdgePerk.system.description)
     }
   }
 

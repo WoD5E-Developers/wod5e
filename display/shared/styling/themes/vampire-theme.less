@@ -1,6 +1,5 @@
 /* Variables */
 :root {
-  --logo-vampire: url("../assets/ui/VtM_Logo.webp");
   --vampire-theme-filter: #FF2B2B80;
 }
 
@@ -39,12 +38,6 @@
     .macro {
       background: var(--vampire-theme-filter);
     }
-  }
-
-  /* Logo */
-  #logo {
-    content: var(--logo-vampire);
-    filter: drop-shadow(0 -5px 25px #ffffff) drop-shadow(0 0 10px var(--vampire-theme-filter)) drop-shadow(0 0 15px #ffffff);
   }
 
   .standard-form {
@@ -115,6 +108,11 @@
 
     ::placeholder {
       color: var(--system-dark-color-5);
+    }
+
+    form .notes,
+    form .hint {
+      color: var(--system-dark-color-4);
     }
   }
 

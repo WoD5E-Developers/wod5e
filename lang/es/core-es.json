@@ -49,6 +49,7 @@
     "GamePaused": "Juego en pausa",
     "GroupSheet": "Hoja de Grupo",
     "Health": "Salud",
+    "_Issues": "",
     "Inactive": "Inactivo",
     "Label": "Etiqueta",
     "Level": "Nivel",
@@ -111,6 +112,7 @@
     },
     "Chat": {
       "HasReceivedWillpowerDamage": "{actor} ha recibido {willpowerDamage} de daño a la fuerza de voluntad.",
+      "_Reroll": "",
       "Rolling": "Tirando",
       "RollingWillpower": "Tirando Fuerza de Voluntad",
       "RollWillpower": "Control de Fuerza de Voluntad",

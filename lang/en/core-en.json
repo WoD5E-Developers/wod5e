@@ -50,6 +50,7 @@
     "GroupSheet": "Group Sheet",
     "Health": "Health",
     "Inactive": "Inactive",
+    "Issues": "Issues",
     "Label": "Label",
     "Level": "Level",
     "LicensedUnderDarkPack": "Licensed Under The Dark Pack",
@@ -111,6 +112,7 @@
     },
     "Chat": {
       "HasReceivedWillpowerDamage": "{actor} has received {willpowerDamage} willpower damage.",
+      "Reroll": "Reroll",
       "Rolling": "Rolling",
       "RollingWillpower": "Rolling Willpower",
       "RollWillpower": "Roll Willpower Check",

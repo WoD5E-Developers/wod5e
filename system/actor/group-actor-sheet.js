@@ -1,4 +1,4 @@
-/* global foundry, game, TextEditor, DragDrop, Item, SortingHelpers, ui */
+/* global foundry, game, Item, SortingHelpers, ui */
 
 // Preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
@@ -8,7 +8,7 @@ import { prepareGroupFeaturesContext, prepareEquipmentContext, prepareNotepadCon
 // Definition file
 import { ItemTypes } from '../api/def/itemtypes.js'
 // Resource functions
-import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange } from './scripts/counters.js'
+import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange, _onRemoveSquareCounter } from './scripts/counters.js'
 // Various button functions
 import { _onEditImage } from './scripts/on-edit-image.js'
 import { _onToggleLock } from './scripts/on-toggle-lock.js'
@@ -316,68 +316,87 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
   }
 
   async _onRender () {
-    const html = $(this.element)
+    const html = this.element
 
     // Update the window title (since ActorSheetV2 doesn't do it automatically)
-    $(this.window.title).text(this.title)
+    this.window.title.textContent = this.title
 
     // Update the actor background if it's not the default
     const actorBackground = await getActorBackground(this.actor)
     if (actorBackground) {
-      html.find('section.window-content').css('background', `url("${actorBackground}")`)
+      html.querySelector('section.window-content').style.background = `url("${actorBackground}")`
     } else {
-      html.find('section.window-content').css('background', '')
+      html.querySelector('section.window-content').style.background = ''
     }
 
-    html.find('.actor-header-bg-filepicker input').on('focusout', function (event) {
-      event.preventDefault()
+    html.querySelectorAll('.actor-header-bg-filepicker input').forEach(input => {
+      input.addEventListener('focusout', function (event) {
+        event.preventDefault()
 
-      const filepicker = event.target.parentElement
-      const value = event?.target?.value
+        const filepicker = event.target.parentElement
+        const value = event?.target?.value
 
-      $(filepicker).val(value)
+        filepicker.value = value
+      })
     })
 
-    html.find('.actor-background-filepicker input').on('focusout', function (event) {
-      event.preventDefault()
+    html.querySelectorAll('.actor-background-filepicker input').forEach(input => {
+      input.addEventListener('focusout', function (event) {
+        event.preventDefault()
 
-      const filepicker = event.target.parentElement
-      const value = event?.target?.value
+        const filepicker = event.target.parentElement
+        const value = event?.target?.value
 
-      $(filepicker).val(value)
+        filepicker.value = value
+      })
     })
 
     // Toggle whether the sheet is locked or not
-    html.toggleClass('locked', this.actor.system.locked)
+    if (this.actor.system.locked) {
+      html.classList.add('locked')
+    } else {
+      html.classList.remove('locked')
+    }
 
-    // Resource squares (Health, Willpower)
-    html.find('.resource-counter.editable .resource-counter-step').click(_onSquareCounterChange.bind(this))
-    html.find('.resource-plus').click(_onResourceChange.bind(this))
-    html.find('.resource-minus').click(_onResourceChange.bind(this))
+    // Resource square counters
+    html.querySelectorAll('.resource-counter.editable .resource-counter-step').forEach(el => {
+      el.addEventListener('click', _onSquareCounterChange.bind(this))
+      el.addEventListener('contextmenu', _onRemoveSquareCounter.bind(this))
+    })
+    html.querySelectorAll('.resource-plus').forEach(el => {
+      el.addEventListener('click', _onResourceChange.bind(this))
+    })
+    html.querySelectorAll('.resource-minus').forEach(el => {
+      el.addEventListener('click', _onResourceChange.bind(this))
+    })
+
+    // Resource dot counters
+    html.querySelectorAll('.resource-value .resource-value-step').forEach(el => {
+      el.addEventListener('click', _onDotCounterChange.bind(this))
+    })
+    html.querySelectorAll('.resource-value .resource-value-empty').forEach(el => {
+      el.addEventListener('click', _onDotCounterEmpty.bind(this))
+    })
 
     // Activate the setup for the counters
     _setupDotCounters(html)
     _setupSquareCounters(html)
 
-    // Resource dots
-    html.find('.resource-value .resource-value-step').click(_onDotCounterChange.bind(this))
-    html.find('.resource-value .resource-value-empty').click(_onDotCounterEmpty.bind(this))
-
     // Add a new sheet styling depending on the type of sheet
     const groupType = this.actor.system.groupType
     if (groupType === 'coterie') {
-      html.removeClass('hunter werewolf mortal')
-      html.addClass('vampire')
+      html.classList.remove('hunter', 'werewolf', 'mortal')
+      html.classList.add('vampire')
     } else if (groupType === 'cell') {
-      html.removeClass('vampire werewolf mortal')
-      html.addClass('hunter')
+      html.classList.remove('vampire', 'werewolf', 'mortal')
+      html.classList.add('hunter')
     } else if (groupType === 'pack') {
-      html.removeClass('hunter vampire mortal')
-      html.addClass('werewolf')
+      html.classList.remove('hunter', 'vampire', 'mortal')
+      html.classList.add('werewolf')
     } else {
       // Default to mortal styling
-      html.removeClass('hunter vampire werewolf')
-      html.addClass('mortal')
+      html.classList.remove('hunter', 'vampire', 'werewolf')
+      html.classList.add('mortal')
     }
 
     // Drag and drop functionality
@@ -396,7 +415,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
         dragover: this._onDragOver.bind(this),
         drop: this._onDrop.bind(this)
       }
-      return new DragDrop(d)
+      return new foundry.applications.ux.DragDrop(d)
     })
   }
 
@@ -429,7 +448,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
   _onDragOver () {}
 
   async _onDrop (event) {
-    const data = TextEditor.getDragEventData(event)
+    const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event)
 
     // Handle different data types
     switch (data.type) {
