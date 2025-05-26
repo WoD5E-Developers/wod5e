@@ -10,9 +10,9 @@ export class WoDChatMessage extends ChatMessage {
    * @param {boolean} [options.canClose]   Render a close button for dismissing chat card notifications.
    * @returns {Promise<HTMLElement>}
    */
-  async renderHTML({
+  async renderHTML( {
     canDelete,
-    canClose=false,
+    canClose = false,
     ...rest
   } = {}) {
     canDelete ??= game.user.isGM // By default, GM users have the trash-bin icon in the chat log itself
