@@ -212,19 +212,19 @@ Hooks.on('canvasReady', (canvas) => {
 })
 
 // Display the reroll options in the chat when messages are right clicked
-Hooks.on('getChatLogEntryContext', (html, options) => {
+Hooks.on('getChatMessageContextOptions', (html, options) => {
   options.push({
     name: game.i18n.localize('WOD5E.Chat.WillpowerReroll'),
     icon: '<i class="fas fa-redo"></i>',
     condition: li => {
       // Only show this context menu if the person is GM or author of the message
-      const message = game.messages.get(li.attr('data-message-id'))
+      const message = game.messages.get(li.getAttribute('data-message-id'))
 
       // Only show this context menu if there are re-rollable dice in the message
-      const rerollableDice = li.find('.rerollable').length
+      const rerollableDice = li.querySelectorAll('.rerollable').length
 
       // Only show this context menu if there's not any already rerolled dice in the message
-      const rerolledDice = li.find('.rerolled').length
+      const rerolledDice = li.querySelectorAll('.rerolled').length
 
       // All must be true to show the reroll dialog
       return (game.user.isGM || message.isAuthor) && (rerollableDice > 0) && (rerolledDice === 0)
@@ -236,13 +236,13 @@ Hooks.on('getChatLogEntryContext', (html, options) => {
     icon: '<i class="fas fa-redo"></i>',
     condition: li => {
       // Only show this context menu if the person is GM or author of the message
-      const message = game.messages.get(li.attr('data-message-id'))
+      const message = game.messages.get(li.getAttribute('data-message-id'))
 
       // Only show this context menu if there are dice in the message
-      const dice = li.find('.die').length
+      const dice = li.querySelectorAll('.die').length
 
       // Only show this context menu if there's not any already rerolled dice in the message
-      const rerolledDice = li.find('.rerolled').length
+      const rerolledDice = li.querySelectorAll('.rerolled').length
 
       // All must be true to show the reroll dialog
       return (game.user.isGM || message.isAuthor) && (dice > 0) && (rerolledDice === 0)

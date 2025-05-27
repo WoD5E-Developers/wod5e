@@ -10,9 +10,10 @@ import { generateRollMessage } from './rolls/roll-message.js'
 
 export const willpowerReroll = async (roll) => {
   // Variables
-  const dice = roll.find('.rerollable')
+  const dice = roll.querySelectorAll('.rerollable')
   const diceRolls = []
-  const message = game.messages.get(roll.attr('data-message-id'))
+  const messageId = roll.getAttribute('data-message-id')
+  const message = game.messages.get(messageId)
   const system = message.flags.system || 'mortal'
 
   // Go through the message's dice and add them to the diceRolls array
@@ -69,25 +70,27 @@ export const willpowerReroll = async (roll) => {
 
   // Handles selecting and de-selecting the die
   function dieSelect () {
-    // If the die isn't already selected and there aren't 3 already selected, add selected to the die
-    if (!($(this).hasClass('selected')) && ($('.willpower-reroll .selected').length < 3)) {
-      $(this).classList.add('selected')
+    const selectedDice = document.querySelectorAll('.willpower-reroll .selected')
+
+    if (!this.classList.contains('selected') && selectedDice.length < 3) {
+      this.classList.add('selected')
     } else {
-      $(this).classList.remove('selected')
+      this.classList.remove('selected')
     }
   }
 
   // Handles rerolling the number of dice selected
   async function rerollDie (roll) {
     // Variables
-    const diceSelected = $('.willpower-reroll .selected')
-    const rageDiceSelected = $('.willpower-reroll .selected .rage-dice')
+    const diceSelected = document.querySelectorAll('.willpower-reroll .selected')
+    const rageDiceSelected = document.querySelectorAll('.willpower-reroll .selected .rage-dice')
     const selectors = ['willpower-reroll']
 
     // Get the actor associated with the message
     // Theoretically I should error-check this, but there shouldn't be any
     // messages that call for a WillpowerReroll without an associated actor
-    const message = game.messages.get(roll.attr('data-message-id'))
+    const messageId = roll.getAttribute('data-message-id')
+    const message = game.messages.get(messageId)
     const actor = game.actors.get(message.speaker.actor)
     // Get the rollMode associated with the message
     const rollMode = message?.flags?.rollMode || game.settings.get('core', 'rollMode')
@@ -110,18 +113,17 @@ export const willpowerReroll = async (roll) => {
 
           const messageRolls = message.rolls
 
-          diceSelected.each(function (index) {
-            const dieHTML = diceSelected.eq(index)
-            const imgElement = dieHTML.querySelectorAll('img')
+          diceSelected.forEach(dieHTML => {
+            const imgElement = dieHTML.querySelector('img')
 
-            if (!imgElement.length) {
+            if (!imgElement) {
               console.error('World of Darkness 5e | Image element not found in dieHTML:', dieHTML)
               return // Skip this iteration if image element is not found
             }
 
-            const dieIndex = imgElement.data('index')
+            const dieIndex = parseInt(imgElement.getAttribute('data-index'))
 
-            if (imgElement.hasClass('rage-dice')) {
+            if (imgElement.classList.contains('rage-dice')) {
               const die = messageRolls[0].terms[2].results.find(die => die.index === dieIndex)
 
               if (die) {
@@ -144,6 +146,7 @@ export const willpowerReroll = async (roll) => {
 
           // Merge "results" arrays
           messageRolls[0].terms[0].results = messageRolls[0].terms[0].results.concat(reroll.terms[0].results)
+
           // Only merge the 2nd dicepool if one even exists
           if (messageRolls[0].terms[2]) messageRolls[0].terms[2].results = messageRolls[0].terms[2].results.concat(reroll.terms[2].results)
 
