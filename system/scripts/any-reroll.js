@@ -10,9 +10,11 @@ import { generateRollMessage } from './rolls/roll-message.js'
 
 export const anyReroll = async (roll) => {
   // Variables
-  const dice = roll.find('.die')
+  const dice = roll.querySelectorAll('.die')
   const diceRolls = []
-  const message = game.messages.get(roll.attr('data-message-id'))
+  const messageId = roll.getAttribute('data-message-id')
+  const message = game.messages.get(messageId)
+
   const system = message.flags.system || 'mortal'
 
   // Go through the message's dice and add them to the diceRolls array
@@ -70,32 +72,32 @@ export const anyReroll = async (roll) => {
   // Handles selecting and de-selecting the die
   function dieSelect () {
     // Toggle selection
-    if (!($(this).hasClass('selected'))) {
-      $(this).classList.add('selected')
+    if (!this.classList.contains('selected')) {
+      this.classList.add('selected')
     } else {
-      $(this).classList.remove('selected')
+      this.classList.remove('selected')
     }
   }
 
   // Handles rerolling the number of dice selected
   async function rerollDie (roll) {
     // Variables
-    const diceSelected = $('.reroll .selected')
-    const hungerDiceSelected = $('.reroll .selected .hunger-dice')
-    const rageDiceSelected = $('.reroll .selected .rage-dice')
-    const desperationDiceSelected = $('.reroll .selected .desperation-dice')
+    const diceSelected = document.querySelectorAll('.reroll .selected')
+    const hungerDiceSelected = document.querySelectorAll('.reroll .selected .hunger-dice')
+    const rageDiceSelected = document.querySelectorAll('.reroll .selected .rage-dice')
+    const desperationDiceSelected = document.querySelectorAll('.reroll .selected .desperation-dice')
     const totalAdvancedDiceSelected = hungerDiceSelected.length + rageDiceSelected.length + desperationDiceSelected.length
 
     // Get the actor associated with the message
-    // Theoretically I should error-check this, but there shouldn't be any
-    // messages that call for a WillpowerReroll without an associated actor
-    const message = game.messages.get(roll.attr('data-message-id'))
+    const messageId = roll.getAttribute('data-message-id')
+    const message = game.messages.get(messageId)
     const actor = game.actors.get(message.speaker.actor)
+
     // Get the rollMode associated with the message
     const rollMode = message?.flags?.rollMode || game.settings.get('core', 'rollMode')
 
-    // If there is at least 1 die selected and aren't any more than 3 die selected, reroll the total number of die and generate a new message.
-    if ((diceSelected.length > 0)) {
+    // If there is at least 1 die selected and no more than 3 die selected, reroll and generate a new message
+    if (diceSelected.length > 0) {
       WOD5eDice.Roll({
         basicDice: diceSelected.length - totalAdvancedDiceSelected,
         advancedDice: totalAdvancedDiceSelected,
@@ -110,19 +112,22 @@ export const anyReroll = async (roll) => {
 
           const messageRolls = message.rolls
 
-          diceSelected.each(function (index) {
-            const dieHTML = diceSelected.eq(index)
+          diceSelected.forEach(dieHTML => {
             const imgElement = dieHTML.querySelector('img')
 
-            if (!imgElement.length) {
+            if (!imgElement) {
               console.error('World of Darkness 5e | Image element not found in dieHTML:', dieHTML)
               return // Skip this iteration if image element is not found
             }
 
-            const dieIndex = imgElement.data('index')
+            const dieIndex = parseInt(imgElement.getAttribute('data-index'))
 
             // Handle advanced dice
-            if (imgElement.hasClass('rage-dice') || imgElement.hasClass('hunger-dice') || imgElement.hasClass('desperation-dice')) {
+            if (
+              imgElement.classList.contains('rage-dice') ||
+              imgElement.classList.contains('hunger-dice') ||
+              imgElement.classList.contains('desperation-dice')
+            ) {
               const die = messageRolls[0].terms[2].results.find(die => die.index === dieIndex)
 
               if (die) {
@@ -146,7 +151,9 @@ export const anyReroll = async (roll) => {
           // Merge "results" arrays
           messageRolls[0].terms[0].results = messageRolls[0].terms[0].results.concat(reroll.terms[0].results)
           // Only merge the 2nd dicepool if one even exists
-          if (messageRolls[0].terms[2]) messageRolls[0].terms[2].results = messageRolls[0].terms[2].results.concat(reroll.terms[2].results)
+          if (messageRolls[0].terms[2]) {
+            messageRolls[0].terms[2].results = messageRolls[0].terms[2].results.concat(reroll.terms[2].results)
+          }
 
           // Update the "content" field
           const newContent = await generateRollMessage({

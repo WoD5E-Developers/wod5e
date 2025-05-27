@@ -113,6 +113,7 @@
     "Chat": {
       "_HasReceivedWillpowerDamage": "",
       "_Reroll": "",
+      "_Rerolled": "",
       "Rolling": "Rolando",
       "RollingWillpower": "Rolando Força de Vontade",
       "RollWillpower": "Rolar Teste de Força de Vontade",

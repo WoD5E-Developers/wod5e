@@ -113,6 +113,7 @@
     "Chat": {
       "_HasReceivedWillpowerDamage": "",
       "_Reroll": "",
+      "_Rerolled": "",
       "_Rolling": "",
       "_RollingWillpower": "",
       "_RollWillpower": "",

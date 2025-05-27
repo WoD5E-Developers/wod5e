@@ -113,6 +113,7 @@
     "Chat": {
       "_HasReceivedWillpowerDamage": "",
       "_Reroll": "",
+      "_Rerolled": "",
       "Rolling": "Перевірити",
       "RollingWillpower": "Перевірити Силу волі",
       "RollWillpower": "Пройти перевірку Силу волі",

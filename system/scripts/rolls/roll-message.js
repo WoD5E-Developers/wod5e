@@ -64,11 +64,14 @@ export async function generateRollMessage ({
 
     basicDice.forEach((die, index) => {
       // Variables
-      let dieResult, dieImg, dieAltText
+      let dieResult, dieImg, dieAltText, dieTitle
       const dieClasses = ['die', 'roll-img', 'rerollable']
 
       // Mark any die that were rerolled / not used
-      if (die.discarded) dieClasses.push(['rerolled'])
+      if (die.discarded) {
+        dieClasses.push(['rerolled'])
+        dieTitle = game.i18n.localize('WOD5E.Chat.Rerolled')
+      }
 
       // Basic die results
       if (die.result === 10) dieResult = 'critical' // Critical successes
@@ -106,6 +109,7 @@ export async function generateRollMessage ({
       rollData.results[index].img = dieImg
       rollData.results[index].classes = dieClasses.join(' ')
       rollData.results[index].altText = dieAltText
+      rollData.results[index].title = dieTitle
 
       // Increase the number of criticals collected across the dice
       if (dieResult === 'critical' && !die.discarded) criticals++
@@ -127,7 +131,7 @@ export async function generateRollMessage ({
 
     advancedDice.forEach((die, index) => {
       // Variables
-      let dieResult, dieImg, dieAltText, dieFace
+      let dieResult, dieImg, dieAltText, dieFace, dieTitle
       const dieClasses = ['die', 'roll-img']
 
       // Mark any die that were rerolled / not used
@@ -183,6 +187,7 @@ export async function generateRollMessage ({
       rollData.results[index].img = dieImg
       rollData.results[index].classes = dieClasses.join(' ')
       rollData.results[index].altText = dieAltText
+      rollData.results[index].title = dieTitle
 
       // Increase the number of criticals collected across the dice
       if (dieResult === 'critical' && !die.discarded) criticals++
