@@ -213,6 +213,19 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
   }
 
   async prepareItems (sheetData) {
+    // Do data manipulation we need to do for ALL items here
+    sheetData.items.forEach(async (item) => {
+      // Enrich item descriptions
+      if (item.system?.description) {
+        item.system.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description)
+      }
+
+      // Calculate item modifiers and shuffle them into system.itemModifiers
+      if (!foundry.utils.isEmpty(item.system.bonuses) && !item?.system?.suppressed) {
+        sheetData.system.itemModifiers = sheetData.system.itemModifiers.concat(item.system.bonuses)
+      }
+    })
+
     // Features
     sheetData.system.features = sheetData.items.reduce((acc, item) => {
       if (item.type === 'feature') {
