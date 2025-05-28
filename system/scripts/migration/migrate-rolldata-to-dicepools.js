@@ -80,7 +80,7 @@ export const MigrateRolldataToDicepools = async function () {
 
     for (const item of actorItems) {
       // If the item was previously rollable and doesn't already have a filled dicepool, migrate the rolldata to the new format
-      if ((item.system?.rollable || item.type === 'customRoll') && foundry.utils.isEmpty(item.system?.dicepool)) {
+      if ((item.system?.rollable || item.type === 'customRoll') && (item?.system?.dice1 && item?.system?.dice2) && foundry.utils.isEmpty(item.system?.dicepool)) {
         hasFixedItems = true
 
         // Push the updated item to the array
@@ -101,7 +101,7 @@ export const MigrateRolldataToDicepools = async function () {
   function fixItemData (item) {
     const dicepool = {}
 
-    if (item.system.dice1) {
+    if (item?.system?.dice1) {
       const randomID = foundry.utils.randomID(8)
 
       dicepool[randomID] = {
@@ -109,7 +109,7 @@ export const MigrateRolldataToDicepools = async function () {
       }
     }
 
-    if (item.system.dice2) {
+    if (item?.system?.dice2) {
       const randomID = foundry.utils.randomID(8)
 
       dicepool[randomID] = {
