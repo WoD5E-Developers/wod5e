@@ -39,14 +39,14 @@ export const _onEditExceptionalPools = async function (event) {
         // Store the updated variables here
         const exceptionaldicepools = {}
         // Define the list of pools
-        const exceptionalPool = dialogHTML.querySelector('.exceptional-pool')
+        const exceptionalPool = dialogHTML.querySelectorAll('.exceptional-pool')
 
         // Make a value in the object to store the checked property
-        exceptionalPool.each(function (pool) {
-          const id = exceptionalPool[pool].dataset.id
+        exceptionalPool.forEach(pool => {
+          const id = pool.dataset.id
           exceptionaldicepools[id] ??= {}
           exceptionaldicepools[id] = {
-            active: $(exceptionalPool[pool]).find('.exceptional-checkbox').checked
+            active: pool.querySelector('.exceptional-checkbox').checked
           }
         })
 
