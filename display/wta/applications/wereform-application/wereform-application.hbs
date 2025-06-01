@@ -1,6 +1,10 @@
 <div class="wereform-header">
     <div class="form-header-image">
-        <img src="{{formData.token.img}}"/>
+        {{#if formData.token.img}}
+            <img src="{{formData.token.img}}"/>
+        {{else}}
+            <img src="icons/svg/mystery-man.svg"/>
+        {{/if}}
     </div>
     <div class="field-header big-header">
         {{formData.displayName}}
