@@ -213,25 +213,33 @@ export const _onInsufficientRage = async function (actor, form) {
 export const _updateToken = async function (actor, form) {
   // Original image
   let originalImage = ''
-  if (actor.system.activeForm === 'homid') {
-    originalImage = actor.prototypeToken.texture.src
-    // Make sure that the homid image is the original token image
-    actor.update({
-      'system.forms.homid.token.img': originalImage
-    })
-  } else {
-    originalImage = actor.system.forms.homid.token.img
+
+  // When the user is shifting out of homid, make sure that the homid image is the original token image,
+  // unless the original token image is a wildcard, then skip this
+  if (actor.prototypeToken.texture.src.indexOf('*') === -1) {
+    if (actor.system.activeForm === 'homid') {
+      originalImage = actor.prototypeToken.texture.src
+
+      actor.update({
+        'system.forms.homid.token.img': originalImage
+      })
+    } else {
+      originalImage = actor.system.forms.homid.token.img
+    }
   }
+
   // New image
   const tokenImg = actor.system.forms[form].token.img
 
+  // Get a list of the active tokens in a given scene
+  const activeTokens = actor.getActiveTokens()
+
+  // Depending on if we have a token image set, update all instances of the token image
   if (tokenImg) {
     // Update the actor itself
     actor.update({
       'prototypeToken.texture.src': tokenImg
     })
-
-    const activeTokens = actor.getActiveTokens()
 
     // Update tokens
     activeTokens.forEach((token) => {
@@ -240,6 +248,13 @@ export const _updateToken = async function (actor, form) {
       })
     })
   } else {
-    // Default to the actor's original image
+    // Default to the actor's original image if the original image is not a wildcard
+    if (actor.prototypeToken.texture.src.indexOf('*') === -1) {
+      activeTokens.forEach((token) => {
+        token.document.update({
+          'texture.src': originalImage
+        })
+      })
+    }
   }
 }
