@@ -111,7 +111,7 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     if (data.gamesystem === 'vampire') {
       data.humanity = actorData.humanity
       data.hunger = actorData.hunger
-      data.bloodpotency = Math.min(Math.max(actorData.blood.potency, 0), 10) // make sure Blood Potency doesn't go over 10 or under 0
+      data.bloodpotency = Math.min(Math.max(actorData.blood.potency, 0), 10) // Make sure Blood Potency doesn't go over 10 or under 0
     }
 
     if (data.currentActorType === 'werewolf') {
