@@ -66,7 +66,6 @@ class WOD5eDice {
       // Get the rollMode and store it
       rollMode = formData ? formData.querySelector('[name="rollMode"]')?.value ?? rollMode : rollMode
 
-
       // Prevent trying to roll 0 dice; all dice pools should roll at least 1 die
       if (parseInt(inputBasicDice) === 0 && parseInt(inputAdvancedDice) === 0) {
         if (system === 'vampire' && actor.system.hunger.value > 0) {
