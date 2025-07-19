@@ -60,10 +60,11 @@ class WOD5eDice {
   }) {
     // Inner roll function
     const _roll = async (inputBasicDice, inputAdvancedDice, $form) => {
+      const formData = $form[0]
       // Get the difficulty and store it
-      difficulty = $form ? $form.find('[id=inputDifficulty]').value : difficulty
+      difficulty = formData ? formData.querySelector('#inputDifficulty')?.value ?? difficulty : difficulty
       // Get the rollMode and store it
-      rollMode = $form ? $form.find('[name=rollMode]').value : rollMode
+      rollMode = formData ? formData.querySelector('[name="rollMode"]')?.value ?? rollMode : rollMode
 
       // Prevent trying to roll 0 dice; all dice pools should roll at least 1 die
       if (parseInt(inputBasicDice) === 0 && parseInt(inputAdvancedDice) === 0) {
@@ -137,8 +138,17 @@ class WOD5eDice {
         }
       }
 
+      const options = {
+        difficulty,
+        system,
+        title,
+        flavor,
+        activeModifiers,
+        rollMode
+      }
+
       // Send the roll to chat
-      const roll = await new Roll(rollFormula, data).roll()
+      const roll = await new Roll(rollFormula, data, options).roll()
 
       // Handle failures for werewolves and vampires
       if (roll.terms[2]) await handleFailure(system, roll.terms[2].results)
@@ -213,15 +223,6 @@ class WOD5eDice {
       {
         rollMode
       })
-
-      roll.flags = {
-        difficulty,
-        system,
-        title,
-        flavor,
-        activeModifiers,
-        rollMode
-      }
 
       return roll
     }

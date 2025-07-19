@@ -8,6 +8,7 @@
       "Artifact": "Артефакт",
       "BeastWhisperer": "Заклинач звірів",
       "Cell": "Підрозділ",
+      "_CleanseTheUnnatural": "",
       "Creed": "Кредо",
       "_CreedDetails": "",
       "CreedFields": "Області Кредо",
@@ -26,8 +27,10 @@
       "_EdgePool": "",
       "Edges": "Грані",
       "_EdgeType": "",
+      "_ExperimentalMedicine": "",
       "Fleet": "Автопарк",
       "GlobalAccess": "Глобальний доступ",
+      "_GreatDestiny": "",
       "_HunterDice": "",
       "ImprovisedGear": "Саморобні приладдя",
       "Label": "Мисливець",
@@ -47,7 +50,8 @@
       "_StringPerks": "",
       "_SuggestedDrives": "",
       "_SuggestedEdges": "",
-      "ThwartTheUnnatural": "Протидія Химерному"
+      "ThwartTheUnnatural": "Протидія Химерному",
+      "_Turncoat": ""
     }
   }
 }

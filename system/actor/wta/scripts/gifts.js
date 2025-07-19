@@ -90,10 +90,10 @@ export const _onGiftCost = async function (actor, item, rollMode) {
   // Apply rollMode from chat if none is set
   if (!rollMode) rollMode = game.settings.get('core', 'rollMode')
 
-  // If we're rolling no rage dice and
+  // If we're rolling no rage dice and we're spending willpower, then just damage willpower
   if (cost < 1 && willpowerCost > 0) {
     _damageWillpower(null, null, actor, willpowerCost, rollMode)
-  } else if (cost > 0 && willpowerCost > 0) {
+  } else if (cost > 0) {
     selectors = ['rage']
 
     // Handle getting any situational modifiers

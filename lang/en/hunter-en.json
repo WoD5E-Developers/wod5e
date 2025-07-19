@@ -8,6 +8,7 @@
       "Artifact": "Artifact",
       "BeastWhisperer": "Beast Whisperer",
       "Cell": "Cell",
+      "CleanseTheUnnatural": "Cleanse the Unnatural",
       "Creed": "Creed",
       "CreedDetails": "Creed Details",
       "CreedFields": "Creed Fields",
@@ -26,8 +27,10 @@
       "EdgePool": "Edge Pool",
       "Edges": "Edges",
       "EdgeType": "Edge Type",
+      "ExperimentalMedicine": "Experimental Medicine",
       "Fleet": "Fleet",
       "GlobalAccess": "Global Access",
+      "GreatDestiny": "Great Destiny",
       "HunterDice": "Hunter Dice",
       "ImprovisedGear": "Improvised Gear",
       "Label": "Hunter",
@@ -47,7 +50,8 @@
       "StringPerks": "{string} Perks",
       "SuggestedDrives": "Suggested Drives",
       "SuggestedEdges": "Suggested Edges",
-      "ThwartTheUnnatural": "Thwart the Unnatural"
+      "ThwartTheUnnatural": "Thwart the Unnatural",
+      "Turncoat": "Turncoat"
     }
   }
 }

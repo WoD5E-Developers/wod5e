@@ -78,6 +78,22 @@ export class Edges extends BaseDefinitionClass {
   static artifact = {
     label: 'WOD5E.HTR.Artifact'
   }
+
+  static turncoat = {
+    label: 'WOD5E.HTR.Turncoat'
+  }
+
+  static experimentalmedicine = {
+    label: 'WOD5E.HTR.ExperimentalMedicine'
+  }
+
+  static cleansetheunnatural = {
+    label: 'WOD5E.HTR.CleanseTheUnnatural'
+  }
+
+  static greatdestiny = {
+    label: 'WOD5E.HTR.GreatDestiny'
+  }
 }
 
 // Hook to call onReady when the game is ready
