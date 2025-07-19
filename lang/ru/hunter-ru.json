@@ -8,6 +8,7 @@
       "Artifact": "Артефакт",
       "BeastWhisperer": "Говорящий с животными",
       "Cell": "Целла",
+      "_CleanseTheUnnatural": "",
       "Creed": "Кредо",
       "_CreedDetails": "",
       "CreedFields": "Поля Кредо",
@@ -26,8 +27,10 @@
       "_EdgePool": "",
       "Edges": "Черты",
       "_EdgeType": "",
+      "_ExperimentalMedicine": "",
       "Fleet": "Автопарк",
       "GlobalAccess": "Всеобщий доступ",
+      "_GreatDestiny": "",
       "_HunterDice": "",
       "ImprovisedGear": "Импровизированное снаряжение",
       "Label": "Охотник",
@@ -47,7 +50,8 @@
       "_StringPerks": "",
       "_SuggestedDrives": "",
       "_SuggestedEdges": "",
-      "ThwartTheUnnatural": "Воспротивиться сверхъестественному"
+      "ThwartTheUnnatural": "Воспротивиться сверхъестественному",
+      "_Turncoat": ""
     }
   }
 }

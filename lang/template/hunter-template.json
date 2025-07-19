@@ -8,6 +8,7 @@
       "_Artifact": "",
       "_BeastWhisperer": "",
       "_Cell": "",
+      "_CleanseTheUnnatural": "",
       "_Creed": "",
       "_CreedDetails": "",
       "_CreedFields": "",
@@ -26,8 +27,10 @@
       "_EdgePool": "",
       "_Edges": "",
       "_EdgeType": "",
+      "_ExperimentalMedicine": "",
       "_Fleet": "",
       "_GlobalAccess": "",
+      "_GreatDestiny": "",
       "_HunterDice": "",
       "_ImprovisedGear": "",
       "_Label": "",
@@ -47,7 +50,8 @@
       "_StringPerks": "",
       "_SuggestedDrives": "",
       "_SuggestedEdges": "",
-      "_ThwartTheUnnatural": ""
+      "_ThwartTheUnnatural": "",
+      "_Turncoat": ""
     }
   }
 }

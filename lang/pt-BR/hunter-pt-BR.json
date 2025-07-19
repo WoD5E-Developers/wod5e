@@ -8,6 +8,7 @@
       "Artifact": "Artefato",
       "BeastWhisperer": "Encantador de Feras",
       "Cell": "Célula",
+      "_CleanseTheUnnatural": "",
       "Creed": "Credo",
       "_CreedDetails": "",
       "CreedFields": "Áreas de Credo",
@@ -26,8 +27,10 @@
       "_EdgePool": "",
       "Edges": "Trunfos",
       "EdgeType": "Tipo de Trunfo",
+      "_ExperimentalMedicine": "",
       "Fleet": "Frota",
       "GlobalAccess": "Acesso Global",
+      "_GreatDestiny": "",
       "HunterDice": "Dados de Caçador",
       "ImprovisedGear": "Equipamento Improvisado",
       "Label": "Caçador",
@@ -47,7 +50,8 @@
       "_StringPerks": "",
       "_SuggestedDrives": "",
       "_SuggestedEdges": "",
-      "ThwartTheUnnatural": "Frustrar o Sobrenatural"
+      "ThwartTheUnnatural": "Frustrar o Sobrenatural",
+      "_Turncoat": ""
     }
   }
 }

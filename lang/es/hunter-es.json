@@ -8,6 +8,7 @@
       "Artifact": "Artefacto",
       "BeastWhisperer": "Encantador de bestias",
       "Cell": "Célula",
+      "_CleanseTheUnnatural": "",
       "Creed": "Credo",
       "CreedDetails": "Detalles del credo",
       "CreedFields": "Campos de credo",
@@ -26,8 +27,10 @@
       "EdgePool": "Reserva de facultad",
       "Edges": "Facultad",
       "EdgeType": "Tipo de facultad",
+      "_ExperimentalMedicine": "",
       "Fleet": "Flota",
       "GlobalAccess": "Acceso global",
+      "_GreatDestiny": "",
       "HunterDice": "Dados de Cazador",
       "ImprovisedGear": "Equipamiento improvisado",
       "Label": "Cazador",
@@ -47,7 +50,8 @@
       "StringPerks": "{string} Beneficios",
       "SuggestedDrives": "Determinaciones sugeridas",
       "SuggestedEdges": "Facultades sugeridas",
-      "ThwartTheUnnatural": "Frustrar lo antinatural"
+      "ThwartTheUnnatural": "Frustrar lo antinatural",
+      "_Turncoat": ""
     }
   }
 }
