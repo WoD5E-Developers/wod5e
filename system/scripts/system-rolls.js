@@ -60,7 +60,7 @@ class WOD5eDice {
   }) {
     // Inner roll function
     const _roll = async (inputBasicDice, inputAdvancedDice, $form) => {
-      const formData = $form[0]
+      const formData = $form ? $form[0] : null
       // Get the difficulty and store it
       difficulty = formData ? formData.querySelector('#inputDifficulty')?.value ?? difficulty : difficulty
       // Get the rollMode and store it
