@@ -594,7 +594,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
         // Force a reflow and then re-enable the transition property
         // We have to tell eslint to ignore the no-void rule because it's genuinely useful here
-         
+        // eslint-disable-next-line no-void
         void contentElement[0].offsetHeight
         contentElement.css('transition', '')
       }
