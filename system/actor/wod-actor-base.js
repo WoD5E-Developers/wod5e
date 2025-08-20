@@ -87,7 +87,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
   }
 
   _getHeaderControls () {
-    const controls = this.options.window.controls
+    const controls = super._getHeaderControls()
 
     return controls
   }
