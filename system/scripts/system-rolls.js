@@ -92,16 +92,16 @@ class WOD5eDice {
 
       // Determine any active modifiers
       const activeModifiers = []
-      if ($form) {
-        const modifiersList = $form.find('.mod-checkbox')
+      if (formData) {
+        const modifiersList = formData.querySelectorAll('.mod-checkbox')
         if (modifiersList.length > 0) {
-          modifiersList.each(el => {
+          modifiersList.forEach(el => {
             const isChecked = el.checked
 
             if (isChecked) {
               // Get the dataset values
               const label = el.dataset.label
-              const value = el.dataset.value
+              const value = Number(el.dataset.value || 0)
 
               // Add a plus sign if the value is positive
               const valueWithSign = (value > 0 ? '+' : '') + value
@@ -115,13 +115,13 @@ class WOD5eDice {
           })
         }
 
-        const customModifiersList = $form.find('.custom-modifier')
+        const customModifiersList = formData.querySelectorAll('.custom-modifier')
         if (customModifiersList.length > 0) {
           // Go through each custom modifier and add it to the array
-          customModifiersList.each(function () {
+          customModifiersList.forEach(el => {
             // Get the label and value from the current .custom-modifier element
-            const label = $(this).find('.mod-name').value
-            const value = $(this).find('.mod-value').value
+            const label = el.querySelector('.mod-name')?.value || ''
+            const value = Number(el.querySelector('.mod-value')?.value || 0)
 
             // Add a plus sign if the value is positive
             const valueWithSign = (value > 0 ? '+' : '') + value
@@ -276,12 +276,12 @@ class WOD5eDice {
                   const customModifiersList = dialogHTML.querySelectorAll('.custom-modifier')
                   if (customModifiersList.length > 0) {
                     // Go through each custom modifier and add it to the array
-                    customModifiersList.each(function () {
+                    customModifiersList.forEach(el => {
                       // Get the value from the current .custom-modifier element
-                      const value = $(this).find('.mod-value').value
+                      const value = Number(el.querySelector('.mod-value')?.value || 0)
 
                       // Add the value to the basicValue
-                      basicValue = parseInt(basicValue) + parseInt(value)
+                      basicValue = Number(basicValue || 0) + value
                     })
                   }
 
