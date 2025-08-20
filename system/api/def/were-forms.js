@@ -76,7 +76,6 @@ export class WereForms extends BaseDefinitionClass {
       'WOD5E.WTA.CrinosPhysicalTests',
       'WOD5E.WTA.CrinosHealth',
       'WOD5E.WTA.CrinosSocialTests',
-      'WOD5E.WTA.CrinosMentalTests',
       'WOD5E.WTA.CrinosRegenerate',
       'WOD5E.WTA.CrinosClaws',
       'WOD5E.WTA.CrinosBite',
