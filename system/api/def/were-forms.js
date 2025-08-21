@@ -58,6 +58,7 @@ export class WereForms extends BaseDefinitionClass {
         source: 'WOD5E.WTA.GlabroName',
         value: -2,
         paths: ['attributes.charisma', 'attributes.manipulation', 'attributes.composure'],
+        unless: ['skills.intimidation'],
         activeWhen: {
           check: 'isEqual',
           path: 'activeForm',
