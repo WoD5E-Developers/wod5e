@@ -472,8 +472,8 @@ class WOD5eDice {
                   })
                 })
               })
-              
-              //Apply modifier at the start of the dialog window
+
+              // Apply modifier at the start of the dialog window
               dialogHTML.querySelectorAll('.mod-checkbox').forEach(checkbox => {
                 checkbox.dispatchEvent(new Event('change'))
               })
