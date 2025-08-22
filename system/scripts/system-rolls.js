@@ -301,8 +301,8 @@ class WOD5eDice {
               const dialogHTML = html[0]
 
               // Obtain the input fields for basic and advanced dice
-              const basicDiceInput = dialogHTML.querySelector('#inputBasicDice')
-              // Null coalescing and default value added for rolls without advanced dies like frenzy check for vampires
+              // In case of null, default either value to 0
+              const basicDiceInput = dialogHTML.querySelector('#inputBasicDice') ?? { value: 0 }
               const advancedDiceInput = dialogHTML.querySelector('#inputAdvancedDice') ?? { value: 0 }
 
               // Add event listeners to plus and minus signs on the dice in the dialog
@@ -471,11 +471,6 @@ class WOD5eDice {
                     })
                   })
                 })
-              })
-
-              // Apply modifier at the start of the dialog window
-              dialogHTML.querySelectorAll('.mod-checkbox').forEach(checkbox => {
-                checkbox.dispatchEvent(new Event('change'))
               })
             }
           },
