@@ -146,7 +146,14 @@ export const _onFormToChat = async function (event, target, originActor) {
   if (formAbilities && formAbilities.length > 0) {
     chatMessage = chatMessage + '<ul>'
     formAbilities.forEach((ability) => {
-      chatMessage = chatMessage + `<li>${ability}</li>`
+      let abilityLabel = ability.label
+
+      // If there's a hint icon, emulate what we show on the forms page of the Werewolf sheet
+      if (ability?.hintIcon) {
+        abilityLabel = `${ability.label} <span class="ability-hint" title="${ability.hintDescription}">${ability.hintIcon}</span>`
+      }
+
+      chatMessage = chatMessage + `<li>${abilityLabel}</li>`
     })
     chatMessage = chatMessage + '</ul>'
   }
