@@ -284,7 +284,6 @@ class WOD5eDice {
                       basicValue = Number(basicValue || 0) + value
                     })
                   }
-
                   // Send the roll to the _roll function
                   roll = await _roll(basicValue, advancedValue, html)
                 }
@@ -302,8 +301,9 @@ class WOD5eDice {
               const dialogHTML = html[0]
 
               // Obtain the input fields for basic and advanced dice
-              const basicDiceInput = dialogHTML.querySelector('#inputBasicDice')
-              const advancedDiceInput = dialogHTML.querySelector('#inputAdvancedDice')
+              // In case of null, default either value to 0
+              const basicDiceInput = dialogHTML.querySelector('#inputBasicDice') ?? { value: 0 }
+              const advancedDiceInput = dialogHTML.querySelector('#inputAdvancedDice') ?? { value: 0 }
 
               // Add event listeners to plus and minus signs on the dice in the dialog
               dialogHTML.querySelectorAll('.dialog-plus').forEach(function (el) {
@@ -357,15 +357,18 @@ class WOD5eDice {
                   // Either use the current applyDiceTo (if set), or default to 'basic'
                   let applyDiceTo = event.currentTarget.dataset.applyDiceTo || 'basic'
 
-                  if (modifierIsNegative) {
-                    // Apply dice to basicDice unless basicDice is 0
-                    if ((system === 'vampire' || system === 'werewolf') && basicValue === 0) {
-                      applyDiceTo = 'advanced'
-                    }
-                  } else {
-                    // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
-                    if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
-                      applyDiceTo = 'advanced'
+                  // Make sure advanced dice are enabled
+                  if (!disableAdvancedDice) {
+                    if (modifierIsNegative) {
+                      // Apply dice to basicDice unless basicDice is 0
+                      if ((system === 'vampire' || system === 'werewolf') && basicValue === 0) {
+                        applyDiceTo = 'advanced'
+                      }
+                    } else {
+                      // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
+                      if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
+                        applyDiceTo = 'advanced'
+                      }
                     }
                   }
 

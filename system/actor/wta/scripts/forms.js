@@ -63,13 +63,13 @@ export const _onShiftForm = async function (event, target) {
 
   switch (form) {
     case 'glabro':
-      handleFormChange(actor, 'glabro', 1)
+      handleFormChange(event, target, actor, 'glabro', 1)
       break
     case 'crinos':
-      handleFormChange(actor, 'crinos', 2)
+      handleFormChange(event, target, actor, 'crinos', 2)
       break
     case 'hispo':
-      handleFormChange(actor, 'hispo', 1)
+      handleFormChange(event, target, actor, 'hispo', 1)
       break
     case 'lupus':
       actor.update({ 'system.activeForm': 'lupus' })
@@ -83,7 +83,7 @@ export const _onShiftForm = async function (event, target) {
   }
 }
 
-export const handleFormChange = async function (actor, form, diceCount) {
+export const handleFormChange = async function (event, target, actor, form, diceCount) {
   // Variables yet to be defined
   const selectors = []
 
@@ -119,8 +119,10 @@ export const handleFormChange = async function (actor, form, diceCount) {
         const newRageAmount = Math.max(actor.system.rage.value - failures, 0)
 
         // If rolling rage dice didn't reduce the actor to 0 rage, then update the current form
+        // and post the description to chat as well
         if (newRageAmount > 0) {
           actor.update({ 'system.activeForm': form })
+          _onFormToChat(event, target, actor)
           _updateToken(actor, form)
         }
       }
@@ -146,7 +148,14 @@ export const _onFormToChat = async function (event, target, originActor) {
   if (formAbilities && formAbilities.length > 0) {
     chatMessage = chatMessage + '<ul>'
     formAbilities.forEach((ability) => {
-      chatMessage = chatMessage + `<li>${ability}</li>`
+      let abilityLabel = ability.label
+
+      // If there's a hint icon, emulate what we show on the forms page of the Werewolf sheet
+      if (ability?.hintIcon) {
+        abilityLabel = `${ability.label} <span class="ability-hint" title="${ability.hintDescription}">${ability.hintIcon}</span>`
+      }
+
+      chatMessage = chatMessage + `<li>${abilityLabel}</li>`
     })
     chatMessage = chatMessage + '</ul>'
   }
