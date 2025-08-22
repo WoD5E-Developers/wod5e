@@ -9,6 +9,9 @@ export const _onBeginFrenzy = async function (event) {
 
   // Set rage to 5
   await actor.update({ 'system.rage.value': 5 })
+
+  // Shift to Crinos
+  await actor.update({ 'system.activeForm': 'crinos' })
 }
 
 export const _onEndFrenzy = async function (event) {
