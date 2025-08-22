@@ -20,6 +20,7 @@
       "CrinosName": "Crinos",
       "CrinosPhysicalTests": "Physical Tests: +4",
       "CrinosRegenerate": "Regenerate: 2/Rage Check",
+      "CrinosSocialTestExclusion": "Does not apply to intimidation",
       "CrinosSocialTests": "Social Tests: Auto-failure",
       "CrinosTitle": "The War-Form, The Monster",
       "DamageWillpower": "Damage Willpower",

@@ -20,6 +20,7 @@
       "CrinosName": "Crinos",
       "CrinosPhysicalTests": "Prove fisiche: +4",
       "CrinosRegenerate": "Rigenerazione: 2/test di furia",
+      "_CrinosSocialTestExclusion": "",
       "CrinosSocialTests": "Prove sociali: fallimento automatico",
       "CrinosTitle": "La forma da guerra, il Mostro",
       "DamageWillpower": "danno forza di volontà",
