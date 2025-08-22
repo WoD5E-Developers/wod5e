@@ -1,5 +1,6 @@
-/* global game, foundry, ChatMessage */
+/* global game, foundry, ChatMessage, WOD5E */
 
+import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 
 /** Handle rolling for a frenzy check */
@@ -29,17 +30,27 @@ export const _onFrenzyRoll = async function (event) {
   })
 
   if (doFrenzyRoll) {
-    const willpowerDicePool = getWillpowerDicePool(actor)
+    let basicDice = 0
+    const willpowerDicePool = await getWillpowerDicePool(actor)
     const humanity = actor.system.humanity.value
     const dicePool = Math.max(willpowerDicePool + Math.floor(humanity / 3), 1)
 
+    // Handle getting any situational modifiers
+    const activeModifiers = await getActiveModifiers({
+      actor,
+      selectors: ['frenzy']
+    })
+
+    basicDice = await WOD5E.api.getBasicDice({ flatMod: dicePool + activeModifiers.totalValue, actor })
+
     WOD5eDice.Roll({
-      basicDice: dicePool,
+      basicDice,
       title: game.i18n.localize('WOD5E.VTM.ResistingFrenzy'),
       actor,
       selectors: ['frenzy'],
       data: actor.system,
       disableAdvancedDice: true,
+      activeModifiers,
       callback: async (err, result) => {
         if (err) console.log('World of Darkness 5e | ' + err)
 

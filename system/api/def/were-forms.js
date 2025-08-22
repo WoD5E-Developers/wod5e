@@ -90,7 +90,11 @@ export class WereForms extends BaseDefinitionClass {
       { label: 'WOD5E.WTA.CrinosFrenzy' },
       { label: 'WOD5E.WTA.CrinosPhysicalTests' },
       { label: 'WOD5E.WTA.CrinosHealth' },
-      { label: 'WOD5E.WTA.CrinosSocialTests' },
+      {
+        label: 'WOD5E.WTA.CrinosSocialTests',
+        hintIcon: '*',
+        hintDescription: 'WOD5E.WTA.CrinosSocialTestExclusion'
+      },
       { label: 'WOD5E.WTA.CrinosRegenerate' },
       { label: 'WOD5E.WTA.CrinosClaws' },
       { label: 'WOD5E.WTA.CrinosBite' },
@@ -117,7 +121,7 @@ export class WereForms extends BaseDefinitionClass {
     attributes: [
       {
         label: 'WOD5E.WTA.HispoPhysicalTests',
-        hintIcon: '**',
+        hintIcon: '*',
         hintDescription: 'WOD5E.WTA.HispoBonusExclusion'
       },
       { label: 'WOD5E.WTA.HispoStealthTests' },

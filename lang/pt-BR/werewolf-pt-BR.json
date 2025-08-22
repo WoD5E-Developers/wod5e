@@ -20,6 +20,7 @@
       "CrinosName": "Crinos",
       "CrinosPhysicalTests": "Testes Físicos: +4",
       "CrinosRegenerate": "Regeneração: 2/Checagem de Fúria",
+      "_CrinosSocialTestExclusion": "",
       "CrinosSocialTests": "Testes Sociais: falha automática",
       "CrinosTitle": "A Forma de Batalha, o Monstro",
       "DamageWillpower": "Dano à Força de Vontade",
