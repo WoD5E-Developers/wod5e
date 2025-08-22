@@ -266,7 +266,7 @@ class WOD5eDice {
 
                   // Obtain the input fields
                   const basicDiceInput = dialogHTML.querySelector('#inputBasicDice')
-                  const advancedDiceInput = dialogHTML.querySelector('#inputAdvancedDice') 
+                  const advancedDiceInput = dialogHTML.querySelector('#inputAdvancedDice')
 
                   // Get the values
                   let basicValue = basicDiceInput ? basicDiceInput?.value : 0
