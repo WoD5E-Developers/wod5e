@@ -20,6 +20,7 @@
       "CrinosName": "Crinos",
       "CrinosPhysicalTests": "Körperliche Proben: +4",
       "CrinosRegenerate": " Regenerieren: 2/Zorn-Check",
+      "_CrinosSocialTestExclusion":"",
       "CrinosSocialTests": "Soziale Proben: Auto-Fehlschlag",
       "CrinosTitle": "Die Kriegsform, Das Monster",
       "DamageWillpower": "Willenskraft verringern",
