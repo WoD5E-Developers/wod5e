@@ -250,8 +250,8 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       boon: []
     })
 
-    // Remove Boons if we have no boons and the actor isn't a coterie
-    if (sheetData.system.features.boon.length === 0 && sheetData.type !== 'coterie') delete sheetData.system.features.boon
+    // Remove Boons if the group type isn't a coterie
+    if (sheetData.system.groupType !== 'coterie') delete sheetData.system.features.boon
 
     // Equipment
     sheetData.system.equipmentItems = sheetData.items.reduce((acc, item) => {
@@ -279,8 +279,8 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       talisman: []
     })
 
-    // Remove Talismans if we have no boons and the actor isn't a werewolf
-    if (sheetData.system.equipmentItems.talisman.length === 0 && sheetData.type !== 'pack') delete sheetData.system.equipmentItems.talisman
+    // Remove Talismans if the group type is not a pack
+    if (sheetData.system.groupType !== 'pack') delete sheetData.system.equipmentItems.talisman
   }
 
   async _preparePartContext (partId, context, options) {
@@ -474,7 +474,8 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
 
   async _onDropItem (event, data) {
     if (!this.actor.isOwner) return false
-    const actorType = this.actor.type
+    // in case actor is a group set group type as actorType for item black\whitelist handling
+    const actorType = this.actor.type == 'group' ? this.actor.system.groupType : this.actor.type
     const item = await Item.implementation.fromDropData(data)
     const itemData = item.toObject()
     const itemType = itemData.type
