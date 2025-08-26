@@ -224,8 +224,8 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       boon: []
     })
 
-    // Remove Boons if the actor isn't a vampire
-    if (sheetData.system.gamesystem !== 'vampire') delete sheetData.system.features.boon
+    // Remove Boons if we have no boons and the actor isn't a vampire
+    if (sheetData.system.features.boon.length === 0 && sheetData.system.gamesystem !== 'vampire') delete sheetData.system.features.boon
 
     // Equipment
     sheetData.system.equipmentItems = sheetData.items.reduce((acc, item) => {
@@ -253,8 +253,8 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       talisman: []
     })
 
-    // Remove Talismans if the actor isn't a werewolf
-    if (sheetData.system.gamesystem !== 'werewolf') delete sheetData.system.equipmentItems.talisman
+    // Remove Talismans if we have no boons and the actor isn't a werewolf
+    if (sheetData.system.equipmentItems.talisman.length === 0 && sheetData.system.gamesystem !== 'werewolf') delete sheetData.system.equipmentItems.talisman
   }
 
   static async onSubmitActorForm (event, form, formData) {

@@ -250,8 +250,8 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       boon: []
     })
 
-    // Remove Boons if the group type isn't a coterie
-    if (sheetData.system.groupType !== 'coterie') delete sheetData.system.features.boon
+    // Remove Boons if we have no boons and the actor isn't a coterie
+    if (sheetData.system.features.boon.length === 0 && sheetData.system.groupType !== 'coterie') delete sheetData.system.features.boon
 
     // Equipment
     sheetData.system.equipmentItems = sheetData.items.reduce((acc, item) => {
@@ -279,8 +279,8 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       talisman: []
     })
 
-    // Remove Talismans if the group type is not a pack
-    if (sheetData.system.groupType !== 'pack') delete sheetData.system.equipmentItems.talisman
+    // Remove Talismans if we have no boons and the group type is not a pack
+    if (sheetData.system.equipmentItems.talisman.length === 0 && sheetData.system.groupType !== 'pack') delete sheetData.system.equipmentItems.talisman
   }
 
   async _preparePartContext (partId, context, options) {
