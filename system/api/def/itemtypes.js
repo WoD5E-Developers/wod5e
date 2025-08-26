@@ -151,7 +151,7 @@ export class ItemTypes extends BaseDefinitionClass {
     img: 'systems/vtm5e/assets/icons/items/boon.svg',
     types: ['boon'],
     sheetClass: BoonItemSheet,
-    restrictedActorTypes: ['vampire', 'ghoul','coterie'],
+    restrictedActorTypes: ['vampire', 'ghoul', 'coterie'],
     excludedActorTypes: ['spc']
   }
 
@@ -219,7 +219,7 @@ export class ItemTypes extends BaseDefinitionClass {
     img: '',
     types: ['talisman'],
     sheetClass: TalismanItemSheet,
-    restrictedActorTypes: ['werewolf','pack'],
+    restrictedActorTypes: ['werewolf', 'pack'],
     excludedActorTypes: ['spc']
   }
 
