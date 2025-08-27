@@ -251,7 +251,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     })
 
     // Remove Boons if we have no boons and the actor isn't a coterie
-    if (sheetData.system.features.boon.length === 0 && sheetData.type !== 'coterie') delete sheetData.system.features.boon
+    if (sheetData.system.features.boon.length === 0 && sheetData.system.groupType !== 'coterie') delete sheetData.system.features.boon
 
     // Equipment
     sheetData.system.equipmentItems = sheetData.items.reduce((acc, item) => {
@@ -279,8 +279,8 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       talisman: []
     })
 
-    // Remove Talismans if we have no boons and the actor isn't a werewolf
-    if (sheetData.system.equipmentItems.talisman.length === 0 && sheetData.type !== 'pack') delete sheetData.system.equipmentItems.talisman
+    // Remove Talismans if we have no boons and the group type is not a pack
+    if (sheetData.system.equipmentItems.talisman.length === 0 && sheetData.system.groupType !== 'pack') delete sheetData.system.equipmentItems.talisman
   }
 
   async _preparePartContext (partId, context, options) {
@@ -486,7 +486,17 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       const blacklist = itemsList[itemType].excludedActorTypes
 
       // If the whitelist contains any entries, we can check to make sure this actor type is allowed for the item
-      if (!foundry.utils.isEmpty(whitelist) && whitelist.indexOf(actorType) === -1) {
+      // We go through the base actor type, then subtypes - if we match to any of them, we allow the item to be
+      // added to the actor.
+      // We don't need to add this logic to the blacklist because the blacklist only needs to check against the base types.
+      if (!foundry.utils.isEmpty(whitelist) &&
+        // This is just a general check against the base actorType
+        !whitelist.includes(actorType) &&
+        // If the actor is an SPC, check against the spcType
+        !(actorType === 'spc' && whitelist.includes(this.actor.system.spcType)) &&
+        // If the actor is a Group sheet, check against the groupType
+        !(actorType === 'group' && whitelist.includes(this.actor.system.groupType))
+      ) {
         ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
           string1: itemType,
           string2: actorType
@@ -503,6 +513,13 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
         }))
 
         return false
+      }
+
+      // Handle limiting only a single type of an item to an actor
+      if (itemsList[itemType].limitOnePerActor) {
+        // Delete all other types of this item on the actor
+        const duplicateItemTypeInstances = this.actor.items.filter(item => item.type === itemType).map(item => item.id)
+        this.actor.deleteEmbeddedDocuments('Item', duplicateItemTypeInstances)
       }
     }
 
