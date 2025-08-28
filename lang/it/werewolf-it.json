@@ -71,6 +71,7 @@
       "LostWolfShiftAnyway": "Questo personaggio ha perso il lupo e non può trasformarsi a causa della basa furia. Vuoi Trasformarti comunque?",
       "LostWolfShiftDown": "Questo personaggio ha perso il lupo e non può rimanere nella sua forma sovrannaturale. Scegli una forma a cui scendere",
       "LostWolfWarning": "Questo personaggio ha furia zero e ha perso il lupo",
+      "_Shift": "",
       "LupusName": "Lupus",
       "LupusSocialTests": "Prove sociali:  limitate a lupi e Garou",
       "LupusTitle": "Il Lupo",

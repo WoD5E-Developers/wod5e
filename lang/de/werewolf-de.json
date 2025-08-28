@@ -71,6 +71,7 @@
       "LostWolfShiftAnyway": "Dieser Charakter hat den Wolf in sich verloren und nicht genügend Zorn, um in eine übernatürliche Form zu wechseln. Trotzdem Formwandeln?",
       "LostWolfShiftDown": "Dieser Charakter hat den Wolf in sich verloren und kann nicht in übernatürlicher Form bleiben. Form zum Zurückverwandeln wählen.",
       "LostWolfWarning": "Dieser Charakter hat keinen Zorn mehr und den Wolf in sich verloren.",
+      "_Shift": "",
       "LupusName": "Lupus",
       "LupusSocialTests": "Soziale Proben: Auf Garou und Wölfe beschränkt",
       "LupusTitle": "Der Wolf",

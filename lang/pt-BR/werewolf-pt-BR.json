@@ -71,6 +71,7 @@
       "LostWolfShiftAnyway": "Este ator Perdeu o Lobo e não pode se transformar em suas formas sobrenaturais devido a Fúria insuficiente. Gostaria de mudar de forma mesmo assim?",
       "LostWolfShiftDown": "Este ator Perdeu o Logo e não pode permanecer em uma forma sobrenatural. Escolha uma outra forma para mudar.",
       "LostWolfWarning": "Este ator tem 0 de Fúria e Perdeu o Lobo.",
+      "_Shift": "",
       "LupusName": "Lupino",
       "LupusSocialTests": "Testes Sociais: Limitado a lobos e Garou",
       "LupusTitle": "O Lobo",

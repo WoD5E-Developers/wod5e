@@ -71,6 +71,7 @@
       "LostWolfShiftAnyway": "Ten aktor utracił wilka i nie może przybrać nadnaturalnej formy z powodu niewystarczającej ilości szału. Czy mimo to nadal chcesz przyjąć tę formę?",
       "LostWolfShiftDown": "Ten aktor utracił wilka i nie może utrzymać nadnaturalnej formy. Wybierz formę, którą chcesz przyjąć.",
       "LostWolfWarning": "Ten aktor ma 0 Szału i utracił wilka.",
+      "_Shift": "",
       "LupusName": "Lupus",
       "_LupusSocialTests": "",
       "LupusTitle": "Wilk",
