@@ -193,7 +193,7 @@ export const _onInsufficientRage = async function (actor, form) {
   buttons = {
     submit: {
       icon: '<i class="fas fa-check"></i>',
-      label: 'Shift Anyway',
+      label: game.i18n.localize('WOD5E.WTA.Shift'),
       callback: async () => {
         actor.update({
           'system.activeForm': form,
@@ -209,7 +209,7 @@ export const _onInsufficientRage = async function (actor, form) {
   }
 
   new Dialog({
-    title: 'Can\'t Transform: Lost the Wolf',
+    title: game.i18n.localize('WOD5E.WTA.LostTheWolf'),
     content: template,
     buttons,
     default: 'submit'

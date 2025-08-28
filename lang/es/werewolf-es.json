@@ -71,6 +71,7 @@
       "LostWolfShiftAnyway": "Este actor ha perdido el lobo y no puede transformarse ahora mismo en una forma sobrenatural por falta de rabia. ¿Quieres cambiar de todos modos?",
       "LostWolfShiftDown": "Este actor ha perdido el lob y no puede permanecer en una forma sobrenatural. Escoge una forma a la que cambiar.",
       "LostWolfWarning": "Este actor tiene 0 rabia y ha perdido el lobo.",
+      "_Shift": "",
       "LupusName": "Lupus",
       "LupusSocialTests": "Pruebas sociales: Limitadas a lobos y Garou",
       "LupusTitle": "El lobo",
