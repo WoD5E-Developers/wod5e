@@ -31,9 +31,9 @@ export const _onAddEdge = async function (event) {
   // Prompt a dialog to determine which edge we're adding
   const updateActorEdges = await foundry.applications.api.DialogV2.prompt({
     window: {
-      title: game.i18n.localize('WOD5E.HTR.AddEdge'),
-      classes: ['wod5e', 'dialog', 'hunter', 'dialog']
+      title: game.i18n.localize('WOD5E.HTR.AddEdge')
     },
+    classes: ['wod5e', 'dialog', 'hunter', 'dialog'],
     content,
     ok: {
       callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object.edge

@@ -33,9 +33,9 @@ export const _onAddGift = async function (event) {
   // Prompt a dialog to determine which gift we're adding
   const updateActorGifts = await foundry.applications.api.DialogV2.prompt({
     window: {
-      title: game.i18n.localize('WOD5E.WTA.AddGift'),
-      classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
+      title: game.i18n.localize('WOD5E.WTA.AddGift')
     },
+    classes: ['wod5e', 'dialog', 'werewolf', 'dialog'],
     content,
     ok: {
       callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object.gift

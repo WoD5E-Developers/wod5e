@@ -41,9 +41,9 @@ export const willpowerReroll = async (roll) => {
   // Prompt dialog
   await foundry.applications.api.DialogV2.prompt({
     window: {
-      title: game.i18n.localize('WOD5E.Chat.WillpowerReroll'),
-      classes: ['wod5e', system, 'dialog']
+      title: game.i18n.localize('WOD5E.Chat.WillpowerReroll')
     },
+    classes: ['wod5e', system, 'dialog'],
     content,
     ok: {
       label: 'Reroll',

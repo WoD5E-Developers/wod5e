@@ -30,9 +30,9 @@ export const _onAddDiscipline = async function (event) {
   // Prompt a dialog to determine which discipline we're adding
   const updateActorDisciplines = await foundry.applications.api.DialogV2.prompt({
     window: {
-      title: game.i18n.localize('WOD5E.VTM.AddDiscipline'),
-      classes: ['wod5e', 'dialog', 'vampire', 'dialog']
+      title: game.i18n.localize('WOD5E.VTM.AddDiscipline')
     },
+    classes: ['wod5e', 'dialog', 'vampire', 'dialog'],
     content,
     ok: {
       callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object.discipline
