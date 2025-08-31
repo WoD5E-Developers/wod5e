@@ -26,9 +26,9 @@ export const _onAddGift = async function (event) {
     label: game.i18n.localize('WOD5E.WTA.SelectGift'),
     required: true
   }).toFormGroup({},
-  {
-    name: 'gift'
-  }).outerHTML
+    {
+      name: 'gift'
+    }).outerHTML
 
   // Prompt a dialog to determine which gift we're adding
   const updateActorGifts = await foundry.applications.api.DialogV2.prompt({

@@ -23,9 +23,9 @@ export const _onAddDiscipline = async function (event) {
     label: game.i18n.localize('WOD5E.VTM.SelectDiscipline'),
     required: true
   }).toFormGroup({},
-  {
-    name: 'discipline'
-  }).outerHTML
+    {
+      name: 'discipline'
+    }).outerHTML
 
   // Prompt a dialog to determine which discipline we're adding
   const updateActorDisciplines = await foundry.applications.api.DialogV2.prompt({
