@@ -37,7 +37,7 @@ export const _onEditExceptionalPools = async function (event) {
         const formData = new foundry.applications.ux.FormDataExtended(button.form).object
         const exceptionaldicepools = {}
 
-        for (const [id, ] of Object.entries(actor.system.exceptionaldicepools)) {
+        for (const [id] of Object.entries(actor.system.exceptionaldicepools)) {
           exceptionaldicepools[id] = {
             active: !!formData[id]
           }
