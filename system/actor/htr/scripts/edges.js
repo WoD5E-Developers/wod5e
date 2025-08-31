@@ -41,8 +41,6 @@ export const _onAddEdge = async function (event) {
     modal: true
   })
 
-  console.log(updateActorEdges)
-
   if (updateActorEdges) {
     edgeSelected = updateActorEdges
 
