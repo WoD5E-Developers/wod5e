@@ -1,4 +1,4 @@
-/* global game, Dialog, WOD5E, foundry, ChatMessage */
+/* global game, WOD5E, foundry, ChatMessage */
 
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
@@ -11,61 +11,48 @@ export const _onAddGift = async function (event) {
   const actor = this.actor
 
   // Secondary variables
-  const selectLabel = game.i18n.localize('WOD5E.WTA.SelectGift')
-  const itemOptions = WOD5E.Gifts.getList({})
+  const giftList = WOD5E.Gifts.getList({})
+
+  Object.entries(giftList).map(([key, { label }]) => ({
+    label,
+    value: key
+  }))
 
   // Variables yet to be defined
-  let options = []
   let giftSelected
 
-  // Prompt a dialog to determine which edge we're adding
-  // Build the options for the select dropdown
-  for (const [key, value] of Object.entries(itemOptions)) {
-    options += `<option value="${key}">${value.displayName}</option>`
-  }
+  const content = new foundry.data.fields.StringField({
+    choices: giftList,
+    label: game.i18n.localize('WOD5E.WTA.SelectGift'),
+    required: true
+  }).toFormGroup({},
+  {
+    name: 'gift'
+  }).outerHTML
 
-  // Template for the dialog form
-  const template = `
-    <form>
-      <div class="form-group">
-        <label>${selectLabel}</label>
-        <select id="giftSelect">${options}</select>
-      </div>
-    </form>`
-
-  // Define dialog buttons
-  const buttons = {
-    submit: {
-      icon: '<i class="fas fa-check"></i>',
-      label: game.i18n.localize('WOD5E.Add'),
-      callback: async (html) => {
-        const dialogHTML = html[0]
-
-        giftSelected = dialogHTML.querySelector('#giftSelect').value
-
-        // Make the edge visible
-        actor.update({ [`system.gifts.${giftSelected}.visible`]: true })
-
-        // Update the currently selected discipline and power
-        _updateSelectedGift(actor, giftSelected)
-        _updateSelectedGiftPower(actor, '')
-      }
+  // Prompt a dialog to determine which gift we're adding
+  const updateActorGifts = await foundry.applications.api.DialogV2.prompt({
+    window: {
+      title: game.i18n.localize('WOD5E.WTA.AddGift'),
+      classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
     },
-    cancel: {
-      icon: '<i class="fas fa-times"></i>',
-      label: game.i18n.localize('WOD5E.Cancel')
-    }
-  }
+    content,
+    ok: {
+      callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object.gift
+    },
+    modal: true
+  })
 
-  // Display the dialog
-  new Dialog({
-    title: game.i18n.localize('WOD5E.Add'),
-    content: template,
-    buttons,
-    default: 'submit'
-  }, {
-    classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
-  }).render(true)
+  if (updateActorGifts) {
+    giftSelected = updateActorGifts
+
+    // Make the gift visible
+    actor.update({ [`system.gifts.${giftSelected}.visible`]: true })
+
+    // Update the currently selected gift and power
+    _updateSelectedGift(actor, giftSelected)
+    _updateSelectedGiftPower(actor, '')
+  }
 }
 
 /** Handle removing a gift from an actor */
