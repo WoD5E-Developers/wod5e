@@ -24,9 +24,9 @@ export const _onAddEdge = async function (event) {
     label: game.i18n.localize('WOD5E.HTR.SelectEdge'),
     required: true
   }).toFormGroup({},
-  {
-    name: 'edge'
-  }).outerHTML
+    {
+      name: 'edge'
+    }).outerHTML
 
   // Prompt a dialog to determine which edge we're adding
   const updateActorEdges = await foundry.applications.api.DialogV2.prompt({
