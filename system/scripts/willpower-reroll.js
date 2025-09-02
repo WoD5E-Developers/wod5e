@@ -1,4 +1,4 @@
-/* global game, Dialog */
+/* global game, foundry */
 
 // Import modules
 import { WOD5eDice } from './system-rolls.js'
@@ -17,59 +17,53 @@ export const willpowerReroll = async (roll) => {
   const system = message.flags.system || 'mortal'
 
   // Go through the message's dice and add them to the diceRolls array
-  Object.keys(dice).forEach(function (i) {
-    // This for some reason returns "prevObject" and "length"
-    // Fixes will be attempted, but for now solved by just ensuring the index is a number
-    if (i > -1) {
+  Object.keys(dice).forEach(i => {
+    // Filter out non-numeric keys like "prevObject" and "length"
+    if (!isNaN(Number(i))) {
       diceRolls.push(`<div class="die-select">${dice[i].outerHTML}</div>`)
     }
   })
 
   // Create dialog for rerolling dice
-  // HTML of the dialog
-  const template = `
+  const content = `
     <form>
-        <div class="window-content">
-            <label><b>Select dice to reroll (Max 3)</b></label>
-            <hr>
-            <span class="dice-tooltip">
-              <div class="dice-rolls flexrow willpower-reroll">
-                ${diceRolls.join('')}
-              </div>
-            </span>
-        </div>
+      <div class="window-content">
+        <label><b>Select dice to reroll (Max 3)</b></label>
+        <hr>
+        <span class="dice-tooltip">
+          <div class="dice-rolls flexrow willpower-reroll">
+            ${diceRolls.join('')}
+          </div>
+        </span>
+      </div>
     </form>`
 
-  // Button defining
-  let buttons = {}
-  buttons = {
-    submit: {
-      icon: '<i class="fas fa-check"></i>',
+  // Prompt dialog
+  await foundry.applications.api.DialogV2.prompt({
+    window: {
+      title: game.i18n.localize('WOD5E.Chat.WillpowerReroll')
+    },
+    classes: ['wod5e', system, 'dialog'],
+    content,
+    ok: {
       label: 'Reroll',
       callback: () => rerollDie(roll)
     },
     cancel: {
-      icon: '<i class="fas fa-times"></i>',
       label: 'Cancel'
-    }
-  }
-
-  // Dialog object
-  new Dialog({
-    title: game.i18n.localize('WOD5E.Chat.WillpowerReroll'),
-    content: template,
-    buttons,
-    render: function () {
-      $('.willpower-reroll .die-select').on('click', dieSelect)
     },
-    default: 'submit'
-  },
-  {
-    classes: ['wod5e', system, 'dialog']
-  }).render(true)
+    modal: true,
+    render: (event, dialog) => {
+      const rerollableDie = dialog.element.querySelectorAll('.willpower-reroll .die-select')
+
+      rerollableDie.forEach(die => {
+        die.addEventListener('click', toggleDieSelect)
+      })
+    }
+  })
 
   // Handles selecting and de-selecting the die
-  function dieSelect () {
+  function toggleDieSelect () {
     const selectedDice = document.querySelectorAll('.willpower-reroll .selected')
 
     if (!this.classList.contains('selected') && selectedDice.length < 3) {

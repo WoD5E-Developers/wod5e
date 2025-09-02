@@ -1,4 +1,4 @@
-/* global game, Dialog */
+/* global game, foundry */
 
 export const _onEditExceptionalPools = async function (event) {
   event.preventDefault()
@@ -6,72 +6,54 @@ export const _onEditExceptionalPools = async function (event) {
   // Top-level variables
   const actor = this.actor
 
-  // Variables yet to be defined
-  let options = ''
-  let buttons = {}
-
   // Gather and push the list of options and whether they're checked or not
+  let options = ''
   for (const [key, value] of Object.entries(actor.system.exceptionaldicepools)) {
     const checkedStatus = value.active ? ' checked' : ''
-
-    options = options.concat(`<div class="flexrow exceptional-pool" data-id="${key}">
-      ${value.displayName}
-      <input type="checkbox" class="exceptional-checkbox"${checkedStatus}>
-    </div>`)
+    options += `
+      <div class="flexrow exceptional-pool">
+        ${value.displayName}
+        <input type="checkbox" class="exceptional-checkbox" name="${key}"${checkedStatus}>
+      </div>`
   }
 
   // Define the template to be used
-  const template = `
+  const content = `
     <form>
-        <div class="form-group grid grid-3col">
-            ${options}
-        </div>
+      <div class="form-group grid grid-3col">
+        ${options}
+      </div>
     </form>`
 
-  // Define any buttons needed and add them to the buttons variable
-  buttons = {
-    submit: {
-      icon: '<i class="fas fa-check"></i>',
-      label: game.i18n.localize('WOD5E.Save'),
-      callback: async (html) => {
-        const dialogHTML = html[0]
-
-        // Store the updated variables here
+  // Prompt the dialog
+  const updatedPools = await foundry.applications.api.DialogV2.prompt({
+    window: {
+      title: game.i18n.localize('WOD5E.SPC.AddSkill')
+    },
+    classes: ['wod5e', actor.system.gamesystem, 'exceptional-edit', 'dialog'],
+    content,
+    ok: {
+      callback: (event, button) => {
+        const formData = new foundry.applications.ux.FormDataExtended(button.form).object
         const exceptionaldicepools = {}
-        // Define the list of pools
-        const exceptionalPool = dialogHTML.querySelectorAll('.exceptional-pool')
 
-        // Make a value in the object to store the checked property
-        exceptionalPool.forEach(pool => {
-          const id = pool.dataset.id
-          exceptionaldicepools[id] ??= {}
+        for (const [id] of Object.entries(actor.system.exceptionaldicepools)) {
           exceptionaldicepools[id] = {
-            active: pool.querySelector('.exceptional-checkbox').checked
+            active: !!formData[id]
           }
-        })
+        }
 
-        // Update the actor with the new options
-        actor.update({
-          system: {
-            exceptionaldicepools
-          }
-        })
+        return exceptionaldicepools
       }
     },
-    cancel: {
-      icon: '<i class="fas fa-times"></i>',
-      label: game.i18n.localize('WOD5E.Cancel')
-    }
-  }
+    modal: true
+  })
 
-  // Display the dialog
-  new Dialog({
-    title: game.i18n.localize('WOD5E.SPC.AddSkill'),
-    content: template,
-    buttons,
-    default: 'submit'
-  },
-  {
-    classes: ['wod5e', actor.system.gamesystem, 'exceptional-edit', 'dialog']
-  }).render(true)
+  if (updatedPools) {
+    await actor.update({
+      system: {
+        exceptionaldicepools: updatedPools
+      }
+    })
+  }
 }

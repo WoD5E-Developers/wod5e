@@ -2360,6 +2360,10 @@ body.uk .actor.sheet {
 .exceptional-edit.dialog .exceptional-pool {
   justify-content: space-between;
 }
+.exceptional-edit.dialog .exceptional-pool input.exceptional-checkbox {
+  text-align: end;
+  border: 0;
+}
 
 /* Variables */
 :root {

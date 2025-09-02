@@ -1,4 +1,4 @@
-/* global game, Dialog, WOD5E, foundry, ChatMessage */
+/* global game, WOD5E, foundry, ChatMessage */
 
 /** Handle adding a new discipline to the sheet */
 export const _onAddDiscipline = async function (event) {
@@ -8,63 +8,39 @@ export const _onAddDiscipline = async function (event) {
   const actor = this.actor
 
   // Secondary variables
-  const selectLabel = game.i18n.localize('WOD5E.VTM.SelectDiscipline')
-  const itemOptions = WOD5E.Disciplines.getList({})
+  const disciplineList = WOD5E.Disciplines.getList({})
 
-  // Variables yet to be defined
-  let options = []
-  let disciplineSelected
-
-  // Prompt a dialog to determine which edge we're adding
   // Build the options for the select dropdown
-  for (const [key, value] of Object.entries(itemOptions)) {
-    if (!value.hidden) {
-      options += `<option value="${key}">${value.displayName}</option>`
-    }
-  }
+  const content = new foundry.data.fields.StringField({
+    choices: disciplineList,
+    label: game.i18n.localize('WOD5E.VTM.SelectDiscipline'),
+    required: true
+  }).toFormGroup({},
+    {
+      name: 'discipline'
+    }).outerHTML
 
-  // Template for the dialog form
-  const template = `
-    <form>
-      <div class="form-group">
-        <label>${selectLabel}</label>
-        <select id="disciplineSelect">${options}</select>
-      </div>
-    </form>`
-
-  // Define dialog buttons
-  const buttons = {
-    submit: {
-      icon: '<i class="fas fa-check"></i>',
-      label: game.i18n.localize('WOD5E.Add'),
-      callback: async (html) => {
-        const dialogHTML = html[0]
-
-        disciplineSelected = dialogHTML.querySelector('#disciplineSelect').value
-
-        // Make the discipline visible
-        actor.update({ [`system.disciplines.${disciplineSelected}.visible`]: true })
-
-        // Update the currently selected discipline and power
-        _updateSelectedDiscipline(actor, disciplineSelected)
-        _updateSelectedDisciplinePower(actor, '')
-      }
+  // Prompt a dialog to determine which discipline we're adding
+  const disciplineSelected = await foundry.applications.api.DialogV2.prompt({
+    window: {
+      title: game.i18n.localize('WOD5E.VTM.AddDiscipline')
     },
-    cancel: {
-      icon: '<i class="fas fa-times"></i>',
-      label: game.i18n.localize('WOD5E.Cancel')
-    }
-  }
+    classes: ['wod5e', 'dialog', 'vampire', 'dialog'],
+    content,
+    ok: {
+      callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object.discipline
+    },
+    modal: true
+  })
 
-  // Display the dialog
-  new Dialog({
-    title: game.i18n.localize('WOD5E.Add'),
-    content: template,
-    buttons,
-    default: 'submit'
-  }, {
-    classes: ['wod5e', 'dialog', 'vampire', 'dialog']
-  }).render(true)
+  if (disciplineSelected) {
+    // Make the discipline visible
+    actor.update({ [`system.disciplines.${disciplineSelected}.visible`]: true })
+
+    // Update the currently selected discipline and power
+    _updateSelectedDiscipline(actor, disciplineSelected)
+    _updateSelectedDisciplinePower(actor, '')
+  }
 }
 
 /** Handle removing a discipline from an actor */
