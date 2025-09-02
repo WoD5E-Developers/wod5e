@@ -209,15 +209,20 @@ export const _onItemDelete = async function (event, target) {
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
   const system = actor.system.gamesystem
 
+  // Define the content of the Dialog
+  const content = `<p>
+    ${game.i18n.format('WOD5E.ConfirmDeleteDescription', {
+      string: item.name
+    })}
+  </p>`
+
   // Prompt a dialog for the user to confirm they want to delete the item
   const confirmItemDelete = await foundry.applications.api.DialogV2.wait({
     window: {
       title: game.i18n.localize('WOD5E.ConfirmDelete')
     },
     classes: ['wod5e', system, 'dialog'],
-    content: game.i18n.format('WOD5E.ConfirmDeleteDescription', {
-      string: item.name
-    }),
+    content,
     modal: true,
     buttons: [
       {

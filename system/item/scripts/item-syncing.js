@@ -88,14 +88,19 @@ export const _onSyncToDataItems = async function (event) {
       dataItemId
     }))
   } else {
+    // Define the content of the Dialog
+    const content = `<p>
+      ${game.i18n.format('WOD5E.ItemsList.ConfirmOverwriteString', {
+        string: totalCount
+      })}
+    </p>`
+
     const updateItemsConfirmed = await foundry.applications.api.DialogV2.wait({
       window: {
         title: game.i18n.localize('WOD5E.ItemsList.ConfirmOverwrite')
       },
       classes: ['wod5e', system, 'dialog'],
-      content: game.i18n.format('WOD5E.ItemsList.ConfirmOverwriteString', {
-        string: totalCount
-      }),
+      content,
       modal: true,
       buttons: [
         {
