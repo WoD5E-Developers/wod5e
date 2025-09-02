@@ -13,14 +13,7 @@ export const _onAddGift = async function (event) {
   // Secondary variables
   const giftList = WOD5E.Gifts.getList({})
 
-  Object.entries(giftList).map(([key, { label }]) => ({
-    label,
-    value: key
-  }))
-
-  // Variables yet to be defined
-  let giftSelected
-
+  // Build the options for the select dropdown
   const content = new foundry.data.fields.StringField({
     choices: giftList,
     label: game.i18n.localize('WOD5E.WTA.SelectGift'),
@@ -31,7 +24,7 @@ export const _onAddGift = async function (event) {
     }).outerHTML
 
   // Prompt a dialog to determine which gift we're adding
-  const updateActorGifts = await foundry.applications.api.DialogV2.prompt({
+  const giftSelected = await foundry.applications.api.DialogV2.prompt({
     window: {
       title: game.i18n.localize('WOD5E.WTA.AddGift')
     },
@@ -43,9 +36,7 @@ export const _onAddGift = async function (event) {
     modal: true
   })
 
-  if (updateActorGifts) {
-    giftSelected = updateActorGifts
-
+  if (giftSelected) {
     // Make the gift visible
     actor.update({ [`system.gifts.${giftSelected}.visible`]: true })
 

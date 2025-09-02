@@ -10,14 +10,7 @@ export const _onAddDiscipline = async function (event) {
   // Secondary variables
   const disciplineList = WOD5E.Disciplines.getList({})
 
-  Object.entries(disciplineList).map(([key, { label }]) => ({
-    label,
-    value: key
-  }))
-
-  // Variables yet to be defined
-  let disciplineSelected
-
+  // Build the options for the select dropdown
   const content = new foundry.data.fields.StringField({
     choices: disciplineList,
     label: game.i18n.localize('WOD5E.VTM.SelectDiscipline'),
@@ -28,7 +21,7 @@ export const _onAddDiscipline = async function (event) {
     }).outerHTML
 
   // Prompt a dialog to determine which discipline we're adding
-  const updateActorDisciplines = await foundry.applications.api.DialogV2.prompt({
+  const disciplineSelected = await foundry.applications.api.DialogV2.prompt({
     window: {
       title: game.i18n.localize('WOD5E.VTM.AddDiscipline')
     },
@@ -40,9 +33,7 @@ export const _onAddDiscipline = async function (event) {
     modal: true
   })
 
-  if (updateActorDisciplines) {
-    disciplineSelected = updateActorDisciplines
-
+  if (disciplineSelected) {
     // Make the discipline visible
     actor.update({ [`system.disciplines.${disciplineSelected}.visible`]: true })
 

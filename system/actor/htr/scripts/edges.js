@@ -10,14 +10,6 @@ export const _onAddEdge = async function (event) {
   // Secondary variables
   const edgeList = WOD5E.Edges.getList({})
 
-  Object.entries(edgeList).map(([key, { label }]) => ({
-    label,
-    value: key
-  }))
-
-  // Variables yet to be defined
-  let edgeSelected
-
   // Build the options for the select dropdown
   const content = new foundry.data.fields.StringField({
     choices: edgeList,
@@ -29,7 +21,7 @@ export const _onAddEdge = async function (event) {
     }).outerHTML
 
   // Prompt a dialog to determine which edge we're adding
-  const updateActorEdges = await foundry.applications.api.DialogV2.prompt({
+  const edgeSelected = await foundry.applications.api.DialogV2.prompt({
     window: {
       title: game.i18n.localize('WOD5E.HTR.AddEdge')
     },
@@ -41,9 +33,7 @@ export const _onAddEdge = async function (event) {
     modal: true
   })
 
-  if (updateActorEdges) {
-    edgeSelected = updateActorEdges
-
+  if (edgeSelected) {
     // Make the edge visible
     actor.update({ [`system.edges.${edgeSelected}.visible`]: true })
 
