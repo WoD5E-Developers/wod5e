@@ -26,9 +26,9 @@ export const _onCreateItem = async function (event, target) {
   const actor = this.actor
   const itemsList = ItemTypes.getList({})
   const type = target.getAttribute('data-type')
+  const subtype = target.getAttribute('data-subtype')
 
   // Variables to be defined later
-  let subtype = target.getAttribute('data-subtype')
   let itemName = ''
   let selectLabel = ''
   let itemOptions = {}
