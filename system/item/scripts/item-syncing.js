@@ -62,9 +62,18 @@ export const _onSyncToDataItems = async function (event) {
   const item = this.item
   const dataItemId = item.getFlag('vtm5e', 'dataItemId')
 
+  // Inform the user if the Data Item ID is empty.
+  if (!dataItemId) {
+    return ui.notifications.info(game.i18n.localize('WOD5E.ItemsList.DataItemIdCannotBeEmpty'))
+  }
+
+  // Define the item's gamesystem, defaulting to "mortal" if it's not in the systems list
+  const system = item.system.gamesystem
+
   const actorsList = game.actors
   const actorDataItems = []
 
+  // Iterate through all actors and gather a list of items that match the Data Item ID
   for (const actor of actorsList) {
     const foundItems = actor.items.filter((item) => (item?.flags?.vtm5e?.dataItemId === dataItemId))
 
@@ -75,15 +84,23 @@ export const _onSyncToDataItems = async function (event) {
 
   // If there's no items to update, just let the user know
   if (totalCount === 0) {
-    return ui.notifications.info(`There were no items found associated with Data Item ID "${dataItemId}"`)
+    return ui.notifications.info(game.i18n.format('WOD5E.ItemsList.NoItemsFound', {
+      dataItemId
+    }))
   } else {
+    // Define the content of the Dialog
+    const content = `<p>
+      ${game.i18n.format('WOD5E.ItemsList.ConfirmOverwriteString', {
+        string: totalCount
+      })}
+    </p>`
+
     const updateItemsConfirmed = await foundry.applications.api.DialogV2.wait({
       window: {
         title: game.i18n.localize('WOD5E.ItemsList.ConfirmOverwrite')
       },
-      content: game.i18n.format('WOD5E.ItemsList.ConfirmOverwriteString', {
-        string: totalCount
-      }),
+      classes: ['wod5e', system, 'dialog'],
+      content,
       modal: true,
       buttons: [
         {

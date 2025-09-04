@@ -1,4 +1,4 @@
-/* global game, Dialog */
+/* global game, foundry */
 
 // Import modules
 import { WOD5eDice } from './system-rolls.js'
@@ -19,16 +19,15 @@ export const anyReroll = async (roll) => {
 
   // Go through the message's dice and add them to the diceRolls array
   Object.keys(dice).forEach(function (i) {
-    // This for some reason returns "prevObject" and "length"
-    // Fixes will be attempted, but for now solved by just ensuring the index is a number
-    if (i > -1) {
+    // Filter out non-numeric keys like "prevObject" and "length"
+    if (!isNaN(Number(i))) {
       diceRolls.push(`<div class="die-select">${dice[i].outerHTML}</div>`)
     }
   })
 
   // Create dialog for rerolling dice
   // HTML of the dialog
-  const template = `
+  const content = `
     <form>
         <div class="window-content">
             <label><b>Select dice to reroll (Max 3)</b></label>
@@ -41,36 +40,32 @@ export const anyReroll = async (roll) => {
         </div>
     </form>`
 
-  // Button defining
-  let buttons = {}
-  buttons = {
-    submit: {
-      icon: '<i class="fas fa-check"></i>',
+  // Prompt dialog
+  await foundry.applications.api.DialogV2.prompt({
+    window: {
+      title: game.i18n.localize('WOD5E.Chat.Reroll')
+    },
+    classes: ['wod5e', system, 'dialog'],
+    content,
+    ok: {
       label: 'Reroll',
       callback: () => rerollDie(roll)
     },
     cancel: {
-      icon: '<i class="fas fa-times"></i>',
       label: 'Cancel'
-    }
-  }
-
-  // Dialog object
-  new Dialog({
-    title: game.i18n.localize('WOD5E.Chat.Reroll'),
-    content: template,
-    buttons,
-    render: function () {
-      $('.reroll .die-select').on('click', dieSelect)
     },
-    default: 'submit'
-  },
-  {
-    classes: ['wod5e', system, 'dialog']
-  }).render(true)
+    modal: true,
+    render: (event, dialog) => {
+      const rerollableDie = dialog.element.querySelectorAll('.reroll .die-select')
+
+      rerollableDie.forEach(die => {
+        die.addEventListener('click', toggleDieSelect)
+      })
+    }
+  })
 
   // Handles selecting and de-selecting the die
-  function dieSelect () {
+  function toggleDieSelect () {
     // Toggle selection
     if (!this.classList.contains('selected')) {
       this.classList.add('selected')

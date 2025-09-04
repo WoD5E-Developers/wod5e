@@ -10,12 +10,17 @@ export const _onFrenzyRoll = async function (event) {
   // Top-level variables
   const actor = this.actor
 
+  // Define the content of the Dialog
+  const content = `<p>
+    ${game.i18n.localize('WOD5E.VTM.FrenzyChoiceResistOrGiveIn')}
+  </p>`
+
   // Check whether the player wants to skip the check and go straight into Frenzy
   const doFrenzyRoll = await foundry.applications.api.DialogV2.wait({
     window: {
       title: game.i18n.localize('WOD5E.VTM.ResistingFrenzy')
     },
-    content: game.i18n.localize('WOD5E.VTM.FrenzyChoiceResistOrGiveIn'),
+    content,
     modal: true,
     buttons: [
       {

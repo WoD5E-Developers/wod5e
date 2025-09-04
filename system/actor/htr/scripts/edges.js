@@ -1,4 +1,4 @@
-/* global game, Dialog, WOD5E, foundry, ChatMessage */
+/* global game, WOD5E, foundry, ChatMessage */
 
 /** Handle adding a new edge to the sheet */
 export const _onAddEdge = async function (event) {
@@ -8,61 +8,39 @@ export const _onAddEdge = async function (event) {
   const actor = this.actor
 
   // Secondary variables
-  const selectLabel = game.i18n.localize('WOD5E.HTR.SelectEdge')
-  const itemOptions = WOD5E.Edges.getList({})
+  const edgeList = WOD5E.Edges.getList({})
 
-  // Variables yet to be defined
-  let options = []
-  let edgeSelected
+  // Build the options for the select dropdown
+  const content = new foundry.data.fields.StringField({
+    choices: edgeList,
+    label: game.i18n.localize('WOD5E.HTR.SelectEdge'),
+    required: true
+  }).toFormGroup({},
+    {
+      name: 'edge'
+    }).outerHTML
 
   // Prompt a dialog to determine which edge we're adding
-  // Build the options for the select dropdown
-  for (const [key, value] of Object.entries(itemOptions)) {
-    options += `<option value="${key}">${value.displayName}</option>`
-  }
-
-  // Template for the dialog form
-  const template = `
-    <form>
-      <div class="form-group">
-        <label>${selectLabel}</label>
-        <select id="edgeSelect">${options}</select>
-      </div>
-    </form>`
-
-  // Define dialog buttons
-  const buttons = {
-    submit: {
-      icon: '<i class="fas fa-check"></i>',
-      label: game.i18n.localize('WOD5E.Add'),
-      callback: async (html) => {
-        const dialogHTML = html[0]
-
-        edgeSelected = dialogHTML.querySelector('[id=edgeSelect]').value
-
-        // Make the edge visible
-        actor.update({ [`system.edges.${edgeSelected}.visible`]: true })
-
-        // Update the currently selected edge and perk
-        _updateSelectedEdge(actor, edgeSelected)
-        _updateSelectedPerk(actor, '')
-      }
+  const edgeSelected = await foundry.applications.api.DialogV2.prompt({
+    window: {
+      title: game.i18n.localize('WOD5E.HTR.AddEdge')
     },
-    cancel: {
-      icon: '<i class="fas fa-times"></i>',
-      label: game.i18n.localize('WOD5E.Cancel')
-    }
-  }
+    classes: ['wod5e', 'dialog', 'hunter', 'dialog'],
+    content,
+    ok: {
+      callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object.edge
+    },
+    modal: true
+  })
 
-  // Display the dialog
-  new Dialog({
-    title: game.i18n.localize('WOD5E.Add'),
-    content: template,
-    buttons,
-    default: 'submit'
-  }, {
-    classes: ['wod5e', 'dialog', 'hunter', 'dialog']
-  }).render(true)
+  if (edgeSelected) {
+    // Make the edge visible
+    actor.update({ [`system.edges.${edgeSelected}.visible`]: true })
+
+    // Update the currently selected edge and perk
+    _updateSelectedEdge(actor, edgeSelected)
+    _updateSelectedPerk(actor, '')
+  }
 }
 
 /** Handle removing an Edge from an actor */
@@ -162,7 +140,7 @@ export const _updateSelectedEdge = async function (actor, edge) {
   // Variables yet to be defined
   const updatedData = {}
 
-  // Make sure we actually have a edge defined
+  // Make sure we actually have an edge defined
   if (edge && actor.system.edges[edge]) {
     updatedData.edges ??= {}
     updatedData.edges[edge] ??= {}
