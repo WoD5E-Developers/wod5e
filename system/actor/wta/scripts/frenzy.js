@@ -1,6 +1,6 @@
-import { handleFormChange } from "./forms.js"
+import { handleFormChange } from './forms.js'
 
-export const _onBeginFrenzy = async function (event,) {
+export const _onBeginFrenzy = async function (event) {
   event.preventDefault()
 
   // Top-level variables

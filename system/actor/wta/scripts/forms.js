@@ -135,7 +135,7 @@ export const _onFormToChat = async function (event, form, originActor) {
 
   // Top-level variables
   const actor = originActor || this.actor
-  
+
   // Secondary variables
   const formData = actor.system.forms[form]
   const formName = formData.displayName
