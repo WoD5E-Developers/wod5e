@@ -83,7 +83,7 @@ export const _onShiftForm = async function (event, target) {
   }
 }
 
-export const handleFormChange = async function (event, actor, form, diceCount) {
+export const handleFormChange = async function (event, target, actor, form, diceCount) {
   // Variables yet to be defined
   const selectors = []
 
@@ -122,7 +122,7 @@ export const handleFormChange = async function (event, actor, form, diceCount) {
         // and post the description to chat as well
         if (newRageAmount > 0) {
           actor.update({ 'system.activeForm': form })
-          _onFormToChat(event, form, actor)
+          _onFormToChat(event, target, actor)
           _updateToken(actor, form)
         }
       }
@@ -130,11 +130,12 @@ export const handleFormChange = async function (event, actor, form, diceCount) {
   }
 }
 
-export const _onFormToChat = async function (event, form, originActor) {
+export const _onFormToChat = async function (event, target, originActor) {
   event.preventDefault()
 
   // Top-level variables
   const actor = originActor || this.actor
+  const form = target.getAttribute('data-form')
 
   // Secondary variables
   const formData = actor.system.forms[form]
