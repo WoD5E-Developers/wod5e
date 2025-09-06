@@ -1,4 +1,6 @@
-export const _onBeginFrenzy = async function (event) {
+import { handleFormChange } from './forms.js'
+
+export const _onBeginFrenzy = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
@@ -11,7 +13,7 @@ export const _onBeginFrenzy = async function (event) {
   await actor.update({ 'system.rage.value': 5 })
 
   // Shift to Crinos
-  await actor.update({ 'system.activeForm': 'crinos' })
+  handleFormChange(event, target, actor, 'crinos', 2)
 }
 
 export const _onEndFrenzy = async function (event) {
