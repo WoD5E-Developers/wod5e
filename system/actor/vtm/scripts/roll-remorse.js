@@ -31,8 +31,10 @@ export const _onRemorseRoll = async function (event) {
       if (hasSuccess) {
         await actor.update({ 'system.humanity.stains': 0 })
       } else {
-        await actor.update({ 'system.humanity.value': Math.max(humanity - 1, 0) })
-        await actor.update({ 'system.humanity.stains': 0 })
+        await actor.update({
+          'system.humanity.value': Math.max(humanity - 1, 0),
+          'system.humanity.stains': 0
+        })
 
         await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
           name: game.i18n.localize('WOD5E.VTM.RemorseFailed'),
