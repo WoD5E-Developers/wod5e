@@ -26,5 +26,5 @@ export const _onEndFrenzy = async function (event) {
   await actor.update({
     'system.frenzyActive': false,
     'system.rage.value': 0
-   })
+  })
 }
