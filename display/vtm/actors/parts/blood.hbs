@@ -71,7 +71,14 @@
 
             <div class="flexrow nowrap flex-group-center nogrow">
                 <div class="flexcol">
-                    <label class="resource-label field-header">{{localize 'WOD5E.VTM.PredatorType'}}</label>
+                    {{#if predator.system.dicepool}}
+                        <div class="system-rollable feeding-roll" data-action="rollItem" data-item-uuid="{{predator.uuid}}" title="{{localize 'WOD5E.VTM.FeedingRoll'}}">
+                            <label class="resource-label field-header">{{localize 'WOD5E.VTM.PredatorType'}}</label>
+                            <i class="fa-solid fa-dice-d10"></i>
+                        </div>
+                    {{else}}
+                        <label class="resource-label field-header">{{localize 'WOD5E.VTM.PredatorType'}}</label>
+                    {{/if}}
                     <div class="resource resource-content">
                         {{#if predator}}
                             <span class="data-item">

@@ -80,6 +80,10 @@ export const _rollItem = async function (actor, item) {
     selectors.push(`gifts.${itemData.giftType}`)
   }
 
+  if (item.type === 'predatorType') {
+    selectors.push('feeding')
+  }
+
   // Handle getting any situational modifiers
   const activeModifiers = await getActiveModifiers({
     actor,
