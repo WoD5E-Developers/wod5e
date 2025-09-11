@@ -63,7 +63,7 @@ export class BaseDefinitionClass {
       const activeModules = game.modules.filter(module => module.active === true && module.flags.wod5e)
       activeModules.forEach((module) => {
         // Check that this module has any modifications for the current definition type
-        if (module.flags.wod5e.modifications[this.type]) {
+        if (module.flags.wod5e.modifications && module.flags.wod5e.modifications[this.type]) {
           // Push modifications from the module flags by searching up modifications: { defCategory: { ..} }
           // to follow the same pattern as custom categories
           modifications = [...modifications, ...module.flags.wod5e.modifications[this.type]]
