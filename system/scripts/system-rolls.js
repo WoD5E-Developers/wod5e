@@ -1,4 +1,4 @@
-/* global ChatMessage, Roll, game, foundry, CONFIG, Dialog */
+/* global ChatMessage, game, foundry, CONFIG, Dialog */
 
 // Import various helper functions
 import { generateRollFormula } from './rolls/roll-formula.js'
@@ -8,6 +8,65 @@ import { _damageWillpower } from './rolls/willpower-damage.js'
 import { _increaseHunger } from './rolls/increase-hunger.js'
 import { _decreaseRage } from './rolls/decrease-rage.js'
 import { _applyOblivionStains } from './rolls/apply-oblivion-stains.js'
+
+class WOD5eRoll extends foundry.dice.Roll {
+  constructor (formula = '', data = {}, options = {}) {
+    super(formula, data, options)
+    this.system = options.system ?? this._tryCalculateSystem()
+    if (!this.dice.every(d => foundry.utils.getProperty(d, 'gameSystem') === this.system)) {
+      throw new Error('Dice are not compatible with this roll')
+    }
+  }
+
+  get basicDice () {
+    return this.#getDiceByType('basic')
+  }
+
+  get advancedDice () {
+    return this.#getDiceByType('advanced')
+  }
+
+  /** @override */
+
+  async _evaluate (options = {}) {
+    await super._evaluate(options)
+
+    if (this.system !== undefined) {
+      const crits = this.dice.filter(d => d.gameSystem === this.system).flatMap(d => d.results.filter(r => r.result === 10 && r.active)).length
+
+      this._total += Math.floor(crits / 2) * 2
+    }
+
+    return this
+  }
+
+  /** @override */
+
+  _evaluateTotal () {
+    const total = super._evaluateTotal()
+
+    if (this.system !== undefined) {
+      const crits = this.dice.filter(d => d.gameSystem === this.system).flatMap(d => d.results.filter(r => r.result === 10 && r.active)).length
+      return total + Math.floor(crits / 2) * 2
+    }
+
+    return total
+  }
+
+  _tryCalculateSystem () {
+    const systems = new Set(this.dice.map(d => foundry.utils.getProperty(d, 'gameSystem')))
+
+    if (systems.size > 1) {
+      throw new Error('Multiple systems detected in dice')
+    }
+
+    return systems.values()?.next()?.value
+  }
+
+  #getDiceByType (type) {
+    return this.terms.find(term => foundry.utils.getProperty(term, 'dieType') === type)
+  }
+}
 
 class WOD5eDice {
   /**
@@ -148,10 +207,10 @@ class WOD5eDice {
       }
 
       // Send the roll to chat
-      const roll = await new Roll(rollFormula, data, options).roll()
+      const roll = await new WOD5eRoll(rollFormula, data, options).roll()
 
       // Handle failures for werewolves and vampires
-      if (roll.terms[2]) await handleFailure(system, roll.terms[2].results)
+      if (roll.advancedDice) await handleFailure(system, roll.advancedDice.results)
 
       // Handle willpower damage
       if (willpowerDamage > 0 && game.settings.get('vtm5e', 'automatedWillpower')) _damageWillpower(null, null, actor, willpowerDamage, rollMode)
@@ -511,4 +570,4 @@ class WOD5eDice {
   }
 }
 
-export { WOD5eDice }
+export { WOD5eDice, WOD5eRoll }

@@ -66,33 +66,22 @@ export class WoDChatMessage extends ChatMessage {
       // Append a system value if roll classes are detected
       const rollTerms = this.rolls[0].terms
 
-      rollTerms.forEach(term => {
-        // Check for Mortal dice
-        if (term.constructor.name === 'MortalDie') {
-          this.flags.system = 'mortal'
-        }
+      // Since the dice terms themselves have the gamesystem in their data,
+      // we can just grab the first term with a gamesystem in its data
+      // We shouldn't ever get two different game systems as WOD5eRoll will
+      // throw an error if that happens before it ever reaches this code
+      const firstWithSystem = rollTerms.find(term => term?.gameSystem)
+      if (firstWithSystem) {
+        this.flags.system = firstWithSystem.gameSystem
+      }
 
-        // Check for Vampire dice
-        if (term.constructor.name === 'VampireDie' || term.constructor.name === 'VampireHungerDie') {
-          this.flags.system = 'vampire'
-        }
-
-        // Check for Hunter dice
-        if (term.constructor.name === 'HunterDie' || term.constructor.name === 'HunterDesperationDie') {
-          this.flags.system = 'hunter'
-        }
-
-        // Check for Werewolf dice
-        if (term.constructor.name === 'WerewolfDie' || term.constructor.name === 'WerewolfRageDie') {
-          this.flags.system = 'werewolf'
-        }
-      })
-
+      // Here, we're 100% sure that this message contains a valid WoD5e die and can proceed
+      // with the WoD5e message formatting
       if (this.flags.system) {
         const messageContent = await generateRollMessage({
           title: this.flags.title || `${game.i18n.localize('WOD5E.Chat.Rolling')}...`,
           roll: this.rolls[0],
-          system: this.flags.system || 'mortal',
+          system: this.flags.system,
           flavor: this.flags.flavor || '',
           difficulty: this.flags.difficulty || 0,
           activeModifiers: this.flags.activeModifiers || {},
@@ -100,9 +89,8 @@ export class WoDChatMessage extends ChatMessage {
           isContentVisible: this.isContentVisible
         })
 
-        // Create an HTML element with the provided message content
-        const messageHTML = document.createElement('div')
-        messageHTML.innerHTML = messageContent
+        // Apply the content to the chat message
+        html.querySelector('.message-content').innerHTML = messageContent
       }
     }
 
