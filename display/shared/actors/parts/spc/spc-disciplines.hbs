@@ -30,6 +30,13 @@
                         </a>
                     </div>
                 </li>
+                {{#ifgr discipline.powers.length 0}}
+                    <ul>
+                        {{#each discipline.powers as |power key|}}
+                            <li>{{power.name}}</li>
+                        {{/each}}
+                    </ul>
+                {{/ifgr}}
             {{/if}}
         {{/each}}
     </ol>
