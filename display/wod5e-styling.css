@@ -1957,6 +1957,11 @@ body.uk .actor.sheet {
   padding-left: 5px;
   padding-right: 5px;
 }
+.group.sheet .tab[data-tab="members"] .group-member .werewolf-form-image {
+  max-width: 60px;
+  display: inline-block;
+  vertical-align: top;
+}
 .group.sheet .tab[data-tab="members"] .group-member .sub-item .sub-item-name {
   font-weight: bold;
 }
