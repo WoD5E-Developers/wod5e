@@ -48,9 +48,7 @@ export class ItemTypes extends BaseDefinitionClass {
     label: 'TYPES.Item.feature',
     img: 'systems/vtm5e/assets/icons/items/feature.svg',
     types: ['feature'],
-    sheetClass: FeatureItemSheet,
-    restrictedActorTypes: [],
-    excludedActorTypes: []
+    sheetClass: FeatureItemSheet
   }
 
   static customRoll = {
@@ -58,7 +56,6 @@ export class ItemTypes extends BaseDefinitionClass {
     img: 'systems/vtm5e/assets/icons/items/custom-roll.png',
     types: ['customRoll'],
     sheetClass: CustomRollItemSheet,
-    restrictedActorTypes: [],
     excludedActorTypes: ['group', 'spc']
   }
 
@@ -66,27 +63,21 @@ export class ItemTypes extends BaseDefinitionClass {
     label: 'TYPES.Item.armor',
     img: '',
     types: ['armor'],
-    sheetClass: ArmorItemSheet,
-    restrictedActorTypes: [],
-    excludedActorTypes: []
+    sheetClass: ArmorItemSheet
   }
 
   static weapon = {
     label: 'TYPES.Item.weapon',
     img: '',
     types: ['weapon'],
-    sheetClass: WeaponItemSheet,
-    restrictedActorTypes: [],
-    excludedActorTypes: []
+    sheetClass: WeaponItemSheet
   }
 
   static gear = {
     label: 'TYPES.Item.gear',
     img: '',
     types: ['gear'],
-    sheetClass: GearItemSheet,
-    restrictedActorTypes: [],
-    excludedActorTypes: []
+    sheetClass: GearItemSheet
   }
 
   static trait = {
@@ -94,8 +85,7 @@ export class ItemTypes extends BaseDefinitionClass {
     img: '',
     types: ['trait'],
     sheetClass: TraitItemSheet,
-    restrictedActorTypes: ['spc'],
-    excludedActorTypes: []
+    restrictedActorTypes: ['spc']
   }
 
   static condition = {
@@ -151,8 +141,7 @@ export class ItemTypes extends BaseDefinitionClass {
     img: 'systems/vtm5e/assets/icons/items/boon.svg',
     types: ['boon'],
     sheetClass: BoonItemSheet,
-    restrictedActorTypes: ['vampire', 'ghoul', 'coterie'],
-    excludedActorTypes: ['spc']
+    restrictedActorTypes: ['vampire', 'ghoul', 'coterie']
   }
 
   // Hunter Items
@@ -219,8 +208,7 @@ export class ItemTypes extends BaseDefinitionClass {
     img: '',
     types: ['talisman'],
     sheetClass: TalismanItemSheet,
-    restrictedActorTypes: ['werewolf', 'pack'],
-    excludedActorTypes: ['spc']
+    restrictedActorTypes: ['werewolf', 'pack']
   }
 
   static gift = {
