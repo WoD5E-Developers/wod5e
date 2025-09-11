@@ -89,9 +89,8 @@ export class WoDChatMessage extends ChatMessage {
           isContentVisible: this.isContentVisible
         })
 
-        // Create an HTML element with the provided message content
-        const messageHTML = document.createElement('div')
-        messageHTML.innerHTML = messageContent
+        // Apply the content to the chat message
+        html.querySelector('.message-content').innerHTML = messageContent
       }
     }
 
