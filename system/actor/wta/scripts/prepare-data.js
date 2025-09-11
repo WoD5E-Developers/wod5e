@@ -92,8 +92,7 @@ export const prepareFormData = async function (formData, actor) {
   // Fields to keep from the existing data
   const fieldsToKeep = [
     'description',
-    'token',
-    'glyph'
+    'token'
   ]
 
   // Merge new form data with existing form data

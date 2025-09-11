@@ -39,6 +39,7 @@ export class WereForms extends BaseDefinitionClass {
     label: 'WOD5E.WTA.HomidName',
     nickname: 'WOD5E.WTA.HomidTitle',
     cost: 0,
+    glyph: 'systems/vtm5e/assets/icons/werewolf-forms/homid.webp',
     attributes: [
       { label: 'WOD5E.WTA.SilverImmunity' }
     ]
@@ -48,6 +49,7 @@ export class WereForms extends BaseDefinitionClass {
     label: 'WOD5E.WTA.GlabroName',
     nickname: 'WOD5E.WTA.GlabroTitle',
     cost: 1,
+    glyph: 'systems/vtm5e/assets/icons/werewolf-forms/glabro.webp',
     attributes: [
       { label: 'WOD5E.WTA.GlabroPhysicalTests' },
       {
@@ -86,6 +88,7 @@ export class WereForms extends BaseDefinitionClass {
     label: 'WOD5E.WTA.CrinosName',
     nickname: 'WOD5E.WTA.CrinosTitle',
     cost: 2,
+    glyph: 'systems/vtm5e/assets/icons/werewolf-forms/crinos.webp',
     attributes: [
       { label: 'WOD5E.WTA.CrinosFrenzy' },
       { label: 'WOD5E.WTA.CrinosPhysicalTests' },
@@ -118,6 +121,7 @@ export class WereForms extends BaseDefinitionClass {
     label: 'WOD5E.WTA.HispoName',
     nickname: 'WOD5E.WTA.HispoTitle',
     cost: 1,
+    glyph: 'systems/vtm5e/assets/icons/werewolf-forms/hispo.webp',
     attributes: [
       {
         label: 'WOD5E.WTA.HispoPhysicalTests',
@@ -158,6 +162,7 @@ export class WereForms extends BaseDefinitionClass {
     label: 'WOD5E.WTA.LupusName',
     nickname: 'WOD5E.WTA.LupusTitle',
     cost: 0,
+    glyph: 'systems/vtm5e/assets/icons/werewolf-forms/lupus.webp',
     attributes: [
       { label: 'WOD5E.WTA.SilverImmunity' },
       { label: 'WOD5E.WTA.LupusSocialTests' }

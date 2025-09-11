@@ -539,45 +539,30 @@
             "description": "",
             "token": {
               "img": ""
-            },
-            "glyph": {
-              "img": "systems/vtm5e/assets/icons/werewolf-forms/homid.webp"
             }
           },
           "glabro": {
             "description": "",
             "token": {
               "img": ""
-            },
-            "glyph": {
-              "img": "systems/vtm5e/assets/icons/werewolf-forms/glabro.webp"
             }
           },
           "crinos": {
             "description": "",
             "token": {
               "img": ""
-            },
-            "glyph": {
-              "img": "systems/vtm5e/assets/icons/werewolf-forms/crinos.webp"
             }
           },
           "hispo": {
             "description": "",
             "token": {
               "img": ""
-            },
-            "glyph": {
-              "img": "systems/vtm5e/assets/icons/werewolf-forms/hispo.webp"
             }
           },
           "lupus": {
             "description": "",
             "token": {
               "img": ""
-            },
-            "glyph": {
-              "img": "systems/vtm5e/assets/icons/werewolf-forms/lupus.webp"
             }
           }
         }
