@@ -63,28 +63,18 @@ export class WoDChatMessage extends ChatMessage {
     html = foundry.utils.parseHTML(html)
 
     if (this.isRoll) {
-      // Append a system value if roll classes are detected
-      const rollTerms = this.rolls[0].terms
-
-      // Since the dice terms themselves have the gamesystem in their data,
-      // we can just grab the first term with a gamesystem in its data
-      // We shouldn't ever get two different game systems as WOD5eRoll will
-      // throw an error if that happens before it ever reaches this code
-      const firstWithSystem = rollTerms.find(term => term?.gameSystem)
-      if (firstWithSystem) {
-        this.flags.system = firstWithSystem.gameSystem
-      }
+      const roll = this.rolls[0]
 
       // Here, we're 100% sure that this message contains a valid WoD5e die and can proceed
       // with the WoD5e message formatting
-      if (this.flags.system) {
+      if (roll.system) {
         const messageContent = await generateRollMessage({
-          title: this.flags.title || `${game.i18n.localize('WOD5E.Chat.Rolling')}...`,
+          title: roll.options.title || `${game.i18n.localize('WOD5E.Chat.Rolling')}...`,
           roll: this.rolls[0],
-          system: this.flags.system,
-          flavor: this.flags.flavor || '',
-          difficulty: this.flags.difficulty || 0,
-          activeModifiers: this.flags.activeModifiers || {},
+          system: roll.system,
+          flavor: roll.options.flavor || '',
+          difficulty: roll.options.difficulty || 0,
+          activeModifiers: roll.options.activeModifiers || {},
           data: this.flags.data || {},
           isContentVisible: this.isContentVisible
         })
