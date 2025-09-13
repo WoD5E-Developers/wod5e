@@ -78,6 +78,11 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
   getTabs () {
     const tabs = this.tabs
 
+    // Remove hidden tabs
+    for (const key in tabs) {
+      if (tabs[key].hidden) delete tabs[key]
+    }
+
     for (const tab of Object.values(tabs)) {
       tab.active = this.tabGroups[tab.group] === tab.id
       tab.cssClass = tab.active ? 'active' : ''
