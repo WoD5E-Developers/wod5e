@@ -168,7 +168,7 @@ export const prepareSpcStatsContext = async function (context, actor) {
 
   if (context.currentActorType === 'hunter' || (context.gamesystem === 'hunter' && context.settings.enableEdges === true)) {
     context.showEdges = true
-    context.edges = actorData.edges
+    context.edges = await prepareEdgePowers(actorData.edges)
   }
 
   if (context.currentActorType === 'werewolf' || (context.gamesystem === 'werewolf' && context.settings.enableGifts === true)) {

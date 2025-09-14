@@ -1,36 +1,69 @@
-<div class="tab flex-center" data-group="primary">
-    <div class="flexrow spc-pool-header">
-        <label class="resource-label field-header">{{localize "WOD5E.HTR.Edges"}}</label>
-        <div class="item-controls spc-item-header">
-            <a class="item-control power-create" data-action="createSPCPower" title="{{localize 'WOD5E.VTM.AddEdge'}}" data-type="edge">
+<div>
+    <!-- Iterate through each of the edge lists -->
+    <div class="description-field">
+        <div class="resource-label field-header flex-center">
+            {{localize "WOD5E.HTR.Edges"}}
+            <a class="power-create" data-action="createSPCPower" title="{{localize 'WOD5E.VTM.AddEdge'}}" data-type="edge">
                 <i class="fas fa-plus"></i>
-                {{localize "WOD5E.HTR.AddEdge"}}
             </a>
         </div>
+        <div class="description-content resource list-resource">
+            <div class="items-list flexcol">
+                {{#each edges as |edge key|}}
+                    {{#if edge.visible}}
+                        <div class="power-category">
+                            <div class="flexrow power-category-header">
+                                <div class="flexrow">
+                                    {{#if ../locked}}
+                                        <div class="resource stat-resource-background">
+                                            {{edge.value}}
+                                        </div>
+                                    {{else}}
+                                        <input type="number" name="system.edges.{{key}}.value"
+                                            value="{{edge.value}}" data-name="system.edges.{{key}}.value"/>
+                                    {{/if}}
+                                    <span class="power-category-label">
+                                        {{edge.label}}
+                                    </span>
+                                </div>
+                                <div class="item-controls">
+                                    <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.Add'}}" data-type="perk" data-subtype="{{key}}">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                    <a class="item-control power-delete" data-action="deleteSPCPower" title="{{localize 'WOD5E.Delete'}}" data-type="perk" data-id="{{key}}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            {{#each edge.perks as |power id|}}
+                                <div class="collapsible-container">
+                                    <div class="item flexrow" data-drag="true" data-item-id="{{power.id}}" data-document-uuid="{{power.uuid}}" data-type="Item">
+                                        <div class="item-image clickable" data-action="itemChat" data-item-id="{{power._id}}">
+                                            <img src="{{power.img}}" title="{{power.name}}" width="24" height="24" alt="{{power.name}}" />
+                                        </div>
+                                        <div class="item-name{{#if power.system.enrichedDescription}} collapsible{{/if}}" {{#if power.system.enrichedDescription}}data-action="toggleCollapse"{{/if}}>
+                                            {{power.name}}
+                                        </div>
+                                        <div class="item-controls">
+                                            <a class="item-image rollable-item" data-action="roll" data-use-absolute-value="true" data-absolute-value="{{edge.value}}"
+                                                data-select-dialog="false" data-label="{{power.name}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
+                                                <i class="fa-solid fa-dice-d10"></i>
+                                            </a>
+                                            <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{power._id}}" title="{{localize 'WOD5E.Edit'}}"><i
+                                                class="fas fa-edit"></i></a>
+                                            <a class="item-control item-delete" data-action="itemDelete" data-item-id="{{power._id}}" title="{{localize 'WOD5E.Delete'}}"><i
+                                                class="fas fa-trash"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="collapsible-content trait-description">
+                                        {{{power.system.enrichedDescription}}}
+                                    </div>
+                                </div>
+                            {{/each}}
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
     </div>
-    <ol class="items-list">
-        <!-- Iterate through each of the edge lists -->
-        {{#each edges as |edge key|}}
-            {{#if edge.visible}}
-                <li class="flexrow spc-item-header">
-                    <label for="{{edge.name}}" class="resource-label rollable" data-action="roll" data-use-absolute-value="true"
-                      data-absolute-value="{{edge.value}}" data-label="{{generateLocalizedLabel key 'edges'}}"
-                      {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}} data-selectors="edges edges.{{key}}">
-                      {{generateLocalizedLabel key 'edges'}}
-                    </label>
-                    <div class="resource-value">
-                        <input type="number" name="system.edges.{{key}}.value"
-                        value="{{edge.value}}" data-name="system.edges.{{key}}.value" />
-                    </div>
-                    <!-- Item controls for Edge sections -->
-                    <div class="item-controls">
-                        <!-- Icon to delete the edge -->
-                        <a class="item-control power-delete" data-action="deleteSPCPower" title="{{localize 'WOD5E.Delete'}}" data-type="edge" data-id="{{key}}">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                    </div>
-                </li>
-            {{/if}}
-        {{/each}}
-    </ol>
 </div>
