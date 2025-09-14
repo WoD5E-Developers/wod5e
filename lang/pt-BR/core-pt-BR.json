@@ -339,6 +339,7 @@
       "ModifiedSkillsHint": "Permite a modificação de habilidades existentes.",
       "NeutralXpIconOverride": "Ícone de XP Neutro",
       "NeutralXpIconOverrideHint": "Substitui o ícone padrão para entradas de XP que não são ganhas nem gastas.",
+      "_NewStringModification": "",
       "None": "Nenhum",
       "Rename": "Renomear",
       "SaveChanges": "Salvar Alterações",

@@ -339,6 +339,7 @@
       "ModifiedSkillsHint": "Consente di modificare abilità esistenti",
       "NeutralXpIconOverride": "Icona degli exp",
       "NeutralXpIconOverrideHint": "cambia l'icona per gli exp ",
+      "_NewStringModification": "",
       "None": "Nessuna",
       "Rename": "Rinomina",
       "SaveChanges": "Salva modifiche",

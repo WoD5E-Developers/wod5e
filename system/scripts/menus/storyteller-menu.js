@@ -31,26 +31,41 @@ export class StorytellerMenu extends FormApplication {
 
     this.listKeys = {
       attribute: {
+        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
+          string: game.i18n.localize('WOD5E.AttributesList.Label')
+        }),
         defCategory: 'Attributes',
         labelCategory: 'AttributesList',
         defClass: Attributes
       },
       skill: {
+        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
+          string: game.i18n.localize('WOD5E.SkillsList.Label')
+        }),
         defCategory: 'Skills',
         labelCategory: 'SkillsList',
         defClass: Skills
       },
       discipline: {
+        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
+          string: game.i18n.localize('WOD5E.VTM.Discipline')
+        }),
         defCategory: 'Disciplines',
         labelCategory: 'DisciplinesList',
         defClass: Disciplines
       },
       edge: {
+        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
+          string: game.i18n.localize('WOD5E.HTR.Edge')
+        }),
         defCategory: 'Edges',
         labelCategory: 'EdgesList',
         defClass: Edges
       },
       gift: {
+        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
+          string: game.i18n.localize('WOD5E.WTA.Gift')
+        }),
         defCategory: 'Gifts',
         labelCategory: 'GiftsList',
         defClass: Gifts
@@ -198,7 +213,7 @@ export class StorytellerMenu extends FormApplication {
   // Function for getting the information necessary for the selection dialog
   async _onGenerateModPrompt (type) {
     const list = await WOD5E[this.listKeys[type].defCategory].getList({})
-    this._onRenderPromptDialog(type, list, game.i18n.localize(`WOD5E.${this.listKeys[type].labelCategory}.Label`))
+    this._onRenderPromptDialog(type, list, this.listKeys[type].newModTitle)
   }
 
   // Function for rendering the dialog for adding a new modification
