@@ -9,12 +9,14 @@ export const _onEditExceptionalPools = async function (event) {
   // Gather and push the list of options and whether they're checked or not
   let options = ''
   for (const [key, value] of Object.entries(actor.system.exceptionaldicepools)) {
-    const checkedStatus = value.active ? ' checked' : ''
-    options += `
-      <div class="flexrow exceptional-pool">
-        ${value.displayName}
-        <input type="checkbox" class="exceptional-checkbox" name="${key}"${checkedStatus}>
-      </div>`
+    if (!value.hidden) {
+      const checkedStatus = value.active ? ' checked' : ''
+      options += `
+        <div class="flexrow exceptional-pool">
+          ${value.displayName}
+          <input type="checkbox" class="exceptional-checkbox" name="${key}"${checkedStatus}>
+        </div>`
+    }
   }
 
   // Define the template to be used

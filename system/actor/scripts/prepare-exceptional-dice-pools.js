@@ -32,10 +32,8 @@ export const prepareExceptionalDicePools = async function (actor) {
         }, value)
       }
 
-      // Push to the Exceptional Skills list as long as it isn't hidden
-      if (!skillData.hidden) {
-        skills[id] = skillData
-      }
+      // Push to the Exceptional Skills list
+      skills[id] = skillData
     }
   }
 
