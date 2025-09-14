@@ -18,7 +18,7 @@
                         <div class="item-controls">
                             {{#ifgr trait.system.dice 0}}
                                 <a class="item-image rollable-item" data-action="roll" data-use-absolute-value="true" data-absolute-value="{{trait.system.dice}}"
-                                    data-select-dialog="false" data-label="{{exceptionalskill.displayName}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
+                                    data-select-dialog="false" data-label="{{trait.name}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
                                     <i class="fa-solid fa-dice-d10"></i>
                                 </a>
                             {{/ifgr}}
