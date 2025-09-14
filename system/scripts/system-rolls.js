@@ -249,7 +249,8 @@ class WOD5eDice {
       if (macro && game.macros.get(macro)) {
         game.macros.get(macro).execute({
           actor,
-          token: actor.token ?? actor.getActiveTokens[0]
+          token: actor.token ?? actor.getActiveTokens[0],
+          roll
         })
       }
 
