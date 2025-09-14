@@ -1,8 +1,8 @@
 /* global foundry, fromUuidSync */
 
-import { prepareEdgePowers } from "../htr/scripts/prepare-data.js"
-import { prepareDisciplinePowers } from "../vtm/scripts/prepare-data.js"
-import { prepareGiftPowers } from "../wta/scripts/prepare-data.js"
+import { prepareEdgePowers } from '../htr/scripts/prepare-data.js'
+import { prepareDisciplinePowers } from '../vtm/scripts/prepare-data.js'
+import { prepareGiftPowers } from '../wta/scripts/prepare-data.js'
 
 export const prepareStatsContext = async function (context, actor) {
   const actorData = actor.system
