@@ -163,7 +163,7 @@ export const prepareSpcStatsContext = async function (context, actor) {
 
   if (context.currentActorType === 'vampire' || (context.gamesystem === 'vampire' && context.settings.enableDisciplines === true)) {
     context.showDisciplines = true
-    context.disciplines = actorData.disciplines
+    context.disciplines = await prepareDisciplinePowers(actorData.disciplines)
   }
 
   if (context.currentActorType === 'hunter' || (context.gamesystem === 'hunter' && context.settings.enableEdges === true)) {
