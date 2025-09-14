@@ -61,6 +61,8 @@ export const preloadHandlebarsTemplates = async function () {
 
     // SPC Sheet Partials
     'systems/vtm5e/display/shared/actors/parts/spc/stats.hbs',
+    'systems/vtm5e/display/shared/actors/parts/spc/spc-traits.hbs',
+    'systems/vtm5e/display/shared/actors/parts/spc/spc-conditions.hbs',
     'systems/vtm5e/display/shared/actors/parts/spc/standard-dice-pools.hbs',
     'systems/vtm5e/display/shared/actors/parts/spc/exceptional-dice-pools.hbs',
     'systems/vtm5e/display/shared/actors/parts/spc/generaldifficulty.hbs',

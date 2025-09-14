@@ -1,0 +1,43 @@
+<div class="description-field">
+    <div class="flex-center field-header">
+        <label class="resource-label">
+            {{localize "WOD5E.SPC.Traits"}}
+        </label>
+    </div>
+    <div class="description-content resource list-resource">
+        <div class="items-list flexcol">
+            {{#each traits as |trait id|}}
+                <div class="collapsible-container">
+                    <div class="item flexrow" data-drag="true" data-item-id="{{trait.id}}" data-document-uuid="{{trait.uuid}}" data-type="Item">
+                        <div class="item-image clickable" data-action="itemChat" data-item-id="{{trait._id}}">
+                            <img src="{{trait.img}}" title="{{trait.name}}" width="24" height="24" alt="{{trait.name}}" />
+                        </div>
+                        <div class="item-name{{#if trait.system.enrichedDescription}} collapsible{{/if}}" {{#if trait.system.enrichedDescription}}data-action="toggleCollapse"{{/if}}>
+                            {{trait.name}}
+                        </div>
+                        <div class="item-controls">
+                            {{#ifgr trait.system.dice 0}}
+                                <a class="item-image rollable-item" data-action="roll" data-use-absolute-value="true" data-absolute-value="{{trait.system.dice}}"
+                                    data-select-dialog="false" data-label="{{exceptionalskill.displayName}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
+                                    <i class="fa-solid fa-dice-d10"></i>
+                                </a>
+                            {{/ifgr}}
+                            <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{trait._id}}" title="{{localize 'WOD5E.Edit'}}"><i
+                                class="fas fa-edit"></i></a>
+                            <a class="item-control item-delete" data-action="itemDelete" data-item-id="{{trait._id}}" title="{{localize 'WOD5E.Delete'}}"><i
+                                class="fas fa-trash"></i></a>
+                        </div>
+                    </div>
+                    <div class="collapsible-content trait-description">
+                        {{{trait.system.enrichedDescription}}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        <div class="flex-group-center">
+            <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.Add'}}" data-type="trait">
+                <i class="fas fa-plus"></i> {{localize "WOD5E.Add"}}
+            </a>
+        </div>
+    </div>
+</div>
