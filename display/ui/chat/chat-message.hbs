@@ -1,14 +1,33 @@
-<div class="wod5e">
-    <header class="flexrow flex-group-left" style="align-items: center;">
-        {{#if img}}
-            <img class="item-image" src="{{ img }}" title="{{ name }}" width="36" height="36" alt="{{ name }}"/>
-        {{/if}}
-        <h3 class="item-name" style="line-height: 18px; font-weight: bold; flex: 4 0 0; text-align: center;">
-            {{ name }}
-        </h3>
-    </header>
+<li class="chat-message message flexcol {{cssClass}}" data-message-id="{{message._id}}"
+    {{#if borderColor}}style="border-color:{{borderColor}}"{{/if}}>
+    <header class="message-header flexrow">
+        <div class="portrait token">
+            <img src="{{portrait}}" alt="{{alias}}" inert>
+        </div>
+        <h4 class="message-sender">{{alias}}</h4>
+        <span class="message-metadata">
+            <time class="message-timestamp">{{timeSince message.timestamp}}</time>
+            {{#if canDelete}}
+            <a aria-label="{{localize 'Delete'}}" class="message-delete" data-action="deleteMessage">
+                <i class="fa-solid fa-trash" inert></i>
+            </a>
+            {{/if}}
+            {{#if canClose}}
+            <a aria-label="{{ localize "CHAT.Dismiss" }}" class="message-dismiss" data-action="dismissMessage">
+                <i class="fa-solid fa-xmark" inert></i>
+            </a>
+            {{/if}}
+        </span>
 
-    <div class="br-text">
-        {{{description}}}
+        {{#if isWhisper}}
+        <span class="whisper-to">{{localize 'CHAT.To'}}: {{whisperTo}}</span>
+        {{/if}}
+
+        {{#if message.flavor}}
+        <span class="flavor-text">{{{message.flavor}}}</span>
+        {{/if}}
+    </header>
+    <div class="message-content">
+        {{{message.content}}}
     </div>
-</div>
+</li>

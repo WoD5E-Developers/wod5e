@@ -42,6 +42,7 @@ export class WoDChatMessage extends ChatMessage {
       author: this.author,
       speakerActor,
       alias: this.alias,
+      portrait: (speakerActor?.img ?? this.author?.avatar) || this.constructor.DEFAULT_AVATAR,
       cssClass: [
         this.style === CONST.CHAT_MESSAGE_STYLES.IC ? 'ic' : null,
         this.style === CONST.CHAT_MESSAGE_STYLES.EMOTE ? 'emote' : null,
@@ -53,16 +54,9 @@ export class WoDChatMessage extends ChatMessage {
     }
 
     // Render message data specifically for ROLL type messages
-    if (this.isRoll) await this.#renderRollContent(messageData)
-
-    // Define a border color
-    if (this.style === CONST.CHAT_MESSAGE_STYLES.OOC) messageData.borderColor = this.author?.color.css
-
-    // Render the chat message
-    let html = await foundry.applications.handlebars.renderTemplate(CONFIG.ChatMessage.template, messageData)
-    html = foundry.utils.parseHTML(html)
-
     if (this.isRoll) {
+      await this.#renderRollContent(messageData)
+
       const roll = this.rolls[0]
 
       // Here, we're 100% sure that this message contains a valid WoD5e die and can proceed
@@ -70,7 +64,7 @@ export class WoDChatMessage extends ChatMessage {
       if (roll.system) {
         const messageContent = await generateRollMessage({
           title: roll.options.title || `${game.i18n.localize('WOD5E.Chat.Rolling')}...`,
-          roll: this.rolls[0],
+          roll,
           system: roll.system,
           flavor: roll.options.flavor || '',
           difficulty: roll.options.difficulty || 0,
@@ -79,10 +73,16 @@ export class WoDChatMessage extends ChatMessage {
           isContentVisible: this.isContentVisible
         })
 
-        // Apply the content to the chat message
-        html.querySelector('.message-content').innerHTML = messageContent
+        messageData.message.content = messageContent
       }
     }
+
+    // Define a border color
+    if (this.style === CONST.CHAT_MESSAGE_STYLES.OOC) messageData.borderColor = this.author?.color.css
+
+    // Render the chat message
+    let html = await foundry.applications.handlebars.renderTemplate(CONFIG.ChatMessage.template, messageData)
+    html = foundry.utils.parseHTML(html)
 
     // Flag expanded state of dice rolls
     Hooks.callAll('renderChatMessageHTML', this, html, messageData)
@@ -128,6 +128,8 @@ export class WoDChatMessage extends ChatMessage {
       messageData.alias = name
     }
   }
+
+  static DEFAULT_AVATAR = 'icons/svg/mystery-man.svg'
 
   async #renderRollHTML (isPrivate) {
     let html = ''
