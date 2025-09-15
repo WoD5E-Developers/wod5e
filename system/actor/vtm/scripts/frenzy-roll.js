@@ -62,7 +62,7 @@ export const _onFrenzyRoll = async function (event) {
         if (!result.rollSuccessful) {
           actor.update({ 'system.frenzyActive': true })
 
-          await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+          await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
             name: game.i18n.localize('WOD5E.VTM.ResistingFrenzyFailed'),
             img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
             description: game.i18n.format('WOD5E.VTM.ResistingFrenzyFailedDescription', {
@@ -73,7 +73,7 @@ export const _onFrenzyRoll = async function (event) {
             ChatMessage.create(message)
           })
         } else {
-          await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+          await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
             name: game.i18n.localize('WOD5E.VTM.ResistingFrenzySuccess'),
             img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
             description: game.i18n.format('WOD5E.VTM.ResistingFrenzySuccessDescription', {
@@ -90,7 +90,7 @@ export const _onFrenzyRoll = async function (event) {
     // Automatically enter frenzy
     actor.update({ 'system.frenzyActive': true })
 
-    await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+    await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
       name: game.i18n.localize('WOD5E.VTM.RidingTheWave'),
       img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
       description: game.i18n.format('WOD5E.VTM.RidingTheWaveDescription', {

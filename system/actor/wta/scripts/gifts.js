@@ -103,7 +103,7 @@ export const _onGiftToChat = async function (event, target) {
   const actor = this.actor
   const gift = actor.system.gifts[target.getAttribute('data-gift')]
 
-  await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+  await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
     name: gift.displayName,
     img: 'icons/svg/dice-target.svg',
     description: gift?.description || ''

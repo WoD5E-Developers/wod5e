@@ -460,8 +460,10 @@ input[type="number"] {
   margin: 3px;
   padding: 5px 9px;
   border-radius: 0;
+  row-gap: 3px;
 }
-.chat-message img.item-image {
+.chat-message img.item-image,
+.chat-message div.portrait.token > img {
   max-width: 36px;
   max-height: 36px;
 }
