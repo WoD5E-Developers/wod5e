@@ -1,4 +1,6 @@
-/* global game, foundry, Dialog */
+/* global foundry, game, foundry */
+
+const EXPERIENCE_TEMPLATE = 'systems/vtm5e/display/shared/actors/parts/experience-display.hbs'
 
 export const _onAddExperience = async function (event, target) {
   event.preventDefault()
@@ -11,58 +13,48 @@ export const _onAddExperience = async function (event, target) {
   const system = actor.system.gamesystem
 
   // Render the template
-  const experienceTemplate = 'systems/vtm5e/display/shared/actors/parts/experience-display.hbs'
   const experienceData = {
     name: isSpendingXP ? game.i18n.localize('WOD5E.Experience.XPSpent') : game.i18n.localize('WOD5E.Experience.XPGained'),
     value: 0
   }
-  const experienceContent = await foundry.applications.handlebars.renderTemplate(experienceTemplate, experienceData)
+  const experienceContent = await foundry.applications.handlebars.renderTemplate(EXPERIENCE_TEMPLATE, experienceData)
 
-  new Dialog(
-    {
-      title: isSpendingXP ? game.i18n.localize('WOD5E.Experience.SpendExperience') : game.i18n.localize('WOD5E.Experience.AddExperience'),
-      content: experienceContent,
-      buttons: {
-        add: {
-          icon: '<i class="fas fa-check"></i>',
-          label: game.i18n.localize('WOD5E.Add'),
-          callback: async html => {
-            const dialogHTML = html[0]
-
-            // Get the source (name) and the value (modifier) from the dialogue
-            const name = dialogHTML.querySelector('[id=xpName]').value
-            const value = dialogHTML.querySelector('[id=xpValue]').value
-
-            // Put the new experience into an object
-            let newExperience = {}
-            newExperience = {
-              id: foundry.utils.randomID(8),
-              name,
-              value: isSpendingXP ? -Math.abs(value) : Math.abs(value),
-              timestamp: Date.now()
-            }
-
-            // Define the existing list of experiences
-            const actorExperiences = actor.system.experiences || []
-
-            // Add the new experience to the list
-            actorExperiences.push(newExperience)
-
-            // Update the actor
-            await actor.update({ 'system.experiences': actorExperiences })
-          }
-        },
-        cancel: {
-          icon: '<i class="fas fa-times"></i>',
-          label: game.i18n.localize('WOD5E.Cancel')
-        }
-      },
-      default: 'add'
+  const result = await foundry.applications.api.DialogV2.input({
+    window: { title: isSpendingXP ? game.i18n.localize('WOD5E.Experience.SpendExperience') : game.i18n.localize('WOD5E.Experience.AddExperience') },
+    content: experienceContent,
+    ok: {
+      icon: 'fas fa-check',
+      label: game.i18n.localize('WOD5E.Add')
     },
-    {
-      classes: ['wod5e', system, 'dialog']
+    buttons: [
+      {
+        action: 'cancel',
+        icon: 'fas fa-times',
+        label: game.i18n.localize('WOD5E.Cancel'),
+        type: 'button'
+      }
+    ],
+    classes: ['wod5e', system]
+  })
+
+  if (result !== 'cancel') {
+    // Put the new experience into an object
+    const newExperience = {
+      id: foundry.utils.randomID(8),
+      name: result.xpName,
+      value: isSpendingXP ? -Math.abs(result.xpValue) : Math.abs(result.xpValue),
+      timestamp: Date.now()
     }
-  ).render(true)
+
+    // Define the existing list of experiences
+    const actorExperiences = actor.system.experiences || []
+
+    // Add the new experience to the list
+    actorExperiences.push(newExperience)
+
+    // Update the actor
+    await actor.update({ 'system.experiences': actorExperiences })
+  }
 }
 
 export const _onRemoveExperience = async function (event, target) {
@@ -85,45 +77,34 @@ export const _onRemoveExperience = async function (event, target) {
     return
   }
 
-  // Variables yet to be defined
-  let buttons = {}
-
   // Define the template to be used
   const template = `
-  <form>
-      <div class="form-group">
-          <label>${game.i18n.format('WOD5E.ConfirmDeleteDescription', {
-            string: experienceToDelete.name
-          })}</label>
-      </div>
-  </form>`
+    <div class="form-group">
+        <label>${game.i18n.format('WOD5E.ConfirmDeleteDescription', {
+          string: experienceToDelete.name
+        })}</label>
+    </div>`
 
-  // Define the buttons and push them to the buttons variable
-  buttons = {
-    delete: {
-      label: game.i18n.localize('WOD5E.Delete'),
-      callback: async () => {
-        // Filter out the experience to be removed
-        actorExperiences = actorExperiences.filter(exp => exp.id !== experienceId)
-
-        // Update the actor with the new list of experiences
-        await actor.update({ 'system.experiences': actorExperiences })
-      }
-    },
-    cancel: {
-      label: game.i18n.localize('WOD5E.Cancel')
-    }
-  }
-
-  new Dialog({
-    title: game.i18n.localize('WOD5E.ConfirmDelete'),
+  const shouldDelete = await foundry.applications.api.DialogV2.confirm({
+    window: { title: game.i18n.localize('WOD5E.ConfirmDelete') },
     content: template,
-    buttons,
-    default: 'cancel'
-  },
-  {
-    classes: ['wod5e', system, 'dialog']
-  }).render(true)
+    yes: {
+      label: game.i18n.localize('WOD5E.Delete')
+    },
+    no: {
+      label: game.i18n.localize('WOD5E.Cancel'),
+      default: true
+    },
+    classes: ['wod5e', system]
+  })
+
+  if (shouldDelete) {
+    // Filter out the experience to be removed
+    actorExperiences = actorExperiences.filter(exp => exp.id !== experienceId)
+
+    // Update the actor with the new list of experiences
+    await actor.update({ 'system.experiences': actorExperiences })
+  }
 }
 
 export const _onEditExperience = async function (event, target) {
@@ -146,53 +127,43 @@ export const _onEditExperience = async function (event, target) {
   }
 
   // Render the template with the current experience data
-  const experienceTemplate = 'systems/vtm5e/display/shared/actors/parts/experience-display.hbs'
   const experienceData = {
     name: experienceToEdit.name,
     value: experienceToEdit.value
   }
-  const experienceContent = await foundry.applications.handlebars.renderTemplate(experienceTemplate, experienceData)
+  const experienceContent = await foundry.applications.handlebars.renderTemplate(EXPERIENCE_TEMPLATE, experienceData)
 
-  new Dialog(
-    {
-      title: game.i18n.localize('WOD5E.Experience.EditExperience'),
-      content: experienceContent,
-      buttons: {
-        save: {
-          icon: '<i class="fas fa-check"></i>',
-          label: game.i18n.localize('WOD5E.Save'),
-          callback: async html => {
-            const dialogHTML = html[0]
-
-            // Get the updated name and value from the dialogue
-            const name = dialogHTML.querySelector('[id=xpName]').value
-            const value = dialogHTML.querySelector('[id=xpValue]').value
-
-            // Update the experience
-            experienceToEdit.name = name
-            experienceToEdit.value = value
-
-            // Define the existing list of experiences
-            let actorExperiences = actor.system.experiences || []
-
-            // Replace the old experience with the updated one
-            actorExperiences = actorExperiences.map(exp => exp.id === experienceId ? experienceToEdit : exp)
-
-            // Update the actor with the modified list
-            await actor.update({ 'system.experiences': actorExperiences })
-          }
-        },
-        cancel: {
-          icon: '<i class="fas fa-times"></i>',
-          label: game.i18n.localize('WOD5E.Cancel')
-        }
-      },
-      default: 'save'
+  const result = await foundry.applications.api.DialogV2.input({
+    window: { title: game.i18n.localize('WOD5E.Experience.EditExperience') },
+    content: experienceContent,
+    ok: {
+      icon: 'fas fa-check',
+      label: game.i18n.localize('WOD5E.Save')
     },
-    {
-      classes: ['wod5e', system, 'dialog']
-    }
-  ).render(true)
+    buttons: [
+      {
+        action: 'cancel',
+        icon: 'fas fa-times',
+        label: game.i18n.localize('WOD5E.Cancel')
+      }
+    ],
+    classes: ['wod5e', system]
+  })
+
+  if (result !== 'cancel') {
+    // Update the experience
+    experienceToEdit.name = result.xpName
+    experienceToEdit.value = result.xpValue
+
+    // Define the existing list of experiences
+    let actorExperiences = actor.system.experiences || []
+
+    // Replace the old experience with the updated one
+    actorExperiences = actorExperiences.map(exp => exp.id === experienceId ? experienceToEdit : exp)
+
+    // Update the actor with the modified list
+    await actor.update({ 'system.experiences': actorExperiences })
+  }
 }
 
 export const getDerivedExperience = async function (systemData) {
