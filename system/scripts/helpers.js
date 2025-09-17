@@ -1,6 +1,7 @@
 /* global Handlebars, game, WOD5E */
 
 import { generateLocalizedLabel } from '../api/generate-localization.js'
+import { timeSinceShort } from './time-since-short.js'
 
 /**
  * Define any helpers necessary for working with Handlebars
@@ -151,5 +152,11 @@ export const loadHelpers = async function () {
       artifact: 'WOD5E.HTR.Artifact'
     }
     return edges[key]
+  })
+
+  // A separate helper from the Foundry native 'timeSince' helper
+  // specifically to limit the terms to only 1
+  Handlebars.registerHelper('timeSinceShort', function (timeStamp) {
+    return timeSinceShort(timeStamp)
   })
 }
