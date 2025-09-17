@@ -465,6 +465,7 @@ input[type="number"] {
 .chat-message .portrait.token > img {
   max-width: 50px;
   max-height: 50px;
+  border: 1px solid;
 }
 .chat-message .portrait.token,
 .chat-message .message-metadata {
@@ -2616,17 +2617,17 @@ prose-mirror .editor-menu button {
   color: var(--system-color-6);
 }
 .subdirectory {
-  background: var(--system-color-11);
+  background: var(--system-color-8);
 }
 /* Headers */
 .combat-sidebar .combat-tracker-header,
 .directory .directory-header {
   border-bottom: 2px groove #CCC;
-  background: var(--system-color-11);
+  background: var(--system-color-8);
 }
 /* Footers */
 .directory .directory-footer:not(:empty) {
-  background: rgba(0, 0, 0, 0.836);
+  background: rgba(161, 161, 161, 0.836);
 }
 /* Settings Sidebar */
 .settings-sidebar h2 {
@@ -2664,6 +2665,7 @@ prose-mirror .editor-menu button {
   border-color: var(--color-border-highlight);
 }
 .actors-sidebar .group-item > .group-header {
+  color: var(--system-color-6);
   background: rgba(255 255 255 20%);
   border-top: 1px sod var(--color-border-dark);
   border-bottom: 1px sod var(--color-border-dark);
@@ -2845,6 +2847,19 @@ prose-mirror .editor-menu button {
 .theme-dark #hotbar .bar-controls {
   background-color: var(--dark-theme-filter);
   background-blend-mode: color-dodge;
+}
+.theme-dark .combat-sidebar .combat-tracker-header,
+.theme-dark .directory .directory-header {
+  background: var(--system-color-11);
+}
+.theme-dark .directory .directory-footer:not(:empty) {
+  background: rgba(0, 0, 0, 0.836);
+}
+.theme-dark .subdirectory {
+  background: var(--system-color-11);
+}
+.theme-dark .group-header {
+  color: var(--system-dark-color-11);
 }
 .theme-dark .standard-form .form-group > label,
 .theme-dark .standard-form .form-group:hover > label {
