@@ -6,26 +6,45 @@
 .chat-message {
   background-blend-mode: multiply;
   margin: 3px;
-  padding: 5px 9px;
+  padding: 0;
   border-radius: 0;
   row-gap: 3px;
 
-  img.item-image,
-  div.portrait.token > img {
-    max-width: 36px;
-    max-height: 36px;
+  .portrait.token > img {
+    max-width: 50px;
+    max-height: 50px;
   }
 
-  .message-header {
+  .portrait.token,
+  .message-metadata {
+    flex: 0 0 auto;
+    padding: 2px;
+  }
+
+  .message-names {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-family: Amarante, serif;
+    align-self: center;
+    padding: 6px;
+
     .message-sender {
-      flex: 3;
-      margin: 0;
-      white-space: nowrap;
-      font-family: Amarante, serif;
       font-size: 1.2em;
       font-weight: 700;
-      white-space: break-spaces;
     }
+  }
+
+  hr {
+    margin: 0.5em 0;
+    clear: both;
+    border: 0;
+  }
+
+  .message-content {
+    padding: 4px;
   }
 
   .dice-result {

@@ -4,8 +4,15 @@
         <div class="portrait token">
             <img src="{{portrait}}" alt="{{alias}}" inert>
         </div>
-        <h4 class="message-sender">{{alias}}</h4>
-        <span class="message-metadata">
+        <div class="message-names flexcol">
+            <span class="message-sender">
+                {{alias}}
+            </span>
+            {{#if isWhisper}}
+                <span class="whisper-to">{{localize 'CHAT.To'}}: {{whisperTo}}</span>
+            {{/if}}
+        </div>
+        <div class="message-metadata">
             <time class="message-timestamp">{{timeSince message.timestamp}}</time>
             {{#if canDelete}}
             <a aria-label="{{localize 'Delete'}}" class="message-delete" data-action="deleteMessage">
@@ -17,16 +24,13 @@
                 <i class="fa-solid fa-xmark" inert></i>
             </a>
             {{/if}}
-        </span>
-
-        {{#if isWhisper}}
-        <span class="whisper-to">{{localize 'CHAT.To'}}: {{whisperTo}}</span>
-        {{/if}}
+        </div>
 
         {{#if message.flavor}}
         <span class="flavor-text">{{{message.flavor}}}</span>
         {{/if}}
     </header>
+    <hr>
     <div class="message-content">
         {{{message.content}}}
     </div>

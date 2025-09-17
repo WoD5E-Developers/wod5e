@@ -458,23 +458,40 @@ input[type="number"] {
 .chat-message {
   background-blend-mode: multiply;
   margin: 3px;
-  padding: 5px 9px;
+  padding: 0;
   border-radius: 0;
   row-gap: 3px;
 }
-.chat-message img.item-image,
-.chat-message div.portrait.token > img {
-  max-width: 36px;
-  max-height: 36px;
+.chat-message .portrait.token > img {
+  max-width: 50px;
+  max-height: 50px;
 }
-.chat-message .message-header .message-sender {
-  flex: 3;
-  margin: 0;
+.chat-message .portrait.token,
+.chat-message .message-metadata {
+  flex: 0 0 auto;
+  padding: 2px;
+}
+.chat-message .message-names {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
   font-family: Amarante, serif;
+  align-self: center;
+  padding: 6px;
+}
+.chat-message .message-names .message-sender {
   font-size: 1.2em;
   font-weight: 700;
-  white-space: break-spaces;
+}
+.chat-message hr {
+  margin: 0.5em 0;
+  clear: both;
+  border: 0;
+}
+.chat-message .message-content {
+  padding: 4px;
 }
 .chat-message .dice-result {
   cursor: pointer;
