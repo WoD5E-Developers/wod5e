@@ -18,6 +18,7 @@ export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
       const message = game.messages.get(li.dataset.messageId)
       if (!message?.timestamp) return
 
+      const stamp = li.querySelector('.message-timestamp')
       if (stamp) stamp.textContent = timeSinceShort(message.timestamp)
     }
   }
