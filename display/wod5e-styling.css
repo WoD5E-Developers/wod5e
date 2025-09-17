@@ -474,9 +474,6 @@ input[type="number"] {
 .chat-message .message-names {
   flex: 1 1 0;
   min-width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   font-family: Amarante, serif;
   align-self: center;
   padding: 6px;
@@ -484,6 +481,9 @@ input[type="number"] {
 .chat-message .message-names .message-sender {
   font-size: 1.2em;
   font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .chat-message hr {
   margin: 0.5em 0;
