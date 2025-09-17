@@ -6,7 +6,7 @@ export const _onEditImage = async function (event) {
   // Top-level variables
   const actor = this.actor
 
-  new foundry.applications.apps.FilePicker({
+  await new foundry.applications.apps.FilePicker({
     type: 'image',
     current: actor.img,
     callback: async (path) => {
