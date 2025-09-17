@@ -13,11 +13,12 @@ export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
   }
 
   updateTimestamps() {
-    for ( const li of document.querySelectorAll(".chat-message[data-message-id]") ) {
-      const message = game.messages.get(li.dataset.messageId);
-      if ( !message?.timestamp ) return;
-      const stamp = li.querySelector(".message-timestamp");
-      if ( stamp ) stamp.textContent = timeSinceShort(message.timestamp);
+    for (const li of document.querySelectorAll(".chat-message[data-message-id]")) {
+      const message = game.messages.get(li.dataset.messageId)
+      if (!message?.timestamp) return
+
+      const stamp = li.querySelector(".message-timestamp")
+      if (stamp) stamp.textContent = timeSinceShort(message.timestamp)
     }
   }
 }
