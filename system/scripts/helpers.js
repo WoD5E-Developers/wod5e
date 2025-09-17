@@ -136,24 +136,6 @@ export const loadHelpers = async function () {
     return ret
   })
 
-  Handlebars.registerHelper('getEdgeName', function (key) {
-    const edges = {
-      arsenal: 'WOD5E.HTR.Arsenal',
-      fleet: 'WOD5E.HTR.Fleet',
-      ordnance: 'WOD5E.HTR.Ordnance',
-      library: 'WOD5E.HTR.Library',
-      improvisedgear: 'WOD5E.HTR.ImprovisedGear',
-      globalaccess: 'WOD5E.HTR.GlobalAccess',
-      dronejockey: 'WOD5E.HTR.DroneJockey',
-      beastwhisperer: 'WOD5E.HTR.BeastWhisperer',
-      sensetheunnatural: 'WOD5E.HTR.SenseTheUnnatural',
-      repeltheunnatural: 'WOD5E.HTR.RepelTheUnnatural',
-      thwarttheunnatural: 'WOD5E.HTR.ThwartTheUnnatural',
-      artifact: 'WOD5E.HTR.Artifact'
-    }
-    return edges[key]
-  })
-
   // A separate helper from the Foundry native 'timeSince' helper
   // specifically to limit the terms to only 1
   Handlebars.registerHelper('timeSinceShort', function (timeStamp) {
