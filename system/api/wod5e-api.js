@@ -1,4 +1,4 @@
-/* global foundry, Dialog, ChatMessage, game, ui, WOD5E */
+/* global foundry, ChatMessage, game, ui, WOD5E */
 
 import { WOD5eDice } from '../scripts/system-rolls.js'
 import { _onConfirmRoll } from '../actor/scripts/roll.js'
@@ -138,135 +138,132 @@ export class wod5eAPI {
     const content = await foundry.applications.handlebars.renderTemplate(dialogTemplate, dialogData)
 
     // Render the dialog window to select which skill/attribute combo to use
-    new Dialog(
-      {
-        title: game.i18n.localize('WOD5E.RollList.SelectRoll'),
-        content,
-        buttons: {
-          confirm: {
-            icon: '<i class="fas fa-dice"></i>',
-            label: game.i18n.localize('WOD5E.Confirm'),
-            callback: async html => {
-              const dialogHTML = html[0]
-
-              // Compile the selected data and send it to the roll function
-              const skillSelect = dialogHTML.querySelector('#skillSelect')?.value
-              const attributeSelect = dialogHTML.querySelector('#attributeSelect')?.value
-              const attributeSelect2 = dialogHTML.querySelector('#attributeSelect2')?.value
-              const disciplineSelect = dialogHTML.querySelector('#disciplineSelect')?.value
-              const bloodSurgeCheckbox = dialogHTML.querySelector('#bloodSurge')?.checked
-              const renownSelect = dialogHTML.querySelector('#renownSelect')?.value
-
-              // Keep manipulated dataset data in a separate variable
-              const modifiedDataset = {
-                ...dataset
-              }
-
-              // Keep track of what we're constructing the label out of here
-              const labelArray = []
-              const valueArray = []
-              let selectorsArray = []
-
-              // Handle adding a skill to the dicepool
-              if (skillSelect) {
-                // Add it to the label
-                labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: skillSelect, type: 'skills' }))
-
-                // Add it to the value path if applicable
-                valueArray.push(`skills.${skillSelect}.value`)
-
-                // If using absolute values instead of value paths, add the values together
-                if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.skills[skillSelect].value
-
-                // Add the attribute selectors to the roll
-                selectorsArray = selectorsArray.concat(['skills', `skills.${skillSelect}`])
-              }
-              // Handle adding an attribute to the dicepool
-              if (attributeSelect) {
-                // Add it to the label
-                labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect, type: 'attributes' }))
-
-                // Add it to the value path if applicable
-                valueArray.push(`attributes.${attributeSelect}.value`)
-
-                // If using absolute values instead of value paths, add the values together
-                if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.attributes[attributeSelect].value
-
-                // Add the attribute selectors to the roll
-                selectorsArray = selectorsArray.concat(['attributes', `attributes.${attributeSelect}`, `${WOD5E.Attributes.getList({})[attributeSelect].type}`])
-              }
-              // Handle adding a second attribute to the dicepool
-              if (attributeSelect2) {
-                // Add it to the label
-                labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect2, type: 'attributes' }))
-
-                // Add it to the value path if applicable
-                valueArray.push(`attributes.${attributeSelect2}.value`)
-
-                // If using absolute values instead of value paths, add the values together
-                if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.attributes[attributeSelect2].value
-
-                // Add the attribute selectors to the roll
-                selectorsArray = selectorsArray.concat(['attributes', `attributes.${attributeSelect2}`, `${WOD5E.Attributes.getList({})[attributeSelect2].type}`])
-              }
-              // Handle adding a discipline to the dicepool
-              if (disciplineSelect) {
-                // Add it to the label
-                labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: disciplineSelect, type: 'discipline' }))
-
-                // Add it to the value path if applicable
-                valueArray.push(`disciplines.${disciplineSelect}.value`)
-
-                // If using absolute values instead of value paths, add the values together
-                if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.disciplines[disciplineSelect].value
-
-                // Add the discipline and potency selectors to the roll
-                selectorsArray = selectorsArray.concat(['disciplines', `disciplines.${disciplineSelect}`])
-              }
-              // Handle adding a blood surge to the roll
-              if (bloodSurgeCheckbox) {
-                selectorsArray.push('blood-surge')
-              }
-              // Handle adding the resistance selector to the roll
-              if (dataset?.resistance) {
-                selectorsArray.push('resistance')
-              }
-              // Handle adding a renown to the dicepool
-              if (renownSelect) {
-                // Add it to the label
-                labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: renownSelect, type: 'renown' }))
-
-                // Add it to the value path if applicable
-                valueArray.push(`renown.${renownSelect}.value`)
-
-                // If using absolute values instead of value paths, add the values together
-                if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.renown[renownSelect].value
-
-                // Add the renown selector to the roll
-                selectorsArray = selectorsArray.concat(['renown', `renown.${renownSelect}`])
-              }
-
-              // If we're not provided a label, construct one out of the elements of the array
-              if (!modifiedDataset?.label) modifiedDataset.label = labelArray.join(' + ')
-              // Join the value array
-              modifiedDataset.valuePaths = valueArray.join(' ')
-              // Join the selectors
-              modifiedDataset.selectors = selectorsArray.join(' ')
-
-              await _onConfirmRoll(modifiedDataset, actor)
-            }
-          },
-          cancel: {
-            icon: '<i class="fas fa-times"></i>',
-            label: game.i18n.localize('WOD5E.Cancel')
-          }
-        },
-        default: 'confirm'
+    const result = await foundry.applications.api.DialogV2.input({
+      window: {
+        title: game.i18n.localize('WOD5E.RollList.SelectRoll')
       },
-      {
-        classes: ['wod5e', actor.system.gamesystem, 'dialog']
+      content,
+      ok: {
+        icon: 'fas fa-dice',
+        label: game.i18n.localize('WOD5E.Confirm')
+      },
+      buttons: [
+        {
+          action: 'cancel',
+          icon: 'fas fa-times',
+          label: game.i18n.localize('WOD5E.Cancel')
+        }
+      ],
+      classes: ['wod5e', actor.system.gamesystem]
+    })
+
+    if (result !== 'cancel') {
+      // Compile the selected data and send it to the roll function
+      const skillSelect = result.skillSelect
+      const attributeSelect = result.attributeSelect
+      const attributeSelect2 = result.attributeSelect2
+      const disciplineSelect = result.disciplineSelect
+      const bloodSurgeCheckbox = result.bloodSurge
+      const renownSelect = result.renownSelect
+
+      // Keep manipulated dataset data in a separate variable
+      const modifiedDataset = {
+        ...dataset
       }
-    ).render(true)
+
+      // Keep track of what we're constructing the label out of here
+      const labelArray = []
+      const valueArray = []
+      let selectorsArray = []
+
+      // Handle adding a skill to the dicepool
+      if (skillSelect) {
+        // Add it to the label
+        labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: skillSelect, type: 'skills' }))
+
+        // Add it to the value path if applicable
+        valueArray.push(`skills.${skillSelect}.value`)
+
+        // If using absolute values instead of value paths, add the values together
+        if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.skills[skillSelect].value
+
+        // Add the attribute selectors to the roll
+        selectorsArray = selectorsArray.concat(['skills', `skills.${skillSelect}`])
+      }
+      // Handle adding an attribute to the dicepool
+      if (attributeSelect) {
+        // Add it to the label
+        labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect, type: 'attributes' }))
+
+        // Add it to the value path if applicable
+        valueArray.push(`attributes.${attributeSelect}.value`)
+
+        // If using absolute values instead of value paths, add the values together
+        if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.attributes[attributeSelect].value
+
+        // Add the attribute selectors to the roll
+        selectorsArray = selectorsArray.concat(['attributes', `attributes.${attributeSelect}`, `${WOD5E.Attributes.getList({})[attributeSelect].type}`])
+      }
+      // Handle adding a second attribute to the dicepool
+      if (attributeSelect2) {
+        // Add it to the label
+        labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect2, type: 'attributes' }))
+
+        // Add it to the value path if applicable
+        valueArray.push(`attributes.${attributeSelect2}.value`)
+
+        // If using absolute values instead of value paths, add the values together
+        if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.attributes[attributeSelect2].value
+
+        // Add the attribute selectors to the roll
+        selectorsArray = selectorsArray.concat(['attributes', `attributes.${attributeSelect2}`, `${WOD5E.Attributes.getList({})[attributeSelect2].type}`])
+      }
+      // Handle adding a discipline to the dicepool
+      if (disciplineSelect) {
+        // Add it to the label
+        labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: disciplineSelect, type: 'discipline' }))
+
+        // Add it to the value path if applicable
+        valueArray.push(`disciplines.${disciplineSelect}.value`)
+
+        // If using absolute values instead of value paths, add the values together
+        if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.disciplines[disciplineSelect].value
+
+        // Add the discipline and potency selectors to the roll
+        selectorsArray = selectorsArray.concat(['disciplines', `disciplines.${disciplineSelect}`])
+      }
+      // Handle adding a blood surge to the roll
+      if (bloodSurgeCheckbox) {
+        selectorsArray.push('blood-surge')
+      }
+      // Handle adding the resistance selector to the roll
+      if (dataset?.resistance) {
+        selectorsArray.push('resistance')
+      }
+      // Handle adding a renown to the dicepool
+      if (renownSelect) {
+        // Add it to the label
+        labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: renownSelect, type: 'renown' }))
+
+        // Add it to the value path if applicable
+        valueArray.push(`renown.${renownSelect}.value`)
+
+        // If using absolute values instead of value paths, add the values together
+        if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.renown[renownSelect].value
+
+        // Add the renown selector to the roll
+        selectorsArray = selectorsArray.concat(['renown', `renown.${renownSelect}`])
+      }
+
+      // If we're not provided a label, construct one out of the elements of the array
+      if (!modifiedDataset?.label) modifiedDataset.label = labelArray.join(' + ')
+      // Join the value array
+      modifiedDataset.valuePaths = valueArray.join(' ')
+      // Join the selectors
+      modifiedDataset.selectors = selectorsArray.join(' ')
+
+      await _onConfirmRoll(modifiedDataset, actor)
+    }
   }
 
   // Function to grab the values of any given paths and add them up as the total number of basic dice for the roll

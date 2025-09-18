@@ -1,7 +1,7 @@
 {{> "systems/vtm5e/display/ui/parts/situational-modifiers.hbs"}}
 <div class="form-group">
     <label>{{localize 'WOD5E.RollList.Difficulty' }}</label>
-    <input type="text" min="0" id="inputDifficulty" value="{{difficulty}}">
+    <input type="number" min="0" id="inputDifficulty" value="{{difficulty}}" style="max-width: 100%; text-align: left;">
 </div>
 <div class="form-group">
     <label>{{localize 'WOD5E.RollList.RollMode'}}</label>

@@ -6,9 +6,9 @@ export function timeSinceShort (timeStamp) {
   const seconds = (now - timeStamp) / 1000
   const components = game.time.earthCalendar.timeToComponents(seconds)
 
-  return game.time.earthCalendar.format(components, "ago", {
+  return game.time.earthCalendar.format(components, 'ago', {
     short: true,
-    separator: " ",
+    separator: ' ',
     maxTerms: 1
-  });
+  })
 }

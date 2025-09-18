@@ -31,17 +31,13 @@
 }
 
 /* Dialog Windows */
-.mortal.dialog {
-  .window-app {
-    border: 4px solid var(--mortal-color-1);
-
-    .window-header {
-      border-bottom: 4px double var(--mortal-color-3);
-    }
-  }
+.mortal.dialog.window-app,
+.mortal.dialog.application {
+  border: 4px solid var(--mortal-color-1);
 
   .window-header {
     background: var(--mortal-color-1);
+    border-bottom: 4px double var(--mortal-color-3);
   }
 
   .window-content section .tab > .resource-label,
@@ -53,7 +49,7 @@
     border-color: var(--mortal-color-1);
   }
 
-  .dialog-contents .dice-group-header {
+  .dialog-content .dice-group-header {
     background-color: var(--mortal-color-1);
   }
 

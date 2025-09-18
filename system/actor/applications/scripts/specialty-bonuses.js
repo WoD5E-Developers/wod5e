@@ -1,6 +1,8 @@
-/* global foundry, Dialog, game */
+/* global foundry, game */
 
 import { Skills } from '../../../api/def/skills.js'
+
+const bonusTemplate = 'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs'
 
 export const _onAddModifier = async function (event) {
   event.preventDefault()
@@ -23,95 +25,69 @@ export const _onAddModifier = async function (event) {
       value: 1,
       paths: [`skills.${skill}`]
     },
-    skillOptions
+    skillOptions: {
+      skills: { displayName: 'All Skills' },
+      ...skillOptions
+    }
   }
 
   // Render the template
-  const bonusTemplate = 'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs'
   const bonusContent = await foundry.applications.handlebars.renderTemplate(bonusTemplate, bonusData)
 
-  new Dialog(
-    {
-      title: bonusData.bonus.source,
-      content: bonusContent,
-      buttons: {
-        add: {
-          icon: '<i class="fas fa-check"></i>',
-          label: game.i18n.localize('WOD5E.Add'),
-          callback: async html => {
-            const dialogHTML = html[0]
-
-            // Get the source (name) and the value (modifier) from the dialogue
-            const source = dialogHTML.querySelector('[id=modifierSource]').value
-            const value = dialogHTML.querySelector('[id=modifierValue]').value
-
-            // Handle the bonus pathing and making it into an array
-            const paths = $(dialogHTML.querySelector('[id=modifier]')).flexdatalist('value')
-
-            // displayWhenInactive is ALWAYS true for specialties
-            const displayWhenInactive = true
-
-            // Put the new bonus into an object
-            let newModifier = {}
-            newModifier = {
-              source,
-              value,
-              paths,
-              displayWhenInactive
-            }
-
-            // Define the existing list of bonuses
-            const skillModifiers = actor.system.skills[skill].bonuses || []
-
-            // Add the new bonus to the list
-            skillModifiers.push(newModifier)
-
-            // Update the actor and re-render the editor window
-            await actor.update({ [`system.skills.${skill}.bonuses`]: skillModifiers })
-            this.render(true)
-          }
-        },
-        cancel: {
-          icon: '<i class="fas fa-times"></i>',
-          label: game.i18n.localize('WOD5E.Cancel')
-        }
-      },
-      default: 'add',
-      render: (html) => {
-        const dialogHTML = html[0]
-
-        // Input for the list of selectors
-        const input = dialogHTML.querySelector('#modifier')
-        // List of selectors to choose from
-        const skillOptions = Skills.getList({
-          prependType: true
-        })
-
-        const data = Object.entries(skillOptions).map(([id, obj]) => ({
-          id,
-          ...obj
-        }))
-
-        data.unshift({
-          id: 'skills',
-          displayName: 'All Skills'
-        })
-
-        $(input).flexdatalist({
-          selectionRequired: 1,
-          minLength: 1,
-          searchIn: ['displayName'],
-          multiple: true,
-          valueProperty: 'id',
-          searchContain: true,
-          data
-        })
-      }
+  const result = await foundry.applications.api.DialogV2.input({
+    window: {
+      title: bonusData.bonus.source
     },
-    {
-      classes: ['wod5e', system, 'dialog']
+    content: bonusContent,
+    ok: {
+      icon: 'fas fa-check',
+      label: game.i18n.localize('WOD5E.Add')
+    },
+    buttons: [
+      {
+        action: 'cancel',
+        icon: 'fas fa-times',
+        label: game.i18n.localize('WOD5E.Cancel')
+      }
+    ],
+    render: (_event, dialog) => {
+      $(dialog.element.querySelector('#modifier')).flexdatalist({
+        selectionRequired: true,
+        minLength: 1,
+        multiple: true,
+        searchContain: true,
+        valueProperty: 'value'
+      })
+    },
+    classes: ['wod5e', system]
+  })
+
+  if (result !== 'cancel') {
+    const source = result.modifierSource
+    const value = result.modifierValue
+    const paths = result.modifier.split(',')
+
+    // displayWhenInactive is ALWAYS true for specialties
+    const displayWhenInactive = true
+
+    // Put the new bonus into an object
+    const newModifier = {
+      source,
+      value,
+      paths,
+      displayWhenInactive
     }
-  ).render(true)
+
+    // Define the existing list of bonuses
+    const skillModifiers = actor.system.skills[skill].bonuses || []
+
+    // Add the new bonus to the list
+    skillModifiers.push(newModifier)
+
+    // Update the actor and re-render the editor window
+    await actor.update({ [`system.skills.${skill}.bonuses`]: skillModifiers })
+    this.render(true)
+  }
 }
 
 export const _onDeleteModifier = async function (event, target) {
@@ -140,95 +116,75 @@ export const _onEditModifier = async function (event, target) {
   const actor = this.data.actor
   const skill = this.data.skill
   const key = target.getAttribute('data-bonus')
+  const skillOptions = Skills.getList({
+    prependType: true
+  })
 
   // Secondary variables
   const bonusData = {
     actor,
-    bonus: actor.system.skills[skill].bonuses[key]
+    bonus: actor.system.skills[skill].bonuses[key],
+    skillOptions: {
+      skills: { displayName: 'All Skills' },
+      ...skillOptions
+    }
   }
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
   const system = actor.system.gamesystem
 
   // Render the template
-  const bonusTemplate = 'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs'
   const bonusContent = await foundry.applications.handlebars.renderTemplate(bonusTemplate, bonusData)
 
-  new Dialog(
-    {
-      title: bonusData.bonus.source,
-      content: bonusContent,
-      buttons: {
-        save: {
-          icon: '<i class="fas fa-check"></i>',
-          label: game.i18n.localize('WOD5E.Save'),
-          callback: async html => {
-            const dialogHTML = html[0]
-
-            // Get the source (name) and the value (modifier) from the dialogue
-            const source = dialogHTML.querySelector('[id=modifierSource]').value
-            const value = dialogHTML.querySelector('[id=modifierValue]').value
-
-            // Handle the bonus pathing and making it into an array
-            const paths = $(dialogHTML.querySelector('[id=modifier]')).flexdatalist('value')
-
-            // displayWhenInactive is ALWAYS true for specialties
-            const displayWhenInactive = true
-
-            // Define the existing list of bonuses
-            const skillModifiers = actor.system.skills[skill].bonuses || []
-
-            // Update the existing bonus with the new data
-            skillModifiers[key] = {
-              source,
-              value,
-              paths,
-              displayWhenInactive
-            }
-
-            // Update the actor and re-render the editor window
-            await actor.update({ [`system.skills.${skill}.bonuses`]: skillModifiers })
-            await this.render(true)
-          }
-        },
-        cancel: {
-          icon: '<i class="fas fa-times"></i>',
-          label: game.i18n.localize('WOD5E.Cancel')
-        }
-      },
-      render: (html) => {
-        const dialogHTML = html[0]
-
-        // Input for the list of selectors
-        const input = dialogHTML.querySelector('#modifier')
-        // List of selectors to choose from
-        const skillOptions = Skills.getList({
-          prependType: true
-        })
-
-        const data = Object.entries(skillOptions).map(([id, obj]) => ({
-          id,
-          ...obj
-        }))
-
-        data.unshift({
-          id: 'skills',
-          displayName: 'All Skills'
-        })
-
-        $(input).flexdatalist({
-          selectionRequired: 1,
-          minLength: 1,
-          searchIn: ['displayName'],
-          multiple: true,
-          valueProperty: 'id',
-          searchContain: true,
-          data
-        })
-      }
+  const result = await foundry.applications.api.DialogV2.input({
+    window: {
+      title: bonusData.bonus.source
     },
-    {
-      classes: ['wod5e', system, 'dialog']
+    content: bonusContent,
+    ok: {
+      icon: 'fas fa-check',
+      label: game.i18n.localize('WOD5E.Save')
+    },
+    buttons: [
+      {
+        action: 'cancel',
+        icon: 'fas fa-times',
+        label: game.i18n.localize('WOD5E.Cancel')
+      }
+    ],
+    render: (_event, dialog) => {
+      $(dialog.element.querySelector('#modifier')).flexdatalist({
+        selectionRequired: true,
+        minLength: 1,
+        multiple: true,
+        searchContain: true,
+        valueProperty: 'value'
+      })
+    },
+    classes: ['wod5e', system]
+  })
+
+  if (result !== 'cancel') {
+    const source = result.modifierSource
+    const value = result.modifierValue
+    const paths = result.modifier.split(',')
+
+    // displayWhenInactive is ALWAYS true for specialties
+    const displayWhenInactive = true
+
+    // Define the existing list of bonuses
+    const skillModifiers = actor.system.skills[skill].bonuses || []
+
+    // Update the existing bonus with the new data
+    skillModifiers[key] = {
+      source,
+      value,
+      paths,
+      displayWhenInactive
     }
-  ).render(true)
+
+    // Update the actor and re-render the editor window
+    await actor.update({ [`system.skills.${skill}.bonuses`]: skillModifiers })
+    await this.render(true)
+  }
 }

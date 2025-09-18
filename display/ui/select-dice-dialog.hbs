@@ -6,7 +6,7 @@
           {{localize "WOD5E.SkillsList.Label"}}
         </div>
         <div class="selector-content">
-          <select id="skillSelect">
+          <select id="skillSelect" name="skillSelect">
             <option value="">{{localize "WOD5E.None"}}</option>
             {{selectOptions skillOptions selected=skill}}
           </select>
@@ -19,7 +19,7 @@
             {{localize "WOD5E.SkillsList.Label"}}
           </div>
           <div class="selector-content">
-            <select id="skillSelect">
+            <select id="skillSelect" name="skillSelect">
                 <option value="">{{localize "WOD5E.None"}}</option>
                 {{selectOptions skillOptions selected=skill}}
             </select>
@@ -29,7 +29,7 @@
             {{localize "WOD5E.AttributesList.Label"}}
           </div>
           <div class="selector-content">
-            <select id="attributeSelect2">
+            <select id="attributeSelect2" name="attributeSelect2">
                 <option value="">{{localize "WOD5E.None"}}</option>
                 {{selectOptions attributeOptions selected=attribute2}}
             </select>
@@ -46,7 +46,7 @@
           {{localize "WOD5E.AttributesList.Label"}}
         </div>
         <div class="selector-content">
-          <select id="attributeSelect">
+          <select id="attributeSelect" name="attributeSelect">
             <option value="">{{localize "WOD5E.None"}}</option>
             {{selectOptions attributeOptions selected=attribute}}
           </select>
@@ -60,7 +60,7 @@
     <div class="flexrow">
         <div class="secondary-selector">
             <div class="selector-title">{{localize "WOD5E.VTM.AddDiscipline"}}</div>
-            <select id="disciplineSelect">
+            <select id="disciplineSelect" name="disciplineSelect">
             <option value="">{{localize "WOD5E.None"}}</option>
             {{selectOptions disciplineOptions selected=discipline}}
             </select>
@@ -71,9 +71,7 @@
         {{#ifnoteq hungerValue actor.system.hunger.max}}
           <div class="secondary-selector">
             <div class="selector-title">{{localize "WOD5E.VTM.BloodSurge"}}</div>
-              <div class="flexrow flex-center">
-                  <input id="bloodSurge" type="checkbox"/>
-              </div>
+            <input id="bloodSurge" class="blood-surge" name="bloodSurge" type="checkbox"/>
           </div>
         {{/ifnoteq}}
       {{/ifnoteq}}
@@ -85,7 +83,7 @@
     <hr>
     <div class="secondary-selector">
         <div>{{localize "WOD5E.WTA.AddRenown"}}</div>
-        <select id="renownSelect">
+        <select id="renownSelect" name="renownSelect">
             <option value="">{{localize "WOD5E.None"}}</option>
             {{selectOptions renownOptions selected=renown}}
         </select>
