@@ -1,4 +1,4 @@
-/* global game, WOD5E, FormApplication, foundry, renderTemplate, Dialog */
+/* global game, WOD5E, FormApplication, foundry, Dialog */
 
 /* Definitions */
 import { Attributes } from '../../api/def/attributes.js'
@@ -92,10 +92,12 @@ export class StorytellerMenu extends FormApplication {
   /** @override */
   activateListeners (html) {
     const handleClick = (selector, handler) => {
-      html.find(selector).click(function (event) {
-        event.preventDefault()
-        const data = event.target.dataset
-        handler(data)
+      html[0].querySelectorAll(selector).forEach(element => {
+        element.addEventListener('click', function (event) {
+          event.preventDefault()
+          const data = event.target.dataset
+          handler(data)
+        })
       })
     }
 
@@ -167,12 +169,12 @@ export class StorytellerMenu extends FormApplication {
         customList[type].push(newItem)
       }
 
-      html.find('.modification-row').each(function () {
-        handleFeature(this, modifications)
+      html[0].querySelectorAll('.modification-row').forEach(function (row) {
+        handleFeature(row, modifications)
       })
 
-      html.find('.customization-row').each(function () {
-        handleCustomFeature(this, custom)
+      html[0].querySelectorAll('.customization-row').forEach(function (row) {
+        handleCustomFeature(row, custom)
       })
 
       // Attributes
@@ -202,7 +204,7 @@ export class StorytellerMenu extends FormApplication {
   // Function for rendering the dialog for adding a new modification
   async _onRenderPromptDialog (type, list, title) {
     const template = 'systems/vtm5e/display/ui/select-dialog.hbs'
-    const content = await renderTemplate(template, { list })
+    const content = await foundry.applications.handlebars.renderTemplate(template, { list })
 
     new Dialog({
       title,
@@ -212,7 +214,9 @@ export class StorytellerMenu extends FormApplication {
           icon: '<i class="fas fa-check"></i>',
           label: game.i18n.localize('WOD5E.Add'),
           callback: async html => {
-            const id = html.find('[id=optionSelect]').val()
+            const dialogHTML = html[0]
+
+            const id = dialogHTML.querySelector('[id=optionSelect]').value
             const label = list[id]?.label || id
             const modifiedKey = `modified${this.listKeys[type].defCategory}`
             const modifiedList = await game.settings.get('vtm5e', modifiedKey)

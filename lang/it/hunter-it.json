@@ -8,6 +8,7 @@
       "Artifact": "Artefatto",
       "BeastWhisperer": "Compagno animale",
       "Cell": "Cellula",
+      "_CleanseTheUnnatural": "",
       "Creed": "Credo",
       "CreedDetails": "Dettagli del credo",
       "CreedFields": "Ambito dei dadi disperazione",
@@ -26,8 +27,10 @@
       "EdgePool": "Riserva del privilegio",
       "Edges": "Privilegi",
       "EdgeType": "Tipo di privilegio",
+      "_ExperimentalMedicine": "",
       "Fleet": "Flotta",
       "GlobalAccess": "Chiave di rete",
+      "_GreatDestiny": "",
       "HunterDice": "Dadi Cacciatore",
       "ImprovisedGear": "Equipaggiamento improvvisato",
       "Label": "Cacciatore",
@@ -47,7 +50,8 @@
       "StringPerks": "{string} Benefici",
       "SuggestedDrives": "Impulsi suggeriti",
       "SuggestedEdges": "Privilegi suggeriti",
-      "ThwartTheUnnatural": "Resistere al sovrannaturale"
+      "ThwartTheUnnatural": "Resistere al sovrannaturale",
+      "_Turncoat": ""
     }
   }
 }

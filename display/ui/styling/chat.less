@@ -28,6 +28,11 @@
 
   .dice-result {
     cursor: pointer;
+
+    .dice-icons {
+      display: flex;
+      flex-flow: wrap;
+    }
   }
 
   .modifiers {
@@ -112,8 +117,9 @@ p.roll-label.uppercase {
   line-height: 1.4rem;
 }
 
+.reroll,
 .willpower-reroll {
-  .die {
+  .die-select {
     flex: 0;
   }
 

@@ -1,4 +1,4 @@
-/* global game, renderTemplate, TextEditor */
+/* global game, foundry */
 
 // Import dice face-related variables for icon paths
 import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces } from '../../dice/icons.js'
@@ -44,16 +44,16 @@ export async function generateRollMessage ({
     advancedDice,
     system,
     title,
-    enrichedFlavor: await TextEditor.enrichHTML(flavor),
+    enrichedFlavor: await foundry.applications.ux.TextEditor.implementation.enrichHTML(flavor),
     difficulty,
     totalResult,
     margin: totalResult > difficulty ? totalResult - difficulty : 0,
-    enrichedResultLabel: await TextEditor.enrichHTML(resultLabel),
+    enrichedResultLabel: await foundry.applications.ux.TextEditor.implementation.enrichHTML(resultLabel),
     activeModifiers,
     isContentVisible
   }
 
-  const chatMessage = await renderTemplate(chatTemplate, chatData)
+  const chatMessage = await foundry.applications.handlebars.renderTemplate(chatTemplate, chatData)
 
   return chatMessage
 
@@ -64,11 +64,14 @@ export async function generateRollMessage ({
 
     basicDice.forEach((die, index) => {
       // Variables
-      let dieResult, dieImg, dieAltText
-      const dieClasses = ['roll-img', 'rerollable']
+      let dieResult, dieImg, dieAltText, dieTitle
+      const dieClasses = ['die', 'roll-img', 'rerollable']
 
       // Mark any die that were rerolled / not used
-      if (die.discarded) dieClasses.push(['rerolled'])
+      if (die.discarded) {
+        dieClasses.push(['rerolled'])
+        dieTitle = game.i18n.localize('WOD5E.Chat.Rerolled')
+      }
 
       // Basic die results
       if (die.result === 10) dieResult = 'critical' // Critical successes
@@ -106,6 +109,7 @@ export async function generateRollMessage ({
       rollData.results[index].img = dieImg
       rollData.results[index].classes = dieClasses.join(' ')
       rollData.results[index].altText = dieAltText
+      rollData.results[index].title = dieTitle
 
       // Increase the number of criticals collected across the dice
       if (dieResult === 'critical' && !die.discarded) criticals++
@@ -127,8 +131,8 @@ export async function generateRollMessage ({
 
     advancedDice.forEach((die, index) => {
       // Variables
-      let dieResult, dieImg, dieAltText, dieFace
-      const dieClasses = ['roll-img']
+      let dieResult, dieImg, dieAltText, dieFace, dieTitle
+      const dieClasses = ['die', 'roll-img']
 
       // Mark any die that were rerolled / not used
       if (die.discarded) dieClasses.push(['rerolled'])
@@ -183,6 +187,7 @@ export async function generateRollMessage ({
       rollData.results[index].img = dieImg
       rollData.results[index].classes = dieClasses.join(' ')
       rollData.results[index].altText = dieAltText
+      rollData.results[index].title = dieTitle
 
       // Increase the number of criticals collected across the dice
       if (dieResult === 'critical' && !die.discarded) criticals++

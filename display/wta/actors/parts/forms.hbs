@@ -10,7 +10,7 @@
                 {{#ifeq ../activeForm id}}
                     <button type="button" class="werewolf-button active">{{localize "WOD5E.WTA.Active"}}</button>
                 {{else}}
-                    <button type="button" class="werewolf-button change-form{{#if form.disabled}} disabled-form{{/if}}" 
+                    <button type="button" class="werewolf-button change-form{{#if form.disabled}} disabled-form{{/if}}"
                     title="{{#if form.disabled}}{{localize 'WOD5E.WTA.LostWolfFormChange'}}{{/if}}"
                     data-form="{{id}}" data-action="shiftForm" data-rage-cost="{{form.cost}}" type="button" name="{{id}}">
                         {{form.cost}} {{localize "WOD5E.WTA.RageDice"}}
@@ -25,7 +25,7 @@
                     {{/if}}
                     <ul class="form-attributes">
                         {{#each form.attributes as |ability|}}
-                            <li>{{ability}}</li>
+                            <li>{{ability.label}}{{#if ability.hintIcon}} <span class="ability-hint" title="{{ability.hintDescription}}">{{ability.hintIcon}}</span>{{/if}}</li>
                         {{/each}}
                     </ul>
                 </div>

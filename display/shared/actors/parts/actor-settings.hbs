@@ -2,13 +2,13 @@
     <div class="form-group">
         <label>{{localize "WOD5E.ActorSettings.ActorHeaderBackground" }}</label>
         <div class="form-fields">
-            <file-picker class="actor-header-bg-filepicker" name="system.settings.headerbg" type="imagevideo" value="{{headerbg}}" noupload></file-picker>
+            <file-picker class="actor-header-bg-filepicker" name="system.settings.headerbg" type="imagevideo" value="{{headerbg}}"></file-picker>
         </div>
     </div>
     <div class="form-group">
         <label>{{localize "WOD5E.ActorSettings.ActorBackground" }}</label>
         <div class="form-fields">
-            <file-picker class="actor-background-filepicker" name="system.settings.background" type="imagevideo" value="{{actorbg}}" noupload></file-picker>
+            <file-picker class="actor-background-filepicker" name="system.settings.background" type="imagevideo" value="{{actorbg}}"></file-picker>
         </div>
     </div>
     <div class="form-group">
@@ -59,7 +59,7 @@
             <div class="form-group">
                 <label>{{localize "WOD5E.ActorSettings.ShowGifts" }}</label>
                 <div class="form-fields">
-                    <input type="checkbox" name="system.settings.enableGifts" {{#if enableEdges}}checked{{/if}}>
+                    <input type="checkbox" name="system.settings.enableGifts" {{#if enableGifts}}checked{{/if}}>
                 </div>
             </div>
         {{/ifeq}}

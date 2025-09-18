@@ -8,6 +8,7 @@
       "Artifact": "Artefakt",
       "BeastWhisperer": "Tierflüsterer",
       "Cell": "Zelle",
+      "_CleanseTheUnnatural": "",
       "Creed": "Überzeugung",
       "_CreedDetails": "",
       "CreedFields": "Einsatzgebiete der Überzeugungen",
@@ -26,8 +27,10 @@
       "_EdgePool": "",
       "Edges": "Trümpfe",
       "EdgeType": "Typ von Trumpf",
+      "_ExperimentalMedicine": "",
       "Fleet": "Flotte",
       "GlobalAccess": "Globaler Zugriff",
+      "_GreatDestiny": "",
       "HunterDice": "Jäger-Würfel",
       "ImprovisedGear": "Improvisierte Ausrüstung",
       "Label": "Jäger",
@@ -47,7 +50,8 @@
       "_StringPerks": "",
       "_SuggestedDrives": "",
       "_SuggestedEdges": "",
-      "ThwartTheUnnatural": "Übernatürliches vereiteln"
+      "ThwartTheUnnatural": "Übernatürliches vereiteln",
+      "_Turncoat": ""
     }
   }
 }

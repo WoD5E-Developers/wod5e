@@ -59,8 +59,10 @@ export const _onCreatePower = async function (event, target) {
       icon: '<i class="fas fa-check"></i>',
       label: game.i18n.localize('WOD5E.Add'),
       callback: async (html) => {
+        const dialogHTML = html[0]
+
         // Define the selected discipline
-        const power = html.find('#powerSelect')[0].value
+        const power = dialogHTML.querySelector('#powerSelect').value
 
         // If the discipline wasn't already visible, make it visible
         actor.update({ [`system.${powerType}s.${power}.visible`]: true })

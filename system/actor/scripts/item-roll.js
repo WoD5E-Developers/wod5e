@@ -138,7 +138,7 @@ export const _rollItem = async function (actor, item) {
     macro,
     advancedCheckDice,
     callback: async (err, roll) => {
-      if (err) console.log(err)
+      if (err) console.log('World of Darkness 5e | ' + err)
 
       if (system === 'vampire' && itemData.cost > 0) {
         _onRouseCheck(actor, item, roll.rollMode)

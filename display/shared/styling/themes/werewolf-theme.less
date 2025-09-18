@@ -1,6 +1,5 @@
 /* Variables */
 :root {
-  --logo-werewolf: url("../assets/ui/WtA_Logo.webp");
   --werewolf-theme-filter: #BE660080;
 }
 
@@ -39,12 +38,6 @@
     .macro {
       background: var(--werewolf-theme-filter);
     }
-  }
-
-  /* Logo */
-  #logo {
-    content: var(--logo-werewolf);
-    filter: drop-shadow(0 -5px 10px #cacacad3) drop-shadow(0 -10px 10px var(--ui-background-werewolf-color)) drop-shadow(0 0 10px #ffffffe3);
   }
 
   .standard-form {
@@ -115,6 +108,11 @@
 
     ::placeholder {
       color: var(--system-dark-color-5);
+    }
+
+    form .notes,
+    form .hint {
+      color: var(--system-dark-color-4);
     }
   }
 

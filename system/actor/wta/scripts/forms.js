@@ -63,13 +63,13 @@ export const _onShiftForm = async function (event, target) {
 
   switch (form) {
     case 'glabro':
-      handleFormChange(actor, 'glabro', 1)
+      handleFormChange(event, target, actor, 'glabro', 1)
       break
     case 'crinos':
-      handleFormChange(actor, 'crinos', 2)
+      handleFormChange(event, target, actor, 'crinos', 2)
       break
     case 'hispo':
-      handleFormChange(actor, 'hispo', 1)
+      handleFormChange(event, target, actor, 'hispo', 1)
       break
     case 'lupus':
       actor.update({ 'system.activeForm': 'lupus' })
@@ -83,7 +83,7 @@ export const _onShiftForm = async function (event, target) {
   }
 }
 
-export const handleFormChange = async function (actor, form, diceCount) {
+export const handleFormChange = async function (event, target, actor, form, diceCount) {
   // Variables yet to be defined
   const selectors = []
 
@@ -112,15 +112,17 @@ export const handleFormChange = async function (actor, form, diceCount) {
       decreaseRage: true,
       selectors,
       callback: async (err, rollData) => {
-        if (err) console.log(err)
+        if (err) console.log('World of Darkness 5e | ' + err)
 
         // Calculate the number of rage dice the actor has left
         const failures = rollData.terms[2].results.filter(result => !result.success).length
         const newRageAmount = Math.max(actor.system.rage.value - failures, 0)
 
         // If rolling rage dice didn't reduce the actor to 0 rage, then update the current form
+        // and post the description to chat as well
         if (newRageAmount > 0) {
           actor.update({ 'system.activeForm': form })
+          _onFormToChat(event, target, actor)
           _updateToken(actor, form)
         }
       }
@@ -146,7 +148,14 @@ export const _onFormToChat = async function (event, target, originActor) {
   if (formAbilities && formAbilities.length > 0) {
     chatMessage = chatMessage + '<ul>'
     formAbilities.forEach((ability) => {
-      chatMessage = chatMessage + `<li>${ability}</li>`
+      let abilityLabel = ability.label
+
+      // If there's a hint icon, emulate what we show on the forms page of the Werewolf sheet
+      if (ability?.hintIcon) {
+        abilityLabel = `${ability.label} <span class="ability-hint" title="${ability.hintDescription}">${ability.hintIcon}</span>`
+      }
+
+      chatMessage = chatMessage + `<li>${abilityLabel}</li>`
     })
     chatMessage = chatMessage + '</ul>'
   }
@@ -184,7 +193,7 @@ export const _onInsufficientRage = async function (actor, form) {
   buttons = {
     submit: {
       icon: '<i class="fas fa-check"></i>',
-      label: 'Shift Anyway',
+      label: game.i18n.localize('WOD5E.WTA.Shift'),
       callback: async () => {
         actor.update({
           'system.activeForm': form,
@@ -200,7 +209,7 @@ export const _onInsufficientRage = async function (actor, form) {
   }
 
   new Dialog({
-    title: 'Can\'t Transform: Lost the Wolf',
+    title: game.i18n.localize('WOD5E.WTA.LostTheWolf'),
     content: template,
     buttons,
     default: 'submit'
@@ -213,25 +222,33 @@ export const _onInsufficientRage = async function (actor, form) {
 export const _updateToken = async function (actor, form) {
   // Original image
   let originalImage = ''
-  if (actor.system.activeForm === 'homid') {
-    originalImage = actor.prototypeToken.texture.src
-    // Make sure that the homid image is the original token image
-    actor.update({
-      'system.forms.homid.token.img': originalImage
-    })
-  } else {
-    originalImage = actor.system.forms.homid.token.img
+
+  // When the user is shifting out of homid, make sure that the homid image is the original token image,
+  // unless the original token image is a wildcard, then skip this
+  if (actor.prototypeToken.texture.src.indexOf('*') === -1) {
+    if (actor.system.activeForm === 'homid') {
+      originalImage = actor.prototypeToken.texture.src
+
+      actor.update({
+        'system.forms.homid.token.img': originalImage
+      })
+    } else {
+      originalImage = actor.system.forms.homid.token.img
+    }
   }
+
   // New image
   const tokenImg = actor.system.forms[form].token.img
 
+  // Get a list of the active tokens in a given scene
+  const activeTokens = actor.getActiveTokens()
+
+  // Depending on if we have a token image set, update all instances of the token image
   if (tokenImg) {
     // Update the actor itself
     actor.update({
       'prototypeToken.texture.src': tokenImg
     })
-
-    const activeTokens = actor.getActiveTokens()
 
     // Update tokens
     activeTokens.forEach((token) => {
@@ -240,6 +257,13 @@ export const _updateToken = async function (actor, form) {
       })
     })
   } else {
-    // Default to the actor's original image
+    // Default to the actor's original image if the original image is not a wildcard
+    if (actor.prototypeToken.texture.src.indexOf('*') === -1) {
+      activeTokens.forEach((token) => {
+        token.document.update({
+          'texture.src': originalImage
+        })
+      })
+    }
   }
 }

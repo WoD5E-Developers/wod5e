@@ -1,4 +1,4 @@
-/* global TextEditor */
+/* global foundry */
 
 export const preparePatronSpiritContext = async function (context, item) {
   const itemData = item.system
@@ -9,9 +9,9 @@ export const preparePatronSpiritContext = async function (context, item) {
 
   // Part-specific data
   context.patronSpirit = patronSpirit
-  context.enrichedPatronSpiritDescription = await TextEditor.enrichHTML(patronSpirit?.description || '')
-  context.enrichedFavor = await TextEditor.enrichHTML(patronSpirit?.favor || '')
-  context.enrichedBan = await TextEditor.enrichHTML(patronSpirit?.ban || '')
+  context.enrichedPatronSpiritDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(patronSpirit?.description || '')
+  context.enrichedFavor = await foundry.applications.ux.TextEditor.implementation.enrichHTML(patronSpirit?.favor || '')
+  context.enrichedBan = await foundry.applications.ux.TextEditor.implementation.enrichHTML(patronSpirit?.ban || '')
 
   return context
 }

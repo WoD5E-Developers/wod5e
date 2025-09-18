@@ -4,7 +4,7 @@
  * @return {Promise}
  */
 export const preloadHandlebarsTemplates = async function () {
-  console.log('Schrecknet : loading subroutines')
+  console.log('World of Darkness 5e | SchreckNet: loading subroutines')
 
   // Define template paths to load
   const templatePaths = [
@@ -130,5 +130,5 @@ export const preloadHandlebarsTemplates = async function () {
 
   /* Load the template parts
   */
-  return loadTemplates(templatePaths) // eslint-disable-line no-undef
+  return foundry.applications.handlebars.loadTemplates(templatePaths) // eslint-disable-line no-undef
 }

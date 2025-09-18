@@ -13,8 +13,18 @@ export class WereForms extends BaseDefinitionClass {
         value.nickname = game.i18n.localize(value.nickname)
 
         // Localize the Werewolf attributes
+        // This function always localizes the label, and then localizes the
+        // hintDescription if one exists
         value.attributes = value.attributes.map(attribute => {
-          return game.i18n.localize(attribute)
+          return {
+            label: game.i18n.localize(attribute.label),
+            ...(attribute.hintDescription && {
+              hintDescription: game.i18n.localize(attribute.hintDescription)
+            }),
+            ...(attribute.hintIcon && {
+              hintIcon: attribute.hintIcon
+            })
+          }
         })
       }
     }
@@ -30,7 +40,7 @@ export class WereForms extends BaseDefinitionClass {
     nickname: 'WOD5E.WTA.HomidTitle',
     cost: 0,
     attributes: [
-      'WOD5E.WTA.SilverImmunity'
+      { label: 'WOD5E.WTA.SilverImmunity' }
     ]
   }
 
@@ -39,9 +49,13 @@ export class WereForms extends BaseDefinitionClass {
     nickname: 'WOD5E.WTA.GlabroTitle',
     cost: 1,
     attributes: [
-      'WOD5E.WTA.GlabroPhysicalTests',
-      'WOD5E.WTA.GlabroSocialTests',
-      'WOD5E.WTA.GlabroRegenerate'
+      { label: 'WOD5E.WTA.GlabroPhysicalTests' },
+      {
+        label: 'WOD5E.WTA.GlabroSocialTests',
+        hintIcon: '*',
+        hintDescription: 'WOD5E.WTA.GlabroSocialTestExclusion'
+      },
+      { label: 'WOD5E.WTA.GlabroRegenerate' }
     ],
     bonuses: [
       {
@@ -58,6 +72,7 @@ export class WereForms extends BaseDefinitionClass {
         source: 'WOD5E.WTA.GlabroName',
         value: -2,
         paths: ['attributes.charisma', 'attributes.manipulation', 'attributes.composure'],
+        unless: ['skills.intimidation'],
         activeWhen: {
           check: 'isEqual',
           path: 'activeForm',
@@ -72,15 +87,18 @@ export class WereForms extends BaseDefinitionClass {
     nickname: 'WOD5E.WTA.CrinosTitle',
     cost: 2,
     attributes: [
-      'WOD5E.WTA.CrinosFrenzy',
-      'WOD5E.WTA.CrinosPhysicalTests',
-      'WOD5E.WTA.CrinosHealth',
-      'WOD5E.WTA.CrinosSocialTests',
-      'WOD5E.WTA.CrinosMentalTests',
-      'WOD5E.WTA.CrinosRegenerate',
-      'WOD5E.WTA.CrinosClaws',
-      'WOD5E.WTA.CrinosBite',
-      'WOD5E.WTA.CausesDelirium'
+      { label: 'WOD5E.WTA.CrinosFrenzy' },
+      { label: 'WOD5E.WTA.CrinosPhysicalTests' },
+      { label: 'WOD5E.WTA.CrinosHealth' },
+      {
+        label: 'WOD5E.WTA.CrinosSocialTests',
+        hintIcon: '*',
+        hintDescription: 'WOD5E.WTA.CrinosSocialTestExclusion'
+      },
+      { label: 'WOD5E.WTA.CrinosRegenerate' },
+      { label: 'WOD5E.WTA.CrinosClaws' },
+      { label: 'WOD5E.WTA.CrinosBite' },
+      { label: 'WOD5E.WTA.CausesDelirium' }
     ],
     bonuses: [
       {
@@ -101,11 +119,15 @@ export class WereForms extends BaseDefinitionClass {
     nickname: 'WOD5E.WTA.HispoTitle',
     cost: 1,
     attributes: [
-      'WOD5E.WTA.HispoPhysicalTests',
-      'WOD5E.WTA.HispoStealthTests',
-      'WOD5E.WTA.HispoSocialTests',
-      'WOD5E.WTA.HispoRegenerate',
-      'WOD5E.WTA.HispoBite'
+      {
+        label: 'WOD5E.WTA.HispoPhysicalTests',
+        hintIcon: '*',
+        hintDescription: 'WOD5E.WTA.HispoBonusExclusion'
+      },
+      { label: 'WOD5E.WTA.HispoStealthTests' },
+      { label: 'WOD5E.WTA.HispoSocialTests' },
+      { label: 'WOD5E.WTA.HispoRegenerate' },
+      { label: 'WOD5E.WTA.HispoBite' }
     ],
     bonuses: [
       {
@@ -137,8 +159,8 @@ export class WereForms extends BaseDefinitionClass {
     nickname: 'WOD5E.WTA.LupusTitle',
     cost: 0,
     attributes: [
-      'WOD5E.WTA.SilverImmunity',
-      'WOD5E.WTA.LupusSocialTests'
+      { label: 'WOD5E.WTA.SilverImmunity' },
+      { label: 'WOD5E.WTA.LupusSocialTests' }
     ]
   }
 }

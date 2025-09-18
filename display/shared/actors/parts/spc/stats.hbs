@@ -46,7 +46,7 @@
                         {{#each traits as |trait id|}}
                             <div class="collapsible-container">
                                 <div class="item flexrow" data-drag="true" data-item-id="{{trait.id}}" data-document-uuid="{{trait.uuid}}" data-type="Item">
-                                    <div class="item-image" data-action="itemChat" data-item-id="{{trait._id}}">
+                                    <div class="item-image clickable" data-action="itemChat" data-item-id="{{trait._id}}">
                                         <img src="{{trait.img}}" title="{{trait.name}}" width="24" height="24" alt="{{trait.name}}" />
                                     </div>
                                     <div class="item-name{{#if trait.system.enrichedDescription}} collapsible{{/if}}" {{#if trait.system.enrichedDescription}}data-action="toggleCollapse"{{/if}}>
@@ -90,7 +90,7 @@
                         {{#each conditions as |condition id|}}
                             <div class="collapsible-container">
                                 <div class="item flexrow" data-drag="true" data-item-id="{{condition.id}}" data-document-uuid="{{condition.uuid}}" data-type="Item">
-                                    <div class="item-image" data-action="itemChat" data-item-id="{{condition._id}}">
+                                    <div class="item-image clickable" data-action="itemChat" data-item-id="{{condition._id}}">
                                         <img src="{{condition.img}}" title="{{condition.name}}" width="24" height="24" alt="{{condition.name}}" />
                                     </div>
                                     <div class="item-name{{#if condition.system.enrichedDescription}} collapsible{{/if}}" {{#if condition.system.enrichedDescription}}data-action="toggleCollapse"{{/if}}>

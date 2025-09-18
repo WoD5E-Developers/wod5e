@@ -12,7 +12,8 @@
   }
 
   .standard-pools-list,
-  .exceptional-pools-list {
+  .exceptional-pools-list,
+  .description-field {
     margin-bottom: 10px;
   }
 
@@ -25,6 +26,7 @@
     flex-direction: row;
     text-align: center;
     text-align: -webkit-center;
+    flex-flow: wrap;
 
     .spc-item-header {
       font-weight: bold;
@@ -60,8 +62,9 @@
   .exceptional-pools-list {
     place-content: center;
 
-    a:not(:first-child)::before {
+    a:not(:last-child)::after {
       content: ", ";
+      white-space: pre;
     }
   }
 }
@@ -69,5 +72,10 @@
 .exceptional-edit.dialog {
   .exceptional-pool {
     justify-content: space-between;
+
+    input.exceptional-checkbox {
+      text-align: end;
+      border: 0;
+    }
   }
 }

@@ -17,6 +17,9 @@ export class Edges extends BaseDefinitionClass {
     activeModules.forEach((module) => {
       if (module.flags.wod5e.customEdges) {
         customEdges = customEdges.concat(module.flags.wod5e.customEdges)
+
+        // Log the custom data in the console
+        console.log(`World of Darkness 5e | Custom Edges added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customEdges)}`)
       }
     })
 
@@ -74,6 +77,22 @@ export class Edges extends BaseDefinitionClass {
 
   static artifact = {
     label: 'WOD5E.HTR.Artifact'
+  }
+
+  static turncoat = {
+    label: 'WOD5E.HTR.Turncoat'
+  }
+
+  static experimentalmedicine = {
+    label: 'WOD5E.HTR.ExperimentalMedicine'
+  }
+
+  static cleansetheunnatural = {
+    label: 'WOD5E.HTR.CleanseTheUnnatural'
+  }
+
+  static greatdestiny = {
+    label: 'WOD5E.HTR.GreatDestiny'
   }
 }
 

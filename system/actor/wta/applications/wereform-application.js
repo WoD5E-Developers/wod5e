@@ -1,4 +1,4 @@
-/* global foundry, game, TextEditor */
+/* global foundry, game */
 
 import { generateLocalizedLabel } from '../../../api/generate-localization.js'
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
@@ -110,7 +110,7 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
 
         // Part-specific data
         context.formDescription = context.formData?.description || ''
-        context.enrichedDescription = await TextEditor.enrichHTML(context.formData?.description || '')
+        context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.formData?.description || '')
 
         break
 

@@ -1,4 +1,4 @@
-/* global game, Dialog, renderTemplate, ChatMessage, Item, foundry */
+/* global game, foundry, ChatMessage, Item */
 
 // Definition classes
 import { ItemTypes } from '../../api/def/itemtypes.js'
@@ -26,14 +26,13 @@ export const _onCreateItem = async function (event, target) {
   const actor = this.actor
   const itemsList = ItemTypes.getList({})
   const type = target.getAttribute('data-type')
+  const subtype = target.getAttribute('data-subtype')
 
   // Variables to be defined later
-  let subtype = target.getAttribute('data-subtype')
   let itemName = ''
   let selectLabel = ''
   let itemOptions = {}
   let itemData = {}
-  let options = ''
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
   const system = actor.system.gamesystem
@@ -96,6 +95,7 @@ export const _onCreateItem = async function (event, target) {
         break
     }
 
+    // Append subtype data (if one is applicable)
     if (subtype) {
       itemData = await appendSubtypeData(type, subtype, itemData)
     }
@@ -104,79 +104,66 @@ export const _onCreateItem = async function (event, target) {
     createItem(actor, itemName, type, itemData)
   } else {
     // Build the options for the select dropdown
-    for (const [key, value] of Object.entries(itemOptions)) {
-      options += `<option value="${key}">${value.displayName}</option>`
-    }
+    const content = new foundry.data.fields.StringField({
+      choices: itemOptions,
+      label: selectLabel,
+      required: true
+    }).toFormGroup({},
+      {
+        name: 'subtypeSelection'
+      }).outerHTML
 
-    // Template for the dialog form
-    const template = `
-      <form>
-        <div class="form-group">
-          <label>${selectLabel}</label>
-          <select id="subtypeSelect">${options}</select>
-        </div>
-      </form>`
-
-    // Define dialog buttons
-    const buttons = {
-      submit: {
-        icon: '<i class="fas fa-check"></i>',
-        label: game.i18n.localize('WOD5E.Add'),
-        callback: async (html) => {
-          subtype = html.find('#subtypeSelect')[0].value
-          itemData = await appendSubtypeData(type, subtype, itemData)
-
-          // Generate the item name
-          itemName = subtype ? generateLocalizedLabel(subtype, type) : itemsList[type].label
-
-          // Generate item name based on type
-          switch (type) {
-            case 'power':
-              itemName = game.i18n.format('WOD5E.VTM.NewStringPower', { string: itemName })
-              break
-            case 'perk':
-              itemName = game.i18n.format('WOD5E.HTR.NewStringPerk', { string: itemName })
-              break
-            case 'gift':
-              if (subtype && subtype === 'rite') {
-                itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
-              } else {
-                itemName = game.i18n.format('WOD5E.WTA.NewStringGift', { string: itemName })
-              }
-              break
-            case 'edgepool':
-              itemName = game.i18n.format('WOD5E.HTR.NewStringEdgePool', { string: itemName })
-              break
-            case 'feature':
-              itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
-              break
-            case 'weapon':
-              itemName = game.i18n.format('WOD5E.EquipmentList.NewStringWeapon', { string: itemName })
-              break
-            default:
-              itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
-              break
-          }
-
-          // Create the item
-          createItem(actor, itemName, type, itemData)
-        }
+    // Prompt the dialog to determine which item subtype we're adding
+    const subtypeSelection = await foundry.applications.api.DialogV2.prompt({
+      window: {
+        title: game.i18n.localize('WOD5E.Add')
       },
-      cancel: {
-        icon: '<i class="fas fa-times"></i>',
-        label: game.i18n.localize('WOD5E.Cancel')
-      }
-    }
+      classes: ['wod5e', system, 'dialog'],
+      content,
+      ok: {
+        callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object.subtypeSelection
+      },
+      modal: true
+    })
 
-    // Display the dialog
-    new Dialog({
-      title: game.i18n.localize('WOD5E.Add'),
-      content: template,
-      buttons,
-      default: 'submit'
-    }, {
-      classes: ['wod5e', system, 'dialog']
-    }).render(true)
+    if (subtypeSelection) {
+      itemData = await appendSubtypeData(type, subtypeSelection, itemData)
+
+      // Generate the item name
+      itemName = subtypeSelection ? generateLocalizedLabel(subtypeSelection, type) : itemsList[type].label
+
+      // Generate item name based on type
+      switch (type) {
+        case 'power':
+          itemName = game.i18n.format('WOD5E.VTM.NewStringPower', { string: itemName })
+          break
+        case 'perk':
+          itemName = game.i18n.format('WOD5E.HTR.NewStringPerk', { string: itemName })
+          break
+        case 'gift':
+          if (subtypeSelection === 'rite') {
+            itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
+          } else {
+            itemName = game.i18n.format('WOD5E.WTA.NewStringGift', { string: itemName })
+          }
+          break
+        case 'edgepool':
+          itemName = game.i18n.format('WOD5E.HTR.NewStringEdgePool', { string: itemName })
+          break
+        case 'feature':
+          itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
+          break
+        case 'weapon':
+          itemName = game.i18n.format('WOD5E.EquipmentList.NewStringWeapon', { string: itemName })
+          break
+        default:
+          itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
+          break
+      }
+
+      // Create the item
+      createItem(actor, itemName, type, itemData)
+    }
   }
 }
 
@@ -188,7 +175,7 @@ export const _onItemChat = async function (event, target) {
 
   const itemId = target.getAttribute('data-item-id')
   const item = actor.getEmbeddedDocument('Item', itemId)
-  renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+  await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
     name: item.name,
     img: item.img,
     description: item.system?.description || ''
@@ -222,41 +209,36 @@ export const _onItemDelete = async function (event, target) {
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list
   const system = actor.system.gamesystem
 
-  // Variables yet to be defined
-  let buttons = {}
+  // Define the content of the Dialog
+  const content = `<p>
+    ${game.i18n.format('WOD5E.ConfirmDeleteDescription', {
+      string: item.name
+    })}
+  </p>`
 
-  // Define the template to be used
-  const template = `
-  <form>
-      <div class="form-group">
-          <label>${game.i18n.format('WOD5E.ConfirmDeleteDescription', {
-            string: item.name
-          })}</label>
-      </div>
-  </form>`
-
-  // Define the buttons and push them to the buttons variable
-  buttons = {
-    delete: {
-      label: game.i18n.localize('WOD5E.Delete'),
-      callback: async () => {
-        actor.deleteEmbeddedDocuments('Item', [itemId])
-      }
+  // Prompt a dialog for the user to confirm they want to delete the item
+  const confirmItemDelete = await foundry.applications.api.DialogV2.wait({
+    window: {
+      title: game.i18n.localize('WOD5E.ConfirmDelete')
     },
-    cancel: {
-      label: game.i18n.localize('WOD5E.Cancel')
-    }
-  }
+    classes: ['wod5e', system, 'dialog'],
+    content,
+    modal: true,
+    buttons: [
+      {
+        label: game.i18n.localize('WOD5E.Confirm'),
+        action: true
+      },
+      {
+        label: game.i18n.localize('WOD5E.Cancel'),
+        action: false
+      }
+    ]
+  })
 
-  new Dialog({
-    title: game.i18n.localize('WOD5E.ConfirmDelete'),
-    content: template,
-    buttons,
-    default: 'cancel'
-  },
-  {
-    classes: ['wod5e', system, 'dialog']
-  }).render(true)
+  if (confirmItemDelete) {
+    actor.deleteEmbeddedDocuments('Item', [itemId])
+  }
 }
 
 // Create an embedded item document
