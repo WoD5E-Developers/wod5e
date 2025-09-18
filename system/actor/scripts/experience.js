@@ -1,6 +1,6 @@
 /* global foundry, game, foundry */
 
-const EXPERIENCE_TEMPLATE = 'systems/vtm5e/display/shared/actors/parts/experience-display.hbs'
+const experienceTemplate = 'systems/vtm5e/display/shared/actors/parts/experience-display.hbs'
 
 export const _onAddExperience = async function (event, target) {
   event.preventDefault()
@@ -17,7 +17,7 @@ export const _onAddExperience = async function (event, target) {
     name: isSpendingXP ? game.i18n.localize('WOD5E.Experience.XPSpent') : game.i18n.localize('WOD5E.Experience.XPGained'),
     value: 0
   }
-  const experienceContent = await foundry.applications.handlebars.renderTemplate(EXPERIENCE_TEMPLATE, experienceData)
+  const experienceContent = await foundry.applications.handlebars.renderTemplate(experienceTemplate, experienceData)
 
   const result = await foundry.applications.api.DialogV2.input({
     window: { title: isSpendingXP ? game.i18n.localize('WOD5E.Experience.SpendExperience') : game.i18n.localize('WOD5E.Experience.AddExperience') },
@@ -131,7 +131,7 @@ export const _onEditExperience = async function (event, target) {
     name: experienceToEdit.name,
     value: experienceToEdit.value
   }
-  const experienceContent = await foundry.applications.handlebars.renderTemplate(EXPERIENCE_TEMPLATE, experienceData)
+  const experienceContent = await foundry.applications.handlebars.renderTemplate(experienceTemplate, experienceData)
 
   const result = await foundry.applications.api.DialogV2.input({
     window: { title: game.i18n.localize('WOD5E.Experience.EditExperience') },
