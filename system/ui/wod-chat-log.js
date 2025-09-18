@@ -2,7 +2,7 @@
 
 // Various button functions
 import { _onToggleCollapse } from '../actor/scripts/on-toggle-collapse.js'
-import { timeSinceShort } from '../scripts/time-since-short.js';
+import { timeSinceShort } from '../scripts/time-since-short.js'
 
 export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
   /** @inheritDoc */
@@ -12,7 +12,7 @@ export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     }
   }
 
-  updateTimestamps() {
+  updateTimestamps () {
     for (const li of document.querySelectorAll('.chat-message[data-message-id]')) {
       const message = game.messages.get(li.dataset.messageId)
       if (!message?.timestamp) return

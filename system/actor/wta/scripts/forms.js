@@ -1,4 +1,4 @@
-/* global game, ChatMessage, Dialog */
+/* global foundry, game, ChatMessage */
 
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
@@ -13,45 +13,40 @@ export const _onLostTheWolf = async function (actor) {
 
   // Define the template to be used
   const template = `
-  <form>
-      <div class="form-group">
-          <label>${game.i18n.localize('WOD5E.WTA.LostWolfShiftDown')}</label>
-      </div>
-  </form>`
+    <div class="form-group">
+        <label>${game.i18n.localize('WOD5E.WTA.LostWolfShiftDown')}</label>
+    </div>`
 
   // Define the buttons and push them to the buttons variable
-  buttons = {
-    homid: {
+  buttons = [
+    {
+      action: 'homid',
       label: game.i18n.localize('WOD5E.WTA.HomidName'),
-      callback: async () => {
-        actor.update({ 'system.activeForm': 'homid' })
-        _updateToken(actor, 'homid')
-      }
+      default: true
     },
-    lupus: {
-      label: game.i18n.localize('WOD5E.WTA.LupusName'),
-      callback: async () => {
-        actor.update({ 'system.activeForm': 'lupus' })
-        _updateToken(actor, 'lupus')
-      }
+    {
+      action: 'lupus',
+      label: game.i18n.localize('WOD5E.WTA.LupusName')
     },
-    override: {
-      label: game.i18n.localize('WOD5E.WTA.StayInCurrentForm'),
-      callback: async () => {
-        actor.update({ 'system.formOverride': true })
-      }
+    {
+      action: 'override',
+      label: game.i18n.localize('WOD5E.WTA.StayInCurrentForm')
     }
-  }
+  ]
 
-  new Dialog({
-    title: game.i18n.localize('WOD5E.WTA.LostTheWolf'),
+  const result = await foundry.applications.api.DialogV2.wait({
+    window: { title: game.i18n.localize('WOD5E.WTA.LostTheWolf') },
     content: template,
     buttons,
-    default: 'homid'
-  },
-  {
-    classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
-  }).render(true)
+    classes: ['wod5e', 'werewolf']
+  })
+
+  if (result === 'override') {
+    actor.update({ 'system.formOverride': true })
+  } else {
+    actor.update({ 'system.activeForm': result })
+    _updateToken(actor, result)
+  }
 }
 
 export const _onShiftForm = async function (event, target) {
@@ -178,45 +173,35 @@ export const _onFormEdit = async function (event, target) {
 }
 
 export const _onInsufficientRage = async function (actor, form) {
-  // Variables yet to be defined
-  let buttons = {}
-
   // Define the template to be used
   const template = `
-  <form>
-      <div class="form-group">
-          <label>${game.i18n.localize('WOD5E.WTA.LostWolfShiftAnyway')}</label>
-      </div>
-  </form>`
+    <div class="form-group">
+        <label>${game.i18n.localize('WOD5E.WTA.LostWolfShiftAnyway')}</label>
+    </div>`
 
-  // Define the buttons and push them to the buttons variable
-  buttons = {
-    submit: {
-      icon: '<i class="fas fa-check"></i>',
-      label: game.i18n.localize('WOD5E.WTA.Shift'),
-      callback: async () => {
-        actor.update({
-          'system.activeForm': form,
-          'system.formOverride': true
-        })
-        _updateToken(actor, form)
-      }
+  const shouldShift = await foundry.applications.api.DialogV2.confirm({
+    window: {
+      title: game.i18n.localize('WOD5E.WTA.LostTheWolf')
     },
-    cancel: {
-      icon: '<i class="fas fa-times"></i>',
-      label: game.i18n.localize('WOD5E.Cancel')
-    }
-  }
-
-  new Dialog({
-    title: game.i18n.localize('WOD5E.WTA.LostTheWolf'),
     content: template,
-    buttons,
-    default: 'submit'
-  },
-  {
-    classes: ['wod5e', 'dialog', 'werewolf', 'dialog']
-  }).render(true)
+    yes: {
+      icon: 'fas fa-check',
+      label: game.i18n.localize('WOD5E.WTA.Shift')
+    },
+    no: {
+      icon: 'fas fa-times',
+      label: game.i18n.localize('WOD5E.Cancel')
+    },
+    classes: ['wod5e', 'werewolf']
+  })
+
+  if (shouldShift) {
+    actor.update({
+      'system.activeForm': form,
+      'system.formOverride': true
+    })
+    _updateToken(actor, form)
+  }
 }
 
 export const _updateToken = async function (actor, form) {
