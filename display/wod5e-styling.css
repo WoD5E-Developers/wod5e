@@ -650,7 +650,10 @@ h3.item-name {
   margin-top: 5px;
 }
 
-.dialog-contents .dice-group-header {
+.dialog-content {
+  gap: 0.5px;
+}
+.dialog-content .dice-group-header {
   border-bottom: 0;
   font-weight: bold;
   display: flex;
@@ -686,7 +689,8 @@ h3.item-name {
 .dialog-contents .dialog-control:focus {
   cursor: pointer;
 }
-.dialog-contents .situational-modifiers {
+.dialog-content .situational-modifiers {
+  border: 1px solid;
   position: absolute;
   display: inline-block;
   width: 250px;
@@ -740,6 +744,9 @@ h3.item-name {
 .dialog-contents .secondary-selector .selector-title {
   font-weight: bold;
   text-decoration: underline;
+}
+.dialog-content .blood-surge {
+  text-align: center;
 }
 .selector-content {
   margin: auto;
