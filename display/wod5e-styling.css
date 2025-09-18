@@ -93,29 +93,40 @@
   background-color: var(--cell-group-header) !important;
 }
 /* Dialogs Windows */
-.hunter.dialog.window-app {
+.hunter.dialog.window-app,
+.hunter.dialog.application {
   border: 4px solid var(--hunter-color-1);
 }
-.hunter.dialog.window-app .window-header {
+.hunter.dialog.window-app .window-header,
+.hunter.dialog.application .window-header {
   background: var(--hunter-color-1);
   border-bottom: 4px double var(--system-color-6);
 }
 .hunter.dialog.window-app .window-content section .tab > .resource-label,
+.hunter.dialog.application .window-content section .tab > .resource-label,
 .hunter.dialog.window-app .items-list .item-header,
+.hunter.dialog.application .items-list .item-header,
 .hunter.dialog.window-app .items-list .spc-item-header,
+.hunter.dialog.application .items-list .spc-item-header,
 .hunter.dialog.window-app .spc-pool-header,
-.hunter.dialog.window-app .actor-header .profile-img-zone h1 {
+.hunter.dialog.application .spc-pool-header,
+.hunter.dialog.window-app .actor-header .profile-img-zone h1,
+.hunter.dialog.application .actor-header .profile-img-zone h1 {
   color: var(--hunter-color-1);
   border-color: var(--hunter-color-1);
 }
-.hunter.dialog.window-app .dialog-contents .dice-group-header {
+.hunter.dialog.window-app .dialog-content .dice-group-header,
+.hunter.dialog.application .dialog-content .dice-group-header {
   background-color: var(--hunter-color-1);
 }
 .hunter.dialog.window-app input,
-.hunter.dialog.window-app select {
+.hunter.dialog.application input,
+.hunter.dialog.window-app select,
+.hunter.dialog.application select {
   border: 1px solid var(--hunter-color-1);
 }
-.hunter.dialog.window-app .base-dice-group {
+.hunter.dialog.window-app .base-dice-group,
+.hunter.dialog.application .base-dice-group {
   border: 1px solid var(--hunter-color-2);
 }
 .vampire-font-headers.en .hunter-button {
@@ -149,31 +160,40 @@
   background-color: var(--mortal-color-1);
 }
 /* Dialog Windows */
-.mortal.dialog .window-app {
+.mortal.dialog.window-app,
+.mortal.dialog.application {
   border: 4px solid var(--mortal-color-1);
 }
-.mortal.dialog .window-app .window-header {
+.mortal.dialog.window-app .window-header,
+.mortal.dialog.application .window-header {
+  background: var(--mortal-color-1);
   border-bottom: 4px double var(--mortal-color-3);
 }
-.mortal.dialog .window-header {
-  background: var(--mortal-color-1);
-}
-.mortal.dialog .window-content section .tab > .resource-label,
-.mortal.dialog .items-list .item-header,
-.mortal.dialog .items-list .spc-item-header,
-.mortal.dialog .spc-pool-header,
-.mortal.dialog .actor-header .profile-img-zone h1 {
+.mortal.dialog.window-app .window-content section .tab > .resource-label,
+.mortal.dialog.application .window-content section .tab > .resource-label,
+.mortal.dialog.window-app .items-list .item-header,
+.mortal.dialog.application .items-list .item-header,
+.mortal.dialog.window-app .items-list .spc-item-header,
+.mortal.dialog.application .items-list .spc-item-header,
+.mortal.dialog.window-app .spc-pool-header,
+.mortal.dialog.application .spc-pool-header,
+.mortal.dialog.window-app .actor-header .profile-img-zone h1,
+.mortal.dialog.application .actor-header .profile-img-zone h1 {
   color: var(--mortal-color-1);
   border-color: var(--mortal-color-1);
 }
-.mortal.dialog .dialog-contents .dice-group-header {
+.mortal.dialog.window-app .dialog-content .dice-group-header,
+.mortal.dialog.application .dialog-content .dice-group-header {
   background-color: var(--mortal-color-1);
 }
-.mortal.dialog input,
-.mortal.dialog select {
+.mortal.dialog.window-app input,
+.mortal.dialog.application input,
+.mortal.dialog.window-app select,
+.mortal.dialog.application select {
   border: 1px solid var(--mortal-color-1);
 }
-.mortal.dialog .base-dice-group {
+.mortal.dialog.window-app .base-dice-group,
+.mortal.dialog.application .base-dice-group {
   border: 1px solid var(--mortal-color-2);
 }
 /* Mortal Actor Sheet */
@@ -337,7 +357,8 @@
   line-height: 20px;
   padding-top: 2px;
 }
-.window-app .window-header {
+.window-app .window-header,
+.application .window-header {
   flex: 0 0 25px;
   line-height: 20px;
   padding-top: 2px;
@@ -659,34 +680,34 @@ h3.item-name {
   display: flex;
   flex-direction: row;
 }
-.dialog-contents .base-dice-group {
+.dialog-content .base-dice-group {
   border-top: 0;
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
 }
-.dialog-contents .base-dice-group .basic-dice,
-.dialog-contents .base-dice-group .advanced-dice,
-.dialog-contents .dice-group-header label {
+.dialog-content .base-dice-group .basic-dice,
+.dialog-content .base-dice-group .advanced-dice,
+.dialog-content .dice-group-header label {
   margin-left: auto;
   margin-right: auto;
 }
-.dialog-contents input {
+.dialog-content input {
   border-radius: 0;
 }
-.dialog-contents .dice-input input {
+.dialog-content .dice-input input {
   max-width: 50px;
 }
-.dialog-contents .dice-input {
+.dialog-content .dice-input {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.dialog-contents .dialog-control {
+.dialog-content .dialog-control {
   margin-top: 5px;
 }
-.dialog-contents .dialog-control:hover,
-.dialog-contents .dialog-control:focus {
+.dialog-content .dialog-control:hover,
+.dialog-content .dialog-control:focus {
   cursor: pointer;
 }
 .dialog-content .situational-modifiers {
@@ -698,50 +719,50 @@ h3.item-name {
   left: 400px;
   border-width: 3px;
 }
-.dialog-contents .situational-modifiers .list-title {
+.dialog-content .situational-modifiers .list-title {
   font-weight: bold;
 }
-.dialog-contents .custom-modifiers .mod-delete {
+.dialog-content .custom-modifiers .mod-delete {
   margin: 5px;
 }
-.dialog-contents .custom-modifiers .mod-label {
+.dialog-content .custom-modifiers .mod-label {
   display: flex;
   margin-left: 10px;
   margin-right: 10px;
 }
-.dialog-contents .custom-modifiers .mod-value {
+.dialog-content .custom-modifiers .mod-value {
   max-width: 30px;
   margin-right: 45px;
 }
-.dialog-contents .situational-modifiers .mod-header {
+.dialog-content .situational-modifiers .mod-header {
   font-weight: bold;
 }
-.dialog-contents .selectors-group {
+.dialog-content .selectors-group {
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
 }
-.dialog-contents .selectors-group .primary-selector {
+.dialog-content .selectors-group .primary-selector {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
-.dialog-contents .selectors-group .selector-title {
+.dialog-content .selectors-group .selector-title {
   font-size: 13pt;
   font-weight: bold;
   text-decoration: underline;
 }
-.dialog-contents .selectors-group .middle {
+.dialog-content .selectors-group .middle {
   font-size: 20pt;
 }
-.dialog-contents .selectors-group .selector-title {
+.dialog-content .selectors-group .selector-title {
   margin: auto;
 }
-.dialog-contents .secondary-selector {
+.dialog-content .secondary-selector {
   text-align: center;
   margin-bottom: 5px;
 }
-.dialog-contents .secondary-selector .selector-title {
+.dialog-content .secondary-selector .selector-title {
   font-weight: bold;
   text-decoration: underline;
 }
@@ -755,6 +776,27 @@ h3.item-name {
   display: flex;
   flex-direction: row;
   flex-grow: 0;
+}
+.roll-dialog {
+  overflow: visible;
+  width: 400px;
+}
+.roll-dialog .window-content {
+  overflow: visible;
+}
+.roll-dialog {
+  overflow: visible;
+  width: 400px;
+}
+.roll-dialog .window-content {
+  overflow: visible;
+}
+.roll-dialog {
+  overflow: visible;
+  width: 400px;
+}
+.roll-dialog .window-content {
+  overflow: visible;
 }
 
 /* General Sidebar Styling */
@@ -963,29 +1005,40 @@ h3.item-name {
   background-color: var(--coterie-group-header) !important;
 }
 /* Dialogs Windows */
-.vampire.dialog.window-app {
+.vampire.dialog.window-app,
+.vampire.dialog.application {
   border: 4px solid var(--vampire-color-1);
 }
-.vampire.dialog.window-app .window-header {
+.vampire.dialog.window-app .window-header,
+.vampire.dialog.application .window-header {
   background: var(--vampire-color-1);
   border-bottom: 4px double var(--system-color-6);
 }
 .vampire.dialog.window-app .window-content section .tab .resource-label,
+.vampire.dialog.application .window-content section .tab .resource-label,
 .vampire.dialog.window-app .items-list .item-header,
+.vampire.dialog.application .items-list .item-header,
 .vampire.dialog.window-app .items-list .spc-item-header,
+.vampire.dialog.application .items-list .spc-item-header,
 .vampire.dialog.window-app .spc-pool-header,
-.vampire.dialog.window-app .actor-header .profile-img-zone h1 {
+.vampire.dialog.application .spc-pool-header,
+.vampire.dialog.window-app .actor-header .profile-img-zone h1,
+.vampire.dialog.application .actor-header .profile-img-zone h1 {
   color: var(--vampire-color-1);
   border-color: var(--vampire-color-1);
 }
-.vampire.dialog.window-app .dialog-contents .dice-group-header {
+.vampire.dialog.window-app .dialog-content .dice-group-header,
+.vampire.dialog.application .dialog-content .dice-group-header {
   background-color: var(--vampire-color-1);
 }
 .vampire.dialog.window-app input,
-.vampire.dialog.window-app select {
+.vampire.dialog.application input,
+.vampire.dialog.window-app select,
+.vampire.dialog.application select {
   border: 1px solid var(--vampire-color-1);
 }
-.vampire.dialog.window-app .base-dice-group {
+.vampire.dialog.window-app .base-dice-group,
+.vampire.dialog.application .base-dice-group {
   border: 1px solid var(--vampire-color-2);
 }
 .vampire-font-headers.en .vampire-button {
@@ -1223,29 +1276,40 @@ h3.item-name {
   background-color: var(--pack-group-header) !important;
 }
 /* Dialogs Windows */
-.werewolf.dialog.window-app {
+.werewolf.dialog.window-app,
+.werewolf.dialog.application {
   border: 4px solid var(--werewolf-color-1);
 }
-.werewolf.dialog.window-app .window-header {
+.werewolf.dialog.window-app .window-header,
+.werewolf.dialog.application .window-header {
   background: var(--werewolf-color-1);
   border-bottom: 4px double var(--system-color-6);
 }
 .werewolf.dialog.window-app .window-content section .tab .resource-label,
+.werewolf.dialog.application .window-content section .tab .resource-label,
 .werewolf.dialog.window-app .items-list .item-header,
+.werewolf.dialog.application .items-list .item-header,
 .werewolf.dialog.window-app .items-list .spc-item-header,
+.werewolf.dialog.application .items-list .spc-item-header,
 .werewolf.dialog.window-app .spc-pool-header,
-.werewolf.dialog.window-app .actor-header .profile-img-zone h1 {
+.werewolf.dialog.application .spc-pool-header,
+.werewolf.dialog.window-app .actor-header .profile-img-zone h1,
+.werewolf.dialog.application .actor-header .profile-img-zone h1 {
   color: var(--werewolf-color-1);
   border-color: var(--werewolf-color-1);
 }
-.werewolf.dialog.window-app .dialog-contents .dice-group-header {
+.werewolf.dialog.window-app .dialog-content .dice-group-header,
+.werewolf.dialog.application .dialog-content .dice-group-header {
   background-color: var(--werewolf-color-1);
 }
 .werewolf.dialog.window-app input,
-.werewolf.dialog.window-app select {
+.werewolf.dialog.application input,
+.werewolf.dialog.window-app select,
+.werewolf.dialog.application select {
   border: 1px solid var(--werewolf-color-1);
 }
-.werewolf.dialog.window-app .base-dice-group {
+.werewolf.dialog.window-app .base-dice-group,
+.werewolf.dialog.application .base-dice-group {
   border: 1px solid var(--werewolf-color-2);
 }
 .sheet.spc .balance-trackers .wolf-resource {
@@ -2649,17 +2713,17 @@ prose-mirror .editor-menu button {
   background: #000000a6;
 }
 /* Roll Dialogs */
-.dialog-contents .dice-group-header {
+.dialog-content .dice-group-header {
   color: var(--system-color-4);
 }
-.dialog-contents .dice-input img {
+.dialog-content .dice-input img {
   background-color: var(--system-color-5);
 }
-.dialog-contents .dialog-control:hover,
-.dialog-contents .dialog-control:focus {
+.dialog-content .dialog-control:hover,
+.dialog-content .dialog-control:focus {
   color: var(--system-color-5);
 }
-.dialog-contents .situational-modifiers {
+.dialog-content .situational-modifiers {
   background-color: var(--system-color-6);
   box-shadow: 0 0 10px var(--color-shadow-dark);
 }
@@ -2843,6 +2907,7 @@ prose-mirror .editor-menu button {
   background-color: #FFF;
 }
 .theme-dark .app,
+.theme-dark .application.dialog,
 .theme-dark #sidebar,
 .theme-dark #controls ol.control-tools > li,
 .theme-dark #navigation #scene-list .scene,
@@ -3097,6 +3162,7 @@ prose-mirror .editor-menu button {
   background: var(--actor-background-default) repeat;
 }
 .wod-hunter-theme .app,
+.wod-hunter-theme .application.dialog,
 .wod-hunter-theme #sidebar,
 .wod-hunter-theme #controls ol.control-tools > li,
 .wod-hunter-theme #navigation #scene-list .scene,
@@ -3144,6 +3210,7 @@ prose-mirror .editor-menu button {
   background-color: #FFF;
 }
 .wod-vampire-theme .app,
+.wod-vampire-theme .application.dialog,
 .wod-vampire-theme #sidebar,
 .wod-vampire-theme #controls ol.control-tools > li,
 .wod-vampire-theme #navigation #scene-list .scene,
@@ -3399,6 +3466,7 @@ prose-mirror .editor-menu button {
   background-color: #FFF;
 }
 .wod-werewolf-theme .app,
+.wod-werewolf-theme .application.dialog,
 .wod-werewolf-theme #sidebar,
 .wod-werewolf-theme #controls ol.control-tools > li,
 .wod-werewolf-theme #navigation #scene-list .scene,
