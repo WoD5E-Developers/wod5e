@@ -670,6 +670,80 @@ h3.item-name {
   cursor: pointer;
   margin-top: 5px;
 }
+.roll-menu .window-content {
+  padding: 0;
+  flex-direction: row;
+}
+.roll-menu .window-content .saved-rolls {
+  padding-right: 1rem;
+  border-right: 1px solid;
+  width: 150px;
+}
+.roll-menu .window-content .saved-rolls .title {
+  font-size: 16pt;
+  text-align: center;
+}
+.roll-menu .window-content .saved-rolls .list {
+  padding: 5px;
+}
+.roll-menu .window-content .main {
+  flex-grow: 1;
+  position: relative;
+}
+.roll-menu .window-content .main .roll-menu-hint {
+  padding: 5px;
+  text-align: right;
+}
+.roll-menu .window-content .main .roll-menu-body {
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.roll-menu .window-content .main .roll-menu-body .splat-die-options {
+  justify-content: space-between;
+}
+.roll-menu .window-content .main .roll-menu-body .splat-die-options .die-img {
+  justify-items: center;
+}
+.roll-menu .window-content .main .roll-menu-body .splat-die-options .die-img img {
+  cursor: pointer;
+}
+.roll-menu .window-content .main .roll-menu-body .splat-die-options .die-img:not(.active) {
+  filter: saturate(250%);
+}
+.roll-menu .window-content .main .roll-menu-body .splat-die-options .die-img.active {
+  filter: saturate(50%);
+}
+.roll-menu .window-content .main .roll-menu-body .roll-constructor {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  position: relative;
+}
+.roll-menu .window-content .main .roll-menu-body .roll-constructor .constructed-roll {
+  flex-grow: 1;
+}
+.roll-menu .window-content .main .roll-menu-body .roll-constructor .add-dice-button {
+  flex-grow: 1;
+  text-align: center;
+  padding: 10px;
+}
+.roll-menu .window-content .main .roll-menu-body .roll-constructor .roll-options .option-toggle {
+  text-align: center;
+}
+.roll-menu .window-content .main .roll-menu-body .roll-menu-footer {
+  margin-top: auto;
+  padding: 0.5rem;
+}
+.roll-menu .window-content .main .roll-menu-body .roll-menu-footer .roll-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.roll-menu .window-content .main .roll-menu-body .roll-menu-footer .roll-buttons .roll-button {
+  align-content: center;
+}
 
 .dialog-content {
   gap: 0.5px;
