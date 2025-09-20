@@ -25,16 +25,16 @@ export const _onFrenzyRoll = async function (event) {
     buttons: [
       {
         label: game.i18n.localize('WOD5E.ItemsList.Resist'),
-        action: true
+        action: "resist"
       },
       {
         label: game.i18n.localize('WOD5E.VTM.GiveIn'),
-        action: false
+        action: "give-in"
       }
     ]
   })
 
-  if (doFrenzyRoll) {
+  if (doFrenzyRoll === 'resist') {
     let basicDice = 0
     const willpowerDicePool = await getWillpowerDicePool(actor)
     const humanity = actor.system.humanity.value
@@ -86,7 +86,7 @@ export const _onFrenzyRoll = async function (event) {
         }
       }
     })
-  } else {
+  } else if (doFrenzyRoll === 'give-in') {
     // Automatically enter frenzy
     actor.update({ 'system.frenzyActive': true })
 
