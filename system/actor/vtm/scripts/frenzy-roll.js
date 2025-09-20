@@ -25,11 +25,11 @@ export const _onFrenzyRoll = async function (event) {
     buttons: [
       {
         label: game.i18n.localize('WOD5E.ItemsList.Resist'),
-        action: "resist"
+        action: 'resist'
       },
       {
         label: game.i18n.localize('WOD5E.VTM.GiveIn'),
-        action: "give-in"
+        action: 'give-in'
       }
     ]
   })
