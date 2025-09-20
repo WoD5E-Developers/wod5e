@@ -1,0 +1,55 @@
+<div class="main flexcol">
+  <div class="roll-menu-hint" title="The Roll Menu is an application where you can handle all non-actor rolls or rolls that require greater control over the data than what the actor sheets provide. This includes prompting players for specific rolls, constructing extended rolls, and saving custom rolls used across actors.">
+    <i class="fa-solid fa-circle-info"></i> <i>What is the Roll Menu?</i>
+  </div>
+  <div class="roll-menu-body flexcol">
+    <div class="splat-die-options flexrow">
+      <div class="die-img vampire-dice enabled">
+        <img title="Toggle Vampire Dice" width="40px" src="systems/vtm5e/assets/icons/dice/vampire/hunger-critical.png"/>
+      </div>
+      <div class="die-img werewolf-dice enabled">
+        <img title="Toggle Werewolf Dice" width="40px" src="systems/vtm5e/assets/icons/dice/werewolf/rage-critical.png"/>
+      </div>
+      <div class="die-img hunter-dice enabled">
+        <img title="Toggle Hunter Dice" width="40px" src="systems/vtm5e/assets/icons/dice/hunter/desperation-critical.png"/>
+      </div>
+    </div>
+    <hr>
+    <div class="roll-constructor">
+      <div class="constructed-roll">
+        {{#each activeRoll.dice as |die key|}}
+          <div>
+            {{die.value}}
+          </div>
+        {{/each}}
+      </div>
+      <div class="add-dice-button">
+        Add Dice
+      </div>
+      <div class="roll-options flexrow">
+        <div class="option-toggle">
+          <input type="checkbox" name="extended-roll-checkbox" checked="{{extended}}" data-action="toggle-extended"/>
+          Is Extended?
+        </div>
+        <div class="option-toggle">
+          <input type="checkbox" name="contested-roll-checkbox" checked="{{contested}}" data-action="toggle-contested"/>
+          Is Contested?
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="roll-menu-footer">
+      <div class="roll-buttons">
+        <div class="roll-button">
+          Post To Chat
+        </div>
+        <div class="roll-button">
+          Roll
+        </div>
+        <div class="roll-button">
+          Save Roll
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

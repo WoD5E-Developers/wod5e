@@ -56,3 +56,98 @@
   cursor: pointer;
   margin-top: 5px;
 }
+
+.roll-menu .window-content {
+  padding: 0;
+  flex-direction: row;
+
+  .saved-rolls {
+    padding-right: 1rem;
+    border-right: 1px solid;
+    width: 150px;
+
+    .title {
+      font-size: 16pt;
+      text-align: center;
+    }
+
+    .list {
+      padding: 5px;
+    }
+  }
+
+  .main {
+    flex-grow: 1;
+    position: relative;
+
+    .roll-menu-hint {
+      padding: 5px;
+      text-align: right;
+    }
+
+    .roll-menu-body {
+      padding: 1rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .splat-die-options {
+        justify-content: space-between;
+
+        .die-img {
+          justify-items: center;
+
+          img {
+            cursor: pointer;
+          }
+        }
+
+        .die-img:not(.active) {
+          filter: saturate(250%);
+        }
+
+        .die-img.active {
+          filter: saturate(50%);
+        }
+      }
+
+      .roll-constructor {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        position: relative;
+
+        .constructed-roll {
+          flex-grow: 1;
+        }
+
+        .add-dice-button {
+          flex-grow: 1;
+          text-align: center;
+          padding: 10px;
+        }
+
+        .roll-options {
+          .option-toggle {
+            text-align: center;
+          }
+        }
+      }
+
+      .roll-menu-footer {
+        margin-top: auto;
+        padding: 0.5rem;
+
+        .roll-buttons {
+          display: flex;
+          justify-content: space-between;
+          padding: 5px;
+
+          .roll-button {
+            align-content: center;
+          }
+        }
+      }
+    }
+  }
+}
