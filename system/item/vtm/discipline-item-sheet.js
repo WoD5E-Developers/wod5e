@@ -51,7 +51,8 @@ export class DisciplineItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     dicepool: {
       id: 'dicepool',
       group: 'primary',
-      label: 'WOD5E.Tabs.Dicepool'
+      label: 'WOD5E.Tabs.Dicepool',
+      hidden: this.document.parent?.type === 'spc'
     },
     macro: {
       id: 'macro',
@@ -107,5 +108,14 @@ export class DisciplineItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     }
 
     return context
+  }
+
+  _configureRenderOptions (options) {
+    super._configureRenderOptions(options)
+
+    // Hide the "Dicepool" tab from gifts on SPC sheets.
+    if (this.document.parent && this.document.parent?.type === 'spc') {
+      options.parts = options.parts.filter(item => item !== 'dicepool')
+    }
   }
 }

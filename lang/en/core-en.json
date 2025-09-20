@@ -339,6 +339,7 @@
       "ModifiedSkillsHint": "Allows for modification of existing skills.",
       "NeutralXpIconOverride": "Neutral XP Icon",
       "NeutralXpIconOverrideHint": "Replaces the default icon for XP entries that are neither gained nor spent.",
+      "NewStringModification": "New {string} Modification",
       "None": "None",
       "Rename": "Rename",
       "SaveChanges": "Save Changes",

@@ -814,6 +814,9 @@
         "value": 1
       },
       "traits": "",
+      "despair": {
+        "value": 0
+      },
       "settings": {
         "enableGifts": false,
         "enableDisciplines": false,

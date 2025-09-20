@@ -339,6 +339,7 @@
       "ModifiedSkillsHint": "Erlaubt Änderungen an den existierenden Fähigkeiten.",
       "NeutralXpIconOverride": "Neutrale XP Icon",
       "NeutralXpIconOverrideHint": "Ersetzt das Icon für neutrale XP (weder erhalten noch ausgegeben)",
+      "_NewStringModification": "",
       "None": "Keine",
       "Rename": "Umbenennen",
       "SaveChanges": "Änderungen speichern",

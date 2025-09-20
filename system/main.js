@@ -25,6 +25,7 @@ import { migrateWorld } from './scripts/migration.js'
 import { willpowerReroll } from './scripts/willpower-reroll.js'
 import { anyReroll } from './scripts/any-reroll.js'
 import { wod5eAPI } from './api/wod5e-api.js'
+import { WOD5eRoll } from './scripts/system-rolls.js'
 // WOD5E Definitions
 import { Systems } from './api/def/systems.js'
 import { Attributes } from './api/def/attributes.js'
@@ -50,8 +51,10 @@ Hooks.once('init', async function () {
   CONFIG.Item.documentClass = WoDItem
   CONFIG.ui.chat = WoDChatLog
   CONFIG.ChatMessage.documentClass = WoDChatMessage
+  CONFIG.ChatMessage.template = 'systems/vtm5e/display/ui/chat/chat-message.hbs'
   CONFIG.ui.hotbar = WoDHotbar
   CONFIG.ui.actors = WOD5EActorDirectory
+  CONFIG.Dice.rolls = [WOD5eRoll]
   CONFIG.Dice.terms.m = MortalDie
   CONFIG.Dice.terms.v = VampireDie
   CONFIG.Dice.terms.g = VampireHungerDie

@@ -36,7 +36,7 @@ export const _onRemorseRoll = async function (event) {
           'system.humanity.stains': 0
         })
 
-        await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message.hbs', {
+        await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
           name: game.i18n.localize('WOD5E.VTM.RemorseFailed'),
           img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
           description: game.i18n.format('WOD5E.VTM.RemorseFailedDescription', {

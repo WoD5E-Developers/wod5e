@@ -1,4 +1,4 @@
-/* global game, Dialog */
+/* global game, foundry */
 
 import { Disciplines } from '../../api/def/disciplines.js'
 import { Edges } from '../../api/def/edges.js'
@@ -12,78 +12,52 @@ export const _onCreatePower = async function (event, target) {
   const powerType = target.getAttribute('data-type')
 
   // Variables yet to be defined
-  let options = ''
-  let buttons = {}
-  let titleLabel = ''
+  let powersList = {}
   let label = ''
+  let titleLabel = ''
 
   // Gather and push the list of options to the 'options' variable
   if (powerType === 'discipline') {
-    const disciplinesList = Disciplines.getList({})
-    for (const [key, value] of Object.entries(disciplinesList)) {
-      options = options.concat(`<option value="${key}">${value.displayName}</option>`)
-    }
-
-    titleLabel = game.i18n.localize('WOD5E.VTM.AddDiscipline')
+    powersList = Disciplines.getList({})
     label = game.i18n.localize('WOD5E.VTM.SelectDiscipline')
+    titleLabel = game.i18n.localize('WOD5E.VTM.AddDiscipline')
   } else if (powerType === 'gift') {
-    const giftsList = Gifts.getList({})
-    for (const [key, value] of Object.entries(giftsList)) {
-      options = options.concat(`<option value="${key}">${value.displayName}</option>`)
-    }
-
-    titleLabel = game.i18n.localize('WOD5E.WTA.AddGift')
+    powersList = Gifts.getList({})
     label = game.i18n.localize('WOD5E.WTA.SelectGift')
+    titleLabel = game.i18n.localize('WOD5E.WTA.AddGift')
   } else if (powerType === 'edge') {
-    const edgesList = Edges.getList({})
-    for (const [key, value] of Object.entries(edgesList)) {
-      options = options.concat(`<option value="${key}">${value.displayName}</option>`)
-    }
-
-    titleLabel = game.i18n.localize('WOD5E.HTR.AddEdge')
+    powersList = Edges.getList({})
     label = game.i18n.localize('WOD5E.HTR.SelectEdge')
+    titleLabel = game.i18n.localize('WOD5E.HTR.AddEdge')
   }
 
-  // Define the template to be used
-  const template = `
-    <form>
-        <div class="form-group">
-            <label>${label}</label>
-            <select id="powerSelect">${options}</select>
-        </div>
-    </form>`
+  // Build the options for the select dropdown
+  const content = new foundry.data.fields.StringField({
+    choices: powersList,
+    label,
+    required: true
+  }).toFormGroup({},
+    {
+      name: 'power'
+    }).outerHTML
 
-  // Define any buttons needed and add them to the buttons variable
-  buttons = {
-    submit: {
-      icon: '<i class="fas fa-check"></i>',
-      label: game.i18n.localize('WOD5E.Add'),
-      callback: async (html) => {
-        const dialogHTML = html[0]
-
-        // Define the selected discipline
-        const power = dialogHTML.querySelector('#powerSelect').value
-
-        // If the discipline wasn't already visible, make it visible
-        actor.update({ [`system.${powerType}s.${power}.visible`]: true })
-      }
+  // Prompt a dialog to determine which edge we're adding
+  const powerSelected = await foundry.applications.api.DialogV2.prompt({
+    window: {
+      title: titleLabel
     },
-    cancel: {
-      icon: '<i class="fas fa-times"></i>',
-      label: game.i18n.localize('WOD5E.Cancel')
-    }
-  }
+    classes: ['wod5e', actor.system.gamesystem, 'dialog'],
+    content,
+    ok: {
+      callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object.power
+    },
+    modal: true
+  })
 
-  // Display the dialog
-  new Dialog({
-    title: titleLabel,
-    content: template,
-    buttons,
-    default: 'submit'
-  },
-  {
-    classes: ['wod5e', actor.system.gamesystem, 'dialog']
-  }).render(true)
+  if (powerSelected) {
+    // If the power wasn't already visible, make it visible
+    actor.update({ [`system.${powerType}s.${powerSelected}.visible`]: true })
+  }
 }
 
 export const _onDeletePower = async function (event, target) {

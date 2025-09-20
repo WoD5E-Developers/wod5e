@@ -104,6 +104,11 @@ export const getSelectorsList = () => {
     id: 'humanity',
     displayName: game.i18n.localize('WOD5E.VTM.Remorse')
   })
+  // Feeding
+  selectorsList.push({
+    id: 'feeding',
+    displayName: game.i18n.localize('WOD5E.VTM.Feeding')
+  })
 
   // Hunter
   const edges = WOD5E.Edges.getList({
@@ -123,6 +128,11 @@ export const getSelectorsList = () => {
       displayName: value.displayName
     })
   }
+  // Despair
+  selectorsList.push({
+    id: 'despair',
+    displayName: game.i18n.localize('WOD5E.HTR.Despair')
+  })
 
   // Werewolf
   // Renown

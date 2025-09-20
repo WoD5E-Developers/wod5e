@@ -7,7 +7,7 @@ export const _onToggleDespair = async function (event) {
   const actorData = actor.system
 
   // I really only do this so it's clear what we're doing here
-  const currentDespair = actorData.despair.value > 0
+  const currentDespair = (actorData?.despair?.value ? actorData?.despair?.value : 0) > 0
   const newDespair = !currentDespair
 
   // Have to do this silly thing in order to prevent old versions of the Hunter sheet from freaking out

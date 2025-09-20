@@ -42,6 +42,7 @@ export class WoDChatMessage extends ChatMessage {
       author: this.author,
       speakerActor,
       alias: this.alias,
+      portrait: (speakerActor?.img ?? this.author?.avatar) || this.constructor.DEFAULT_AVATAR,
       cssClass: [
         this.style === CONST.CHAT_MESSAGE_STYLES.IC ? 'ic' : null,
         this.style === CONST.CHAT_MESSAGE_STYLES.EMOTE ? 'emote' : null,
@@ -53,7 +54,28 @@ export class WoDChatMessage extends ChatMessage {
     }
 
     // Render message data specifically for ROLL type messages
-    if (this.isRoll) await this.#renderRollContent(messageData)
+    if (this.isRoll) {
+      await this.#renderRollContent(messageData)
+
+      const roll = this.rolls[0]
+
+      // Here, we're 100% sure that this message contains a valid WoD5e die and can proceed
+      // with the WoD5e message formatting
+      if (roll.system) {
+        const messageContent = await generateRollMessage({
+          title: roll.options.title || `${game.i18n.localize('WOD5E.Chat.Rolling')}...`,
+          roll,
+          system: roll.system,
+          flavor: roll.options.flavor || '',
+          difficulty: roll.options.difficulty || 0,
+          activeModifiers: roll.options.activeModifiers || {},
+          data: this.flags.data || {},
+          isContentVisible: this.isContentVisible
+        })
+
+        messageData.message.content = messageContent
+      }
+    }
 
     // Define a border color
     if (this.style === CONST.CHAT_MESSAGE_STYLES.OOC) messageData.borderColor = this.author?.color.css
@@ -61,50 +83,6 @@ export class WoDChatMessage extends ChatMessage {
     // Render the chat message
     let html = await foundry.applications.handlebars.renderTemplate(CONFIG.ChatMessage.template, messageData)
     html = foundry.utils.parseHTML(html)
-
-    if (this.isRoll) {
-      // Append a system value if roll classes are detected
-      const rollTerms = this.rolls[0].terms
-
-      rollTerms.forEach(term => {
-        // Check for Mortal dice
-        if (term.constructor.name === 'MortalDie') {
-          this.flags.system = 'mortal'
-        }
-
-        // Check for Vampire dice
-        if (term.constructor.name === 'VampireDie' || term.constructor.name === 'VampireHungerDie') {
-          this.flags.system = 'vampire'
-        }
-
-        // Check for Hunter dice
-        if (term.constructor.name === 'HunterDie' || term.constructor.name === 'HunterDesperationDie') {
-          this.flags.system = 'hunter'
-        }
-
-        // Check for Werewolf dice
-        if (term.constructor.name === 'WerewolfDie' || term.constructor.name === 'WerewolfRageDie') {
-          this.flags.system = 'werewolf'
-        }
-      })
-
-      if (this.flags.system) {
-        const messageContent = await generateRollMessage({
-          title: this.flags.title || `${game.i18n.localize('WOD5E.Chat.Rolling')}...`,
-          roll: this.rolls[0],
-          system: this.flags.system || 'mortal',
-          flavor: this.flags.flavor || '',
-          difficulty: this.flags.difficulty || 0,
-          activeModifiers: this.flags.activeModifiers || {},
-          data: this.flags.data || {},
-          isContentVisible: this.isContentVisible
-        })
-
-        // Create an HTML element with the provided message content
-        const messageHTML = document.createElement('div')
-        messageHTML.innerHTML = messageContent
-      }
-    }
 
     // Flag expanded state of dice rolls
     Hooks.callAll('renderChatMessageHTML', this, html, messageData)
@@ -150,6 +128,8 @@ export class WoDChatMessage extends ChatMessage {
       messageData.alias = name
     }
   }
+
+  static DEFAULT_AVATAR = 'icons/svg/mystery-man.svg'
 
   async #renderRollHTML (isPrivate) {
     let html = ''

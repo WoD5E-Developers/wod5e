@@ -23,16 +23,17 @@ export async function generateRollMessage ({
   isContentVisible = true
 }) {
   // Variables to be defined later
-  let basicDice, advancedDice
+  let basicDice = roll.basicDice
+  let advancedDice = roll.advancedDice
 
   // Make super sure that difficulty is an int
   difficulty = parseInt(difficulty)
 
-  if (roll.terms[0]) {
-    basicDice = await generateBasicDiceDisplay(roll.terms[0])
+  if (basicDice) {
+    basicDice = await generateBasicDiceDisplay(basicDice)
   }
-  if (roll.terms[2]) {
-    advancedDice = await generateAdvancedDiceDisplay(roll.terms[2])
+  if (advancedDice) {
+    advancedDice = await generateAdvancedDiceDisplay(advancedDice)
   }
 
   const { totalResult, resultLabel } = await generateResult(basicDice, advancedDice)

@@ -339,6 +339,7 @@
       "ModifiedSkillsHint": "Permet la modification de Compétences existantes.",
       "NeutralXpIconOverride": "Icône XP neutre",
       "NeutralXpIconOverrideHint": "Remplace l'icône par défaut pour les points d'XP qui ne sont ni gagnés ni dépensés.",
+      "_NewStringModification": "",
       "None": "Aucun",
       "Rename": "Renommer",
       "SaveChanges": "Sauvegarder les changements",

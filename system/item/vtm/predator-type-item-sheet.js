@@ -1,7 +1,12 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareModifiersContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
+import {
+  prepareDescriptionContext,
+  prepareModifiersContext,
+  prepareItemSettingsContext,
+  prepareDicepoolContext
+} from '../scripts/prepare-partials.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -27,6 +32,9 @@ export class PredatorTypeItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     description: {
       template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
     },
+    dicepool: {
+      template: 'systems/vtm5e/display/shared/items/parts/dicepool.hbs'
+    },
     modifiers: {
       template: 'systems/vtm5e/display/shared/items/parts/modifiers.hbs'
     },
@@ -40,6 +48,11 @@ export class PredatorTypeItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       id: 'description',
       group: 'primary',
       label: 'WOD5E.Tabs.Description'
+    },
+    dicepool: {
+      id: 'dicepool',
+      group: 'primary',
+      label: 'WOD5E.Tabs.Dicepool'
     },
     modifiers: {
       id: 'modifiers',
@@ -72,6 +85,8 @@ export class PredatorTypeItemSheet extends HandlebarsApplicationMixin(WoDItem) {
       // Stats
       case 'description':
         return prepareDescriptionContext(context, item)
+      case 'dicepool':
+        return prepareDicepoolContext(context, item)
       case 'modifiers':
         return prepareModifiersContext(context, item)
       case 'settings':
