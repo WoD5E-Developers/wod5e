@@ -1,5 +1,9 @@
 /* global foundry, fromUuidSync */
 
+import { prepareEdgePowers } from '../htr/scripts/prepare-data.js'
+import { prepareDisciplinePowers } from '../vtm/scripts/prepare-data.js'
+import { prepareGiftPowers } from '../wta/scripts/prepare-data.js'
+
 export const prepareStatsContext = async function (context, actor) {
   const actorData = actor.system
 
@@ -159,17 +163,17 @@ export const prepareSpcStatsContext = async function (context, actor) {
 
   if (context.currentActorType === 'vampire' || (context.gamesystem === 'vampire' && context.settings.enableDisciplines === true)) {
     context.showDisciplines = true
-    context.disciplines = actorData.disciplines
+    context.disciplines = await prepareDisciplinePowers(actorData.disciplines)
   }
 
   if (context.currentActorType === 'hunter' || (context.gamesystem === 'hunter' && context.settings.enableEdges === true)) {
     context.showEdges = true
-    context.edges = actorData.edges
+    context.edges = await prepareEdgePowers(actorData.edges)
   }
 
   if (context.currentActorType === 'werewolf' || (context.gamesystem === 'werewolf' && context.settings.enableGifts === true)) {
     context.showGifts = true
-    context.gifts = actorData.gifts
+    context.gifts = await prepareGiftPowers(actorData.gifts)
   }
 
   if (context.currentActorType === 'spirit') {

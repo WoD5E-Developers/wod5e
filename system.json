@@ -2,7 +2,7 @@
   "id": "vtm5e",
   "title": "World of Darkness 5e",
   "description": "World of Darkness 5e system for Foundry VTT",
-  "version": "5.1.9",
+  "version": "5.2.0",
   "compatibility": {
     "minimum": "13",
     "verified": "13.348",
@@ -29,6 +29,68 @@
   "styles": [
     "display/wod5e-styling.css",
     "lib/flexdatalist/flexdatalist.css"
+  ],
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "willpower",
+  "grid": {
+    "units": "ft",
+    "distance": 5
+  },
+  "initiative": "1d10",
+  "changelog": "https://github.com/WoD5E-Developers/wod5e/releases/tag/5.2.0",
+  "license": "./LICENSE.md",
+  "url": "https://github.com/WoD5E-Developers/wod5e",
+  "bugs": "https://github.com/WoD5E-Developers/wod5e/issues",
+  "background": "systems/vtm5e/assets/images/wodcity.jpg",
+  "manifest": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.2.0/system.json",
+  "download": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.2.0/vtm5e.zip",
+  "flags": {
+    "hotReload": {
+      "extensions": [
+        "css",
+        "hbs",
+        "json"
+      ],
+      "paths": [
+        "display",
+        "lang"
+      ]
+    }
+  },
+  "packs": [
+    {
+      "label": "Macros",
+      "type": "Macro",
+      "name": "macros",
+      "path": "packs/macros",
+      "system": "vtm5e",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "label": "Conditions",
+      "type": "Item",
+      "name": "conditions",
+      "path": "packs/conditions",
+      "system": "vtm5e",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "World of Darkness 5e",
+      "sorting": "m",
+      "packs": [
+        "macros",
+        "conditions"
+      ],
+      "color": "#8c0303"
+    }
   ],
   "languages": [
     {
@@ -211,67 +273,5 @@
       "name": "Hunter (Ukrainian)",
       "path": "lang/uk/hunter-uk.json"
     }
-  ],
-  "packs": [
-    {
-      "label": "Macros",
-      "type": "Macro",
-      "name": "macros",
-      "path": "packs/macros",
-      "system": "vtm5e",
-      "ownership": {
-        "PLAYER": "OBSERVER",
-        "ASSISTANT": "OWNER"
-      }
-    },
-    {
-      "label": "Conditions",
-      "type": "Item",
-      "name": "conditions",
-      "path": "packs/conditions",
-      "system": "vtm5e",
-      "ownership": {
-        "PLAYER": "OBSERVER",
-        "ASSISTANT": "OWNER"
-      }
-    }
-  ],
-  "packFolders": [
-    {
-      "name": "World of Darkness 5e",
-      "sorting": "m",
-      "packs": [
-        "macros",
-        "conditions"
-      ],
-      "color": "#8c0303"
-    }
-  ],
-  "primaryTokenAttribute": "health",
-  "secondaryTokenAttribute": "willpower",
-  "grid": {
-    "units": "ft",
-    "distance": 5
-  },
-  "initiative": "1d10",
-  "changelog": "https://github.com/WoD5E-Developers/wod5e/releases/tag/5.1.9",
-  "license": "./LICENSE.md",
-  "url": "https://github.com/WoD5E-Developers/wod5e",
-  "bugs": "https://github.com/WoD5E-Developers/wod5e/issues",
-  "background": "systems/vtm5e/assets/images/wodcity.jpg",
-  "manifest": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.1.9/system.json",
-  "download": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.1.9/vtm5e.zip",
-  "flags": {
-    "hotReload": {
-      "extensions": [
-        "css",
-        "hbs",
-        "json"
-      ],
-      "paths": [
-        "display",
-        "lang"
-      ]
-    }
-  }
+  ]
 }

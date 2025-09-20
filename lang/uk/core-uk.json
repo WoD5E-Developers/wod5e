@@ -339,6 +339,7 @@
       "ModifiedSkillsHint": "Дозволяє змінювати існуючі навички.",
       "NeutralXpIconOverride": "Іконка нейтрального ОД",
       "NeutralXpIconOverrideHint": "Замінює стандартну іконку для записів ОД, які не є ні отриманими, ні витраченими.",
+      "_NewStringModification": "",
       "None": "Немає",
       "Rename": "Перейменувати",
       "SaveChanges": "Зберегти зміни",

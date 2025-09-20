@@ -103,6 +103,11 @@
                       {{/if}}
                     </div>
                 </div>
+                <div class="werewolf-form-image">
+                  {{#with (lookup member.system.forms member.system.activeForm)}}
+                    <img src="{{glyph}}" width="50" height="50" title="{{localize label}}"/>
+                  {{/with}}
+                </div>
               {{/ifeq}}
             </div>
           </div>

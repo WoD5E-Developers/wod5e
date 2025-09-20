@@ -8,6 +8,7 @@ import { _onCreatePower, _onDeletePower } from './scripts/spc-powers.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './wta/scripts/balance.js'
 // Base actor sheet to extend from
 import { WoDActor } from './wod-actor-base.js'
+import { _onToggleDespair } from './htr/scripts/toggle-despair.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
@@ -23,7 +24,8 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       deleteSPCPower: _onDeletePower,
       editExceptionalPools: _onEditExceptionalPools,
       haranoRoll: _onHaranoRoll,
-      haugloskRoll: _onHaugloskRoll
+      haugloskRoll: _onHaugloskRoll,
+      toggleDespair: _onToggleDespair
     }
   }
 
@@ -112,6 +114,10 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
       data.humanity = actorData.humanity
       data.hunger = actorData.hunger
       data.bloodpotency = Math.min(Math.max(actorData.blood.potency, 0), 10) // Make sure Blood Potency doesn't go over 10 or under 0
+    }
+
+    if (data.gamesystem === 'hunter') {
+      data.despairActive = (actorData?.despair?.value ? actorData?.despair?.value : 0) > 0
     }
 
     if (data.currentActorType === 'werewolf') {

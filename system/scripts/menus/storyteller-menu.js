@@ -1,4 +1,4 @@
-/* global game, WOD5E, FormApplication, foundry, Dialog */
+/* global game, WOD5E, FormApplication, foundry */
 
 /* Definitions */
 import { Attributes } from '../../api/def/attributes.js'
@@ -31,26 +31,41 @@ export class StorytellerMenu extends FormApplication {
 
     this.listKeys = {
       attribute: {
+        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
+          string: game.i18n.localize('WOD5E.AttributesList.Label')
+        }),
         defCategory: 'Attributes',
         labelCategory: 'AttributesList',
         defClass: Attributes
       },
       skill: {
+        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
+          string: game.i18n.localize('WOD5E.SkillsList.Label')
+        }),
         defCategory: 'Skills',
         labelCategory: 'SkillsList',
         defClass: Skills
       },
       discipline: {
+        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
+          string: game.i18n.localize('WOD5E.VTM.Discipline')
+        }),
         defCategory: 'Disciplines',
         labelCategory: 'DisciplinesList',
         defClass: Disciplines
       },
       edge: {
+        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
+          string: game.i18n.localize('WOD5E.HTR.Edge')
+        }),
         defCategory: 'Edges',
         labelCategory: 'EdgesList',
         defClass: Edges
       },
       gift: {
+        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
+          string: game.i18n.localize('WOD5E.WTA.Gift')
+        }),
         defCategory: 'Gifts',
         labelCategory: 'GiftsList',
         defClass: Gifts
@@ -198,39 +213,42 @@ export class StorytellerMenu extends FormApplication {
   // Function for getting the information necessary for the selection dialog
   async _onGenerateModPrompt (type) {
     const list = await WOD5E[this.listKeys[type].defCategory].getList({})
-    this._onRenderPromptDialog(type, list, game.i18n.localize(`WOD5E.${this.listKeys[type].labelCategory}.Label`))
+    this._onRenderPromptDialog(type, list, this.listKeys[type].newModTitle)
   }
 
   // Function for rendering the dialog for adding a new modification
   async _onRenderPromptDialog (type, list, title) {
+    const modifiedKey = `modified${this.listKeys[type].defCategory}`
+    const modifiedList = await game.settings.get('vtm5e', modifiedKey)
+
+    const effectiveList = Object.fromEntries(Object.entries(list).filter(item => !modifiedList.some(mod => mod.id === item[0])))
+
     const template = 'systems/vtm5e/display/ui/select-dialog.hbs'
-    const content = await foundry.applications.handlebars.renderTemplate(template, { list })
+    const content = await foundry.applications.handlebars.renderTemplate(template, { options: effectiveList })
 
-    new Dialog({
-      title,
+    const result = await foundry.applications.api.DialogV2.input({
+      window: { title },
       content,
-      buttons: {
-        add: {
-          icon: '<i class="fas fa-check"></i>',
-          label: game.i18n.localize('WOD5E.Add'),
-          callback: async html => {
-            const dialogHTML = html[0]
-
-            const id = dialogHTML.querySelector('[id=optionSelect]').value
-            const label = list[id]?.label || id
-            const modifiedKey = `modified${this.listKeys[type].defCategory}`
-            const modifiedList = await game.settings.get('vtm5e', modifiedKey)
-            modifiedList.push({ id, label, rename: '', hidden: false })
-            await game.settings.set('vtm5e', modifiedKey, modifiedList)
-          }
-        },
-        cancel: {
-          icon: '<i class="fas fa-times"></i>',
-          label: game.i18n.localize('WOD5E.Cancel')
-        }
+      ok: {
+        icon: 'fas fa-check',
+        label: game.i18n.localize('WOD5E.Add')
       },
-      default: 'add'
-    }).render(true)
+      buttons: [
+        {
+          action: 'cancel',
+          icon: 'fas fa-times',
+          label: game.i18n.localize('WOD5E.Cancel'),
+          type: 'button'
+        }
+      ]
+    })
+
+    if (result !== 'cancel') {
+      const id = result.optionSelect
+      const label = list[id]?.label || id
+      modifiedList.push({ id, label, rename: '', hidden: false })
+      await game.settings.set('vtm5e', modifiedKey, modifiedList)
+    }
   }
 
   // Function for removing a change

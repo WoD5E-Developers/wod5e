@@ -106,33 +106,34 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     const html = this.element
     const item = this.item
 
-    // Input for the list of keys
-    const input = html.querySelector('.effectKeys')
-
     // List of keys to choose from
     const data = getEffectKeys()
 
-    $(input).flexdatalist({
-      selectionRequired: 1,
-      minLength: 1,
-      searchIn: ['displayName'],
-      multiple: true,
-      valueProperty: 'id',
-      searchContain: true,
-      data
-    })
+    // Initialize flexdataset for each input
+    const keyInputs = html.querySelectorAll('.effectKeys')
+    keyInputs.forEach(function (element) {
+      $(element).flexdatalist({
+        selectionRequired: 1,
+        minLength: 1,
+        searchIn: ['displayName'],
+        multiple: true,
+        valueProperty: 'id',
+        searchContain: true,
+        data
+      })
 
-    $(input).on('change:flexdatalist', function (event) {
-      event.preventDefault()
+      $(element).on('change:flexdatalist', function (event) {
+        event.preventDefault()
 
-      // Input for the list of keys
-      const values = $(this).flexdatalist('value')
+        // Input for the list of keys
+        const values = $(this).flexdatalist('value')
 
-      const effect = event.target.closest('[data-effect-id]')
-      const effectId = effect.dataset.effectId
+        const effect = event.target.closest('[data-effect-id]')
+        const effectId = effect.dataset.effectId
 
-      item.update({
-        [`system.effects.${effectId}.keys`]: values
+        item.update({
+          [`system.effects.${effectId}.keys`]: values
+        })
       })
     })
   }
