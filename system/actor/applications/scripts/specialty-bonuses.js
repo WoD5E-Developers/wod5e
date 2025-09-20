@@ -51,12 +51,16 @@ export const _onAddModifier = async function (event) {
       }
     ],
     render: (_event, dialog) => {
-      $(dialog.element.querySelector('#modifier')).flexdatalist({
-        selectionRequired: true,
-        minLength: 1,
-        multiple: true,
-        searchContain: true,
-        valueProperty: 'value'
+      // Initialize flexdataset for each input
+      const modifierInputs = dialog.element.querySelectorAll('#modifier')
+      modifierInputs.forEach(function (element) {
+        $(element).flexdatalist({
+          selectionRequired: true,
+          minLength: 1,
+          multiple: true,
+          searchContain: true,
+          valueProperty: 'value'
+        })
       })
     },
     classes: ['wod5e', system]
@@ -153,12 +157,16 @@ export const _onEditModifier = async function (event, target) {
       }
     ],
     render: (_event, dialog) => {
-      $(dialog.element.querySelector('#modifier')).flexdatalist({
-        selectionRequired: true,
-        minLength: 1,
-        multiple: true,
-        searchContain: true,
-        valueProperty: 'value'
+      // Initialize flexdataset for each input
+      const modifierInputs = dialog.element.querySelectorAll('#modifier')
+      modifierInputs.forEach(function (element) {
+        $(element).flexdatalist({
+          selectionRequired: true,
+          minLength: 1,
+          multiple: true,
+          searchContain: true,
+          valueProperty: 'value'
+        })
       })
     },
     classes: ['wod5e', system]

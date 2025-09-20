@@ -160,8 +160,6 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
   _onRender () {
     const html = this.element
 
-    // Input for the list of selectors
-    const input = html.querySelector('.modifier-selectors')
     // List of selectors to choose from
     const skillOptions = Skills.getList({
       prependType: true
@@ -177,14 +175,18 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
       displayName: 'All Skills'
     })
 
-    $(input).flexdatalist({
-      selectionRequired: 1,
-      minLength: 1,
-      searchIn: ['displayName'],
-      multiple: true,
-      valueProperty: 'id',
-      searchContain: true,
-      data
+    // Initialize flexdataset for each input
+    const selectorInputs = html.querySelectorAll('.modifier-selectors')
+    selectorInputs.forEach(function (element) {
+      $(element).flexdatalist({
+        selectionRequired: 1,
+        minLength: 1,
+        searchIn: ['displayName'],
+        multiple: true,
+        valueProperty: 'id',
+        searchContain: true,
+        data
+      })
     })
   }
 }

@@ -133,18 +133,21 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
     // Update the window title (since ItemSheetV2 doesn't do it automatically)
     this.window.title.textContent = this.title
 
-    // Input for the list of selectors
-    const input = html[0].querySelector('.modifier-selectors')
     // Style the selectors properly
     const data = getSelectorsList()
-    $(input).flexdatalist({
-      selectionRequired: 1,
-      minLength: 1,
-      searchIn: ['displayName'],
-      multiple: true,
-      valueProperty: 'id',
-      searchContain: true,
-      data
+
+    // Initialize flexdataset for each input
+    const selectorInputs = html.querySelectorAll('.modifier-selectors')
+    selectorInputs.forEach(function (element) {
+      $(element).flexdatalist({
+        selectionRequired: 1,
+        minLength: 1,
+        searchIn: ['displayName'],
+        multiple: true,
+        valueProperty: 'id',
+        searchContain: true,
+        data
+      })
     })
 
     // Add a new sheet styling depending on the type of sheet

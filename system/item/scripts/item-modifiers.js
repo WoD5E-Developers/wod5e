@@ -45,12 +45,16 @@ export const _onAddModifier = async function (event) {
       }
     ],
     render: (_event, dialog) => {
-      $(dialog.element.querySelector('.modifier-selectors')).flexdatalist({
-        selectionRequired: true,
-        minLength: 1,
-        multiple: true,
-        valueProperty: 'value',
-        searchContain: true
+      // Initialize flexdataset for each input
+      const selectorInputs = dialog.element.querySelectorAll('.modifier-selectors')
+      selectorInputs.forEach(function (element) {
+        $(element).flexdatalist({
+          selectionRequired: true,
+          minLength: 1,
+          multiple: true,
+          valueProperty: 'value',
+          searchContain: true
+        })
       })
 
       const activeWhenCheck = dialog.element.querySelector('#activeWhenCheck')
@@ -153,12 +157,16 @@ export const _onEditModifier = async function (event, target) {
       }
     ],
     render: (_event, dialog) => {
-      $(dialog.element.querySelector('.modifier-selectors')).flexdatalist({
-        selectionRequired: true,
-        minLength: 1,
-        multiple: true,
-        valueProperty: 'value',
-        searchContain: true
+      // Initialize flexdataset for each input
+      const selectorInputs = dialog.element.querySelectorAll('.modifier-selectors')
+      selectorInputs.forEach(function (element) {
+        $(element).flexdatalist({
+          selectionRequired: true,
+          minLength: 1,
+          multiple: true,
+          valueProperty: 'value',
+          searchContain: true
+        })
       })
 
       const activeWhenCheck = dialog.element.querySelector('#activeWhenCheck')
