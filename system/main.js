@@ -182,19 +182,6 @@ Hooks.once('ready', async function () {
       _updateCSSVariable(settingId, cssVariable, settingValue)
     })
   })
-
-  // Adjust some default game settings
-  game.settings.set('core', 'prototypeTokenOverrides', {
-    // Default tokens to display mode on-owner-hover for token bars and the display name
-    base: {
-      displayName: CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      displayBars: CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER
-    },
-    // Default SPC token dispositions to neutral
-    spc: {
-      disposition: CONST.TOKEN_DISPOSITIONS.NEUTRAL
-    }
-  })
 })
 
 // DiceSoNice functionality
