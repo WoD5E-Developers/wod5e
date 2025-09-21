@@ -18,7 +18,7 @@ jobs:
             id: myRequest
             uses: fjogeleit/http-request-action@v1
             with:
-                url: 'https://api.foundryvtt.com/_api/packages/release_version/'
+                url: 'https://foundryvtt.com/_api/packages/release_version/'
                 method: 'POST'
                 customHeaders: '{"Authorization": "${{ secrets.FOUNDRY_API_TOKEN }}"}'
                 preventFailureOnNoResponse: true
