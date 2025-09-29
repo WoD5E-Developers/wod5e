@@ -62,26 +62,6 @@ export const loadSettings = async function () {
     }
   })
 
-  /* Chat roller is disabled until it can be fixed
-  game.settings.register('vtm5e', 'useChatRoller', {
-    name: 'Chat Roller',
-    hint: 'Display dice roller in chat window.',
-    scope: 'world',
-    config: true,
-    default: false,
-    type: Boolean
-  })
-
-  game.settings.register('vtm5e', 'chatRollerSortAbilities', {
-    name: 'Sort Abilities in Chat Roller',
-    hint: 'Sort abilities (Attributes, Skills, Disciplines, Edges) alphabetically in the chat roller. Disable to sort in the order on the character sheet (grouping physical, social, and mental).',
-    scope: 'client',
-    config: true,
-    default: true,
-    type: Boolean
-  })
-  */
-
   /*
     Automation Settings
   */

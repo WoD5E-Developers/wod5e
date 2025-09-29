@@ -2,7 +2,7 @@
 
 // Various button functions
 import { _onToggleCollapse } from '../actor/scripts/on-toggle-collapse.js'
-import { _onPromptForRoll } from '../scripts/prompt-for-roll.js'
+import { _onRenderRollMenu } from '../scripts/prompt-for-roll.js'
 import { timeSinceShort } from '../scripts/time-since-short.js'
 
 export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
@@ -10,7 +10,7 @@ export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
   static DEFAULT_OPTIONS = {
     actions: {
       toggleCollapse: _onToggleCollapse,
-      promptForRoll: _onPromptForRoll
+      renderRollMenu: _onRenderRollMenu
     }
   }
 
@@ -38,8 +38,8 @@ Hooks.on('renderChatLog', async (object, html) => {
   const wod5eChatButtons = document.createElement('div')
   wod5eChatButtons.innerHTML = `
     <div class="wod5e-chat-buttons flexrow">
-      <button type="button" class="ui-control icon fa-solid fa-dice-d10" data-action="promptForRoll"
-        data-tooltip aria-label="Prompt Players For Roll">
+      <button type="button" class="ui-control icon fa-solid fa-dice-d10" data-action="renderRollMenu"
+        data-tooltip aria-label="Open Roll Menu">
       </button>
     </div>
   `

@@ -1,21 +1,38 @@
 <div class="main flexcol">
-  <div class="roll-menu-hint" title="The Roll Menu is an application where you can handle all non-actor rolls or rolls that require greater control over the data than what the actor sheets provide. This includes prompting players for specific rolls, constructing extended rolls, and saving custom rolls used across actors.">
-    <i class="fa-solid fa-circle-info"></i> <i>What is the Roll Menu?</i>
-  </div>
   <div class="roll-menu-body flexcol">
-    <div class="splat-die-options flexrow">
-      <div class="die-img vampire-dice enabled">
-        <img title="Toggle Vampire Dice" width="40px" src="systems/vtm5e/assets/icons/dice/vampire/hunger-critical.png"/>
-      </div>
-      <div class="die-img werewolf-dice enabled">
-        <img title="Toggle Werewolf Dice" width="40px" src="systems/vtm5e/assets/icons/dice/werewolf/rage-critical.png"/>
-      </div>
-      <div class="die-img hunter-dice enabled">
-        <img title="Toggle Hunter Dice" width="40px" src="systems/vtm5e/assets/icons/dice/hunter/desperation-critical.png"/>
-      </div>
+    <!-- Name and Splat selectors -->
+    <div class="roll-basic-info flexrow">
+      <label>
+        Name
+        <input type="text" name="name" value="{{activeRoll.name}}" />
+      </label>
+      <label>
+        Splat
+        <select id="splatSelect" name="splatSelect">
+          <option value="">{{localize "WOD5E.Any"}}</option>
+          {{selectOptions splatOptions selected=activeRoll.splat localize=true}}
+        </select>
+      </label>
     </div>
     <hr>
     <div class="roll-constructor">
+      <!-- Skill and Attribute selectors -->
+      <div class="roll-dice-selectors flexrow">
+        <label>
+          Skill
+          <select id="skillSelect" name="skillSelect">
+            <option value="">{{localize "WOD5E.None"}}</option>
+            {{selectOptions skillOptions selected=activeRoll.dice.skill localize=true}}
+          </select>
+        </label>
+        <label>
+          Attribute
+          <select id="attributeSelect" name="attributeSelect">
+            <option value="">{{localize "WOD5E.None"}}</option>
+            {{selectOptions attributeOptions selected=activeRoll.dice.attribute localize=true}}
+          </select>
+        </label>
+      </div>
       <div class="constructed-roll">
         {{#each activeRoll.dice as |die key|}}
           <div>
@@ -23,16 +40,13 @@
           </div>
         {{/each}}
       </div>
-      <div class="add-dice-button">
-        Add Dice
-      </div>
       <div class="roll-options flexrow">
         <div class="option-toggle">
-          <input type="checkbox" name="extended-roll-checkbox" checked="{{extended}}" data-action="toggle-extended"/>
+          <input type="checkbox" name="extendedRollCheckbox" {{#if activeRoll.isExtendedRoll}}checked{{/if}}/>
           Is Extended?
         </div>
         <div class="option-toggle">
-          <input type="checkbox" name="contested-roll-checkbox" checked="{{contested}}" data-action="toggle-contested"/>
+          <input type="checkbox" name="contestedRollCheckbox" {{#if activeRoll.isContestedRoll}}checked{{/if}}/>
           Is Contested?
         </div>
       </div>
@@ -41,13 +55,12 @@
     <div class="roll-menu-footer">
       <div class="roll-buttons">
         <div class="roll-button">
-          Post To Chat
-        </div>
-        <div class="roll-button">
+          <i class="fa-solid fa-dice-d10"></i>
           Roll
         </div>
         <div class="roll-button">
-          Save Roll
+          <i class="fas fa-comment-alt"></i>
+          Prompt in Chat
         </div>
       </div>
     </div>

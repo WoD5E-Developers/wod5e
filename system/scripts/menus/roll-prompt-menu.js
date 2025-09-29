@@ -1,18 +1,16 @@
-/* global foundry */
+/* global foundry, game, WOD5E */
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
+import { _onSelectSavedRoll } from './scripts/on-select-saved-roll.js'
 
 export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV2) {
   constructor () {
     super()
-
-    this.data = {
-      savedRolls: {}
-    }
   }
 
   static DEFAULT_OPTIONS = {
     tag: 'form',
+    id: 'wod5e-roll-menu',
     form: {
       submitOnChange: true,
       handler: RollMenuApplication.applicationHandler
@@ -25,11 +23,10 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     classes: ['wod5e', 'dialog-app', 'sheet', 'application', 'roll-menu'],
     position: {
       width: 480,
-      height: 400
+      height: 300
     },
     actions: {
-      toggleExtended: RollMenuApplication._onToggleExtended,
-      toggleContested: RollMenuApplication._onToggleContested
+      selectSavedRoll: _onSelectSavedRoll
     }
   }
 
@@ -43,10 +40,19 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
   }
 
   async _prepareContext () {
-    // Top-level variables
-    const data = this.data
+    const data = await super._prepareContext()
 
-    data.test = 'test'
+    data.activeRollID = game.users.current.getFlag('vtm5e', 'rollMenuActiveRoll') || ''
+    data.savedRolls = game.users.current.getFlag('vtm5e', 'rollMenuSavedRolls') || {}
+
+    // Splat definitions
+    data.splatOptions = WOD5E.Systems.getList({})
+
+    // Attribute definitions
+    data.attributeOptions = WOD5E.Attributes.getList({})
+
+    // Skill definitions
+    data.skillOptions = WOD5E.Skills.getList({})
 
     return data
   }
@@ -55,30 +61,10 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     context = await super._preparePartContext(partId, context, options)
 
     switch (partId) {
-      // Saved Rolls
-      case 'savedRolls':
-        context.savedRolls = [
-          {
-            name: 'Saved roll 1'
-          },
-          {
-            name: 'Super Long Rollllllll name'
-          }
-        ]
-        break
-      // Body
       case 'body':
         // Part-specific data
-        context.description = 'Test'
-
-        context.activeRoll = {
-          name: 'Saved roll 1',
-          dice: [
-            {
-              type: 'skill',
-              value: 'Athletics'
-            }
-          ]
+        if (context.activeRollID) {
+          context.activeRoll = context.savedRolls[context.activeRollID]
         }
 
         break
@@ -88,13 +74,52 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
   }
 
   static async applicationHandler (event, form, formData) {
-    console.log(formData)
+    const data = formData.object
+
+    const activeRoll = game.users.current.getFlag('vtm5e', 'rollMenuActiveRoll')
+
+    // If there's no active roll, don't try to update anything
+    if (!activeRoll) return
+
+    // If there is an active roll, we can update it as input fields are updated
+    const savedRolls = game.users.current.getFlag('vtm5e', 'rollMenuSavedRolls')
+
+    // If the activeRoll ID exists, update it
+    if (savedRolls && Object.prototype.hasOwnProperty.call(savedRolls, activeRoll)) {
+      savedRolls[activeRoll] = {
+        name: data.name,
+        splat: data.splatSelect,
+        isExtendedRoll: data.extendedRollCheckbox,
+        isContestedRoll: data.contestedRollCheckbox,
+        dice: {
+          skill: data.skillSelect,
+          attribute: data.attributeSelect
+        }
+      }
+    }
+
+    // Save the mutated object
+    await game.users.current.setFlag('vtm5e', 'rollMenuSavedRolls', savedRolls)
 
     // Re-render the application
     this.render()
   }
 
-  static async _onToggleContested (event, target) {
-    console.log(target)
+  async _onRender () {
+    const html = this.element
+
+    // Check if the Roll Menu Hint already exists
+    const existingRollMenuHint = html.querySelector('.roll-menu-hint')
+    if (existingRollMenuHint) return
+
+    // Create the Roll Menu Hint if it doesn't already exist
+    const explanationElement = document.createElement('div')
+    explanationElement.innerHTML = `
+      <div class="roll-menu-hint" title="The Roll Menu is an application where you can handle all non-actor rolls or rolls that require greater control over the data than what the actor sheets provide. This includes prompting players for specific rolls, constructing extended rolls, and saving custom rolls used across actors.">
+        <i class="fa-solid fa-circle-info"></i> <i>What is the Roll Menu?</i>
+      </div>
+    `
+
+    html.querySelector('.window-header .window-title').after(explanationElement)
   }
 }
