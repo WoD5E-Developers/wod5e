@@ -57,8 +57,14 @@
   margin-top: 5px;
 }
 
-.roll-menu.application {
+.roll-menu.application.minimized,
+.roll-menu.application.minimizing {
+  .roll-menu-hint {
+    display: none;
+  }
+}
 
+.roll-menu.application {
   .window-content {
     padding: 0;
     flex-direction: row;

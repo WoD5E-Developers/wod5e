@@ -114,8 +114,9 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
 
     // Create the Roll Menu Hint if it doesn't already exist
     const explanationElement = document.createElement('div')
+    explanationElement.classList.add('roll-menu-hint')
     explanationElement.innerHTML = `
-      <div class="roll-menu-hint" title="The Roll Menu is an application where you can handle all non-actor rolls or rolls that require greater control over the data than what the actor sheets provide. This includes prompting players for specific rolls, constructing extended rolls, and saving custom rolls used across actors.">
+      <div title="The Roll Menu is an application where you can handle all non-actor rolls or rolls that require greater control over the data than what the actor sheets provide. This includes prompting players for specific rolls, constructing extended rolls, and saving custom rolls used across actors.">
         <i class="fa-solid fa-circle-info"></i> <i>What is the Roll Menu?</i>
       </div>
     `
