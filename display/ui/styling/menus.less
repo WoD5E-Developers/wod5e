@@ -72,14 +72,19 @@
     padding-right: 1rem;
     border-right: 1px solid;
     width: 150px;
+    display: flex;
+    flex-direction: column;
 
     .title {
       font-size: 16pt;
       text-align: center;
     }
 
-    .list {
+    .saved-rolls-list {
       padding: 5px;
+      display: flex;
+      flex-grow: 1;
+      overflow-y: scroll;
 
       .saved-roll.active {
         font-weight: bold;
@@ -89,16 +94,17 @@
         cursor: pointer;
       }
     }
+
+    .saved-rolls-footer {
+      margin-top: auto;
+      padding: 0.5rem;
+      text-align: center;
+    }
   }
 
   .main {
     flex-grow: 1;
     position: relative;
-
-    .roll-menu-hint {
-      padding: 5px;
-      text-align: right;
-    }
 
     .roll-menu-body {
       padding: 1rem;
@@ -134,12 +140,6 @@
 
         .constructed-roll {
           flex-grow: 1;
-        }
-
-        .add-dice-button {
-          flex-grow: 1;
-          text-align: center;
-          padding: 10px;
         }
 
         .roll-options {

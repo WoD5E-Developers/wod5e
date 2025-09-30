@@ -681,27 +681,33 @@ h3.item-name {
   padding-right: 1rem;
   border-right: 1px solid;
   width: 150px;
+  display: flex;
+  flex-direction: column;
 }
 .roll-menu.application .saved-rolls .title {
   font-size: 16pt;
   text-align: center;
 }
-.roll-menu.application .saved-rolls .list {
+.roll-menu.application .saved-rolls .saved-rolls-list {
   padding: 5px;
+  display: flex;
+  flex-grow: 1;
+  overflow-y: scroll;
 }
-.roll-menu.application .saved-rolls .list .saved-roll.active {
+.roll-menu.application .saved-rolls .saved-rolls-list .saved-roll.active {
   font-weight: bold;
 }
-.roll-menu.application .saved-rolls .list .saved-roll:not(.active) {
+.roll-menu.application .saved-rolls .saved-rolls-list .saved-roll:not(.active) {
   cursor: pointer;
+}
+.roll-menu.application .saved-rolls .saved-rolls-footer {
+  margin-top: auto;
+  padding: 0.5rem;
+  text-align: center;
 }
 .roll-menu.application .main {
   flex-grow: 1;
   position: relative;
-}
-.roll-menu.application .main .roll-menu-hint {
-  padding: 5px;
-  text-align: right;
 }
 .roll-menu.application .main .roll-menu-body {
   padding: 1rem;
@@ -732,11 +738,6 @@ h3.item-name {
 }
 .roll-menu.application .main .roll-menu-body .roll-constructor .constructed-roll {
   flex-grow: 1;
-}
-.roll-menu.application .main .roll-menu-body .roll-constructor .add-dice-button {
-  flex-grow: 1;
-  text-align: center;
-  padding: 10px;
 }
 .roll-menu.application .main .roll-menu-body .roll-constructor .roll-options .option-toggle {
   text-align: center;

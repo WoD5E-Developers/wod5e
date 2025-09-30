@@ -1,10 +1,17 @@
 <div class="saved-rolls">
   <div class="title">Saved Rolls</div>
-  <div class="flexcol list">
+  <div class="flexcol saved-rolls-list">
     {{#each savedRolls as |roll key|}}
       <div class="saved-roll {{#ifeq key ../activeRollID}}active{{/ifeq}}" data-action="selectSavedRoll" data-id="{{key}}">
-        {{roll.name}}
+        {{#if roll.name}}
+          {{roll.name}}
+        {{else}}
+          Unnamed
+        {{/if}}
       </div>
     {{/each}}
+  </div>
+  <div class="saved-rolls-footer">
+    Add New Roll
   </div>
 </div>
