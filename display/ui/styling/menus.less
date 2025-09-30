@@ -57,9 +57,16 @@
   margin-top: 5px;
 }
 
-.roll-menu .window-content {
-  padding: 0;
-  flex-direction: row;
+.roll-menu.application {
+
+  .window-content {
+    padding: 0;
+    flex-direction: row;
+  }
+
+  .roll-menu-hint {
+    cursor: pointer;
+  }
 
   .saved-rolls {
     padding-right: 1rem;
@@ -73,6 +80,14 @@
 
     .list {
       padding: 5px;
+
+      .saved-roll.active {
+        font-weight: bold;
+      }
+
+      .saved-roll:not(.active) {
+        cursor: pointer;
+      }
     }
   }
 
