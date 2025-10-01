@@ -1,4 +1,4 @@
-import { RollMenuApplication } from './menus/roll-prompt-menu.js'
+import { RollMenuApplication } from '../applications/roll-menu/roll-prompt-menu.js'
 
 export const _onRenderRollMenu = async function (event) {
   event.preventDefault()
