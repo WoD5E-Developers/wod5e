@@ -1,6 +1,9 @@
 /* global foundry, game, WOD5E */
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
+import { _onAddNewRoll } from './scripts/on-add-new-dice.js'
+import { _onPromptInChat } from './scripts/on-prompt-in-chat.js'
+import { _onRollFromRollMenu } from './scripts/on-roll-from-roll-menu.js'
 import { _onSelectSavedRoll } from './scripts/on-select-saved-roll.js'
 
 export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -26,7 +29,10 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
       height: 300
     },
     actions: {
-      selectSavedRoll: _onSelectSavedRoll
+      selectSavedRoll: _onSelectSavedRoll,
+      addNewRoll: _onAddNewRoll,
+      rollFromRollMenu: _onRollFromRollMenu,
+      promptInChat: _onPromptInChat
     }
   }
 

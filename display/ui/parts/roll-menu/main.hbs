@@ -3,11 +3,11 @@
     <!-- Name and Splat selectors -->
     <div class="roll-basic-info flexrow">
       <label>
-        Name
+        {{localize 'WOD5E.Name'}}
         <input type="text" name="name" value="{{activeRoll.name}}" />
       </label>
       <label>
-        Splat
+        {{localize 'WOD5E.System'}}
         <select id="splatSelect" name="splatSelect">
           <option value="">{{localize "WOD5E.Any"}}</option>
           {{selectOptions splatOptions selected=activeRoll.splat localize=true}}
@@ -19,14 +19,14 @@
       <!-- Skill and Attribute selectors -->
       <div class="roll-dice-selectors flexrow">
         <label>
-          Skill
+          {{localize 'WOD5E.SkillsList.Label'}}
           <select id="skillSelect" name="skillSelect">
             <option value="">{{localize "WOD5E.None"}}</option>
             {{selectOptions skillOptions selected=activeRoll.dice.skill localize=true}}
           </select>
         </label>
         <label>
-          Attribute
+          {{localize 'WOD5E.AttributesList.Label'}}
           <select id="attributeSelect" name="attributeSelect">
             <option value="">{{localize "WOD5E.None"}}</option>
             {{selectOptions attributeOptions selected=activeRoll.dice.attribute localize=true}}
@@ -43,24 +43,24 @@
       <div class="roll-options flexrow">
         <div class="option-toggle">
           <input type="checkbox" name="extendedRollCheckbox" {{#if activeRoll.isExtendedRoll}}checked{{/if}}/>
-          Is Extended?
+          {{localize 'WOD5E.RollList.IsExtended'}}
         </div>
         <div class="option-toggle">
           <input type="checkbox" name="contestedRollCheckbox" {{#if activeRoll.isContestedRoll}}checked{{/if}}/>
-          Is Contested?
+          {{localize 'WOD5E.RollList.IsContested'}}
         </div>
       </div>
     </div>
     <hr>
     <div class="roll-menu-footer">
-      <div class="roll-buttons">
-        <div class="roll-button">
+      <div class="roll-menu-footer-buttons">
+        <div class="roll-button clickable-button" data-action="roll">
           <i class="fa-solid fa-dice-d10"></i>
-          Roll
+          {{localize 'WOD5E.RollList.Label'}}
         </div>
-        <div class="roll-button">
+        <div class="prompt-button clickable-button" data-action="promptInChat">
           <i class="fas fa-comment-alt"></i>
-          Prompt in Chat
+          {{localize 'WOD5E.RollList.PromptInChat'}}
         </div>
       </div>
     </div>

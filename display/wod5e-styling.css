@@ -681,6 +681,12 @@ h3.item-name {
 .roll-menu.application .roll-menu-hint {
   cursor: pointer;
 }
+.roll-menu.application .clickable-button {
+  cursor: pointer;
+}
+.roll-menu.application .clickable-button:hover {
+  font-weight: bold;
+}
 .roll-menu.application .saved-rolls {
   padding-right: 1rem;
   border-right: 1px solid;
@@ -750,12 +756,13 @@ h3.item-name {
   margin-top: auto;
   padding: 0.5rem;
 }
-.roll-menu.application .main .roll-menu-body .roll-menu-footer .roll-buttons {
+.roll-menu.application .main .roll-menu-body .roll-menu-footer .roll-menu-footer-buttons {
   display: flex;
   justify-content: space-between;
   padding: 5px;
 }
-.roll-menu.application .main .roll-menu-body .roll-menu-footer .roll-buttons .roll-button {
+.roll-menu.application .main .roll-menu-body .roll-menu-footer .roll-menu-footer-buttons .prompt-button,
+.roll-menu.application .main .roll-menu-body .roll-menu-footer .roll-menu-footer-buttons .roll-button {
   align-content: center;
 }
 

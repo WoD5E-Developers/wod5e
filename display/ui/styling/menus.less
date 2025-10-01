@@ -74,6 +74,14 @@
     cursor: pointer;
   }
 
+  .clickable-button {
+    cursor: pointer;
+  }
+
+  .clickable-button:hover {
+    font-weight: bold;
+  }
+
   .saved-rolls {
     padding-right: 1rem;
     border-right: 1px solid;
@@ -159,11 +167,12 @@
         margin-top: auto;
         padding: 0.5rem;
 
-        .roll-buttons {
+        .roll-menu-footer-buttons {
           display: flex;
           justify-content: space-between;
           padding: 5px;
 
+          .prompt-button,
           .roll-button {
             align-content: center;
           }
