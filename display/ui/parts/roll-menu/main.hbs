@@ -6,13 +6,6 @@
         {{localize 'WOD5E.Name'}}
         <input type="text" name="name" value="{{activeRoll.name}}" />
       </label>
-      <label>
-        {{localize 'WOD5E.System'}}
-        <select id="splatSelect" name="splatSelect">
-          <option value="">{{localize "WOD5E.Any"}}</option>
-          {{selectOptions splatOptions selected=activeRoll.splat localize=true}}
-        </select>
-      </label>
     </div>
     <hr>
     <div class="roll-constructor">
@@ -54,7 +47,7 @@
     <hr>
     <div class="roll-menu-footer">
       <div class="roll-menu-footer-buttons">
-        <div class="roll-button clickable-button" data-action="roll">
+        <div class="roll-button clickable-button" data-action="rollFromRollMenu">
           <i class="fa-solid fa-dice-d10"></i>
           {{localize 'WOD5E.RollList.Label'}}
         </div>

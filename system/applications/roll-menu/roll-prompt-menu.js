@@ -97,7 +97,6 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     if (savedRolls) {
       savedRolls[activeRoll] = {
         name: data.name,
-        splat: data.splatSelect,
         isExtendedRoll: data.extendedRollCheckbox,
         isContestedRoll: data.contestedRollCheckbox,
         dice: {

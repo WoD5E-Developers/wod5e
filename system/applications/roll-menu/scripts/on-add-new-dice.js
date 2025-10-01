@@ -11,7 +11,6 @@ export const _onAddNewRoll = async function (event) {
     name: game.i18n.format('WOD5E.NewString', {
       string: game.i18n.localize('WOD5E.RollList.Label')
     }),
-    splat: '',
     isExtendedRoll: false,
     isContestedRoll: false,
     dice: {
