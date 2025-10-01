@@ -13,8 +13,6 @@ export const _onRollFromRollMenu = async function (event) {
   if (activeRollObject.dice.skill) valuePathsArray.push(`skills.${activeRollObject.dice.skill}.value`)
   if (activeRollObject.dice.attribute) valuePathsArray.push(`attributes.${activeRollObject.dice.attribute}.value`)
 
-  console.log(valuePathsArray)
-
   WOD5E.api.RollFromDataset({
     dataset: {
       label: activeRollObject.name,
