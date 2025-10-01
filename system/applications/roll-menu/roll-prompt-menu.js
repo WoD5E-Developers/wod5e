@@ -82,16 +82,19 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
   static async applicationHandler (event, form, formData) {
     const data = formData.object
 
-    const activeRoll = game.users.current.getFlag('vtm5e', 'rollMenuActiveRoll')
+    let activeRoll = game.users.current.getFlag('vtm5e', 'rollMenuActiveRoll') || ''
 
-    // If there's no active roll, don't try to update anything
-    if (!activeRoll) return
+    // If there's no active roll, generate a new ID
+    if (!activeRoll) {
+      activeRoll = foundry.utils.randomID(8)
+      game.users.current.setFlag('vtm5e', 'rollMenuActiveRoll', activeRoll)
+    }
 
     // If there is an active roll, we can update it as input fields are updated
-    const savedRolls = game.users.current.getFlag('vtm5e', 'rollMenuSavedRolls')
+    const savedRolls = game.users.current.getFlag('vtm5e', 'rollMenuSavedRolls') || {}
 
-    // If the activeRoll ID exists, update it
-    if (savedRolls && Object.prototype.hasOwnProperty.call(savedRolls, activeRoll)) {
+    // Ensure that the savedRolls object exists, then add/update it
+    if (savedRolls) {
       savedRolls[activeRoll] = {
         name: data.name,
         splat: data.splatSelect,
