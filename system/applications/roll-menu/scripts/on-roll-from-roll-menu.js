@@ -1,7 +1,11 @@
-/* global game, WOD5E */
+/* global game, WOD5E, ChatMessage, ui */
 
 export const _onRollFromRollMenu = async function (event) {
   event.preventDefault()
+
+  const actor = game.actors.get(ChatMessage.getSpeaker().actor)
+
+  if (!actor) ui.notifications.warn(game.i18n.localize('WOD5E.Notifications.NoTokenSelected'))
 
   const activeRoll = await game.users.current.getFlag('vtm5e', 'rollMenuActiveRoll')
   const savedRolls = await game.users.current.getFlag('vtm5e', 'rollMenuSavedRolls')
@@ -17,6 +21,7 @@ export const _onRollFromRollMenu = async function (event) {
     dataset: {
       label: activeRollObject.name,
       valuePaths: valuePathsArray.join(' ')
-    }
+    },
+    actor
   })
 }

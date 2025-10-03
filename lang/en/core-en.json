@@ -246,7 +246,8 @@
       "NoActorDefined": "No actor defined",
       "NoSufficientPermission": "You do not have sufficient permissions to modify actor \"{string}.\"",
       "StringAlreadyInCurrentGroup": "Actor \"{string}\" is already part of this group.",
-      "StringAlreadyInOtherGroup": "Actor \"{string}\" is already in an existing group."
+      "StringAlreadyInOtherGroup": "Actor \"{string}\" is already in an existing group.",
+      "NoTokenSelected": "Unable to process roll: No token selected."
     },
     "RollList": {
       "AddCustomModifier": "Add Custom Modifier",
