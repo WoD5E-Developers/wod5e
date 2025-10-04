@@ -51,7 +51,7 @@ Hooks.once('init', async function () {
   CONFIG.Item.documentClass = WoDItem
   CONFIG.ui.chat = WoDChatLog
   CONFIG.ChatMessage.documentClass = WoDChatMessage
-  CONFIG.ChatMessage.template = 'systems/vtm5e/display/ui/chat/chat-message.hbs'
+  CONFIG.ChatMessage.template = 'systems/vtm5e/display/ui/chat/chat-message-default.hbs'
   CONFIG.ui.hotbar = WoDHotbar
   CONFIG.ui.actors = WOD5EActorDirectory
   CONFIG.Dice.rolls = [WOD5eRoll]

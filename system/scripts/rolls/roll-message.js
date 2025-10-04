@@ -13,7 +13,7 @@ import { getRollFooter } from './roll-labels/get-label.js'
  * @param flavor                    (Optional, default "") Text that appears in the description of the roll
  * @param difficulty                (Optional, default 0) The number of successes needed to pass the check
  */
-export async function generateRollMessage ({
+export async function generateRollMessageData ({
   roll,
   system = 'mortal',
   title,
@@ -38,8 +38,7 @@ export async function generateRollMessage ({
 
   const { totalResult, resultLabel } = await generateResult(basicDice, advancedDice)
 
-  const chatTemplate = 'systems/vtm5e/display/ui/chat/roll-message.hbs'
-  const chatData = {
+  const rollMessageData = {
     fullFormula: roll._formula,
     basicDice,
     advancedDice,
@@ -54,9 +53,7 @@ export async function generateRollMessage ({
     isContentVisible
   }
 
-  const chatMessage = await foundry.applications.handlebars.renderTemplate(chatTemplate, chatData)
-
-  return chatMessage
+  return rollMessageData
 
   // Function to help with rendering of basic dice
   async function generateBasicDiceDisplay (rollData) {

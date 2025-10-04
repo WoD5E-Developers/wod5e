@@ -1,4 +1,4 @@
-/* global game, WOD5E, foundry, ChatMessage */
+/* global game, WOD5E, foundry */
 
 /** Handle adding a new edge to the sheet */
 export const _onAddEdge = async function (event) {
@@ -64,13 +64,14 @@ export const _onEdgeToChat = async function (event, target) {
   const actor = this.actor
   const edge = actor.system.edges[target.getAttribute('data-edge')]
 
-  await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
-    name: edge.displayName,
-    img: 'icons/svg/dice-target.svg',
-    description: edge?.description || ''
-  }).then(html => {
-    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
-    ChatMessage.create(message)
+  foundry.documents.ChatMessage.implementation.create({
+    flags: {
+      vtm5e: {
+        name: edge.displayName,
+        img: 'icons/svg/dice-target.svg',
+        description: edge?.description || ''
+      }
+    }
   })
 }
 

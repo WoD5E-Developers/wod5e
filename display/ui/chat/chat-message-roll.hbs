@@ -1,0 +1,77 @@
+<li class="chat-message message flexcol {{cssClass}}" data-message-id="{{message._id}}" {{#if borderColor}}style="border-color:{{borderColor}}"{{/if}}>
+	{{> "systems/vtm5e/display/ui/chat/chat-message-header.hbs"}}
+	<hr>
+	<div class="message-content">
+        <div class="collapsible-container">
+            {{#if isContentVisible}}
+                <p class="roll-label uppercase collapsible" data-action="toggleCollapse">{{title}}</p>
+                <div class="dice-roll" data-action="expandRoll">
+                    <div class="modifiers">
+                        {{#each activeModifiers as |mod key|}}
+                            <label class="mod">
+                                {{mod.label}} {{mod.value}}
+                            </label>
+                        {{/each}}
+                    </div>
+                    <div class="dice-result">
+                        <div class="dice-icons">
+                            {{#each basicDice.results as |die key|}}
+                                <img src="{{die.img}}" class="{{die.classes}}" data-index="{{die.index}}" alt="{{die.altText}}" title="{{die.title}}"/>
+                            {{/each}}
+                            {{#each advancedDice.results as |die key|}}
+                                <img src="{{die.img}}" class="{{die.classes}}" data-index="{{die.index}}" alt="{{die.altText}}" title="{{die.title}}"/>
+                            {{/each}}
+                        </div>
+                        {{#if enrichedFlavor}}
+                            <div class="collapsible-content">
+                                <hr>
+                                {{{enrichedFlavor}}}
+                            </div>
+                            <hr>
+                        {{/if}}
+                        <div class="dice-tooltip">
+                            <div class="wrapper">
+                                <section class="tooltip-part">
+                                    <div class="dice">
+                                    <header class="part-header flexrow">
+                                        <span class="part-formula">{{basicDice.formula}}</span>
+
+                                        <span class="part-total">{{basicDice.total}}</span>
+                                    </header>
+                                    <ol class="dice-rolls">
+                                        {{#each basicDice.results as |die key|}}
+                                        <li class="roll d10">{{die.result}}</li>
+                                        {{/each}}
+                                    </ol>
+                                    </div>
+                                </section>
+                                <section class="tooltip-part">
+                                    <div class="dice">
+                                    <header class="part-header flexrow">
+                                        <span class="part-formula">{{advancedDice.formula}}</span>
+
+                                        <span class="part-total">{{advancedDice.total}}</span>
+                                    </header>
+                                    <ol class="dice-rolls">
+                                        {{#each advancedDice.results as |die key|}}
+                                        <li class="roll werewolfragedie d10">{{die.result}}</li>
+                                        {{/each}}
+                                    </ol>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        {{{enrichedResultLabel}}}
+                    </div>
+                </div>
+            {{else}}
+                <div class="dice-roll">
+                    <div class="dice-result">
+                        <div class="dice-formula">???</div>
+                        <h4 class="dice-total">?</h4>
+                    </div>
+                </div>
+            {{/if}}
+        </div>
+	</div>
+</li>

@@ -1,6 +1,6 @@
 /* global game, CONST, CONFIG, foundry, ChatMessage, Hooks */
 
-import { generateRollMessage } from '../scripts/rolls/roll-message.js'
+import { generateRollMessageData } from '../scripts/rolls/roll-message.js'
 
 export class WoDChatMessage extends ChatMessage {
   /**
@@ -15,6 +15,7 @@ export class WoDChatMessage extends ChatMessage {
     canClose = false,
     ...rest
   } = {}) {
+    let template = CONFIG.ChatMessage.template
     canDelete ??= game.user.isGM // By default, GM users have the trash-bin icon in the chat log itself
 
     if (typeof this.system.renderHTML === 'function') {
@@ -55,6 +56,8 @@ export class WoDChatMessage extends ChatMessage {
 
     // Render message data specifically for ROLL type messages
     if (this.isRoll) {
+      template = 'systems/vtm5e/display/ui/chat/chat-message-roll.hbs'
+
       await this.#renderRollContent(messageData)
 
       const roll = this.rolls[0]
@@ -62,7 +65,7 @@ export class WoDChatMessage extends ChatMessage {
       // Here, we're 100% sure that this message contains a valid WoD5e die and can proceed
       // with the WoD5e message formatting
       if (roll.system) {
-        const messageContent = await generateRollMessage({
+        const rollMessageData = await generateRollMessageData({
           title: roll.options.title || `${game.i18n.localize('WOD5E.Chat.Rolling')}...`,
           roll,
           system: roll.system,
@@ -73,7 +76,8 @@ export class WoDChatMessage extends ChatMessage {
           isContentVisible: this.isContentVisible
         })
 
-        messageData.message.content = messageContent
+        // Merge the results into our existing message data
+        Object.assign(messageData, rollMessageData)
       }
     }
 
@@ -81,7 +85,7 @@ export class WoDChatMessage extends ChatMessage {
     if (this.style === CONST.CHAT_MESSAGE_STYLES.OOC) messageData.borderColor = this.author?.color.css
 
     // Render the chat message
-    let html = await foundry.applications.handlebars.renderTemplate(CONFIG.ChatMessage.template, messageData)
+    let html = await foundry.applications.handlebars.renderTemplate(template, messageData)
     html = foundry.utils.parseHTML(html)
 
     // Flag expanded state of dice rolls

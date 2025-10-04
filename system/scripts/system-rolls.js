@@ -2,7 +2,6 @@
 
 // Import various helper functions
 import { generateRollFormula } from './rolls/roll-formula.js'
-import { generateRollMessage } from './rolls/roll-message.js'
 import { getSituationalModifiers } from './rolls/situational-modifiers.js'
 import { _damageWillpower } from './rolls/willpower-damage.js'
 import { _increaseHunger } from './rolls/increase-hunger.js'
@@ -262,22 +261,9 @@ class WOD5eDice {
         return roll
       }
 
-      // Construct the proper message content from the generateRollMessage function
-      const content = await generateRollMessage({
-        system,
-        roll,
-        actor,
-        data,
-        title,
-        flavor,
-        difficulty,
-        activeModifiers
-      })
-
       // Post the message to the chat
       await roll.toMessage({
-        speaker: ChatMessage.getSpeaker({ actor }),
-        content
+        speaker: ChatMessage.getSpeaker({ actor })
       },
       {
         rollMode

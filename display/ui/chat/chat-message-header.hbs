@@ -1,0 +1,30 @@
+<header class="message-header flexrow">
+  <div class="portrait token">
+    <img src="{{portrait}}" alt="{{alias}}" inert>
+  </div>
+  <div class="message-names flexcol">
+    <span class="message-sender">
+      {{alias}}
+    </span>
+    {{#if isWhisper}}
+      <span class="whisper-to">{{localize 'CHAT.To'}}: {{whisperTo}}</span>
+    {{/if}}
+  </div>
+  <div class="message-metadata">
+    <time class="message-timestamp">{{timeSinceShort message.timestamp}}</time>
+    {{#if canDelete}}
+      <a aria-label="{{localize 'Delete'}}" class="message-delete" data-action="deleteMessage">
+        <i class="fa-solid fa-trash" inert></i>
+      </a>
+    {{/if}}
+    {{#if canClose}}
+      <a aria-label="{{ localize "CHAT.Dismiss" }}" class="message-dismiss" data-action="dismissMessage">
+        <i class="fa-solid fa-xmark" inert></i>
+      </a>
+    {{/if}}
+  </div>
+
+  {{#if message.flavor}}
+    <span class="flavor-text">{{{message.flavor}}}</span>
+  {{/if}}
+</header>
