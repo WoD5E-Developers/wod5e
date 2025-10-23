@@ -245,6 +245,7 @@
       "CannotModifyResourceString": "Este recurso no puede ser modificado mientras el actor \"{string}\" está bloqueado.",
       "NoActorDefined": "Ningún actor definido",
       "NoSufficientPermission": "No tienes suficientes permisos para modificar el actor \"{string}\".",
+      "_NoTokenSelected": "",
       "StringAlreadyInCurrentGroup": "El actor \"{string}\" ya es parte de este grupo.",
       "StringAlreadyInOtherGroup": "El actor \"{string}\" ya es parte de un grupo existente."
     },

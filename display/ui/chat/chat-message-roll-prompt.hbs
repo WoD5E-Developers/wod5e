@@ -1,0 +1,62 @@
+<li class="chat-message message flexcol {{cssClass}}" data-message-id="{{message._id}}" {{#if borderColor}}style="border-color:{{borderColor}}"{{/if}}>
+		{{> "systems/vtm5e/display/ui/chat/chat-message-header.hbs"}}
+		<hr>
+		<div class="message-content">
+      <div class="wod5e roll-prompt-message">
+        <header class="flexcol flex-group-left" style="align-items: center;">
+          <h3 class="item-name" style="line-height: 18px; font-weight: bold; flex: 4 0 0; text-align: center;">
+            {{title}}
+          </h3>
+        </header>
+        {{#if promptedRolls}}
+          {{#each promptedRolls as |roll key|}}
+            <div class="br-text user-roll" data-user-id="{{key}}">
+              <div class="actor-roll-header flexrow">
+                {{#if roll.canRemove}}
+                  <div class="remove-actor-button" data-action="removeActor" title="Remove actor from roll prompt">
+                    <i class="fas fa-times"></i>
+                  </div>
+                {{/if}}
+              </div>
+                {{#if roll.rolled}}
+                  <div>
+                    {{roll.roll}}
+                  </div>
+                {{else}}
+                  {{#if roll.isVisible}}
+                    {{#if roll.canRoll}}
+                      <div class="rollable" data-action="rollFromChat" data-actor-id="{{key}}" data-label="{{../title}}" data-value-paths="{{../valuePaths}}">
+                        <i>{{roll.actor.name}} hasn't rolled yet.</i>
+                        <i class="fa-solid fa-dice-d10"></i>
+                      </div>
+                    {{else}}
+                      <div>
+                        <i>{{roll.actor.name}} hasn't rolled yet.</i>
+                      </div>
+                    {{/if}}
+                  {{else}}
+                    <div>
+                      <i>Someone hasn't rolled yet.</i>
+                    </div>
+                  {{/if}}
+                {{/if}}
+            </div>
+          {{/each}}
+        {{else}}
+          <div class="br-text">
+            Select the tokens you wish to have roll this test, or have the players add themselves to this message.
+          </div>
+        {{/if}}
+      </div>
+      {{#if isGM}}
+        <div class="roll-prompt-buttons flexrow">
+          <button data-action="addSelectedTokens">
+            Add Selected Tokens
+          </button>
+          <button data-action="rollAll">
+            Roll All
+          </button>
+        </div>
+      {{/if}}
+		</div>
+</li>

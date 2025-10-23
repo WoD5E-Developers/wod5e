@@ -245,6 +245,7 @@
       "CannotModifyResourceString": "Não é possível modificar o recurso",
       "NoActorDefined": "Nenhum ator definido",
       "NoSufficientPermission": "Permissões insuficientes",
+      "_NoTokenSelected": "",
       "StringAlreadyInCurrentGroup": "O ator \"{string}\" já faz parte deste grupo.",
       "StringAlreadyInOtherGroup": "O ator \"{string}\" já está em um grupo existente."
     },

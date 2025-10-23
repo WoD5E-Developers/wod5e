@@ -245,6 +245,7 @@
       "CannotModifyResourceString": "Questa risorsa non può essere modificata mentre \"{string}\" è chiuso.",
       "NoActorDefined": "Personaggio non definito.",
       "NoSufficientPermission": "Non hai  permessi sufficienti per modificare la risorsa.",
+      "_NoTokenSelected": "",
       "StringAlreadyInCurrentGroup": "Il personaggio \"{string}\" fa già parte di questo gruppo.",
       "StringAlreadyInOtherGroup": "Il personaggio \"{string}\" fa già parte di un altro gruppo."
     },

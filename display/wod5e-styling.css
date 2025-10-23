@@ -607,6 +607,16 @@ h3.item-name {
   font-family: Amarante, serif;
   font-size: 1.4em;
 }
+.roll-prompt-message .user-roll {
+  background-color: #555555;
+  padding: 5px;
+  margin: 3px;
+}
+.roll-prompt-message .user-roll .actor-roll-header .remove-actor-button {
+  flex-grow: 0;
+  cursor: pointer;
+  margin-right: 3px;
+}
 
 /* Foundry Controls UI */
 #players,
@@ -1945,11 +1955,6 @@ body.uk .actor.sheet {
   margin-right: auto;
   text-wrap: nowrap;
 }
-.actor.sheet .rollable:hover,
-.actor.sheet .rollable-item:hover,
-.actor.sheet .system-rollable:hover {
-  cursor: pointer;
-}
 .actor.sheet .stats-container {
   display: flex;
   flex-flow: column;
@@ -2597,6 +2602,19 @@ prose-mirror .editor-menu {
 prose-mirror .editor-menu button {
   color: var(--system-color-6);
 }
+.clickable,
+.rollable,
+.rollable-item,
+.system-rollable {
+  cursor: pointer;
+}
+.clickable:hover,
+.rollable:hover,
+.rollable-item:hover,
+.system-rollable:hover {
+  text-shadow: 0 0 5px var(--system-color-9);
+  filter: saturate(250%) drop-shadow(2px 4px 6px black);
+}
 /* Actor Sheets */
 .sheet {
   /* Input and resource fields */
@@ -2671,13 +2689,6 @@ prose-mirror .editor-menu button {
 }
 .sheet .resource-header {
   border-bottom: 1px solid var(--system-color-5);
-}
-.sheet .clickable:hover,
-.sheet .rollable:hover,
-.sheet .rollable-item:hover,
-.sheet .system-rollable:hover {
-  text-shadow: 0 0 5px var(--system-color-9);
-  filter: saturate(250%) drop-shadow(2px 4px 6px black);
 }
 .sheet .stats-container {
   background-color: var(--system-color-4);
@@ -2763,6 +2774,7 @@ prose-mirror .editor-menu button {
 .sidebar-tab {
   padding-left: 10px;
 }
+.chat-message button,
 .directory .action-buttons button {
   background: #2e2d77;
   color: var(--system-color-6);
@@ -3262,6 +3274,7 @@ prose-mirror .editor-menu button {
 .wod-hunter-theme .dialog .window-header {
   background-color: var(--hunter-color-1);
 }
+.wod-hunter-theme .chat-message button,
 .wod-hunter-theme .directory .action-buttons button {
   background: #020202;
   color: var(--system-color-6);

@@ -245,9 +245,9 @@
       "CannotModifyResourceString": "This resource cannot be modified while the actor sheet \"{string}\" is locked.",
       "NoActorDefined": "No actor defined",
       "NoSufficientPermission": "You do not have sufficient permissions to modify actor \"{string}.\"",
+      "NoTokenSelected": "Unable to process roll: No token selected.",
       "StringAlreadyInCurrentGroup": "Actor \"{string}\" is already part of this group.",
-      "StringAlreadyInOtherGroup": "Actor \"{string}\" is already in an existing group.",
-      "NoTokenSelected": "Unable to process roll: No token selected."
+      "StringAlreadyInOtherGroup": "Actor \"{string}\" is already in an existing group."
     },
     "RollList": {
       "AddCustomModifier": "Add Custom Modifier",

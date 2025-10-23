@@ -245,6 +245,7 @@
       "CannotModifyResourceString": "Cette ressource ne peut pas être modifiée tant que la fiche du personnage « {string} » est verrouillée.",
       "NoActorDefined": "Aucun personnage défini",
       "NoSufficientPermission": "Vous n'avez pas suffisamment de permissions pour modifier ce personnage",
+      "_NoTokenSelected": "",
       "StringAlreadyInCurrentGroup": "{string} appartient déjà au groupe actuel",
       "StringAlreadyInOtherGroup": "{string} appartient déjà à un autre groupe"
     },

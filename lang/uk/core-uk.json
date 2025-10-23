@@ -245,6 +245,7 @@
       "CannotModifyResourceString": "Цей ресурс не можна змінити, поки аркуш персонажа \"{string}\" заблоковано.",
       "NoActorDefined": "Персонажа не визначено",
       "NoSufficientPermission": "У вас недостатньо прав для зміни персонажа \"{string}.\"",
+      "_NoTokenSelected": "",
       "StringAlreadyInCurrentGroup": "Персонаж \"{string}\" вже є у цій групі.",
       "StringAlreadyInOtherGroup": "Персонаж \"{string}\" вже є в іншій групі."
     },

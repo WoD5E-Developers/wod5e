@@ -41,6 +41,7 @@ export class WoDChatMessage extends ChatMessage {
       message: data,
       user: game.user,
       author: this.author,
+      title: this.title,
       speakerActor,
       alias: this.alias,
       portrait: (speakerActor?.img ?? this.author?.avatar) || this.constructor.DEFAULT_AVATAR,
@@ -51,7 +52,11 @@ export class WoDChatMessage extends ChatMessage {
         this.blind ? 'blind' : null
       ].filterJoin(' '),
       isWhisper: this.whisper.length,
-      whisperTo: this.whisper.map(u => game.users.get(u)?.name).filterJoin(', ')
+      whisperTo: this.whisper.map(u => game.users.get(u)?.name).filterJoin(', '),
+      isGM: game.user.isGM,
+      isRollPrompt: this.getFlag('vtm5e', 'isRollPrompt'),
+      promptedRolls: this.getFlag('vtm5e', 'promptedRolls'),
+      valuePaths: this.getFlag('vtm5e', 'valuePaths')
     }
 
     // Render message data specifically for ROLL type messages
@@ -79,6 +84,22 @@ export class WoDChatMessage extends ChatMessage {
         // Merge the results into our existing message data
         Object.assign(messageData, rollMessageData)
       }
+    }
+
+    // Render message data for roll prompts
+    if (this.getFlag('vtm5e', 'isRollPrompt')) {
+      template = 'systems/vtm5e/display/ui/chat/chat-message-roll-prompt.hbs'
+
+      const isOwnerFilter = game.actors.filter(a => a.isOwner)
+      const isVisibleFilter = game.actors.filter(a => a.visible)
+
+      for (const [key] of Object.entries(messageData.promptedRolls)) {
+        messageData.promptedRolls[key] = Object.assign(messageData.promptedRolls[key], {
+          canRoll: isOwnerFilter.filter(a => a.id === key),
+          canRemove: isOwnerFilter.filter(a => a.id === key),
+          isVisible: isVisibleFilter.filter(a => a.id === key)
+        })
+      };
     }
 
     // Define a border color
