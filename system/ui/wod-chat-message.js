@@ -105,6 +105,11 @@ export class WoDChatMessage extends ChatMessage {
     // Define a border color
     if (this.style === CONST.CHAT_MESSAGE_STYLES.OOC) messageData.borderColor = this.author?.color.css
 
+    // Add a check in for in case modules are adding content to use that as the description
+    if (messageData?.message?.content) {
+      messageData.description = messageData?.message?.content
+    }
+
     // Render the chat message
     let html = await foundry.applications.handlebars.renderTemplate(template, messageData)
     html = foundry.utils.parseHTML(html)
