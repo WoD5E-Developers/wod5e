@@ -19,13 +19,21 @@
                 {{/if}}
               </div>
                 {{#if roll.rolled}}
-                  <div>
-                    {{roll.roll}}
-                  </div>
+                  <i>{{roll.actor.name}}</i>
+                  <div class="dice-result">
+                      <div class="dice-icons">
+                          {{#each rollData.basicDice.results as |die key|}}
+                              <img src="{{die.img}}" class="{{die.classes}}" data-index="{{die.index}}" alt="{{die.altText}}" title="{{die.title}}"/>
+                          {{/each}}
+                          {{#each rollData.advancedDice.results as |die key|}}
+                              <img src="{{die.img}}" class="{{die.classes}}" data-index="{{die.index}}" alt="{{die.altText}}" title="{{die.title}}"/>
+                          {{/each}}
+                      </div>
+                    </div>
                 {{else}}
                   {{#if roll.isVisible}}
                     {{#if roll.canRoll}}
-                      <div class="rollable" data-action="rollFromChat" data-actor-id="{{key}}" data-label="{{../title}}" data-value-paths="{{../valuePaths}}">
+                      <div class="rollable" data-action="rollFromChat" data-actor-id="{{key}}" data-label="{{../title}}" data-value-paths="{{../valuePaths}}" data-origin-message="{{../message._id}}">
                         <i>{{roll.actor.name}} hasn't rolled yet.</i>
                         <i class="fa-solid fa-dice-d10"></i>
                       </div>

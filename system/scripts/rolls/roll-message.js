@@ -2,6 +2,7 @@
 
 // Import dice face-related variables for icon paths
 import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces } from '../../dice/icons.js'
+import { WOD5eRoll } from '../system-rolls.js'
 import { getRollFooter } from './roll-labels/get-label.js'
 
 /**
@@ -22,6 +23,10 @@ export async function generateRollMessageData ({
   activeModifiers,
   isContentVisible = true
 }) {
+  if (!(roll instanceof WOD5eRoll)) {
+    roll = WOD5eRoll.fromJSON(roll)
+  }
+
   // Variables to be defined later
   let basicDice = roll.basicDice
   let advancedDice = roll.advancedDice

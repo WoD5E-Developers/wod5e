@@ -93,13 +93,27 @@ export class WoDChatMessage extends ChatMessage {
       const isOwnerFilter = game.actors.filter(a => a.isOwner)
       const isVisibleFilter = game.actors.filter(a => a.visible)
 
-      for (const [key] of Object.entries(messageData.promptedRolls)) {
+      for (const [key, value] of Object.entries(messageData.promptedRolls)) {
+        let rollData
+        if (value.rolled) {
+          const roll = messageData.promptedRolls[key].roll
+          rollData = await generateRollMessageData({
+            title: roll.options.title,
+            roll,
+            system: roll.options.system,
+            difficulty: roll.options.difficulty || 0,
+            activeModifiers: roll.options.activeModifiers || {},
+            isContentVisible: this.isContentVisible
+          })
+        }
+
         messageData.promptedRolls[key] = Object.assign(messageData.promptedRolls[key], {
-          canRoll: isOwnerFilter.filter(a => a.id === key),
-          canRemove: isOwnerFilter.filter(a => a.id === key),
-          isVisible: isVisibleFilter.filter(a => a.id === key)
+          canRoll: (isOwnerFilter.filter(a => a.id === key).length > 0) || false,
+          canRemove: (isOwnerFilter.filter(a => a.id === key).length > 0) || false,
+          isVisible: (isVisibleFilter.filter(a => a.id === key).length > 0) || false,
+          rollData
         })
-      };
+      }
     }
 
     // Define a border color
