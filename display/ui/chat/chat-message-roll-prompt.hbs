@@ -19,9 +19,10 @@
                 {{/if}}
               </div>
                 {{#if roll.rolled}}
-                  <i>{{roll.actor.name}}</i>
-                  <div class="dice-result">
-                      <div class="dice-icons">
+                  {{#if roll.isVisible}}
+                    <i>{{roll.actor.name}}</i>
+                    <div class="dice-result">
+                        <div class="dice-icons">
                           {{#each rollData.basicDice.results as |die key|}}
                               <img src="{{die.img}}" class="{{die.classes}}" data-index="{{die.index}}" alt="{{die.altText}}" title="{{die.title}}"/>
                           {{/each}}
@@ -30,6 +31,14 @@
                           {{/each}}
                       </div>
                     </div>
+                  {{else}}
+                  <div class="dice-roll">
+                    <i>Unknown</i>
+                    <div class="dice-result">
+                      This actor's results are hidden.
+                    </div>
+                  </div>
+                  {{/if}}
                 {{else}}
                   {{#if roll.isVisible}}
                     {{#if roll.canRoll}}
