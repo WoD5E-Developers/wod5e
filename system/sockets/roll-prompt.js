@@ -2,26 +2,33 @@
 
 export async function RollPromptSockets () {
   game.socket.on('system.vtm5e', async data => {
-    const chatMessage = game.messages.get(data.messageId)
+    const chatMessage = game.messages.get(data.messageID)
 
-    if (data.action === 'updateRollPrompt' && chatMessage.isOwner) updateRollPrompt(data)
+    if (data.action === 'updateRollPrompt' && chatMessage.isOwner) updateRollPrompt(data, chatMessage)
+
+    if (data.action === 'removeActor' && chatMessage.isOwner) removeActorFromRollPrompt(data, chatMessage)
   })
 }
 
 export async function updateRollPrompt (data) {
-  const chatMessage = game.messages.get(data.messageId)
-  if (!chatMessage?.isOwner) return
-
+  const chatMessage = game.messages.get(data.messageID)
   const promptedRollsList = chatMessage.getFlag('vtm5e', 'promptedRolls')
-  const actorObject = promptedRollsList[data.actorId]
+
+  const actorObject = promptedRollsList[data.actorID]
   if (!actorObject) return
 
   const updatedList = foundry.utils.mergeObject(promptedRollsList, {
-    [data.actorId]: {
+    [data.actorID]: {
       rolled: true,
       roll: foundry.dice.Roll.fromData(data.roll)
     }
   })
 
   await chatMessage.setFlag('vtm5e', 'promptedRolls', updatedList)
+}
+
+export async function removeActorFromRollPrompt (data) {
+  const chatMessage = game.messages.get(data.messageID)
+
+  chatMessage.update({ [`flags.vtm5e.promptedRolls.-=${data.actorID}`]: null })
 }

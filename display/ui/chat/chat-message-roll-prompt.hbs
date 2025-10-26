@@ -10,7 +10,7 @@
         </header>
         {{#if promptedRolls}}
           {{#each promptedRolls as |roll key|}}
-            <div class="br-text user-roll" data-user-id="{{key}}">
+            <div class="br-text user-roll" data-actor-id="{{key}}">
               <div class="actor-roll-header flexrow">
                 {{#if roll.canRemove}}
                   <div class="remove-actor-button" data-action="removeActor" title="Remove actor from roll prompt">

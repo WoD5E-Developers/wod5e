@@ -17,7 +17,7 @@ export const _onPromptInChat = async function (event) {
   // the basis for default users being prompted for the roll
   const promptedRolls = {}
   const tokens = canvas.tokens.controlled
-  const actorsList = tokens.map(i=>i.actor)
+  const actorsList = tokens.map(i => i.actor)
   actorsList.forEach((actor) => {
     promptedRolls[actor.id] = {
       actor,

@@ -273,19 +273,14 @@ class WOD5eDice {
 
           const socketData = {
             action: 'updateRollPrompt',
-            userId: game.user.id,
-            actorId: actor.id,
+            actorID: actor.id,
             roll: roll.toJSON(),
-            messageId: chatMessage.id
+            messageID: chatMessage.id
           }
 
-          console.log(chatMessage)
-
           if (chatMessage.isOwner) {
-            console.log(socketData)
             updateRollPrompt(socketData)
           } else {
-            console.log('Socket sent...')
             game.socket.emit('system.vtm5e', socketData)
           }
         }
