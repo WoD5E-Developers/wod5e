@@ -2,9 +2,13 @@
   <div class="roll-menu-body flexcol">
     <!-- Name input -->
     <div class="roll-basic-info flexrow">
-      <label>
+      <label class="flexcol">
         {{localize 'WOD5E.Name'}}
-        <input type="text" name="name" value="{{activeRoll.name}}" />
+        <input type="text" name="name" value="{{activeRoll.name}}"/>
+      </label>
+      <label class="flexcol" style="flex-grow: 0; padding-left: 10px;">
+        {{localize 'WOD5E.RollList.Difficulty'}}
+        <input type="number" name="difficulty" min="0" value="{{activeRoll.difficulty}}" style="align-self: center;"/>
       </label>
     </div>
     <hr>

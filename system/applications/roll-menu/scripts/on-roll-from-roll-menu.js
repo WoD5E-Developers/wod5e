@@ -21,7 +21,8 @@ export const _onRollFromRollMenu = async function (event) {
   WOD5E.api.RollFromDataset({
     dataset: {
       label: activeRollObject.name,
-      valuePaths: valuePathsArray.join(' ')
+      valuePaths: valuePathsArray.join(' '),
+      difficulty: activeRollObject.difficulty
     },
     actor
   })

@@ -56,7 +56,8 @@ export class WoDChatMessage extends ChatMessage {
       isGM: game.user.isGM,
       isRollPrompt: this.getFlag('vtm5e', 'isRollPrompt'),
       promptedRolls: this.getFlag('vtm5e', 'promptedRolls'),
-      valuePaths: this.getFlag('vtm5e', 'valuePaths')
+      valuePaths: this.getFlag('vtm5e', 'valuePaths'),
+      difficulty: this.getFlag('vtm5e', 'difficulty')
     }
 
     // Render message data specifically for ROLL type messages

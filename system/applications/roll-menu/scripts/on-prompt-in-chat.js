@@ -34,7 +34,8 @@ export const _onPromptInChat = async function (event) {
         template: 'systems/vtm5e/display/ui/chat/chat-message-roll-prompt.hbs',
         valuePaths: valuePathsArray.join(' '),
         isRollPrompt: true,
-        promptedRolls
+        promptedRolls,
+        difficulty: activeRollObject.difficulty
       }
     }
   })

@@ -6,6 +6,10 @@
         <header class="flexcol flex-group-left" style="align-items: center;">
           <h3 class="item-name" style="line-height: 18px; font-weight: bold; flex: 4 0 0; text-align: center;">
             {{title}}
+            <br>
+            {{#ifgr rollData.difficulty 0}}
+              vs Difficulty {{rollData.difficulty}}
+            {{/ifgr}}
           </h3>
         </header>
         {{#if promptedRolls}}
@@ -17,46 +21,54 @@
                     <i class="fas fa-times"></i>
                   </div>
                 {{/if}}
-              </div>
-                {{#if roll.rolled}}
+                <div>
                   {{#if roll.isVisible}}
                     <i>{{roll.actor.name}}</i>
-                    <div class="dice-result">
-                        <div class="dice-icons">
-                          {{#each rollData.basicDice.results as |die key|}}
-                              <img src="{{die.img}}" class="{{die.classes}}" data-index="{{die.index}}" alt="{{die.altText}}" title="{{die.title}}"/>
-                          {{/each}}
-                          {{#each rollData.advancedDice.results as |die key|}}
-                              <img src="{{die.img}}" class="{{die.classes}}" data-index="{{die.index}}" alt="{{die.altText}}" title="{{die.title}}"/>
-                          {{/each}}
-                      </div>
-                    </div>
                   {{else}}
-                  <div class="dice-roll">
                     <i>Unknown</i>
-                    <div class="dice-result">
-                      This actor's results are hidden.
+                  {{/if}}
+                </div>
+              </div>
+              {{#if roll.rolled}}
+                <div>Total Result: {{rollData.totalResult}} {{#ifgr rollData.difficulty 0}} ({{rollData.resultText}}) {{/ifgr}}</div>
+              {{/if}}
+              {{#if roll.rolled}}
+                {{#if rollData.isContentVisible}}
+                  <div class="dice-result">
+                      <div class="dice-icons">
+                        {{#each rollData.basicDice.results as |die key|}}
+                            <img src="{{die.img}}" class="{{die.classes}}" data-index="{{die.index}}" alt="{{die.altText}}" title="{{die.title}}"/>
+                        {{/each}}
+                        {{#each rollData.advancedDice.results as |die key|}}
+                            <img src="{{die.img}}" class="{{die.classes}}" data-index="{{die.index}}" alt="{{die.altText}}" title="{{die.title}}"/>
+                        {{/each}}
                     </div>
                   </div>
-                  {{/if}}
                 {{else}}
-                  {{#if roll.isVisible}}
-                    {{#if roll.canRoll}}
-                      <div class="rollable" data-action="rollFromChat" data-actor-id="{{key}}" data-label="{{../title}}" data-value-paths="{{../valuePaths}}" data-origin-message="{{../message._id}}">
-                        <i>{{roll.actor.name}} hasn't rolled yet.</i>
-                        <i class="fa-solid fa-dice-d10"></i>
-                      </div>
-                    {{else}}
-                      <div>
-                        <i>{{roll.actor.name}} hasn't rolled yet.</i>
-                      </div>
-                    {{/if}}
+                <div class="dice-roll">
+                  <div class="dice-result">
+                    This actor's results are hidden.
+                  </div>
+                </div>
+                {{/if}}
+              {{else}}
+                {{#if roll.isVisible}}
+                  {{#if roll.canRoll}}
+                    <div class="rollable" data-action="rollFromChat" data-actor-id="{{key}}" data-label="{{../title}}" data-value-paths="{{../valuePaths}}" data-difficulty="{{../difficulty}}" data-origin-message="{{../message._id}}">
+                      <i>{{roll.actor.name}} hasn't rolled yet.</i>
+                      <i class="fa-solid fa-dice-d10"></i>
+                    </div>
                   {{else}}
                     <div>
-                      <i>Someone hasn't rolled yet.</i>
+                      <i>{{roll.actor.name}} hasn't rolled yet.</i>
                     </div>
                   {{/if}}
+                {{else}}
+                  <div>
+                    <i>Someone hasn't rolled yet.</i>
+                  </div>
                 {{/if}}
+              {{/if}}
             </div>
           {{/each}}
         {{else}}
@@ -69,9 +81,6 @@
         <div class="roll-prompt-buttons flexrow">
           <button data-action="addSelectedTokens">
             Add Selected Tokens
-          </button>
-          <button data-action="rollAll">
-            Roll All
           </button>
         </div>
       {{/if}}
