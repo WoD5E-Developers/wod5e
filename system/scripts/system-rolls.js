@@ -7,6 +7,7 @@ import { _damageWillpower } from './rolls/willpower-damage.js'
 import { _increaseHunger } from './rolls/increase-hunger.js'
 import { _decreaseRage } from './rolls/decrease-rage.js'
 import { _applyOblivionStains } from './rolls/apply-oblivion-stains.js'
+import { updateRollPrompt } from '../sockets/roll-prompt.js'
 
 class WOD5eRoll extends foundry.dice.Roll {
   constructor (formula = '', data = {}, options = {}) {
@@ -270,18 +271,22 @@ class WOD5eDice {
         if (chatMessage && chatMessage.getFlag('vtm5e', 'isRollPrompt')) {
           disableMessageOutput = true
 
-          const promptedRollsList = chatMessage.getFlag('vtm5e', 'promptedRolls')
-          const actorObject = promptedRollsList[actor.id]
+          const socketData = {
+            action: 'updateRollPrompt',
+            userId: game.user.id,
+            actorId: actor.id,
+            roll: roll.toJSON(),
+            messageId: chatMessage.id
+          }
 
-          if (actorObject) {
-            const updatedList = foundry.utils.mergeObject(promptedRollsList, {
-              [actor.id]: {
-                rolled: true,
-                roll
-              }
-            })
+          console.log(chatMessage)
 
-            chatMessage.setFlag('vtm5e', 'promptedRolls', updatedList)
+          if (chatMessage.isOwner) {
+            console.log(socketData)
+            updateRollPrompt(socketData)
+          } else {
+            console.log('Socket sent...')
+            game.socket.emit('system.vtm5e', socketData)
           }
         }
       }

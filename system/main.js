@@ -41,6 +41,7 @@ import { Gifts } from './api/def/gifts.js'
 import { _rollItem } from './actor/scripts/item-roll.js'
 import { _updateCSSVariable, cssVariablesRecord } from './scripts/update-css-variables.js'
 import { _updateToken } from './actor/wta/scripts/forms.js'
+import { RollPromptSockets } from './sockets/roll-prompt.js'
 
 // Anything that needs to be ran alongside the initialisation of the world
 Hooks.once('init', async function () {
@@ -114,6 +115,9 @@ Hooks.once('init', async function () {
 
   // Initialize the alterations to the Paused
   PauseChanges()
+
+  // Sockets to register
+  RollPromptSockets()
 })
 
 // Anything that needs to run once the world is ready
