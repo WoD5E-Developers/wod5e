@@ -334,7 +334,7 @@ class WOD5eDice {
       // as well as any callbacks or other functions with the roll
       return foundry.applications.api.DialogV2.wait({
         window: {
-          title
+          title: title || game.i18n.localize('WOD5E.RollList.Label')
         },
         content,
         actions: {

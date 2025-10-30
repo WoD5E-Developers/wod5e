@@ -2,7 +2,7 @@
   "id": "vtm5e",
   "title": "World of Darkness 5e",
   "description": "World of Darkness 5e system for Foundry VTT",
-  "version": "5.2.0",
+  "version": "5.2.2",
   "compatibility": {
     "minimum": "13",
     "verified": "13.348",
@@ -38,13 +38,13 @@
   },
   "initiative": "1d10",
   "socket": true,
-  "changelog": "https://github.com/WoD5E-Developers/wod5e/releases/tag/5.2.0",
+  "changelog": "https://github.com/WoD5E-Developers/wod5e/releases/tag/5.2.2",
   "license": "./LICENSE.md",
   "url": "https://github.com/WoD5E-Developers/wod5e",
   "bugs": "https://github.com/WoD5E-Developers/wod5e/issues",
   "background": "systems/vtm5e/assets/images/wodcity.jpg",
-  "manifest": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.2.0/system.json",
-  "download": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.2.0/vtm5e.zip",
+  "manifest": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.2.2/system.json",
+  "download": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.2.2/vtm5e.zip",
   "flags": {
     "hotReload": {
       "extensions": [
