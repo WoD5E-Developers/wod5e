@@ -1,4 +1,4 @@
-/* global game, foundry, ChatMessage */
+/* global game, foundry */
 
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 
@@ -36,15 +36,16 @@ export const _onRemorseRoll = async function (event) {
           'system.humanity.stains': 0
         })
 
-        await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
-          name: game.i18n.localize('WOD5E.VTM.RemorseFailed'),
-          img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
-          description: game.i18n.format('WOD5E.VTM.RemorseFailedDescription', {
-            actor: actor.name
-          })
-        }).then(html => {
-          const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
-          ChatMessage.create(message)
+        foundry.documents.ChatMessage.implementation.create({
+          flags: {
+            vtm5e: {
+              name: game.i18n.localize('WOD5E.VTM.RemorseFailed'),
+              img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+              description: game.i18n.format('WOD5E.VTM.RemorseFailedDescription', {
+                actor: actor.name
+              })
+            }
+          }
         })
       }
     }

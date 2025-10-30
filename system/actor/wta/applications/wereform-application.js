@@ -19,6 +19,7 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
   }
 
   static DEFAULT_OPTIONS = {
+    id: 'wod5e-wereform-editor',
     tag: 'form',
     form: {
       submitOnChange: true,

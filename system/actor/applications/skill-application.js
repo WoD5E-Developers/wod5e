@@ -22,6 +22,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
   }
 
   static DEFAULT_OPTIONS = {
+    id: 'wod5e-skill-application',
     tag: 'form',
     form: {
       submitOnChange: true,

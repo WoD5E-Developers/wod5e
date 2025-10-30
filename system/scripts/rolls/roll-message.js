@@ -2,6 +2,7 @@
 
 // Import dice face-related variables for icon paths
 import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces } from '../../dice/icons.js'
+import { WOD5eRoll } from '../system-rolls.js'
 import { getRollFooter } from './roll-labels/get-label.js'
 
 /**
@@ -13,7 +14,7 @@ import { getRollFooter } from './roll-labels/get-label.js'
  * @param flavor                    (Optional, default "") Text that appears in the description of the roll
  * @param difficulty                (Optional, default 0) The number of successes needed to pass the check
  */
-export async function generateRollMessage ({
+export async function generateRollMessageData ({
   roll,
   system = 'mortal',
   title,
@@ -22,6 +23,10 @@ export async function generateRollMessage ({
   activeModifiers,
   isContentVisible = true
 }) {
+  if (!(roll instanceof WOD5eRoll)) {
+    roll = WOD5eRoll.fromJSON(roll)
+  }
+
   // Variables to be defined later
   let basicDice = roll.basicDice
   let advancedDice = roll.advancedDice
@@ -36,10 +41,9 @@ export async function generateRollMessage ({
     advancedDice = await generateAdvancedDiceDisplay(advancedDice)
   }
 
-  const { totalResult, resultLabel } = await generateResult(basicDice, advancedDice)
+  const { totalResult, resultLabel, resultText } = await generateResult(basicDice, advancedDice)
 
-  const chatTemplate = 'systems/vtm5e/display/ui/chat/roll-message.hbs'
-  const chatData = {
+  const rollMessageData = {
     fullFormula: roll._formula,
     basicDice,
     advancedDice,
@@ -51,12 +55,11 @@ export async function generateRollMessage ({
     margin: totalResult > difficulty ? totalResult - difficulty : 0,
     enrichedResultLabel: await foundry.applications.ux.TextEditor.implementation.enrichHTML(resultLabel),
     activeModifiers,
-    isContentVisible
+    isContentVisible,
+    resultText
   }
 
-  const chatMessage = await foundry.applications.handlebars.renderTemplate(chatTemplate, chatData)
-
-  return chatMessage
+  return rollMessageData
 
   // Function to help with rendering of basic dice
   async function generateBasicDiceDisplay (rollData) {
@@ -244,7 +247,7 @@ export async function generateRollMessage ({
     totalAndDifficulty += '</div>'
 
     // Generate the result label depending on the splat and difficulty
-    const resultLabel = await getRollFooter(system, {
+    const { resultLabel, resultText } = await getRollFooter(system, {
       totalResult,
       difficulty,
       basicDice,
@@ -252,6 +255,6 @@ export async function generateRollMessage ({
       totalAndDifficulty
     })
 
-    return { totalResult, resultLabel }
+    return { totalResult, resultLabel, resultText }
   }
 }

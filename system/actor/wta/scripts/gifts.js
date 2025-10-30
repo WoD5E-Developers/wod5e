@@ -1,4 +1,4 @@
-/* global game, WOD5E, foundry, ChatMessage */
+/* global game, WOD5E, foundry */
 
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
@@ -103,13 +103,14 @@ export const _onGiftToChat = async function (event, target) {
   const actor = this.actor
   const gift = actor.system.gifts[target.getAttribute('data-gift')]
 
-  await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
-    name: gift.displayName,
-    img: 'icons/svg/dice-target.svg',
-    description: gift?.description || ''
-  }).then(html => {
-    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
-    ChatMessage.create(message)
+  foundry.documents.ChatMessage.implementation.create({
+    flags: {
+      vtm5e: {
+        name: gift.displayName,
+        img: 'icons/svg/dice-target.svg',
+        description: gift?.description || ''
+      }
+    }
   })
 }
 

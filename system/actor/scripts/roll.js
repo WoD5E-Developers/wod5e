@@ -40,6 +40,7 @@ export const _onConfirmRoll = async function (dataset, actor) {
   const absoluteValue = parseInt(dataset.absoluteValue) || 0
   const selectors = dataset.selectors ? dataset.selectors.split(' ') : []
   const macro = dataset.itemId ? data.macroid : dataset.macroid
+  const originMessage = dataset.originMessage
   let disableAdvancedDice = dataset.disableAdvancedDice || false
 
   // Add despair to the selectors if the Hunter is in despair
@@ -132,6 +133,7 @@ export const _onConfirmRoll = async function (dataset, actor) {
     decreaseRage,
     selectors,
     macro,
-    advancedCheckDice
+    advancedCheckDice,
+    originMessage
   })
 }

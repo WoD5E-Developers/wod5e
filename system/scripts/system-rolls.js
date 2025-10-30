@@ -2,12 +2,12 @@
 
 // Import various helper functions
 import { generateRollFormula } from './rolls/roll-formula.js'
-import { generateRollMessage } from './rolls/roll-message.js'
 import { getSituationalModifiers } from './rolls/situational-modifiers.js'
 import { _damageWillpower } from './rolls/willpower-damage.js'
 import { _increaseHunger } from './rolls/increase-hunger.js'
 import { _decreaseRage } from './rolls/decrease-rage.js'
 import { _applyOblivionStains } from './rolls/apply-oblivion-stains.js'
+import { updateRollPrompt } from '../sockets/roll-prompt.js'
 
 class WOD5eRoll extends foundry.dice.Roll {
   constructor (formula = '', data = {}, options = {}) {
@@ -66,6 +66,16 @@ class WOD5eRoll extends foundry.dice.Roll {
   #getDiceByType (type) {
     return this.terms.find(term => foundry.utils.getProperty(term, 'dieType') === type)
   }
+
+  static fromJSON (data) {
+    if (data.class !== 'WOD5eRoll') throw new Error('Invalid class')
+
+    const roll = foundry.dice.Roll.fromData(data)
+    Object.setPrototypeOf(roll, WOD5eRoll.prototype)
+    roll.system = data.system
+
+    return roll
+  }
 }
 
 class WOD5eDice {
@@ -115,7 +125,8 @@ class WOD5eDice {
     macro = '',
     disableMessageOutput = false,
     advancedCheckDice = 0,
-    system = actor?.system?.gamesystem || 'mortal'
+    system = actor?.system?.gamesystem || 'mortal',
+    originMessage = ''
   }) {
     // Inner roll function
     const _roll = async (inputBasicDice, inputAdvancedDice, formData) => {
@@ -253,6 +264,28 @@ class WOD5eDice {
         })
       }
 
+      // Handle updating any 'parent' chat messages that need the roll
+      if (originMessage) {
+        const chatMessage = game.messages.get(originMessage)
+
+        if (chatMessage && chatMessage.getFlag('vtm5e', 'isRollPrompt')) {
+          disableMessageOutput = true
+
+          const socketData = {
+            action: 'updateRollPrompt',
+            actorID: actor.id,
+            roll: roll.toJSON(),
+            messageID: chatMessage.id
+          }
+
+          if (chatMessage.isOwner) {
+            updateRollPrompt(socketData)
+          } else {
+            game.socket.emit('system.vtm5e', socketData)
+          }
+        }
+      }
+
       // The below isn't needed if disableMessageOutput is set to true
       if (disableMessageOutput && game.dice3d) {
         // Send notice to DiceSoNice because we're not making a new chat message
@@ -262,26 +295,15 @@ class WOD5eDice {
         return roll
       }
 
-      // Construct the proper message content from the generateRollMessage function
-      const content = await generateRollMessage({
-        system,
-        roll,
-        actor,
-        data,
-        title,
-        flavor,
-        difficulty,
-        activeModifiers
-      })
-
       // Post the message to the chat
-      await roll.toMessage({
-        speaker: ChatMessage.getSpeaker({ actor }),
-        content
-      },
-      {
-        rollMode
-      })
+      if (!disableMessageOutput) {
+        await roll.toMessage({
+          speaker: ChatMessage.getSpeaker({ actor })
+        },
+        {
+          rollMode
+        })
+      }
 
       return roll
     }

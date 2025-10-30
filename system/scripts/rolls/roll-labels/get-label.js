@@ -5,15 +5,18 @@ import { getWerewolfLabel } from './werewolf-labels.js'
 
 export const getRollFooter = async function (system, data) {
   const labelData = await getLabel(system, data)
+  const resultText = labelData.labelText
 
   // Construct the resultLabel from labelClass and labelText
-  const resultLabel = `<div class="roll-result-label ${labelData.labelClass}">${labelData.labelText}</div>`
+  let resultLabel = `<div class="roll-result-label ${labelData.labelClass}">${labelData.labelText}</div>`
 
   // Combine the totalAndDifficulty element with the resultLabel element
-  if (labelData.showTotalAndDifficulty) return data.totalAndDifficulty + resultLabel
+  if (labelData.showTotalAndDifficulty) {
+    resultLabel = data.totalAndDifficulty + resultLabel
+  }
 
   // Otherwise, just return the resultLabel
-  return resultLabel
+  return { resultLabel, resultText }
 }
 
 export const getLabel = async function (system, data) {
