@@ -6,10 +6,6 @@
         <header class="flexcol flex-group-left" style="align-items: center;">
           <h3 class="item-name" style="line-height: 18px; font-weight: bold; flex: 4 0 0; text-align: center;">
             {{title}}
-            <br>
-            {{#ifgr rollData.difficulty 0}}
-              vs Difficulty {{rollData.difficulty}}
-            {{/ifgr}}
           </h3>
         </header>
         {{#if promptedRolls}}
@@ -25,7 +21,7 @@
                   {{#if roll.isVisible}}
                     <i>{{roll.actor.name}}</i>
                   {{else}}
-                    <i>Unknown</i>
+                    <i>{{localize 'WOD5E.Chat.Unknown'}}</i>
                   {{/if}}
                 </div>
               </div>
@@ -47,7 +43,7 @@
                 {{else}}
                 <div class="dice-roll">
                   <div class="dice-result">
-                    This actor's results are hidden.
+                    {{localize 'WOD5E.Chat.ActorResultsHidden'}}
                   </div>
                 </div>
                 {{/if}}
@@ -55,17 +51,17 @@
                 {{#if roll.isVisible}}
                   {{#if roll.canRoll}}
                     <div class="rollable" data-action="rollFromChat" data-actor-id="{{key}}" data-label="{{../title}}" data-value-paths="{{../valuePaths}}" data-difficulty="{{../difficulty}}" data-origin-message="{{../message._id}}">
-                      <i>{{roll.actor.name}} hasn't rolled yet.</i>
+                      <i>{{roll.actor.name}} {{localize 'WOD5E.Chat.HasntRolledYet'}}</i>
                       <i class="fa-solid fa-dice-d10"></i>
                     </div>
                   {{else}}
                     <div>
-                      <i>{{roll.actor.name}} hasn't rolled yet.</i>
+                      <i>{{roll.actor.name}} {{localize 'WOD5E.Chat.HasntRolledYet'}}</i>
                     </div>
                   {{/if}}
                 {{else}}
                   <div>
-                    <i>Someone hasn't rolled yet.</i>
+                    <i>{{localize 'WOD5E.Chat.SomeoneHasntRolled'}}</i>
                   </div>
                 {{/if}}
               {{/if}}
@@ -73,14 +69,14 @@
           {{/each}}
         {{else}}
           <div class="br-text">
-            Select the tokens you wish to have roll this test, or have the players add themselves to this message.
+            {{localize 'WOD5E.Chat.SelectTokensHint'}}
           </div>
         {{/if}}
       </div>
       {{#if isGM}}
         <div class="roll-prompt-buttons flexrow">
           <button data-action="addSelectedTokens">
-            Add Selected Tokens
+            {{localize 'WOD5E.Chat.AddSelectedTokens'}}
           </button>
         </div>
       {{/if}}
