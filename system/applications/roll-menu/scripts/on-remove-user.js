@@ -20,5 +20,4 @@ export const _onRemoveUser = async function (event, target) {
 
     game.socket.emit('system.vtm5e', socketData)
   }
-
 }

@@ -20,7 +20,7 @@ export const _onAddNewRoll = async function (event) {
   }
 
   // Get the current list of saved rolls and create a new object inside of them
-  let savedRolls = await game.users.current.getFlag('vtm5e', 'rollMenuSavedRolls')
+  const savedRolls = await game.users.current.getFlag('vtm5e', 'rollMenuSavedRolls')
   savedRolls[newRollID] = defaultRollObject
 
   // Persist it back to the user flags

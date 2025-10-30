@@ -13,7 +13,7 @@ export const _onRollFromRollMenu = async function (event) {
   const activeRollObject = savedRolls[activeRoll]
 
   // Construct the valuePaths array that gets sent to the rollFromDataset function
-  let valuePathsArray = []
+  const valuePathsArray = []
   if (activeRollObject.dice.skill) valuePathsArray.push(`skills.${activeRollObject.dice.skill}.value`)
   if (activeRollObject.dice.attribute) valuePathsArray.push(`attributes.${activeRollObject.dice.attribute}.value`)
 

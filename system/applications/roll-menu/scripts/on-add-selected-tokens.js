@@ -9,7 +9,7 @@ export const _onAddSelectedTokens = async function (event, target) {
 
   // Use the list of currently controlled tokens to generate a map and make the necessary user objects
   const tokens = canvas.tokens.controlled
-  const actorsList = tokens.map(i=>i.actor)
+  const actorsList = tokens.map(i => i.actor)
   const oldActorsList = chatMessage.getFlag('vtm5e', 'promptedRolls')
   const newActorsList = {}
   actorsList.forEach((actor) => {

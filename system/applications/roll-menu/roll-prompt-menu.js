@@ -1,16 +1,13 @@
 /* global foundry, game, WOD5E */
 
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 import { _onAddNewRoll } from './scripts/on-add-new-dice.js'
 import { _onPromptInChat } from './scripts/on-prompt-in-chat.js'
 import { _onRollFromRollMenu } from './scripts/on-roll-from-roll-menu.js'
 import { _onSelectSavedRoll } from './scripts/on-select-saved-roll.js'
 
-export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV2) {
-  constructor () {
-    super()
-  }
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 
+export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV2) {
   static DEFAULT_OPTIONS = {
     tag: 'form',
     id: 'wod5e-roll-menu',

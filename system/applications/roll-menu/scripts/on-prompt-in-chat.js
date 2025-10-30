@@ -9,7 +9,7 @@ export const _onPromptInChat = async function (event) {
   const activeRollObject = savedRolls[activeRoll]
 
   // Construct the valuePaths array that gets sent to the rollFromDataset function
-  let valuePathsArray = []
+  const valuePathsArray = []
   if (activeRollObject.dice.skill) valuePathsArray.push(`skills.${activeRollObject.dice.skill}.value`)
   if (activeRollObject.dice.attribute) valuePathsArray.push(`attributes.${activeRollObject.dice.attribute}.value`)
 
@@ -30,9 +30,11 @@ export const _onPromptInChat = async function (event) {
     title: `${activeRollObject.name}`,
     flavor: `<b>Test of:</b> ${activeRollObject.dice.skill} + ${activeRollObject.dice.attribute}${
       // Dynamically determine whether to append the 'difficulty' part of the title or not
-      activeRollObject.difficulty > 0 ? ` vs <b>` + game.i18n.format('WOD5E.Chat.DifficultyString', {
+      activeRollObject.difficulty > 0
+      ? ' vs <b>' + game.i18n.format('WOD5E.Chat.DifficultyString', {
         string: activeRollObject.difficulty
-      }) + `</b>` : ''
+      }) + '</b>'
+      : ''
     }`,
     flags: {
       vtm5e: {
