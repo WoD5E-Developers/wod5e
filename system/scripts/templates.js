@@ -119,7 +119,8 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/vtm5e/display/ui/hunter-roll-dialog.hbs',
 
     // Chat Message Partials
-    'systems/vtm5e/display/ui/chat/roll-message.hbs',
+    'systems/vtm5e/display/ui/chat/chat-message-header.hbs',
+    'systems/vtm5e/display/ui/chat/chat-message-roll.hbs',
     'systems/vtm5e/display/ui/chat/willpower-reroll.hbs',
 
     // Menu Partials

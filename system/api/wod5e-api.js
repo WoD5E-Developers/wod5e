@@ -108,7 +108,7 @@ export class wod5eAPI {
     if (!dataset.selectDialog) return _onConfirmRoll(dataset, actor)
 
     // Variables
-    const { skill, attribute, discipline, renown } = dataset
+    const { skill, attribute, discipline, renown, difficulty } = dataset
 
     // Attribute definitions
     const attributeOptions = WOD5E.Attributes.getList({})
@@ -127,6 +127,7 @@ export class wod5eAPI {
       attribute,
       discipline,
       renown,
+      difficulty,
       attributeOptions,
       skillOptions,
       disciplineOptions,

@@ -2,7 +2,6 @@
 
 // Import modules
 import { WOD5eDice } from './system-rolls.js'
-import { generateRollMessage } from './rolls/roll-message.js'
 
 /**
  * Initalise rerolls of any dice and its functions
@@ -150,19 +149,7 @@ export const anyReroll = async (roll) => {
             messageRolls[0].terms[2].results = messageRolls[0].terms[2].results.concat(reroll.terms[2].results)
           }
 
-          // Update the "content" field
-          const newContent = await generateRollMessage({
-            difficulty: message.flags.difficulty,
-            system: message.flags.system,
-            roll: messageRolls[0],
-            data: message.flags.data,
-            title: message.flags.title,
-            flavor: message.flags.flavor,
-            activeModifiers: message.flags.activeModifiers
-          })
-
           message.update({
-            content: newContent,
             rolls: messageRolls
           })
         }

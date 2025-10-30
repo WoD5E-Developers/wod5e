@@ -1,4 +1,4 @@
-/* global game, foundry, ChatMessage, Item */
+/* global game, foundry, Item */
 
 // Definition classes
 import { ItemTypes } from '../../api/def/itemtypes.js'
@@ -175,13 +175,15 @@ export const _onItemChat = async function (event, target) {
 
   const itemId = target.getAttribute('data-item-id')
   const item = actor.getEmbeddedDocument('Item', itemId)
-  await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
-    name: item.name,
-    img: item.img,
-    description: item.system?.description || ''
-  }).then(html => {
-    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
-    ChatMessage.create(message)
+
+  foundry.documents.ChatMessage.implementation.create({
+    flags: {
+      vtm5e: {
+        name: item.name,
+        img: item.img,
+        description: item.system?.description || ''
+      }
+    }
   })
 }
 

@@ -1,7 +1,8 @@
 /* global game, ui, foundry */
 
-import { AutomationMenu } from './menus/automation-menu.js'
-import { StorytellerMenu } from './menus/storyteller-menu.js'
+import { AutomationMenu } from '../applications/settings-automation/automation-menu.js'
+import { StorytellerMenu } from '../applications/settings-storyteller/storyteller-menu.js'
+import { SplatColorsMenu } from '../applications/settings-splat-colors/splat-colors-menu.js'
 import { resetActors } from './reset-actors.js'
 
 /* Definitions */
@@ -10,7 +11,6 @@ import { Skills } from '../api/def/skills.js'
 import { Disciplines } from '../api/def/disciplines.js'
 import { Edges } from '../api/def/edges.js'
 import { Gifts } from '../api/def/gifts.js'
-import { SplatColorsMenu } from './menus/splat-colors-menu.js'
 import { cssVariablesRecord } from './update-css-variables.js'
 
 /**
@@ -61,26 +61,6 @@ export const loadSettings = async function () {
       resetActors()
     }
   })
-
-  /* Chat roller is disabled until it can be fixed
-  game.settings.register('vtm5e', 'useChatRoller', {
-    name: 'Chat Roller',
-    hint: 'Display dice roller in chat window.',
-    scope: 'world',
-    config: true,
-    default: false,
-    type: Boolean
-  })
-
-  game.settings.register('vtm5e', 'chatRollerSortAbilities', {
-    name: 'Sort Abilities in Chat Roller',
-    hint: 'Sort abilities (Attributes, Skills, Disciplines, Edges) alphabetically in the chat roller. Disable to sort in the order on the character sheet (grouping physical, social, and mental).',
-    scope: 'client',
-    config: true,
-    default: true,
-    type: Boolean
-  })
-  */
 
   /*
     Automation Settings

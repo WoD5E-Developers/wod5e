@@ -1,6 +1,6 @@
 /* global game, CONST, CONFIG, foundry, ChatMessage, Hooks */
 
-import { generateRollMessage } from '../scripts/rolls/roll-message.js'
+import { generateRollMessageData } from '../scripts/rolls/roll-message.js'
 
 export class WoDChatMessage extends ChatMessage {
   /**
@@ -15,6 +15,7 @@ export class WoDChatMessage extends ChatMessage {
     canClose = false,
     ...rest
   } = {}) {
+    let template = CONFIG.ChatMessage.template
     canDelete ??= game.user.isGM // By default, GM users have the trash-bin icon in the chat log itself
 
     if (typeof this.system.renderHTML === 'function') {
@@ -40,6 +41,7 @@ export class WoDChatMessage extends ChatMessage {
       message: data,
       user: game.user,
       author: this.author,
+      title: this.title,
       speakerActor,
       alias: this.alias,
       portrait: (speakerActor?.img ?? this.author?.avatar) || this.constructor.DEFAULT_AVATAR,
@@ -50,11 +52,18 @@ export class WoDChatMessage extends ChatMessage {
         this.blind ? 'blind' : null
       ].filterJoin(' '),
       isWhisper: this.whisper.length,
-      whisperTo: this.whisper.map(u => game.users.get(u)?.name).filterJoin(', ')
+      whisperTo: this.whisper.map(u => game.users.get(u)?.name).filterJoin(', '),
+      isGM: game.user.isGM,
+      isRollPrompt: this.getFlag('vtm5e', 'isRollPrompt'),
+      promptedRolls: this.getFlag('vtm5e', 'promptedRolls'),
+      valuePaths: this.getFlag('vtm5e', 'valuePaths'),
+      difficulty: this.getFlag('vtm5e', 'difficulty')
     }
 
     // Render message data specifically for ROLL type messages
     if (this.isRoll) {
+      template = 'systems/vtm5e/display/ui/chat/chat-message-roll.hbs'
+
       await this.#renderRollContent(messageData)
 
       const roll = this.rolls[0]
@@ -62,7 +71,7 @@ export class WoDChatMessage extends ChatMessage {
       // Here, we're 100% sure that this message contains a valid WoD5e die and can proceed
       // with the WoD5e message formatting
       if (roll.system) {
-        const messageContent = await generateRollMessage({
+        const rollMessageData = await generateRollMessageData({
           title: roll.options.title || `${game.i18n.localize('WOD5E.Chat.Rolling')}...`,
           roll,
           system: roll.system,
@@ -73,15 +82,51 @@ export class WoDChatMessage extends ChatMessage {
           isContentVisible: this.isContentVisible
         })
 
-        messageData.message.content = messageContent
+        // Merge the results into our existing message data
+        Object.assign(messageData, rollMessageData)
+      }
+    }
+
+    // Render message data for roll prompts
+    if (this.getFlag('vtm5e', 'isRollPrompt')) {
+      template = 'systems/vtm5e/display/ui/chat/chat-message-roll-prompt.hbs'
+
+      const isOwnerFilter = game.actors.filter(a => a.isOwner)
+      const isVisibleFilter = game.actors.filter(a => a.visible)
+
+      for (const [key, value] of Object.entries(messageData.promptedRolls)) {
+        let rollData
+        if (value.rolled) {
+          const roll = messageData.promptedRolls[key].roll
+          rollData = await generateRollMessageData({
+            title: roll.options.title,
+            roll,
+            system: roll.options.system,
+            difficulty: roll.options.difficulty || 0,
+            activeModifiers: roll.options.activeModifiers || {},
+            isContentVisible: this.isContentVisible
+          })
+        }
+
+        messageData.promptedRolls[key] = Object.assign(messageData.promptedRolls[key], {
+          canRoll: (isOwnerFilter.filter(a => a.id === key).length > 0) || false,
+          canRemove: (isOwnerFilter.filter(a => a.id === key).length > 0) || false,
+          isVisible: (isVisibleFilter.filter(a => a.id === key).length > 0) || false,
+          rollData
+        })
       }
     }
 
     // Define a border color
     if (this.style === CONST.CHAT_MESSAGE_STYLES.OOC) messageData.borderColor = this.author?.color.css
 
+    // Add a check in for in case modules are adding content to use that as the description
+    if (messageData?.message?.content) {
+      messageData.description = messageData?.message?.content
+    }
+
     // Render the chat message
-    let html = await foundry.applications.handlebars.renderTemplate(CONFIG.ChatMessage.template, messageData)
+    let html = await foundry.applications.handlebars.renderTemplate(template, messageData)
     html = foundry.utils.parseHTML(html)
 
     // Flag expanded state of dice rolls
