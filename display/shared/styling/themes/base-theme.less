@@ -52,6 +52,21 @@ prose-mirror {
   }
 }
 
+.clickable,
+.rollable,
+.rollable-item,
+.system-rollable {
+  cursor: pointer;
+}
+
+.clickable:hover,
+.rollable:hover,
+.rollable-item:hover,
+.system-rollable:hover {
+  text-shadow: 0 0 5px var(--system-color-9);
+  filter: saturate(250%) drop-shadow(2px 4px 6px black);
+}
+
 /* Actor Sheets */
 .sheet {
   .window-content {
@@ -149,14 +164,6 @@ prose-mirror {
   /* General Resources */
   .resource-header {
     border-bottom: 1px solid var(--system-color-5);
-  }
-
-  .clickable:hover,
-  .rollable:hover,
-  .rollable-item:hover,
-  .system-rollable:hover {
-    text-shadow: 0 0 5px var(--system-color-9);
-    filter: saturate(250%) drop-shadow(2px 4px 6px black);
   }
 
   /* Statistics Page */
@@ -347,6 +354,7 @@ prose-mirror {
   padding-left: 10px;
 }
 
+.chat-message button,
 .directory .action-buttons button {
   background: #2e2d77;
   color: var(--system-color-6);

@@ -56,3 +56,128 @@
   cursor: pointer;
   margin-top: 5px;
 }
+
+.roll-menu.application.minimized,
+.roll-menu.application.minimizing {
+  .roll-menu-hint {
+    display: none;
+  }
+}
+
+.roll-menu.application {
+  .window-content {
+    padding: 0;
+    flex-direction: row;
+  }
+
+  .roll-menu-hint {
+    cursor: pointer;
+  }
+
+  .clickable-button {
+    cursor: pointer;
+  }
+
+  .clickable-button:hover {
+    font-weight: bold;
+  }
+
+  .saved-rolls {
+    padding-right: 1rem;
+    border-right: 1px solid;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      font-size: 16pt;
+      text-align: center;
+    }
+
+    .saved-rolls-list {
+      padding: 5px;
+      display: flex;
+      flex-grow: 1;
+      overflow-y: scroll;
+
+      .saved-roll.active {
+        font-weight: bold;
+      }
+
+      .saved-roll:not(.active) {
+        cursor: pointer;
+      }
+    }
+
+    .saved-rolls-footer {
+      margin-top: auto;
+      padding: 0.5rem;
+      text-align: center;
+    }
+  }
+
+  .main {
+    flex-grow: 1;
+    position: relative;
+
+    .roll-menu-body {
+      padding: 1rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .splat-die-options {
+        justify-content: space-between;
+
+        .die-img {
+          justify-items: center;
+
+          img {
+            cursor: pointer;
+          }
+        }
+
+        .die-img:not(.active) {
+          filter: saturate(250%);
+        }
+
+        .die-img.active {
+          filter: saturate(50%);
+        }
+      }
+
+      .roll-constructor {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        position: relative;
+
+        .constructed-roll {
+          flex-grow: 1;
+        }
+
+        .roll-options {
+          .option-toggle {
+            text-align: center;
+          }
+        }
+      }
+
+      .roll-menu-footer {
+        margin-top: auto;
+        padding: 0.5rem;
+
+        .roll-menu-footer-buttons {
+          display: flex;
+          justify-content: space-between;
+          padding: 5px;
+
+          .prompt-button,
+          .roll-button {
+            align-content: center;
+          }
+        }
+      }
+    }
+  }
+}

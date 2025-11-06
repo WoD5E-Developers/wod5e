@@ -41,6 +41,7 @@ import { Gifts } from './api/def/gifts.js'
 import { _rollItem } from './actor/scripts/item-roll.js'
 import { _updateCSSVariable, cssVariablesRecord } from './scripts/update-css-variables.js'
 import { _updateToken } from './actor/wta/scripts/forms.js'
+import { RollPromptSockets } from './sockets/roll-prompt.js'
 
 // Anything that needs to be ran alongside the initialisation of the world
 Hooks.once('init', async function () {
@@ -51,7 +52,7 @@ Hooks.once('init', async function () {
   CONFIG.Item.documentClass = WoDItem
   CONFIG.ui.chat = WoDChatLog
   CONFIG.ChatMessage.documentClass = WoDChatMessage
-  CONFIG.ChatMessage.template = 'systems/vtm5e/display/ui/chat/chat-message.hbs'
+  CONFIG.ChatMessage.template = 'systems/vtm5e/display/ui/chat/chat-message-default.hbs'
   CONFIG.ui.hotbar = WoDHotbar
   CONFIG.ui.actors = WOD5EActorDirectory
   CONFIG.Dice.rolls = [WOD5eRoll]
@@ -114,6 +115,9 @@ Hooks.once('init', async function () {
 
   // Initialize the alterations to the Paused
   PauseChanges()
+
+  // Sockets to register
+  RollPromptSockets()
 })
 
 // Anything that needs to run once the world is ready
