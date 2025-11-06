@@ -14,7 +14,7 @@ export const getVampireLabel = async function (data) {
   if (data.advancedDice?.criticals > 1 || (data.basicDice?.criticals > 0 && data.advancedDice?.criticals > 0)) {
     // Handle messy criticals
     Object.assign(labelData, getMessyCriticalLabel(data, difficultySet))
-  } else if (data.advancedDice?.critFails > 0 && (!difficultySet || data.totalResult < data.difficult)) {
+  } else if (data.advancedDice?.critFails > 0 && (!difficultySet || data.totalResult < data.difficulty)) {
     // Handle bestial failures
     Object.assign(labelData, getBestialFailureLabel(data, difficultySet))
   } else {
