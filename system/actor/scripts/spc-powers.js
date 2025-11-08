@@ -66,7 +66,7 @@ export const _onDeletePower = async function (event, target) {
   const powerType = target.getAttribute('data-type')
   const powerId = target.getAttribute('data-id')
 
-  if (powerType === 'discipline') {
+  if (powerType === 'power') {
     actor.update({ [`system.disciplines.${powerId}.visible`]: false })
   } else if (powerType === 'edge') {
     actor.update({ [`system.edges.${powerId}.visible`]: false })
