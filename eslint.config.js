@@ -40,10 +40,10 @@ export default defineConfig([
           'newlines-between': 'always'
         }
       ],
-      env: {
-        browser: true,
-        node: true
-      }
+      "env": ["error", {
+        "browser": true,
+        "node": true
+      }]
     }
   }
 ])
