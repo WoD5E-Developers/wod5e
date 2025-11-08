@@ -1,14 +1,26 @@
-/* global foundry, game, Item, SortingHelpers, ui */
-
 // Preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
 import { getActorBackground } from './scripts/get-actor-background.js'
 import { getActorTypes } from './scripts/get-actor-types.js'
-import { prepareGroupFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareGroupMembersContext } from './scripts/prepare-partials.js'
+import {
+  prepareGroupFeaturesContext,
+  prepareEquipmentContext,
+  prepareNotepadContext,
+  prepareSettingsContext,
+  prepareGroupMembersContext
+} from './scripts/prepare-partials.js'
 // Definition file
 import { ItemTypes } from '../api/def/itemtypes.js'
 // Resource functions
-import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange, _onRemoveSquareCounter } from './scripts/counters.js'
+import {
+  _onResourceChange,
+  _setupDotCounters,
+  _setupSquareCounters,
+  _onDotCounterChange,
+  _onDotCounterEmpty,
+  _onSquareCounterChange,
+  _onRemoveSquareCounter
+} from './scripts/counters.js'
 // Various button functions
 import { _onEditImage } from './scripts/on-edit-image.js'
 import { _onToggleLock } from './scripts/on-toggle-lock.js'
@@ -22,12 +34,14 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
  * Extend the WoDActor document
  * @extends {WoDActor}
  */
-export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
-  get title () {
+export class GroupActorSheet extends HandlebarsApplicationMixin(
+  foundry.applications.sheets.ActorSheetV2
+) {
+  get title() {
     return this.actor.isToken ? `[Token] ${this.actor.name}` : this.actor.name
   }
 
-  constructor (options = {}) {
+  constructor(options = {}) {
     super(options)
 
     this.#dragDrop = this.#createDragDropHandlers()
@@ -71,7 +85,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     ]
   }
 
-  _getHeaderControls () {
+  _getHeaderControls() {
     const controls = super._getHeaderControls()
 
     return controls
@@ -141,7 +155,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     }
   }
 
-  getTabs () {
+  getTabs() {
     const tabs = this.tabs
 
     // Remove hidden tabs
@@ -157,7 +171,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     return tabs
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     // Top-level variables
     const data = await super._prepareContext()
     const actor = this.actor
@@ -217,12 +231,15 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     }
   }
 
-  async prepareItems (sheetData) {
+  async prepareItems(sheetData) {
     // Do data manipulation we need to do for ALL items here
     sheetData.items.forEach(async (item) => {
       // Enrich item descriptions
       if (item.system?.description) {
-        item.system.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description)
+        item.system.enrichedDescription =
+          await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+            item.system.description
+          )
       }
 
       // Calculate item modifiers and shuffle them into system.itemModifiers
@@ -232,63 +249,74 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     })
 
     // Features
-    sheetData.system.features = sheetData.items.reduce((acc, item) => {
-      if (item.type === 'feature') {
-        // Assign to featuretype container, default to 'background' if unset
-        const featuretype = item.system.featuretype || 'background'
-        if (acc[featuretype]) {
-          acc[featuretype].push(item)
-        } else {
-          // Create new array if it doesn't exist
-          acc[featuretype] = [item]
+    sheetData.system.features = sheetData.items.reduce(
+      (acc, item) => {
+        if (item.type === 'feature') {
+          // Assign to featuretype container, default to 'background' if unset
+          const featuretype = item.system.featuretype || 'background'
+          if (acc[featuretype]) {
+            acc[featuretype].push(item)
+          } else {
+            // Create new array if it doesn't exist
+            acc[featuretype] = [item]
+          }
+        } else if (item.type === 'boon') {
+          acc.boon.push(item)
         }
-      } else if (item.type === 'boon') {
-        acc.boon.push(item)
-      }
 
-      return acc
-    }, {
-      // Containers for features
-      background: [],
-      merit: [],
-      flaw: [],
-      boon: []
-    })
+        return acc
+      },
+      {
+        // Containers for features
+        background: [],
+        merit: [],
+        flaw: [],
+        boon: []
+      }
+    )
 
     // Remove Boons if we have no boons and the actor isn't a coterie
-    if (sheetData.system.features.boon.length === 0 && sheetData.system.groupType !== 'coterie') delete sheetData.system.features.boon
+    if (sheetData.system.features.boon.length === 0 && sheetData.system.groupType !== 'coterie')
+      delete sheetData.system.features.boon
 
     // Equipment
-    sheetData.system.equipmentItems = sheetData.items.reduce((acc, item) => {
-      switch (item.type) {
-        case 'armor':
-          acc.armor.push(item)
-          break
-        case 'weapon':
-          acc.weapon.push(item)
-          break
-        case 'gear':
-          acc.gear.push(item)
-          break
-        case 'talisman':
-          acc.talisman.push(item)
-          break
-      }
+    sheetData.system.equipmentItems = sheetData.items.reduce(
+      (acc, item) => {
+        switch (item.type) {
+          case 'armor':
+            acc.armor.push(item)
+            break
+          case 'weapon':
+            acc.weapon.push(item)
+            break
+          case 'gear':
+            acc.gear.push(item)
+            break
+          case 'talisman':
+            acc.talisman.push(item)
+            break
+        }
 
-      return acc
-    }, {
-      // Containers for equipment
-      armor: [],
-      weapon: [],
-      gear: [],
-      talisman: []
-    })
+        return acc
+      },
+      {
+        // Containers for equipment
+        armor: [],
+        weapon: [],
+        gear: [],
+        talisman: []
+      }
+    )
 
     // Remove Talismans if we have no boons and the group type is not a pack
-    if (sheetData.system.equipmentItems.talisman.length === 0 && sheetData.system.groupType !== 'pack') delete sheetData.system.equipmentItems.talisman
+    if (
+      sheetData.system.equipmentItems.talisman.length === 0 &&
+      sheetData.system.groupType !== 'pack'
+    )
+      delete sheetData.system.equipmentItems.talisman
   }
 
-  async _preparePartContext (partId, context, options) {
+  async _preparePartContext(partId, context, options) {
     // Inherit any preparation from the extended class
     context = { ...(await super._preparePartContext(partId, context, options)) }
 
@@ -321,7 +349,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     return context
   }
 
-  static async onSubmitActorForm (event, form, formData) {
+  static async onSubmitActorForm(event, form, formData) {
     // Process submit data
     const submitData = this._prepareSubmitData(event, form, formData)
 
@@ -333,7 +361,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     await this.actor.update(submitData)
   }
 
-  async _onRender () {
+  async _onRender() {
     const html = this.element
 
     // Update the window title (since ActorSheetV2 doesn't do it automatically)
@@ -347,7 +375,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       html.querySelector('section.window-content').style.background = ''
     }
 
-    html.querySelectorAll('.actor-header-bg-filepicker input').forEach(input => {
+    html.querySelectorAll('.actor-header-bg-filepicker input').forEach((input) => {
       input.addEventListener('focusout', function (event) {
         event.preventDefault()
 
@@ -358,7 +386,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       })
     })
 
-    html.querySelectorAll('.actor-background-filepicker input').forEach(input => {
+    html.querySelectorAll('.actor-background-filepicker input').forEach((input) => {
       input.addEventListener('focusout', function (event) {
         event.preventDefault()
 
@@ -377,22 +405,22 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     }
 
     // Resource square counters
-    html.querySelectorAll('.resource-counter.editable .resource-counter-step').forEach(el => {
+    html.querySelectorAll('.resource-counter.editable .resource-counter-step').forEach((el) => {
       el.addEventListener('click', _onSquareCounterChange.bind(this))
       el.addEventListener('contextmenu', _onRemoveSquareCounter.bind(this))
     })
-    html.querySelectorAll('.resource-plus').forEach(el => {
+    html.querySelectorAll('.resource-plus').forEach((el) => {
       el.addEventListener('click', _onResourceChange.bind(this))
     })
-    html.querySelectorAll('.resource-minus').forEach(el => {
+    html.querySelectorAll('.resource-minus').forEach((el) => {
       el.addEventListener('click', _onResourceChange.bind(this))
     })
 
     // Resource dot counters
-    html.querySelectorAll('.resource-value .resource-value-step').forEach(el => {
+    html.querySelectorAll('.resource-value .resource-value-step').forEach((el) => {
       el.addEventListener('click', _onDotCounterChange.bind(this))
     })
-    html.querySelectorAll('.resource-value .resource-value-empty').forEach(el => {
+    html.querySelectorAll('.resource-value .resource-value-empty').forEach((el) => {
       el.addEventListener('click', _onDotCounterEmpty.bind(this))
     })
 
@@ -421,7 +449,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     this.#dragDrop.forEach((d) => d.bind(this.element))
   }
 
-  #createDragDropHandlers () {
+  #createDragDropHandlers() {
     return this.options.dragDrop.map((d) => {
       d.permissions = {
         dragstart: this._canDragStart.bind(this),
@@ -439,15 +467,15 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
 
   #dragDrop
 
-  _canDragStart () {
+  _canDragStart() {
     return this.isEditable
   }
 
-  _canDragDrop () {
+  _canDragDrop() {
     return this.isEditable
   }
 
-  _onDragStart (event) {
+  _onDragStart(event) {
     const dataset = event.target.dataset
     if ('link' in dataset) return
 
@@ -463,9 +491,9 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     event.dataTransfer.setData('text/plain', JSON.stringify(dragData))
   }
 
-  _onDragOver () {}
+  _onDragOver() {}
 
-  async _onDrop (event) {
+  async _onDrop(event) {
     const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event)
 
     // Handle different data types
@@ -477,7 +505,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     }
   }
 
-  async _onDropItem (event, data) {
+  async _onDropItem(event, data) {
     if (!this.actor.isOwner) return false
     const actorType = this.actor.type
     const item = await Item.implementation.fromDropData(data)
@@ -494,7 +522,8 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       // We go through the base actor type, then subtypes - if we match to any of them, we allow the item to be
       // added to the actor.
       // We don't need to add this logic to the blacklist because the blacklist only needs to check against the base types.
-      if (!foundry.utils.isEmpty(whitelist) &&
+      if (
+        !foundry.utils.isEmpty(whitelist) &&
         // This is just a general check against the base actorType
         !whitelist.includes(actorType) &&
         // If the actor is an SPC, check against the spcType
@@ -502,20 +531,24 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
         // If the actor is a Group sheet, check against the groupType
         !(actorType === 'group' && whitelist.includes(this.actor.system.groupType))
       ) {
-        ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
-          string1: itemType,
-          string2: actorType
-        }))
+        ui.notifications.warn(
+          game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
+            string1: itemType,
+            string2: actorType
+          })
+        )
 
         return false
       }
 
       // If the blacklist contains any entries, we can check to make sure this actor type isn't disallowed for the item
       if (!foundry.utils.isEmpty(blacklist) && blacklist.indexOf(actorType) > -1) {
-        ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
-          string1: itemType,
-          string2: actorType
-        }))
+        ui.notifications.warn(
+          game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
+            string1: itemType,
+            string2: actorType
+          })
+        )
 
         return false
       }
@@ -523,7 +556,9 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       // Handle limiting only a single type of an item to an actor
       if (itemsList[itemType].limitOnePerActor) {
         // Delete all other types of this item on the actor
-        const duplicateItemTypeInstances = this.actor.items.filter(item => item.type === itemType).map(item => item.id)
+        const duplicateItemTypeInstances = this.actor.items
+          .filter((item) => item.type === itemType)
+          .map((item) => item.id)
         this.actor.deleteEmbeddedDocuments('Item', duplicateItemTypeInstances)
       }
     }
@@ -535,12 +570,12 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     return this._onDropItemCreate(itemData, event)
   }
 
-  async _onDropItemCreate (itemData) {
+  async _onDropItemCreate(itemData) {
     itemData = itemData instanceof Array ? itemData : [itemData]
     return this.actor.createEmbeddedDocuments('Item', itemData)
   }
 
-  _onSortItem (event, itemData) {
+  _onSortItem(event, itemData) {
     // Get the drag source and drop target
     const items = this.actor.items
     const source = items.get(itemData._id)
@@ -555,7 +590,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
     const siblings = []
     for (const el of dropTarget.parentElement.children) {
       const siblingId = el.dataset.itemId
-      if (siblingId && (siblingId !== source.id)) siblings.push(items.get(el.dataset.itemId))
+      if (siblingId && siblingId !== source.id) siblings.push(items.get(el.dataset.itemId))
     }
 
     // Perform the sort
@@ -564,7 +599,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(foundry.applicat
       siblings
     })
 
-    const updateData = sortUpdates.map(u => {
+    const updateData = sortUpdates.map((u) => {
       const update = u.update
       update._id = u.target._id
       return update

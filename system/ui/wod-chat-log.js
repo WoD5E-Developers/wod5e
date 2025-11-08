@@ -1,5 +1,3 @@
-/* global foundry, game */
-
 // Various button functions
 import { _onToggleCollapse } from '../actor/scripts/on-toggle-collapse.js'
 import { _onAddSelectedTokens } from '../applications/roll-menu/scripts/on-add-selected-tokens.js'
@@ -20,7 +18,7 @@ export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     }
   }
 
-  updateTimestamps () {
+  updateTimestamps() {
     for (const li of document.querySelectorAll('.chat-message[data-message-id]')) {
       const message = game.messages.get(li.dataset.messageId)
       if (!message?.timestamp) return
@@ -30,7 +28,7 @@ export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     }
   }
 
-  async _onRender (context, options) {
+  async _onRender(context, options) {
     await super._onRender(context, options)
 
     const html = this.element

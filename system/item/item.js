@@ -1,11 +1,9 @@
-/* global Item, Hooks, WOD5E */
-
 /**
  * Extend the base ItemSheet document and put all our base functionality here
  * @extends {Item}
  */
 export class WoDItem extends Item {
-  prepareData () {
+  prepareData() {
     super.prepareData()
   }
 
@@ -18,7 +16,7 @@ export class WoDItem extends Item {
    * available both inside and outside of item sheets (such as if an item
    * is queried and has a roll executed directly from it).
    */
-  async prepareDerivedData () {}
+  async prepareDerivedData() {}
 }
 
 // Handle setting default item data

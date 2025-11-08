@@ -1,5 +1,3 @@
-/* global game, Hooks, fromUuidSync */
-
 /* Various Support for group sheets injected as the actor sidebar rerenders */
 export const RenderActorSidebar = async () => {
   // Altering the ActorDirectory in order to support group sheet layouts
@@ -18,12 +16,15 @@ export const RenderActorSidebar = async () => {
       const groupMembers = group.system?.members
 
       // Header element for the "folder"
-      const headerElement = `<header class='group-header ${group.system.groupType} flexrow'>
+      const headerElement =
+        `<header class='group-header ${group.system.groupType} flexrow'>
         <h3 class='noborder'>
           <i class='fas fa-folder-open fa-fw'></i>
           ${group.name}
         </h3>
-        <a class='create-button open-sheet' data-uuid='Actor.${group.id}' title='` + game.i18n.localize('WOD5E.OpenSheet') + `'>
+        <a class='create-button open-sheet' data-uuid='Actor.${group.id}' title='` +
+        game.i18n.localize('WOD5E.OpenSheet') +
+        `'>
           <i class="fas fa-user"></i>
         </a>
       </header>`
@@ -38,14 +39,14 @@ export const RenderActorSidebar = async () => {
       }
 
       // Remove the entry-name and thumbnail elements
-      groupElement.querySelectorAll('.entry-name, .thumbnail').forEach(el => el.remove())
+      groupElement.querySelectorAll('.entry-name, .thumbnail').forEach((el) => el.remove())
 
       // Append the headerElement and subdirectoryElement
       groupElement.insertAdjacentHTML('beforeend', headerElement)
       groupElement.insertAdjacentHTML('beforeend', subdirectoryElement)
 
       // Add an event listener for toggling the group collapse
-      groupElement.querySelector('.group-header')?.addEventListener('click', async event => {
+      groupElement.querySelector('.group-header')?.addEventListener('click', async (event) => {
         event.preventDefault()
 
         const collapsed = !group.system.collapsed
@@ -59,7 +60,7 @@ export const RenderActorSidebar = async () => {
       })
 
       // Add an event listener for opening the group sheet
-      groupElement.querySelector('.open-sheet')?.addEventListener('click', async event => {
+      groupElement.querySelector('.open-sheet')?.addEventListener('click', async (event) => {
         event.preventDefault()
         event.stopPropagation()
 
@@ -69,13 +70,15 @@ export const RenderActorSidebar = async () => {
       // Move each group member's element to be a child of this group
       // Additionally, we need to give the actor Limited
       if (groupMembers) {
-        groupMembers.forEach(actorUuid => {
+        groupMembers.forEach((actorUuid) => {
           const actorObject = fromUuidSync(actorUuid)
 
           // Check to verify the actor exists
           if (actorObject) {
             const actorElement = document.querySelector(`[data-entry-id='${actorObject.id}']`)
-            const groupListElement = document.querySelector(`[data-entry-id='${group.id}']`)?.querySelector('.subdirectory')
+            const groupListElement = document
+              .querySelector(`[data-entry-id='${group.id}']`)
+              ?.querySelector('.subdirectory')
 
             if (actorElement && groupListElement) {
               groupListElement.appendChild(actorElement)
@@ -83,7 +86,7 @@ export const RenderActorSidebar = async () => {
           } else {
             // If the actor doesn't exist, remove it from the group
             // Filter out the UUID from the members list
-            const membersList = groupMembers.filter(actor => actor !== actorUuid)
+            const membersList = groupMembers.filter((actor) => actor !== actorUuid)
 
             // Update the group sheet with the new members list
             group.update({ 'system.members': membersList })

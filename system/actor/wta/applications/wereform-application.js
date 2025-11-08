@@ -1,20 +1,18 @@
-/* global foundry, game */
-
 import { generateLocalizedLabel } from '../../../api/generate-localization.js'
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 
 export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV2) {
-  constructor (data) {
+  constructor(data) {
     super()
 
     this.data = data
   }
 
-  get title () {
+  get title() {
     return `Wereform Editor - ${generateLocalizedLabel(this.data.form, 'wereform')}`
   }
 
-  get document () {
+  get document() {
     return game.actors.get(this.data.actor._id)
   }
 
@@ -40,7 +38,8 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
 
   static PARTS = {
     form: {
-      template: 'systems/vtm5e/display/wta/applications/wereform-application/wereform-application.hbs'
+      template:
+        'systems/vtm5e/display/wta/applications/wereform-application/wereform-application.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
@@ -49,7 +48,8 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
       template: 'systems/vtm5e/display/wta/applications/wereform-application/parts/description.hbs'
     },
     tokenSettings: {
-      template: 'systems/vtm5e/display/wta/applications/wereform-application/parts/token-settings.hbs'
+      template:
+        'systems/vtm5e/display/wta/applications/wereform-application/parts/token-settings.hbs'
     }
   }
 
@@ -72,7 +72,7 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
     }
   }
 
-  #getTabs () {
+  #getTabs() {
     const tabs = this.tabs
 
     for (const tab of Object.values(tabs)) {
@@ -83,7 +83,7 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
     return tabs
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     // Top-level variables
     const data = this.data
     const actorData = this.document.system
@@ -97,12 +97,12 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
     return data
   }
 
-  activateListeners (html) {
+  activateListeners(html) {
     // Activate listeners
     super.activateListeners(html)
   }
 
-  async _preparePartContext (partId, context) {
+  async _preparePartContext(partId, context) {
     switch (partId) {
       // Description
       case 'description':
@@ -111,7 +111,10 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
 
         // Part-specific data
         context.formDescription = context.formData?.description || ''
-        context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.formData?.description || '')
+        context.enrichedDescription =
+          await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+            context.formData?.description || ''
+          )
 
         break
 
@@ -129,7 +132,7 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
     return context
   }
 
-  static async wereformHandler (event, form, formData) {
+  static async wereformHandler(event, form, formData) {
     // Update the source document
     await this.document.update(formData.object)
 

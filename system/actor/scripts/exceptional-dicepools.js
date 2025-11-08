@@ -1,5 +1,3 @@
-/* global game, foundry */
-
 export const _onEditExceptionalPools = async function (event) {
   event.preventDefault()
 

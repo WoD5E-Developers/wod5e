@@ -1,9 +1,10 @@
-/* global foundry */
-
 // Preparation functions
-import { prepareDescriptionContext, prepareModifiersContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
+import {
+  prepareDescriptionContext,
+  prepareModifiersContext,
+  prepareItemSettingsContext
+} from '../scripts/prepare-partials.js'
 import { prepareCreedDetailsContext } from './scripts/prepare-partials.js'
-
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -63,14 +64,14 @@ export class CreedItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     }
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     // Top-level variables
     const data = await super._prepareContext()
 
     return data
   }
 
-  async _preparePartContext (partId, context, options) {
+  async _preparePartContext(partId, context, options) {
     // Inherit any preparation from the extended class
     context = { ...(await super._preparePartContext(partId, context, options)) }
 

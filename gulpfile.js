@@ -1,6 +1,7 @@
-const gulp = require('gulp')
 const path = require('path')
 const fs = require('fs')
+
+const gulp = require('gulp')
 const less = require('gulp-less')
 const concat = require('gulp-concat')
 
@@ -50,10 +51,13 @@ gulp.task('localize', function (done) {
 // Create a task to take all .less files and convert them into CSS for Foundry
 // This includes a pipeline to turn it all into a single file so that hotreload works better
 gulp.task('less', function () {
-  return gulp.src('./display/**/styling/**/*.less')
-    .pipe(less({
-      paths: [path.join(__dirname, 'less', 'includes')]
-    }))
+  return gulp
+    .src('./display/**/styling/**/*.less')
+    .pipe(
+      less({
+        paths: [path.join(__dirname, 'less', 'includes')]
+      })
+    )
     .pipe(concat('wod5e-styling.css')) // Concatenate all CSS files into a single file
     .pipe(gulp.dest('./display/')) // Output for the wod-styling.css file
 })
@@ -66,7 +70,7 @@ gulp.task('watch-styling', function () {
 
 gulp.task('watch-localization', function () {
   // Function to start the watcher
-  function startWatcher () {
+  function startWatcher() {
     // Watch English JSON files
     const watcher = gulp.watch('./lang/en/*.json')
 
@@ -75,7 +79,10 @@ gulp.task('watch-localization', function () {
       watcher.close()
 
       // Run the tasks
-      gulp.series('sortEnglishKeys', 'localize')(function () {
+      gulp.series(
+        'sortEnglishKeys',
+        'localize'
+      )(function () {
         // Restart the watcher after the tasks are finished
         startWatcher()
       })
@@ -87,21 +94,24 @@ gulp.task('watch-localization', function () {
 })
 
 // Default task
-gulp.task('default', gulp.series(
-  gulp.parallel('less', 'sortEnglishKeys'),
-  'localize',
-  gulp.parallel('watch-localization', 'watch-styling')
-))
+gulp.task(
+  'default',
+  gulp.series(
+    gulp.parallel('less', 'sortEnglishKeys'),
+    'localize',
+    gulp.parallel('watch-localization', 'watch-styling')
+  )
+)
 
 // Create directory if it doesn't exist
-function ensureDirectoryExistence (dirPath) {
+function ensureDirectoryExistence(dirPath) {
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true })
   }
 }
 
 // Read JSON file
-function readJsonFile (filePath) {
+function readJsonFile(filePath) {
   // Check if the file exists, and use its value if so
   if (fs.existsSync(filePath)) {
     return JSON.parse(fs.readFileSync(filePath, 'utf8'))
@@ -112,12 +122,12 @@ function readJsonFile (filePath) {
 }
 
 // Write JSON data to file
-function writeJsonFile (filePath, data) {
+function writeJsonFile(filePath, data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8')
 }
 
 // Recursively check and update nested keys
-function checkLocalizationKeys (enKeys, langKeys) {
+function checkLocalizationKeys(enKeys, langKeys) {
   let updated = false
 
   // Add missing keys from English to the target language
@@ -131,8 +141,7 @@ function checkLocalizationKeys (enKeys, langKeys) {
     } else {
       // If the key is not present, add it with an underscore and an empty string
       if (!Object.prototype.hasOwnProperty.call(langKeys, key)) {
-        // eslint-disable-next-line quotes
-        langKeys[`_${key}`] = ""
+        langKeys[`_${key}`] = ''
         updated = true
       }
     }
@@ -155,23 +164,23 @@ function checkLocalizationKeys (enKeys, langKeys) {
 }
 
 // Function to sort the localization keys
-function sortKeys (obj) {
+function sortKeys(obj) {
   const sortedObj = {}
   const keys = Object.keys(obj)
 
   // Handle all keys outside of an object
   keys
-    .filter(key => typeof obj[key] !== 'object' || obj[key] === null)
+    .filter((key) => typeof obj[key] !== 'object' || obj[key] === null)
     .sort((a, b) => a.replace(/^_/, '').localeCompare(b.replace(/^_/, '')))
-    .forEach(key => {
+    .forEach((key) => {
       sortedObj[key] = obj[key]
     })
 
   // All object keys
   keys
-    .filter(key => typeof obj[key] === 'object' && obj[key] !== null)
+    .filter((key) => typeof obj[key] === 'object' && obj[key] !== null)
     .sort((a, b) => a.replace(/^_/, '').localeCompare(b.replace(/^_/, '')))
-    .forEach(key => {
+    .forEach((key) => {
       sortedObj[key] = sortKeys(obj[key])
     })
 

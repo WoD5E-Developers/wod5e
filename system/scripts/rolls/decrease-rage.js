@@ -1,6 +1,4 @@
-/* global ChatMessage, game */
-
-export async function _decreaseRage (actor, amount, rollMode) {
+export async function _decreaseRage(actor, amount, rollMode) {
   // Reduce rage for each failure on a rage dice if this is a power that consumes it
   const currentRage = actor.system.rage.value
   const newRageAmount = Math.max(currentRage - amount, 0)
@@ -13,7 +11,10 @@ export async function _decreaseRage (actor, amount, rollMode) {
     <p class="roll-content result-rage result-possible">${game.i18n.localize('WOD5E.WTA.LostWolfWarning')}</p>`
 
     // Post the message to the chat
-    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: chatMessage }, rollMode)
+    const message = ChatMessage.applyRollMode(
+      { speaker: ChatMessage.getSpeaker({ actor }), content: chatMessage },
+      rollMode
+    )
     ChatMessage.create(message)
   }
 

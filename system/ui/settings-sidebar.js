@@ -1,5 +1,3 @@
-/* global game, Hooks */
-
 /* Various additional information added to the Settings sidebar */
 export const RenderSettings = async () => {
   Hooks.on('renderSettings', async (_app, html) => {

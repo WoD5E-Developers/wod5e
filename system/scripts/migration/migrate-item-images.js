@@ -1,12 +1,12 @@
-/* global ui, game */
-
 export const MigrateItemImages = async function () {
   const actorsList = game.actors
   const totalIterations = actorsList.size
   const migrationIDs = []
 
   // If there's nothing to go through, then just resolve and move on.
-  if (totalIterations === 0) { return [] }
+  if (totalIterations === 0) {
+    return []
+  }
 
   // Fix image data across items (v4.0.0)
   for (const actor of actorsList) {
@@ -23,7 +23,10 @@ export const MigrateItemImages = async function () {
         const updatedItem = {
           _id: item._id, // Preserve the original _id
           ...item.toObject(),
-          img: item.img.replace(/\/systems\/vtm5e\/assets\/icons\/powers\//, 'systems/vtm5e/assets/icons/items/')
+          img: item.img.replace(
+            /\/systems\/vtm5e\/assets\/icons\/powers\//,
+            'systems/vtm5e/assets/icons/items/'
+          )
         }
 
         // Push the updated item to the array
@@ -41,7 +44,7 @@ export const MigrateItemImages = async function () {
   return migrationIDs
 
   // Function to search through the given string
-  function countInstances (string) {
+  function countInstances(string) {
     let count = 0
 
     // Regex

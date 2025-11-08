@@ -1,5 +1,3 @@
-/* global ui, game */
-
 export const MigrateSpecialties = async function () {
   const actorsList = game.actors
   const totalIterations = actorsList.size
@@ -8,7 +6,9 @@ export const MigrateSpecialties = async function () {
   const migrationIDs = []
 
   // If there's nothing to go through, then just resolve and move on.
-  if (totalIterations === 0 && totalItemIterations === 0) { return [] }
+  if (totalIterations === 0 && totalItemIterations === 0) {
+    return []
+  }
 
   // Delete any old specialties in the game (v4.0.0)
   if (itemsInvalidList.size > 0) {
@@ -38,12 +38,12 @@ export const MigrateSpecialties = async function () {
       }
 
       // Check for if there's specialties that are invalid
-      const invalidSpecialties = actorInvalidItemsList.filter(item => item.type === 'specialty')
+      const invalidSpecialties = actorInvalidItemsList.filter((item) => item.type === 'specialty')
       if (invalidSpecialties.length > 0) {
         ui.notifications.info(`Fixing actor ${actor.name}: Migrating specialties data.`)
         migrationIDs.push(actor.uuid)
 
-        invalidSpecialties.map(item => {
+        invalidSpecialties.map((item) => {
           // Define what skill we're using
           const skill = item.system.skill.toLowerCase()
 

@@ -1,5 +1,3 @@
-/* global foundry, game, WOD5E */
-
 import { _onAddNewRoll } from './scripts/on-add-new-dice.js'
 import { _onPromptInChat } from './scripts/on-prompt-in-chat.js'
 import { _onRollFromRollMenu } from './scripts/on-roll-from-roll-menu.js'
@@ -42,7 +40,7 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     }
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     const data = await super._prepareContext()
 
     data.activeRollID = game.users.current.getFlag('vtm5e', 'rollMenuActiveRoll') || ''
@@ -60,7 +58,7 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     return data
   }
 
-  async _preparePartContext (partId, context, options) {
+  async _preparePartContext(partId, context, options) {
     context = await super._preparePartContext(partId, context, options)
 
     switch (partId) {
@@ -76,7 +74,7 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     return context
   }
 
-  static async applicationHandler (event, form, formData) {
+  static async applicationHandler(event, form, formData) {
     const data = formData.object
 
     let activeRoll = game.users.current.getFlag('vtm5e', 'rollMenuActiveRoll') || ''
@@ -111,7 +109,7 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     this.render()
   }
 
-  async _onRender () {
+  async _onRender() {
     const html = this.element
 
     // Check if the Roll Menu Hint already exists

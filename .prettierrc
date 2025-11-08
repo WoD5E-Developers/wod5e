@@ -1,0 +1,11 @@
+{
+  "singleQuote": true,
+  "printWidth": 100,
+  "tabWidth": 2,
+  "trailingComma": "none",
+  "semi": true,
+  "arrowParens": "always",
+  "endOfLine": "auto",
+  "htmlWhitespaceSensitivity": "ignore",
+  "bracketSameLine": false
+}

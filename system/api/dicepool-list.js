@@ -1,5 +1,3 @@
-/* global WOD5E, game */
-
 /**
  * Function to handle getting the list of available dice to add to a dicepool
  * @param document

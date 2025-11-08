@@ -1,5 +1,3 @@
-/* global game, WOD5E, FormApplication, foundry */
-
 /* Definitions */
 import { Attributes } from '../../api/def/attributes.js'
 import { Skills } from '../../api/def/skills.js'
@@ -8,7 +6,7 @@ import { Edges } from '../../api/def/edges.js'
 import { Gifts } from '../../api/def/gifts.js'
 
 export class StorytellerMenu extends FormApplication {
-  static get defaultOptions () {
+  static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       title: game.i18n.localize('WOD5E.Settings.StorytellerMenu'),
       id: 'wod5e-storyteller',
@@ -18,15 +16,17 @@ export class StorytellerMenu extends FormApplication {
       height: 450,
       resizable: true,
       closeOnSubmit: true,
-      tabs: [{
-        navSelector: '.sheet-tabs',
-        contentSelector: 'section',
-        initial: 'modifications'
-      }]
+      tabs: [
+        {
+          navSelector: '.sheet-tabs',
+          contentSelector: 'section',
+          initial: 'modifications'
+        }
+      ]
     })
   }
 
-  constructor (application, options) {
+  constructor(application, options) {
     super(application, options)
 
     this.listKeys = {
@@ -76,7 +76,7 @@ export class StorytellerMenu extends FormApplication {
   /* -------------------------------------------- */
 
   /** @override */
-  async getData () {
+  async getData() {
     const data = await super.getData()
 
     data.attributeTypes = {
@@ -105,9 +105,9 @@ export class StorytellerMenu extends FormApplication {
   /* -------------------------------------------- */
 
   /** @override */
-  activateListeners (html) {
+  activateListeners(html) {
     const handleClick = (selector, handler) => {
-      html[0].querySelectorAll(selector).forEach(element => {
+      html[0].querySelectorAll(selector).forEach((element) => {
         element.addEventListener('click', function (event) {
           event.preventDefault()
           const data = event.target.dataset
@@ -211,20 +211,24 @@ export class StorytellerMenu extends FormApplication {
   }
 
   // Function for getting the information necessary for the selection dialog
-  async _onGenerateModPrompt (type) {
+  async _onGenerateModPrompt(type) {
     const list = await WOD5E[this.listKeys[type].defCategory].getList({})
     this._onRenderPromptDialog(type, list, this.listKeys[type].newModTitle)
   }
 
   // Function for rendering the dialog for adding a new modification
-  async _onRenderPromptDialog (type, list, title) {
+  async _onRenderPromptDialog(type, list, title) {
     const modifiedKey = `modified${this.listKeys[type].defCategory}`
     const modifiedList = await game.settings.get('vtm5e', modifiedKey)
 
-    const effectiveList = Object.fromEntries(Object.entries(list).filter(item => !modifiedList.some(mod => mod.id === item[0])))
+    const effectiveList = Object.fromEntries(
+      Object.entries(list).filter((item) => !modifiedList.some((mod) => mod.id === item[0]))
+    )
 
     const template = 'systems/vtm5e/display/ui/select-dialog.hbs'
-    const content = await foundry.applications.handlebars.renderTemplate(template, { options: effectiveList })
+    const content = await foundry.applications.handlebars.renderTemplate(template, {
+      options: effectiveList
+    })
 
     const result = await foundry.applications.api.DialogV2.input({
       window: { title },
@@ -252,19 +256,19 @@ export class StorytellerMenu extends FormApplication {
   }
 
   // Function for removing a change
-  async _onRemoveChange (type, id) {
+  async _onRemoveChange(type, id) {
     const modifiedKey = `modified${this.listKeys[type].defCategory}`
     let modifiedList = await game.settings.get('vtm5e', modifiedKey)
-    modifiedList = modifiedList.filter(item => item.id !== id)
+    modifiedList = modifiedList.filter((item) => item.id !== id)
     await game.settings.set('vtm5e', modifiedKey, modifiedList)
   }
 
   // Function for removing a custom feature
-  async _onRemoveCustom (type, id) {
+  async _onRemoveCustom(type, id) {
     const customKey = `custom${this.listKeys[type].defCategory}`
     delete this.listKeys[type].defClass[id]
     let customList = await game.settings.get('vtm5e', customKey)
-    customList = customList.filter(item => item.id !== id)
+    customList = customList.filter((item) => item.id !== id)
     await game.settings.set('vtm5e', customKey, customList)
   }
 }
