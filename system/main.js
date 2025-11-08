@@ -1,4 +1,4 @@
-/* global CONFIG, Hooks, foundry, ChatMessage, game, ui, jscolor, console, document, window */
+/* global CONFIG, Hooks, foundry, ChatMessage, game, ui, jscolor */
 
 // Actor sheets
 import { WoDActor } from './actor/actor.js'

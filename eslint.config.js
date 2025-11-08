@@ -39,7 +39,11 @@ export default defineConfig([
           groups: ['builtin', 'external', 'internal'],
           'newlines-between': 'always'
         }
-      ]
+      ],
+      env: {
+        browser: true,
+        node: true
+      }
     }
   }
 ])
