@@ -1,5 +1,3 @@
-/* global game, foundry, Item, SortingHelpers, ui */
-
 // Data preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
 import { getActorBackground } from './scripts/get-actor-background.js'
@@ -9,7 +7,15 @@ import { ItemTypes } from '../api/def/itemtypes.js'
 // Roll function
 import { _onRoll } from './scripts/roll.js'
 // Resource functions
-import { _onResourceChange, _setupDotCounters, _setupSquareCounters, _onDotCounterChange, _onDotCounterEmpty, _onSquareCounterChange, _onRemoveSquareCounter } from './scripts/counters.js'
+import {
+  _onResourceChange,
+  _setupDotCounters,
+  _setupSquareCounters,
+  _onDotCounterChange,
+  _onDotCounterEmpty,
+  _onSquareCounterChange,
+  _onRemoveSquareCounter
+} from './scripts/counters.js'
 // Various button functions
 import { _onRollItem } from './scripts/item-roll.js'
 import { _onEditImage } from './scripts/on-edit-image.js'
@@ -29,11 +35,11 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
  * @extends {foundry.applications.sheets.ActorSheetV2}
  */
 export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
-  get title () {
+  get title() {
     return this.actor.isToken ? `[Token] ${this.actor.name}` : this.actor.name
   }
 
-  constructor (options = {}) {
+  constructor(options = {}) {
     super(options)
 
     this.#dragDrop = this.#createDragDropHandlers()
@@ -86,7 +92,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     ]
   }
 
-  _getHeaderControls () {
+  _getHeaderControls() {
     const controls = super._getHeaderControls()
 
     return controls
@@ -98,7 +104,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
   tabs = {}
 
-  getTabs () {
+  getTabs() {
     const tabs = this.tabs
 
     // Remove hidden tabs
@@ -114,7 +120,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     return tabs
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     // Top-level variables
     const data = await super._prepareContext()
     const actor = this.actor
@@ -132,7 +138,9 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     const actorTypeData = await getActorTypes(actor)
 
     // Determine whether we show legacy XP depending on if the legacy values are filled or not
-    const showLegacyXP = actorData.exp ? (Number(actorData.exp.value) || Number(actorData.exp.max)) : false
+    const showLegacyXP = actorData.exp
+      ? Number(actorData.exp.value) || Number(actorData.exp.max)
+      : false
 
     // Transform any data needed for sheet rendering
     return {
@@ -167,7 +175,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     }
   }
 
-  async prepareItems (sheetData) {
+  async prepareItems(sheetData) {
     // Make an array to store item-based modifiers
     sheetData.system.itemModifiers = []
 
@@ -175,7 +183,10 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     sheetData.items.forEach(async (item) => {
       // Enrich item descriptions
       if (item.system?.description) {
-        item.system.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description)
+        item.system.enrichedDescription =
+          await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+            item.system.description
+          )
       }
 
       // Calculate item modifiers and shuffle them into system.itemModifiers
@@ -185,84 +196,95 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     })
 
     // Custom rolls
-    sheetData.system.customRolls = sheetData.items.filter(item =>
-      item.type === 'customRoll'
-    ).sort(function (roll1, roll2) {
-      return roll1.sort - roll2.sort
-    })
+    sheetData.system.customRolls = sheetData.items
+      .filter((item) => item.type === 'customRoll')
+      .sort(function (roll1, roll2) {
+        return roll1.sort - roll2.sort
+      })
 
     // Conditions
-    sheetData.system.conditions = sheetData.items.filter(item =>
-      item.type === 'condition'
-    ).sort(function (roll1, roll2) {
-      return roll1.sort - roll2.sort
-    })
+    sheetData.system.conditions = sheetData.items
+      .filter((item) => item.type === 'condition')
+      .sort(function (roll1, roll2) {
+        return roll1.sort - roll2.sort
+      })
 
     // Traits
-    sheetData.system.traits = sheetData.items.filter(item =>
-      item.type === 'trait'
-    ).sort(function (roll1, roll2) {
-      return roll1.sort - roll2.sort
-    })
+    sheetData.system.traits = sheetData.items
+      .filter((item) => item.type === 'trait')
+      .sort(function (roll1, roll2) {
+        return roll1.sort - roll2.sort
+      })
 
     // Features
-    sheetData.system.features = sheetData.items.reduce((acc, item) => {
-      if (item.type === 'feature') {
-        // Assign to featuretype container, default to 'background' if unset
-        const featuretype = item.system.featuretype || 'background'
-        if (acc[featuretype]) {
-          acc[featuretype].push(item)
-        } else {
-          // Create new array if it doesn't exist
-          acc[featuretype] = [item]
+    sheetData.system.features = sheetData.items.reduce(
+      (acc, item) => {
+        if (item.type === 'feature') {
+          // Assign to featuretype container, default to 'background' if unset
+          const featuretype = item.system.featuretype || 'background'
+          if (acc[featuretype]) {
+            acc[featuretype].push(item)
+          } else {
+            // Create new array if it doesn't exist
+            acc[featuretype] = [item]
+          }
+        } else if (item.type === 'boon') {
+          acc.boon.push(item)
         }
-      } else if (item.type === 'boon') {
-        acc.boon.push(item)
-      }
 
-      return acc
-    }, {
-      // Containers for features
-      background: [],
-      merit: [],
-      flaw: [],
-      boon: []
-    })
+        return acc
+      },
+      {
+        // Containers for features
+        background: [],
+        merit: [],
+        flaw: [],
+        boon: []
+      }
+    )
 
     // Remove Boons if we have no boons and the actor isn't a vampire
-    if (sheetData.system.features.boon.length === 0 && sheetData.system.gamesystem !== 'vampire') delete sheetData.system.features.boon
+    if (sheetData.system.features.boon.length === 0 && sheetData.system.gamesystem !== 'vampire')
+      delete sheetData.system.features.boon
 
     // Equipment
-    sheetData.system.equipmentItems = sheetData.items.reduce((acc, item) => {
-      switch (item.type) {
-        case 'armor':
-          acc.armor.push(item)
-          break
-        case 'weapon':
-          acc.weapon.push(item)
-          break
-        case 'gear':
-          acc.gear.push(item)
-          break
-        case 'talisman':
-          acc.talisman.push(item)
-          break
-      }
+    sheetData.system.equipmentItems = sheetData.items.reduce(
+      (acc, item) => {
+        switch (item.type) {
+          case 'armor':
+            acc.armor.push(item)
+            break
+          case 'weapon':
+            acc.weapon.push(item)
+            break
+          case 'gear':
+            acc.gear.push(item)
+            break
+          case 'talisman':
+            acc.talisman.push(item)
+            break
+        }
 
-      return acc
-    }, {
-      // Containers for equipment
-      armor: [],
-      weapon: [],
-      gear: [],
-      talisman: []
-    })
+        return acc
+      },
+      {
+        // Containers for equipment
+        armor: [],
+        weapon: [],
+        gear: [],
+        talisman: []
+      }
+    )
 
     // Remove Talismans if we have no boons and the actor isn't a werewolf
-    if (sheetData.system.equipmentItems.talisman.length === 0 && sheetData.system.gamesystem !== 'werewolf') delete sheetData.system.equipmentItems.talisman
+    if (
+      sheetData.system.equipmentItems.talisman.length === 0 &&
+      sheetData.system.gamesystem !== 'werewolf'
+    )
+      delete sheetData.system.equipmentItems.talisman
   }
 
-  static async onSubmitActorForm (event, form, formData) {
+  static async onSubmitActorForm(event, form, formData) {
     const target = event.target
     if (target.tagName === 'INPUT') {
       let value
@@ -299,7 +321,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     }
   }
 
-  _configureRenderOptions (options) {
+  _configureRenderOptions(options) {
     super._configureRenderOptions(options)
 
     // If the document is in limited view, only show the limited view;
@@ -307,16 +329,16 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     if (this.document.limited) {
       options.parts = ['limited']
     } else {
-      options.parts = options.parts.filter(item => item !== 'limited')
+      options.parts = options.parts.filter((item) => item !== 'limited')
     }
   }
 
-  _preRender () {
+  _preRender() {
     this._saveScrollPositions()
     this._saveCollapsibleStates()
   }
 
-  async _onRender () {
+  async _onRender() {
     const html = this.element
 
     // Update the window title (since ActorSheetV2 doesn't do it automatically)
@@ -330,7 +352,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       html.querySelector('section.window-content').style.background = ''
     }
 
-    html.querySelectorAll('.actor-header-bg-filepicker input').forEach(input => {
+    html.querySelectorAll('.actor-header-bg-filepicker input').forEach((input) => {
       input.addEventListener('focusout', function (event) {
         event.preventDefault()
 
@@ -341,7 +363,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       })
     })
 
-    html.querySelectorAll('.actor-background-filepicker input').forEach(input => {
+    html.querySelectorAll('.actor-background-filepicker input').forEach((input) => {
       input.addEventListener('focusout', function (event) {
         event.preventDefault()
 
@@ -360,22 +382,22 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     }
 
     // Resource square counters
-    html.querySelectorAll('.resource-counter.editable .resource-counter-step').forEach(el => {
+    html.querySelectorAll('.resource-counter.editable .resource-counter-step').forEach((el) => {
       el.addEventListener('click', _onSquareCounterChange.bind(this))
       el.addEventListener('contextmenu', _onRemoveSquareCounter.bind(this))
     })
-    html.querySelectorAll('.resource-plus').forEach(el => {
+    html.querySelectorAll('.resource-plus').forEach((el) => {
       el.addEventListener('click', _onResourceChange.bind(this))
     })
-    html.querySelectorAll('.resource-minus').forEach(el => {
+    html.querySelectorAll('.resource-minus').forEach((el) => {
       el.addEventListener('click', _onResourceChange.bind(this))
     })
 
     // Resource dot counters
-    html.querySelectorAll('.resource-value .resource-value-step').forEach(el => {
+    html.querySelectorAll('.resource-value .resource-value-step').forEach((el) => {
       el.addEventListener('click', _onDotCounterChange.bind(this))
     })
-    html.querySelectorAll('.resource-value .resource-value-empty').forEach(el => {
+    html.querySelectorAll('.resource-value .resource-value-empty').forEach((el) => {
       el.addEventListener('click', _onDotCounterEmpty.bind(this))
     })
 
@@ -390,7 +412,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     this._restoreCollapsibleStates()
   }
 
-  #createDragDropHandlers () {
+  #createDragDropHandlers() {
     return this.options.dragDrop.map((d) => {
       d.permissions = {
         dragstart: this._canDragStart.bind(this),
@@ -408,15 +430,15 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
 
   #dragDrop
 
-  _canDragStart () {
+  _canDragStart() {
     return this.isEditable
   }
 
-  _canDragDrop () {
+  _canDragDrop() {
     return this.isEditable
   }
 
-  _onDragStart (event) {
+  _onDragStart(event) {
     const dataset = event.target.dataset
     if ('link' in dataset) return
 
@@ -432,9 +454,9 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     event.dataTransfer.setData('text/plain', JSON.stringify(dragData))
   }
 
-  _onDragOver () {}
+  _onDragOver() {}
 
-  async _onDrop (event) {
+  async _onDrop(event) {
     const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event)
 
     // Handle different data types
@@ -444,7 +466,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     }
   }
 
-  async _onDropItem (event, data) {
+  async _onDropItem(event, data) {
     if (!this.actor.isOwner) return false
     const actorType = this.actor.type
     const item = await Item.implementation.fromDropData(data)
@@ -462,7 +484,8 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       // added to the actor.
       //
       // We don't need to add this logic to the blacklist because the blacklist only needs to check against the base types.
-      if (!foundry.utils.isEmpty(whitelist) &&
+      if (
+        !foundry.utils.isEmpty(whitelist) &&
         // This is just a general check against the base actorType
         !whitelist.includes(actorType) &&
         // If the actor is an SPC, check against the spcType
@@ -470,20 +493,24 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
         // If the actor is a Group sheet, check against the groupType
         !(actorType === 'group' && whitelist.includes(this.actor.system.groupType))
       ) {
-        ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
-          string1: itemType,
-          string2: actorType
-        }))
+        ui.notifications.warn(
+          game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
+            string1: itemType,
+            string2: actorType
+          })
+        )
 
         return false
       }
 
       // If the blacklist contains any entries, we can check to make sure this actor type isn't disallowed for the item
       if (!foundry.utils.isEmpty(blacklist) && blacklist.indexOf(actorType) > -1) {
-        ui.notifications.warn(game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
-          string1: itemType,
-          string2: actorType
-        }))
+        ui.notifications.warn(
+          game.i18n.format('WOD5E.ItemsList.ItemCannotBeDroppedOnActor', {
+            string1: itemType,
+            string2: actorType
+          })
+        )
 
         return false
       }
@@ -491,7 +518,9 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       // Handle limiting only a single type of an item to an actor
       if (itemsList[itemType].limitOnePerActor) {
         // Delete all other types of this item on the actor
-        const duplicateItemTypeInstances = this.actor.items.filter(item => item.type === itemType).map(item => item.id)
+        const duplicateItemTypeInstances = this.actor.items
+          .filter((item) => item.type === itemType)
+          .map((item) => item.id)
         this.actor.deleteEmbeddedDocuments('Item', duplicateItemTypeInstances)
       }
     }
@@ -503,12 +532,12 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     return this._onDropItemCreate(itemData, event)
   }
 
-  async _onDropItemCreate (itemData) {
+  async _onDropItemCreate(itemData) {
     itemData = itemData instanceof Array ? itemData : [itemData]
     return this.actor.createEmbeddedDocuments('Item', itemData)
   }
 
-  _onSortItem (event, itemData) {
+  _onSortItem(event, itemData) {
     // Get the drag source and drop target
     const items = this.actor.items
     const source = items.get(itemData._id)
@@ -523,7 +552,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     const siblings = []
     for (const el of dropTarget.parentElement.children) {
       const siblingId = el.dataset.itemId
-      if (siblingId && (siblingId !== source.id)) siblings.push(items.get(el.dataset.itemId))
+      if (siblingId && siblingId !== source.id) siblings.push(items.get(el.dataset.itemId))
     }
 
     // Perform the sort
@@ -532,7 +561,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
       siblings
     })
 
-    const updateData = sortUpdates.map(u => {
+    const updateData = sortUpdates.map((u) => {
       const update = u.update
       update._id = u.target._id
       return update
@@ -543,7 +572,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
   }
 
   // Save the current scroll position
-  async _saveScrollPositions () {
+  async _saveScrollPositions() {
     const activeList = this.findActiveList()
 
     if (activeList.length) {
@@ -552,7 +581,7 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
   }
 
   // Restore the saved scroll position
-  async _restoreScrollPositions () {
+  async _restoreScrollPositions() {
     const activeList = this.findActiveList()
 
     if (activeList.length && this._scroll != null) {
@@ -561,48 +590,52 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
   }
 
   // Get the scroll area of the currently active tab
-  findActiveList () {
+  findActiveList() {
     const activeList = $(this.element).find('section.tab.active')
 
     return activeList
   }
 
   // Save the maxHeight of all collapsible-content elements if it's greater than 0
-  async _saveCollapsibleStates () {
+  async _saveCollapsibleStates() {
     // Clear out the old states
     this._collapsibleStates.clear()
 
     // Iterate through each collapsible element in the page
-    $(this.element).find('.collapsible-content').each((index, content) => {
-      const contentElement = $(content)
-      const maxHeight = parseFloat(contentElement.css('maxHeight'))
+    $(this.element)
+      .find('.collapsible-content')
+      .each((index, content) => {
+        const contentElement = $(content)
+        const maxHeight = parseFloat(contentElement.css('maxHeight'))
 
-      // Check if max height is greater than 0, and if it is, we save its maxHeight state
-      if (maxHeight > 0) {
-        this._collapsibleStates.set(contentElement.attr('data-id') || index, maxHeight)
-      }
-    })
+        // Check if max height is greater than 0, and if it is, we save its maxHeight state
+        if (maxHeight > 0) {
+          this._collapsibleStates.set(contentElement.attr('data-id') || index, maxHeight)
+        }
+      })
   }
 
   // Restore the maxHeight of previously expanded collapsible-content elements
-  async _restoreCollapsibleStates () {
-    $(this.element).find('.collapsible-content').each((index, content) => {
-      const contentElement = $(content)
-      const key = contentElement.attr('data-id') || index // Match with saved state
+  async _restoreCollapsibleStates() {
+    $(this.element)
+      .find('.collapsible-content')
+      .each((index, content) => {
+        const contentElement = $(content)
+        const key = contentElement.attr('data-id') || index // Match with saved state
 
-      if (this._collapsibleStates.has(key)) {
-        // Disable the transition property before re-setting the max height
-        // This makes it so that on re-render, the user doesn't watch the
-        // collapse animation again
-        contentElement.css('transition', 'none')
-        $(content).css('maxHeight', `${this._collapsibleStates.get(key)}px`)
+        if (this._collapsibleStates.has(key)) {
+          // Disable the transition property before re-setting the max height
+          // This makes it so that on re-render, the user doesn't watch the
+          // collapse animation again
+          contentElement.css('transition', 'none')
+          $(content).css('maxHeight', `${this._collapsibleStates.get(key)}px`)
 
-        // Force a reflow and then re-enable the transition property
-        // We have to tell eslint to ignore the no-void rule because it's genuinely useful here
-        // eslint-disable-next-line no-void
-        void contentElement[0].offsetHeight
-        contentElement.css('transition', '')
-      }
-    })
+          // Force a reflow and then re-enable the transition property
+          // We have to tell eslint to ignore the no-void rule because it's genuinely useful here
+
+          void contentElement[0].offsetHeight
+          contentElement.css('transition', '')
+        }
+      })
   }
 }

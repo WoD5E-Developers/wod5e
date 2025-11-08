@@ -1,5 +1,3 @@
-/* global foundry, game, foundry */
-
 const experienceTemplate = 'systems/vtm5e/display/shared/actors/parts/experience-display.hbs'
 
 export const _onAddExperience = async function (event, target) {
@@ -14,13 +12,22 @@ export const _onAddExperience = async function (event, target) {
 
   // Render the template
   const experienceData = {
-    name: isSpendingXP ? game.i18n.localize('WOD5E.Experience.XPSpent') : game.i18n.localize('WOD5E.Experience.XPGained'),
+    name: isSpendingXP
+      ? game.i18n.localize('WOD5E.Experience.XPSpent')
+      : game.i18n.localize('WOD5E.Experience.XPGained'),
     value: 0
   }
-  const experienceContent = await foundry.applications.handlebars.renderTemplate(experienceTemplate, experienceData)
+  const experienceContent = await foundry.applications.handlebars.renderTemplate(
+    experienceTemplate,
+    experienceData
+  )
 
   const result = await foundry.applications.api.DialogV2.input({
-    window: { title: isSpendingXP ? game.i18n.localize('WOD5E.Experience.SpendExperience') : game.i18n.localize('WOD5E.Experience.AddExperience') },
+    window: {
+      title: isSpendingXP
+        ? game.i18n.localize('WOD5E.Experience.SpendExperience')
+        : game.i18n.localize('WOD5E.Experience.AddExperience')
+    },
     content: experienceContent,
     ok: {
       icon: 'fas fa-check',
@@ -69,7 +76,7 @@ export const _onRemoveExperience = async function (event, target) {
 
   // Define the existing list of experiences
   let actorExperiences = actor.system.experiences || []
-  const experienceToDelete = actorExperiences.find(exp => exp.id === experienceId)
+  const experienceToDelete = actorExperiences.find((exp) => exp.id === experienceId)
 
   if (!experienceToDelete) {
     console.error(`World of Darkness 5e | Experience with ID ${experienceId} not found.`)
@@ -100,7 +107,7 @@ export const _onRemoveExperience = async function (event, target) {
 
   if (shouldDelete) {
     // Filter out the experience to be removed
-    actorExperiences = actorExperiences.filter(exp => exp.id !== experienceId)
+    actorExperiences = actorExperiences.filter((exp) => exp.id !== experienceId)
 
     // Update the actor with the new list of experiences
     await actor.update({ 'system.experiences': actorExperiences })
@@ -118,7 +125,7 @@ export const _onEditExperience = async function (event, target) {
   const system = actor.system.gamesystem
 
   // Find the experience to edit
-  const experienceToEdit = (actor.system.experiences || []).find(exp => exp.id === experienceId)
+  const experienceToEdit = (actor.system.experiences || []).find((exp) => exp.id === experienceId)
 
   if (!experienceToEdit) {
     console.error(`World of Darkness 5e | Experience with ID ${experienceId} not found.`)
@@ -131,7 +138,10 @@ export const _onEditExperience = async function (event, target) {
     name: experienceToEdit.name,
     value: experienceToEdit.value
   }
-  const experienceContent = await foundry.applications.handlebars.renderTemplate(experienceTemplate, experienceData)
+  const experienceContent = await foundry.applications.handlebars.renderTemplate(
+    experienceTemplate,
+    experienceData
+  )
 
   const result = await foundry.applications.api.DialogV2.input({
     window: { title: game.i18n.localize('WOD5E.Experience.EditExperience') },
@@ -159,7 +169,9 @@ export const _onEditExperience = async function (event, target) {
     let actorExperiences = actor.system.experiences || []
 
     // Replace the old experience with the updated one
-    actorExperiences = actorExperiences.map(exp => exp.id === experienceId ? experienceToEdit : exp)
+    actorExperiences = actorExperiences.map((exp) =>
+      exp.id === experienceId ? experienceToEdit : exp
+    )
 
     // Update the actor with the modified list
     await actor.update({ 'system.experiences': actorExperiences })
@@ -173,22 +185,25 @@ export const getDerivedExperience = async function (systemData) {
   // If there's no experiences to calculate from, just end the statement early
   if (!experiences) return
 
-  const { totalXP, remainingXP } = experiences.reduce((acc, exp) => {
-    const value = parseInt(exp.value)
+  const { totalXP, remainingXP } = experiences.reduce(
+    (acc, exp) => {
+      const value = parseInt(exp.value)
 
-    // If the value is greater than or equal to 0, add it under total XP
-    if (value >= 0) {
-      acc.totalXP += value
+      // If the value is greater than or equal to 0, add it under total XP
+      if (value >= 0) {
+        acc.totalXP += value
+      }
+
+      // Accumulate remaining XP by adding the experience value (can be positive or negative)
+      acc.remainingXP += value
+
+      return acc
+    },
+    {
+      totalXP: parseInt(exp.max) || 0,
+      remainingXP: parseInt(exp.value) || 0
     }
-
-    // Accumulate remaining XP by adding the experience value (can be positive or negative)
-    acc.remainingXP += value
-
-    return acc
-  }, {
-    totalXP: parseInt(exp.max) || 0,
-    remainingXP: parseInt(exp.value) || 0
-  })
+  )
 
   // Return the derived XP values
   return {

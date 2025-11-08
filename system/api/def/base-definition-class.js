@@ -1,5 +1,3 @@
-/* global game */
-
 import { resetActors } from '../../scripts/reset-actors.js'
 
 export class BaseDefinitionClass {
@@ -8,7 +6,7 @@ export class BaseDefinitionClass {
 
   // Function to help with quickly grabbing all the listed values
   // Will only retrieve objects (definitions)
-  static getList ({
+  static getList({
     type = '',
     custom = false,
     disableSort = false,
@@ -16,9 +14,14 @@ export class BaseDefinitionClass {
     useValuePath = false
   }) {
     // Filter based on given filters provided with the function, if any
-    const filteredEntries = Object.entries(this)
-      .filter(([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value) &&
-        (!type || value.type === type) && (!custom || value.custom === custom))
+    const filteredEntries = Object.entries(this).filter(
+      ([, value]) =>
+        typeof value === 'object' &&
+        value !== null &&
+        !Array.isArray(value) &&
+        (!type || value.type === type) &&
+        (!custom || value.custom === custom)
+    )
 
     // Sort based on either the displayName
     // If disableSort is false, that specific query won't sort
@@ -51,7 +54,7 @@ export class BaseDefinitionClass {
   }
 
   // Localize the labels
-  static async initializeLabels () {
+  static async initializeLabels() {
     let modifications = []
 
     // Check if modifications are enabled
@@ -60,7 +63,9 @@ export class BaseDefinitionClass {
       modifications = game.settings.get('vtm5e', `modified${this.defCategory}`) || {}
 
       // Handle adding modifications from any active modules
-      const activeModules = game.modules.filter(module => module.active === true && module.flags.wod5e)
+      const activeModules = game.modules.filter(
+        (module) => module.active === true && module.flags.wod5e
+      )
       activeModules.forEach((module) => {
         // Check that this module has any modifications for the current definition type
         if (module.flags.wod5e.modifications && module.flags.wod5e.modifications[this.type]) {
@@ -69,14 +74,18 @@ export class BaseDefinitionClass {
           modifications = [...modifications, ...module.flags.wod5e.modifications[this.type]]
 
           // Log the modification data in the console
-          console.log(`World of Darkness 5e | Modified ${this.defCategory} added by ${module.id}: ${JSON.stringify(module.flags.wod5e.modifications[this.type])}`)
+          console.log(
+            `World of Darkness 5e | Modified ${this.defCategory} added by ${module.id}: ${JSON.stringify(module.flags.wod5e.modifications[this.type])}`
+          )
         }
       })
     }
 
     // Cycle through each entry in the definition file to initialize the labels on each
     // Quickly filter out any non-object, non-null, non-array values
-    const definitionEntries = Object.entries(this).filter(([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value))
+    const definitionEntries = Object.entries(this).filter(
+      ([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value)
+    )
     for (const [key, value] of definitionEntries) {
       if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
         // If there are no modifications, use default values
@@ -85,7 +94,7 @@ export class BaseDefinitionClass {
 
         // If mods are enabled, check for a modification to the definition
         if (this.modsEnabled) {
-          const checkModification = modifications.filter(definition => definition.id === key)
+          const checkModification = modifications.filter((definition) => definition.id === key)
 
           // If there are modifications, update the value's properties
           if (checkModification.length > 0) {
@@ -110,7 +119,7 @@ export class BaseDefinitionClass {
   }
 
   // Method to add extra definitions to a category
-  static async addCustom (customDefinitions) {
+  static async addCustom(customDefinitions) {
     if (customDefinitions.length > 0) {
       for (const [, value] of Object.entries(customDefinitions)) {
         if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
@@ -126,7 +135,7 @@ export class BaseDefinitionClass {
     }
   }
 
-  static setSortAlphabetically () {
+  static setSortAlphabetically() {
     // This will set the static property on the class that calls this method
     const sortingSetting = game.settings.get('vtm5e', 'sortDefAlphabetically')
 

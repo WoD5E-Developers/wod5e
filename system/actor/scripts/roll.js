@@ -1,14 +1,12 @@
-/* global WOD5E */
-
 import { WOD5eDice } from '../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../scripts/rolls/situational-modifiers.js'
 import { potencyToRouse } from '../vtm/scripts/blood-potency.js'
 
 /**
-   * Handle clickable rolls activated through buttons
-   * @param {Event} event   The originating click event
-   * @private
-*/
+ * Handle clickable rolls activated through buttons
+ * @param {Event} event   The originating click event
+ * @private
+ */
 export const _onRoll = async function (event, target) {
   event.preventDefault()
 
@@ -26,16 +24,27 @@ export const _onRoll = async function (event, target) {
 }
 
 /**
-  * Handle rolls after the selection dialog window is closed
-  * @param {Event} event   The originating click event
-  * @private
-*/
+ * Handle rolls after the selection dialog window is closed
+ * @param {Event} event   The originating click event
+ * @private
+ */
 export const _onConfirmRoll = async function (dataset, actor) {
   // Secondary variables
-  const { willpowerDamage, difficulty, disableBasicDice, quickRoll, rerollHunger, useAbsoluteValue, increaseHunger, decreaseRage } = dataset
+  const {
+    willpowerDamage,
+    difficulty,
+    disableBasicDice,
+    quickRoll,
+    rerollHunger,
+    useAbsoluteValue,
+    increaseHunger,
+    decreaseRage
+  } = dataset
   const title = dataset.label
   const data = dataset.itemId ? actor.items.get(dataset.itemId).system : actor.system
-  const flavor = dataset.useFlavorPath ? await WOD5E.api.getFlavorDescription({ valuePath: dataset.flavorPath, data }) : dataset.flavor
+  const flavor = dataset.useFlavorPath
+    ? await WOD5E.api.getFlavorDescription({ valuePath: dataset.flavorPath, data })
+    : dataset.flavor
   const flatMod = parseInt(dataset.flatMod) || 0
   const absoluteValue = parseInt(dataset.absoluteValue) || 0
   const selectors = dataset.selectors ? dataset.selectors.split(' ') : []
@@ -73,7 +82,9 @@ export const _onConfirmRoll = async function (dataset, actor) {
     // If just the basicDice are disabled, set it to 0
     // and retrieve the appropriate amount of advanced dice
     basicDice = 0
-    advancedDice = disableAdvancedDice ? 0 + activeModifiers.totalValue : await WOD5E.api.getAdvancedDice(actor) + activeModifiers.totalValue
+    advancedDice = disableAdvancedDice
+      ? 0 + activeModifiers.totalValue
+      : (await WOD5E.api.getAdvancedDice(actor)) + activeModifiers.totalValue
   } else {
     // Calculate basicDice based on different conditions
     if (useAbsoluteValue) {
@@ -83,7 +94,11 @@ export const _onConfirmRoll = async function (dataset, actor) {
     } else {
       // All other, more normal, circumstances where basicDice
       // are calculated normally
-      basicDice = await WOD5E.api.getBasicDice({ valuePaths: dataset.valuePaths, flatMod: flatMod + activeModifiers.totalValue, actor })
+      basicDice = await WOD5E.api.getBasicDice({
+        valuePaths: dataset.valuePaths,
+        flatMod: flatMod + activeModifiers.totalValue,
+        actor
+      })
     }
 
     // Retrieve the appropriate amount of advanced dice
@@ -128,7 +143,10 @@ export const _onConfirmRoll = async function (dataset, actor) {
     difficulty,
     flavor,
     quickRoll,
-    rerollHunger: dataset?.itemId && await potencyToRouse(actor.system.blood.potency, data.level) ? true : rerollHunger,
+    rerollHunger:
+      dataset?.itemId && (await potencyToRouse(actor.system.blood.potency, data.level))
+        ? true
+        : rerollHunger,
     increaseHunger,
     decreaseRage,
     selectors,

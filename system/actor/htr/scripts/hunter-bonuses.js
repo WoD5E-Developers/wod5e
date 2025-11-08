@@ -1,5 +1,3 @@
-/* global game */
-
 export const getHunterModifiers = async function (actorData) {
   const bonuses = [
     {

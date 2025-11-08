@@ -1,5 +1,3 @@
-/* global foundry */
-
 // Handle adding a new section to a dicepool
 export const _onAddDice = async function (event) {
   event.preventDefault()

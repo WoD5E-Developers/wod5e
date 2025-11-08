@@ -14,11 +14,13 @@ export const _onEditSkill = async function (event, target) {
   // Top-level variables
   const skill = target.getAttribute('data-skill')
 
-  await new SkillApplication({
-    actor,
-    skill
-  },
-  {
-    classes: ['wod5e', system, 'dialog']
-  }).render(true)
+  await new SkillApplication(
+    {
+      actor,
+      skill
+    },
+    {
+      classes: ['wod5e', system, 'dialog']
+    }
+  ).render(true)
 }

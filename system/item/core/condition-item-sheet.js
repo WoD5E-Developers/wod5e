@@ -1,7 +1,10 @@
-/* global foundry */
-
 // Preparation functions
-import { prepareDescriptionContext, prepareModifiersContext, prepareEffectsContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
+import {
+  prepareDescriptionContext,
+  prepareModifiersContext,
+  prepareEffectsContext,
+  prepareItemSettingsContext
+} from '../scripts/prepare-partials.js'
 import { _onAddEffect, _onRemoveEffect } from './scripts/effects.js'
 import { getEffectKeys } from './scripts/get-effect-keys.js'
 // Base item sheet to extend from
@@ -66,7 +69,7 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     }
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     // Top-level variables
     const data = await super._prepareContext()
     const item = this.item
@@ -77,7 +80,7 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     return data
   }
 
-  async _preparePartContext (partId, context, options) {
+  async _preparePartContext(partId, context, options) {
     // Inherit any preparation from the extended class
     context = { ...(await super._preparePartContext(partId, context, options)) }
 
@@ -100,7 +103,7 @@ export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     return context
   }
 
-  async _onRender () {
+  async _onRender() {
     super._onRender()
 
     const html = this.element

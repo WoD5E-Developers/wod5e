@@ -1,5 +1,3 @@
-/* global */
-
 export const _onExpendItemUse = async function (event, target) {
   event.preventDefault()
 

@@ -26,22 +26,29 @@ export const prepareSkills = async function (actor) {
 
     // If the actor has a skill with the key, grab its current values
     if (Object.prototype.hasOwnProperty.call(actorSkills, id)) {
-      skillData = Object.assign({
-        id,
-        value: actorSkills[id].value || 0,
-        hasSpecialties,
-        specialtiesList,
-        macroid: actorSkills[id].macroid,
-        bonuses: actorSkills[id].bonuses,
-        description: actorSkills[id].description
-      }, value)
-    } else { // Otherwise, add it to the actor and set it as some default data
-      skillData = Object.assign({
-        id,
-        value: 0,
-        hasSpecialties,
-        specialtiesList
-      }, value)
+      skillData = Object.assign(
+        {
+          id,
+          value: actorSkills[id].value || 0,
+          hasSpecialties,
+          specialtiesList,
+          macroid: actorSkills[id].macroid,
+          bonuses: actorSkills[id].bonuses,
+          description: actorSkills[id].description
+        },
+        value
+      )
+    } else {
+      // Otherwise, add it to the actor and set it as some default data
+      skillData = Object.assign(
+        {
+          id,
+          value: 0,
+          hasSpecialties,
+          specialtiesList
+        },
+        value
+      )
     }
 
     // Ensure the skill exists

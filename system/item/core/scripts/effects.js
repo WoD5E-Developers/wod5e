@@ -1,5 +1,3 @@
-/* global foundry, CONST */
-
 // Handle adding an effect
 export const _onAddEffect = async function (event, target) {
   event.preventDefault()

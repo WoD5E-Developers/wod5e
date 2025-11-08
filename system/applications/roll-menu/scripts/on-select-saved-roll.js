@@ -1,5 +1,3 @@
-/* global game, foundry */
-
 export const _onSelectSavedRoll = async function (event, target) {
   const newActiveRoll = target.getAttribute('data-id')
 

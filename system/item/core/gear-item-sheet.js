@@ -1,7 +1,11 @@
-/* global foundry */
-
 // Preparation functions
-import { prepareDescriptionContext, prepareDicepoolContext, prepareMacroContext, prepareModifiersContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
+import {
+  prepareDescriptionContext,
+  prepareDicepoolContext,
+  prepareMacroContext,
+  prepareModifiersContext,
+  prepareItemSettingsContext
+} from '../scripts/prepare-partials.js'
 // Base item sheet to extend from
 import { WoDItem } from '../wod-item-base.js'
 // Mixin
@@ -69,7 +73,7 @@ export class GearItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     }
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     // Top-level variables
     const data = await super._prepareContext()
     const item = this.item
@@ -82,7 +86,7 @@ export class GearItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     return data
   }
 
-  async _preparePartContext (partId, context, options) {
+  async _preparePartContext(partId, context, options) {
     // Inherit any preparation from the extended class
     context = { ...(await super._preparePartContext(partId, context, options)) }
 

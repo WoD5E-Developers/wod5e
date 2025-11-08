@@ -1,9 +1,7 @@
-/* global game, FormApplication, foundry, JSColor */
-
 import { _updateCSSVariable, cssVariablesRecord } from '../../scripts/update-css-variables.js'
 
 export class SplatColorsMenu extends FormApplication {
-  static get defaultOptions () {
+  static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       title: game.i18n.localize('WOD5E.Settings.SplatColorsMenu'),
       id: 'wod5e-splat-colors',
@@ -19,7 +17,7 @@ export class SplatColorsMenu extends FormApplication {
   /* -------------------------------------------- */
 
   /** @override */
-  async getData () {
+  async getData() {
     const data = await super.getData()
 
     const cssVariables = cssVariablesRecord()
@@ -27,11 +25,11 @@ export class SplatColorsMenu extends FormApplication {
     data.cssVariablesRecord = cssVariables
 
     // Go through the available themes
-    Object.keys(cssVariables).forEach(theme => {
+    Object.keys(cssVariables).forEach((theme) => {
       const settings = cssVariables[theme].settings
 
       // Iterate over each setting in the theme
-      Object.keys(settings).forEach(settingKey => {
+      Object.keys(settings).forEach((settingKey) => {
         const { settingId } = settings[settingKey]
 
         // Get the setting and assign it, making it available within the menu
@@ -45,12 +43,12 @@ export class SplatColorsMenu extends FormApplication {
   /* -------------------------------------------- */
 
   /** @override */
-  activateListeners (html) {
+  activateListeners(html) {
     // Initialize the JSColor library
     JSColor.install()
 
     // On input change, update colours
-    html[0].querySelectorAll('.color-input').forEach(input => {
+    html[0].querySelectorAll('.color-input').forEach((input) => {
       input.addEventListener('change', function (event) {
         event.preventDefault()
 
@@ -62,8 +60,8 @@ export class SplatColorsMenu extends FormApplication {
       })
     })
 
-    html[0].querySelectorAll('.reset-color').forEach(resetBtn => {
-      resetBtn.addEventListener('click', async event => {
+    html[0].querySelectorAll('.reset-color').forEach((resetBtn) => {
+      resetBtn.addEventListener('click', async (event) => {
         event.preventDefault()
 
         const inputId = event.currentTarget.dataset.inputId

@@ -10,7 +10,7 @@ export const getDerivedHealth = async function (systemData) {
   // damage taken and subtracting the max by that;
   // superficial damage is reduced by half to represent
   // its lesser effect
-  healthData.value = healthData.max - (healthData.aggravated + (healthData.superficial / 2))
+  healthData.value = healthData.max - (healthData.aggravated + healthData.superficial / 2)
 
   return healthData
 }

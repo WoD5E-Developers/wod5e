@@ -1,5 +1,3 @@
-/* global Hooks, game */
-
 // Update the pause image
 export const PauseChanges = async () => {
   Hooks.on('renderGamePause', (app, html) => {

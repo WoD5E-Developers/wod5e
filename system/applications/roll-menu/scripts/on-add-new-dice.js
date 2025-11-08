@@ -1,5 +1,3 @@
-/* global foundry, game */
-
 export const _onAddNewRoll = async function (event) {
   event.preventDefault()
 

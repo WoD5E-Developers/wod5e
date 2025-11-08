@@ -1,10 +1,7 @@
-/* global game, ui, foundry */
-
 import { AutomationMenu } from '../applications/settings-automation/automation-menu.js'
 import { StorytellerMenu } from '../applications/settings-storyteller/storyteller-menu.js'
 import { SplatColorsMenu } from '../applications/settings-splat-colors/splat-colors-menu.js'
 import { resetActors } from './reset-actors.js'
-
 /* Definitions */
 import { Attributes } from '../api/def/attributes.js'
 import { Skills } from '../api/def/skills.js'
@@ -98,7 +95,9 @@ export const loadSettings = async function () {
       }
 
       // Re-render the automation window once settings are updated
-      const AutomationWindow = Object.values(ui.windows).filter(w => (w.id === 'wod5e-automation'))[0]
+      const AutomationWindow = Object.values(ui.windows).filter(
+        (w) => w.id === 'wod5e-automation'
+      )[0]
       if (AutomationWindow) {
         AutomationWindow.render()
       }
@@ -341,10 +340,10 @@ export const loadSettings = async function () {
 
   // Register variable settings
   const cssVariables = cssVariablesRecord()
-  Object.keys(cssVariables).forEach(theme => {
+  Object.keys(cssVariables).forEach((theme) => {
     const settings = cssVariables[theme].settings
 
-    Object.keys(settings).forEach(settingKey => {
+    Object.keys(settings).forEach((settingKey) => {
       const { settingId, defaultColor } = settings[settingKey]
 
       // Register the setting
@@ -358,8 +357,8 @@ export const loadSettings = async function () {
   })
 }
 
-function _rerenderStorytellerWindow () {
-  const storytellerWindow = Object.values(ui.windows).filter(w => (w.id === 'wod5e-storyteller'))[0]
+function _rerenderStorytellerWindow() {
+  const storytellerWindow = Object.values(ui.windows).filter((w) => w.id === 'wod5e-storyteller')[0]
 
   if (storytellerWindow) {
     storytellerWindow.render()

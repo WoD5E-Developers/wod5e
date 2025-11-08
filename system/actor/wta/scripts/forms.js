@@ -1,5 +1,3 @@
-/* global foundry, game, ChatMessage */
-
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
 import { WereformApplication } from '../applications/wereform-application.js'
@@ -110,7 +108,7 @@ export const handleFormChange = async function (event, target, actor, form, dice
         if (err) console.log('World of Darkness 5e | ' + err)
 
         // Calculate the number of rage dice the actor has left
-        const failures = rollData.terms[2].results.filter(result => !result.success).length
+        const failures = rollData.terms[2].results.filter((result) => !result.success).length
         const newRageAmount = Math.max(actor.system.rage.value - failures, 0)
 
         // If rolling rage dice didn't reduce the actor to 0 rage, then update the current form
@@ -156,7 +154,10 @@ export const _onFormToChat = async function (event, target, originActor) {
   }
 
   // Post the message to the chat
-  const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: chatMessage }, game.settings.get('core', 'rollMode'))
+  const message = ChatMessage.applyRollMode(
+    { speaker: ChatMessage.getSpeaker({ actor }), content: chatMessage },
+    game.settings.get('core', 'rollMode')
+  )
   ChatMessage.create(message)
 }
 

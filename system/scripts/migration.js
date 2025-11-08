@@ -1,5 +1,3 @@
-/* global ui, game, foundry */
-
 import { MigrateLegacySheets } from './migration/migrate-legacy-sheets.js'
 import { MigrateSpecialties } from './migration/migrate-specialties.js'
 import { MigrateItemImages } from './migration/migrate-item-images.js'
@@ -21,7 +19,7 @@ export const migrateWorld = async () => {
 
   console.log('World of Darkness 5e | Current SchreckNet Layer v' + worldVersion)
 
-  async function updateWorld () {
+  async function updateWorld() {
     if (worldVersion !== currentVersion || worldVersion === '1.5') {
       const updates = []
 

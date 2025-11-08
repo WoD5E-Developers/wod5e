@@ -1,5 +1,3 @@
-/* global game */
-
 export const _onRemoveUser = async function (event, target) {
   event.preventDefault()
 

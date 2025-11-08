@@ -1,10 +1,8 @@
-/* global Hooks */
-
 import { BaseDefinitionClass } from './base-definition-class.js'
 
 export class Weapons extends BaseDefinitionClass {
   // Run any necessary compilation on ready
-  static onReady () {
+  static onReady() {
     Weapons.setSortAlphabetically()
     Weapons.initializeLabels()
   }

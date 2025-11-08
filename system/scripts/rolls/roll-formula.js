@@ -1,15 +1,23 @@
 // Import dice classes for their denominations
-import { MortalDie, VampireDie, VampireHungerDie, HunterDie, HunterDesperationDie, WerewolfDie, WerewolfRageDie } from '../../dice/splat-dice.js'
+import {
+  MortalDie,
+  VampireDie,
+  VampireHungerDie,
+  HunterDie,
+  HunterDesperationDie,
+  WerewolfDie,
+  WerewolfRageDie
+} from '../../dice/splat-dice.js'
 
 /**
-   * Function to help construct the roll formula from given sets of dice
-   *
-   * @param basicDice                 (Optional, default 0) The number of 'basic' dice to roll, such as v, w, and h
-   * @param advancedDice              (Optional, default 0) The number of 'advanced' dice to roll, such as g, r and s
-   * @param system                    (Optional, default "mortal") The gamesystem the roll is coming from
-   * @param rerollHunger              (Optional, default false) Whether to reroll failed hunger dice
-   */
-export async function generateRollFormula ({
+ * Function to help construct the roll formula from given sets of dice
+ *
+ * @param basicDice                 (Optional, default 0) The number of 'basic' dice to roll, such as v, w, and h
+ * @param advancedDice              (Optional, default 0) The number of 'advanced' dice to roll, such as g, r and s
+ * @param system                    (Optional, default "mortal") The gamesystem the roll is coming from
+ * @param rerollHunger              (Optional, default false) Whether to reroll failed hunger dice
+ */
+export async function generateRollFormula({
   basicDice = 0,
   advancedDice = 0,
   system = 'mortal',
