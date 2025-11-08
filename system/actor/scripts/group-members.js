@@ -9,7 +9,7 @@ export const _addActor = async function (group, uuid) {
 
   // Check if the actor is unique in the already existing list;
   // Returns false if it's found, or true if it's not found
-  const actorIsntUnique = group.system.members.find(players => players === uuid)
+  const actorIsntUnique = group.system.members.find((players) => players === uuid)
   if (actorIsntUnique) {
     ui.notifications.warn(`Actor ${actor.name} is already part of this group.`)
 
@@ -60,7 +60,7 @@ export const _removeActor = async function (event, target) {
   const actor = fromUuidSync(uuid)
 
   // Filter out the UUID from the members list
-  const membersList = group.system.members.filter(actor => actor !== uuid)
+  const membersList = group.system.members.filter((actor) => actor !== uuid)
 
   // Update the group sheet with the new members list
   await group.update({ 'system.members': membersList })

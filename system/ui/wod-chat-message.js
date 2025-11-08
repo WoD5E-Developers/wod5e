@@ -10,11 +10,7 @@ export class WoDChatMessage extends ChatMessage {
    * @param {boolean} [options.canClose]   Render a close button for dismissing chat card notifications.
    * @returns {Promise<HTMLElement>}
    */
-  async renderHTML ({
-    canDelete,
-    canClose = false,
-    ...rest
-  } = {}) {
+  async renderHTML({ canDelete, canClose = false, ...rest } = {}) {
     let template = CONFIG.ChatMessage.template
     canDelete ??= game.user.isGM // By default, GM users have the trash-bin icon in the chat log itself
 
@@ -27,10 +23,13 @@ export class WoDChatMessage extends ChatMessage {
     // Determine some metadata
     const speakerActor = this.speakerActor
     const data = this.toObject(false)
-    data.content = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.content, {
-      rollData: this.getRollData(),
-      secrets: speakerActor?.isOwner ?? game.user.isGM
-    })
+    data.content = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+      this.content,
+      {
+        rollData: this.getRollData(),
+        secrets: speakerActor?.isOwner ?? game.user.isGM
+      }
+    )
     const isWhisper = this.whisper.length
 
     // Construct message data
@@ -52,7 +51,7 @@ export class WoDChatMessage extends ChatMessage {
         this.blind ? 'blind' : null
       ].filterJoin(' '),
       isWhisper: this.whisper.length,
-      whisperTo: this.whisper.map(u => game.users.get(u)?.name).filterJoin(', '),
+      whisperTo: this.whisper.map((u) => game.users.get(u)?.name).filterJoin(', '),
       isGM: game.user.isGM,
       isRollPrompt: this.getFlag('vtm5e', 'isRollPrompt'),
       promptedRolls: this.getFlag('vtm5e', 'promptedRolls'),
@@ -91,8 +90,8 @@ export class WoDChatMessage extends ChatMessage {
     if (this.getFlag('vtm5e', 'isRollPrompt')) {
       template = 'systems/vtm5e/display/ui/chat/chat-message-roll-prompt.hbs'
 
-      const isOwnerFilter = game.actors.filter(a => a.isOwner)
-      const isVisibleFilter = game.actors.filter(a => a.visible)
+      const isOwnerFilter = game.actors.filter((a) => a.isOwner)
+      const isVisibleFilter = game.actors.filter((a) => a.visible)
 
       for (const [key, value] of Object.entries(messageData.promptedRolls)) {
         let rollData
@@ -109,16 +108,17 @@ export class WoDChatMessage extends ChatMessage {
         }
 
         messageData.promptedRolls[key] = Object.assign(messageData.promptedRolls[key], {
-          canRoll: (isOwnerFilter.filter(a => a.id === key).length > 0) || false,
-          canRemove: (isOwnerFilter.filter(a => a.id === key).length > 0) || false,
-          isVisible: (isVisibleFilter.filter(a => a.id === key).length > 0) || false,
+          canRoll: isOwnerFilter.filter((a) => a.id === key).length > 0 || false,
+          canRemove: isOwnerFilter.filter((a) => a.id === key).length > 0 || false,
+          isVisible: isVisibleFilter.filter((a) => a.id === key).length > 0 || false,
           rollData
         })
       }
     }
 
     // Define a border color
-    if (this.style === CONST.CHAT_MESSAGE_STYLES.OOC) messageData.borderColor = this.author?.color.css
+    if (this.style === CONST.CHAT_MESSAGE_STYLES.OOC)
+      messageData.borderColor = this.author?.color.css
 
     // Add a check in for in case modules are adding content to use that as the description
     if (messageData?.message?.content) {
@@ -143,9 +143,9 @@ export class WoDChatMessage extends ChatMessage {
   }
 
   // Code pulled from core since this is a private method as of V13
-  async #renderRollContent (messageData) {
+  async #renderRollContent(messageData) {
     const data = messageData.message
-    const renderRolls = async isPrivate => {
+    const renderRolls = async (isPrivate) => {
       let html = ''
       for (const r of this.rolls) {
         html += await r.render({
@@ -162,7 +162,8 @@ export class WoDChatMessage extends ChatMessage {
     if (this.isContentVisible) {
       const el = document.createElement('div')
       el.innerHTML = data.content // Ensure the content does not already contain custom HTML
-      if (!el.childElementCount && this.rolls.length) data.content = await this.#renderRollHTML(false)
+      if (!el.childElementCount && this.rolls.length)
+        data.content = await this.#renderRollHTML(false)
     } else {
       // Otherwise, show "rolled privately" messages for Roll content
       const name = this.author?.name ?? game.i18n.localize('CHAT.UnknownUser')
@@ -176,7 +177,7 @@ export class WoDChatMessage extends ChatMessage {
 
   static DEFAULT_AVATAR = 'icons/svg/mystery-man.svg'
 
-  async #renderRollHTML (isPrivate) {
+  async #renderRollHTML(isPrivate) {
     let html = ''
 
     for (const roll of this.rolls) {

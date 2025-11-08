@@ -1,6 +1,6 @@
 /* global foundry, game */
 
-export async function _damageWillpower (event, target, actor, willpowerDamage, rollMode) {
+export async function _damageWillpower(event, target, actor, willpowerDamage, rollMode) {
   if (event) event.preventDefault()
 
   // If no actor is provided, try and assume this is being done from an actor
@@ -24,7 +24,7 @@ export async function _damageWillpower (event, target, actor, willpowerDamage, r
 
   // Loop to handle willpower damage tick by tick
   for (let i = 0; i < willpowerDamage; i++) {
-    if ((superWillpower + aggrWillpower) < maxWillpower) {
+    if (superWillpower + aggrWillpower < maxWillpower) {
       // If the superficial willpower ticket isn't completely full, then add a point
       superWillpower++
     } else if (aggrWillpower < maxWillpower) {

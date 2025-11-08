@@ -1,10 +1,19 @@
 /* global foundry */
 
 // Import dice face-related variables for icon paths
-import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces } from './icons.js'
+import {
+  mortalDiceLocation,
+  vampireDiceLocation,
+  werewolfDiceLocation,
+  hunterDiceLocation,
+  normalDiceFaces,
+  hungerDiceFaces,
+  rageDiceFaces,
+  desperationDiceFaces
+} from './icons.js'
 
 class WOD5eDie extends foundry.dice.terms.Die {
-  constructor (termData) {
+  constructor(termData) {
     termData.faces = 10
 
     // If we have modifiers, append cs>5 to it
@@ -20,11 +29,11 @@ class WOD5eDie extends foundry.dice.terms.Die {
     super(termData)
   }
 
-  get gameSystem () {
+  get gameSystem() {
     return this.constructor.GAME_SYSTEM
   }
 
-  get dieType () {
+  get dieType() {
     return this.constructor.DIE_TYPE
   }
 }
@@ -42,7 +51,7 @@ export class MortalDie extends WOD5eDie {
   static DENOMINATION = 'm'
 
   /** @override */
-  static getResultLabel (result) {
+  static getResultLabel(result) {
     return {
       1: `<img src="${mortalDiceLocation + normalDiceFaces.failure}" />`,
       2: `<img src="${mortalDiceLocation + normalDiceFaces.failure}" />`,
@@ -71,7 +80,7 @@ export class VampireDie extends WOD5eDie {
   static DENOMINATION = 'v'
 
   /** @override */
-  static getResultLabel (result) {
+  static getResultLabel(result) {
     return {
       1: `<img src="${vampireDiceLocation + normalDiceFaces.failure}" />`,
       2: `<img src="${vampireDiceLocation + normalDiceFaces.failure}" />`,
@@ -100,7 +109,7 @@ export class VampireHungerDie extends WOD5eDie {
   static DENOMINATION = 'g'
 
   /** @override */
-  static getResultLabel (result) {
+  static getResultLabel(result) {
     return {
       1: `<img src="${vampireDiceLocation + hungerDiceFaces.bestial}" />`,
       2: `<img src="${vampireDiceLocation + hungerDiceFaces.failure}" />`,
@@ -129,7 +138,7 @@ export class HunterDie extends WOD5eDie {
   static DENOMINATION = 'h'
 
   /** @override */
-  static getResultLabel (result) {
+  static getResultLabel(result) {
     return {
       1: `<img src="${hunterDiceLocation + normalDiceFaces.failure}" />`,
       2: `<img src="${hunterDiceLocation + normalDiceFaces.failure}" />`,
@@ -158,7 +167,7 @@ export class HunterDesperationDie extends WOD5eDie {
   static DENOMINATION = 's'
 
   /** @override */
-  static getResultLabel (result) {
+  static getResultLabel(result) {
     return {
       1: `<img src="${hunterDiceLocation + desperationDiceFaces.criticalFailure}" />`,
       2: `<img src="${hunterDiceLocation + desperationDiceFaces.failure}" />`,
@@ -187,7 +196,7 @@ export class WerewolfDie extends WOD5eDie {
   static DENOMINATION = 'w'
 
   /** @override */
-  static getResultLabel (result) {
+  static getResultLabel(result) {
     return {
       1: `<img src="${werewolfDiceLocation + normalDiceFaces.failure}" />`,
       2: `<img src="${werewolfDiceLocation + normalDiceFaces.failure}" />`,
@@ -216,7 +225,7 @@ export class WerewolfRageDie extends WOD5eDie {
   static DENOMINATION = 'r'
 
   /** @override */
-  static getResultLabel (result) {
+  static getResultLabel(result) {
     return {
       1: `<img src="${werewolfDiceLocation + rageDiceFaces.brutal}" />`,
       2: `<img src="${werewolfDiceLocation + rageDiceFaces.brutal}" />`,

@@ -4,7 +4,7 @@ import { BaseDefinitionClass } from './base-definition-class.js'
 
 export class WereForms extends BaseDefinitionClass {
   // Override the initializeLabels method to add extra functionality
-  static initializeLabels () {
+  static initializeLabels() {
     super.initializeLabels()
 
     for (const [, value] of Object.entries(this)) {
@@ -15,7 +15,7 @@ export class WereForms extends BaseDefinitionClass {
         // Localize the Werewolf attributes
         // This function always localizes the label, and then localizes the
         // hintDescription if one exists
-        value.attributes = value.attributes.map(attribute => {
+        value.attributes = value.attributes.map((attribute) => {
           return {
             label: game.i18n.localize(attribute.label),
             ...(attribute.hintDescription && {
@@ -31,7 +31,7 @@ export class WereForms extends BaseDefinitionClass {
   }
 
   // Run any necessary compilation on ready
-  static onReady () {
+  static onReady() {
     WereForms.initializeLabels()
   }
 
@@ -40,9 +40,7 @@ export class WereForms extends BaseDefinitionClass {
     nickname: 'WOD5E.WTA.HomidTitle',
     cost: 0,
     glyph: 'systems/vtm5e/assets/icons/werewolf-forms/homid.webp',
-    attributes: [
-      { label: 'WOD5E.WTA.SilverImmunity' }
-    ]
+    attributes: [{ label: 'WOD5E.WTA.SilverImmunity' }]
   }
 
   static glabro = {
@@ -163,10 +161,7 @@ export class WereForms extends BaseDefinitionClass {
     nickname: 'WOD5E.WTA.LupusTitle',
     cost: 0,
     glyph: 'systems/vtm5e/assets/icons/werewolf-forms/lupus.webp',
-    attributes: [
-      { label: 'WOD5E.WTA.SilverImmunity' },
-      { label: 'WOD5E.WTA.LupusSocialTests' }
-    ]
+    attributes: [{ label: 'WOD5E.WTA.SilverImmunity' }, { label: 'WOD5E.WTA.LupusSocialTests' }]
   }
 }
 

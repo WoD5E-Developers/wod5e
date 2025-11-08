@@ -12,7 +12,7 @@ export const _onRemorseRoll = async function (event) {
   // Secondary variables
   const humanity = actor.system.humanity.value
   const stain = actor.system.humanity.stains
-  const dicePool = Math.max((10 - humanity - stain), 1)
+  const dicePool = Math.max(10 - humanity - stain, 1)
 
   WOD5eDice.Roll({
     basicDice: dicePool,
@@ -25,7 +25,7 @@ export const _onRemorseRoll = async function (event) {
     callback: async (err, rollData) => {
       if (err) console.log('World of Darkness 5e | ' + err)
 
-      const hasSuccess = rollData.terms[0].results.some(result => result.success)
+      const hasSuccess = rollData.terms[0].results.some((result) => result.success)
 
       // Reduce humanity by 1 if the roll fails, otherwise reset stain to 0 in any other cases
       if (hasSuccess) {

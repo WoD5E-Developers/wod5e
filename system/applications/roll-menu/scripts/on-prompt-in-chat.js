@@ -10,14 +10,16 @@ export const _onPromptInChat = async function (event) {
 
   // Construct the valuePaths array that gets sent to the rollFromDataset function
   const valuePathsArray = []
-  if (activeRollObject.dice.skill) valuePathsArray.push(`skills.${activeRollObject.dice.skill}.value`)
-  if (activeRollObject.dice.attribute) valuePathsArray.push(`attributes.${activeRollObject.dice.attribute}.value`)
+  if (activeRollObject.dice.skill)
+    valuePathsArray.push(`skills.${activeRollObject.dice.skill}.value`)
+  if (activeRollObject.dice.attribute)
+    valuePathsArray.push(`attributes.${activeRollObject.dice.attribute}.value`)
 
   // Compile the list of tokens selected and use them as
   // the basis for default users being prompted for the roll
   const promptedRolls = {}
   const tokens = canvas.tokens.controlled
-  const actorsList = tokens.map(i => i.actor)
+  const actorsList = tokens.map((i) => i.actor)
   actorsList.forEach((actor) => {
     promptedRolls[actor.id] = {
       actor,
@@ -31,10 +33,12 @@ export const _onPromptInChat = async function (event) {
     flavor: `<b>Test of:</b> ${activeRollObject.dice.skill} + ${activeRollObject.dice.attribute}${
       // Dynamically determine whether to append the 'difficulty' part of the title or not
       activeRollObject.difficulty > 0
-      ? ' vs <b>' + game.i18n.format('WOD5E.Chat.DifficultyString', {
-        string: activeRollObject.difficulty
-      }) + '</b>'
-      : ''
+        ? ' vs <b>' +
+          game.i18n.format('WOD5E.Chat.DifficultyString', {
+            string: activeRollObject.difficulty
+          }) +
+          '</b>'
+        : ''
     }`,
     flags: {
       vtm5e: {

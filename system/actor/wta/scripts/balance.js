@@ -11,7 +11,7 @@ export const _onHaranoRoll = async function (event) {
   const harano = actor.system.balance.harano.value
   const hauglosk = actor.system.balance.hauglosk.value
 
-  const dicePool = Math.max((harano + hauglosk), 1)
+  const dicePool = Math.max(harano + hauglosk, 1)
 
   WOD5eDice.Roll({
     basicDice: dicePool,
@@ -32,7 +32,7 @@ export const _onHaugloskRoll = async function (event) {
   const harano = actor.system.balance.harano.value
   const hauglosk = actor.system.balance.hauglosk.value
 
-  const dicePool = Math.max((harano + hauglosk), 1)
+  const dicePool = Math.max(harano + hauglosk, 1)
 
   WOD5eDice.Roll({
     basicDice: dicePool,

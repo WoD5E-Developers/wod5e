@@ -14,8 +14,10 @@ export const _onRollFromRollMenu = async function (event) {
 
   // Construct the valuePaths array that gets sent to the rollFromDataset function
   const valuePathsArray = []
-  if (activeRollObject.dice.skill) valuePathsArray.push(`skills.${activeRollObject.dice.skill}.value`)
-  if (activeRollObject.dice.attribute) valuePathsArray.push(`attributes.${activeRollObject.dice.attribute}.value`)
+  if (activeRollObject.dice.skill)
+    valuePathsArray.push(`skills.${activeRollObject.dice.skill}.value`)
+  if (activeRollObject.dice.attribute)
+    valuePathsArray.push(`attributes.${activeRollObject.dice.attribute}.value`)
 
   // Pipe the roll to our RollFromDataset function
   WOD5E.api.RollFromDataset({

@@ -1,6 +1,6 @@
 /* global game */
 
-export function timeSinceShort (timeStamp) {
+export function timeSinceShort(timeStamp) {
   timeStamp = new Date(timeStamp)
   const now = new Date()
   const seconds = (now - timeStamp) / 1000

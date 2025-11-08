@@ -5,7 +5,7 @@ import { WOD5eDice } from './system-rolls.js'
 
 /**
  * Initalise rerolls of any dice and its functions
-**/
+ **/
 
 export const anyReroll = async (roll) => {
   // Variables
@@ -57,14 +57,14 @@ export const anyReroll = async (roll) => {
     render: (event, dialog) => {
       const rerollableDie = dialog.element.querySelectorAll('.reroll .die-select')
 
-      rerollableDie.forEach(die => {
+      rerollableDie.forEach((die) => {
         die.addEventListener('click', toggleDieSelect)
       })
     }
   })
 
   // Handles selecting and de-selecting the die
-  function toggleDieSelect () {
+  function toggleDieSelect() {
     // Toggle selection
     if (!this.classList.contains('selected')) {
       this.classList.add('selected')
@@ -74,13 +74,14 @@ export const anyReroll = async (roll) => {
   }
 
   // Handles rerolling the number of dice selected
-  async function rerollDie (roll) {
+  async function rerollDie(roll) {
     // Variables
     const diceSelected = document.querySelectorAll('.reroll .selected')
     const hungerDiceSelected = document.querySelectorAll('.reroll .selected .hunger-dice')
     const rageDiceSelected = document.querySelectorAll('.reroll .selected .rage-dice')
     const desperationDiceSelected = document.querySelectorAll('.reroll .selected .desperation-dice')
-    const totalAdvancedDiceSelected = hungerDiceSelected.length + rageDiceSelected.length + desperationDiceSelected.length
+    const totalAdvancedDiceSelected =
+      hungerDiceSelected.length + rageDiceSelected.length + desperationDiceSelected.length
 
     // Get the actor associated with the message
     const messageId = roll.getAttribute('data-message-id')
@@ -106,7 +107,7 @@ export const anyReroll = async (roll) => {
 
           const messageRolls = message.rolls
 
-          diceSelected.forEach(dieHTML => {
+          diceSelected.forEach((dieHTML) => {
             const imgElement = dieHTML.querySelector('img')
 
             if (!imgElement) {
@@ -122,7 +123,7 @@ export const anyReroll = async (roll) => {
               imgElement.classList.contains('hunger-dice') ||
               imgElement.classList.contains('desperation-dice')
             ) {
-              const die = messageRolls[0].terms[2].results.find(die => die.index === dieIndex)
+              const die = messageRolls[0].terms[2].results.find((die) => die.index === dieIndex)
 
               if (die) {
                 die.discarded = true
@@ -130,8 +131,9 @@ export const anyReroll = async (roll) => {
               } else {
                 console.error('World of Darkness 5e | Die not found in advanced diceset:', dieIndex)
               }
-            } else { // Handle basic dice
-              const die = messageRolls[0].terms[0].results.find(die => die.index === dieIndex)
+            } else {
+              // Handle basic dice
+              const die = messageRolls[0].terms[0].results.find((die) => die.index === dieIndex)
 
               if (die) {
                 die.discarded = true
@@ -143,10 +145,14 @@ export const anyReroll = async (roll) => {
           })
 
           // Merge "results" arrays
-          messageRolls[0].terms[0].results = messageRolls[0].terms[0].results.concat(reroll.terms[0].results)
+          messageRolls[0].terms[0].results = messageRolls[0].terms[0].results.concat(
+            reroll.terms[0].results
+          )
           // Only merge the 2nd dicepool if one even exists
           if (messageRolls[0].terms[2]) {
-            messageRolls[0].terms[2].results = messageRolls[0].terms[2].results.concat(reroll.terms[2].results)
+            messageRolls[0].terms[2].results = messageRolls[0].terms[2].results.concat(
+              reroll.terms[2].results
+            )
           }
 
           message.update({

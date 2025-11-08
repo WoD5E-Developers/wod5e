@@ -46,7 +46,10 @@ export const _onFrenzyRoll = async function (event) {
       selectors: ['frenzy']
     })
 
-    basicDice = await WOD5E.api.getBasicDice({ flatMod: dicePool + activeModifiers.totalValue, actor })
+    basicDice = await WOD5E.api.getBasicDice({
+      flatMod: dicePool + activeModifiers.totalValue,
+      actor
+    })
 
     WOD5eDice.Roll({
       basicDice,
@@ -107,10 +110,10 @@ export const _onFrenzyRoll = async function (event) {
 }
 
 // Calculate the dice for a Willpower roll
-function getWillpowerDicePool (actor) {
+function getWillpowerDicePool(actor) {
   const willpowerMax = actor.system.willpower.max
   const willpowerAgg = actor.system.willpower.aggravated
   const willpowerSup = actor.system.willpower.superficial
 
-  return Math.max((willpowerMax - willpowerAgg - willpowerSup), 0)
+  return Math.max(willpowerMax - willpowerAgg - willpowerSup, 0)
 }

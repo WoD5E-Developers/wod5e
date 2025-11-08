@@ -117,13 +117,12 @@ export const loadHelpers = async function () {
     if (!game.settings.get('vtm5e', 'chatRollerSortAbilities')) {
       return unordered
     }
-    return Object.keys(unordered).sort().reduce(
-      (obj, key) => {
+    return Object.keys(unordered)
+      .sort()
+      .reduce((obj, key) => {
         obj[key] = unordered[key]
         return obj
-      },
-      {}
-    )
+      }, {})
   })
 
   Handlebars.registerHelper('numLoop', function (num, options) {

@@ -11,23 +11,25 @@ export const ProseMirrorSettings = async () => {
       dropdowns.format.entries.push({
         action: 'wod5e',
         title: 'World of Darkness',
-        children: [{
-          action: 'wodSymbols',
-          class: 'wod5e-symbol',
-          title: 'abcdefghij',
-          mark: spanMark,
-          attrs: {
-            _preserve: {
-              class: 'wod5e-symbol'
-            }
-          },
-          priority: 1,
-          cmd: toggleMark(spanMark, {
-            _preserve: {
-              class: 'wod5e-symbol'
-            }
-          })
-        }]
+        children: [
+          {
+            action: 'wodSymbols',
+            class: 'wod5e-symbol',
+            title: 'abcdefghij',
+            mark: spanMark,
+            attrs: {
+              _preserve: {
+                class: 'wod5e-symbol'
+              }
+            },
+            priority: 1,
+            cmd: toggleMark(spanMark, {
+              _preserve: {
+                class: 'wod5e-symbol'
+              }
+            })
+          }
+        ]
       })
     }
   })

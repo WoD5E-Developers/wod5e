@@ -9,7 +9,9 @@ export const MigrateOldDetailsToNewItems = async function () {
   const migrationIDs = []
 
   // If there's nothing to go through, then just resolve and move on.
-  if (totalIterations === 0) { return [] }
+  if (totalIterations === 0) {
+    return []
+  }
 
   // Move old detail data to the new items (v5.0.0)
   for (const actor of actorsList) {
@@ -18,13 +20,18 @@ export const MigrateOldDetailsToNewItems = async function () {
 
     if (actor.type === 'vampire') {
       /*
-      * CLAN ITEM
-      * Only gets created if the actor doesn't already have a clan item AND has either a bane or a clan set in an old field
-      */
-      if (actor.items.filter(item => item.type === 'clan').length === 0 && (actorData?.headers?.bane || actorData?.clan?.value)) {
-        const name = actorData?.clan?.value || game.i18n.format('WOD5E.NewString', {
-          string: 'WOD5E.VTM.Clan'
-        })
+       * CLAN ITEM
+       * Only gets created if the actor doesn't already have a clan item AND has either a bane or a clan set in an old field
+       */
+      if (
+        actor.items.filter((item) => item.type === 'clan').length === 0 &&
+        (actorData?.headers?.bane || actorData?.clan?.value)
+      ) {
+        const name =
+          actorData?.clan?.value ||
+          game.i18n.format('WOD5E.NewString', {
+            string: 'WOD5E.VTM.Clan'
+          })
         const dataItemId = `clan-${formatDataItemId(name)}`
 
         const clanData = {
@@ -43,13 +50,18 @@ export const MigrateOldDetailsToNewItems = async function () {
       }
 
       /*
-      * PREDATOR TYPE ITEM
-      * Only gets created if the actor doesn't already have a predatorType item AND has a predator type set in the old field
-      */
-      if (actor.items.filter(item => item.type === 'predatorType').length === 0 && actorData?.headers?.predator) {
-        const name = actorData?.headers?.predator || game.i18n.format('WOD5E.NewString', {
-          string: 'WOD5E.VTM.PredatorType'
-        })
+       * PREDATOR TYPE ITEM
+       * Only gets created if the actor doesn't already have a predatorType item AND has a predator type set in the old field
+       */
+      if (
+        actor.items.filter((item) => item.type === 'predatorType').length === 0 &&
+        actorData?.headers?.predator
+      ) {
+        const name =
+          actorData?.headers?.predator ||
+          game.i18n.format('WOD5E.NewString', {
+            string: 'WOD5E.VTM.PredatorType'
+          })
         const dataItemId = `predatorType-${formatDataItemId(name)}`
 
         const predatorData = {
@@ -65,13 +77,18 @@ export const MigrateOldDetailsToNewItems = async function () {
       }
 
       /*
-      * RESONANCE ITEM
-      * Only gets created if the actor doesn't already have a resonance item AND has a resonance set in the old field
-      */
-      if (actor.items.filter(item => item.type === 'resonance').length === 0 && actorData?.blood?.resonance) {
-        const name = actorData?.blood?.resonance || game.i18n.format('WOD5E.NewString', {
-          string: 'WOD5E.VTM.Resonance'
-        })
+       * RESONANCE ITEM
+       * Only gets created if the actor doesn't already have a resonance item AND has a resonance set in the old field
+       */
+      if (
+        actor.items.filter((item) => item.type === 'resonance').length === 0 &&
+        actorData?.blood?.resonance
+      ) {
+        const name =
+          actorData?.blood?.resonance ||
+          game.i18n.format('WOD5E.NewString', {
+            string: 'WOD5E.VTM.Resonance'
+          })
         const dataItemId = `resonance-${formatDataItemId(name)}`
 
         const resonanceData = {
@@ -87,13 +104,18 @@ export const MigrateOldDetailsToNewItems = async function () {
       }
     } else if (actor.type === 'hunter') {
       /*
-      * CREED ITEM
-      * Only gets created if the actor doesn't already have a creed item AND has either a creed or creedFields set in the old fields
-      */
-      if (actor.items.filter(item => item.type === 'creed').length === 0 && (actorData?.headers?.creed || actorData?.headers?.creedFields)) {
-        const name = actorData?.headers?.creed || game.i18n.format('WOD5E.NewString', {
-          string: 'WOD5E.HTR.Creed'
-        })
+       * CREED ITEM
+       * Only gets created if the actor doesn't already have a creed item AND has either a creed or creedFields set in the old fields
+       */
+      if (
+        actor.items.filter((item) => item.type === 'creed').length === 0 &&
+        (actorData?.headers?.creed || actorData?.headers?.creedFields)
+      ) {
+        const name =
+          actorData?.headers?.creed ||
+          game.i18n.format('WOD5E.NewString', {
+            string: 'WOD5E.HTR.Creed'
+          })
         const dataItemId = `creed-${formatDataItemId(name)}`
 
         const creedData = {
@@ -112,13 +134,18 @@ export const MigrateOldDetailsToNewItems = async function () {
       }
 
       /*
-      * DRIVE ITEM
-      * Only gets created if the actor doesn't already have a drive item AND has either drive or redemption set in the old fields
-      */
-      if (actor.items.filter(item => item.type === 'drive').length === 0 && (actorData?.headers?.drive || actorData?.redemption?.value)) {
-        const name = actorData?.headers?.drive || game.i18n.format('WOD5E.NewString', {
-          string: 'WOD5E.HTR.Drive'
-        })
+       * DRIVE ITEM
+       * Only gets created if the actor doesn't already have a drive item AND has either drive or redemption set in the old fields
+       */
+      if (
+        actor.items.filter((item) => item.type === 'drive').length === 0 &&
+        (actorData?.headers?.drive || actorData?.redemption?.value)
+      ) {
+        const name =
+          actorData?.headers?.drive ||
+          game.i18n.format('WOD5E.NewString', {
+            string: 'WOD5E.HTR.Drive'
+          })
         const dataItemId = `drive-${formatDataItemId(name)}`
 
         const driveData = {
@@ -137,13 +164,21 @@ export const MigrateOldDetailsToNewItems = async function () {
       }
     } else if (actor.type === 'werewolf') {
       /*
-      * TRIBE ITEM
-      * Only gets created if the actor doesn't already have a clan item AND has any tribe, patron, favor or ban set in the old fields
-      */
-      if (actor.items.filter(item => item.type === 'tribe').length === 0 && (actorData?.headers?.tribe || actorData?.headers?.patron || actorData?.headers?.favor || actorData?.headers?.ban)) {
-        const name = actorData?.headers?.tribe || game.i18n.format('WOD5E.NewString', {
-          string: 'WOD5E.WTA.Tribe'
-        })
+       * TRIBE ITEM
+       * Only gets created if the actor doesn't already have a clan item AND has any tribe, patron, favor or ban set in the old fields
+       */
+      if (
+        actor.items.filter((item) => item.type === 'tribe').length === 0 &&
+        (actorData?.headers?.tribe ||
+          actorData?.headers?.patron ||
+          actorData?.headers?.favor ||
+          actorData?.headers?.ban)
+      ) {
+        const name =
+          actorData?.headers?.tribe ||
+          game.i18n.format('WOD5E.NewString', {
+            string: 'WOD5E.WTA.Tribe'
+          })
         const dataItemId = `tribe-${formatDataItemId(name)}`
 
         const tribeData = {
@@ -167,13 +202,18 @@ export const MigrateOldDetailsToNewItems = async function () {
       }
 
       /*
-      * CLAN ITEM
-      * Only gets created if the actor doesn't already have a clan item AND has an auspice set in the old field
-      */
-      if (actor.items.filter(item => item.type === 'auspice').length === 0 && (actorData?.headers?.auspice)) {
-        const name = actorData?.headers?.auspice || game.i18n.format('WOD5E.NewString', {
-          string: 'WOD5E.WTA.Auspice'
-        })
+       * CLAN ITEM
+       * Only gets created if the actor doesn't already have a clan item AND has an auspice set in the old field
+       */
+      if (
+        actor.items.filter((item) => item.type === 'auspice').length === 0 &&
+        actorData?.headers?.auspice
+      ) {
+        const name =
+          actorData?.headers?.auspice ||
+          game.i18n.format('WOD5E.NewString', {
+            string: 'WOD5E.WTA.Auspice'
+          })
         const dataItemId = `auspice-${formatDataItemId(name)}`
 
         const auspiceData = {

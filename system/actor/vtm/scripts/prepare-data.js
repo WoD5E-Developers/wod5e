@@ -11,23 +11,30 @@ export const prepareDisciplines = async function (actor) {
 
     // If the actor has a discipline with the key, grab its current values
     if (Object.prototype.hasOwnProperty.call(actorDisciplines, id)) {
-      disciplineData = Object.assign({
-        id,
-        value: actorDisciplines[id].value || 0,
-        powers: actorDisciplines[id].powers || [],
-        description: actorDisciplines[id]?.description || '',
-        visible: actorDisciplines[id].visible,
-        selected: actorDisciplines[id].selected || false
-      }, value)
-    } else { // Otherwise, add it to the actor and set it as some default data
-      disciplineData = Object.assign({
-        id,
-        value: 0,
-        visible: false,
-        description: '',
-        powers: [],
-        selected: false
-      }, value)
+      disciplineData = Object.assign(
+        {
+          id,
+          value: actorDisciplines[id].value || 0,
+          powers: actorDisciplines[id].powers || [],
+          description: actorDisciplines[id]?.description || '',
+          visible: actorDisciplines[id].visible,
+          selected: actorDisciplines[id].selected || false
+        },
+        value
+      )
+    } else {
+      // Otherwise, add it to the actor and set it as some default data
+      disciplineData = Object.assign(
+        {
+          id,
+          value: 0,
+          visible: false,
+          description: '',
+          powers: [],
+          selected: false
+        },
+        value
+      )
     }
 
     // Ensure the discipline exists
@@ -41,8 +48,8 @@ export const prepareDisciplines = async function (actor) {
     }
 
     // Assign all matching powers to the discipline
-    computedDisciplines[id].powers = actor.items.filter(item =>
-      item.type === 'power' && item.system.discipline === id
+    computedDisciplines[id].powers = actor.items.filter(
+      (item) => item.type === 'power' && item.system.discipline === id
     )
   }
 
@@ -76,7 +83,9 @@ export const prepareDisciplinePowers = async function (disciplines) {
           })
         }
       } else {
-        console.warn(`World of Darkness 5e | Discipline ${disciplineType} is missing or powers is not an array.`)
+        console.warn(
+          `World of Darkness 5e | Discipline ${disciplineType} is missing or powers is not an array.`
+        )
       }
     }
   }

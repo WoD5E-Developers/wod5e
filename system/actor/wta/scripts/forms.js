@@ -57,24 +57,24 @@ export const _onShiftForm = async function (event, target) {
   const form = target.getAttribute('data-form')
 
   switch (form) {
-    case 'glabro':
-      handleFormChange(event, target, actor, 'glabro', 1)
-      break
-    case 'crinos':
-      handleFormChange(event, target, actor, 'crinos', 2)
-      break
-    case 'hispo':
-      handleFormChange(event, target, actor, 'hispo', 1)
-      break
-    case 'lupus':
-      actor.update({ 'system.activeForm': 'lupus' })
-      _updateToken(actor, 'lupus')
-      _onFormToChat(event, target, actor)
-      break
-    default:
-      actor.update({ 'system.activeForm': 'homid' })
-      _updateToken(actor, 'homid')
-      _onFormToChat(event, target, actor)
+  case 'glabro':
+    handleFormChange(event, target, actor, 'glabro', 1)
+    break
+  case 'crinos':
+    handleFormChange(event, target, actor, 'crinos', 2)
+    break
+  case 'hispo':
+    handleFormChange(event, target, actor, 'hispo', 1)
+    break
+  case 'lupus':
+    actor.update({ 'system.activeForm': 'lupus' })
+    _updateToken(actor, 'lupus')
+    _onFormToChat(event, target, actor)
+    break
+  default:
+    actor.update({ 'system.activeForm': 'homid' })
+    _updateToken(actor, 'homid')
+    _onFormToChat(event, target, actor)
   }
 }
 
@@ -110,7 +110,7 @@ export const handleFormChange = async function (event, target, actor, form, dice
         if (err) console.log('World of Darkness 5e | ' + err)
 
         // Calculate the number of rage dice the actor has left
-        const failures = rollData.terms[2].results.filter(result => !result.success).length
+        const failures = rollData.terms[2].results.filter((result) => !result.success).length
         const newRageAmount = Math.max(actor.system.rage.value - failures, 0)
 
         // If rolling rage dice didn't reduce the actor to 0 rage, then update the current form
@@ -156,7 +156,10 @@ export const _onFormToChat = async function (event, target, originActor) {
   }
 
   // Post the message to the chat
-  const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: chatMessage }, game.settings.get('core', 'rollMode'))
+  const message = ChatMessage.applyRollMode(
+    { speaker: ChatMessage.getSpeaker({ actor }), content: chatMessage },
+    game.settings.get('core', 'rollMode')
+  )
   ChatMessage.create(message)
 }
 

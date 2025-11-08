@@ -10,7 +10,8 @@ export const getDerivedWillpower = async function (systemData) {
   // damage taken and subtracting the max by that;
   // superficial damage is reduced by half to represent
   // its lesser effect
-  willpowerData.value = willpowerData.max - (willpowerData.aggravated + (willpowerData.superficial / 2))
+  willpowerData.value =
+    willpowerData.max - (willpowerData.aggravated + willpowerData.superficial / 2)
 
   // Update the actor's health.value
   return willpowerData

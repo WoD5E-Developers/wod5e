@@ -8,7 +8,9 @@ export const prepareRedemptionContext = async function (context, item) {
 
   // Part-specific data
   context.redemption = itemData.redemption
-  context.enrichedRedemption = await foundry.applications.ux.TextEditor.implementation.enrichHTML(itemData.redemption)
+  context.enrichedRedemption = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    itemData.redemption
+  )
 
   return context
 }

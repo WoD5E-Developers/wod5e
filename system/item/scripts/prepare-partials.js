@@ -10,7 +10,9 @@ export const prepareDescriptionContext = async function (context, item) {
 
   // Part-specific data
   context.description = itemData?.description
-  context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(itemData?.description)
+  context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    itemData?.description
+  )
 
   return context
 }
@@ -88,22 +90,25 @@ export const prepareEffectsContext = async function (context, item) {
   context.flatSourceOptions = {
     static: 'WOD5E.ItemsList.Static'
   }
-  context.effects = Object.entries(itemData.effects).reduce((acc, [key, effect]) => {
-    const effectType = effect?.type || ''
+  context.effects = Object.entries(itemData.effects).reduce(
+    (acc, [key, effect]) => {
+      const effectType = effect?.type || ''
 
-    // Push to container if an effect type is set and exists
-    if (acc[effectType]) {
-      acc[effectType].push({
-        id: key,
-        ...effect
-      })
+      // Push to container if an effect type is set and exists
+      if (acc[effectType]) {
+        acc[effectType].push({
+          id: key,
+          ...effect
+        })
+      }
+
+      return acc
+    },
+    {
+      // Containers
+      flatModifier: []
     }
-
-    return acc
-  }, {
-    // Containers
-    flatModifier: []
-  })
+  )
 
   return context
 }

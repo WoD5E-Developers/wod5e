@@ -7,7 +7,7 @@ import { _onGiftCost } from '../wta/scripts/gifts.js'
 
 /**
  * Proxy for transforming data from a data action into data we can use to roll with
-*/
+ */
 export const _onRollItem = async function (event, target) {
   event.preventDefault()
 
@@ -19,8 +19,8 @@ export const _onRollItem = async function (event, target) {
 }
 
 /**
-   * Handle rolling dicepools from items
-*/
+ * Handle rolling dicepools from items
+ */
 export const _rollItem = async function (actor, item) {
   // Secondary data
   const actorData = actor.system
@@ -92,7 +92,11 @@ export const _rollItem = async function (actor, item) {
   const advancedCheckDice = activeModifiers.totalACDValue
 
   // Get the number of basicDice and advancedDice
-  basicDice = await WOD5E.api.getBasicDice({ valuePaths, flatMod: flatMod + activeModifiers.totalValue, actor })
+  basicDice = await WOD5E.api.getBasicDice({
+    valuePaths,
+    flatMod: flatMod + activeModifiers.totalValue,
+    actor
+  })
   advancedDice = disableAdvancedDice ? 0 : await WOD5E.api.getAdvancedDice({ actor })
 
   // Define the actor's gamesystem, defaulting to "mortal" if it's not in the systems list

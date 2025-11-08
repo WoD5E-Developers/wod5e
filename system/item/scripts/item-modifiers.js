@@ -26,7 +26,10 @@ export const _onAddModifier = async function (event) {
   }
 
   // Render the template
-  const bonusContent = await foundry.applications.handlebars.renderTemplate(bonusTemplate, bonusData)
+  const bonusContent = await foundry.applications.handlebars.renderTemplate(
+    bonusTemplate,
+    bonusData
+  )
 
   const result = await foundry.applications.api.DialogV2.input({
     window: {
@@ -61,12 +64,17 @@ export const _onAddModifier = async function (event) {
       const activeWhenPath = dialog.element.querySelector('.active-when-path')
       const activeWhenValue = dialog.element.querySelector('.active-when-value')
 
-      activeWhenPath.style.visibility = ['isEqual', 'isPath'].includes(activeWhenCheck.value) ? 'visible' : 'hidden'
+      activeWhenPath.style.visibility = ['isEqual', 'isPath'].includes(activeWhenCheck.value)
+        ? 'visible'
+        : 'hidden'
       activeWhenValue.style.visibility = activeWhenCheck.value === 'isEqual' ? 'visible' : 'hidden'
 
       activeWhenCheck.addEventListener('change', function () {
-        activeWhenPath.style.visibility = ['isEqual', 'isPath'].includes(activeWhenCheck.value) ? 'visible' : 'hidden'
-        activeWhenValue.style.visibility = activeWhenCheck.value === 'isEqual' ? 'visible' : 'hidden'
+        activeWhenPath.style.visibility = ['isEqual', 'isPath'].includes(activeWhenCheck.value)
+          ? 'visible'
+          : 'hidden'
+        activeWhenValue.style.visibility =
+          activeWhenCheck.value === 'isEqual' ? 'visible' : 'hidden'
       })
     }
   })
@@ -138,7 +146,10 @@ export const _onEditModifier = async function (event, target) {
   }
 
   // Render the template
-  const bonusContent = await foundry.applications.handlebars.renderTemplate(bonusTemplate, bonusData)
+  const bonusContent = await foundry.applications.handlebars.renderTemplate(
+    bonusTemplate,
+    bonusData
+  )
 
   const result = await foundry.applications.api.DialogV2.input({
     window: {
@@ -173,12 +184,17 @@ export const _onEditModifier = async function (event, target) {
       const activeWhenPath = dialog.element.querySelector('.active-when-path')
       const activeWhenValue = dialog.element.querySelector('.active-when-value')
 
-      activeWhenPath.style.visibility = ['isEqual', 'isPath'].includes(activeWhenCheck.value) ? 'visible' : 'hidden'
+      activeWhenPath.style.visibility = ['isEqual', 'isPath'].includes(activeWhenCheck.value)
+        ? 'visible'
+        : 'hidden'
       activeWhenValue.style.visibility = activeWhenCheck.value === 'isEqual' ? 'visible' : 'hidden'
 
       activeWhenCheck.addEventListener('change', function () {
-        activeWhenPath.style.visibility = ['isEqual', 'isPath'].includes(activeWhenCheck.value) ? 'visible' : 'hidden'
-        activeWhenValue.style.visibility = activeWhenCheck.value === 'isEqual' ? 'visible' : 'hidden'
+        activeWhenPath.style.visibility = ['isEqual', 'isPath'].includes(activeWhenCheck.value)
+          ? 'visible'
+          : 'hidden'
+        activeWhenValue.style.visibility =
+          activeWhenCheck.value === 'isEqual' ? 'visible' : 'hidden'
       })
     }
   })

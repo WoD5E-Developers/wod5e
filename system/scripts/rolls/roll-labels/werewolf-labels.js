@@ -23,7 +23,7 @@ export const getWerewolfLabel = async function (data) {
 }
 
 // Handle brutal outcome conditions
-function getBrutalOutcomeLabel () {
+function getBrutalOutcomeLabel() {
   const labelClass = 'rage-failure'
   const labelText = game.i18n.localize('WOD5E.WTA.PossibleRageFailure')
 

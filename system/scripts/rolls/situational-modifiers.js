@@ -6,10 +6,7 @@
  * @param actor                     The actor that the modifiers are being looked up from
  * @param selectors                 All selectors that the function will look for
  */
-export async function getSituationalModifiers ({
-  actor,
-  selectors
-}) {
+export async function getSituationalModifiers({ actor, selectors }) {
   // Variables
   const data = actor.system
   const allModifiers = getModifiers(data, selectors)
@@ -20,14 +17,16 @@ export async function getSituationalModifiers ({
 
   // Function to parse through the actor's data and retrieve any modifiers
   // that match any of the selectors given
-  function getModifiers (data, selectors) {
+  function getModifiers(data, selectors) {
     const modifiers = []
 
     // Add all modifiers we get from items to start
     if (!foundry.utils.isEmpty(data?.itemModifiers) && Array.isArray(data?.itemModifiers)) {
       // Check for matching modifiers, or 'all'
-      const matchingModifiers = data.itemModifiers.filter(bonus =>
-        selectors.some(selector => bonus.paths.includes(selector)) || bonus.paths.includes('all')
+      const matchingModifiers = data.itemModifiers.filter(
+        (bonus) =>
+          selectors.some((selector) => bonus.paths.includes(selector)) ||
+          bonus.paths.includes('all')
       )
 
       // If there are any matching modifiers, push it to the modifiers list
@@ -38,7 +37,7 @@ export async function getSituationalModifiers ({
 
     // Run a search for modifiers within the actor's data
     searchModifiers(data, '')
-    function searchModifiers (obj, path) {
+    function searchModifiers(obj, path) {
       // Ensure that we're receiving a valid object
       if (typeof obj !== 'object' || obj === null) {
         return
@@ -52,8 +51,10 @@ export async function getSituationalModifiers ({
       // Check if there's a "bonuses" path that is an array
       if (obj.bonuses && Array.isArray(obj.bonuses)) {
         // Check for matching modifiers, or 'all'
-        const matchingModifiers = obj.bonuses.filter(modifier =>
-          selectors.some(selector => modifier.paths.includes(selector)) || modifier.paths.includes('all')
+        const matchingModifiers = obj.bonuses.filter(
+          (modifier) =>
+            selectors.some((selector) => modifier.paths.includes(selector)) ||
+            modifier.paths.includes('all')
         )
 
         // If there are any matching modifiers, push it to the modifiers list
@@ -76,15 +77,15 @@ export async function getSituationalModifiers ({
   }
 
   // Filter out only modifiers that apply to the roll we're doing
-  function filterModifiers (data, modifiers) {
-    return modifiers.filter(modifier => {
+  function filterModifiers(data, modifiers) {
+    return modifiers.filter((modifier) => {
       const { check, path, value } = modifier?.activeWhen || {}
       const displayWhenInactive = modifier?.displayWhenInactive || ''
       const unless = modifier?.unless || ''
       let showModifier = false
 
       // Check if any 'unless' strings are present in the 'selectors' array
-      if (unless && unless.some(value => selectors.indexOf(value) !== -1)) {
+      if (unless && unless.some((value) => selectors.indexOf(value) !== -1)) {
         modifier.isActive = false
         return false
       }
@@ -129,15 +130,12 @@ export async function getSituationalModifiers ({
  * @param actor                     The actor that the modifiers are being looked up from
  * @param selectors                 All selectors that the function will look for
  */
-export async function getActiveModifiers ({
-  actor,
-  selectors
-}) {
+export async function getActiveModifiers({ actor, selectors }) {
   const situationalModifiers = await getSituationalModifiers({
     actor,
     selectors
   })
-  const activeModifiers = situationalModifiers.filter(modifier => modifier.isActive === true)
+  const activeModifiers = situationalModifiers.filter((modifier) => modifier.isActive === true)
   let totalValue = 0
   let totalACDValue = 0
 

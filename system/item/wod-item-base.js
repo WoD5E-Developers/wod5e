@@ -17,7 +17,7 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
  * @extends {foundry.applications.sheets.ItemSheetV2}
  */
 export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
-  constructor (options = {}) {
+  constructor(options = {}) {
     super(options)
   }
 
@@ -48,7 +48,7 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
     }
   }
 
-  _getHeaderControls () {
+  _getHeaderControls() {
     const controls = super._getHeaderControls()
     const item = this.item
 
@@ -75,7 +75,7 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
     primary: 'description'
   }
 
-  getTabs () {
+  getTabs() {
     const tabs = this.tabs
 
     // Remove hidden tabs
@@ -91,7 +91,7 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
     return tabs
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     // Top-level variables
     const data = await super._prepareContext()
     const item = this.item
@@ -119,7 +119,7 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
     }
   }
 
-  static async onSubmitItemForm (event, form, formData) {
+  static async onSubmitItemForm(event, form, formData) {
     // Process submit data
     const submitData = this._prepareSubmitData(event, form, formData)
 
@@ -127,7 +127,7 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
     await this.item.update(submitData)
   }
 
-  _onRender () {
+  _onRender() {
     const html = this.element
 
     // Update the window title (since ItemSheetV2 doesn't do it automatically)

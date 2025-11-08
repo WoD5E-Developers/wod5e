@@ -21,15 +21,22 @@ export const prepareAttributes = async function (actor) {
 
     // If the actor has an attribute with the key, grab its current values
     if (Object.prototype.hasOwnProperty.call(actorAttributes, id)) {
-      attributeData = Object.assign({
-        id,
-        value: actorAttributes[id].value
-      }, value)
-    } else { // Otherwise, add it to the actor and set it as some default data
-      attributeData = Object.assign({
-        id,
-        value: 1
-      }, value)
+      attributeData = Object.assign(
+        {
+          id,
+          value: actorAttributes[id].value
+        },
+        value
+      )
+    } else {
+      // Otherwise, add it to the actor and set it as some default data
+      attributeData = Object.assign(
+        {
+          id,
+          value: 1
+        },
+        value
+      )
     }
 
     // Ensure the attribute exists

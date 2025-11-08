@@ -12,23 +12,30 @@ export const prepareGifts = async function (actor) {
 
     // If the actor has a gift with the key, grab its current values
     if (Object.prototype.hasOwnProperty.call(actorGifts, id)) {
-      giftData = Object.assign({
-        id,
-        value: actorGifts[id].value,
-        powers: actorGifts[id].powers || [],
-        description: actorGifts[id]?.description || '',
-        visible: actorGifts[id].visible,
-        selected: actorGifts[id].selected || false
-      }, value)
-    } else { // Otherwise, add it to the actor and set it as some default data
-      giftData = Object.assign({
-        id,
-        value: 0,
-        visible: false,
-        description: '',
-        powers: [],
-        selected: false
-      }, value)
+      giftData = Object.assign(
+        {
+          id,
+          value: actorGifts[id].value,
+          powers: actorGifts[id].powers || [],
+          description: actorGifts[id]?.description || '',
+          visible: actorGifts[id].visible,
+          selected: actorGifts[id].selected || false
+        },
+        value
+      )
+    } else {
+      // Otherwise, add it to the actor and set it as some default data
+      giftData = Object.assign(
+        {
+          id,
+          value: 0,
+          visible: false,
+          description: '',
+          powers: [],
+          selected: false
+        },
+        value
+      )
     }
 
     // Ensure the gift exists
@@ -42,8 +49,8 @@ export const prepareGifts = async function (actor) {
     }
 
     // Assign all matching powers to the discipline
-    computedGifts[id].powers = actor.items.filter(item =>
-      item.type === 'gift' && item.system.giftType === id
+    computedGifts[id].powers = actor.items.filter(
+      (item) => item.type === 'gift' && item.system.giftType === id
     )
   }
 
@@ -77,7 +84,9 @@ export const prepareGiftPowers = async function (gifts) {
           })
         }
       } else {
-        console.warn(`World of Darkness 5e | Gift ${giftType} is missing or powers is not an array.`)
+        console.warn(
+          `World of Darkness 5e | Gift ${giftType} is missing or powers is not an array.`
+        )
       }
     }
   }
@@ -90,10 +99,7 @@ export const prepareFormData = async function (formData, actor) {
   const wereForms = WereForms.getList({})
 
   // Fields to keep from the existing data
-  const fieldsToKeep = [
-    'description',
-    'token'
-  ]
+  const fieldsToKeep = ['description', 'token']
 
   // Merge new form data with existing form data
   const mergedForms = {}

@@ -6,14 +6,21 @@ export const MigrateGeneralDifficulty = async function () {
   const migrationIDs = []
 
   // If there's nothing to go through, then just resolve and move on.
-  if (totalIterations === 0) { return [] }
+  if (totalIterations === 0) {
+    return []
+  }
 
   // Fix the General Difficulty of SPC sheets (v5.0.0)
   for (const actor of actorsList) {
     const actorData = actor.system
 
     // Check if the actor has both normal and strongest general difficulties using the old values, or the old values are null
-    if ((actorData?.generaldifficulty?.normal?.value && actorData?.generaldifficulty?.strongest?.value) || (actorData?.generaldifficulty?.normal?.value === null || actorData?.generaldifficulty?.strongest?.value === null)) {
+    if (
+      (actorData?.generaldifficulty?.normal?.value &&
+        actorData?.generaldifficulty?.strongest?.value) ||
+      actorData?.generaldifficulty?.normal?.value === null ||
+      actorData?.generaldifficulty?.strongest?.value === null
+    ) {
       const generaldifficulty = {
         normal: actorData.generaldifficulty.normal.value || 0,
         strongest: actorData.generaldifficulty.strongest.value || 0

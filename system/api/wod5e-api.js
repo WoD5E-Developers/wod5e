@@ -28,7 +28,7 @@ export class wod5eAPI {
    * @param macro                     (Optional, default '') A macro to run after the roll has been made
    *
    */
-  static async Roll ({
+  static async Roll({
     basicDice = 0,
     advancedDice = 0,
     actor = game.actors.get(ChatMessage.getSpeaker().actor),
@@ -77,18 +77,19 @@ export class wod5eAPI {
     })
   }
 
-  static async PromptRoll ({
-    actor = game.actors.get(ChatMessage.getSpeaker().actor)
-  }) {
+  static async PromptRoll({ actor = game.actors.get(ChatMessage.getSpeaker().actor) }) {
     // Warn that we couldn't get an actor
     if (!actor) return ui.notifications.warn('No actor defined.')
 
     // Prompt a roll from a dataset
-    WOD5E.api.RollFromDataset({
-      dataset: {
-        selectDialog: true
-      }
-    }, actor)
+    WOD5E.api.RollFromDataset(
+      {
+        dataset: {
+          selectDialog: true
+        }
+      },
+      actor
+    )
   }
 
   /**
@@ -96,8 +97,8 @@ export class wod5eAPI {
    *
    * @param dataset                   A formatted dataset with various roll variables
    * @param actor                     (Optional, default to speaker actor) The actor that the roll is coming from
-  */
-  static async RollFromDataset ({
+   */
+  static async RollFromDataset({
     dataset,
     actor = game.actors.get(ChatMessage.getSpeaker().actor)
   }) {
@@ -132,7 +133,10 @@ export class wod5eAPI {
       skillOptions,
       disciplineOptions,
       renownOptions,
-      hungerValue: actor.system.gamesystem === 'vampire' && actor.type !== 'ghoul' ? actor.system.hunger.value : 0,
+      hungerValue:
+        actor.system.gamesystem === 'vampire' && actor.type !== 'ghoul'
+          ? actor.system.hunger.value
+          : 0,
       actorType: actor.type
     }
     // Render the template
@@ -180,13 +184,16 @@ export class wod5eAPI {
       // Handle adding a skill to the dicepool
       if (skillSelect) {
         // Add it to the label
-        labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: skillSelect, type: 'skills' }))
+        labelArray.push(
+          await WOD5E.api.generateLabelAndLocalize({ string: skillSelect, type: 'skills' })
+        )
 
         // Add it to the value path if applicable
         valueArray.push(`skills.${skillSelect}.value`)
 
         // If using absolute values instead of value paths, add the values together
-        if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.skills[skillSelect].value
+        if (dataset.useAbsoluteValue && dataset.absoluteValue)
+          modifiedDataset.absoluteValue += actor.system.skills[skillSelect].value
 
         // Add the attribute selectors to the roll
         selectorsArray = selectorsArray.concat(['skills', `skills.${skillSelect}`])
@@ -194,41 +201,58 @@ export class wod5eAPI {
       // Handle adding an attribute to the dicepool
       if (attributeSelect) {
         // Add it to the label
-        labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect, type: 'attributes' }))
+        labelArray.push(
+          await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect, type: 'attributes' })
+        )
 
         // Add it to the value path if applicable
         valueArray.push(`attributes.${attributeSelect}.value`)
 
         // If using absolute values instead of value paths, add the values together
-        if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.attributes[attributeSelect].value
+        if (dataset.useAbsoluteValue && dataset.absoluteValue)
+          modifiedDataset.absoluteValue += actor.system.attributes[attributeSelect].value
 
         // Add the attribute selectors to the roll
-        selectorsArray = selectorsArray.concat(['attributes', `attributes.${attributeSelect}`, `${WOD5E.Attributes.getList({})[attributeSelect].type}`])
+        selectorsArray = selectorsArray.concat([
+          'attributes',
+          `attributes.${attributeSelect}`,
+          `${WOD5E.Attributes.getList({})[attributeSelect].type}`
+        ])
       }
       // Handle adding a second attribute to the dicepool
       if (attributeSelect2) {
         // Add it to the label
-        labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect2, type: 'attributes' }))
+        labelArray.push(
+          await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect2, type: 'attributes' })
+        )
 
         // Add it to the value path if applicable
         valueArray.push(`attributes.${attributeSelect2}.value`)
 
         // If using absolute values instead of value paths, add the values together
-        if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.attributes[attributeSelect2].value
+        if (dataset.useAbsoluteValue && dataset.absoluteValue)
+          modifiedDataset.absoluteValue += actor.system.attributes[attributeSelect2].value
 
         // Add the attribute selectors to the roll
-        selectorsArray = selectorsArray.concat(['attributes', `attributes.${attributeSelect2}`, `${WOD5E.Attributes.getList({})[attributeSelect2].type}`])
+        selectorsArray = selectorsArray.concat([
+          'attributes',
+          `attributes.${attributeSelect2}`,
+          `${WOD5E.Attributes.getList({})[attributeSelect2].type}`
+        ])
       }
       // Handle adding a discipline to the dicepool
       if (disciplineSelect) {
         // Add it to the label
-        labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: disciplineSelect, type: 'discipline' }))
+        labelArray.push(
+          await WOD5E.api.generateLabelAndLocalize({ string: disciplineSelect, type: 'discipline' })
+        )
 
         // Add it to the value path if applicable
         valueArray.push(`disciplines.${disciplineSelect}.value`)
 
         // If using absolute values instead of value paths, add the values together
-        if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.disciplines[disciplineSelect].value
+        if (dataset.useAbsoluteValue && dataset.absoluteValue)
+          modifiedDataset.absoluteValue += actor.system.disciplines[disciplineSelect].value
 
         // Add the discipline and potency selectors to the roll
         selectorsArray = selectorsArray.concat(['disciplines', `disciplines.${disciplineSelect}`])
@@ -244,13 +268,16 @@ export class wod5eAPI {
       // Handle adding a renown to the dicepool
       if (renownSelect) {
         // Add it to the label
-        labelArray.push(await WOD5E.api.generateLabelAndLocalize({ string: renownSelect, type: 'renown' }))
+        labelArray.push(
+          await WOD5E.api.generateLabelAndLocalize({ string: renownSelect, type: 'renown' })
+        )
 
         // Add it to the value path if applicable
         valueArray.push(`renown.${renownSelect}.value`)
 
         // If using absolute values instead of value paths, add the values together
-        if (dataset.useAbsoluteValue && dataset.absoluteValue) modifiedDataset.absoluteValue += actor.system.renown[renownSelect].value
+        if (dataset.useAbsoluteValue && dataset.absoluteValue)
+          modifiedDataset.absoluteValue += actor.system.renown[renownSelect].value
 
         // Add the renown selector to the roll
         selectorsArray = selectorsArray.concat(['renown', `renown.${renownSelect}`])
@@ -268,10 +295,7 @@ export class wod5eAPI {
   }
 
   // Function to grab the values of any given paths and add them up as the total number of basic dice for the roll
-  static async getFlavorDescription ({
-    valuePath = '',
-    data = {}
-  }) {
+  static async getFlavorDescription({ valuePath = '', data = {} }) {
     // Look up the path and grab the value
     const properties = valuePath.split('.')
 
@@ -286,7 +310,7 @@ export class wod5eAPI {
   }
 
   // Function to grab the values of any given paths and add them up as the total number of basic dice for the roll
-  static async getBasicDice ({
+  static async getBasicDice({
     valuePaths = [],
     flatMod = 0,
     actor = game.actors.get(ChatMessage.getSpeaker().actor)
@@ -319,9 +343,7 @@ export class wod5eAPI {
   }
 
   // Function to construct what the advanced dice of the actor's roll should be and total to
-  static async getAdvancedDice ({
-    actor = game.actors.get(ChatMessage.getSpeaker().actor)
-  }) {
+  static async getAdvancedDice({ actor = game.actors.get(ChatMessage.getSpeaker().actor) }) {
     // Top-level variables
     const actorData = actor.system
 
@@ -342,10 +364,7 @@ export class wod5eAPI {
     }
   }
 
-  static generateLabelAndLocalize ({
-    string = '',
-    type = ''
-  }) {
+  static generateLabelAndLocalize({ string = '', type = '' }) {
     return generateLocalizedLabel(string, type)
   }
 }

@@ -15,10 +15,12 @@ export const _onAddDiscipline = async function (event) {
     choices: disciplineList,
     label: game.i18n.localize('WOD5E.VTM.SelectDiscipline'),
     required: true
-  }).toFormGroup({},
+  }).toFormGroup(
+    {},
     {
       name: 'discipline'
-    }).outerHTML
+    }
+  ).outerHTML
 
   // Prompt a dialog to determine which discipline we're adding
   const disciplineSelected = await foundry.applications.api.DialogV2.prompt({
@@ -28,7 +30,8 @@ export const _onAddDiscipline = async function (event) {
     classes: ['wod5e', 'dialog', 'vampire', 'dialog'],
     content,
     ok: {
-      callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object.discipline
+      callback: (event, button) =>
+        new foundry.applications.ux.FormDataExtended(button.form).object.discipline
     },
     modal: true
   })
@@ -123,7 +126,11 @@ export const _updateSelectedDisciplinePower = async function (actor, power) {
 
   // Unselect the previously selected power
   const previouslySelectedPower = actor.system?.selectedDisciplinePower
-  if (previouslySelectedPower && actor.items.get(previouslySelectedPower) && previouslySelectedPower !== power) {
+  if (
+    previouslySelectedPower &&
+    actor.items.get(previouslySelectedPower) &&
+    previouslySelectedPower !== power
+  ) {
     actor.items.get(previouslySelectedPower).update({
       system: {
         selected: false

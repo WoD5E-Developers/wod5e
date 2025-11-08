@@ -8,18 +8,22 @@ export class Gifts extends BaseDefinitionClass {
   static defCategory = 'Gifts'
 
   // Run any necessary compilation on ready
-  static onReady () {
+  static onReady() {
     // Handle adding custom disciplines from the game settings
     let customGifts = game.settings.get('vtm5e', 'customGifts') || {}
 
     // Handle adding custom disciplines from any active modules
-    const activeModules = game.modules.filter(module => module.active === true && module.flags.wod5e)
+    const activeModules = game.modules.filter(
+      (module) => module.active === true && module.flags.wod5e
+    )
     activeModules.forEach((module) => {
       if (module.flags.wod5e.customGifts) {
         customGifts = customGifts.concat(module.flags.wod5e.customGifts)
 
         // Log the custom data in the console
-        console.log(`World of Darkness 5e | Custom Gifts added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customGifts)}`)
+        console.log(
+          `World of Darkness 5e | Custom Gifts added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customGifts)}`
+        )
       }
     })
 

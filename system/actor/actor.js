@@ -25,8 +25,8 @@ export class WoDActor extends Actor {
   /**
    * @override
    * Handle data that happens before the creation of a new actor document
-  */
-  async _preCreate (data, context, user) {
+   */
+  async _preCreate(data, context, user) {
     await super._preCreate(data, context, user)
 
     const tokenUpdate = {}
@@ -48,7 +48,7 @@ export class WoDActor extends Actor {
    * prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
    * prepareDerivedData().
    */
-  prepareData () {
+  prepareData() {
     // This exists because if an actor exists from another system (such as "Vampire" from WOD20),
     // the prepareData function will get stuck in a loop. For some reason Foundry isn't registering
     // those kinds of actors as invalid, and thus this is a quick way to make sure people can
@@ -65,17 +65,19 @@ export class WoDActor extends Actor {
    * Data modifications in this step occur before processing embedded
    * documents or derived data.
    */
-  async prepareBaseData () {
+  async prepareBaseData() {
     const actorData = this
 
     // Prepare the effects from condition items onto the actor
     // Ignore suppressed conditions
-    const conditions = actorData.items.filter(item => item.type === 'condition' && !item.system.suppressed)
+    const conditions = actorData.items.filter(
+      (item) => item.type === 'condition' && !item.system.suppressed
+    )
     conditions.forEach((condition) => {
       // Iterate through each effect on the condition
       for (const [, effect] of Object.entries(condition.system.effects)) {
         // Iterate through each key in the effect
-        effect.keys.forEach(key => {
+        effect.keys.forEach((key) => {
           // If this is for an SPC sheet, we need to alter the key for stats
           if (actorData.type === 'spc' && key.includes('skills')) {
             key = key.replace('skills', 'exceptionaldicepools')
@@ -134,7 +136,7 @@ export class WoDActor extends Actor {
     })
   }
 
-  async prepareEmbeddedDocuments () {
+  async prepareEmbeddedDocuments() {
     super.prepareEmbeddedDocuments()
   }
 
@@ -147,7 +149,7 @@ export class WoDActor extends Actor {
    * available both inside and outside of character sheets (such as if an actor
    * is queried and has a roll executed directly from it).
    */
-  async prepareDerivedData () {
+  async prepareDerivedData() {
     const actorData = this
     const systemData = actorData.system
 
@@ -258,7 +260,7 @@ export class WoDActor extends Actor {
    * @override
    * Handle things that need to be done every update or specifically when the actor is being updated
    */
-  async _onUpdate (data, options, user) {
+  async _onUpdate(data, options, user) {
     const actor = game.actors.get(data._id)
 
     // Handle the actual update
@@ -295,7 +297,7 @@ export class WoDActor extends Actor {
   }
 }
 
-async function updateActorProperty (actor, key, mode, value) {
+async function updateActorProperty(actor, key, mode, value) {
   const current = foundry.utils.getProperty(actor, key)
   let updatedData
   if (Number(mode) === CONST.ACTIVE_EFFECT_MODES.ADD) {

@@ -15,7 +15,10 @@ export const prepareDisciplinesContext = async function (context, actor) {
   // Get discipline data if any discipline is currently selected
   if (actorData?.selectedDiscipline) {
     context.selectedDiscipline = actorData.disciplines[actorData.selectedDiscipline]
-    context.enrichedSelectedDisciplineDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.selectedDiscipline?.description || '')
+    context.enrichedSelectedDisciplineDescription =
+      await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+        context.selectedDiscipline?.description || ''
+      )
   }
 
   // Get power data if any power is currently selected
@@ -23,7 +26,10 @@ export const prepareDisciplinesContext = async function (context, actor) {
     context.selectedDisciplinePower = await actor.items.get(actorData.selectedDisciplinePower)
 
     if (context.selectedDisciplinePower?.system?.description) {
-      context.selectedDisciplinePowerDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.selectedDisciplinePower.system.description)
+      context.selectedDisciplinePowerDescription =
+        await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+          context.selectedDisciplinePower.system.description
+        )
     }
   }
 
@@ -38,8 +44,8 @@ export const prepareBloodContext = async function (context, actor) {
   context.tab = context.tabs.blood
 
   // Filters for item-specific data
-  const predatorFilter = actor.items.filter(item => item.type === 'predatorType')
-  const resonanceFilter = actor.items.filter(item => item.type === 'resonance')
+  const predatorFilter = actor.items.filter((item) => item.type === 'predatorType')
+  const resonanceFilter = actor.items.filter((item) => item.type === 'resonance')
   const clanFilter = context?.clan // Filtering already done in main dataprep
 
   // Part-specific data
@@ -50,7 +56,9 @@ export const prepareBloodContext = async function (context, actor) {
   context.predator = predatorFilter[0]
   context.resonance = resonanceFilter[0]
   context.bane = clanFilter?.system?.bane || ''
-  context.enrichedBane = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.bane)
+  context.enrichedBane = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    context.bane
+  )
 
   return context
 }

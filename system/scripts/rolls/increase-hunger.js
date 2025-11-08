@@ -1,6 +1,6 @@
 /* global foundry, game */
 
-export async function _increaseHunger (actor, amount, rollMode) {
+export async function _increaseHunger(actor, amount, rollMode) {
   // Automatically add hunger to the actor on a failure (for rouse checks)
   const hungerMax = actor.system.hunger.max
   const currentHunger = actor.system.hunger.value

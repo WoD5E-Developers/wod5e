@@ -15,7 +15,10 @@ export const prepareGiftsContext = async function (context, actor) {
   // Get gift data if any gift is currently selected
   if (actorData?.selectedGift) {
     context.selectedGift = actorData.gifts[actorData.selectedGift]
-    context.enrichedSelectedGiftDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.selectedGift?.description || '')
+    context.enrichedSelectedGiftDescription =
+      await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+        context.selectedGift?.description || ''
+      )
   }
 
   // Get power data if any power is currently selected
@@ -23,7 +26,10 @@ export const prepareGiftsContext = async function (context, actor) {
     context.selectedGiftPower = await actor.items.get(actorData.selectedGiftPower)
 
     if (context.selectedGiftPower?.system?.description) {
-      context.selectedGiftPowerDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.selectedGiftPower.system.description)
+      context.selectedGiftPowerDescription =
+        await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+          context.selectedGiftPower.system.description
+        )
     }
   }
 

@@ -9,7 +9,9 @@ export const resetActors = async (actors) => {
   if (!actors) {
     actors = [
       game.actors.contents,
-      game.scenes.contents.flatMap((scene) => scene.tokens.contents).flatMap((token) => token.actor || [])
+      game.scenes.contents
+        .flatMap((scene) => scene.tokens.contents)
+        .flatMap((token) => token.actor || [])
     ].flat()
   }
 

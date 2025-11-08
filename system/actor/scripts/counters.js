@@ -18,9 +18,11 @@ export const _onResourceChange = async function (event) {
 
   // Don't let things be edited if the sheet is locked
   if (actorData.system.locked) {
-    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
-      string: actor.name
-    }))
+    ui.notifications.warn(
+      game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
+        string: actor.name
+      })
+    )
     return
   }
 
@@ -31,8 +33,12 @@ export const _onResourceChange = async function (event) {
     actorData.system[resource].max = Math.max(actorData.system[resource].max - 1, 0)
   }
 
-  if (actorData.system[resource].aggravated + actorData.system[resource].superficial > actorData.system[resource].max) {
-    actorData.system[resource].aggravated = actorData.system[resource].max - actorData.system[resource].superficial
+  if (
+    actorData.system[resource].aggravated + actorData.system[resource].superficial >
+    actorData.system[resource].max
+  ) {
+    actorData.system[resource].aggravated =
+      actorData.system[resource].max - actorData.system[resource].superficial
     if (actorData.system[resource].aggravated <= 0) {
       actorData.system[resource].aggravated = 0
       actorData.system[resource].superficial = actorData.system[resource].max
@@ -44,7 +50,7 @@ export const _onResourceChange = async function (event) {
 }
 
 // Function to help with counter states
-function parseCounterStates (states) {
+function parseCounterStates(states) {
   return states.split(',').reduce((obj, state) => {
     const [k, v] = state.split(':')
     obj[k] = v
@@ -57,7 +63,7 @@ export const _assignToActorField = async (fields, value, actor) => {
   // Handle updating actor owned items
   if (fields.length === 2 && fields[0] === 'items') {
     const itemId = fields[1]
-    const item = actor.items.find(item => item._id === itemId)
+    const item = actor.items.find((item) => item._id === itemId)
     if (item) {
       item.update({
         'system.points': value
@@ -82,22 +88,30 @@ export const _assignToActorField = async (fields, value, actor) => {
 
 // Handle setting up the dot counters
 export const _setupDotCounters = async function (html) {
-  $(html).find('.resource-value').each(function () {
-    const value = parseInt(this.dataset.value)
-    $(this).find('.resource-value-step').each(function (i) {
-      if (i + 1 <= value) {
-        $(this).addClass('active')
-      }
+  $(html)
+    .find('.resource-value')
+    .each(function () {
+      const value = parseInt(this.dataset.value)
+      $(this)
+        .find('.resource-value-step')
+        .each(function (i) {
+          if (i + 1 <= value) {
+            $(this).addClass('active')
+          }
+        })
     })
-  })
-  $(html).find('.resource-value-static').each(function () {
-    const value = parseInt(this.dataset.value)
-    $(this).find('.resource-value-static-step').each(function (i) {
-      if (i + 1 <= value) {
-        $(this).addClass('active')
-      }
+  $(html)
+    .find('.resource-value-static')
+    .each(function () {
+      const value = parseInt(this.dataset.value)
+      $(this)
+        .find('.resource-value-static-step')
+        .each(function (i) {
+          if (i + 1 <= value) {
+            $(this).addClass('active')
+          }
+        })
     })
-  })
 }
 
 // Handle dot counters
@@ -123,18 +137,26 @@ export const _onDotCounterChange = async function (event) {
 
   // Make sure that the dot counter can only be changed if the user has permission
   if (this.actor.permission < 3) {
-    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.NoSufficientPermission', {
-      string: this.actor.name
-    }))
+    ui.notifications.warn(
+      game.i18n.format('WOD5E.Notifications.NoSufficientPermission', {
+        string: this.actor.name
+      })
+    )
     return
   }
 
   // Make sure that the dot counter can only be changed if the sheet is
   // unlocked or if it's the hunger/rage track.
-  if (this.actor.system.locked && !parent.has('.hunger-value').length && !parent.has('.rage-value').length) {
-    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
-      string: actor.name
-    }))
+  if (
+    this.actor.system.locked &&
+    !parent.has('.hunger-value').length &&
+    !parent.has('.rage-value').length
+  ) {
+    ui.notifications.warn(
+      game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
+        string: actor.name
+      })
+    )
     return
   }
 
@@ -170,10 +192,17 @@ export const _onDotCounterEmpty = async function (event) {
   // Make sure that the dot counter can only be changed if the sheet is
   // unlocked or if it's the hunger track.
   // Bypass this if this function is being called from a group sheet
-  if (!(this.actor.type === 'group') && actor.system.locked && !parent.has('.hunger-value').length && !parent.has('.rage-value')) {
-    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
-      string: actor.name
-    }))
+  if (
+    !(this.actor.type === 'group') &&
+    actor.system.locked &&
+    !parent.has('.hunger-value').length &&
+    !parent.has('.rage-value')
+  ) {
+    ui.notifications.warn(
+      game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
+        string: actor.name
+      })
+    )
     return
   }
 
@@ -188,47 +217,54 @@ export const _onDotCounterEmpty = async function (event) {
 
 // Set up the square counters
 export const _setupSquareCounters = async function (html) {
-  $(html).find('.resource-counter').each(function () {
-    const data = this.dataset
-    const states = parseCounterStates(data.states)
-    const humanity = data.name === 'system.humanity'
-    const despair = data.name === 'system.despair'
-    const desperation = data.name === 'system.desperation'
-    const danger = data.name === 'system.danger'
+  $(html)
+    .find('.resource-counter')
+    .each(function () {
+      const data = this.dataset
+      const states = parseCounterStates(data.states)
+      const humanity = data.name === 'system.humanity'
+      const despair = data.name === 'system.despair'
+      const desperation = data.name === 'system.desperation'
+      const danger = data.name === 'system.danger'
 
-    const fulls = parseInt(data[states['-']]) || 0
-    const halfs = parseInt(data[states['/']]) || 0
-    const crossed = parseInt(data[states.x]) || 0
+      const fulls = parseInt(data[states['-']]) || 0
+      const halfs = parseInt(data[states['/']]) || 0
+      const crossed = parseInt(data[states.x]) || 0
 
-    let values
+      let values
 
-    // This is a little messy but it's effective.
-    // Effectively we're making sure that each square
-    // counter's box-filling tactic is followed properly.
-    if (despair) { // Hunter-specific
-      values = new Array(fulls)
+      // This is a little messy but it's effective.
+      // Effectively we're making sure that each square
+      // counter's box-filling tactic is followed properly.
+      if (despair) {
+        // Hunter-specific
+        values = new Array(fulls)
 
-      values.fill('-', 0, fulls)
-    } else if (humanity || desperation || danger) { // Vampire-specific
-      values = new Array(fulls + halfs)
+        values.fill('-', 0, fulls)
+      } else if (humanity || desperation || danger) {
+        // Vampire-specific
+        values = new Array(fulls + halfs)
 
-      values.fill('-', 0, fulls)
-      values.fill('/', fulls, fulls + halfs)
-    } else { // General use
-      values = new Array(halfs + crossed)
+        values.fill('-', 0, fulls)
+        values.fill('/', fulls, fulls + halfs)
+      } else {
+        // General use
+        values = new Array(halfs + crossed)
 
-      values.fill('/', 0, halfs)
-      values.fill('x', halfs, halfs + crossed)
-    }
-
-    // Iterate through the data states now that they're properly defined
-    $(this).find('.resource-counter-step').each(function () {
-      this.dataset.state = ''
-      if (this.dataset.index < values.length) {
-        this.dataset.state = values[this.dataset.index]
+        values.fill('/', 0, halfs)
+        values.fill('x', halfs, halfs + crossed)
       }
+
+      // Iterate through the data states now that they're properly defined
+      $(this)
+        .find('.resource-counter-step')
+        .each(function () {
+          this.dataset.state = ''
+          if (this.dataset.index < values.length) {
+            this.dataset.state = values[this.dataset.index]
+          }
+        })
     })
-  })
 }
 
 // Handle changes to square counters
@@ -310,33 +346,35 @@ export const _onRemoveSquareCounter = async function (event) {
  */
 
 // Get actor from dataset or fallback to context actor
-function getActor (actorId, fallbackActor) {
+function getActor(actorId, fallbackActor) {
   return actorId ? game.actors.get(actorId) : fallbackActor
 }
 
 // Check if the actor has sufficient permissions (level 3 or higher)
-function hasSufficientPermission (actor) {
+function hasSufficientPermission(actor) {
   if (actor.permission < 3) {
-    ui.notifications.warn(game.i18n.format('WOD5E.Notifications.NoSufficientPermission', {
-      string: actor.name
-    }))
+    ui.notifications.warn(
+      game.i18n.format('WOD5E.Notifications.NoSufficientPermission', {
+        string: actor.name
+      })
+    )
     return false
   }
   return true
 }
 
 // Get the next state from the list of states
-function getNextState (allStates, currentState) {
+function getNextState(allStates, currentState) {
   return allStates[(currentState + 1) % allStates.length]
 }
 
 // Get reset the state of the value
-function resetState (allStates, currentState) {
+function resetState(allStates, currentState) {
   return allStates[(currentState + 1) % 1]
 }
 
 // Update state counters when the step changes
-function updateStateCounters (oldState, newState, data, states, index) {
+function updateStateCounters(oldState, newState, data, states, index) {
   const humanity = data.name === 'system.humanity'
   const despair = data.name === 'system.despair'
   const desperation = data.name === 'system.desperation'
@@ -357,12 +395,13 @@ function updateStateCounters (oldState, newState, data, states, index) {
 
   // Increment new state count
   if (newState !== '') {
-    data[states[newState]] = (parseInt(data[states[newState]]) || 0) + Math.max(index + 1 - fulls - halfs - crossed, 1)
+    data[states[newState]] =
+      (parseInt(data[states[newState]]) || 0) + Math.max(index + 1 - fulls - halfs - crossed, 1)
   }
 }
 
 // Calculate new values for all states
-function calculateNewValue (states, data) {
+function calculateNewValue(states, data) {
   return Object.keys(states).reduce((newValue, stateKey) => {
     newValue[states[stateKey]] = parseInt(data[states[stateKey]]) || 0
     return newValue

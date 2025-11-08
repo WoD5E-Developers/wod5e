@@ -7,16 +7,18 @@ export class Renown extends BaseDefinitionClass {
   static defCategory = 'Renown'
 
   // Run any necessary compilation on ready
-  static onReady () {
+  static onReady() {
     Renown.setSortAlphabetically()
     Renown.initializeLabels()
     Renown.initializePaths()
   }
 
-  static initializePaths () {
+  static initializePaths() {
     // Cycle through each entry in the definition file to initialize the paths on each
     // Quickly filter out any non-object, non-null, non-array values
-    const definitionEntries = Object.entries(this).filter(([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value))
+    const definitionEntries = Object.entries(this).filter(
+      ([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value)
+    )
     for (const [key, value] of definitionEntries) {
       if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
         // Set the path

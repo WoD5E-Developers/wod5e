@@ -2,7 +2,7 @@
 
 export class WoDHotbar extends foundry.applications.ui.Hotbar {
   /** @override */
-  async _onDrop (event) {
+  async _onDrop(event) {
     event.preventDefault()
     const li = event.target.closest('.macro')
     const slot = Number(li.dataset.slot)
@@ -11,7 +11,8 @@ export class WoDHotbar extends foundry.applications.ui.Hotbar {
 
     // Forbid overwriting macros if the hotbar is locked.
     const existingMacro = game.macros.get(game.user.hotbar[slot])
-    if (existingMacro && this.locked) return ui.notifications.warn('MACRO.CannotOverwrite', { localize: true })
+    if (existingMacro && this.locked)
+      return ui.notifications.warn('MACRO.CannotOverwrite', { localize: true })
 
     // Get the dropped document
     const cls = getDocumentClass(data.type)
@@ -20,7 +21,8 @@ export class WoDHotbar extends foundry.applications.ui.Hotbar {
 
     // Get the Macro to add to the bar
     let macro
-    if (data.type === 'Macro') macro = game.macros.has(doc.id) ? doc : await cls.create(doc.toObject())
+    if (data.type === 'Macro')
+      macro = game.macros.has(doc.id) ? doc : await cls.create(doc.toObject())
     else if (data.type === 'Item') macro = await this._createRollableMacro(doc)
     else if (data.type === 'RollTable') macro = await this._createRollTableRollMacro(doc)
     else macro = await this._createDocumentSheetToggle(doc)
@@ -32,7 +34,7 @@ export class WoDHotbar extends foundry.applications.ui.Hotbar {
     })
   }
 
-  async _createRollableMacro (document) {
+  async _createRollableMacro(document) {
     const item = fromUuidSync(document.uuid)
 
     // Create the macro command

@@ -1,10 +1,25 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareBiographyContext, prepareExperienceContext, prepareFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareStatsContext, prepareLimitedContext } from '../scripts/prepare-partials.js'
+import {
+  prepareBiographyContext,
+  prepareExperienceContext,
+  prepareFeaturesContext,
+  prepareEquipmentContext,
+  prepareNotepadContext,
+  prepareSettingsContext,
+  prepareStatsContext,
+  prepareLimitedContext
+} from '../scripts/prepare-partials.js'
 import { prepareGiftsContext, prepareWolfContext } from './scripts/prepare-partials.js'
 // Various button functions
-import { _onAddGift, _onRemoveGift, _onGiftToChat, _onSelectGift, _onSelectGiftPower } from './scripts/gifts.js'
+import {
+  _onAddGift,
+  _onRemoveGift,
+  _onGiftToChat,
+  _onSelectGift,
+  _onSelectGiftPower
+} from './scripts/gifts.js'
 import { _onFormEdit, _onFormToChat, _onShiftForm, _onLostTheWolf } from './scripts/forms.js'
 import { _onBeginFrenzy, _onEndFrenzy } from './scripts/frenzy.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './scripts/balance.js'
@@ -137,15 +152,15 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     }
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     // Top-level variables
     const data = await super._prepareContext()
     const actor = this.actor
     const actorData = actor.system
 
     // Filters for item-specific data
-    const tribeFilter = actor.items.filter(item => item.type === 'tribe')
-    const auspiceFilter = actor.items.filter(item => item.type === 'auspice')
+    const tribeFilter = actor.items.filter((item) => item.type === 'tribe')
+    const auspiceFilter = actor.items.filter((item) => item.type === 'auspice')
 
     // Prepare werewolf-specific items
     data.tribe = tribeFilter[0]
@@ -159,14 +174,18 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     // Check if the actor has lost the wolf and they're in a supernatural form
     // If so, trigger onLostTheWolf and prompt a shift down
     const supernaturalForms = ['glabro', 'crinos', 'hispo']
-    if (data.lostTheWolf && (supernaturalForms.indexOf(actorData.activeForm) > -1) && !actorData.formOverride) {
+    if (
+      data.lostTheWolf &&
+      supernaturalForms.indexOf(actorData.activeForm) > -1 &&
+      !actorData.formOverride
+    ) {
       await _onLostTheWolf(actor)
     }
 
     return data
   }
 
-  async _preparePartContext (partId, context, options) {
+  async _preparePartContext(partId, context, options) {
     // Inherit any preparation from the extended class
     context = { ...(await super._preparePartContext(partId, context, options)) }
 
@@ -175,45 +194,45 @@ export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
 
     // Prepare each page context
     switch (partId) {
-      // Stats
-      case 'stats':
-        return prepareStatsContext(context, actor)
+    // Stats
+    case 'stats':
+      return prepareStatsContext(context, actor)
 
       // Experience
-      case 'experience':
-        return prepareExperienceContext(context, actor)
+    case 'experience':
+      return prepareExperienceContext(context, actor)
 
       // Gifts
-      case 'gifts':
-        return prepareGiftsContext(context, actor)
+    case 'gifts':
+      return prepareGiftsContext(context, actor)
 
       // Wolf
-      case 'wolf':
-        return prepareWolfContext(context, actor)
+    case 'wolf':
+      return prepareWolfContext(context, actor)
 
       // Features
-      case 'features':
-        return prepareFeaturesContext(context, actor)
+    case 'features':
+      return prepareFeaturesContext(context, actor)
 
       // Equipment
-      case 'equipment':
-        return prepareEquipmentContext(context, actor)
+    case 'equipment':
+      return prepareEquipmentContext(context, actor)
 
       // Biography
-      case 'biography':
-        return prepareBiographyContext(context, actor)
+    case 'biography':
+      return prepareBiographyContext(context, actor)
 
       // Notepad
-      case 'notepad':
-        return prepareNotepadContext(context, actor)
+    case 'notepad':
+      return prepareNotepadContext(context, actor)
 
       // Settings
-      case 'settings':
-        return prepareSettingsContext(context, actor)
+    case 'settings':
+      return prepareSettingsContext(context, actor)
 
       // Limited view
-      case 'limited':
-        return prepareLimitedContext(context, actor)
+    case 'limited':
+      return prepareLimitedContext(context, actor)
     }
 
     return context

@@ -54,18 +54,26 @@ export const prepareFeaturesContext = async function (context, actor) {
   context.desire = actorHeaders.desire
   context.features = actorData.features
   context.tenets = actorHeaders.tenets
-  context.enrichedTenets = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorHeaders.tenets)
+  context.enrichedTenets = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    actorHeaders.tenets
+  )
   context.touchstones = actorHeaders.touchstones
-  context.enrichedTouchstones = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorHeaders.touchstones)
+  context.enrichedTouchstones = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    actorHeaders.touchstones
+  )
   context.showAmbitionDesire = actorData.gamesystem !== 'werewolf' && actor.type !== 'group'
 
   if (actorData.gamesystem === 'werewolf') {
     const tribe = context.tribe
 
     context.favor = tribe?.system?.patronSpirit?.favor || ''
-    context.enrichedFavor = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.favor)
+    context.enrichedFavor = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+      context.favor
+    )
     context.ban = tribe?.system?.patronSpirit?.ban || ''
-    context.enrichedBan = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.ban)
+    context.enrichedBan = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+      context.ban
+    )
   }
 
   return context
@@ -79,7 +87,9 @@ export const prepareEquipmentContext = async function (context, actor) {
 
   // Part-specific data
   context.equipment = actorData.equipment
-  context.enrichedEquipment = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.equipment)
+  context.enrichedEquipment = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    actorData.equipment
+  )
   context.equipmentItems = actorData.equipmentItems
 
   return context
@@ -94,9 +104,13 @@ export const prepareBiographyContext = async function (context, actor) {
   // Part-specific data
   context.bio = actorData.bio
   context.biography = actorData.biography
-  context.enrichedBiography = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.biography)
+  context.enrichedBiography = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    actorData.biography
+  )
   context.appearance = actorData.appearance
-  context.enrichedAppearance = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.appearance)
+  context.enrichedAppearance = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    actorData.appearance
+  )
 
   return context
 }
@@ -109,9 +123,13 @@ export const prepareNotepadContext = async function (context, actor) {
 
   // Part-specific data
   context.notes = actorData.notes
-  context.enrichedNotes = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.notes)
+  context.enrichedNotes = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    actorData.notes
+  )
   context.privatenotes = actorData.privatenotes
-  context.enrichedPrivateNotes = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.privatenotes)
+  context.enrichedPrivateNotes = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    actorData.privatenotes
+  )
 
   return context
 }
@@ -123,7 +141,10 @@ export const prepareSettingsContext = async function (context, actor) {
   // Tab data
   context.tab = context.tabs.settings
 
-  if (context.baseActorType === 'spc' && actorsWithPowers.indexOf(context.currentActorType) === -1) {
+  if (
+    context.baseActorType === 'spc' &&
+    actorsWithPowers.indexOf(context.currentActorType) === -1
+  ) {
     context.showOptionalPowers = true
 
     context.enableDisciplines = actorData.settings.enableDisciplines
@@ -139,11 +160,21 @@ export const prepareLimitedContext = async function (context, actor) {
   const actorHeaders = actorData.headers
 
   // Part-specific data
-  context.enrichedNotes = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.notes)
-  context.enrichedAppearance = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.appearance)
-  context.enrichedTenets = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorHeaders.tenets)
-  context.enrichedTouchstones = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorHeaders.touchstones)
-  context.enrichedBiography = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.biography)
+  context.enrichedNotes = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    actorData.notes
+  )
+  context.enrichedAppearance = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    actorData.appearance
+  )
+  context.enrichedTenets = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    actorHeaders.tenets
+  )
+  context.enrichedTouchstones = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    actorHeaders.touchstones
+  )
+  context.enrichedBiography = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    actorData.biography
+  )
 
   return context
 }
@@ -161,24 +192,34 @@ export const prepareSpcStatsContext = async function (context, actor) {
   context.traits = actorData.traits
   context.conditions = actorData.conditions
 
-  if (context.currentActorType === 'vampire' || (context.gamesystem === 'vampire' && context.settings.enableDisciplines === true)) {
+  if (
+    context.currentActorType === 'vampire' ||
+    (context.gamesystem === 'vampire' && context.settings.enableDisciplines === true)
+  ) {
     context.showDisciplines = true
     context.disciplines = await prepareDisciplinePowers(actorData.disciplines)
   }
 
-  if (context.currentActorType === 'hunter' || (context.gamesystem === 'hunter' && context.settings.enableEdges === true)) {
+  if (
+    context.currentActorType === 'hunter' ||
+    (context.gamesystem === 'hunter' && context.settings.enableEdges === true)
+  ) {
     context.showEdges = true
     context.edges = await prepareEdgePowers(actorData.edges)
   }
 
-  if (context.currentActorType === 'werewolf' || (context.gamesystem === 'werewolf' && context.settings.enableGifts === true)) {
+  if (
+    context.currentActorType === 'werewolf' ||
+    (context.gamesystem === 'werewolf' && context.settings.enableGifts === true)
+  ) {
     context.showGifts = true
     context.gifts = await prepareGiftPowers(actorData.gifts)
   }
 
   if (context.currentActorType === 'spirit') {
     context.manifestation = actorData.manifestation
-    context.enrichedManifestation = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.manifestation)
+    context.enrichedManifestation =
+      await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.manifestation)
   }
 
   return context
@@ -194,7 +235,7 @@ export const prepareGroupMembersContext = async function (context, actor) {
   // Push each group member's data to the groupMembers list\
   context.groupMembers = []
   if (actorData.members) {
-    actorData.members.forEach(actorID => {
+    actorData.members.forEach((actorID) => {
       const actor = fromUuidSync(actorID)
       context.groupMembers.push(actor)
     })
@@ -215,9 +256,13 @@ export const prepareGroupFeaturesContext = async function (context, actor) {
   context.chronicle = actorHeaders.chronicle
   context.features = actorData.features
   context.tenets = actorHeaders.tenets
-  context.enrichedTenets = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorHeaders.tenets)
+  context.enrichedTenets = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    actorHeaders.tenets
+  )
   context.biography = actorData.biography
-  context.enrichedBiography = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.biography)
+  context.enrichedBiography = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+    actorData.biography
+  )
 
   return context
 }

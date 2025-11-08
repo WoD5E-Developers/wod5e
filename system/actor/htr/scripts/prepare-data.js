@@ -11,25 +11,32 @@ export const prepareEdges = async function (actor) {
 
     // If the actor has a edge with the key, grab its current values
     if (Object.prototype.hasOwnProperty.call(actorEdges, id)) {
-      edgeData = Object.assign({
-        id,
-        value: actorEdges[id].value,
-        perks: actorEdges[id].perks || [],
-        pools: actorEdges[id].pools || [],
-        description: actorEdges[id]?.description || '',
-        visible: actorEdges[id].visible,
-        selected: actorEdges[id].selected || false
-      }, value)
-    } else { // Otherwise, add it to the actor and set it as some default data
-      edgeData = Object.assign({
-        id,
-        value: 0,
-        visible: false,
-        description: '',
-        perks: [],
-        pools: [],
-        selected: false
-      }, value)
+      edgeData = Object.assign(
+        {
+          id,
+          value: actorEdges[id].value,
+          perks: actorEdges[id].perks || [],
+          pools: actorEdges[id].pools || [],
+          description: actorEdges[id]?.description || '',
+          visible: actorEdges[id].visible,
+          selected: actorEdges[id].selected || false
+        },
+        value
+      )
+    } else {
+      // Otherwise, add it to the actor and set it as some default data
+      edgeData = Object.assign(
+        {
+          id,
+          value: 0,
+          visible: false,
+          description: '',
+          perks: [],
+          pools: [],
+          selected: false
+        },
+        value
+      )
     }
 
     // Ensure the edge exists
@@ -49,13 +56,13 @@ export const prepareEdges = async function (actor) {
     computedEdges[id].pools = []
 
     // Assign all matching perks to the edge
-    computedEdges[id].perks = actor.items.filter(item =>
-      item.type === 'perk' && item.system.edge === id
+    computedEdges[id].perks = actor.items.filter(
+      (item) => item.type === 'perk' && item.system.edge === id
     )
 
     // Assign all matching edgepools to the edge
-    computedEdges[id].pools = actor.items.filter(item =>
-      item.type === 'edgepool' && item.system.edge === id
+    computedEdges[id].pools = actor.items.filter(
+      (item) => item.type === 'edgepool' && item.system.edge === id
     )
   }
 

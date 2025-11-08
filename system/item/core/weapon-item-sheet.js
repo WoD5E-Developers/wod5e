@@ -1,7 +1,13 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareDescriptionContext, prepareDicepoolContext, prepareMacroContext, prepareModifiersContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
+import {
+  prepareDescriptionContext,
+  prepareDicepoolContext,
+  prepareMacroContext,
+  prepareModifiersContext,
+  prepareItemSettingsContext
+} from '../scripts/prepare-partials.js'
 // Definition file
 import { Weapons } from '../../api/def/weapons.js'
 // Base item sheet to extend from
@@ -71,7 +77,7 @@ export class WeaponItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     }
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     // Top-level variables
     const data = await super._prepareContext()
     const item = this.item
@@ -88,7 +94,7 @@ export class WeaponItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     return data
   }
 
-  async _preparePartContext (partId, context, options) {
+  async _preparePartContext(partId, context, options) {
     // Inherit any preparation from the extended class
     context = { ...(await super._preparePartContext(partId, context, options)) }
 
@@ -97,17 +103,17 @@ export class WeaponItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
     // Prepare each page context
     switch (partId) {
-      // Stats
-      case 'description':
-        return prepareDescriptionContext(context, item)
-      case 'dicepool':
-        return prepareDicepoolContext(context, item)
-      case 'macro':
-        return prepareMacroContext(context, item)
-      case 'modifiers':
-        return prepareModifiersContext(context, item)
-      case 'settings':
-        return prepareItemSettingsContext(context, item)
+    // Stats
+    case 'description':
+      return prepareDescriptionContext(context, item)
+    case 'dicepool':
+      return prepareDicepoolContext(context, item)
+    case 'macro':
+      return prepareMacroContext(context, item)
+    case 'modifiers':
+      return prepareModifiersContext(context, item)
+    case 'settings':
+      return prepareItemSettingsContext(context, item)
     }
 
     return context

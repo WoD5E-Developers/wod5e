@@ -1,7 +1,15 @@
 /* global foundry */
 
 // Preparation functions
-import { prepareBiographyContext, prepareFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareLimitedContext, prepareSpcStatsContext } from './scripts/prepare-partials.js'
+import {
+  prepareBiographyContext,
+  prepareFeaturesContext,
+  prepareEquipmentContext,
+  prepareNotepadContext,
+  prepareSettingsContext,
+  prepareLimitedContext,
+  prepareSpcStatsContext
+} from './scripts/prepare-partials.js'
 // Various button functions
 import { _onEditExceptionalPools } from './scripts/exceptional-dicepools.js'
 import { _onCreatePower, _onDeletePower } from './scripts/spc-powers.js'
@@ -101,7 +109,7 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     }
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     // Top-level variables
     const data = await super._prepareContext()
     const actor = this.actor
@@ -143,7 +151,7 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     return data
   }
 
-  async _preparePartContext (partId, context, options) {
+  async _preparePartContext(partId, context, options) {
     // Inherit any preparation from the extended class
     context = { ...(await super._preparePartContext(partId, context, options)) }
 
@@ -152,39 +160,39 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
 
     // Prepare each page context
     switch (partId) {
-      // Stats
-      case 'stats':
-        return prepareSpcStatsContext(context, actor)
+    // Stats
+    case 'stats':
+      return prepareSpcStatsContext(context, actor)
 
       // Features
-      case 'features':
-        return prepareFeaturesContext(context, actor)
+    case 'features':
+      return prepareFeaturesContext(context, actor)
 
       // Equipment
-      case 'equipment':
-        return prepareEquipmentContext(context, actor)
+    case 'equipment':
+      return prepareEquipmentContext(context, actor)
 
       // Biography
-      case 'biography':
-        return prepareBiographyContext(context, actor)
+    case 'biography':
+      return prepareBiographyContext(context, actor)
 
       // Notepad
-      case 'notepad':
-        return prepareNotepadContext(context, actor)
+    case 'notepad':
+      return prepareNotepadContext(context, actor)
 
       // Settings
-      case 'settings':
-        return prepareSettingsContext(context, actor)
+    case 'settings':
+      return prepareSettingsContext(context, actor)
 
       // Limited view
-      case 'limited':
-        return prepareLimitedContext(context, actor)
+    case 'limited':
+      return prepareLimitedContext(context, actor)
     }
 
     return context
   }
 
-  _onRender () {
+  _onRender() {
     super._onRender()
     const html = this.element
 

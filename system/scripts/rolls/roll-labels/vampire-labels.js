@@ -11,10 +11,16 @@ export const getVampireLabel = async function (data) {
   }
 
   // Handle messy criticals (when no difficulty is set)
-  if (data.advancedDice?.criticals > 1 || (data.basicDice?.criticals > 0 && data.advancedDice?.criticals > 0)) {
+  if (
+    data.advancedDice?.criticals > 1 ||
+    (data.basicDice?.criticals > 0 && data.advancedDice?.criticals > 0)
+  ) {
     // Handle messy criticals
     Object.assign(labelData, getMessyCriticalLabel(data, difficultySet))
-  } else if (data.advancedDice?.critFails > 0 && (!difficultySet || data.totalResult < data.difficulty)) {
+  } else if (
+    data.advancedDice?.critFails > 0 &&
+    (!difficultySet || data.totalResult < data.difficulty)
+  ) {
     // Handle bestial failures
     Object.assign(labelData, getBestialFailureLabel(data, difficultySet))
   } else {
@@ -27,13 +33,15 @@ export const getVampireLabel = async function (data) {
 }
 
 // Handle messy critical conditions
-function getMessyCriticalLabel (data, difficultySet) {
+function getMessyCriticalLabel(data, difficultySet) {
   let labelClass, labelText
 
-  if (difficultySet) { // Messy critical
+  if (difficultySet) {
+    // Messy critical
     labelClass = 'messy-critical'
     labelText = game.i18n.localize('WOD5E.VTM.MessyCritical')
-  } else { // Possible messy critical
+  } else {
+    // Possible messy critical
     labelClass = 'messy-critical'
     labelText = game.i18n.localize('WOD5E.VTM.PossibleMessyCritical')
   }
@@ -45,13 +53,15 @@ function getMessyCriticalLabel (data, difficultySet) {
 }
 
 // Handle bestial failure conditions
-function getBestialFailureLabel (data, difficultySet) {
+function getBestialFailureLabel(data, difficultySet) {
   let labelClass, labelText
 
-  if (difficultySet) { // Bestial failure
+  if (difficultySet) {
+    // Bestial failure
     labelClass = 'bestial-failure'
     labelText = game.i18n.localize('WOD5E.VTM.BestialFailure')
-  } else { // Possible bestial failure
+  } else {
+    // Possible bestial failure
     labelClass = 'bestial-failure'
     labelText = game.i18n.localize('WOD5E.VTM.PossibleBestialFailure')
   }

@@ -7,29 +7,35 @@ export const _onSyncFromDataItem = async function (event) {
   const dataItemId = item.getFlag('vtm5e', 'dataItemId')
 
   // Search for an applicable data item - there should only be one
-  const compendiumsList = game.packs.filter(compendium => compendium.metadata.type === 'Item')
+  const compendiumsList = game.packs.filter((compendium) => compendium.metadata.type === 'Item')
   const compendiumDataItems = []
   for (const compendium of compendiumsList) {
     const docs = await compendium.getDocuments()
 
-    const foundItems = docs.filter((item) => (item?.flags?.vtm5e?.dataItemId === dataItemId))
+    const foundItems = docs.filter((item) => item?.flags?.vtm5e?.dataItemId === dataItemId)
 
     compendiumDataItems.push(...foundItems)
   }
 
-  const worldDataItems = game.items.filter((item) => (item.getFlag('vtm5e', 'dataItemId') === dataItemId))
+  const worldDataItems = game.items.filter(
+    (item) => item.getFlag('vtm5e', 'dataItemId') === dataItemId
+  )
 
   const allDataItems = compendiumDataItems.concat(worldDataItems)
   const totalCount = allDataItems.length
 
   // If we don't find any instances, we warn the user
   if (totalCount === 0) {
-    return ui.notifications.warn(`There were no items found associated with Data Item ID "${dataItemId}"`)
+    return ui.notifications.warn(
+      `There were no items found associated with Data Item ID "${dataItemId}"`
+    )
   }
 
   // If we find more than one instance, we warn the user
   if (totalCount > 1) {
-    return ui.notifications.warn(`There were 2 or more items found associated with Data Item ID "${dataItemId}"`)
+    return ui.notifications.warn(
+      `There were 2 or more items found associated with Data Item ID "${dataItemId}"`
+    )
   }
 
   // If we find exactly one instance, we use that
@@ -75,7 +81,7 @@ export const _onSyncToDataItems = async function (event) {
 
   // Iterate through all actors and gather a list of items that match the Data Item ID
   for (const actor of actorsList) {
-    const foundItems = actor.items.filter((item) => (item?.flags?.vtm5e?.dataItemId === dataItemId))
+    const foundItems = actor.items.filter((item) => item?.flags?.vtm5e?.dataItemId === dataItemId)
 
     actorDataItems.push(...foundItems)
   }
@@ -84,15 +90,17 @@ export const _onSyncToDataItems = async function (event) {
 
   // If there's no items to update, just let the user know
   if (totalCount === 0) {
-    return ui.notifications.info(game.i18n.format('WOD5E.ItemsList.NoItemsFound', {
-      dataItemId
-    }))
+    return ui.notifications.info(
+      game.i18n.format('WOD5E.ItemsList.NoItemsFound', {
+        dataItemId
+      })
+    )
   } else {
     // Define the content of the Dialog
     const content = `<p>
       ${game.i18n.format('WOD5E.ItemsList.ConfirmOverwriteString', {
-        string: totalCount
-      })}
+    string: totalCount
+  })}
     </p>`
 
     const updateItemsConfirmed = await foundry.applications.api.DialogV2.wait({
@@ -133,7 +141,9 @@ export const _onSyncToDataItems = async function (event) {
         // Update the item with the data pulled
         itemToUpdate.update(updates)
 
-        ui.notifications.info(`Item "${itemToUpdate.name}" has been updated on actor "${itemToUpdate.actor.name}"`)
+        ui.notifications.info(
+          `Item "${itemToUpdate.name}" has been updated on actor "${itemToUpdate.actor.name}"`
+        )
       })
     }
   }

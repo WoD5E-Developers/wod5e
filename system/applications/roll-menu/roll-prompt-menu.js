@@ -42,7 +42,7 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     }
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     const data = await super._prepareContext()
 
     data.activeRollID = game.users.current.getFlag('vtm5e', 'rollMenuActiveRoll') || ''
@@ -60,23 +60,23 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     return data
   }
 
-  async _preparePartContext (partId, context, options) {
+  async _preparePartContext(partId, context, options) {
     context = await super._preparePartContext(partId, context, options)
 
     switch (partId) {
-      case 'body':
-        // Part-specific data
-        if (context.activeRollID) {
-          context.activeRoll = context.savedRolls[context.activeRollID]
-        }
+    case 'body':
+      // Part-specific data
+      if (context.activeRollID) {
+        context.activeRoll = context.savedRolls[context.activeRollID]
+      }
 
-        break
+      break
     }
 
     return context
   }
 
-  static async applicationHandler (event, form, formData) {
+  static async applicationHandler(event, form, formData) {
     const data = formData.object
 
     let activeRoll = game.users.current.getFlag('vtm5e', 'rollMenuActiveRoll') || ''
@@ -111,7 +111,7 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     this.render()
   }
 
-  async _onRender () {
+  async _onRender() {
     const html = this.element
 
     // Check if the Roll Menu Hint already exists

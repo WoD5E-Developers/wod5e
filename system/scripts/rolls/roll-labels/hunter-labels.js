@@ -23,16 +23,19 @@ export const getHunterLabel = async function (data) {
 }
 
 // Handle desperation conditions
-function getDesperationLabel (data, difficultySet) {
+function getDesperationLabel(data, difficultySet) {
   let labelClass, labelText
 
-  if (difficultySet && data.totalResult < data.difficulty) { // Despair on a failure
+  if (difficultySet && data.totalResult < data.difficulty) {
+    // Despair on a failure
     labelClass = 'desperation-failure'
     labelText = game.i18n.localize('WOD5E.HTR.Despair')
-  } else if (difficultySet && data.totalResult >= data.difficulty) { // Desperation success
+  } else if (difficultySet && data.totalResult >= data.difficulty) {
+    // Desperation success
     labelClass = 'desperation-success'
     labelText = game.i18n.localize('WOD5E.HTR.DesperationSuccess')
-  } else { // Possible desperation failure
+  } else {
+    // Possible desperation failure
     labelClass = 'desperation-failure'
     labelText = game.i18n.localize('WOD5E.HTR.PossibleDesperationFailure')
   }

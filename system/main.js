@@ -20,7 +20,7 @@ import { loadHelpers } from './scripts/helpers.js'
 import {
   loadSettings,
   _updateHeaderFontPreference,
-  _updateXpIconOverrides,
+  _updateXpIconOverrides
 } from './scripts/settings.js'
 import { PauseChanges } from './ui/pause.js'
 // WOD5E functions and classes
@@ -31,7 +31,7 @@ import {
   HunterDie,
   HunterDesperationDie,
   WerewolfDie,
-  WerewolfRageDie,
+  WerewolfRageDie
 } from './dice/splat-dice.js'
 import { migrateWorld } from './scripts/migration.js'
 import { willpowerReroll } from './scripts/willpower-reroll.js'
@@ -84,7 +84,7 @@ Hooks.once('init', async function () {
     foundry.documents.collections.Actors.registerSheet('vtm5e', sheetClass, {
       label,
       types,
-      makeDefault: true,
+      makeDefault: true
     })
   }
 
@@ -97,7 +97,7 @@ Hooks.once('init', async function () {
     foundry.documents.collections.Items.registerSheet('vtm5e', sheetClass, {
       label,
       types,
-      makeDefault: true,
+      makeDefault: true
     })
   }
 
@@ -149,7 +149,7 @@ Hooks.once('ready', async function () {
     format: 'hexa',
     backgroundColor: '#000',
     palette:
-      '#FF2B2B80 #650202 #d84343 #f51f1f #D18125 #cc6d28 #ffb762 #ff8f00 #BE660080 #4e2100 #994101 #e97244',
+      '#FF2B2B80 #650202 #d84343 #f51f1f #D18125 #cc6d28 #ffb762 #ff8f00 #BE660080 #4e2100 #994101 #e97244'
   }
 
   // Activate the API
@@ -163,7 +163,7 @@ Hooks.once('ready', async function () {
       getFlavorDescription: wod5eAPI.getFlavorDescription,
       generateLabelAndLocalize: wod5eAPI.generateLabelAndLocalize,
       migrateWorld,
-      _onRollItemFromMacro,
+      _onRollItemFromMacro
     },
     WoDItem,
     WoDActor,
@@ -177,7 +177,7 @@ Hooks.once('ready', async function () {
     Edges,
     Renown,
     Gifts,
-    WereForms,
+    WereForms
   }
 
   // Migration functions
@@ -237,7 +237,7 @@ Hooks.on('getChatMessageContextOptions', (html, options) => {
         // All must be true to show the reroll dialog
         return (game.user.isGM || message.isAuthor) && rerollableDice > 0 && rerolledDice === 0
       },
-      callback: (li) => willpowerReroll(li),
+      callback: (li) => willpowerReroll(li)
     },
     {
       name: game.i18n.localize('WOD5E.Chat.Reroll'),
@@ -255,8 +255,8 @@ Hooks.on('getChatMessageContextOptions', (html, options) => {
         // All must be true to show the reroll dialog
         return (game.user.isGM || message.isAuthor) && dice > 0 && rerolledDice === 0
       },
-      callback: (li) => anyReroll(li),
-    },
+      callback: (li) => anyReroll(li)
+    }
   )
 })
 
