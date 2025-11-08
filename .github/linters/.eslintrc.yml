@@ -1,13 +1,25 @@
----
-env:
-  browser: true
-  es2021: true
-  jquery: true
-  node: true
-extends: 'eslint:recommended'
-parser: "@babel/eslint-parser"
-parserOptions:
-  ecmaVersion: 12
-  sourceType: module
-  requireConfigFile: false
-rules: { }
+name: Lint Codebase
+
+on:
+  pull_request: {}
+
+jobs:
+  lint:
+    name: Lint Codebase
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npx eslint . --config eslint.config.mjs --ext .ts,.tsx,.js,.jsx

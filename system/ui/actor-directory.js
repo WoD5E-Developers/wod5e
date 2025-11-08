@@ -5,7 +5,7 @@
  * @extends {ActorDirectory}
  */
 export class WOD5EActorDirectory extends foundry.applications.sidebar.tabs.ActorDirectory {
-  constructor (...args) {
+  constructor(...args) {
     super(...args)
 
     // The structure of the sidebar we're going to be manipulating
@@ -15,15 +15,15 @@ export class WOD5EActorDirectory extends foundry.applications.sidebar.tabs.Actor
     const actorsInGroups = []
 
     // Push each group sheet into the groupsList
-    this.groups = actorStructure.entries.filter(actor => actor.type === 'group')
+    this.groups = actorStructure.entries.filter((actor) => actor.type === 'group')
 
     // Iterate through each group's members list
-    this.groups.forEach(group => {
+    this.groups.forEach((group) => {
       const groupMembers = group.system?.members
 
       // Add group members to actorsInGroups list so we can filter them out later
       if (groupMembers) {
-        groupMembers.forEach(actorUuid => {
+        groupMembers.forEach((actorUuid) => {
           const actorObject = fromUuidSync(actorUuid)
 
           // Check to verify the actor exists

@@ -1,0 +1,32 @@
+{
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "eslint.useFlatConfig": true,
+  "eslint.validate": [
+    "javascript",
+    "handlebars"
+  ],
+  "eslint.workingDirectories": [
+    { "mode": "auto" }
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.formatOnSave": false,
+  "eslint.probe": [
+    "astro",
+    "civet",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "mdx",
+    "vue",
+    "markdown",
+    "json",
+    "jsonc",
+    "js",
+    "hbs"
+  ]
+}
