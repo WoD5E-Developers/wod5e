@@ -1,5 +1,3 @@
-/* global game, WOD5E, foundry */
-
 /** Handle adding a new discipline to the sheet */
 export const _onAddDiscipline = async function (event) {
   event.preventDefault()

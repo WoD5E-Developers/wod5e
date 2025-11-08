@@ -1,5 +1,3 @@
-/* global game, FormApplication, foundry, JSColor */
-
 import { _updateCSSVariable, cssVariablesRecord } from '../../scripts/update-css-variables.js'
 
 export class SplatColorsMenu extends FormApplication {

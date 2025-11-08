@@ -1,5 +1,3 @@
-/* global game, ui, foundry */
-
 export const _onSyncFromDataItem = async function (event) {
   event.preventDefault()
 
@@ -99,8 +97,8 @@ export const _onSyncToDataItems = async function (event) {
     // Define the content of the Dialog
     const content = `<p>
       ${game.i18n.format('WOD5E.ItemsList.ConfirmOverwriteString', {
-    string: totalCount
-  })}
+        string: totalCount
+      })}
     </p>`
 
     const updateItemsConfirmed = await foundry.applications.api.DialogV2.wait({

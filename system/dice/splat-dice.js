@@ -1,5 +1,3 @@
-/* global foundry */
-
 // Import dice face-related variables for icon paths
 import {
   mortalDiceLocation,

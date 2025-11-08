@@ -1,5 +1,3 @@
-/* global foundry, game */
-
 export async function _damageWillpower(event, target, actor, willpowerDamage, rollMode) {
   if (event) event.preventDefault()
 

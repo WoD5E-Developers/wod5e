@@ -1,5 +1,3 @@
-/* global Hooks */
-
 import { BaseDefinitionClass } from './base-definition-class.js'
 
 export class Systems extends BaseDefinitionClass {

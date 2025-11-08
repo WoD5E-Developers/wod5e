@@ -1,5 +1,3 @@
-/* global Item, Hooks, WOD5E */
-
 /**
  * Extend the base ItemSheet document and put all our base functionality here
  * @extends {Item}

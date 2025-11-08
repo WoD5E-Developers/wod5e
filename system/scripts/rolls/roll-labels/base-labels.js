@@ -1,5 +1,3 @@
-/* global game */
-
 export const getBaseLabel = async function (data) {
   const difficultySet = data.difficulty > 0
   const labelData = {

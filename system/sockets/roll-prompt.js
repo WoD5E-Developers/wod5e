@@ -1,5 +1,3 @@
-/* global foundry, game */
-
 export async function RollPromptSockets() {
   game.socket.on('system.vtm5e', async (data) => {
     const chatMessage = game.messages.get(data.messageID)

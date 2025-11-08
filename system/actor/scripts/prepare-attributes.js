@@ -1,5 +1,3 @@
-/* global game */
-
 import { Attributes } from '../../api/def/attributes.js'
 
 export const prepareAttributes = async function (actor) {

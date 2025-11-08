@@ -1,5 +1,3 @@
-/* global foundry */
-
 // Preparation functions
 import {
   prepareDescriptionContext,
@@ -97,17 +95,17 @@ export class GearItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
     // Prepare each page context
     switch (partId) {
-    // Stats
-    case 'description':
-      return prepareDescriptionContext(context, item)
-    case 'dicepool':
-      return prepareDicepoolContext(context, item)
-    case 'macro':
-      return prepareMacroContext(context, item)
-    case 'modifiers':
-      return prepareModifiersContext(context, item)
-    case 'settings':
-      return prepareItemSettingsContext(context, item)
+      // Stats
+      case 'description':
+        return prepareDescriptionContext(context, item)
+      case 'dicepool':
+        return prepareDicepoolContext(context, item)
+      case 'macro':
+        return prepareMacroContext(context, item)
+      case 'modifiers':
+        return prepareModifiersContext(context, item)
+      case 'settings':
+        return prepareItemSettingsContext(context, item)
     }
 
     return context

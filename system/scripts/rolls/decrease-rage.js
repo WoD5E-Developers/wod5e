@@ -1,5 +1,3 @@
-/* global ChatMessage, game */
-
 export async function _decreaseRage(actor, amount, rollMode) {
   // Reduce rage for each failure on a rage dice if this is a power that consumes it
   const currentRage = actor.system.rage.value

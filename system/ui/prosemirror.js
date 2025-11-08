@@ -1,5 +1,3 @@
-/* global Hooks, foundry */
-
 // Add to the existing Prosemirror dropdowns
 export const ProseMirrorSettings = async () => {
   const toggleMark = foundry.prosemirror.commands.toggleMark

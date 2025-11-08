@@ -1,5 +1,3 @@
-/* global game, foundry, canvas */
-
 export const _onPromptInChat = async function (event) {
   event.preventDefault()
 

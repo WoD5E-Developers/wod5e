@@ -1,5 +1,3 @@
-/* global foundry */
-
 // Preparation functions
 import {
   prepareDescriptionContext,
@@ -82,15 +80,15 @@ export class TribeItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
     // Prepare each page context
     switch (partId) {
-    // Stats
-    case 'description':
-      return prepareDescriptionContext(context, item)
-    case 'patronSpirit':
-      return preparePatronSpiritContext(context, item)
-    case 'modifiers':
-      return prepareModifiersContext(context, item)
-    case 'settings':
-      return prepareItemSettingsContext(context, item)
+      // Stats
+      case 'description':
+        return prepareDescriptionContext(context, item)
+      case 'patronSpirit':
+        return preparePatronSpiritContext(context, item)
+      case 'modifiers':
+        return prepareModifiersContext(context, item)
+      case 'settings':
+        return prepareItemSettingsContext(context, item)
     }
 
     return context

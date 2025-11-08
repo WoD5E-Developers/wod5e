@@ -1,5 +1,3 @@
-/* global game, foundry, Item */
-
 // Definition classes
 import { ItemTypes } from '../../api/def/itemtypes.js'
 import { Disciplines } from '../../api/def/disciplines.js'
@@ -7,13 +5,10 @@ import { Edges } from '../../api/def/edges.js'
 import { Gifts } from '../../api/def/gifts.js'
 import { Features } from '../../api/def/features.js'
 import { Weapons } from '../../api/def/weapons.js'
-
 // Localization function
 import { generateLocalizedLabel } from '../../api/generate-localization.js'
-
 // Data item format function
 import { formatDataItemId } from './format-data-item-id.js'
-
 // Various update functions
 import { _updateSelectedPerk } from '../htr/scripts/edges.js'
 import { _updateSelectedDisciplinePower } from '../vtm/scripts/disciplines.js'
@@ -39,26 +34,26 @@ export const _onCreateItem = async function (event, target) {
 
   // Generate item options and the select label based on item type
   switch (type) {
-  case 'power':
-    selectLabel = game.i18n.localize('WOD5E.VTM.SelectDiscipline')
-    itemOptions = Disciplines.getList({})
-    break
-  case 'perk':
-    selectLabel = game.i18n.localize('WOD5E.HTR.SelectEdge')
-    itemOptions = Edges.getList({})
-    break
-  case 'gift':
-    selectLabel = game.i18n.localize('WOD5E.WTA.SelectGift')
-    itemOptions = Gifts.getList({})
-    break
-  case 'feature':
-    selectLabel = game.i18n.localize('WOD5E.ItemsList.SelectFeature')
-    itemOptions = Features.getList({})
-    break
-  case 'weapon':
-    selectLabel = game.i18n.localize('WOD5E.EquipmentList.SelectWeaponType')
-    itemOptions = Weapons.getList({})
-    break
+    case 'power':
+      selectLabel = game.i18n.localize('WOD5E.VTM.SelectDiscipline')
+      itemOptions = Disciplines.getList({})
+      break
+    case 'perk':
+      selectLabel = game.i18n.localize('WOD5E.HTR.SelectEdge')
+      itemOptions = Edges.getList({})
+      break
+    case 'gift':
+      selectLabel = game.i18n.localize('WOD5E.WTA.SelectGift')
+      itemOptions = Gifts.getList({})
+      break
+    case 'feature':
+      selectLabel = game.i18n.localize('WOD5E.ItemsList.SelectFeature')
+      itemOptions = Features.getList({})
+      break
+    case 'weapon':
+      selectLabel = game.i18n.localize('WOD5E.EquipmentList.SelectWeaponType')
+      itemOptions = Weapons.getList({})
+      break
   }
 
   // Create item if subtype is already defined or not needed
@@ -68,31 +63,31 @@ export const _onCreateItem = async function (event, target) {
 
     // Generate item name based on type
     switch (type) {
-    case 'power':
-      itemName = game.i18n.format('WOD5E.VTM.NewStringPower', { string: itemName })
-      break
-    case 'perk':
-      itemName = game.i18n.format('WOD5E.HTR.NewStringPerk', { string: itemName })
-      break
-    case 'gift':
-      if (subtype && subtype === 'rite') {
+      case 'power':
+        itemName = game.i18n.format('WOD5E.VTM.NewStringPower', { string: itemName })
+        break
+      case 'perk':
+        itemName = game.i18n.format('WOD5E.HTR.NewStringPerk', { string: itemName })
+        break
+      case 'gift':
+        if (subtype && subtype === 'rite') {
+          itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
+        } else {
+          itemName = game.i18n.format('WOD5E.WTA.NewStringGift', { string: itemName })
+        }
+        break
+      case 'edgepool':
+        itemName = game.i18n.format('WOD5E.HTR.NewStringEdgePool', { string: itemName })
+        break
+      case 'feature':
         itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
-      } else {
-        itemName = game.i18n.format('WOD5E.WTA.NewStringGift', { string: itemName })
-      }
-      break
-    case 'edgepool':
-      itemName = game.i18n.format('WOD5E.HTR.NewStringEdgePool', { string: itemName })
-      break
-    case 'feature':
-      itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
-      break
-    case 'weapon':
-      itemName = game.i18n.format('WOD5E.EquipmentList.NewStringWeapon', { string: itemName })
-      break
-    default:
-      itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
-      break
+        break
+      case 'weapon':
+        itemName = game.i18n.format('WOD5E.EquipmentList.NewStringWeapon', { string: itemName })
+        break
+      default:
+        itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
+        break
     }
 
     // Append subtype data (if one is applicable)
@@ -139,31 +134,31 @@ export const _onCreateItem = async function (event, target) {
 
       // Generate item name based on type
       switch (type) {
-      case 'power':
-        itemName = game.i18n.format('WOD5E.VTM.NewStringPower', { string: itemName })
-        break
-      case 'perk':
-        itemName = game.i18n.format('WOD5E.HTR.NewStringPerk', { string: itemName })
-        break
-      case 'gift':
-        if (subtypeSelection === 'rite') {
+        case 'power':
+          itemName = game.i18n.format('WOD5E.VTM.NewStringPower', { string: itemName })
+          break
+        case 'perk':
+          itemName = game.i18n.format('WOD5E.HTR.NewStringPerk', { string: itemName })
+          break
+        case 'gift':
+          if (subtypeSelection === 'rite') {
+            itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
+          } else {
+            itemName = game.i18n.format('WOD5E.WTA.NewStringGift', { string: itemName })
+          }
+          break
+        case 'edgepool':
+          itemName = game.i18n.format('WOD5E.HTR.NewStringEdgePool', { string: itemName })
+          break
+        case 'feature':
           itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
-        } else {
-          itemName = game.i18n.format('WOD5E.WTA.NewStringGift', { string: itemName })
-        }
-        break
-      case 'edgepool':
-        itemName = game.i18n.format('WOD5E.HTR.NewStringEdgePool', { string: itemName })
-        break
-      case 'feature':
-        itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
-        break
-      case 'weapon':
-        itemName = game.i18n.format('WOD5E.EquipmentList.NewStringWeapon', { string: itemName })
-        break
-      default:
-        itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
-        break
+          break
+        case 'weapon':
+          itemName = game.i18n.format('WOD5E.EquipmentList.NewStringWeapon', { string: itemName })
+          break
+        default:
+          itemName = game.i18n.format('WOD5E.NewString', { string: itemName })
+          break
       }
 
       // Create the item
@@ -219,8 +214,8 @@ export const _onItemDelete = async function (event, target) {
   // Define the content of the Dialog
   const content = `<p>
     ${game.i18n.format('WOD5E.ConfirmDeleteDescription', {
-    string: item.name
-  })}
+      string: item.name
+    })}
   </p>`
 
   // Prompt a dialog for the user to confirm they want to delete the item
@@ -272,41 +267,41 @@ async function createItem(actor, itemName, type, itemData) {
 
   // Handle updating the currently selected power for the actor
   switch (newItem.type) {
-  case 'power':
-    _updateSelectedDisciplinePower(actor, itemId)
-    break
-  case 'perk':
-    _updateSelectedPerk(actor, itemId)
-    break
-  case 'gift':
-    _updateSelectedGiftPower(actor, itemId)
-    break
+    case 'power':
+      _updateSelectedDisciplinePower(actor, itemId)
+      break
+    case 'perk':
+      _updateSelectedPerk(actor, itemId)
+      break
+    case 'gift':
+      _updateSelectedGiftPower(actor, itemId)
+      break
   }
 }
 
 // Append subtype data to the item data based on item type
 async function appendSubtypeData(type, subtype, itemData) {
   switch (type) {
-  case 'power':
-    itemData.discipline = subtype
-    break
-  case 'perk':
-    itemData.edge = subtype
-    break
-  case 'edgepool':
-    itemData.edge = subtype
-    break
-  case 'gift':
-    itemData.giftType = subtype
-    break
-  case 'feature':
-    itemData.featuretype = subtype
-    break
-  case 'weapon':
-    itemData.weaponType = subtype
-    break
-  default:
-    itemData.subtype = subtype
+    case 'power':
+      itemData.discipline = subtype
+      break
+    case 'perk':
+      itemData.edge = subtype
+      break
+    case 'edgepool':
+      itemData.edge = subtype
+      break
+    case 'gift':
+      itemData.giftType = subtype
+      break
+    case 'feature':
+      itemData.featuretype = subtype
+      break
+    case 'weapon':
+      itemData.weaponType = subtype
+      break
+    default:
+      itemData.subtype = subtype
   }
 
   return itemData

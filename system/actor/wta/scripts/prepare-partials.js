@@ -1,5 +1,3 @@
-/* global foundry */
-
 import { prepareGiftPowers } from './prepare-data.js'
 
 export const prepareGiftsContext = async function (context, actor) {

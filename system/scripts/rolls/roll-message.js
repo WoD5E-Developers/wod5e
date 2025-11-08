@@ -1,5 +1,3 @@
-/* global game, foundry */
-
 // Import dice face-related variables for icon paths
 import {
   mortalDiceLocation,
@@ -99,26 +97,26 @@ export async function generateRollMessageData({
 
       // Use switch-cases to adjust splat-specific dice locations/faces
       switch (system) {
-      case 'werewolf':
-        // Werewolf data
-        dieImg = `${werewolfDiceLocation}${dieFace}`
-        dieClasses.push(['werewolf-dice'])
-        break
-      case 'vampire':
-        // Vampire data
-        dieImg = `${vampireDiceLocation}${dieFace}`
-        dieClasses.push(['vampire-dice'])
-        break
-      case 'hunter':
-        // Hunter data
-        dieImg = `${hunterDiceLocation}${dieFace}`
-        dieClasses.push(['hunter-dice'])
-        break
-      default:
-        // Mortal data
-        dieImg = `${mortalDiceLocation}${dieFace}`
-        dieClasses.push(['mortal-dice'])
-        break
+        case 'werewolf':
+          // Werewolf data
+          dieImg = `${werewolfDiceLocation}${dieFace}`
+          dieClasses.push(['werewolf-dice'])
+          break
+        case 'vampire':
+          // Vampire data
+          dieImg = `${vampireDiceLocation}${dieFace}`
+          dieClasses.push(['vampire-dice'])
+          break
+        case 'hunter':
+          // Hunter data
+          dieImg = `${hunterDiceLocation}${dieFace}`
+          dieClasses.push(['hunter-dice'])
+          break
+        default:
+          // Mortal data
+          dieImg = `${mortalDiceLocation}${dieFace}`
+          dieClasses.push(['mortal-dice'])
+          break
       }
 
       // Add any necessary data to the dice object
@@ -155,57 +153,57 @@ export async function generateRollMessageData({
 
       // Use switch-cases to adjust splat-specific dice locations/faces
       switch (system) {
-      case 'werewolf':
-        // Werewolf die results
-        if (die.result === 10) {
+        case 'werewolf':
+          // Werewolf die results
+          if (die.result === 10) {
             // Handle critical successes
-          dieResult = 'critical'
-          dieClasses.push(['rerollable'])
-        } else if (die.result < 10 && die.result > 5) {
+            dieResult = 'critical'
+            dieClasses.push(['rerollable'])
+          } else if (die.result < 10 && die.result > 5) {
             // Successes
-          dieResult = 'success'
-          dieClasses.push(['rerollable'])
-        } else if (die.result < 6 && die.result > 2) {
+            dieResult = 'success'
+            dieClasses.push(['rerollable'])
+          } else if (die.result < 6 && die.result > 2) {
             // Failures
-          dieResult = 'failure'
-          dieClasses.push(['rerollable'])
-        } else dieResult = 'brutal' // Brutal failures
+            dieResult = 'failure'
+            dieClasses.push(['rerollable'])
+          } else dieResult = 'brutal' // Brutal failures
 
-        // Werewolf data
-        dieFace = rageDiceFaces[dieResult]
-        dieImg = `${werewolfDiceLocation}${dieFace}`
-        dieClasses.push(['rage-dice'])
-        break
-      case 'vampire':
-        // Vampire die results
-        if (die.result === 10)
+          // Werewolf data
+          dieFace = rageDiceFaces[dieResult]
+          dieImg = `${werewolfDiceLocation}${dieFace}`
+          dieClasses.push(['rage-dice'])
+          break
+        case 'vampire':
+          // Vampire die results
+          if (die.result === 10)
             dieResult = 'critical' // Critical successes
-        else if (die.result < 10 && die.result > 5)
+          else if (die.result < 10 && die.result > 5)
             dieResult = 'success' // Successes
-        else if (die.result < 6 && die.result > 1)
+          else if (die.result < 6 && die.result > 1)
             dieResult = 'failure' // Failures
-        else dieResult = 'bestial' // Bestial failures
+          else dieResult = 'bestial' // Bestial failures
 
-        // Vampire data
-        dieFace = hungerDiceFaces[dieResult]
-        dieImg = `${vampireDiceLocation}${dieFace}`
-        dieClasses.push(['hunger-dice'])
-        break
-      case 'hunter':
-        // Hunter die results
-        if (die.result === 10)
+          // Vampire data
+          dieFace = hungerDiceFaces[dieResult]
+          dieImg = `${vampireDiceLocation}${dieFace}`
+          dieClasses.push(['hunger-dice'])
+          break
+        case 'hunter':
+          // Hunter die results
+          if (die.result === 10)
             dieResult = 'critical' // Critical successes
-        else if (die.result < 10 && die.result > 5)
+          else if (die.result < 10 && die.result > 5)
             dieResult = 'success' // Successes
-        else if (die.result < 6 && die.result > 1)
+          else if (die.result < 6 && die.result > 1)
             dieResult = 'failure' // Failures
-        else dieResult = 'criticalFailure' // Critical failures
+          else dieResult = 'criticalFailure' // Critical failures
 
-        // Hunter data
-        dieFace = desperationDiceFaces[dieResult]
-        dieImg = `${hunterDiceLocation}${dieFace}`
-        dieClasses.push(['desperation-dice'])
-        break
+          // Hunter data
+          dieFace = desperationDiceFaces[dieResult]
+          dieImg = `${hunterDiceLocation}${dieFace}`
+          dieClasses.push(['desperation-dice'])
+          break
       }
 
       // Add any necessary data to the dice object

@@ -1,5 +1,3 @@
-/* global game, foundry, Item, SortingHelpers, ui */
-
 // Data preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
 import { getActorBackground } from './scripts/get-actor-background.js'
@@ -253,16 +251,16 @@ export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sh
     sheetData.system.equipmentItems = sheetData.items.reduce(
       (acc, item) => {
         switch (item.type) {
-        case 'armor':
-          acc.armor.push(item)
+          case 'armor':
+            acc.armor.push(item)
             break
-        case 'weapon':
+          case 'weapon':
             acc.weapon.push(item)
-          break
+            break
           case 'gear':
-          acc.gear.push(item)
-          break
-        case 'talisman':
+            acc.gear.push(item)
+            break
+          case 'talisman':
             acc.talisman.push(item)
             break
         }

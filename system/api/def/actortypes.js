@@ -1,5 +1,3 @@
-/* global Hooks */
-
 // Base definition class
 import { BaseDefinitionClass } from './base-definition-class.js'
 // All systems

@@ -1,5 +1,3 @@
-/* global foundry */
-
 import { generateLocalizedLabel } from '../../api/generate-localization.js'
 
 export const prepareDescriptionContext = async function (context, item) {

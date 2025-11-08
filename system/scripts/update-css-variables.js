@@ -1,5 +1,3 @@
-/* global game, ui */
-
 export const cssVariablesRecord = () => {
   const record = {
     vampire: {

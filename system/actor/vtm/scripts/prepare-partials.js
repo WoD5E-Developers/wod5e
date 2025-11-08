@@ -1,5 +1,3 @@
-/* global foundry */
-
 import { prepareDisciplinePowers } from './prepare-data.js'
 import { getBloodPotencyText } from './blood-potency.js'
 

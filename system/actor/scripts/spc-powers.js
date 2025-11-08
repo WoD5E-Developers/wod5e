@@ -1,5 +1,3 @@
-/* global game, foundry */
-
 import { Disciplines } from '../../api/def/disciplines.js'
 import { Edges } from '../../api/def/edges.js'
 import { Gifts } from '../../api/def/gifts.js'

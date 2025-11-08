@@ -1,5 +1,3 @@
-/* global foundry */
-
 export const preparePatronSpiritContext = async function (context, item) {
   const itemData = item.system
   const patronSpirit = itemData.patronSpirit

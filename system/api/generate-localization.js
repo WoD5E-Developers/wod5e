@@ -1,5 +1,3 @@
-/* global game */
-
 import { ActorTypes } from './def/actortypes.js'
 import { Attributes } from './def/attributes.js'
 import { Skills } from './def/skills.js'

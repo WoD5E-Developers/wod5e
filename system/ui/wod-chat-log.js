@@ -1,5 +1,3 @@
-/* global foundry, game */
-
 // Various button functions
 import { _onToggleCollapse } from '../actor/scripts/on-toggle-collapse.js'
 import { _onAddSelectedTokens } from '../applications/roll-menu/scripts/on-add-selected-tokens.js'

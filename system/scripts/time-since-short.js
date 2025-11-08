@@ -1,5 +1,3 @@
-/* global game */
-
 export function timeSinceShort(timeStamp) {
   timeStamp = new Date(timeStamp)
   const now = new Date()

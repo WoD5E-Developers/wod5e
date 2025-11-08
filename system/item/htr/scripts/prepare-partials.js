@@ -1,5 +1,3 @@
-/* global foundry */
-
 export const prepareRedemptionContext = async function (context, item) {
   const itemData = item.system
 

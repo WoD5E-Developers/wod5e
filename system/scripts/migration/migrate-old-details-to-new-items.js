@@ -1,5 +1,3 @@
-/* global ui, game */
-
 // Data item format function
 import { formatDataItemId } from '../../actor/scripts/format-data-item-id.js'
 

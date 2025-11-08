@@ -1,5 +1,3 @@
-/* global game */
-
 import { getBaseLabel } from './base-labels.js'
 
 export const getWerewolfLabel = async function (data) {

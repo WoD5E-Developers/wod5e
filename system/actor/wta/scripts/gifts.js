@@ -1,5 +1,3 @@
-/* global game, WOD5E, foundry */
-
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
 import { _damageWillpower } from '../../../scripts/rolls/willpower-damage.js'

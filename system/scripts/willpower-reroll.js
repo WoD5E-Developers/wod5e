@@ -1,5 +1,3 @@
-/* global game, foundry */
-
 // Import modules
 import { WOD5eDice } from './system-rolls.js'
 

@@ -1,5 +1,3 @@
-/* global foundry */
-
 import { prepareEdgePowers } from './prepare-data.js'
 
 export const prepareEdgesContext = async function (context, actor) {

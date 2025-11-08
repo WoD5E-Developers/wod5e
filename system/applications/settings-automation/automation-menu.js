@@ -1,5 +1,3 @@
-/* global game, FormApplication, foundry */
-
 export class AutomationMenu extends FormApplication {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {

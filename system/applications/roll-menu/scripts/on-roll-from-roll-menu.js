@@ -1,5 +1,3 @@
-/* global game, WOD5E, ChatMessage, ui */
-
 export const _onRollFromRollMenu = async function (event) {
   event.preventDefault()
 

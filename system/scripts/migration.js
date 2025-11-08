@@ -1,5 +1,3 @@
-/* global ui, game, foundry */
-
 import { MigrateLegacySheets } from './migration/migrate-legacy-sheets.js'
 import { MigrateSpecialties } from './migration/migrate-specialties.js'
 import { MigrateItemImages } from './migration/migrate-item-images.js'

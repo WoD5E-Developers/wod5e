@@ -1,5 +1,3 @@
-/* global ui, game */
-
 export const MigrateLegacySheets = async function () {
   const invalidActorsList = game.actors.invalidDocumentIds
   const totalIterations = invalidActorsList.size

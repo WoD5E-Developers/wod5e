@@ -1,5 +1,3 @@
-/* global canvas, game, foundry */
-
 export const _onAddSelectedTokens = async function (event, target) {
   event.preventDefault()
 

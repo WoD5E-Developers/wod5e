@@ -1,5 +1,3 @@
-/* global game, Hooks, fromUuidSync */
-
 /* Various Support for group sheets injected as the actor sidebar rerenders */
 export const RenderActorSidebar = async () => {
   // Altering the ActorDirectory in order to support group sheet layouts

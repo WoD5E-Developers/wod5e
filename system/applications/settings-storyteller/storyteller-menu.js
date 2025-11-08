@@ -1,5 +1,3 @@
-/* global game, WOD5E, FormApplication, foundry */
-
 /* Definitions */
 import { Attributes } from '../../api/def/attributes.js'
 import { Skills } from '../../api/def/skills.js'

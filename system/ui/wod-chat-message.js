@@ -1,5 +1,3 @@
-/* global game, CONST, CONFIG, foundry, ChatMessage, Hooks */
-
 import { generateRollMessageData } from '../scripts/rolls/roll-message.js'
 
 export class WoDChatMessage extends ChatMessage {

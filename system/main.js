@@ -1,5 +1,3 @@
-/* global CONFIG, Hooks, foundry, ChatMessage, game, ui, jscolor */
-
 // Actor sheets
 import { WoDActor } from './actor/actor.js'
 import { WOD5EActorDirectory } from './ui/actor-directory.js'

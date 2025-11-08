@@ -1,5 +1,3 @@
-/* global ui, game, WOD5E, foundry, Item */
-
 export const MigrateRolldataToDicepools = async function () {
   const compendiumsActorsList = game.packs.filter(
     (compendium) => compendium.metadata.type === 'Actor'

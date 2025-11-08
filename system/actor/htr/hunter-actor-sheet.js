@@ -1,5 +1,3 @@
-/* global foundry */
-
 // Preparation functions
 import {
   prepareBiographyContext,
@@ -163,41 +161,41 @@ export class HunterActorSheet extends HandlebarsApplicationMixin(WoDActor) {
 
     // Prepare each page context
     switch (partId) {
-    // Stats
-    case 'stats':
-      return prepareStatsContext(context, actor)
+      // Stats
+      case 'stats':
+        return prepareStatsContext(context, actor)
 
       // Experience
-    case 'experience':
-      return prepareExperienceContext(context, actor)
+      case 'experience':
+        return prepareExperienceContext(context, actor)
 
       // Experience
-    case 'edges':
-      return prepareEdgesContext(context, actor)
+      case 'edges':
+        return prepareEdgesContext(context, actor)
 
       // Features
-    case 'features':
-      return prepareFeaturesContext(context, actor)
+      case 'features':
+        return prepareFeaturesContext(context, actor)
 
       // Equipment
-    case 'equipment':
-      return prepareEquipmentContext(context, actor)
+      case 'equipment':
+        return prepareEquipmentContext(context, actor)
 
       // Biography
-    case 'biography':
-      return prepareBiographyContext(context, actor)
+      case 'biography':
+        return prepareBiographyContext(context, actor)
 
       // Notepad
-    case 'notepad':
-      return prepareNotepadContext(context, actor)
+      case 'notepad':
+        return prepareNotepadContext(context, actor)
 
       // Settings
-    case 'settings':
-      return prepareSettingsContext(context, actor)
+      case 'settings':
+        return prepareSettingsContext(context, actor)
 
       // Limited view
-    case 'limited':
-      return prepareLimitedContext(context, actor)
+      case 'limited':
+        return prepareLimitedContext(context, actor)
     }
 
     return context

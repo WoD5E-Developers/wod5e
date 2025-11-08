@@ -1,5 +1,3 @@
-/* global game, foundry, fromUuidSync */
-
 /**
  * Extend the base ActorDirectory functionality
  * @extends {ActorDirectory}

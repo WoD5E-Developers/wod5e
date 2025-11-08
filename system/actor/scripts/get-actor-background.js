@@ -1,5 +1,3 @@
-/* global game */
-
 export const getActorBackground = async function (actor) {
   const actorBG = actor.system?.settings?.background || ''
   const settingsBG = game.settings.get('vtm5e', 'actorBackgroundOverride') || ''

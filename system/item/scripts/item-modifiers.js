@@ -1,5 +1,3 @@
-/* global foundry, game */
-
 import { getSelectorsList } from '../../api/get-selectors-list.js'
 
 const bonusTemplate = 'systems/vtm5e/display/shared/items/parts/modifier-display.hbs'

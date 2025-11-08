@@ -1,5 +1,3 @@
-/* global foundry, game */
-
 import { generateLocalizedLabel } from '../../../api/generate-localization.js'
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 
@@ -106,29 +104,29 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
 
   async _preparePartContext(partId, context) {
     switch (partId) {
-    // Description
-    case 'description':
-      // Tab data
-      context.tab = context.tabs.description
+      // Description
+      case 'description':
+        // Tab data
+        context.tab = context.tabs.description
 
-      // Part-specific data
-      context.formDescription = context.formData?.description || ''
-      context.enrichedDescription =
+        // Part-specific data
+        context.formDescription = context.formData?.description || ''
+        context.enrichedDescription =
           await foundry.applications.ux.TextEditor.implementation.enrichHTML(
             context.formData?.description || ''
           )
 
-      break
+        break
 
       // Token settings
-    case 'tokenSettings':
-      // Tab data
-      context.tab = context.tabs.tokenSettings
+      case 'tokenSettings':
+        // Tab data
+        context.tab = context.tabs.tokenSettings
 
-      // Part-specific data
-      context.formTokenImg = context.formData.token.img
+        // Part-specific data
+        context.formTokenImg = context.formData.token.img
 
-      break
+        break
     }
 
     return context

@@ -1,5 +1,3 @@
-/* global game, Hooks */
-
 import { BaseDefinitionClass } from './base-definition-class.js'
 
 export class WereForms extends BaseDefinitionClass {

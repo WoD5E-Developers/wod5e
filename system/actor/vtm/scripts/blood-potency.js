@@ -1,5 +1,3 @@
-/* global game */
-
 // Surge: Amount of dice added on a blood surge
 // Mend: Amount mended on expenditure of vitae
 // Power: Bonus to discipline powers

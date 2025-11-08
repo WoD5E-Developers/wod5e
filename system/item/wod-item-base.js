@@ -1,5 +1,3 @@
-/* global foundry */
-
 // Preparation functions
 import { getDicepoolList } from '../api/dicepool-list.js'
 import { getSelectorsList } from '../api/get-selectors-list.js'

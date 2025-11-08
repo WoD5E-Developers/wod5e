@@ -1,5 +1,3 @@
-/* global foundry */
-
 // Preparation functions
 import {
   prepareDescriptionContext,
@@ -79,13 +77,13 @@ export class EdgePoolItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
     // Prepare each page context
     switch (partId) {
-    // Stats
-    case 'description':
-      return prepareDescriptionContext(context, item)
-    case 'dicepool':
-      return prepareDicepoolContext(context, item)
-    case 'settings':
-      return prepareItemSettingsContext(context, item)
+      // Stats
+      case 'description':
+        return prepareDescriptionContext(context, item)
+      case 'dicepool':
+        return prepareDicepoolContext(context, item)
+      case 'settings':
+        return prepareItemSettingsContext(context, item)
     }
 
     return context

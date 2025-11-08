@@ -1,5 +1,3 @@
-/* global foundry */
-
 /**
  * Function to help collect any situational modifiers
  *

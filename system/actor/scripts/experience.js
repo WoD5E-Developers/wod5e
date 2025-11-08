@@ -1,5 +1,3 @@
-/* global foundry, game, foundry */
-
 const experienceTemplate = 'systems/vtm5e/display/shared/actors/parts/experience-display.hbs'
 
 export const _onAddExperience = async function (event, target) {
@@ -90,8 +88,8 @@ export const _onRemoveExperience = async function (event, target) {
   const template = `
     <div class="form-group">
         <label>${game.i18n.format('WOD5E.ConfirmDeleteDescription', {
-    string: experienceToDelete.name
-  })}</label>
+          string: experienceToDelete.name
+        })}</label>
     </div>`
 
   const shouldDelete = await foundry.applications.api.DialogV2.confirm({

@@ -1,5 +1,3 @@
-/* global ChatMessage, game, foundry, CONFIG */
-
 // Import various helper functions
 import { generateRollFormula } from './rolls/roll-formula.js'
 import { getSituationalModifiers } from './rolls/situational-modifiers.js'

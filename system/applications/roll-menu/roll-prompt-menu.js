@@ -1,5 +1,3 @@
-/* global foundry, game, WOD5E */
-
 import { _onAddNewRoll } from './scripts/on-add-new-dice.js'
 import { _onPromptInChat } from './scripts/on-prompt-in-chat.js'
 import { _onRollFromRollMenu } from './scripts/on-roll-from-roll-menu.js'
@@ -64,13 +62,13 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     context = await super._preparePartContext(partId, context, options)
 
     switch (partId) {
-    case 'body':
-      // Part-specific data
-      if (context.activeRollID) {
-        context.activeRoll = context.savedRolls[context.activeRollID]
-      }
+      case 'body':
+        // Part-specific data
+        if (context.activeRollID) {
+          context.activeRoll = context.savedRolls[context.activeRollID]
+        }
 
-      break
+        break
     }
 
     return context

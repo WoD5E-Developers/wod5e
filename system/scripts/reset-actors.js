@@ -1,5 +1,3 @@
-/* global game */
-
 /**
  * Function to re-render the actors across the system
  * @param actors                        (Default: All actors) A list of actors to reset the sheets of

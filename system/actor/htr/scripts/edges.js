@@ -1,5 +1,3 @@
-/* global game, WOD5E, foundry */
-
 /** Handle adding a new edge to the sheet */
 export const _onAddEdge = async function (event) {
   event.preventDefault()

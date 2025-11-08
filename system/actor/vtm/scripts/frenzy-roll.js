@@ -1,5 +1,3 @@
-/* global game, foundry, WOD5E */
-
 import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 

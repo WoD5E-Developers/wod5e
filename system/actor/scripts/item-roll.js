@@ -1,5 +1,3 @@
-/* global fromUuidSync, WOD5E */
-
 import { WOD5eDice } from '../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../scripts/rolls/situational-modifiers.js'
 import { _onRouseCheck } from '../vtm/scripts/rouse.js'

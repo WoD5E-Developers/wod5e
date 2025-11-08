@@ -1,5 +1,3 @@
-/* global game */
-
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 
 export const _onHaranoRoll = async function (event) {

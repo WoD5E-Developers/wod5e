@@ -1,5 +1,3 @@
-/* global game, foundry */
-
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 
 /** Handle rolling a remorse check */

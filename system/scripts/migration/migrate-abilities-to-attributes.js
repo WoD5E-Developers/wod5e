@@ -1,5 +1,3 @@
-/* global ui, game */
-
 export const MigrateAbilitiesToAttributes = async function () {
   const actorsList = game.actors
   const totalIterations = actorsList.size

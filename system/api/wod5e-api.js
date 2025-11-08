@@ -1,5 +1,3 @@
-/* global foundry, ChatMessage, game, ui, WOD5E */
-
 import { WOD5eDice } from '../scripts/system-rolls.js'
 import { _onConfirmRoll } from '../actor/scripts/roll.js'
 import { generateLocalizedLabel } from './generate-localization.js'

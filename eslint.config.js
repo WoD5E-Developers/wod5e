@@ -15,7 +15,43 @@ export default defineConfig([
     files: ['**/*.js'],
     languageOptions: {
       ecmaVersion: 2023,
-      sourceType: 'module'
+      sourceType: 'module',
+      globals: {
+        // Browser and Node globals
+        document: 'readonly',
+        window: 'readonly',
+        console: 'readonly',
+        navigator: 'readonly',
+        Event: 'readonly',
+        HTMLElement: 'readonly',
+        setTimeout: 'readonly',
+        require: 'readonly',
+        __dirname: 'readonly',
+
+        // Foundry globals
+        CONST: 'readonly',
+        CONFIG: 'readonly',
+        foundry: 'readonly',
+        game: 'readonly',
+        ui: 'readonly',
+        ChatMessage: 'readonly',
+        Hooks: 'readonly',
+        Handlebars: 'readonly',
+        fromUuidSync: 'readonly',
+        getDocumentClass: 'readonly',
+        Macro: 'readonly',
+        $: 'readonly',
+        FormApplication: 'readonly',
+        canvas: 'readonly',
+        Actor: 'readonly',
+        Item: 'readonly',
+
+        // System globals
+        WOD5E: 'readonly',
+        jscolor: 'readonly',
+        JSColor: 'readonly',
+        SortingHelpers: 'readonly'
+      }
     },
     plugins: {
       import: fixupPluginRules(_import),
@@ -24,7 +60,7 @@ export default defineConfig([
     rules: {
       ...js.configs.recommended.rules,
       'no-extra-semi': 'error',
-      indent: ['error', 2],
+      indent: 'off',
       'prettier/prettier': [
         'error',
         {
@@ -39,11 +75,7 @@ export default defineConfig([
           groups: ['builtin', 'external', 'internal'],
           'newlines-between': 'always'
         }
-      ],
-      "env": ["error", {
-        "browser": true,
-        "node": true
-      }]
+      ]
     }
   }
 ])

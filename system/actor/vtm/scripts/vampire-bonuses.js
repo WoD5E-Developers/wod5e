@@ -1,5 +1,3 @@
-/* global game */
-
 import { getBloodPotencyValues } from './blood-potency.js'
 
 export const getVampireModifiers = async function (actorData) {

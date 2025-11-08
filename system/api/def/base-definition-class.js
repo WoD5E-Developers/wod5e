@@ -1,5 +1,3 @@
-/* global game */
-
 import { resetActors } from '../../scripts/reset-actors.js'
 
 export class BaseDefinitionClass {

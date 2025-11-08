@@ -133,5 +133,5 @@ export const preloadHandlebarsTemplates = async function () {
 
   /* Load the template parts
    */
-  return foundry.applications.handlebars.loadTemplates(templatePaths) // eslint-disable-line no-undef
+  return foundry.applications.handlebars.loadTemplates(templatePaths)
 }

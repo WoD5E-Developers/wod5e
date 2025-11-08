@@ -1,5 +1,3 @@
-/* global game, fromUuidSync, ui */
-
 export const _addActor = async function (group, uuid) {
   // Define the actor data
   const actor = fromUuidSync(uuid)

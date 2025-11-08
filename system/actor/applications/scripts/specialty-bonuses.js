@@ -1,5 +1,3 @@
-/* global foundry, game */
-
 import { Skills } from '../../../api/def/skills.js'
 
 const bonusTemplate =

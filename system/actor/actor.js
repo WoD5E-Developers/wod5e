@@ -1,5 +1,3 @@
-/* global Actor, game, foundry, CONST, fromUuidSync */
-
 // Data preparation functions
 import { prepareSkills } from './scripts/prepare-skills.js'
 import { prepareAttributes } from './scripts/prepare-attributes.js'

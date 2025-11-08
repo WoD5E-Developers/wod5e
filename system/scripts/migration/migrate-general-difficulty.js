@@ -1,5 +1,3 @@
-/* global ui, game */
-
 export const MigrateGeneralDifficulty = async function () {
   const actorsList = game.actors.filter((actor) => actor.type === 'spc')
   const totalIterations = actorsList.size

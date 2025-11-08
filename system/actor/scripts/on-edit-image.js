@@ -1,5 +1,3 @@
-/* global foundry */
-
 export const _onEditImage = async function (event) {
   event.preventDefault()
 

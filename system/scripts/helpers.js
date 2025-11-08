@@ -1,5 +1,3 @@
-/* global Handlebars, game, WOD5E */
-
 import { generateLocalizedLabel } from '../api/generate-localization.js'
 import { timeSinceShort } from './time-since-short.js'
 

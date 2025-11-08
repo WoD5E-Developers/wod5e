@@ -1,5 +1,3 @@
-/* global foundry, game, ChatMessage */
-
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
 import { WereformApplication } from '../applications/wereform-application.js'
@@ -57,24 +55,24 @@ export const _onShiftForm = async function (event, target) {
   const form = target.getAttribute('data-form')
 
   switch (form) {
-  case 'glabro':
-    handleFormChange(event, target, actor, 'glabro', 1)
-    break
-  case 'crinos':
-    handleFormChange(event, target, actor, 'crinos', 2)
-    break
-  case 'hispo':
-    handleFormChange(event, target, actor, 'hispo', 1)
-    break
-  case 'lupus':
-    actor.update({ 'system.activeForm': 'lupus' })
-    _updateToken(actor, 'lupus')
-    _onFormToChat(event, target, actor)
-    break
-  default:
-    actor.update({ 'system.activeForm': 'homid' })
-    _updateToken(actor, 'homid')
-    _onFormToChat(event, target, actor)
+    case 'glabro':
+      handleFormChange(event, target, actor, 'glabro', 1)
+      break
+    case 'crinos':
+      handleFormChange(event, target, actor, 'crinos', 2)
+      break
+    case 'hispo':
+      handleFormChange(event, target, actor, 'hispo', 1)
+      break
+    case 'lupus':
+      actor.update({ 'system.activeForm': 'lupus' })
+      _updateToken(actor, 'lupus')
+      _onFormToChat(event, target, actor)
+      break
+    default:
+      actor.update({ 'system.activeForm': 'homid' })
+      _updateToken(actor, 'homid')
+      _onFormToChat(event, target, actor)
   }
 }
 

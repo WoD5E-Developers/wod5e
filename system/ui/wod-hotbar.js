@@ -1,5 +1,3 @@
-/* global game, foundry, ui, getDocumentClass, Macro, fromUuidSync, Hooks */
-
 export class WoDHotbar extends foundry.applications.ui.Hotbar {
   /** @override */
   async _onDrop(event) {
