@@ -67,6 +67,7 @@ export class WoDChatMessage extends ChatMessage {
       await this.#renderRollContent(this.messageData)
     }
 
+    // Process the message with template-specific data
     await processMessage(this)
 
     // Define a border color
