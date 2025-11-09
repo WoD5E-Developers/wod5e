@@ -38,25 +38,34 @@ export class WoDChatMessage extends ChatMessage {
 
     // Construct message data
     this.messageData = {
+      // Base messageData and permissions
       ...rest,
+      message: data,
       canDelete,
       canClose,
-      message: data,
+      isGM: game.user.isGM,
+      isWhisper: this.whisper.length,
+      whisperTo: this.whisper.map((u) => game.users.get(u)?.name).filterJoin(', '),
+
+      // User and author data
       user: game.user,
       author: this.author,
+
+      // Display info
       title: this.title,
-      speakerActor,
       alias: this.alias,
+      speakerActor,
       portrait: (speakerActor?.img ?? this.author?.avatar) || this.constructor.DEFAULT_AVATAR,
+
+      // CSS classes
       cssClass: [
         this.style === CONST.CHAT_MESSAGE_STYLES.IC ? 'ic' : null,
         this.style === CONST.CHAT_MESSAGE_STYLES.EMOTE ? 'emote' : null,
         isWhisper ? 'whisper' : null,
         this.blind ? 'blind' : null
       ].filterJoin(' '),
-      isWhisper: this.whisper.length,
-      whisperTo: this.whisper.map((u) => game.users.get(u)?.name).filterJoin(', '),
-      isGM: game.user.isGM,
+
+      // System-specific flags
       isRollPrompt: this.getFlag('vtm5e', 'isRollPrompt'),
       promptedRolls: this.getFlag('vtm5e', 'promptedRolls'),
       valuePaths: this.getFlag('vtm5e', 'valuePaths'),
