@@ -1,4 +1,4 @@
-import { generateRollMessageData } from '../scripts/rolls/roll-message.js'
+import { processMessage } from './message-logic/message-logic.js'
 
 export class WoDChatMessage extends ChatMessage {
   /**
@@ -34,7 +34,7 @@ export class WoDChatMessage extends ChatMessage {
     const isWhisper = this.whisper.length
 
     // Construct message data
-    const messageData = {
+    this.messageData = {
       ...rest,
       canDelete,
       canClose,
@@ -57,81 +57,33 @@ export class WoDChatMessage extends ChatMessage {
       isRollPrompt: this.getFlag('vtm5e', 'isRollPrompt'),
       promptedRolls: this.getFlag('vtm5e', 'promptedRolls'),
       valuePaths: this.getFlag('vtm5e', 'valuePaths'),
-      difficulty: this.getFlag('vtm5e', 'difficulty')
+      difficulty: this.getFlag('vtm5e', 'difficulty'),
+      isRoll: this?.isRoll || false,
+      isExtendedRoll: this.getFlag('vtm5e', 'isExtendedRoll')
     }
 
-    // Render message data specifically for ROLL type messages
+    // Render additional message data
     if (this.isRoll) {
-      this.template = 'systems/vtm5e/display/ui/chat/chat-message-roll.hbs'
-
-      await this.#renderRollContent(messageData)
-
-      const roll = this.rolls[0]
-
-      // Here, we're 100% sure that this message contains a valid WoD5e die and can proceed
-      // with the WoD5e message formatting
-      if (roll.system) {
-        const rollMessageData = await generateRollMessageData({
-          title: roll.options.title || `${game.i18n.localize('WOD5E.Chat.Rolling')}...`,
-          roll,
-          system: roll.system,
-          flavor: roll.options.flavor || '',
-          difficulty: roll.options.difficulty || 0,
-          activeModifiers: roll.options.activeModifiers || {},
-          data: this.flags.data || {},
-          isContentVisible: this.isContentVisible
-        })
-
-        // Merge the results into our existing message data
-        Object.assign(messageData, rollMessageData)
-      }
+      await this.#renderRollContent(this.messageData)
     }
 
-    // Render message data for roll prompts
-    if (this.getFlag('vtm5e', 'isRollPrompt')) {
-      this.template = 'systems/vtm5e/display/ui/chat/chat-message-roll-prompt.hbs'
-
-      const isOwnerFilter = game.actors.filter((a) => a.isOwner)
-      const isVisibleFilter = game.actors.filter((a) => a.visible)
-
-      for (const [key, value] of Object.entries(messageData.promptedRolls)) {
-        let rollData
-        if (value.rolled) {
-          const roll = messageData.promptedRolls[key].roll
-          rollData = await generateRollMessageData({
-            title: roll.options.title,
-            roll,
-            system: roll.options.system,
-            difficulty: roll.options.difficulty || 0,
-            activeModifiers: roll.options.activeModifiers || {},
-            isContentVisible: this.isContentVisible
-          })
-        }
-
-        messageData.promptedRolls[key] = Object.assign(messageData.promptedRolls[key], {
-          canRoll: isOwnerFilter.filter((a) => a.id === key).length > 0 || false,
-          canRemove: isOwnerFilter.filter((a) => a.id === key).length > 0 || false,
-          isVisible: isVisibleFilter.filter((a) => a.id === key).length > 0 || false,
-          rollData
-        })
-      }
-    }
+    await processMessage(this)
 
     // Define a border color
     if (this.style === CONST.CHAT_MESSAGE_STYLES.OOC)
-      messageData.borderColor = this.author?.color.css
+      this.messageData.borderColor = this.author?.color.css
 
     // Add a check in for in case modules are adding content to use that as the description
-    if (messageData?.message?.content) {
-      messageData.description = messageData?.message?.content
+    if (this.messageData?.message?.content) {
+      this.messageData.description = this.messageData?.message?.content
     }
 
     // Render the chat message
-    let html = await foundry.applications.handlebars.renderTemplate(this.template, messageData)
+    let html = await foundry.applications.handlebars.renderTemplate(this.template, this.messageData)
     html = foundry.utils.parseHTML(html)
 
     // Flag expanded state of dice rolls
-    Hooks.callAll('renderChatMessageHTML', this, html, messageData)
+    Hooks.callAll('renderChatMessageHTML', this, html, this.messageData)
 
     // Get whether descriptions should auto-collapse for this user or not and apply the styling
     const autoCollapse = game.settings.get('vtm5e', 'autoCollapseDescriptions')
