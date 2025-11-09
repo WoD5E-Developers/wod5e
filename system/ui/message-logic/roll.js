@@ -3,7 +3,7 @@ import { generateRollMessageData } from '../../scripts/rolls/roll-message.js'
 export async function processRoll(context) {
   context.template = 'systems/vtm5e/display/ui/chat/chat-message-roll.hbs'
 
-  const roll = this.rolls[0]
+  const roll = context.rolls[0]
 
   if (roll?.system) {
     const rollMessageData = await generateRollMessageData({
@@ -13,8 +13,8 @@ export async function processRoll(context) {
       flavor: roll.options.flavor || '',
       difficulty: roll.options.difficulty || 0,
       activeModifiers: roll.options.activeModifiers || {},
-      data: this.flags.data || {},
-      isContentVisible: this.isContentVisible
+      data: context.flags.data || {},
+      isContentVisible: context.isContentVisible
     })
 
     Object.assign(context.messageData, rollMessageData)
