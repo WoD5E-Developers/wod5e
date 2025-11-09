@@ -1,6 +1,9 @@
 import { processMessage } from './message-logic/process-message.js'
 
 export class WoDChatMessage extends ChatMessage {
+  // Default avatar for the chat message
+  static DEFAULT_AVATAR = 'icons/svg/mystery-man.svg'
+
   /**
    * Render the HTML for the ChatMessage which should be added to the log
    * @param {object} [options]             Additional options passed to the Handlebars template.
@@ -128,8 +131,6 @@ export class WoDChatMessage extends ChatMessage {
       messageData.alias = name
     }
   }
-
-  static DEFAULT_AVATAR = 'icons/svg/mystery-man.svg'
 
   async #renderRollHTML(isPrivate) {
     let html = ''
