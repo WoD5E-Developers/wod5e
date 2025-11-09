@@ -1,4 +1,4 @@
-import { processMessage } from './message-logic/message-logic.js'
+import { processMessage } from './message-logic/process-message.js'
 
 export class WoDChatMessage extends ChatMessage {
   /**
