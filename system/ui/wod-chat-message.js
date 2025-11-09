@@ -9,8 +9,11 @@ export class WoDChatMessage extends ChatMessage {
    * @returns {Promise<HTMLElement>}
    */
   async renderHTML({ canDelete, canClose = false, ...rest } = {}) {
-    let template = CONFIG.ChatMessage.template
-    canDelete ??= game.user.isGM // By default, GM users have the trash-bin icon in the chat log itself
+    // Default message template
+    this.template = CONFIG.ChatMessage.template
+
+    // By default, GM users have the trash-bin icon in the chat log itself
+    canDelete ??= game.user.isGM
 
     if (typeof this.system.renderHTML === 'function') {
       const html = await this.system.renderHTML({ canDelete, canClose, ...rest })
@@ -59,7 +62,7 @@ export class WoDChatMessage extends ChatMessage {
 
     // Render message data specifically for ROLL type messages
     if (this.isRoll) {
-      template = 'systems/vtm5e/display/ui/chat/chat-message-roll.hbs'
+      this.template = 'systems/vtm5e/display/ui/chat/chat-message-roll.hbs'
 
       await this.#renderRollContent(messageData)
 
@@ -86,7 +89,7 @@ export class WoDChatMessage extends ChatMessage {
 
     // Render message data for roll prompts
     if (this.getFlag('vtm5e', 'isRollPrompt')) {
-      template = 'systems/vtm5e/display/ui/chat/chat-message-roll-prompt.hbs'
+      this.template = 'systems/vtm5e/display/ui/chat/chat-message-roll-prompt.hbs'
 
       const isOwnerFilter = game.actors.filter((a) => a.isOwner)
       const isVisibleFilter = game.actors.filter((a) => a.visible)
@@ -124,7 +127,7 @@ export class WoDChatMessage extends ChatMessage {
     }
 
     // Render the chat message
-    let html = await foundry.applications.handlebars.renderTemplate(template, messageData)
+    let html = await foundry.applications.handlebars.renderTemplate(this.template, messageData)
     html = foundry.utils.parseHTML(html)
 
     // Flag expanded state of dice rolls
