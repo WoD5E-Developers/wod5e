@@ -69,6 +69,7 @@ export default defineConfig([
           useTabs: false
         }
       ],
+      'import/extensions': ['error', 'always', { ignorePackages: true }],
       'import/order': [
         'warn',
         {

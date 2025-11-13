@@ -1,9 +1,13 @@
-const path = require('path')
-const fs = require('fs')
+import path from 'path'
+import fs from 'fs'
+import { fileURLToPath } from 'url'
 
-const gulp = require('gulp')
-const less = require('gulp-less')
-const concat = require('gulp-concat')
+import gulp from 'gulp'
+import less from 'gulp-less'
+import concat from 'gulp-concat'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 // Define languages and files here
 const enDir = path.join(__dirname, 'lang', 'en')

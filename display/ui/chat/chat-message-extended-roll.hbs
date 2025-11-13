@@ -1,0 +1,41 @@
+<li class="chat-message message flexcol {{cssClass}}" data-message-id="{{message._id}}" {{#if borderColor}}style="border-color:{{borderColor}}"{{/if}}>
+	{{> "systems/vtm5e/display/ui/chat/chat-message-header.hbs"}}
+	<hr>
+	<div class="message-content">
+        {{#each totalRolls as |roll key|}}
+            <div class="collapsible-container">
+                {{#if isContentVisible}}
+                    <p class="roll-label uppercase collapsible" data-action="toggleCollapse">{{title}}</p>
+                    <div class="dice-roll" data-action="expandRoll">
+                        <div class="dice-result">
+                            <div class="dice-icons">
+                                {{#each basicDice.results as |die key|}}
+                                    <img src="{{die.img}}" class="{{die.classes}}" data-index="{{die.index}}" alt="{{die.altText}}" title="{{die.title}}"/>
+                                {{/each}}
+                                {{#each advancedDice.results as |die key|}}
+                                    <img src="{{die.img}}" class="{{die.classes}}" data-index="{{die.index}}" alt="{{die.altText}}" title="{{die.title}}"/>
+                                {{/each}}
+                            </div>
+                            {{#if enrichedFlavor}}
+                                <div class="collapsible-content">
+                                    <hr>
+                                    {{{enrichedFlavor}}}
+                                </div>
+                                <hr>
+                            {{/if}}
+
+                            {{{enrichedResultLabel}}}
+                        </div>
+                    </div>
+                {{else}}
+                    <div class="dice-roll">
+                        <div class="dice-result">
+                            <div class="dice-formula">???</div>
+                            <h4 class="dice-total">?</h4>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        {{/each}}
+	</div>
+</li>
