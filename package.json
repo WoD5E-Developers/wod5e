@@ -19,6 +19,7 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/eslint-parser": "^7.25.1",
+    "@league-of-foundry-developers/foundry-vtt-types": "^13.346.0-beta.20250812191140",
     "eslint": "^9.9.0",
     "eslint-plugin-hbs": "^1.0.3",
     "globals": "^15.9.0",
