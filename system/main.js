@@ -1,16 +1,15 @@
 // Actor sheets
 import { WoDActor } from './actor/actor.js'
-import { WOD5EActorDirectory } from './ui/actor-directory.js'
+import { WoDActorDirectory } from './ui/wod-actor-directory.js'
 import { ProseMirrorSettings } from './ui/prosemirror.js'
 // Item sheets
 import { WoDItem } from './item/item.js'
-// Chat Classes
+// Custom UI Classes
 import { WoDChatLog } from './ui/wod-chat-log.js'
 import { WoDChatMessage } from './ui/wod-chat-message.js'
-// Hotbar class
 import { WoDHotbar } from './ui/wod-hotbar.js'
-// Settings class
 import { WoDSettings } from './ui/wod-settings.js'
+import { WoDPause } from './ui/wod-game-pause.js'
 // FVTT and module functionality
 import { preloadHandlebarsTemplates } from './scripts/templates.js'
 import { loadDiceSoNice } from './dice/dice-so-nice.js'
@@ -20,7 +19,6 @@ import {
   _updateHeaderFontPreference,
   _updateXpIconOverrides
 } from './scripts/settings.js'
-import { PauseChanges } from './ui/pause.js'
 // WOD5E functions and classes
 import {
   MortalDie,
@@ -57,15 +55,18 @@ import { RollPromptSockets } from './sockets/roll-prompt.js'
 Hooks.once('init', async function () {
   console.log('World of Darkness 5e | Initializing SchreckNet...')
 
-  // Define custom Entity classes
+  // Custom document classes
   CONFIG.Actor.documentClass = WoDActor
   CONFIG.Item.documentClass = WoDItem
-  CONFIG.ui.chat = WoDChatLog
   CONFIG.ChatMessage.documentClass = WoDChatMessage
   CONFIG.ChatMessage.template = 'systems/vtm5e/display/ui/chat/chat-message-default.hbs'
+  // Custom UI implementations
+  CONFIG.ui.chat = WoDChatLog
   CONFIG.ui.settings = WoDSettings
   CONFIG.ui.hotbar = WoDHotbar
-  CONFIG.ui.actors = WOD5EActorDirectory
+  CONFIG.ui.actors = WoDActorDirectory
+  CONFIG.ui.pause = WoDPause
+  // Custom dice rolling functionality
   CONFIG.Dice.rolls = [WOD5eRoll]
   CONFIG.Dice.terms.m = MortalDie
   CONFIG.Dice.terms.v = VampireDie
@@ -117,9 +118,6 @@ Hooks.once('init', async function () {
 
   // Initialize the alterations to ProseMirror
   ProseMirrorSettings()
-
-  // Initialize the alterations to the Paused
-  PauseChanges()
 
   // Sockets to register
   RollPromptSockets()
