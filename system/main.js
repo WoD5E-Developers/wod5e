@@ -2,7 +2,6 @@
 import { WoDActor } from './actor/actor.js'
 import { WOD5EActorDirectory } from './ui/actor-directory.js'
 import { RenderActorSidebar } from './ui/actors-sidebar.js'
-import { RenderSettings } from './ui/settings-sidebar.js'
 import { ProseMirrorSettings } from './ui/prosemirror.js'
 // Item sheets
 import { WoDItem } from './item/item.js'
@@ -11,6 +10,8 @@ import { WoDChatLog } from './ui/wod-chat-log.js'
 import { WoDChatMessage } from './ui/wod-chat-message.js'
 // Hotbar class
 import { WoDHotbar } from './ui/wod-hotbar.js'
+// Settings class
+import { WoDSettings } from './ui/wod-settings.js'
 // FVTT and module functionality
 import { preloadHandlebarsTemplates } from './scripts/templates.js'
 import { loadDiceSoNice } from './dice/dice-so-nice.js'
@@ -63,6 +64,7 @@ Hooks.once('init', async function () {
   CONFIG.ui.chat = WoDChatLog
   CONFIG.ChatMessage.documentClass = WoDChatMessage
   CONFIG.ChatMessage.template = 'systems/vtm5e/display/ui/chat/chat-message-default.hbs'
+  CONFIG.ui.settings = WoDSettings
   CONFIG.ui.hotbar = WoDHotbar
   CONFIG.ui.actors = WOD5EActorDirectory
   CONFIG.Dice.rolls = [WOD5eRoll]
@@ -116,9 +118,6 @@ Hooks.once('init', async function () {
 
   // Initialize the alterations to the actors sidebar
   RenderActorSidebar()
-
-  // Initialize the alterations to the settings sidebar
-  RenderSettings()
 
   // Initialize the alterations to ProseMirror
   ProseMirrorSettings()
