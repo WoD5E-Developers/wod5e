@@ -116,9 +116,6 @@ Hooks.once('init', async function () {
   // Initialize the alterations to any XP icons
   _updateXpIconOverrides()
 
-  // Initialize the alterations to the actors sidebar
-  RenderActorSidebar()
-
   // Initialize the alterations to ProseMirror
   ProseMirrorSettings()
 
