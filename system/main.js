@@ -1,7 +1,6 @@
 // Actor sheets
 import { WoDActor } from './actor/actor.js'
 import { WOD5EActorDirectory } from './ui/actor-directory.js'
-import { RenderActorSidebar } from './ui/actors-sidebar.js'
 import { ProseMirrorSettings } from './ui/prosemirror.js'
 // Item sheets
 import { WoDItem } from './item/item.js'
