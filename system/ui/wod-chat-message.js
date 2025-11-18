@@ -52,7 +52,9 @@ export class WoDChatMessage extends ChatMessage {
       author: this.author,
 
       // Display info
-      title: this.title,
+      title: this.flags?.vtm5e?.title || this.title,
+      description: this.flags?.vtm5e?.description || this.description,
+      img: this.flags?.vtm5e?.img || this.img,
       alias: this.alias,
       speakerActor,
       portrait: (speakerActor?.img ?? this.author?.avatar) || this.constructor.DEFAULT_AVATAR,
