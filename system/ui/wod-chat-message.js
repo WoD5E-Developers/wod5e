@@ -46,15 +46,17 @@ export class WoDChatMessage extends ChatMessage {
       isGM: game.user.isGM,
       isWhisper: this.whisper.length,
       whisperTo: this.whisper.map((u) => game.users.get(u)?.name).filterJoin(', '),
+      isContentVisible: this.isContentVisible,
 
       // User and author data
       user: game.user,
       author: this.author,
 
       // Display info
-      title: this.flags?.vtm5e?.title || this.title,
-      description: this.flags?.vtm5e?.description || this.description,
-      img: this.flags?.vtm5e?.img || this.img,
+      title: this.flags?.vtm5e?.title,
+      name: this.flags?.vtm5e?.name,
+      description: this.flags?.vtm5e?.description,
+      img: this.flags?.vtm5e?.img,
       alias: this.alias,
       speakerActor,
       portrait: (speakerActor?.img ?? this.author?.avatar) || this.constructor.DEFAULT_AVATAR,
