@@ -11,6 +11,8 @@ class WOD5eRoll extends foundry.dice.Roll {
   constructor(formula = '', data = {}, options = {}) {
     super(formula, data, options)
     this.system = options.system ?? this._tryCalculateSystem()
+    if (this.system) this.systemRoll = true
+
     if (!this.dice.every((d) => foundry.utils.getProperty(d, 'gameSystem') === this.system)) {
       throw new Error('Dice are not compatible with this roll')
     }

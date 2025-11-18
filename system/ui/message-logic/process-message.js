@@ -5,8 +5,10 @@ import { processRollPrompt } from './roll-prompt.js'
 export async function processMessage(context) {
   const { isRoll, isExtendedRoll, isRollPrompt } = context.messageData
 
+  const isSystemRoll = context.rolls[0].systemRoll
+
   // Roll-adjacent message
-  if (isRoll) {
+  if (isRoll && isSystemRoll) {
     if (isExtendedRoll) {
       await processExtendedRoll(context)
     } else {
