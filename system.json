@@ -1,7 +1,7 @@
 {
   "id": "vtm5e",
-  "title": "World of Darkness 5e",
-  "description": "World of Darkness 5e system for Foundry VTT",
+  "title": "World of Darkness 5e (Deprecated)",
+  "description": "The old version of the World of Darkness 5e system for Foundry VTT, now migrated to the 'wod5e' system ID.",
   "version": "5.3.0-prerelease1",
   "compatibility": {
     "minimum": "13",

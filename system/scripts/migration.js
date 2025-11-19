@@ -7,6 +7,7 @@ import { MigrateAbilitiesToAttributes } from './migration/migrate-abilities-to-a
 import { MigrateRolldataToDicepools } from './migration/migrate-rolldata-to-dicepools.js'
 import { MigrateOldDetailsToNewItems } from './migration/migrate-old-details-to-new-items.js'
 import { MigrateGeneralDifficulty } from './migration/migrate-general-difficulty.js'
+import { MigrateSystemId } from './migration/migrate-system-id.js'
 
 export const migrateWorld = async () => {
   // Only allow the Game Master to run this script
@@ -18,6 +19,8 @@ export const migrateWorld = async () => {
   const worldVersion = game.settings.get('vtm5e', 'worldVersion') || '1.5'
 
   console.log('World of Darkness 5e | Current SchreckNet Layer v' + worldVersion)
+
+  updateWorld()
 
   async function updateWorld() {
     if (worldVersion !== currentVersion || worldVersion === '1.5') {
@@ -80,8 +83,13 @@ export const migrateWorld = async () => {
 
       // Update game version, no matter if we error or not
       game.settings.set('vtm5e', 'worldVersion', currentVersion)
+    } else {
+      /* Commented out until we need to enable this
+      if (game.world.system === 'vtm5e') {
+        // Prompt for system ID migration if there are no other pending migrations
+        await MigrateSystemId()
+      }
+      */
     }
   }
-
-  updateWorld()
 }
