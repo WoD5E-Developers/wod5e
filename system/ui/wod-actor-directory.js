@@ -1,16 +1,52 @@
-/* Various Support for group sheets injected as the actor sidebar rerenders */
-export const RenderActorSidebar = async () => {
-  // Altering the ActorDirectory in order to support group sheet layouts
-  Hooks.on('renderActorDirectory', async (object, html) => {
-    // Define the list of groups we're going to be modifying
-    const groups = object.groups
+/**
+ * Extend the base ActorDirectory functionality
+ * @extends {ActorDirectory}
+ */
+export class WoDActorDirectory extends foundry.applications.sidebar.tabs.ActorDirectory {
+  constructor(...args) {
+    super(...args)
+
+    // The structure of the sidebar we're going to be manipulating
+    const actorStructure = game.actors.tree
+
+    // List of actors in groups
+    const actorsInGroups = []
+
+    // Push each group sheet into the groupsList
+    this.groups = actorStructure.entries.filter((actor) => actor.type === 'group')
+
+    // Iterate through each group's members list
+    this.groups.forEach((group) => {
+      const groupMembers = group.system?.members
+
+      // Add group members to actorsInGroups list so we can filter them out later
+      if (groupMembers) {
+        groupMembers.forEach((actorUuid) => {
+          const actorObject = fromUuidSync(actorUuid)
+
+          // Check to verify the actor exists
+          if (actorObject) {
+            // Make super sure that the actor has its folder field set to an empty string.
+            actorObject.update({ folder: '' })
+
+            actorsInGroups.push(actorObject.id)
+          }
+        })
+      }
+    })
+  }
+
+  async _onRender(context, options) {
+    await super._onRender(context, options)
+
+    const html = this.element
 
     // Define the directory list so that we can modify its structure
     const directoryList = html.querySelector('.directory-list')
 
     // Iterate through each group and make a "folder-like" element out of them
-    Object.entries(groups).forEach(([, group]) => {
-      const groupElement = document.querySelector(`[data-entry-id='${group.id}']`)
+    Object.entries(this.groups).forEach(([, group]) => {
+      const groupElement = html.querySelector(`[data-entry-id='${group.id}']`)
       if (!groupElement) return
 
       const groupMembers = group.system?.members
@@ -68,15 +104,16 @@ export const RenderActorSidebar = async () => {
       })
 
       // Move each group member's element to be a child of this group
-      // Additionally, we need to give the actor Limited
+      // Additionally, we need to give the actor Limited access to
+      // the group they're part of
       if (groupMembers) {
         groupMembers.forEach((actorUuid) => {
           const actorObject = fromUuidSync(actorUuid)
 
           // Check to verify the actor exists
           if (actorObject) {
-            const actorElement = document.querySelector(`[data-entry-id='${actorObject.id}']`)
-            const groupListElement = document
+            const actorElement = html.querySelector(`[data-entry-id='${actorObject.id}']`)
+            const groupListElement = html
               .querySelector(`[data-entry-id='${group.id}']`)
               ?.querySelector('.subdirectory')
 
@@ -104,19 +141,5 @@ export const RenderActorSidebar = async () => {
       // Add to the directory list
       directoryList.prepend(groupElement)
     })
-  })
-
-  // Handle actor updates
-  Hooks.on('updateActor', (actor) => {
-    if (actor.type === 'group') {
-      // Re-render the actors directory
-      game.actors.render()
-    }
-
-    // Only do this if the actor has an associated group with them
-    if (actor.system?.group) {
-      // Update the group sheet
-      game.actors.get(actor.system.group).sheet.render()
-    }
-  })
+  }
 }
