@@ -324,6 +324,14 @@ export const loadSettings = async function () {
     type: String
   })
 
+  // World Version, only really needed by developers
+  game.settings.register('vtm5e', 'declinedMigration', {
+    scope: 'world',
+    config: false,
+    default: false,
+    type: Boolean
+  })
+
   /*
     Splat Colors Menu
   */

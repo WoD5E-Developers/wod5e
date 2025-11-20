@@ -12,7 +12,7 @@ export const MigrateSystemId = async function () {
       label: game.i18n.localize('WOD5E.Confirm')
     },
     no: {
-      label: game.i18n.localize('WOD5E.Cancel'),
+      label: game.i18n.localize('WOD5E.Dismiss'),
       default: true
     },
     classes: ['wod5e']
@@ -24,6 +24,7 @@ export const MigrateSystemId = async function () {
     ui.notifications.info(game.i18n.localize('WOD5E.MigrateSystemIdComplete'))
   } else {
     ui.notifications.info(game.i18n.localize('WOD5E.MigrateSystemIdCancel'))
+    game.settings.set('vtm5e', 'declinedMigration', true)
   }
 }
 
