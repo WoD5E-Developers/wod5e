@@ -8,7 +8,6 @@ import { MigrateRolldataToDicepools } from './migration/migrate-rolldata-to-dice
 import { MigrateOldDetailsToNewItems } from './migration/migrate-old-details-to-new-items.js'
 import { MigrateGeneralDifficulty } from './migration/migrate-general-difficulty.js'
 import { MigrateSystemId } from './migration/migrate-system-id.js'
-import { MigrateSystemFlags } from './migration/migrate-system-flags.js'
 
 export const migrateWorld = async () => {
   // Only allow the Game Master to run this script
@@ -88,8 +87,6 @@ export const migrateWorld = async () => {
       if (game.world.system === 'vtm5e') {
         // Prompt for system ID migration if there are no other pending migrations
         await MigrateSystemId()
-      } else if (game.world.system === 'wod5e') {
-        await MigrateSystemFlags()
       }
     }
   }
