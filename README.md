@@ -3,7 +3,7 @@
 
 [![Foundry Version Support]][System URL]
 [![GNU GPL v3 License]][License URL]
-[![GitHub Super-Linter]][Super-Linter URL]
+[![ESLint]][ESLint URL]
 
 This system is for playing multiple World of Darkness 5th edition systems on the Foundry Virtual Tabletop System. For a list of the latest changes, see the [Changelog](https://github.com/WoD5E-Developers/wod5e/releases). You can also read further about the system in general on the [WOD5E Documentation](https://wod5e-developers.github.io/) site!
 
@@ -71,9 +71,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 [GNU GPL v3 License]: https://img.shields.io/badge/License-GNU_GPL_v3-green
 [License URL]: ./LICENSE.md
 
-[GitHub Super-Linter]: https://github.com/WoD5E-Developers/wod5e/workflows/Super-Linter/badge.svg
-[Super-Linter URL]: https://github.com/marketplace/actions/super-linter
+[ESLint]: https://github.com/WoD5E-Developers/wod5e/actions/workflows/.eslintrc.yml/badge.svg
+[ESLint URL]: https://github.com/WoD5E-Developers/wod5e/actions/workflows/.eslintrc.yml
 
 [Dark Pack]: https://s3-eu-north-1.amazonaws.com/pdx-campaign-wp-data/uploads/sites/10/2021/10/05102936/darkpack_logo2-300x300.png
 [Dark Pack URL]: https://www.paradoxinteractive.com/games/world-of-darkness/community/dark-pack-agreement
 [Dark Pack Agreement]: https://www.paradoxinteractive.com/games/world-of-darkness/community/dark-pack-agreement
+
