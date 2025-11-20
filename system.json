@@ -2,10 +2,10 @@
   "id": "vtm5e",
   "title": "World of Darkness 5e (Deprecated)",
   "description": "The old version of the World of Darkness 5e system for Foundry VTT, now migrated to the 'wod5e' system ID.",
-  "version": "5.3.0-prerelease1",
+  "version": "vtm5e-5.3.0",
   "compatibility": {
     "minimum": "13",
-    "verified": "13.350",
+    "verified": "13.351",
     "maximum": ""
   },
   "authors": [
@@ -32,13 +32,13 @@
   },
   "initiative": "1d10",
   "socket": true,
-  "changelog": "https://github.com/WoD5E-Developers/wod5e/releases/tag/5.3.0-prerelease1",
+  "changelog": "https://github.com/WoD5E-Developers/wod5e/releases/tag/vtm5e-5.3.0",
   "license": "./LICENSE.md",
   "url": "https://github.com/WoD5E-Developers/wod5e",
   "bugs": "https://github.com/WoD5E-Developers/wod5e/issues",
   "background": "systems/vtm5e/assets/images/wodcity.jpg",
-  "manifest": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.3.0-prerelease1/system.json",
-  "download": "https://github.com/WoD5E-Developers/wod5e/releases/download/5.3.0-prerelease1/vtm5e.zip",
+  "manifest": "https://github.com/WoD5E-Developers/wod5e/releases/download/vtm5e-5.3.0/system.json",
+  "download": "https://github.com/WoD5E-Developers/wod5e/releases/download/vtm5e-5.3.0/vtm5e.zip",
   "flags": {
     "hotReload": {
       "extensions": [
