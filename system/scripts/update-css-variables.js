@@ -142,24 +142,24 @@ export const _updateCSSVariable = async (settingName, cssVariableName, newColor)
   // If this isn't a valid hexcode, show the error message
   if (!validateColor(newColor)) {
     ui.notifications.error(
-      `Invalid hexcode or color name "${newColor}" given for setting ID vtm5e.${settingName}`
+      `Invalid hexcode or color name "${newColor}" given for setting ID wod5e.${settingName}`
     )
     validColor = true
   }
 
   // If no color is provided or the color is invalid, reset to the default color
   if (!newColor || !validColor) {
-    const defaultColor = game.settings.settings.get(`vtm5e.${settingName}`).default
+    const defaultColor = game.settings.settings.get(`wod5e.${settingName}`).default
     document.documentElement.style.setProperty(cssVariableName, defaultColor)
-    game.settings.set('vtm5e', settingName, defaultColor)
+    game.settings.set('wod5e', settingName, defaultColor)
   } else {
     // Update the variable with the new color
     document.documentElement.style.setProperty(cssVariableName, newColor)
 
     // Only update the setting if we need to; this is mainly for the initial load, so we're
     // not unnecessarily re-setting a variable without changes
-    if (newColor !== game.settings.get('vtm5e', settingName)) {
-      game.settings.set('vtm5e', settingName, newColor)
+    if (newColor !== game.settings.get('wod5e', settingName)) {
+      game.settings.set('wod5e', settingName, newColor)
     }
   }
 }

@@ -250,7 +250,7 @@
   font-weight: 300;
   font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v50/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuaabWmT.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuaabWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
@@ -258,7 +258,7 @@
   font-weight: 400;
   font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v50/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbWmT.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
@@ -266,7 +266,7 @@
   font-weight: 500;
   font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v50/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bWmT.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Amarante';
@@ -1441,9 +1441,9 @@ body.uk .actor.sheet {
 }
 
 :root {
-  --xp-gain-icon: url("/systems/vtm5e/assets/icons/sheet/exp-gain.webp");
-  --xp-spend-icon: url("/systems/vtm5e/assets/icons/sheet/exp-spend.webp");
-  --xp-neutral-icon: url("/systems/vtm5e/assets/icons/sheet/exp-neutral.webp");
+  --xp-gain-icon: url("/systems/wod5e/assets/icons/sheet/exp-gain.webp");
+  --xp-spend-icon: url("/systems/wod5e/assets/icons/sheet/exp-spend.webp");
+  --xp-neutral-icon: url("/systems/wod5e/assets/icons/sheet/exp-neutral.webp");
 }
 /* The actor sheet itself */
 .actor.sheet:not(.minimized):not(.group) {
@@ -2977,7 +2977,7 @@ prose-mirror .editor-menu button {
   --system-dark-color-7: #505050;
   --system-dark-color-8: #e6e6e6;
   --dark-theme-filter: rgba(43, 43, 43, 0.5);
-  --actor-background-dark: url(/systems/vtm5e/assets/actor/actor_background_dark.webp);
+  --actor-background-dark: url(/systems/wod5e/assets/actor/actor_background_dark.webp);
 }
 .theme-dark {
   /* All places that use a filter to apply the theme colour */

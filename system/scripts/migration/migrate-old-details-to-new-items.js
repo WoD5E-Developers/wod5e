@@ -36,7 +36,7 @@ export const MigrateOldDetailsToNewItems = async function () {
           name,
           type: 'clan',
           flags: {
-            vtm5e: {
+            wod5e: {
               dataItemId
             }
           },
@@ -66,7 +66,7 @@ export const MigrateOldDetailsToNewItems = async function () {
           name,
           type: 'predatorType',
           flags: {
-            vtm5e: {
+            wod5e: {
               dataItemId
             }
           }
@@ -93,7 +93,7 @@ export const MigrateOldDetailsToNewItems = async function () {
           name,
           type: 'resonance',
           flags: {
-            vtm5e: {
+            wod5e: {
               dataItemId
             }
           }
@@ -120,7 +120,7 @@ export const MigrateOldDetailsToNewItems = async function () {
           name,
           type: 'creed',
           flags: {
-            vtm5e: {
+            wod5e: {
               dataItemId
             }
           },
@@ -150,7 +150,7 @@ export const MigrateOldDetailsToNewItems = async function () {
           name,
           type: 'drive',
           flags: {
-            vtm5e: {
+            wod5e: {
               dataItemId
             }
           },
@@ -183,7 +183,7 @@ export const MigrateOldDetailsToNewItems = async function () {
           name,
           type: 'tribe',
           flags: {
-            vtm5e: {
+            wod5e: {
               dataItemId
             }
           },
@@ -218,7 +218,7 @@ export const MigrateOldDetailsToNewItems = async function () {
           name,
           type: 'auspice',
           flags: {
-            vtm5e: {
+            wod5e: {
               dataItemId
             }
           }

@@ -12,9 +12,9 @@ export async function _increaseHunger(actor, amount, rollMode) {
   if (amount > 0 && currentHunger === hungerMax) {
     foundry.documents.ChatMessage.implementation.create({
       flags: {
-        vtm5e: {
+        wod5e: {
           name: game.i18n.localize('WOD5E.VTM.HungerFull1'),
-          img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+          img: 'systems/wod5e/assets/icons/dice/vampire/bestial-failure.png',
           description: game.i18n.localize('WOD5E.VTM.HungerFull2')
         }
       }

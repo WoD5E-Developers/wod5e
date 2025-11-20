@@ -2,8 +2,8 @@ export const _onPromptInChat = async function (event) {
   event.preventDefault()
 
   // Grab data from user config flags to determine the currently active roll
-  const activeRoll = await game.users.current.getFlag('vtm5e', 'rollMenuActiveRoll')
-  const savedRolls = await game.users.current.getFlag('vtm5e', 'rollMenuSavedRolls')
+  const activeRoll = await game.users.current.getFlag('wod5e', 'rollMenuActiveRoll')
+  const savedRolls = await game.users.current.getFlag('wod5e', 'rollMenuSavedRolls')
   const activeRollObject = savedRolls[activeRoll]
 
   // Construct the valuePaths array that gets sent to the rollFromDataset function
@@ -39,8 +39,8 @@ export const _onPromptInChat = async function (event) {
         : ''
     }`,
     flags: {
-      vtm5e: {
-        template: 'systems/vtm5e/display/ui/chat/chat-message-roll-prompt.hbs',
+      wod5e: {
+        template: 'systems/wod5e/display/ui/chat/chat-message-roll-prompt.hbs',
         valuePaths: valuePathsArray.join(' '),
         isRollPrompt: true,
         promptedRolls,

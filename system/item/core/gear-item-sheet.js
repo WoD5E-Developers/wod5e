@@ -23,25 +23,25 @@ export class GearItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/shared/items/gear-sheet.hbs'
+      template: 'systems/wod5e/display/shared/items/gear-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
     },
     description: {
-      template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
+      template: 'systems/wod5e/display/shared/items/parts/description.hbs'
     },
     dicepool: {
-      template: 'systems/vtm5e/display/shared/items/parts/dicepool.hbs'
+      template: 'systems/wod5e/display/shared/items/parts/dicepool.hbs'
     },
     macro: {
-      template: 'systems/vtm5e/display/shared/items/parts/macro.hbs'
+      template: 'systems/wod5e/display/shared/items/parts/macro.hbs'
     },
     modifiers: {
-      template: 'systems/vtm5e/display/shared/items/parts/modifiers.hbs'
+      template: 'systems/wod5e/display/shared/items/parts/modifiers.hbs'
     },
     settings: {
-      template: 'systems/vtm5e/display/shared/items/parts/gear-settings.hbs'
+      template: 'systems/wod5e/display/shared/items/parts/gear-settings.hbs'
     }
   }
 

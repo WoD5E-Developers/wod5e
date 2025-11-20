@@ -36,9 +36,9 @@ export async function _damageWillpower(event, target, actor, willpowerDamage, ro
       // then tell the chat and don't increase any values.
       foundry.documents.ChatMessage.implementation.create({
         flags: {
-          vtm5e: {
+          wod5e: {
             name: `${prependTitle}${game.i18n.localize('WOD5E.Chat.WillpowerFullTitle')}`,
-            img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+            img: 'systems/wod5e/assets/icons/dice/vampire/bestial-failure.png',
             description: game.i18n.localize('WOD5E.Chat.WillpowerFull')
           }
         }
@@ -59,9 +59,9 @@ export async function _damageWillpower(event, target, actor, willpowerDamage, ro
 
   foundry.documents.ChatMessage.implementation.create({
     flags: {
-      vtm5e: {
+      wod5e: {
         name: `${prependTitle}${game.i18n.localize('WOD5E.Chat.WillpowerDamage')}`,
-        img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+        img: 'systems/wod5e/assets/icons/dice/vampire/bestial-failure.png',
         description: `${game.i18n.format('WOD5E.Chat.HasReceivedWillpowerDamage', {
           actor: actor.name,
           willpowerDamage

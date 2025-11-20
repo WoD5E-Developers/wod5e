@@ -1,7 +1,7 @@
 import { generateRollMessageData } from '../../scripts/rolls/roll-message.js'
 
 export async function processRoll(context) {
-  context.template = 'systems/vtm5e/display/ui/chat/chat-message-roll.hbs'
+  context.template = 'systems/wod5e/display/ui/chat/chat-message-roll.hbs'
 
   const roll = context.rolls[0]
 

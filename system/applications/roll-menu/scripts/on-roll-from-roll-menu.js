@@ -6,8 +6,8 @@ export const _onRollFromRollMenu = async function (event) {
   if (!actor) ui.notifications.warn(game.i18n.localize('WOD5E.Notifications.NoTokenSelected'))
 
   // Grab data from user config flags to determine the currently active roll
-  const activeRoll = await game.users.current.getFlag('vtm5e', 'rollMenuActiveRoll')
-  const savedRolls = await game.users.current.getFlag('vtm5e', 'rollMenuSavedRolls')
+  const activeRoll = await game.users.current.getFlag('wod5e', 'rollMenuActiveRoll')
+  const savedRolls = await game.users.current.getFlag('wod5e', 'rollMenuSavedRolls')
   const activeRollObject = savedRolls[activeRoll]
 
   // Construct the valuePaths array that gets sent to the rollFromDataset function
