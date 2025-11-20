@@ -76,11 +76,7 @@ export const migrateWorld = async () => {
           }, 15000)
         } else {
           ui.notifications.info('Welcome to version ' + currentVersion)
-
-          if (game.world.system === 'vtm5e' && !game.settings.get('vtm5e', 'declinedMigration')) {
-            // Prompt for system ID migration if there are no other pending migrations
-            await MigrateSystemId()
-          }
+          await MigrateSystemFlags()
         }
       } catch (error) {
         console.error('World of Darkness 5e | Error during update:', error)
