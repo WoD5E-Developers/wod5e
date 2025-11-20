@@ -1,7 +1,7 @@
 import { generateRollMessageData } from '../../scripts/rolls/roll-message.js'
 
 export async function processRollPrompt(context) {
-  context.template = 'systems/vtm5e/display/ui/chat/chat-message-roll-prompt.hbs'
+  context.template = 'systems/wod5e/display/ui/chat/chat-message-roll-prompt.hbs'
 
   const isOwnerFilter = game.actors.filter((a) => a.isOwner)
   const isVisibleFilter = game.actors.filter((a) => a.visible)

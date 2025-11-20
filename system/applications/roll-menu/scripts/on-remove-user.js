@@ -8,7 +8,7 @@ export const _onRemoveUser = async function (event, target) {
 
   // Remove the user from the promptedRolls flag
   if (chatMessage.isOwner) {
-    chatMessage.update({ [`flags.vtm5e.promptedRolls.-=${actorID}`]: null })
+    chatMessage.update({ [`flags.wod5e.promptedRolls.-=${actorID}`]: null })
   } else {
     const socketData = {
       action: 'removeActor',
@@ -16,6 +16,6 @@ export const _onRemoveUser = async function (event, target) {
       messageID
     }
 
-    game.socket.emit('system.vtm5e', socketData)
+    game.socket.emit('system.wod5e', socketData)
   }
 }

@@ -59,7 +59,7 @@ Hooks.once('init', async function () {
   CONFIG.Actor.documentClass = WoDActor
   CONFIG.Item.documentClass = WoDItem
   CONFIG.ChatMessage.documentClass = WoDChatMessage
-  CONFIG.ChatMessage.template = 'systems/vtm5e/display/ui/chat/chat-message-default.hbs'
+  CONFIG.ChatMessage.template = 'systems/wod5e/display/ui/chat/chat-message-default.hbs'
   // Custom UI implementations
   CONFIG.ui.chat = WoDChatLog
   CONFIG.ui.settings = WoDSettings
@@ -81,7 +81,7 @@ Hooks.once('init', async function () {
   for (const [, value] of Object.entries(actorTypesList)) {
     const { label, types, sheetClass } = value
 
-    foundry.documents.collections.Actors.registerSheet('vtm5e', sheetClass, {
+    foundry.documents.collections.Actors.registerSheet('wod5e', sheetClass, {
       label,
       types,
       makeDefault: true
@@ -94,7 +94,7 @@ Hooks.once('init', async function () {
   for (const [, value] of Object.entries(itemTypesList)) {
     const { label, types, sheetClass } = value
 
-    foundry.documents.collections.Items.registerSheet('vtm5e', sheetClass, {
+    foundry.documents.collections.Items.registerSheet('wod5e', sheetClass, {
       label,
       types,
       makeDefault: true
@@ -184,7 +184,7 @@ Hooks.once('ready', async function () {
       const { settingId, cssVariable } = settings[settingKey]
 
       // Get the current value of the setting
-      const settingValue = game.settings.get('vtm5e', settingId)
+      const settingValue = game.settings.get('wod5e', settingId)
 
       // Update the CSS variable
       _updateCSSVariable(settingId, cssVariable, settingValue)

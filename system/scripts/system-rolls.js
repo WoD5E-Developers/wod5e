@@ -231,7 +231,7 @@ class WOD5eDice {
       if (roll.advancedDice) await handleFailure(system, roll.advancedDice.results)
 
       // Handle willpower damage
-      if (willpowerDamage > 0 && game.settings.get('vtm5e', 'automatedWillpower'))
+      if (willpowerDamage > 0 && game.settings.get('wod5e', 'automatedWillpower'))
         _damageWillpower(null, null, actor, willpowerDamage, rollMode)
 
       // Roll any advanced check dice that need to be rolled in a separate rollmessage
@@ -274,7 +274,7 @@ class WOD5eDice {
       if (originMessage) {
         const chatMessage = game.messages.get(originMessage)
 
-        if (chatMessage && chatMessage.getFlag('vtm5e', 'isRollPrompt')) {
+        if (chatMessage && chatMessage.getFlag('wod5e', 'isRollPrompt')) {
           disableMessageOutput = true
 
           const socketData = {
@@ -287,7 +287,7 @@ class WOD5eDice {
           if (chatMessage.isOwner) {
             updateRollPrompt(socketData)
           } else {
-            game.socket.emit('system.vtm5e', socketData)
+            game.socket.emit('system.wod5e', socketData)
           }
         }
       }
@@ -322,7 +322,7 @@ class WOD5eDice {
       const situationalModifiers = actor ? await getSituationalModifiers({ actor, selectors }) : {}
 
       // Roll dialog template
-      const dialogTemplate = `systems/vtm5e/display/ui/${system}-roll-dialog.hbs`
+      const dialogTemplate = `systems/wod5e/display/ui/${system}-roll-dialog.hbs`
       // Data that the dialog template needs
       const dialogData = {
         system,
@@ -562,20 +562,20 @@ class WOD5eDice {
         if (
           system === 'vampire' &&
           increaseHunger &&
-          game.settings.get('vtm5e', 'automatedHunger')
+          game.settings.get('wod5e', 'automatedHunger')
         ) {
           _increaseHunger(actor, failures, rollMode)
         } else if (
           system === 'werewolf' &&
           decreaseRage &&
-          game.settings.get('vtm5e', 'automatedRage')
+          game.settings.get('wod5e', 'automatedRage')
         ) {
           _decreaseRage(actor, failures, rollMode)
         }
       }
 
       // Handle Oblivion rouse checks here
-      if (selectors.includes('oblivion-rouse') && game.settings.get('vtm5e', 'automatedOblivion')) {
+      if (selectors.includes('oblivion-rouse') && game.settings.get('wod5e', 'automatedOblivion')) {
         const oblivionTriggers = diceResults.filter(
           (result) => [1, 10].includes(result.result) && !result.discarded
         ).length

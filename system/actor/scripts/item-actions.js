@@ -178,7 +178,7 @@ export const _onItemChat = async function (event, target) {
 
   foundry.documents.ChatMessage.implementation.create({
     flags: {
-      vtm5e: {
+      wod5e: {
         name: item.name,
         img: item.img,
         description: item.system?.description || ''
@@ -254,7 +254,7 @@ async function createItem(actor, itemName, type, itemData) {
       type,
       system: itemData,
       flags: {
-        vtm5e: {
+        wod5e: {
           dataItemId
         }
       }

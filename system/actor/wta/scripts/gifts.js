@@ -106,7 +106,7 @@ export const _onGiftToChat = async function (event, target) {
 
   foundry.documents.ChatMessage.implementation.create({
     flags: {
-      vtm5e: {
+      wod5e: {
         name: gift.displayName,
         img: 'icons/svg/dice-target.svg',
         description: gift?.description || ''

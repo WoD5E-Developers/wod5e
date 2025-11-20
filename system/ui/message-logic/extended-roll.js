@@ -1,7 +1,7 @@
 import { generateRollMessageData } from '../../scripts/rolls/roll-message.js'
 
 export async function processExtendedRoll(context) {
-  context.template = 'systems/vtm5e/display/ui/chat/chat-message-extended-roll.hbs'
+  context.template = 'systems/wod5e/display/ui/chat/chat-message-extended-roll.hbs'
 
   for (const [key, value] of Object.entries(context.messageData.rolls)) {
     let rollData

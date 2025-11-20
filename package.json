@@ -1,5 +1,5 @@
 {
-  "name": "vtm5e",
+  "name": "wod5e",
   "version": "5.0.0-prerelease",
   "description": "CSS compiler for the Vampire 5e system",
   "scripts": {
@@ -19,7 +19,6 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/eslint-parser": "^7.25.1",
-    "@league-of-foundry-developers/foundry-vtt-types": "^13.346.0-beta.20250812191140",
     "eslint": "^9.9.0",
     "eslint-plugin-hbs": "^1.0.3",
     "eslint-plugin-import": "^2.32.0",
