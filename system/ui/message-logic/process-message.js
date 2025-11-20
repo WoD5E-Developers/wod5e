@@ -5,7 +5,7 @@ import { processRollPrompt } from './roll-prompt.js'
 export async function processMessage(context) {
   const { isRoll, isExtendedRoll, isRollPrompt } = context.messageData
 
-  const isSystemRoll = context.rolls[0].systemRoll
+  const isSystemRoll = context.rolls[0]?.systemRoll
 
   // Roll-adjacent message
   if (isRoll && isSystemRoll) {
