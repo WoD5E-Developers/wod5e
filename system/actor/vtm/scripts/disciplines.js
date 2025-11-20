@@ -1,5 +1,3 @@
-/* global game, WOD5E, foundry, ChatMessage */
-
 /** Handle adding a new discipline to the sheet */
 export const _onAddDiscipline = async function (event) {
   event.preventDefault()
@@ -15,10 +13,12 @@ export const _onAddDiscipline = async function (event) {
     choices: disciplineList,
     label: game.i18n.localize('WOD5E.VTM.SelectDiscipline'),
     required: true
-  }).toFormGroup({},
+  }).toFormGroup(
+    {},
     {
       name: 'discipline'
-    }).outerHTML
+    }
+  ).outerHTML
 
   // Prompt a dialog to determine which discipline we're adding
   const disciplineSelected = await foundry.applications.api.DialogV2.prompt({
@@ -28,7 +28,8 @@ export const _onAddDiscipline = async function (event) {
     classes: ['wod5e', 'dialog', 'vampire', 'dialog'],
     content,
     ok: {
-      callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object.discipline
+      callback: (event, button) =>
+        new foundry.applications.ux.FormDataExtended(button.form).object.discipline
     },
     modal: true
   })
@@ -64,13 +65,14 @@ export const _onDisciplineToChat = async function (event, target) {
   const actor = this.actor
   const discipline = actor.system.disciplines[target.getAttribute('data-discipline')]
 
-  await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
-    name: discipline.displayName,
-    img: 'icons/svg/dice-target.svg',
-    description: discipline?.description
-  }).then(html => {
-    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
-    ChatMessage.create(message)
+  foundry.documents.ChatMessage.implementation.create({
+    flags: {
+      vtm5e: {
+        name: discipline.displayName,
+        img: 'icons/svg/dice-target.svg',
+        description: discipline?.description
+      }
+    }
   })
 }
 
@@ -122,7 +124,11 @@ export const _updateSelectedDisciplinePower = async function (actor, power) {
 
   // Unselect the previously selected power
   const previouslySelectedPower = actor.system?.selectedDisciplinePower
-  if (previouslySelectedPower && actor.items.get(previouslySelectedPower) && previouslySelectedPower !== power) {
+  if (
+    previouslySelectedPower &&
+    actor.items.get(previouslySelectedPower) &&
+    previouslySelectedPower !== power
+  ) {
     actor.items.get(previouslySelectedPower).update({
       system: {
         selected: false

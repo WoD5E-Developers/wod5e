@@ -1,7 +1,13 @@
-/* global foundry */
-
 // Preparation functions
-import { prepareBiographyContext, prepareFeaturesContext, prepareEquipmentContext, prepareNotepadContext, prepareSettingsContext, prepareLimitedContext, prepareSpcStatsContext } from './scripts/prepare-partials.js'
+import {
+  prepareBiographyContext,
+  prepareFeaturesContext,
+  prepareEquipmentContext,
+  prepareNotepadContext,
+  prepareSettingsContext,
+  prepareLimitedContext,
+  prepareSpcStatsContext
+} from './scripts/prepare-partials.js'
 // Various button functions
 import { _onEditExceptionalPools } from './scripts/exceptional-dicepools.js'
 import { _onCreatePower, _onDeletePower } from './scripts/spc-powers.js'
@@ -101,7 +107,7 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     }
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     // Top-level variables
     const data = await super._prepareContext()
     const actor = this.actor
@@ -143,7 +149,7 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     return data
   }
 
-  async _preparePartContext (partId, context, options) {
+  async _preparePartContext(partId, context, options) {
     // Inherit any preparation from the extended class
     context = { ...(await super._preparePartContext(partId, context, options)) }
 
@@ -184,7 +190,7 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActor) {
     return context
   }
 
-  _onRender () {
+  _onRender() {
     super._onRender()
     const html = this.element
 

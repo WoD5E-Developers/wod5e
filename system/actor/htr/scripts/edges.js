@@ -1,5 +1,3 @@
-/* global game, WOD5E, foundry, ChatMessage */
-
 /** Handle adding a new edge to the sheet */
 export const _onAddEdge = async function (event) {
   event.preventDefault()
@@ -15,10 +13,12 @@ export const _onAddEdge = async function (event) {
     choices: edgeList,
     label: game.i18n.localize('WOD5E.HTR.SelectEdge'),
     required: true
-  }).toFormGroup({},
+  }).toFormGroup(
+    {},
     {
       name: 'edge'
-    }).outerHTML
+    }
+  ).outerHTML
 
   // Prompt a dialog to determine which edge we're adding
   const edgeSelected = await foundry.applications.api.DialogV2.prompt({
@@ -28,7 +28,8 @@ export const _onAddEdge = async function (event) {
     classes: ['wod5e', 'dialog', 'hunter', 'dialog'],
     content,
     ok: {
-      callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object.edge
+      callback: (event, button) =>
+        new foundry.applications.ux.FormDataExtended(button.form).object.edge
     },
     modal: true
   })
@@ -64,13 +65,14 @@ export const _onEdgeToChat = async function (event, target) {
   const actor = this.actor
   const edge = actor.system.edges[target.getAttribute('data-edge')]
 
-  await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
-    name: edge.displayName,
-    img: 'icons/svg/dice-target.svg',
-    description: edge?.description || ''
-  }).then(html => {
-    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
-    ChatMessage.create(message)
+  foundry.documents.ChatMessage.implementation.create({
+    flags: {
+      vtm5e: {
+        name: edge.displayName,
+        img: 'icons/svg/dice-target.svg',
+        description: edge?.description || ''
+      }
+    }
   })
 }
 
@@ -122,7 +124,11 @@ export const _updateSelectedPerk = async function (actor, perk) {
 
   // Unselect the previously selected perk
   const previouslySelectedPerk = actor.system?.selectedEdgePerk
-  if (previouslySelectedPerk && actor.items.get(previouslySelectedPerk) && previouslySelectedPerk !== perk) {
+  if (
+    previouslySelectedPerk &&
+    actor.items.get(previouslySelectedPerk) &&
+    previouslySelectedPerk !== perk
+  ) {
     actor.items.get(previouslySelectedPerk).update({
       system: {
         selected: false

@@ -8,6 +8,7 @@
       "Artifact": "Artefact",
       "BeastWhisperer": "Ami des bêtes",
       "Cell": "Cellule",
+      "_CleanseTheUnnatural": "",
       "Creed": "Credo",
       "CreedDetails": "Détails du Credo",
       "CreedFields": "Archétype du Credo",
@@ -26,8 +27,10 @@
       "EdgePool": "Ascendant",
       "Edges": "Ascendants",
       "EdgeType": "Catégorie d'Ascendant",
+      "_ExperimentalMedicine": "",
       "Fleet": "Flotte",
       "GlobalAccess": "Accès global",
+      "_GreatDestiny": "",
       "HunterDice": "Dé de chasseur",
       "ImprovisedGear": "Matériel improvisé",
       "Label": "Chasseur",
@@ -47,7 +50,8 @@
       "StringPerks": "Extras",
       "SuggestedDrives": "Pulsions courantes",
       "SuggestedEdges": "Ascendants suggérés",
-      "ThwartTheUnnatural": "Déjouer le surnaturel"
+      "ThwartTheUnnatural": "Déjouer le surnaturel",
+      "_Turncoat": ""
     }
   }
 }

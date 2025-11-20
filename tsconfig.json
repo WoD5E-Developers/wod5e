@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "node20",
+    "moduleResolution": "node16",
+    "strict": false,
+    "allowJs": true,
+    "checkJs": true,
+    "types": ["@league-of-foundry-developers/foundry-vtt-types"],
+    "outDir": "./build/"
+  },
+  "include": ["./**/*.ts"]
+}

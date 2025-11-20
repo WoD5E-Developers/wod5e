@@ -1,15 +1,19 @@
-/* global ui, game, WOD5E, foundry, Item */
-
 export const MigrateRolldataToDicepools = async function () {
-  const compendiumsActorsList = game.packs.filter(compendium => compendium.metadata.type === 'Actor')
-  const compendiumsItemsList = game.packs.filter(compendium => compendium.metadata.type === 'Item')
+  const compendiumsActorsList = game.packs.filter(
+    (compendium) => compendium.metadata.type === 'Actor'
+  )
+  const compendiumsItemsList = game.packs.filter(
+    (compendium) => compendium.metadata.type === 'Item'
+  )
   const actorsList = game.actors
   const itemsList = game.items
   const totalIterations = actorsList.size + compendiumsItemsList.size + itemsList.size
   const migrationIDs = []
 
   // If there's nothing to go through, then just resolve and move on.
-  if (totalIterations === 0) { return [] }
+  if (totalIterations === 0) {
+    return []
+  }
 
   // Fix dicepools of rollable items in actors in compendiums
   for (const compendium of compendiumsActorsList) {
@@ -22,7 +26,10 @@ export const MigrateRolldataToDicepools = async function () {
 
       for (const item of actorItems) {
         // If the item was previously rollable and doesn't already have a filled dicepool, migrate the rolldata to the new format
-        if ((item.system?.rollable || item.type === 'customRoll') && foundry.utils.isEmpty(item.system?.dicepool)) {
+        if (
+          (item.system?.rollable || item.type === 'customRoll') &&
+          foundry.utils.isEmpty(item.system?.dicepool)
+        ) {
           hasFixedItems = true
 
           // Push the updated item to the array
@@ -44,7 +51,11 @@ export const MigrateRolldataToDicepools = async function () {
     const docs = await compendium.getDocuments()
 
     const updates = docs
-      .filter((item) => (item.system?.rollable || item.type === 'customRoll') && foundry.utils.isEmpty(item.system?.dicepool))
+      .filter(
+        (item) =>
+          (item.system?.rollable || item.type === 'customRoll') &&
+          foundry.utils.isEmpty(item.system?.dicepool)
+      )
       .map((item) => {
         const updatedItemData = fixItemData(item)
         return {
@@ -64,7 +75,10 @@ export const MigrateRolldataToDicepools = async function () {
   // Fix dicepools of rollable items in the world
   for (const item of itemsList) {
     // If the item was previously rollable and doesn't already have a filled dicepool, migrate the rolldata to the new format
-    if ((item.system?.rollable || item.type === 'customRoll') && foundry.utils.isEmpty(item.system?.dicepool)) {
+    if (
+      (item.system?.rollable || item.type === 'customRoll') &&
+      foundry.utils.isEmpty(item.system?.dicepool)
+    ) {
       // Push the updated item data
       item.update({
         ...fixItemData(item)
@@ -80,7 +94,12 @@ export const MigrateRolldataToDicepools = async function () {
 
     for (const item of actorItems) {
       // If the item was previously rollable and doesn't already have a filled dicepool, migrate the rolldata to the new format
-      if ((item.system?.rollable || item.type === 'customRoll') && (item?.system?.dice1 && item?.system?.dice2) && foundry.utils.isEmpty(item.system?.dicepool)) {
+      if (
+        (item.system?.rollable || item.type === 'customRoll') &&
+        item?.system?.dice1 &&
+        item?.system?.dice2 &&
+        foundry.utils.isEmpty(item.system?.dicepool)
+      ) {
         hasFixedItems = true
 
         // Push the updated item to the array
@@ -98,7 +117,7 @@ export const MigrateRolldataToDicepools = async function () {
 
   return migrationIDs
 
-  function fixItemData (item) {
+  function fixItemData(item) {
     const dicepool = {}
 
     if (item?.system?.dice1) {
@@ -136,7 +155,7 @@ export const MigrateRolldataToDicepools = async function () {
   }
 
   // Function to change a given dice into its path
-  function getDicePath (string, data) {
+  function getDicePath(string, data) {
     string.toLowerCase()
 
     const skillsList = WOD5E.Skills.getList({})

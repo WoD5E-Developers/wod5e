@@ -1,5 +1,3 @@
-/* global Hooks */
-
 // Base definition class
 import { BaseDefinitionClass } from './base-definition-class.js'
 // All systems
@@ -17,7 +15,7 @@ import { WerewolfActorSheet } from '../../actor/wta/werewolf-actor-sheet.js'
 
 export class ActorTypes extends BaseDefinitionClass {
   // Run any necessary compilation on ready
-  static onReady () {
+  static onReady() {
     ActorTypes.setSortAlphabetically()
     ActorTypes.initializeLabels()
   }

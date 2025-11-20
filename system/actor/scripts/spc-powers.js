@@ -1,5 +1,3 @@
-/* global game, foundry */
-
 import { Disciplines } from '../../api/def/disciplines.js'
 import { Edges } from '../../api/def/edges.js'
 import { Gifts } from '../../api/def/gifts.js'
@@ -36,10 +34,12 @@ export const _onCreatePower = async function (event, target) {
     choices: powersList,
     label,
     required: true
-  }).toFormGroup({},
+  }).toFormGroup(
+    {},
     {
       name: 'power'
-    }).outerHTML
+    }
+  ).outerHTML
 
   // Prompt a dialog to determine which edge we're adding
   const powerSelected = await foundry.applications.api.DialogV2.prompt({
@@ -49,7 +49,8 @@ export const _onCreatePower = async function (event, target) {
     classes: ['wod5e', actor.system.gamesystem, 'dialog'],
     content,
     ok: {
-      callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object.power
+      callback: (event, button) =>
+        new foundry.applications.ux.FormDataExtended(button.form).object.power
     },
     modal: true
   })

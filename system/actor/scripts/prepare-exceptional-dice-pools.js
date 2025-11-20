@@ -19,17 +19,24 @@ export const prepareExceptionalDicePools = async function (actor) {
 
       // If the actor has a skill with the key, grab its current values
       if (Object.prototype.hasOwnProperty.call(skills, id)) {
-        skillData = Object.assign({
-          id,
-          value: skills[id].value,
-          active: skills[id].active
-        }, value)
-      } else { // Otherwise, add it to the actor and set it as some default data
-        skillData = Object.assign({
-          id,
-          value: 0,
-          active: false
-        }, value)
+        skillData = Object.assign(
+          {
+            id,
+            value: skills[id].value,
+            active: skills[id].active
+          },
+          value
+        )
+      } else {
+        // Otherwise, add it to the actor and set it as some default data
+        skillData = Object.assign(
+          {
+            id,
+            value: 0,
+            active: false
+          },
+          value
+        )
       }
 
       // Push to the Exceptional Skills list

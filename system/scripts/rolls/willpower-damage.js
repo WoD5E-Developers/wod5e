@@ -1,6 +1,4 @@
-/* global ChatMessage, foundry, game */
-
-export async function _damageWillpower (event, target, actor, willpowerDamage, rollMode) {
+export async function _damageWillpower(event, target, actor, willpowerDamage, rollMode) {
   if (event) event.preventDefault()
 
   // If no actor is provided, try and assume this is being done from an actor
@@ -24,7 +22,7 @@ export async function _damageWillpower (event, target, actor, willpowerDamage, r
 
   // Loop to handle willpower damage tick by tick
   for (let i = 0; i < willpowerDamage; i++) {
-    if ((superWillpower + aggrWillpower) < maxWillpower) {
+    if (superWillpower + aggrWillpower < maxWillpower) {
       // If the superficial willpower ticket isn't completely full, then add a point
       superWillpower++
     } else if (aggrWillpower < maxWillpower) {
@@ -36,14 +34,14 @@ export async function _damageWillpower (event, target, actor, willpowerDamage, r
     } else {
       // If the willpower boxes are fully ticked with aggravated damage
       // then tell the chat and don't increase any values.
-
-      await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
-        name: `${prependTitle}${game.i18n.localize('WOD5E.Chat.WillpowerFullTitle')}`,
-        img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
-        description: game.i18n.localize('WOD5E.Chat.WillpowerFull')
-      }).then(html => {
-        const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, rollMode)
-        ChatMessage.create(message)
+      foundry.documents.ChatMessage.implementation.create({
+        flags: {
+          vtm5e: {
+            name: `${prependTitle}${game.i18n.localize('WOD5E.Chat.WillpowerFullTitle')}`,
+            img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+            description: game.i18n.localize('WOD5E.Chat.WillpowerFull')
+          }
+        }
       })
 
       // End the function here
@@ -59,15 +57,16 @@ export async function _damageWillpower (event, target, actor, willpowerDamage, r
     })
   }
 
-  await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
-    name: `${prependTitle}${game.i18n.localize('WOD5E.Chat.WillpowerDamage')}`,
-    img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
-    description: `${game.i18n.format('WOD5E.Chat.HasReceivedWillpowerDamage', {
-      actor: actor.name,
-      willpowerDamage
-    })}`
-  }).then(html => {
-    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, rollMode)
-    ChatMessage.create(message)
+  foundry.documents.ChatMessage.implementation.create({
+    flags: {
+      vtm5e: {
+        name: `${prependTitle}${game.i18n.localize('WOD5E.Chat.WillpowerDamage')}`,
+        img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+        description: `${game.i18n.format('WOD5E.Chat.HasReceivedWillpowerDamage', {
+          actor: actor.name,
+          willpowerDamage
+        })}`
+      }
+    }
   })
 }

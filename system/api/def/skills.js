@@ -1,5 +1,3 @@
-/* global game, Hooks */
-
 import { BaseDefinitionClass } from './base-definition-class.js'
 
 export class Skills extends BaseDefinitionClass {
@@ -8,18 +6,22 @@ export class Skills extends BaseDefinitionClass {
   static defCategory = 'Skills'
 
   // Run any necessary compilation on ready
-  static onReady () {
+  static onReady() {
     // Handle adding custom disciplines from the game settings
     let customSkills = game.settings.get('vtm5e', 'customSkills') || {}
 
     // Handle adding custom disciplines from any active modules
-    const activeModules = game.modules.filter(module => module.active === true && module.flags.wod5e)
+    const activeModules = game.modules.filter(
+      (module) => module.active === true && module.flags.wod5e
+    )
     activeModules.forEach((module) => {
       if (module.flags.wod5e.customSkills) {
         customSkills = customSkills.concat(module.flags.wod5e.customSkills)
 
         // Log the custom data in the console
-        console.log(`World of Darkness 5e | Custom Skills added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customSkills)}`)
+        console.log(
+          `World of Darkness 5e | Custom Skills added by ${module.id}: ${JSON.stringify(module.flags.wod5e.customSkills)}`
+        )
       }
     })
 
@@ -32,10 +34,12 @@ export class Skills extends BaseDefinitionClass {
     Skills.initializePaths()
   }
 
-  static initializePaths () {
+  static initializePaths() {
     // Cycle through each entry in the definition file to initialize the paths on each
     // Quickly filter out any non-object, non-null, non-array values
-    const definitionEntries = Object.entries(this).filter(([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value))
+    const definitionEntries = Object.entries(this).filter(
+      ([, value]) => typeof value === 'object' && value !== null && !Array.isArray(value)
+    )
     for (const [key, value] of definitionEntries) {
       if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
         // Set the path

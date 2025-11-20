@@ -1,5 +1,3 @@
-/* global game, WOD5E, foundry, ChatMessage */
-
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
 import { _damageWillpower } from '../../../scripts/rolls/willpower-damage.js'
@@ -18,10 +16,12 @@ export const _onAddGift = async function (event) {
     choices: giftList,
     label: game.i18n.localize('WOD5E.WTA.SelectGift'),
     required: true
-  }).toFormGroup({},
+  }).toFormGroup(
+    {},
     {
       name: 'gift'
-    }).outerHTML
+    }
+  ).outerHTML
 
   // Prompt a dialog to determine which gift we're adding
   const giftSelected = await foundry.applications.api.DialogV2.prompt({
@@ -31,7 +31,8 @@ export const _onAddGift = async function (event) {
     classes: ['wod5e', 'dialog', 'werewolf', 'dialog'],
     content,
     ok: {
-      callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object.gift
+      callback: (event, button) =>
+        new foundry.applications.ux.FormDataExtended(button.form).object.gift
     },
     modal: true
   })
@@ -103,13 +104,14 @@ export const _onGiftToChat = async function (event, target) {
   const actor = this.actor
   const gift = actor.system.gifts[target.getAttribute('data-gift')]
 
-  await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
-    name: gift.displayName,
-    img: 'icons/svg/dice-target.svg',
-    description: gift?.description || ''
-  }).then(html => {
-    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
-    ChatMessage.create(message)
+  foundry.documents.ChatMessage.implementation.create({
+    flags: {
+      vtm5e: {
+        name: gift.displayName,
+        img: 'icons/svg/dice-target.svg',
+        description: gift?.description || ''
+      }
+    }
   })
 }
 
@@ -161,7 +163,11 @@ export const _updateSelectedGiftPower = async function (actor, power) {
 
   // Unselect the previously selected power
   const previouslySelectedPower = actor.system?.selectedGiftPower
-  if (previouslySelectedPower && actor.items.get(previouslySelectedPower) && previouslySelectedPower !== power) {
+  if (
+    previouslySelectedPower &&
+    actor.items.get(previouslySelectedPower) &&
+    previouslySelectedPower !== power
+  ) {
     actor.items.get(previouslySelectedPower).update({
       system: {
         selected: false

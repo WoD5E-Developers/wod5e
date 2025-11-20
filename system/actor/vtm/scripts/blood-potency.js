@@ -1,5 +1,3 @@
-/* global game */
-
 // Surge: Amount of dice added on a blood surge
 // Mend: Amount mended on expenditure of vitae
 // Power: Bonus to discipline powers
@@ -99,7 +97,7 @@ export const getBloodPotencyValues = async function (level) {
   return BLOOD_POTENCY_VALUES[level]
 }
 
-export async function getBloodPotencyText (level) {
+export async function getBloodPotencyText(level) {
   // TODO : Some of this could be deducted from previous array.
   const BLOOD_POTENCY_TEXT = [
     {

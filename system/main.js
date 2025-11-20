@@ -1,26 +1,34 @@
-/* global CONFIG, Hooks, foundry, ChatMessage, game, ui, jscolor */
-
 // Actor sheets
 import { WoDActor } from './actor/actor.js'
-import { WOD5EActorDirectory } from './ui/actor-directory.js'
-import { RenderActorSidebar } from './ui/actors-sidebar.js'
-import { RenderSettings } from './ui/settings-sidebar.js'
+import { WoDActorDirectory } from './ui/wod-actor-directory.js'
 import { ProseMirrorSettings } from './ui/prosemirror.js'
 // Item sheets
 import { WoDItem } from './item/item.js'
-// Chat Classes
+// Custom UI Classes
 import { WoDChatLog } from './ui/wod-chat-log.js'
 import { WoDChatMessage } from './ui/wod-chat-message.js'
-// Hotbar class
 import { WoDHotbar } from './ui/wod-hotbar.js'
+import { WoDSettings } from './ui/wod-settings.js'
+import { WoDPause } from './ui/wod-game-pause.js'
 // FVTT and module functionality
 import { preloadHandlebarsTemplates } from './scripts/templates.js'
 import { loadDiceSoNice } from './dice/dice-so-nice.js'
 import { loadHelpers } from './scripts/helpers.js'
-import { loadSettings, _updateHeaderFontPreference, _updateXpIconOverrides } from './scripts/settings.js'
-import { PauseChanges } from './ui/pause.js'
+import {
+  loadSettings,
+  _updateHeaderFontPreference,
+  _updateXpIconOverrides
+} from './scripts/settings.js'
 // WOD5E functions and classes
-import { MortalDie, VampireDie, VampireHungerDie, HunterDie, HunterDesperationDie, WerewolfDie, WerewolfRageDie } from './dice/splat-dice.js'
+import {
+  MortalDie,
+  VampireDie,
+  VampireHungerDie,
+  HunterDie,
+  HunterDesperationDie,
+  WerewolfDie,
+  WerewolfRageDie
+} from './dice/splat-dice.js'
 import { migrateWorld } from './scripts/migration.js'
 import { willpowerReroll } from './scripts/willpower-reroll.js'
 import { anyReroll } from './scripts/any-reroll.js'
@@ -41,19 +49,24 @@ import { Gifts } from './api/def/gifts.js'
 import { _rollItem } from './actor/scripts/item-roll.js'
 import { _updateCSSVariable, cssVariablesRecord } from './scripts/update-css-variables.js'
 import { _updateToken } from './actor/wta/scripts/forms.js'
+import { RollPromptSockets } from './sockets/roll-prompt.js'
 
 // Anything that needs to be ran alongside the initialisation of the world
 Hooks.once('init', async function () {
   console.log('World of Darkness 5e | Initializing SchreckNet...')
 
-  // Define custom Entity classes
+  // Custom document classes
   CONFIG.Actor.documentClass = WoDActor
   CONFIG.Item.documentClass = WoDItem
-  CONFIG.ui.chat = WoDChatLog
   CONFIG.ChatMessage.documentClass = WoDChatMessage
-  CONFIG.ChatMessage.template = 'systems/vtm5e/display/ui/chat/chat-message.hbs'
+  CONFIG.ChatMessage.template = 'systems/vtm5e/display/ui/chat/chat-message-default.hbs'
+  // Custom UI implementations
+  CONFIG.ui.chat = WoDChatLog
+  CONFIG.ui.settings = WoDSettings
   CONFIG.ui.hotbar = WoDHotbar
-  CONFIG.ui.actors = WOD5EActorDirectory
+  CONFIG.ui.actors = WoDActorDirectory
+  CONFIG.ui.pause = WoDPause
+  // Custom dice rolling functionality
   CONFIG.Dice.rolls = [WOD5eRoll]
   CONFIG.Dice.terms.m = MortalDie
   CONFIG.Dice.terms.v = VampireDie
@@ -103,17 +116,11 @@ Hooks.once('init', async function () {
   // Initialize the alterations to any XP icons
   _updateXpIconOverrides()
 
-  // Initialize the alterations to the actors sidebar
-  RenderActorSidebar()
-
-  // Initialize the alterations to the settings sidebar
-  RenderSettings()
-
   // Initialize the alterations to ProseMirror
   ProseMirrorSettings()
 
-  // Initialize the alterations to the Paused
-  PauseChanges()
+  // Sockets to register
+  RollPromptSockets()
 })
 
 // Anything that needs to run once the world is ready
@@ -132,7 +139,8 @@ Hooks.once('ready', async function () {
   jscolor.presets.default = {
     format: 'hexa',
     backgroundColor: '#000',
-    palette: '#FF2B2B80 #650202 #d84343 #f51f1f #D18125 #cc6d28 #ffb762 #ff8f00 #BE660080 #4e2100 #994101 #e97244'
+    palette:
+      '#FF2B2B80 #650202 #d84343 #f51f1f #D18125 #cc6d28 #ffb762 #ff8f00 #BE660080 #4e2100 #994101 #e97244'
   }
 
   // Activate the API
@@ -168,11 +176,11 @@ Hooks.once('ready', async function () {
 
   // Set up any splat colour changes
   const cssVariables = cssVariablesRecord()
-  Object.keys(cssVariables).forEach(theme => {
+  Object.keys(cssVariables).forEach((theme) => {
     const settings = cssVariables[theme].settings
 
     // Go through all the settings in each theme
-    Object.keys(settings).forEach(settingKey => {
+    Object.keys(settings).forEach((settingKey) => {
       const { settingId, cssVariable } = settings[settingKey]
 
       // Get the current value of the setting
@@ -203,51 +211,54 @@ Hooks.on('canvasReady', (canvas) => {
 
 // Display the reroll options in the chat when messages are right clicked
 Hooks.on('getChatMessageContextOptions', (html, options) => {
-  options.push({
-    name: game.i18n.localize('WOD5E.Chat.WillpowerReroll'),
-    icon: '<i class="fas fa-redo"></i>',
-    condition: li => {
-      // Only show this context menu if the person is GM or author of the message
-      const message = game.messages.get(li.getAttribute('data-message-id'))
+  options.push(
+    {
+      name: game.i18n.localize('WOD5E.Chat.WillpowerReroll'),
+      icon: '<i class="fas fa-redo"></i>',
+      condition: (li) => {
+        // Only show this context menu if the person is GM or author of the message
+        const message = game.messages.get(li.getAttribute('data-message-id'))
 
-      // Only show this context menu if there are re-rollable dice in the message
-      const rerollableDice = li.querySelectorAll('.rerollable').length
+        // Only show this context menu if there are re-rollable dice in the message
+        const rerollableDice = li.querySelectorAll('.rerollable').length
 
-      // Only show this context menu if there's not any already rerolled dice in the message
-      const rerolledDice = li.querySelectorAll('.rerolled').length
+        // Only show this context menu if there's not any already rerolled dice in the message
+        const rerolledDice = li.querySelectorAll('.rerolled').length
 
-      // All must be true to show the reroll dialog
-      return (game.user.isGM || message.isAuthor) && (rerollableDice > 0) && (rerolledDice === 0)
+        // All must be true to show the reroll dialog
+        return (game.user.isGM || message.isAuthor) && rerollableDice > 0 && rerolledDice === 0
+      },
+      callback: (li) => willpowerReroll(li)
     },
-    callback: li => willpowerReroll(li)
-  },
-  {
-    name: game.i18n.localize('WOD5E.Chat.Reroll'),
-    icon: '<i class="fas fa-redo"></i>',
-    condition: li => {
-      // Only show this context menu if the person is GM or author of the message
-      const message = game.messages.get(li.getAttribute('data-message-id'))
+    {
+      name: game.i18n.localize('WOD5E.Chat.Reroll'),
+      icon: '<i class="fas fa-redo"></i>',
+      condition: (li) => {
+        // Only show this context menu if the person is GM or author of the message
+        const message = game.messages.get(li.getAttribute('data-message-id'))
 
-      // Only show this context menu if there are dice in the message
-      const dice = li.querySelectorAll('.die').length
+        // Only show this context menu if there are dice in the message
+        const dice = li.querySelectorAll('.die').length
 
-      // Only show this context menu if there's not any already rerolled dice in the message
-      const rerolledDice = li.querySelectorAll('.rerolled').length
+        // Only show this context menu if there's not any already rerolled dice in the message
+        const rerolledDice = li.querySelectorAll('.rerolled').length
 
-      // All must be true to show the reroll dialog
-      return (game.user.isGM || message.isAuthor) && (dice > 0) && (rerolledDice === 0)
-    },
-    callback: li => anyReroll(li)
-  })
+        // All must be true to show the reroll dialog
+        return (game.user.isGM || message.isAuthor) && dice > 0 && rerolledDice === 0
+      },
+      callback: (li) => anyReroll(li)
+    }
+  )
 })
 
-function _onRollItemFromMacro (itemName) {
+function _onRollItemFromMacro(itemName) {
   const speaker = ChatMessage.getSpeaker()
   let actor
   if (speaker.token) actor = game.actors.tokens[speaker.token]
   if (!actor) actor = game.actors.get(speaker.actor)
-  const item = actor ? actor.items.find(i => i.name === itemName) : null
-  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`)
+  const item = actor ? actor.items.find((i) => i.name === itemName) : null
+  if (!item)
+    return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`)
 
   _rollItem(actor, item)
 }

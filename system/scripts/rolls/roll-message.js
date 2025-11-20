@@ -1,7 +1,15 @@
-/* global game, foundry */
-
 // Import dice face-related variables for icon paths
-import { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces } from '../../dice/icons.js'
+import {
+  mortalDiceLocation,
+  vampireDiceLocation,
+  werewolfDiceLocation,
+  hunterDiceLocation,
+  normalDiceFaces,
+  hungerDiceFaces,
+  rageDiceFaces,
+  desperationDiceFaces
+} from '../../dice/icons.js'
+import { WOD5eRoll } from '../system-rolls.js'
 import { getRollFooter } from './roll-labels/get-label.js'
 
 /**
@@ -13,7 +21,7 @@ import { getRollFooter } from './roll-labels/get-label.js'
  * @param flavor                    (Optional, default "") Text that appears in the description of the roll
  * @param difficulty                (Optional, default 0) The number of successes needed to pass the check
  */
-export async function generateRollMessage ({
+export async function generateRollMessageData({
   roll,
   system = 'mortal',
   title,
@@ -22,6 +30,10 @@ export async function generateRollMessage ({
   activeModifiers,
   isContentVisible = true
 }) {
+  if (!(roll instanceof WOD5eRoll)) {
+    roll = WOD5eRoll.fromJSON(roll)
+  }
+
   // Variables to be defined later
   let basicDice = roll.basicDice
   let advancedDice = roll.advancedDice
@@ -36,10 +48,9 @@ export async function generateRollMessage ({
     advancedDice = await generateAdvancedDiceDisplay(advancedDice)
   }
 
-  const { totalResult, resultLabel } = await generateResult(basicDice, advancedDice)
+  const { totalResult, resultLabel, resultText } = await generateResult(basicDice, advancedDice)
 
-  const chatTemplate = 'systems/vtm5e/display/ui/chat/roll-message.hbs'
-  const chatData = {
+  const rollMessageData = {
     fullFormula: roll._formula,
     basicDice,
     advancedDice,
@@ -49,17 +60,17 @@ export async function generateRollMessage ({
     difficulty,
     totalResult,
     margin: totalResult > difficulty ? totalResult - difficulty : 0,
-    enrichedResultLabel: await foundry.applications.ux.TextEditor.implementation.enrichHTML(resultLabel),
+    enrichedResultLabel:
+      await foundry.applications.ux.TextEditor.implementation.enrichHTML(resultLabel),
     activeModifiers,
-    isContentVisible
+    isContentVisible,
+    resultText
   }
 
-  const chatMessage = await foundry.applications.handlebars.renderTemplate(chatTemplate, chatData)
-
-  return chatMessage
+  return rollMessageData
 
   // Function to help with rendering of basic dice
-  async function generateBasicDiceDisplay (rollData) {
+  async function generateBasicDiceDisplay(rollData) {
     const basicDice = rollData.results
     let criticals = 0
 
@@ -75,8 +86,10 @@ export async function generateRollMessage ({
       }
 
       // Basic die results
-      if (die.result === 10) dieResult = 'critical' // Critical successes
-      else if (die.result < 10 && die.result > 5) dieResult = 'success' // Successes
+      if (die.result === 10)
+        dieResult = 'critical' // Critical successes
+      else if (die.result < 10 && die.result > 5)
+        dieResult = 'success' // Successes
       else dieResult = 'failure' // Failures
 
       // Define the face of the die based on the above conditionals
@@ -125,7 +138,7 @@ export async function generateRollMessage ({
   }
 
   // Function to help the rendering of advanced dice
-  async function generateAdvancedDiceDisplay (rollData) {
+  async function generateAdvancedDiceDisplay(rollData) {
     const advancedDice = rollData.results
     let criticals = 0
     let critFails = 0
@@ -142,13 +155,16 @@ export async function generateRollMessage ({
       switch (system) {
         case 'werewolf':
           // Werewolf die results
-          if (die.result === 10) { // Handle critical successes
+          if (die.result === 10) {
+            // Handle critical successes
             dieResult = 'critical'
             dieClasses.push(['rerollable'])
-          } else if (die.result < 10 && die.result > 5) { // Successes
+          } else if (die.result < 10 && die.result > 5) {
+            // Successes
             dieResult = 'success'
             dieClasses.push(['rerollable'])
-          } else if (die.result < 6 && die.result > 2) { // Failures
+          } else if (die.result < 6 && die.result > 2) {
+            // Failures
             dieResult = 'failure'
             dieClasses.push(['rerollable'])
           } else dieResult = 'brutal' // Brutal failures
@@ -160,9 +176,12 @@ export async function generateRollMessage ({
           break
         case 'vampire':
           // Vampire die results
-          if (die.result === 10) dieResult = 'critical' // Critical successes
-          else if (die.result < 10 && die.result > 5) dieResult = 'success' // Successes
-          else if (die.result < 6 && die.result > 1) dieResult = 'failure' // Failures
+          if (die.result === 10)
+            dieResult = 'critical' // Critical successes
+          else if (die.result < 10 && die.result > 5)
+            dieResult = 'success' // Successes
+          else if (die.result < 6 && die.result > 1)
+            dieResult = 'failure' // Failures
           else dieResult = 'bestial' // Bestial failures
 
           // Vampire data
@@ -172,9 +191,12 @@ export async function generateRollMessage ({
           break
         case 'hunter':
           // Hunter die results
-          if (die.result === 10) dieResult = 'critical' // Critical successes
-          else if (die.result < 10 && die.result > 5) dieResult = 'success' // Successes
-          else if (die.result < 6 && die.result > 1) dieResult = 'failure' // Failures
+          if (die.result === 10)
+            dieResult = 'critical' // Critical successes
+          else if (die.result < 10 && die.result > 5)
+            dieResult = 'success' // Successes
+          else if (die.result < 6 && die.result > 1)
+            dieResult = 'failure' // Failures
           else dieResult = 'criticalFailure' // Critical failures
 
           // Hunter data
@@ -192,7 +214,11 @@ export async function generateRollMessage ({
 
       // Increase the number of criticals collected across the dice
       if (dieResult === 'critical' && !die.discarded) criticals++
-      if ((dieResult === 'criticalFailure' || dieResult === 'bestial' || dieResult === 'brutal') && !die.discarded) critFails++
+      if (
+        (dieResult === 'criticalFailure' || dieResult === 'bestial' || dieResult === 'brutal') &&
+        !die.discarded
+      )
+        critFails++
 
       die.index = index
     })
@@ -204,7 +230,7 @@ export async function generateRollMessage ({
     return rollData
   }
 
-  async function generateResult (basicDice, advancedDice) {
+  async function generateResult(basicDice, advancedDice) {
     // Calculate the totals across the basic and advanced dice
     const basicTotal = basicDice ? basicDice.total : 0
     const advancedTotal = advancedDice ? advancedDice.total : 0
@@ -244,7 +270,7 @@ export async function generateRollMessage ({
     totalAndDifficulty += '</div>'
 
     // Generate the result label depending on the splat and difficulty
-    const resultLabel = await getRollFooter(system, {
+    const { resultLabel, resultText } = await getRollFooter(system, {
       totalResult,
       difficulty,
       basicDice,
@@ -252,6 +278,6 @@ export async function generateRollMessage ({
       totalAndDifficulty
     })
 
-    return { totalResult, resultLabel }
+    return { totalResult, resultLabel, resultText }
   }
 }

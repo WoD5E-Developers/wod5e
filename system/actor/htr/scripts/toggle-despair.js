@@ -15,9 +15,11 @@ export const _onToggleDespair = async function (event) {
   // old versions of the sheet continue to track it in binary 1 or 0.
   // It's dumb, I know, and I hope to set up a migration function to fix it sometime
   // but I don't want to delay this release more than I already had to-
-  if (newDespair) { // Set as "true"
+  if (newDespair) {
+    // Set as "true"
     actor.update({ 'system.despair.value': 1 })
-  } else { // Set as "false"
+  } else {
+    // Set as "false"
     actor.update({ 'system.despair.value': 0 })
   }
 }

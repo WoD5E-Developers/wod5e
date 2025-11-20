@@ -1,8 +1,7 @@
-/* global foundry, game */
-
 import { Skills } from '../../../api/def/skills.js'
 
-const bonusTemplate = 'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs'
+const bonusTemplate =
+  'systems/vtm5e/display/shared/applications/skill-application/parts/specialty-display.hbs'
 
 export const _onAddModifier = async function (event) {
   event.preventDefault()
@@ -32,7 +31,10 @@ export const _onAddModifier = async function (event) {
   }
 
   // Render the template
-  const bonusContent = await foundry.applications.handlebars.renderTemplate(bonusTemplate, bonusData)
+  const bonusContent = await foundry.applications.handlebars.renderTemplate(
+    bonusTemplate,
+    bonusData
+  )
 
   const result = await foundry.applications.api.DialogV2.input({
     window: {
@@ -138,7 +140,10 @@ export const _onEditModifier = async function (event, target) {
   const system = actor.system.gamesystem
 
   // Render the template
-  const bonusContent = await foundry.applications.handlebars.renderTemplate(bonusTemplate, bonusData)
+  const bonusContent = await foundry.applications.handlebars.renderTemplate(
+    bonusTemplate,
+    bonusData
+  )
 
   const result = await foundry.applications.api.DialogV2.input({
     window: {

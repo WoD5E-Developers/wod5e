@@ -1,38 +1,40 @@
-/* global ChatMessage, game, foundry, CONFIG */
-
 // Import various helper functions
 import { generateRollFormula } from './rolls/roll-formula.js'
-import { generateRollMessage } from './rolls/roll-message.js'
 import { getSituationalModifiers } from './rolls/situational-modifiers.js'
 import { _damageWillpower } from './rolls/willpower-damage.js'
 import { _increaseHunger } from './rolls/increase-hunger.js'
 import { _decreaseRage } from './rolls/decrease-rage.js'
 import { _applyOblivionStains } from './rolls/apply-oblivion-stains.js'
+import { updateRollPrompt } from '../sockets/roll-prompt.js'
 
 class WOD5eRoll extends foundry.dice.Roll {
-  constructor (formula = '', data = {}, options = {}) {
+  constructor(formula = '', data = {}, options = {}) {
     super(formula, data, options)
     this.system = options.system ?? this._tryCalculateSystem()
-    if (!this.dice.every(d => foundry.utils.getProperty(d, 'gameSystem') === this.system)) {
+    if (this.system) this.systemRoll = true
+
+    if (!this.dice.every((d) => foundry.utils.getProperty(d, 'gameSystem') === this.system)) {
       throw new Error('Dice are not compatible with this roll')
     }
   }
 
-  get basicDice () {
+  get basicDice() {
     return this.#getDiceByType('basic')
   }
 
-  get advancedDice () {
+  get advancedDice() {
     return this.#getDiceByType('advanced')
   }
 
   /** @override */
 
-  async _evaluate (options = {}) {
+  async _evaluate(options = {}) {
     await super._evaluate(options)
 
     if (this.system !== undefined) {
-      const crits = this.dice.filter(d => d.gameSystem === this.system).flatMap(d => d.results.filter(r => r.result === 10 && r.active)).length
+      const crits = this.dice
+        .filter((d) => d.gameSystem === this.system)
+        .flatMap((d) => d.results.filter((r) => r.result === 10 && r.active)).length
 
       this._total += Math.floor(crits / 2) * 2
     }
@@ -42,19 +44,21 @@ class WOD5eRoll extends foundry.dice.Roll {
 
   /** @override */
 
-  _evaluateTotal () {
+  _evaluateTotal() {
     const total = super._evaluateTotal()
 
     if (this.system !== undefined) {
-      const crits = this.dice.filter(d => d.gameSystem === this.system).flatMap(d => d.results.filter(r => r.result === 10 && r.active)).length
+      const crits = this.dice
+        .filter((d) => d.gameSystem === this.system)
+        .flatMap((d) => d.results.filter((r) => r.result === 10 && r.active)).length
       return total + Math.floor(crits / 2) * 2
     }
 
     return total
   }
 
-  _tryCalculateSystem () {
-    const systems = new Set(this.dice.map(d => foundry.utils.getProperty(d, 'gameSystem')))
+  _tryCalculateSystem() {
+    const systems = new Set(this.dice.map((d) => foundry.utils.getProperty(d, 'gameSystem')))
 
     if (systems.size > 1) {
       throw new Error('Multiple systems detected in dice')
@@ -63,8 +67,18 @@ class WOD5eRoll extends foundry.dice.Roll {
     return systems.values()?.next()?.value
   }
 
-  #getDiceByType (type) {
-    return this.terms.find(term => foundry.utils.getProperty(term, 'dieType') === type)
+  #getDiceByType(type) {
+    return this.terms.find((term) => foundry.utils.getProperty(term, 'dieType') === type)
+  }
+
+  static fromJSON(data) {
+    if (data.class !== 'WOD5eRoll') throw new Error('Invalid class')
+
+    const roll = foundry.dice.Roll.fromData(data)
+    Object.setPrototypeOf(roll, WOD5eRoll.prototype)
+    roll.system = data.system
+
+    return roll
   }
 }
 
@@ -94,7 +108,7 @@ class WOD5eDice {
    * @param advancedCheckDice         (optional, default 0) Any dice that, part of an 'advanced' diceset, is rolled separately but at the same time
    *
    */
-  static async Roll ({
+  static async Roll({
     basicDice = 0,
     advancedDice = 0,
     actor,
@@ -115,14 +129,19 @@ class WOD5eDice {
     macro = '',
     disableMessageOutput = false,
     advancedCheckDice = 0,
-    system = actor?.system?.gamesystem || 'mortal'
+    system = actor?.system?.gamesystem || 'mortal',
+    originMessage = ''
   }) {
     // Inner roll function
     const _roll = async (inputBasicDice, inputAdvancedDice, formData) => {
       // Get the difficulty and store it
-      difficulty = formData ? formData.querySelector('#inputDifficulty')?.value ?? difficulty : difficulty
+      difficulty = formData
+        ? (formData.querySelector('#inputDifficulty')?.value ?? difficulty)
+        : difficulty
       // Get the rollMode and store it
-      rollMode = formData ? formData.querySelector('[name="rollMode"]')?.value ?? rollMode : rollMode
+      rollMode = formData
+        ? (formData.querySelector('[name="rollMode"]')?.value ?? rollMode)
+        : rollMode
 
       // Prevent trying to roll 0 dice; all dice pools should roll at least 1 die
       if (parseInt(inputBasicDice) === 0 && parseInt(inputAdvancedDice) === 0) {
@@ -153,7 +172,7 @@ class WOD5eDice {
       if (formData) {
         const modifiersList = formData.querySelectorAll('.mod-checkbox')
         if (modifiersList.length > 0) {
-          modifiersList.forEach(el => {
+          modifiersList.forEach((el) => {
             const isChecked = el.checked
 
             if (isChecked) {
@@ -176,7 +195,7 @@ class WOD5eDice {
         const customModifiersList = formData.querySelectorAll('.custom-modifier')
         if (customModifiersList.length > 0) {
           // Go through each custom modifier and add it to the array
-          customModifiersList.forEach(el => {
+          customModifiersList.forEach((el) => {
             // Get the label and value from the current .custom-modifier element
             const label = el.querySelector('.mod-name')?.value || ''
             const value = Number(el.querySelector('.mod-value')?.value || 0)
@@ -212,7 +231,8 @@ class WOD5eDice {
       if (roll.advancedDice) await handleFailure(system, roll.advancedDice.results)
 
       // Handle willpower damage
-      if (willpowerDamage > 0 && game.settings.get('vtm5e', 'automatedWillpower')) _damageWillpower(null, null, actor, willpowerDamage, rollMode)
+      if (willpowerDamage > 0 && game.settings.get('vtm5e', 'automatedWillpower'))
+        _damageWillpower(null, null, actor, willpowerDamage, rollMode)
 
       // Roll any advanced check dice that need to be rolled in a separate rollmessage
       if (advancedCheckDice > 0) {
@@ -232,16 +252,13 @@ class WOD5eDice {
 
       // Send the results of the roll back to any functions that need it
       if (callback) {
-        callback(
-          null,
-          {
-            ...roll,
-            system,
-            difficulty,
-            rollSuccessful: roll.total > 0 && ((roll.total >= difficulty) || (difficulty === 0)),
-            rollMode
-          }
-        )
+        callback(null, {
+          ...roll,
+          system,
+          difficulty,
+          rollSuccessful: roll.total > 0 && (roll.total >= difficulty || difficulty === 0),
+          rollMode
+        })
       }
 
       // Run any macros that need to be ran
@@ -253,6 +270,28 @@ class WOD5eDice {
         })
       }
 
+      // Handle updating any 'parent' chat messages that need the roll
+      if (originMessage) {
+        const chatMessage = game.messages.get(originMessage)
+
+        if (chatMessage && chatMessage.getFlag('vtm5e', 'isRollPrompt')) {
+          disableMessageOutput = true
+
+          const socketData = {
+            action: 'updateRollPrompt',
+            actorID: actor.id,
+            roll: roll.toJSON(),
+            messageID: chatMessage.id
+          }
+
+          if (chatMessage.isOwner) {
+            updateRollPrompt(socketData)
+          } else {
+            game.socket.emit('system.vtm5e', socketData)
+          }
+        }
+      }
+
       // The below isn't needed if disableMessageOutput is set to true
       if (disableMessageOutput && game.dice3d) {
         // Send notice to DiceSoNice because we're not making a new chat message
@@ -262,26 +301,17 @@ class WOD5eDice {
         return roll
       }
 
-      // Construct the proper message content from the generateRollMessage function
-      const content = await generateRollMessage({
-        system,
-        roll,
-        actor,
-        data,
-        title,
-        flavor,
-        difficulty,
-        activeModifiers
-      })
-
       // Post the message to the chat
-      await roll.toMessage({
-        speaker: ChatMessage.getSpeaker({ actor }),
-        content
-      },
-      {
-        rollMode
-      })
+      if (!disableMessageOutput) {
+        await roll.toMessage(
+          {
+            speaker: ChatMessage.getSpeaker({ actor })
+          },
+          {
+            rollMode
+          }
+        )
+      }
 
       return roll
     }
@@ -306,7 +336,10 @@ class WOD5eDice {
         situationalModifiers
       }
       // Render the dialog
-      const content = await foundry.applications.handlebars.renderTemplate(dialogTemplate, dialogData)
+      const content = await foundry.applications.handlebars.renderTemplate(
+        dialogTemplate,
+        dialogData
+      )
 
       // Promise to handle the roll after the dialog window is closed
       // as well as any callbacks or other functions with the roll
@@ -327,9 +360,12 @@ class WOD5eDice {
           addCustomMod: (_event, target) => {
             // Define the custom modifiers list and a custom modifier element
             const customModList = target.ownerDocument.querySelector('#custom-modifiers-list')
-            const customModElement = `<div class="form-group custom-modifier">
+            const customModElement =
+              `<div class="form-group custom-modifier">
                 <div class="mod-label">
-                  <a class="mod-delete" data-action="deleteCustomMode" title="` + game.i18n.localize('WOD5E.Delete') + `">
+                  <a class="mod-delete" data-action="deleteCustomMode" title="` +
+              game.i18n.localize('WOD5E.Delete') +
+              `">
                     <i class="fas fa-trash"></i>
                   </a>
                   <input class="mod-name" type="text" value="Custom"/>
@@ -363,9 +399,11 @@ class WOD5eDice {
 
               // Add any custom modifiers
               const customModifiersList = dialogHTML.querySelectorAll('.custom-modifier')
-              const modifierTotal = customModifiersList.entries().reduce((modifierTotal, [, el]) => {
-                return modifierTotal + (el.querySelector('.mod-value')?.valueAsNumber ?? 0)
-              }, 0)
+              const modifierTotal = customModifiersList
+                .entries()
+                .reduce((modifierTotal, [, el]) => {
+                  return modifierTotal + (el.querySelector('.mod-value')?.valueAsNumber ?? 0)
+                }, 0)
 
               // Send the roll to the _roll function
               return await _roll(basicValue + modifierTotal, advancedValue, dialogHTML)
@@ -402,7 +440,9 @@ class WOD5eDice {
               // Get the values of basic and advanced dice
               const basicValue = basicDiceInput?.valueAsNumber ?? 0
               const advancedValue = advancedDiceInput?.valueAsNumber ?? 0
-              const aCDValue = event.currentTarget.dataset.advancedCheckDice ? parseInt(event.currentTarget.dataset.advancedCheckDice) : 0
+              const aCDValue = event.currentTarget.dataset.advancedCheckDice
+                ? parseInt(event.currentTarget.dataset.advancedCheckDice)
+                : 0
 
               // Determine whether any alterations need to be made to basic dice or advanced dice
               // Either use the current applyDiceTo (if set), or default to 'basic'
@@ -417,7 +457,10 @@ class WOD5eDice {
                   }
                 } else {
                   // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
-                  if ((system === 'vampire' && advancedValue < actorData?.hunger.value) || (system === 'werewolf' && advancedValue < actorData?.rage.value)) {
+                  if (
+                    (system === 'vampire' && advancedValue < actorData?.hunger.value) ||
+                    (system === 'werewolf' && advancedValue < actorData?.rage.value)
+                  ) {
                     applyDiceTo = 'advanced'
                   }
                 }
@@ -430,7 +473,10 @@ class WOD5eDice {
               // Unchecked and modifier is NOT negative = Subtract
               let newValue = 0
               let checkValue = 0
-              if ((modCheckbox?.checked && !modifierIsNegative) || (!modCheckbox?.checked && modifierIsNegative)) {
+              if (
+                (modCheckbox?.checked && !modifierIsNegative) ||
+                (!modCheckbox?.checked && modifierIsNegative)
+              ) {
                 // Adding the modifier
                 if (applyDiceTo === 'advanced') {
                   // Apply the modifier to advancedDice
@@ -444,7 +490,10 @@ class WOD5eDice {
                     checkValue = actorData?.rage.value
                   }
 
-                  if ((newValue > actorData?.hunger.value || newValue > checkValue) && !(event.currentTarget.dataset.applyDiceTo === 'advanced')) {
+                  if (
+                    (newValue > actorData?.hunger.value || newValue > checkValue) &&
+                    !(event.currentTarget.dataset.applyDiceTo === 'advanced')
+                  ) {
                     // Check for any excess and apply it to basicDice
                     const excess = newValue - checkValue
                     newValue = checkValue
@@ -504,20 +553,32 @@ class WOD5eDice {
 
     // Function to help with handling additional functions as a result
     // of failures
-    async function handleFailure (system, diceResults) {
-      const failures = diceResults.filter(result => result.success === false && !result.discarded).length
+    async function handleFailure(system, diceResults) {
+      const failures = diceResults.filter(
+        (result) => result.success === false && !result.discarded
+      ).length
 
       if (failures > 0) {
-        if (system === 'vampire' && increaseHunger && game.settings.get('vtm5e', 'automatedHunger')) {
+        if (
+          system === 'vampire' &&
+          increaseHunger &&
+          game.settings.get('vtm5e', 'automatedHunger')
+        ) {
           _increaseHunger(actor, failures, rollMode)
-        } else if (system === 'werewolf' && decreaseRage && game.settings.get('vtm5e', 'automatedRage')) {
+        } else if (
+          system === 'werewolf' &&
+          decreaseRage &&
+          game.settings.get('vtm5e', 'automatedRage')
+        ) {
           _decreaseRage(actor, failures, rollMode)
         }
       }
 
       // Handle Oblivion rouse checks here
       if (selectors.includes('oblivion-rouse') && game.settings.get('vtm5e', 'automatedOblivion')) {
-        const oblivionTriggers = diceResults.filter(result => [1, 10].includes(result.result) && !result.discarded).length
+        const oblivionTriggers = diceResults.filter(
+          (result) => [1, 10].includes(result.result) && !result.discarded
+        ).length
 
         if (oblivionTriggers > 0) {
           _applyOblivionStains(actor, oblivionTriggers, rollMode)

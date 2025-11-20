@@ -1,7 +1,5 @@
-/* global game, FormApplication, foundry */
-
 export class AutomationMenu extends FormApplication {
-  static get defaultOptions () {
+  static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       title: game.i18n.localize('WOD5E.Settings.AutomationSettings'),
       id: 'wod5e-automation',
@@ -17,7 +15,7 @@ export class AutomationMenu extends FormApplication {
   /* -------------------------------------------- */
 
   /** @override */
-  async getData () {
+  async getData() {
     const data = await super.getData()
 
     // Encrich editor content
@@ -33,8 +31,8 @@ export class AutomationMenu extends FormApplication {
   /* -------------------------------------------- */
 
   /** @override */
-  activateListeners (html) {
-    html[0].querySelectorAll('input').forEach(input => {
+  activateListeners(html) {
+    html[0].querySelectorAll('input').forEach((input) => {
       input.addEventListener('change', function (event) {
         event.preventDefault()
         const data = event.target.dataset

@@ -1,9 +1,7 @@
-/* global ChatMessage, game */
-
-export async function _applyOblivionStains (actor, amount, rollMode) {
+export async function _applyOblivionStains(actor, amount, rollMode) {
   // Apply a stain for each failed rouse check
   const currentHumanity = actor.system.humanity
-  const newStains = Math.min((currentHumanity.stains + amount), 10 - currentHumanity.value)
+  const newStains = Math.min(currentHumanity.stains + amount, 10 - currentHumanity.value)
 
   // If no rollMode is provided, use the user's default
   if (!rollMode) rollMode = game.settings.get('core', 'rollMode')
@@ -16,7 +14,10 @@ export async function _applyOblivionStains (actor, amount, rollMode) {
     })}</p>`
 
     // Post the message to the chat
-    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: chatMessage }, rollMode)
+    const message = ChatMessage.applyRollMode(
+      { speaker: ChatMessage.getSpeaker({ actor }), content: chatMessage },
+      rollMode
+    )
     ChatMessage.create(message)
 
     // Update the actor with the new amount of stains

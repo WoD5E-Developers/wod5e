@@ -250,7 +250,7 @@
   font-weight: 300;
   font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuaabWmT.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v50/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuaabWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
@@ -258,7 +258,7 @@
   font-weight: 400;
   font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbWmT.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v50/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
@@ -266,7 +266,7 @@
   font-weight: 500;
   font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bWmT.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v50/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Amarante';
@@ -607,6 +607,16 @@ h3.item-name {
   font-family: Amarante, serif;
   font-size: 1.4em;
 }
+.roll-prompt-message .user-roll {
+  background-color: #555555;
+  padding: 5px;
+  margin: 3px;
+}
+.roll-prompt-message .user-roll .actor-roll-header .remove-actor-button {
+  flex-grow: 0;
+  cursor: pointer;
+  margin-right: 3px;
+}
 
 /* Foundry Controls UI */
 #players,
@@ -669,6 +679,101 @@ h3.item-name {
 .wod5e-config-form.storyteller-menu .remove-custom-button {
   cursor: pointer;
   margin-top: 5px;
+}
+.roll-menu.application.minimized .roll-menu-hint,
+.roll-menu.application.minimizing .roll-menu-hint {
+  display: none;
+}
+.roll-menu.application .window-content {
+  padding: 0;
+  flex-direction: row;
+}
+.roll-menu.application .roll-menu-hint {
+  cursor: pointer;
+}
+.roll-menu.application .clickable-button {
+  cursor: pointer;
+}
+.roll-menu.application .clickable-button:hover {
+  font-weight: bold;
+}
+.roll-menu.application .saved-rolls {
+  padding-right: 1rem;
+  border-right: 1px solid;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+}
+.roll-menu.application .saved-rolls .title {
+  font-size: 16pt;
+  text-align: center;
+}
+.roll-menu.application .saved-rolls .saved-rolls-list {
+  padding: 5px;
+  display: flex;
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+.roll-menu.application .saved-rolls .saved-rolls-list .saved-roll.active {
+  font-weight: bold;
+}
+.roll-menu.application .saved-rolls .saved-rolls-list .saved-roll:not(.active) {
+  cursor: pointer;
+}
+.roll-menu.application .saved-rolls .saved-rolls-footer {
+  margin-top: auto;
+  padding: 0.5rem;
+  text-align: center;
+}
+.roll-menu.application .main {
+  flex-grow: 1;
+  position: relative;
+}
+.roll-menu.application .main .roll-menu-body {
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.roll-menu.application .main .roll-menu-body .splat-die-options {
+  justify-content: space-between;
+}
+.roll-menu.application .main .roll-menu-body .splat-die-options .die-img {
+  justify-items: center;
+}
+.roll-menu.application .main .roll-menu-body .splat-die-options .die-img img {
+  cursor: pointer;
+}
+.roll-menu.application .main .roll-menu-body .splat-die-options .die-img:not(.active) {
+  filter: saturate(250%);
+}
+.roll-menu.application .main .roll-menu-body .splat-die-options .die-img.active {
+  filter: saturate(50%);
+}
+.roll-menu.application .main .roll-menu-body .roll-constructor {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  position: relative;
+}
+.roll-menu.application .main .roll-menu-body .roll-constructor .constructed-roll {
+  flex-grow: 1;
+}
+.roll-menu.application .main .roll-menu-body .roll-constructor .roll-options .option-toggle {
+  text-align: center;
+}
+.roll-menu.application .main .roll-menu-body .roll-menu-footer {
+  margin-top: auto;
+  padding: 0.5rem;
+}
+.roll-menu.application .main .roll-menu-body .roll-menu-footer .roll-menu-footer-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.roll-menu.application .main .roll-menu-body .roll-menu-footer .roll-menu-footer-buttons .prompt-button,
+.roll-menu.application .main .roll-menu-body .roll-menu-footer .roll-menu-footer-buttons .roll-button {
+  align-content: center;
 }
 
 .dialog-content {
@@ -1850,11 +1955,6 @@ body.uk .actor.sheet {
   margin-right: auto;
   text-wrap: nowrap;
 }
-.actor.sheet .rollable:hover,
-.actor.sheet .rollable-item:hover,
-.actor.sheet .system-rollable:hover {
-  cursor: pointer;
-}
 .actor.sheet .stats-container {
   display: flex;
   flex-flow: column;
@@ -2502,6 +2602,19 @@ prose-mirror .editor-menu {
 prose-mirror .editor-menu button {
   color: var(--system-color-6);
 }
+.clickable,
+.rollable,
+.rollable-item,
+.system-rollable {
+  cursor: pointer;
+}
+.clickable:hover,
+.rollable:hover,
+.rollable-item:hover,
+.system-rollable:hover {
+  text-shadow: 0 0 5px var(--system-color-9);
+  filter: saturate(250%) drop-shadow(2px 4px 6px black);
+}
 /* Actor Sheets */
 .sheet {
   /* Input and resource fields */
@@ -2576,13 +2689,6 @@ prose-mirror .editor-menu button {
 }
 .sheet .resource-header {
   border-bottom: 1px solid var(--system-color-5);
-}
-.sheet .clickable:hover,
-.sheet .rollable:hover,
-.sheet .rollable-item:hover,
-.sheet .system-rollable:hover {
-  text-shadow: 0 0 5px var(--system-color-9);
-  filter: saturate(250%) drop-shadow(2px 4px 6px black);
 }
 .sheet .stats-container {
   background-color: var(--system-color-4);
@@ -2668,6 +2774,7 @@ prose-mirror .editor-menu button {
 .sidebar-tab {
   padding-left: 10px;
 }
+.chat-message button,
 .directory .action-buttons button {
   background: #2e2d77;
   color: var(--system-color-6);
@@ -3167,6 +3274,7 @@ prose-mirror .editor-menu button {
 .wod-hunter-theme .dialog .window-header {
   background-color: var(--hunter-color-1);
 }
+.wod-hunter-theme .chat-message button,
 .wod-hunter-theme .directory .action-buttons button {
   background: #020202;
   color: var(--system-color-6);

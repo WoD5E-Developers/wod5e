@@ -1,12 +1,9 @@
-/* global game, foundry */
-
 // Import modules
 import { WOD5eDice } from './system-rolls.js'
-import { generateRollMessage } from './rolls/roll-message.js'
 
 /**
  * Initalise willpower rerolls and its functions
-**/
+ **/
 
 export const willpowerReroll = async (roll) => {
   // Variables
@@ -17,7 +14,7 @@ export const willpowerReroll = async (roll) => {
   const system = message.flags.system || 'mortal'
 
   // Go through the message's dice and add them to the diceRolls array
-  Object.keys(dice).forEach(i => {
+  Object.keys(dice).forEach((i) => {
     // Filter out non-numeric keys like "prevObject" and "length"
     if (!isNaN(Number(i))) {
       diceRolls.push(`<div class="die-select">${dice[i].outerHTML}</div>`)
@@ -56,14 +53,14 @@ export const willpowerReroll = async (roll) => {
     render: (event, dialog) => {
       const rerollableDie = dialog.element.querySelectorAll('.willpower-reroll .die-select')
 
-      rerollableDie.forEach(die => {
+      rerollableDie.forEach((die) => {
         die.addEventListener('click', toggleDieSelect)
       })
     }
   })
 
   // Handles selecting and de-selecting the die
-  function toggleDieSelect () {
+  function toggleDieSelect() {
     const selectedDice = document.querySelectorAll('.willpower-reroll .selected')
 
     if (!this.classList.contains('selected') && selectedDice.length < 3) {
@@ -74,7 +71,7 @@ export const willpowerReroll = async (roll) => {
   }
 
   // Handles rerolling the number of dice selected
-  async function rerollDie (roll) {
+  async function rerollDie(roll) {
     // Variables
     const diceSelected = document.querySelectorAll('.willpower-reroll .selected')
     const rageDiceSelected = document.querySelectorAll('.willpower-reroll .selected .rage-dice')
@@ -90,7 +87,7 @@ export const willpowerReroll = async (roll) => {
     const rollMode = message?.flags?.rollMode || game.settings.get('core', 'rollMode')
 
     // If there is at least 1 die selected and aren't any more than 3 die selected, reroll the total number of die and generate a new message.
-    if ((diceSelected.length > 0) && (diceSelected.length < 4)) {
+    if (diceSelected.length > 0 && diceSelected.length < 4) {
       WOD5eDice.Roll({
         basicDice: diceSelected.length - rageDiceSelected.length,
         advancedDice: rageDiceSelected.length,
@@ -107,7 +104,7 @@ export const willpowerReroll = async (roll) => {
 
           const messageRolls = message.rolls
 
-          diceSelected.forEach(dieHTML => {
+          diceSelected.forEach((dieHTML) => {
             const imgElement = dieHTML.querySelector('img')
 
             if (!imgElement) {
@@ -118,7 +115,7 @@ export const willpowerReroll = async (roll) => {
             const dieIndex = parseInt(imgElement.getAttribute('data-index'))
 
             if (imgElement.classList.contains('rage-dice')) {
-              const die = messageRolls[0].terms[2].results.find(die => die.index === dieIndex)
+              const die = messageRolls[0].terms[2].results.find((die) => die.index === dieIndex)
 
               if (die) {
                 die.discarded = true
@@ -127,7 +124,7 @@ export const willpowerReroll = async (roll) => {
                 console.error('World of Darkness 5e | Die not found in rage diceset:', dieIndex)
               }
             } else {
-              const die = messageRolls[0].terms[0].results.find(die => die.index === dieIndex)
+              const die = messageRolls[0].terms[0].results.find((die) => die.index === dieIndex)
 
               if (die) {
                 die.discarded = true
@@ -139,24 +136,17 @@ export const willpowerReroll = async (roll) => {
           })
 
           // Merge "results" arrays
-          messageRolls[0].terms[0].results = messageRolls[0].terms[0].results.concat(reroll.terms[0].results)
+          messageRolls[0].terms[0].results = messageRolls[0].terms[0].results.concat(
+            reroll.terms[0].results
+          )
 
           // Only merge the 2nd dicepool if one even exists
-          if (messageRolls[0].terms[2]) messageRolls[0].terms[2].results = messageRolls[0].terms[2].results.concat(reroll.terms[2].results)
-
-          // Update the "content" field
-          const newContent = await generateRollMessage({
-            difficulty: message.flags.difficulty,
-            system: message.flags.system,
-            roll: messageRolls[0],
-            data: message.flags.data,
-            title: message.flags.title,
-            flavor: message.flags.flavor,
-            activeModifiers: message.flags.activeModifiers
-          })
+          if (messageRolls[0].terms[2])
+            messageRolls[0].terms[2].results = messageRolls[0].terms[2].results.concat(
+              reroll.terms[2].results
+            )
 
           message.update({
-            content: newContent,
             rolls: messageRolls
           })
         }

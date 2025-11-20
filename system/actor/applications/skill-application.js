@@ -1,27 +1,26 @@
-/* global foundry, game */
-
 import { _onAddModifier, _onEditModifier, _onDeleteModifier } from './scripts/specialty-bonuses.js'
 import { generateLocalizedLabel } from '../../api/generate-localization.js'
 import { Skills } from '../../api/def/skills.js'
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 
 export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) {
-  constructor (data) {
+  constructor(data) {
     super()
 
     this.data = data
   }
 
-  get title () {
+  get title() {
     const skillName = generateLocalizedLabel(this.data.skill, 'skill')
     return `Skill Editor - ${skillName}`
   }
 
-  get document () {
+  get document() {
     return game.actors.get(this.data.actor._id)
   }
 
   static DEFAULT_OPTIONS = {
+    id: 'wod5e-skill-application',
     tag: 'form',
     form: {
       submitOnChange: true,
@@ -87,7 +86,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     }
   }
 
-  #getTabs () {
+  #getTabs() {
     const tabs = this.tabs
 
     for (const tab of Object.values(tabs)) {
@@ -98,7 +97,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     return tabs
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     // Top-level variables
     const data = this.data
     const actorData = this.document.system
@@ -112,7 +111,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     return data
   }
 
-  async _preparePartContext (partId, context) {
+  async _preparePartContext(partId, context) {
     switch (partId) {
       // Description
       case 'description':
@@ -121,7 +120,10 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
 
         // Part-specific data
         context.description = context.skillData?.description
-        context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.skillData?.description)
+        context.enrichedDescription =
+          await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+            context.skillData?.description
+          )
 
         break
 
@@ -149,7 +151,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     return context
   }
 
-  static async skillHandler (event, form, formData) {
+  static async skillHandler(event, form, formData) {
     // Update the source document
     await this.document.update(formData.object)
 
@@ -157,7 +159,7 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
     this.render()
   }
 
-  _onRender () {
+  _onRender() {
     const html = this.element
 
     // List of selectors to choose from

@@ -1,5 +1,3 @@
-/* global game, foundry, ChatMessage, Item */
-
 // Definition classes
 import { ItemTypes } from '../../api/def/itemtypes.js'
 import { Disciplines } from '../../api/def/disciplines.js'
@@ -7,13 +5,10 @@ import { Edges } from '../../api/def/edges.js'
 import { Gifts } from '../../api/def/gifts.js'
 import { Features } from '../../api/def/features.js'
 import { Weapons } from '../../api/def/weapons.js'
-
 // Localization function
 import { generateLocalizedLabel } from '../../api/generate-localization.js'
-
 // Data item format function
 import { formatDataItemId } from './format-data-item-id.js'
-
 // Various update functions
 import { _updateSelectedPerk } from '../htr/scripts/edges.js'
 import { _updateSelectedDisciplinePower } from '../vtm/scripts/disciplines.js'
@@ -108,10 +103,12 @@ export const _onCreateItem = async function (event, target) {
       choices: itemOptions,
       label: selectLabel,
       required: true
-    }).toFormGroup({},
+    }).toFormGroup(
+      {},
       {
         name: 'subtypeSelection'
-      }).outerHTML
+      }
+    ).outerHTML
 
     // Prompt the dialog to determine which item subtype we're adding
     const subtypeSelection = await foundry.applications.api.DialogV2.prompt({
@@ -121,7 +118,8 @@ export const _onCreateItem = async function (event, target) {
       classes: ['wod5e', system, 'dialog'],
       content,
       ok: {
-        callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object.subtypeSelection
+        callback: (event, button) =>
+          new foundry.applications.ux.FormDataExtended(button.form).object.subtypeSelection
       },
       modal: true
     })
@@ -130,7 +128,9 @@ export const _onCreateItem = async function (event, target) {
       itemData = await appendSubtypeData(type, subtypeSelection, itemData)
 
       // Generate the item name
-      itemName = subtypeSelection ? generateLocalizedLabel(subtypeSelection, type) : itemsList[type].label
+      itemName = subtypeSelection
+        ? generateLocalizedLabel(subtypeSelection, type)
+        : itemsList[type].label
 
       // Generate item name based on type
       switch (type) {
@@ -175,13 +175,15 @@ export const _onItemChat = async function (event, target) {
 
   const itemId = target.getAttribute('data-item-id')
   const item = actor.getEmbeddedDocument('Item', itemId)
-  await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
-    name: item.name,
-    img: item.img,
-    description: item.system?.description || ''
-  }).then(html => {
-    const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
-    ChatMessage.create(message)
+
+  foundry.documents.ChatMessage.implementation.create({
+    flags: {
+      vtm5e: {
+        name: item.name,
+        img: item.img,
+        description: item.system?.description || ''
+      }
+    }
   })
 }
 
@@ -242,23 +244,25 @@ export const _onItemDelete = async function (event, target) {
 }
 
 // Create an embedded item document
-async function createItem (actor, itemName, type, itemData) {
+async function createItem(actor, itemName, type, itemData) {
   const dataItemId = `${type}-${formatDataItemId(itemName)}`
 
   // Create the item
-  const newItem = await Item.create({
-    name: itemName,
-    type,
-    system: itemData,
-    flags: {
-      vtm5e: {
-        dataItemId
+  const newItem = await Item.create(
+    {
+      name: itemName,
+      type,
+      system: itemData,
+      flags: {
+        vtm5e: {
+          dataItemId
+        }
       }
+    },
+    {
+      parent: actor
     }
-  },
-  {
-    parent: actor
-  })
+  )
   const itemId = newItem.id
 
   // Handle updating the currently selected power for the actor
@@ -276,7 +280,7 @@ async function createItem (actor, itemName, type, itemData) {
 }
 
 // Append subtype data to the item data based on item type
-async function appendSubtypeData (type, subtype, itemData) {
+async function appendSubtypeData(type, subtype, itemData) {
   switch (type) {
     case 'power':
       itemData.discipline = subtype

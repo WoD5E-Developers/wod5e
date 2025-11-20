@@ -1,5 +1,3 @@
-/* global game, foundry, ChatMessage, WOD5E */
-
 import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
 import { WOD5eDice } from '../../../scripts/system-rolls.js'
 
@@ -46,7 +44,10 @@ export const _onFrenzyRoll = async function (event) {
       selectors: ['frenzy']
     })
 
-    basicDice = await WOD5E.api.getBasicDice({ flatMod: dicePool + activeModifiers.totalValue, actor })
+    basicDice = await WOD5E.api.getBasicDice({
+      flatMod: dicePool + activeModifiers.totalValue,
+      actor
+    })
 
     WOD5eDice.Roll({
       basicDice,
@@ -62,26 +63,28 @@ export const _onFrenzyRoll = async function (event) {
         if (!result.rollSuccessful) {
           actor.update({ 'system.frenzyActive': true })
 
-          await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
-            name: game.i18n.localize('WOD5E.VTM.ResistingFrenzyFailed'),
-            img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
-            description: game.i18n.format('WOD5E.VTM.ResistingFrenzyFailedDescription', {
-              actor: actor.name
-            })
-          }).then(html => {
-            const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
-            ChatMessage.create(message)
+          foundry.documents.ChatMessage.implementation.create({
+            flags: {
+              vtm5e: {
+                name: game.i18n.localize('WOD5E.VTM.ResistingFrenzyFailed'),
+                img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+                description: game.i18n.format('WOD5E.VTM.ResistingFrenzyFailedDescription', {
+                  actor: actor.name
+                })
+              }
+            }
           })
         } else {
-          await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
-            name: game.i18n.localize('WOD5E.VTM.ResistingFrenzySuccess'),
-            img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
-            description: game.i18n.format('WOD5E.VTM.ResistingFrenzySuccessDescription', {
-              actor: actor.name
-            })
-          }).then(html => {
-            const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
-            ChatMessage.create(message)
+          foundry.documents.ChatMessage.implementation.create({
+            flags: {
+              vtm5e: {
+                name: game.i18n.localize('WOD5E.VTM.ResistingFrenzySuccess'),
+                img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+                description: game.i18n.format('WOD5E.VTM.ResistingFrenzySuccessDescription', {
+                  actor: actor.name
+                })
+              }
+            }
           })
         }
       }
@@ -90,24 +93,25 @@ export const _onFrenzyRoll = async function (event) {
     // Automatically enter frenzy
     actor.update({ 'system.frenzyActive': true })
 
-    await foundry.applications.handlebars.renderTemplate('systems/vtm5e/display/ui/chat/chat-message-content.hbs', {
-      name: game.i18n.localize('WOD5E.VTM.RidingTheWave'),
-      img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
-      description: game.i18n.format('WOD5E.VTM.RidingTheWaveDescription', {
-        actor: actor.name
-      })
-    }).then(html => {
-      const message = ChatMessage.applyRollMode({ speaker: ChatMessage.getSpeaker({ actor }), content: html }, game.settings.get('core', 'rollMode'))
-      ChatMessage.create(message)
+    foundry.documents.ChatMessage.implementation.create({
+      flags: {
+        vtm5e: {
+          name: game.i18n.localize('WOD5E.VTM.RidingTheWave'),
+          img: 'systems/vtm5e/assets/icons/dice/vampire/bestial-failure.png',
+          description: game.i18n.format('WOD5E.VTM.RidingTheWaveDescription', {
+            actor: actor.name
+          })
+        }
+      }
     })
   }
 }
 
 // Calculate the dice for a Willpower roll
-function getWillpowerDicePool (actor) {
+function getWillpowerDicePool(actor) {
   const willpowerMax = actor.system.willpower.max
   const willpowerAgg = actor.system.willpower.aggravated
   const willpowerSup = actor.system.willpower.superficial
 
-  return Math.max((willpowerMax - willpowerAgg - willpowerSup), 0)
+  return Math.max(willpowerMax - willpowerAgg - willpowerSup, 0)
 }

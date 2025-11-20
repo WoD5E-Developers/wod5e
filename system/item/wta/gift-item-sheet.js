@@ -1,7 +1,11 @@
-/* global foundry */
-
 // Preparation functions
-import { prepareDescriptionContext, prepareDicepoolContext, prepareMacroContext, prepareModifiersContext, prepareItemSettingsContext } from '../scripts/prepare-partials.js'
+import {
+  prepareDescriptionContext,
+  prepareDicepoolContext,
+  prepareMacroContext,
+  prepareModifiersContext,
+  prepareItemSettingsContext
+} from '../scripts/prepare-partials.js'
 import { Gifts } from '../../api/def/gifts.js'
 import { Renown } from '../../api/def/renown.js'
 // Base item sheet to extend from
@@ -72,7 +76,7 @@ export class GiftItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     }
   }
 
-  async _prepareContext () {
+  async _prepareContext() {
     // Top-level variables
     const data = await super._prepareContext()
     const item = this.item
@@ -89,7 +93,7 @@ export class GiftItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     return data
   }
 
-  async _preparePartContext (partId, context, options) {
+  async _preparePartContext(partId, context, options) {
     // Inherit any preparation from the extended class
     context = { ...(await super._preparePartContext(partId, context, options)) }
 
@@ -114,12 +118,12 @@ export class GiftItemSheet extends HandlebarsApplicationMixin(WoDItem) {
     return context
   }
 
-  _configureRenderOptions (options) {
+  _configureRenderOptions(options) {
     super._configureRenderOptions(options)
 
     // Hide the "Dicepool" tab from gifts on SPC sheets.
     if (this.document.parent && this.document.parent?.type === 'spc') {
-      options.parts = options.parts.filter(item => item !== 'dicepool')
+      options.parts = options.parts.filter((item) => item !== 'dicepool')
     }
   }
 }

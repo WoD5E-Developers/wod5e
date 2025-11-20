@@ -1,12 +1,12 @@
-/* global ui, game */
-
 export const MigrateAbilitiesToAttributes = async function () {
   const actorsList = game.actors
   const totalIterations = actorsList.size
   const migrationIDs = []
 
   // If there's nothing to go through, then just resolve and move on.
-  if (totalIterations === 0) { return [] }
+  if (totalIterations === 0) {
+    return []
+  }
 
   // Fix 'abilities' to use the proper term of 'attributes'
   for (const actor of actorsList) {
@@ -14,7 +14,13 @@ export const MigrateAbilitiesToAttributes = async function () {
 
     // Ignore all non-player sheets
     // Additionally, if actorData.attributes already exists, ignore it as well
-    if (actor.type !== 'spc' && actor.type !== 'cell' && actor.type !== 'coterie' && actor.type !== 'group' && actorData.abilities) {
+    if (
+      actor.type !== 'spc' &&
+      actor.type !== 'cell' &&
+      actor.type !== 'coterie' &&
+      actor.type !== 'group' &&
+      actorData.abilities
+    ) {
       // Move abilities -> attributes
       actorData.attributes = actorData.abilities
 

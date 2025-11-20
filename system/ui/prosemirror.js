@@ -1,34 +1,81 @@
-/* global Hooks, foundry */
-
-// Add to the existing Prosemirror dropdowns
+// Extend ProseMirror functionality
+// Much appreciation to @joaquinp98 on the FoundryVTT Discord for this template
 export const ProseMirrorSettings = async () => {
-  const toggleMark = foundry.prosemirror.commands.toggleMark
-  const spanMark = foundry.prosemirror.dom.parser.schema.marks.span
+  const { defaultSchema, Schema } = foundry.prosemirror
+  const { deepClone } = foundry.utils
 
-  // Add a "World of Darkness" tab to the menu dropdowns
+  // ---- Define the mark for the symbol span ----
+  const wodSymbolMark = {
+    attrs: {
+      letter: { default: null }
+    },
+    inclusive: false,
+    toDOM(node) {
+      return [
+        'span',
+        {
+          class: 'wod5e-symbol'
+        },
+        node.attrs.letter || ''
+      ]
+    }
+  }
+
+  // ---- Extend Foundry’s ProseMirror Schema ----
+  const extendedSchema = new Schema({
+    nodes: defaultSchema.spec.nodes,
+    marks: deepClone(defaultSchema.spec.marks).addToStart('wodSymbol', wodSymbolMark)
+  })
+
+  // Replace the default schema
+  Object.assign(foundry.prosemirror.defaultSchema, extendedSchema)
+
+  // ------------------------------------------
+  //  Add Dropdown Menu Entry
+  // ------------------------------------------
   Hooks.on('getProseMirrorMenuDropDowns', (menu, dropdowns) => {
-    if ('format' in dropdowns) {
+    const wodMark = menu.schema.marks.wodSymbol
+    if (!wodMark) return
+
+    // The below letters map to the /vtm5e/assets/fonts/wod5e-symbols.ttf file
+    const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+    // Generate children elements for the "World of Darkness" dropdown in ProseMirror
+    const children = letters.map((letter) => ({
+      action: `wod-symbol-${letter}`,
+      title: letter,
+      class: 'wod5e-symbol',
+      priority: 1,
+      cmd: insertWodSymbol(letter, menu.schema)
+    }))
+
+    // Add the dropdown element
+    if (dropdowns.format?.entries) {
       dropdowns.format.entries.push({
         action: 'wod5e',
         title: 'World of Darkness',
-        children: [{
-          action: 'wodSymbols',
-          class: 'wod5e-symbol',
-          title: 'abcdefghij',
-          mark: spanMark,
-          attrs: {
-            _preserve: {
-              class: 'wod5e-symbol'
-            }
-          },
-          priority: 1,
-          cmd: toggleMark(spanMark, {
-            _preserve: {
-              class: 'wod5e-symbol'
-            }
-          })
-        }]
+        children
       })
     }
   })
+
+  function insertWodSymbol(letter, schema) {
+    return function (state, dispatch) {
+      const { tr } = state
+      const { from, to } = tr.selection
+
+      // Insert the letter at the cursor
+      tr.insertText(letter, from, to)
+
+      // Create the mark instance
+      const markType = schema.marks.wodSymbol
+      const mark = markType.create({ attrs: { letter } })
+
+      // Apply the mark to the inserted character
+      tr.addMark(from, from + letter.length, mark)
+
+      dispatch(tr)
+      return true
+    }
+  }
 }

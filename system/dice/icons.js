@@ -31,4 +31,13 @@ const desperationDiceFaces = {
   criticalFailure: 'desperation-critical-failure.png'
 }
 
-export { mortalDiceLocation, vampireDiceLocation, werewolfDiceLocation, hunterDiceLocation, normalDiceFaces, hungerDiceFaces, rageDiceFaces, desperationDiceFaces }
+export {
+  mortalDiceLocation,
+  vampireDiceLocation,
+  werewolfDiceLocation,
+  hunterDiceLocation,
+  normalDiceFaces,
+  hungerDiceFaces,
+  rageDiceFaces,
+  desperationDiceFaces
+}
