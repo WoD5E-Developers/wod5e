@@ -66,7 +66,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 [Foundry Version Support]: https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dplastic%26url%3Dhttps%3A%2F%2Fgithub.com%2FWoD5E-Developers%2Fwod5e%2Freleases%2Flatest%2Fdownload%2Fsystem.json
-[System URL]: https://foundryvtt.com/packages/vtm5e/
+[System URL]: https://foundryvtt.com/packages/wod5e/
 
 [GNU GPL v3 License]: https://img.shields.io/badge/License-GNU_GPL_v3-green
 [License URL]: ./LICENSE.md

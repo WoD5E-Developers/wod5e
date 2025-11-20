@@ -10,7 +10,7 @@
   {{#unless disableBasicDice}}
     <div class="basic-dice">
       <div class="dice-input">
-        <img width="50" height="50" src="systems/vtm5e/assets/icons/dialog/hunter-dice.png"/>
+        <img width="50" height="50" src="systems/wod5e/assets/icons/dialog/hunter-dice.png"/>
         <div class="flexrow">
           <i class="fas fa-minus dialog-control dialog-minus" data-action="minus" data-resource="inputBasicDice" data-resource-action="minus"></i>
           <input type="number" min="0" id="inputBasicDice" value="{{basicDice}}">
@@ -22,7 +22,7 @@
   {{#unless disableAdvancedDice}}
     <div class="advanced-dice">
       <div class="dice-input">
-        <img width="50" height="50" src="systems/vtm5e/assets/icons/dialog/desperation-dice.png"/>
+        <img width="50" height="50" src="systems/wod5e/assets/icons/dialog/desperation-dice.png"/>
         <div class="flexrow">
           <i class="fas fa-minus dialog-control dialog-minus" data-action="minus" data-resource="inputAdvancedDice" data-resource-action="minus"></i>
           <input type="number" min="0" id="inputAdvancedDice" value="{{advancedDice}}">
@@ -32,4 +32,4 @@
     </div>
   {{/unless}}
 </div>
-{{> "systems/vtm5e/display/ui/parts/roll-dialog-base.hbs"}}
+{{> "systems/wod5e/display/ui/parts/roll-dialog-base.hbs"}}

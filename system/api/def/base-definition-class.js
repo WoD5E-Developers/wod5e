@@ -60,7 +60,7 @@ export class BaseDefinitionClass {
     // Check if modifications are enabled
     if (this.modsEnabled && this.defCategory) {
       // Get the modifications for a particular defCategory from the game settings
-      modifications = game.settings.get('vtm5e', `modified${this.defCategory}`) || {}
+      modifications = game.settings.get('wod5e', `modified${this.defCategory}`) || {}
 
       // Handle adding modifications from any active modules
       const activeModules = game.modules.filter(
@@ -137,7 +137,7 @@ export class BaseDefinitionClass {
 
   static setSortAlphabetically() {
     // This will set the static property on the class that calls this method
-    const sortingSetting = game.settings.get('vtm5e', 'sortDefAlphabetically')
+    const sortingSetting = game.settings.get('wod5e', 'sortDefAlphabetically')
 
     if (sortingSetting === 'all' || sortingSetting === 'default') {
       this.sortAlphabetically = true

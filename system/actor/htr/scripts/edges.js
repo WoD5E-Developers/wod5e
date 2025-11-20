@@ -67,7 +67,7 @@ export const _onEdgeToChat = async function (event, target) {
 
   foundry.documents.ChatMessage.implementation.create({
     flags: {
-      vtm5e: {
+      wod5e: {
         name: edge.displayName,
         img: 'icons/svg/dice-target.svg',
         description: edge?.description || ''

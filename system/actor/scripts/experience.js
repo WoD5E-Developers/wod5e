@@ -1,4 +1,4 @@
-const experienceTemplate = 'systems/vtm5e/display/shared/actors/parts/experience-display.hbs'
+const experienceTemplate = 'systems/wod5e/display/shared/actors/parts/experience-display.hbs'
 
 export const _onAddExperience = async function (event, target) {
   event.preventDefault()

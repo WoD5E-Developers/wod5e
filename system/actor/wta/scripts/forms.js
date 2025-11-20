@@ -7,7 +7,7 @@ export const _onLostTheWolf = async function (actor) {
   let buttons = {}
 
   // If automatedRage is disabled, we don't wat to show this dialogue
-  if (!game.settings.get('vtm5e', 'automatedRage')) return
+  if (!game.settings.get('wod5e', 'automatedRage')) return
 
   // Define the template to be used
   const template = `
@@ -81,7 +81,7 @@ export const handleFormChange = async function (event, target, actor, form, dice
   const selectors = []
 
   // If automatedRage is turned on and the actor's rage is 0, present a warning
-  if (game.settings.get('vtm5e', 'automatedRage') && actor.system.rage.value === 0) {
+  if (game.settings.get('wod5e', 'automatedRage') && actor.system.rage.value === 0) {
     _onInsufficientRage(actor, form)
   } else {
     // Variables

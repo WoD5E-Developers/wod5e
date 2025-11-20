@@ -37,7 +37,7 @@ export const ProseMirrorSettings = async () => {
     const wodMark = menu.schema.marks.wodSymbol
     if (!wodMark) return
 
-    // The below letters map to the /vtm5e/assets/fonts/wod5e-symbols.ttf file
+    // The below letters map to the /wod5e/assets/fonts/wod5e-symbols.ttf file
     const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
 
     // Generate children elements for the "World of Darkness" dropdown in ProseMirror

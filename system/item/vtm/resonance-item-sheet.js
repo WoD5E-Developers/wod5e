@@ -21,19 +21,19 @@ export class ResonanceItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/vtm/items/resonance-sheet.hbs'
+      template: 'systems/wod5e/display/vtm/items/resonance-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
     },
     description: {
-      template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
+      template: 'systems/wod5e/display/shared/items/parts/description.hbs'
     },
     modifiers: {
-      template: 'systems/vtm5e/display/shared/items/parts/modifiers.hbs'
+      template: 'systems/wod5e/display/shared/items/parts/modifiers.hbs'
     },
     settings: {
-      template: 'systems/vtm5e/display/shared/items/parts/item-settings.hbs'
+      template: 'systems/wod5e/display/shared/items/parts/item-settings.hbs'
     }
   }
 

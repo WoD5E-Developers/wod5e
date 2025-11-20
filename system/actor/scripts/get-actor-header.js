@@ -1,6 +1,6 @@
 export const getActorHeader = async function (actor) {
   const actorBG = actor.system?.settings?.headerbg || ''
-  const settingsBG = game.settings.get('vtm5e', 'actorHeaderOverride') || ''
+  const settingsBG = game.settings.get('wod5e', 'actorHeaderOverride') || ''
 
   if (actorBG) {
     // Always prefer the actor-specific header setting override

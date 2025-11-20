@@ -33,18 +33,18 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
 
   static PARTS = {
     savedRolls: {
-      template: 'systems/vtm5e/display/ui/parts/roll-menu/saved-rolls.hbs'
+      template: 'systems/wod5e/display/ui/parts/roll-menu/saved-rolls.hbs'
     },
     body: {
-      template: 'systems/vtm5e/display/ui/parts/roll-menu/main.hbs'
+      template: 'systems/wod5e/display/ui/parts/roll-menu/main.hbs'
     }
   }
 
   async _prepareContext() {
     const data = await super._prepareContext()
 
-    data.activeRollID = game.users.current.getFlag('vtm5e', 'rollMenuActiveRoll') || ''
-    data.savedRolls = game.users.current.getFlag('vtm5e', 'rollMenuSavedRolls') || {}
+    data.activeRollID = game.users.current.getFlag('wod5e', 'rollMenuActiveRoll') || ''
+    data.savedRolls = game.users.current.getFlag('wod5e', 'rollMenuSavedRolls') || {}
 
     // Splat definitions
     data.splatOptions = WOD5E.Systems.getList({})
@@ -77,16 +77,16 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
   static async applicationHandler(event, form, formData) {
     const data = formData.object
 
-    let activeRoll = game.users.current.getFlag('vtm5e', 'rollMenuActiveRoll') || ''
+    let activeRoll = game.users.current.getFlag('wod5e', 'rollMenuActiveRoll') || ''
 
     // If there's no active roll, generate a new ID
     if (!activeRoll) {
       activeRoll = foundry.utils.randomID(8)
-      game.users.current.setFlag('vtm5e', 'rollMenuActiveRoll', activeRoll)
+      game.users.current.setFlag('wod5e', 'rollMenuActiveRoll', activeRoll)
     }
 
     // If there is an active roll, we can update it as input fields are updated
-    const savedRolls = game.users.current.getFlag('vtm5e', 'rollMenuSavedRolls') || {}
+    const savedRolls = game.users.current.getFlag('wod5e', 'rollMenuSavedRolls') || {}
 
     // Ensure that the savedRolls object exists, then add/update it
     if (savedRolls) {
@@ -103,7 +103,7 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     }
 
     // Save the mutated object
-    await game.users.current.setFlag('vtm5e', 'rollMenuSavedRolls', savedRolls)
+    await game.users.current.setFlag('wod5e', 'rollMenuSavedRolls', savedRolls)
 
     // Re-render the application
     this.render()

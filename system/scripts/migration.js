@@ -7,7 +7,7 @@ import { MigrateAbilitiesToAttributes } from './migration/migrate-abilities-to-a
 import { MigrateRolldataToDicepools } from './migration/migrate-rolldata-to-dicepools.js'
 import { MigrateOldDetailsToNewItems } from './migration/migrate-old-details-to-new-items.js'
 import { MigrateGeneralDifficulty } from './migration/migrate-general-difficulty.js'
-import { MigrateSystemId } from './migration/migrate-system-id.js'
+import { MigrateSystemFlags } from './migration/migrate-system-flags.js'
 
 export const migrateWorld = async () => {
   // Only allow the Game Master to run this script
@@ -16,7 +16,7 @@ export const migrateWorld = async () => {
   // Store current loaded version of the system
   const currentVersion = game.system.version
   // Store the world version pre-migration
-  const worldVersion = game.settings.get('vtm5e', 'worldVersion') || '1.5'
+  const worldVersion = game.settings.get('wod5e', 'worldVersion') || '1.5'
 
   console.log('World of Darkness 5e | Current SchreckNet Layer v' + worldVersion)
 
@@ -76,23 +76,16 @@ export const migrateWorld = async () => {
           }, 15000)
         } else {
           ui.notifications.info('Welcome to version ' + currentVersion)
-
-          if (game.world.system === 'vtm5e' && !game.settings.get('vtm5e', 'declinedMigration')) {
-            // Prompt for system ID migration if there are no other pending migrations
-            await MigrateSystemId()
-          }
+          await MigrateSystemFlags()
         }
       } catch (error) {
         console.error('World of Darkness 5e | Error during update:', error)
       }
 
       // Update game version, no matter if we error or not
-      game.settings.set('vtm5e', 'worldVersion', currentVersion)
-    } else {
-      if (game.world.system === 'vtm5e' && !game.settings.get('vtm5e', 'declinedMigration')) {
-        // Prompt for system ID migration if there are no other pending migrations
-        await MigrateSystemId()
-      }
+      game.settings.set('wod5e', 'worldVersion', currentVersion)
     }
+
+    await MigrateSystemFlags()
   }
 }

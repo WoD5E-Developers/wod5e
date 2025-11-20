@@ -22,22 +22,22 @@ export class TribeItemSheet extends HandlebarsApplicationMixin(WoDItem) {
 
   static PARTS = {
     header: {
-      template: 'systems/vtm5e/display/wta/items/tribe-sheet.hbs'
+      template: 'systems/wod5e/display/wta/items/tribe-sheet.hbs'
     },
     tabs: {
       template: 'templates/generic/tab-navigation.hbs'
     },
     description: {
-      template: 'systems/vtm5e/display/shared/items/parts/description.hbs'
+      template: 'systems/wod5e/display/shared/items/parts/description.hbs'
     },
     patronSpirit: {
-      template: 'systems/vtm5e/display/wta/items/parts/patron-spirit.hbs'
+      template: 'systems/wod5e/display/wta/items/parts/patron-spirit.hbs'
     },
     modifiers: {
-      template: 'systems/vtm5e/display/shared/items/parts/modifiers.hbs'
+      template: 'systems/wod5e/display/shared/items/parts/modifiers.hbs'
     },
     settings: {
-      template: 'systems/vtm5e/display/shared/items/parts/item-settings.hbs'
+      template: 'systems/wod5e/display/shared/items/parts/item-settings.hbs'
     }
   }
 
