@@ -8,6 +8,7 @@ import { MigrateRolldataToDicepools } from './migration/migrate-rolldata-to-dice
 import { MigrateOldDetailsToNewItems } from './migration/migrate-old-details-to-new-items.js'
 import { MigrateGeneralDifficulty } from './migration/migrate-general-difficulty.js'
 import { MigrateSystemFlags } from './migration/migrate-system-flags.js'
+import { RestoreOldWorldSettings } from './migration/restore-vtm5e-world-settings.js'
 
 export const migrateWorld = async () => {
   // Only allow the Game Master to run this script
@@ -77,6 +78,7 @@ export const migrateWorld = async () => {
         } else {
           ui.notifications.info('Welcome to version ' + currentVersion)
           await MigrateSystemFlags()
+          await RestoreOldWorldSettings()
         }
       } catch (error) {
         console.error('World of Darkness 5e | Error during update:', error)
@@ -87,5 +89,6 @@ export const migrateWorld = async () => {
     }
 
     await MigrateSystemFlags()
+    await RestoreOldWorldSettings()
   }
 }
