@@ -84,7 +84,7 @@ export const migrateWorld = async () => {
       // Update game version, no matter if we error or not
       game.settings.set('vtm5e', 'worldVersion', currentVersion)
     } else {
-      if (game.world.system === 'vtm5e') {
+      if (game.world.system === 'vtm5e' && !game.settings.get('vtm5e', 'declinedMigration')) {
         // Prompt for system ID migration if there are no other pending migrations
         await MigrateSystemId()
       }
