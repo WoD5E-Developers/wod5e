@@ -18,13 +18,7 @@ export const MigrateSystemFlags = async function () {
   const compendiumActorsList = compendiumActors.filter((doc) => doc.flags?.vtm5e)
   const compendiumItemsList = compendiumItems.filter((doc) => doc.flags?.vtm5e)
 
-  const allLists = [
-    actorsList,
-    itemsList,
-    messagesList,
-    compendiumActorsList,
-    compendiumItemsList
-  ]
+  const allLists = [actorsList, itemsList, messagesList, compendiumActorsList, compendiumItemsList]
 
   const total = allLists.reduce((sum, arr) => sum + arr.length, 0)
 
