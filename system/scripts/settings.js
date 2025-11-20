@@ -324,8 +324,16 @@ export const loadSettings = async function () {
     type: String
   })
 
-  // World Version, only really needed by developers
-  game.settings.register('vtm5e', 'declinedMigration', {
+  // Whether the user declined the migration or not
+  game.settings.register('wod5e', 'declinedMigration', {
+    scope: 'world',
+    config: false,
+    default: false,
+    type: Boolean
+  })
+
+  // Whether the world has finished the settings migration or not
+  game.settings.register('wod5e', 'settingsMigrationComplete', {
     scope: 'world',
     config: false,
     default: false,
