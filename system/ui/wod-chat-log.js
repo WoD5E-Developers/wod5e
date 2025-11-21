@@ -27,30 +27,30 @@ export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
       if (stamp) stamp.textContent = timeSinceShort(message.timestamp)
     }
   }
-
-  async _onRender(context, options) {
-    await super._onRender(context, options)
-
-    const html = this.element
-
-    const chatControls = html.querySelector('#chat-controls')
-
-    // If we don't find the chat controls element, do nothing
-    if (!chatControls) return
-
-    // Don't add anything if wod5e-chat-buttons already exists
-    if (html.querySelector('.wod5e-chat-buttons')) return
-
-    // Add the system's custom chat buttons
-    const wod5eChatButtons = document.createElement('div')
-    wod5eChatButtons.innerHTML = `
-      <div class="wod5e-chat-buttons flexrow">
-        <button type="button" class="ui-control icon fa-solid fa-dice-d10" data-action="renderRollMenu"
-          data-tooltip aria-label="Open Roll Menu">
-        </button>
-      </div>
-    `
-
-    chatControls.prepend(wod5eChatButtons)
-  }
 }
+
+Hooks.on('renderChatInput', (context) => {
+  const html = context.element
+
+  const chatControls = html.querySelectorAll('#chat-controls')
+
+  // If we don't find the chat controls element, do nothing
+  if (!chatControls) return
+
+  // Don't add anything if wod5e-chat-buttons already exists
+  if (html.querySelector('.wod5e-chat-buttons')) return
+
+  // Add the system's custom chat buttons
+  const wod5eChatButtons = document.createElement('div')
+  wod5eChatButtons.innerHTML = `
+    <div class="wod5e-chat-buttons flexrow">
+      <button type="button" class="ui-control icon fa-solid fa-dice-d10" data-action="renderRollMenu"
+        data-tooltip aria-label="Open Roll Menu">
+      </button>
+    </div>
+  `
+
+  chatControls.forEach((element) => {
+    element.prepend(wod5eChatButtons)
+  })
+})
