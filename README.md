@@ -4,6 +4,7 @@
 [![Foundry Version Support]][System URL]
 [![GNU GPL v3 License]][License URL]
 [![ESLint]][ESLint URL]
+[![Downloads]][Downloads URL]
 
 This system is for playing multiple World of Darkness 5th edition systems on the Foundry Virtual Tabletop System. For a list of the latest changes, see the [Changelog](https://github.com/WoD5E-Developers/wod5e/releases). You can also read further about the system in general on the [WOD5E Documentation](https://wod5e-developers.github.io/) site!
 
@@ -74,7 +75,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 [ESLint]: https://github.com/WoD5E-Developers/wod5e/actions/workflows/.eslintrc.yml/badge.svg
 [ESLint URL]: https://github.com/WoD5E-Developers/wod5e/actions/workflows/.eslintrc.yml
 
+[Downloads]: https://img.shields.io/github/downloads/wod5e-developers/wod5e/wod5e.zip
+[Downloads URL]: https://github.com/WoD5E-Developers/wod5e/releases
+
 [Dark Pack]: https://s3-eu-north-1.amazonaws.com/pdx-campaign-wp-data/uploads/sites/10/2021/10/05102936/darkpack_logo2-300x300.png
 [Dark Pack URL]: https://www.paradoxinteractive.com/games/world-of-darkness/community/dark-pack-agreement
 [Dark Pack Agreement]: https://www.paradoxinteractive.com/games/world-of-darkness/community/dark-pack-agreement
+
 
