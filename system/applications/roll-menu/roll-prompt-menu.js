@@ -1,5 +1,6 @@
 import { _onAddNewRoll } from './scripts/on-add-new-dice.js'
 import { _onPromptInChat } from './scripts/on-prompt-in-chat.js'
+import { _onRemoveSavedRoll } from './scripts/on-remove-roll.js'
 import { _onRollFromRollMenu } from './scripts/on-roll-from-roll-menu.js'
 import { _onSelectSavedRoll } from './scripts/on-select-saved-roll.js'
 
@@ -27,7 +28,8 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
       selectSavedRoll: _onSelectSavedRoll,
       addNewRoll: _onAddNewRoll,
       rollFromRollMenu: _onRollFromRollMenu,
-      promptInChat: _onPromptInChat
+      promptInChat: _onPromptInChat,
+      removeSavedRoll: _onRemoveSavedRoll
     }
   }
 

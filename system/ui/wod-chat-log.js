@@ -45,7 +45,7 @@ Hooks.on('renderChatInput', (context) => {
   wod5eChatButtons.innerHTML = `
     <div class="wod5e-chat-buttons flexrow">
       <button type="button" class="ui-control icon fa-solid fa-dice-d10" data-action="renderRollMenu"
-        data-tooltip aria-label="Open Roll Menu">
+        data-tooltip aria-label="${game.i18n.localize('WOD5E.RollList.OpenRollMenu')}">
       </button>
     </div>
   `
