@@ -160,7 +160,7 @@ async function createRandomCharacter() {
     return
   }
 
-  // 2. Grab the data structure
+  // Grab the data structure
   const sys = newActor.system
 
   // Check to make sure attributes and skills exist
