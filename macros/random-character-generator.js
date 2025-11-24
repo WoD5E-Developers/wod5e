@@ -198,7 +198,7 @@ async function createRandomCharacter() {
 
   let chatContent = `<h3>${actorName}</h3>`
   chatContent += `<p><strong>${game.i18n.localize('WOD5E.ItemsList.Type')}</strong> ${actorType} | <strong>${game.i18n.localize('WOD5E.Compendiums.Macros.RandomCharacterGenerator.Dialog.SkillDistribution')}</strong> ${skillDistributions[skillDistribution].label}</p>`
-  chatContent += `<h4>Attribute:</h4><ul style="columns: 2;">`
+  chatContent += `<h4>${game.i18n.localize('WOD5E.AttributesList.Label')}</h4><ul style="columns: 2;">`
 
   // Attribute generation
   attributeKeys.forEach((key, index) => {
