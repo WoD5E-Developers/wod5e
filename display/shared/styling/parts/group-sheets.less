@@ -81,15 +81,7 @@
 
   .tab[data-tab="members"] {
     .group-member {
-      .group-sheet .members .group-member {
-        padding: 5px 0;
-
-        .werewolf-form-image {
-          max-width: 60px;
-          display: inline-block;
-          vertical-align: top;
-        }
-      }
+      padding: 5px 0;
 
       .actor-name {
         font-size: 20px;
@@ -100,9 +92,14 @@
         max-width: 60px;
 
         img {
+          border: 1px solid;
           margin: 0 3px;
           cursor: pointer;
         }
+      }
+
+      .sub-item.werewolf-form {
+        float: inline-end;
       }
 
       .sub-item {
@@ -114,6 +111,11 @@
 
         .sub-item-name {
           font-weight: bold;
+        }
+
+        .werewolf-form-image {
+          align-self: center;
+          border: 1px solid;
         }
       }
 

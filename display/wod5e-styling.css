@@ -2113,13 +2113,8 @@ body.uk .actor.sheet {
 .group.sheet .actor-header .pack-features .field-header {
   max-width: 150px;
 }
-.group.sheet .tab[data-tab="members"] .group-member .group-sheet .members .group-member {
+.group.sheet .tab[data-tab="members"] .group-member {
   padding: 5px 0;
-}
-.group.sheet .tab[data-tab="members"] .group-member .group-sheet .members .group-member .werewolf-form-image {
-  max-width: 60px;
-  display: inline-block;
-  vertical-align: top;
 }
 .group.sheet .tab[data-tab="members"] .group-member .actor-name {
   font-size: 20px;
@@ -2129,8 +2124,12 @@ body.uk .actor.sheet {
   max-width: 60px;
 }
 .group.sheet .tab[data-tab="members"] .group-member .actor-image img {
+  border: 1px solid;
   margin: 0 3px;
   cursor: pointer;
+}
+.group.sheet .tab[data-tab="members"] .group-member .sub-item.werewolf-form {
+  float: inline-end;
 }
 .group.sheet .tab[data-tab="members"] .group-member .sub-item {
   display: inline-flex;
@@ -2141,6 +2140,10 @@ body.uk .actor.sheet {
 }
 .group.sheet .tab[data-tab="members"] .group-member .sub-item .sub-item-name {
   font-weight: bold;
+}
+.group.sheet .tab[data-tab="members"] .group-member .sub-item .werewolf-form-image {
+  align-self: center;
+  border: 1px solid;
 }
 .group.sheet .tab[data-tab="members"] .group-member .sup-item {
   flex-grow: 0;
