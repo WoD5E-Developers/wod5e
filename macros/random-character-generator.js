@@ -1,5 +1,5 @@
 /**
- * Random character generator by Nim on the FoundryVTT Discord.
+ * Random character generator by Nin (hagelbuchern) on the FoundryVTT Discord.
  */
 
 const valuesToDistribute = [4, 3, 3, 3, 2, 2, 2, 2, 1]
