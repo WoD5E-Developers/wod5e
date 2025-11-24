@@ -45,6 +45,7 @@
     "ConfirmDeleteDescription": "Вы уверены, что хотите удалить <b>{string}</b>? Это невозможно отменить.",
     "Controls": "Управление",
     "Delete": "Удалить",
+    "_Dismiss": "",
     "Edit": "Изменить",
     "Exp": "Опыт",
     "_GamePaused": "",
@@ -57,6 +58,7 @@
     "LicensedUnderDarkPack": "Лицензия The Dark Pack",
     "LicensedUnderDarkPackFulltext": "Некоторые части материалов защищены авторскими правами и товарными знаками Paradox Interactive AB и используются с их разрешения. Все права защищены. Для получения дополнительной информации, пожалуйста, посетите <a href='https://worldofdarkness.com'>worldofdarkness.com</a>",
     "MaxString": "Максимум {string}",
+    "_MigrateSystemIdButton": "",
     "_MigrateSystemIdCancel": "",
     "_MigrateSystemIdComplete": "",
     "_MigrateSystemIdDescription": "",
@@ -134,6 +136,40 @@
       "WillpowerFull": "Воля исчерпана, нельзя получить больше стресса.",
       "WillpowerFullTitle": "Шкала Воли полностью заполнена",
       "WillpowerReroll": "Переброс за Волю"
+    },
+    "Compendiums": {
+      "Macros": {
+        "_AdjustHunger": "",
+        "_AdjustHungerBy": "",
+        "_AdjustRage": "",
+        "_AdjustRageBy": "",
+        "RandomCharacterGenerator": {
+          "Chat": {
+            "_DerivedValues": ""
+          },
+          "Dialog": {
+            "_AutoDistribute": "",
+            "_NewCharacter": "",
+            "_SkillDistribution": "",
+            "_Title": "",
+            "Options": {
+              "_Balanced": "",
+              "_JackOfAllTrades": "",
+              "_Specialist": ""
+            }
+          },
+          "Notifications": {
+            "_ActorSystemData": "",
+            "_AttemptedUpdateData": "",
+            "_AvailableProperties": "",
+            "_ErrorCreatingActor": "",
+            "_ErrorSettingValues": "",
+            "_PathNotFound": "",
+            "_StringCreated": "",
+            "_UpdateError": ""
+          }
+        }
+      }
     },
     "Damage": {
       "Aggravated": "Тяжёлый",

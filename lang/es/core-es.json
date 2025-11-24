@@ -45,6 +45,7 @@
     "ConfirmDeleteDescription": "¿Seguro que quieres borrar <b>{string}</b>?",
     "Controls": "Controles",
     "Delete": "Borrar",
+    "_Dismiss": "",
     "Edit": "Editar",
     "Exp": "Experiencia",
     "GamePaused": "Juego en pausa",
@@ -57,6 +58,7 @@
     "LicensedUnderDarkPack": "Bajo la licencia Dark Pack",
     "LicensedUnderDarkPackFulltext": "Partes de los materiales son coypright y marcas registradas de Paradox Interactive AB, y están usados con permiso. Todos los derechos reservados. Para más información visita <a href='https://worldofdarkness.com'>worldofdarkness.com</a>.",
     "MaxString": "Máximo {string}",
+    "_MigrateSystemIdButton": "",
     "_MigrateSystemIdCancel": "",
     "_MigrateSystemIdComplete": "",
     "_MigrateSystemIdDescription": "",
@@ -134,6 +136,40 @@
       "WillpowerFull": "La fuerza de voluntad está totalmente dañada, ya no puede dañarla.",
       "WillpowerFullTitle": "Registro de fuerza de voluntad lleno",
       "WillpowerReroll": "Repetición"
+    },
+    "Compendiums": {
+      "Macros": {
+        "_AdjustHunger": "",
+        "_AdjustHungerBy": "",
+        "_AdjustRage": "",
+        "_AdjustRageBy": "",
+        "RandomCharacterGenerator": {
+          "Chat": {
+            "_DerivedValues": ""
+          },
+          "Dialog": {
+            "_AutoDistribute": "",
+            "_NewCharacter": "",
+            "_SkillDistribution": "",
+            "_Title": "",
+            "Options": {
+              "_Balanced": "",
+              "_JackOfAllTrades": "",
+              "_Specialist": ""
+            }
+          },
+          "Notifications": {
+            "_ActorSystemData": "",
+            "_AttemptedUpdateData": "",
+            "_AvailableProperties": "",
+            "_ErrorCreatingActor": "",
+            "_ErrorSettingValues": "",
+            "_PathNotFound": "",
+            "_StringCreated": "",
+            "_UpdateError": ""
+          }
+        }
+      }
     },
     "Damage": {
       "Aggravated": "Agravado",

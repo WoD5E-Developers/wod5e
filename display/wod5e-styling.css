@@ -250,7 +250,7 @@
   font-weight: 300;
   font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuaabWmT.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v50/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuaabWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
@@ -258,7 +258,7 @@
   font-weight: 400;
   font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbWmT.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v50/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
@@ -266,7 +266,7 @@
   font-weight: 500;
   font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bWmT.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v50/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Amarante';
@@ -3028,6 +3028,7 @@ prose-mirror .editor-menu button {
 .theme-dark .standard-form .form-group > label,
 .theme-dark .standard-form .form-group:hover > label {
   color: var(--system-dark-color-4);
+  flex-grow: 2;
 }
 .theme-dark .standard-form .form-group .hint,
 .theme-dark .standard-form .form-group:hover .hint {

@@ -45,6 +45,7 @@
     "ConfirmDeleteDescription": "Soll <b>{string}</b> wirklich gelöscht werden? Dies kann nicht rückgängig gemacht werden.",
     "Controls": "Steuerung",
     "Delete": "Löschen",
+    "_Dismiss": "",
     "Edit": "Bearbeiten",
     "Exp": "EP",
     "_GamePaused": "",
@@ -57,6 +58,7 @@
     "_LicensedUnderDarkPack": "",
     "_LicensedUnderDarkPackFulltext": "",
     "MaxString": "Maximum {string}",
+    "_MigrateSystemIdButton": "",
     "_MigrateSystemIdCancel": "",
     "_MigrateSystemIdComplete": "",
     "_MigrateSystemIdDescription": "",
@@ -134,6 +136,40 @@
       "WillpowerFull": "Willenskraft ist vollständig aufgebraucht, kann sie nicht weiter verringern.",
       "WillpowerFullTitle": "Willenskraft aufgebraucht",
       "WillpowerReroll": "Mit Willenskraft neuwürfeln …"
+    },
+    "Compendiums": {
+      "Macros": {
+        "_AdjustHunger": "",
+        "_AdjustHungerBy": "",
+        "_AdjustRage": "",
+        "_AdjustRageBy": "",
+        "RandomCharacterGenerator": {
+          "Chat": {
+            "_DerivedValues": ""
+          },
+          "Dialog": {
+            "_AutoDistribute": "",
+            "_NewCharacter": "",
+            "_SkillDistribution": "",
+            "_Title": "",
+            "Options": {
+              "_Balanced": "",
+              "_JackOfAllTrades": "",
+              "_Specialist": ""
+            }
+          },
+          "Notifications": {
+            "_ActorSystemData": "",
+            "_AttemptedUpdateData": "",
+            "_AvailableProperties": "",
+            "_ErrorCreatingActor": "",
+            "_ErrorSettingValues": "",
+            "_PathNotFound": "",
+            "_StringCreated": "",
+            "_UpdateError": ""
+          }
+        }
+      }
     },
     "Damage": {
       "Aggravated": "Schwerer",
