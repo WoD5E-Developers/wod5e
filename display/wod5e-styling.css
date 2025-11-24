@@ -2287,6 +2287,9 @@ body.uk .actor.sheet {
   overflow-y: scroll;
   height: 100%;
 }
+.item.sheet .source-page-input {
+  min-width: 75px;
+}
 .item.sheet .effects-list .effect {
   border-top: 1px solid black;
   padding: 5px;

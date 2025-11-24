@@ -113,7 +113,10 @@ export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.she
 
       gamesystem: itemData.gamesystem || 'mortal',
 
-      dataItemId: item.getFlag('wod5e', 'dataItemId') || ''
+      dataItemId: item.getFlag('wod5e', 'dataItemId') || '',
+
+      sourcebook: item.system.source.book,
+      pageNumber: item.system.source.page
     }
   }
 
