@@ -11,7 +11,7 @@ import { WoDItemBase } from '../wod-item-base.js'
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the WoDActor document
+ * Extend the WoDItemBase document
  * @extends {WoDItemBase}
  */
 export class EdgePoolItemSheet extends HandlebarsApplicationMixin(WoDItemBase) {
