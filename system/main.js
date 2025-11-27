@@ -1,8 +1,10 @@
 // Actor sheets
+import { WoDActor } from './actor/actor.js'
 import { WoDActorBase } from './actor/wod-actor-base.js'
 import { WoDActorDirectory } from './ui/wod-actor-directory.js'
 import { ProseMirrorSettings } from './ui/prosemirror.js'
 // Item sheets
+import { WoDItem } from './item/item.js'
 import { WoDItemBase } from './item/wod-item-base.js'
 // Custom UI Classes
 import { WoDChatLog } from './ui/wod-chat-log.js'
