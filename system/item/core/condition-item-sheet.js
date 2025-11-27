@@ -8,15 +8,15 @@ import {
 import { _onAddEffect, _onRemoveEffect } from './scripts/effects.js'
 import { getEffectKeys } from './scripts/get-effect-keys.js'
 // Base item sheet to extend from
-import { WoDItemBase } from '../wod-item-base.js'
+import { WoDItem } from '../wod-item-base.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the WoDItemBase document
- * @extends {WoDItemBase}
+ * Extend the WoDItem document
+ * @extends {WoDItem}
  */
-export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItemBase) {
+export class ConditionItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
     actions: {

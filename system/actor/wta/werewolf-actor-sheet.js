@@ -23,15 +23,15 @@ import { _onBeginFrenzy, _onEndFrenzy } from './scripts/frenzy.js'
 import { _onHaranoRoll, _onHaugloskRoll } from './scripts/balance.js'
 import { _damageWillpower } from '../../scripts/rolls/willpower-damage.js'
 // Base actor sheet to extend from
-import { WoDActorBase } from '../wod-actor-base.js'
+import { WoDActor } from '../wod-actor-base.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the WoDActorBase document
- * @extends {WoDActorBase}
+ * Extend the WoDActor document
+ * @extends {WoDActor}
  */
-export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
+export class WerewolfActorSheet extends HandlebarsApplicationMixin(WoDActor) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'actor', 'sheet', 'werewolf'],
     actions: {

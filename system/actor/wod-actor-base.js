@@ -34,9 +34,7 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
  * Extend the base ActorSheetV2 document
  * @extends {foundry.applications.sheets.ActorSheetV2}
  */
-export class WoDActorBase extends HandlebarsApplicationMixin(
-  foundry.applications.sheets.ActorSheetV2
-) {
+export class WoDActor extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
   get title() {
     return this.actor.isToken ? `[Token] ${this.actor.name}` : this.actor.name
   }
@@ -51,7 +49,7 @@ export class WoDActorBase extends HandlebarsApplicationMixin(
   static DEFAULT_OPTIONS = {
     form: {
       submitOnChange: true,
-      handler: WoDActorBase.onSubmitActorForm
+      handler: WoDActor.onSubmitActorForm
     },
     window: {
       icon: 'fa-solid fa-dice-d10',

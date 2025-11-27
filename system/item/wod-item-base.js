@@ -14,9 +14,7 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
  * Extend the base ItemSheetV2 document
  * @extends {foundry.applications.sheets.ItemSheetV2}
  */
-export class WoDItemBase extends HandlebarsApplicationMixin(
-  foundry.applications.sheets.ItemSheetV2
-) {
+export class WoDItem extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
   constructor(options = {}) {
     super(options)
   }
@@ -24,7 +22,7 @@ export class WoDItemBase extends HandlebarsApplicationMixin(
   static DEFAULT_OPTIONS = {
     form: {
       submitOnChange: true,
-      handler: WoDItemBase.onSubmitItemForm
+      handler: WoDItem.onSubmitItemForm
     },
     window: {
       icon: 'fa-solid fa-dice-d10',

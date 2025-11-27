@@ -9,15 +9,15 @@ import {
 import { Gifts } from '../../api/def/gifts.js'
 import { Renown } from '../../api/def/renown.js'
 // Base item sheet to extend from
-import { WoDItemBase } from '../wod-item-base.js'
+import { WoDItem } from '../wod-item-base.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the WoDItemBase document
- * @extends {WoDItemBase}
+ * Extend the WoDItem document
+ * @extends {WoDItem}
  */
-export class GiftItemSheet extends HandlebarsApplicationMixin(WoDItemBase) {
+export class GiftItemSheet extends HandlebarsApplicationMixin(WoDItem) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
     actions: {}
