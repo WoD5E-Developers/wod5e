@@ -53,6 +53,34 @@ import { _updateToken } from './actor/wta/scripts/forms.js'
 import { RollPromptSockets } from './sockets/roll-prompt.js'
 import { WoDActorBase } from './actor/wod-actor-base.js'
 
+// Register the WOD5E global
+window.WOD5E = {
+  api: {
+    Roll: wod5eAPI.Roll,
+    PromptRoll: wod5eAPI.PromptRoll,
+    RollFromDataset: wod5eAPI.RollFromDataset,
+    getBasicDice: wod5eAPI.getBasicDice,
+    getAdvancedDice: wod5eAPI.getAdvancedDice,
+    getFlavorDescription: wod5eAPI.getFlavorDescription,
+    generateLabelAndLocalize: wod5eAPI.generateLabelAndLocalize,
+    migrateWorld,
+    _onRollItemFromMacro
+  },
+  WoDItemBase,
+  WoDActorBase,
+  Systems,
+  Attributes,
+  Skills,
+  Features,
+  ActorTypes,
+  ItemTypes,
+  Disciplines,
+  Edges,
+  Renown,
+  Gifts,
+  WereForms
+}
+
 // Anything that needs to be ran alongside the initialisation of the world
 Hooks.once('init', async function () {
   console.log('World of Darkness 5e | Initializing SchreckNet...')
@@ -143,34 +171,6 @@ Hooks.once('ready', async function () {
     backgroundColor: '#000',
     palette:
       '#FF2B2B80 #650202 #d84343 #f51f1f #D18125 #cc6d28 #ffb762 #ff8f00 #BE660080 #4e2100 #994101 #e97244'
-  }
-
-  // Activate the API
-  window.WOD5E = {
-    api: {
-      Roll: wod5eAPI.Roll,
-      PromptRoll: wod5eAPI.PromptRoll,
-      RollFromDataset: wod5eAPI.RollFromDataset,
-      getBasicDice: wod5eAPI.getBasicDice,
-      getAdvancedDice: wod5eAPI.getAdvancedDice,
-      getFlavorDescription: wod5eAPI.getFlavorDescription,
-      generateLabelAndLocalize: wod5eAPI.generateLabelAndLocalize,
-      migrateWorld,
-      _onRollItemFromMacro
-    },
-    WoDItemBase,
-    WoDActorBase,
-    Systems,
-    Attributes,
-    Skills,
-    Features,
-    ActorTypes,
-    ItemTypes,
-    Disciplines,
-    Edges,
-    Renown,
-    Gifts,
-    WereForms
   }
 
   // Migration functions
