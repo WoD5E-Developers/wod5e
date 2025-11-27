@@ -22,15 +22,15 @@ import { _onFrenzyRoll } from './scripts/frenzy-roll.js'
 import { _onEndFrenzy } from './scripts/end-frenzy.js'
 import { _onRemorseRoll } from './scripts/roll-remorse.js'
 // Base actor sheet to extend from
-import { WoDActor } from '../wod-actor-base.js'
+import { WoDActorBase } from '../wod-actor-base.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the WoDActor document
- * @extends {WoDActor}
+ * Extend the WoDActorBase document
+ * @extends {WoDActorBase}
  */
-export class VampireActorSheet extends HandlebarsApplicationMixin(WoDActor) {
+export class VampireActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'actor', 'sheet', 'vampire'],
     actions: {

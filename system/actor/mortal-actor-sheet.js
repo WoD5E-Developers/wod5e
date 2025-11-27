@@ -10,15 +10,15 @@ import {
   prepareLimitedContext
 } from './scripts/prepare-partials.js'
 // Base actor sheet to extend from
-import { WoDActor } from './wod-actor-base.js'
+import { WoDActorBase } from './wod-actor-base.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the WoDActor document
- * @extends {WoDActor}
+ * Extend the WoDActorBase document
+ * @extends {WoDActorBase}
  */
-export class MortalActorSheet extends HandlebarsApplicationMixin(WoDActor) {
+export class MortalActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'actor', 'sheet', 'mortal'],
     actions: {}
