@@ -6,15 +6,15 @@ import {
 } from '../scripts/prepare-partials.js'
 import { prepareBaneContext } from './scripts/prepare-partials.js'
 // Base item sheet to extend from
-import { WoDItem } from '../wod-item-base.js'
+import { WoDItemBase } from '../wod-item-base.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the WoDItem document
- * @extends {WoDItem}
+ * Extend the WoDItemBase document
+ * @extends {WoDItemBase}
  */
-export class ClanItemSheet extends HandlebarsApplicationMixin(WoDItem) {
+export class ClanItemSheet extends HandlebarsApplicationMixin(WoDItemBase) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
     actions: {}

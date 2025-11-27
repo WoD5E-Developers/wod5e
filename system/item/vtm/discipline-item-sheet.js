@@ -8,15 +8,15 @@ import {
 } from '../scripts/prepare-partials.js'
 import { Disciplines } from '../../api/def/disciplines.js'
 // Base item sheet to extend from
-import { WoDItem } from '../wod-item-base.js'
+import { WoDItemBase } from '../wod-item-base.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the WoDItem document
- * @extends {WoDItem}
+ * Extend the WoDItemBase document
+ * @extends {WoDItemBase}
  */
-export class DisciplineItemSheet extends HandlebarsApplicationMixin(WoDItem) {
+export class DisciplineItemSheet extends HandlebarsApplicationMixin(WoDItemBase) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
     actions: {}

@@ -4,6 +4,7 @@ import { WoDActorDirectory } from './ui/wod-actor-directory.js'
 import { ProseMirrorSettings } from './ui/prosemirror.js'
 // Item sheets
 import { WoDItem } from './item/item.js'
+import { WoDItemBase } from './item/wod-item-base.js'
 // Custom UI Classes
 import { WoDChatLog } from './ui/wod-chat-log.js'
 import { WoDChatMessage } from './ui/wod-chat-message.js'
@@ -156,7 +157,7 @@ Hooks.once('ready', async function () {
       migrateWorld,
       _onRollItemFromMacro
     },
-    WoDItem,
+    WoDItemBase,
     WoDActor,
     Systems,
     Attributes,
