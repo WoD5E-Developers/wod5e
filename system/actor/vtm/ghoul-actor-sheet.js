@@ -20,15 +20,15 @@ import {
 } from './scripts/disciplines.js'
 import { _onRemorseRoll } from './scripts/roll-remorse.js'
 // Base actor sheet to extend from
-import { WoDActor } from '../wod-actor-base.js'
+import { WoDActorBase } from '../wod-actor-base.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the WoDActor document
- * @extends {WoDActor}
+ * Extend the WoDActorBase document
+ * @extends {WoDActorBase}
  */
-export class GhoulActorSheet extends HandlebarsApplicationMixin(WoDActor) {
+export class GhoulActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'actor', 'sheet', 'vampire'],
     actions: {

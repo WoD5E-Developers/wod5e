@@ -51,6 +51,7 @@ import { _rollItem } from './actor/scripts/item-roll.js'
 import { _updateCSSVariable, cssVariablesRecord } from './scripts/update-css-variables.js'
 import { _updateToken } from './actor/wta/scripts/forms.js'
 import { RollPromptSockets } from './sockets/roll-prompt.js'
+import { WoDActorBase } from './actor/wod-actor-base.js'
 
 // Anything that needs to be ran alongside the initialisation of the world
 Hooks.once('init', async function () {
@@ -158,7 +159,7 @@ Hooks.once('ready', async function () {
       _onRollItemFromMacro
     },
     WoDItemBase,
-    WoDActor,
+    WoDActorBase,
     Systems,
     Attributes,
     Skills,
