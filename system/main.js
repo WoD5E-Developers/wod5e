@@ -30,8 +30,6 @@ import {
   WerewolfRageDie
 } from './dice/splat-dice.js'
 import { migrateWorld } from './scripts/migration.js'
-import { _onWillpowerReroll } from './scripts/willpower-reroll.js'
-import { _onAnyReroll } from './scripts/any-reroll.js'
 import { wod5eAPI } from './api/wod5e-api.js'
 import { WOD5eRoll } from './scripts/system-rolls.js'
 // WOD5E Definitions
@@ -207,48 +205,6 @@ Hooks.on('canvasReady', (canvas) => {
       _updateToken(token.actor, activeForm)
     }
   })
-})
-
-// Display the reroll options in the chat when messages are right clicked
-Hooks.on('getChatMessageContextOptions', (html, options) => {
-  options.push(
-    {
-      name: game.i18n.localize('WOD5E.Chat.WillpowerReroll'),
-      icon: '<i class="fas fa-redo"></i>',
-      condition: (li) => {
-        // Only show this context menu if the person is GM or author of the message
-        const message = game.messages.get(li.getAttribute('data-message-id'))
-
-        // Only show this context menu if there are re-rollable dice in the message
-        const rerollableDice = li.querySelectorAll('.rerollable').length
-
-        // Only show this context menu if there's not any already rerolled dice in the message
-        const rerolledDice = li.querySelectorAll('.rerolled').length
-
-        // All must be true to show the reroll dialog
-        return (game.user.isGM || message.isAuthor) && rerollableDice > 0 && rerolledDice === 0
-      },
-      callback: (li) => _onWillpowerReroll(li)
-    },
-    {
-      name: game.i18n.localize('WOD5E.Chat.Reroll'),
-      icon: '<i class="fas fa-redo"></i>',
-      condition: (li) => {
-        // Only show this context menu if the person is GM or author of the message
-        const message = game.messages.get(li.getAttribute('data-message-id'))
-
-        // Only show this context menu if there are dice in the message
-        const dice = li.querySelectorAll('.die').length
-
-        // Only show this context menu if there's not any already rerolled dice in the message
-        const rerolledDice = li.querySelectorAll('.rerolled').length
-
-        // All must be true to show the reroll dialog
-        return (game.user.isGM || message.isAuthor) && dice > 0 && rerolledDice === 0
-      },
-      callback: (li) => _onAnyReroll(li)
-    }
-  )
 })
 
 function _onRollItemFromMacro(itemName) {

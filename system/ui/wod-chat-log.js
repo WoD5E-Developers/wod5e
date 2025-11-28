@@ -31,6 +31,74 @@ export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
       if (stamp) stamp.textContent = timeSinceShort(message.timestamp)
     }
   }
+
+  /**
+   * Add additional context options for chat messages
+   */
+
+  _getEntryContextOptions() {
+    const contextOptions = super._getEntryContextOptions()
+
+    // Reroll options
+    contextOptions.push(
+      {
+        name: game.i18n.localize('WOD5E.Chat.WillpowerReroll'),
+        icon: '<i class="fas fa-redo"></i>',
+        condition: (li) => {
+          // Only show this context menu if the person is GM or author of the message
+          const message = game.messages.get(li.getAttribute('data-message-id'))
+
+          // Only show this context menu if there are re-rollable dice in the message
+          const rerollableDice = li.querySelectorAll('.rerollable').length
+
+          // Only show this context menu if there's not any already rerolled dice in the message
+          const rerolledDice = li.querySelectorAll('.rerolled').length
+
+          // All must be true to show the reroll dialog
+          return (
+            // Is the GM or is the message author
+            (game.user.isGM || message.isAuthor) &&
+            // Has rerollable dice
+            rerollableDice > 0 &&
+            // Has no rerolled dice
+            rerolledDice === 0 &&
+            // Is NOT a roll prompt
+            !message.flags.wod5e.isRollPrompt
+          )
+        },
+        callback: (li) => _onWillpowerReroll(li)
+      },
+      {
+        name: game.i18n.localize('WOD5E.Chat.Reroll'),
+        icon: '<i class="fas fa-redo"></i>',
+        condition: (li) => {
+          // Only show this context menu if the person is GM or author of the message
+          const message = game.messages.get(li.getAttribute('data-message-id'))
+
+          // Only show this context menu if there are dice in the message
+          const dice = li.querySelectorAll('.die').length
+
+          // Only show this context menu if there's not any already rerolled dice in the message
+          const rerolledDice = li.querySelectorAll('.rerolled').length
+
+          // All must be true to show the reroll dialog
+          return (
+            // Is the GM or is the message author
+            (game.user.isGM || message.isAuthor) &&
+            // Has dice
+            dice > 0 &&
+            // Has no rerolled dice
+            rerolledDice === 0 &&
+            // Is NOT a roll prompt
+            !message.flags.wod5e.isRollPrompt
+          )
+        },
+        callback: (li) => _onAnyReroll(li)
+      }
+    )
+
+    return contextOptions
+  }
 }
 
 Hooks.on('renderChatInput', (context) => {
