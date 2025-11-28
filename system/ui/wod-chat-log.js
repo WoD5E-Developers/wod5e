@@ -63,7 +63,7 @@ export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
             // Has no rerolled dice
             rerolledDice === 0 &&
             // Is NOT a roll prompt
-            !message.flags.wod5e.isRollPrompt
+            !message.flags?.wod5e?.isRollPrompt
           )
         },
         callback: (li) => _onWillpowerReroll(li)
@@ -90,7 +90,7 @@ export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
             // Has no rerolled dice
             rerolledDice === 0 &&
             // Is NOT a roll prompt
-            !message.flags.wod5e.isRollPrompt
+            !message.flags?.wod5e?.isRollPrompt
           )
         },
         callback: (li) => _onAnyReroll(li)
