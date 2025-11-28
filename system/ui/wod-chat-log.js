@@ -35,7 +35,6 @@ export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
   /**
    * Add additional context options for chat messages
    */
-
   _getEntryContextOptions() {
     const contextOptions = super._getEntryContextOptions()
 
