@@ -30,8 +30,8 @@ import {
   WerewolfRageDie
 } from './dice/splat-dice.js'
 import { migrateWorld } from './scripts/migration.js'
-import { willpowerReroll } from './scripts/willpower-reroll.js'
-import { anyReroll } from './scripts/any-reroll.js'
+import { _onWillpowerReroll } from './scripts/willpower-reroll.js'
+import { _onAnyReroll } from './scripts/any-reroll.js'
 import { wod5eAPI } from './api/wod5e-api.js'
 import { WOD5eRoll } from './scripts/system-rolls.js'
 // WOD5E Definitions
@@ -228,7 +228,7 @@ Hooks.on('getChatMessageContextOptions', (html, options) => {
         // All must be true to show the reroll dialog
         return (game.user.isGM || message.isAuthor) && rerollableDice > 0 && rerolledDice === 0
       },
-      callback: (li) => willpowerReroll(li)
+      callback: (li) => _onWillpowerReroll(li)
     },
     {
       name: game.i18n.localize('WOD5E.Chat.Reroll'),
@@ -246,7 +246,7 @@ Hooks.on('getChatMessageContextOptions', (html, options) => {
         // All must be true to show the reroll dialog
         return (game.user.isGM || message.isAuthor) && dice > 0 && rerolledDice === 0
       },
-      callback: (li) => anyReroll(li)
+      callback: (li) => _onAnyReroll(li)
     }
   )
 })

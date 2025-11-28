@@ -3,8 +3,10 @@ import { _onToggleCollapse } from '../actor/scripts/on-toggle-collapse.js'
 import { _onAddSelectedTokens } from '../applications/roll-menu/scripts/on-add-selected-tokens.js'
 import { _onRemoveUser } from '../applications/roll-menu/scripts/on-remove-user.js'
 import { _onRollFromChat } from '../applications/roll-menu/scripts/on-roll-from-chat.js'
+import { _onAnyReroll } from '../scripts/any-reroll.js'
 import { _onRenderRollMenu } from '../scripts/prompt-for-roll.js'
 import { timeSinceShort } from '../scripts/time-since-short.js'
+import { _onWillpowerReroll } from '../scripts/willpower-reroll.js'
 
 export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
   /** @inheritDoc */
@@ -14,7 +16,9 @@ export class WoDChatLog extends foundry.applications.sidebar.tabs.ChatLog {
       renderRollMenu: _onRenderRollMenu,
       addSelectedTokens: _onAddSelectedTokens,
       removeActor: _onRemoveUser,
-      rollFromChat: _onRollFromChat
+      rollFromChat: _onRollFromChat,
+      willpowerReroll: _onWillpowerReroll,
+      anyReroll: _onAnyReroll
     }
   }
 
