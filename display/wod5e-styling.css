@@ -714,6 +714,10 @@ h3.item-name {
   flex-grow: 1;
   overflow-y: scroll;
 }
+.roll-menu.application .saved-rolls .saved-rolls-list .saved-roll .remove-saved-roll {
+  flex-grow: 0;
+  padding: 3px;
+}
 .roll-menu.application .saved-rolls .saved-rolls-list .saved-roll.active {
   font-weight: bold;
 }

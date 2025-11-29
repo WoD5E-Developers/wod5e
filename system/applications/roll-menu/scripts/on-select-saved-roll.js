@@ -1,5 +1,5 @@
 export const _onSelectSavedRoll = async function (event, target) {
-  const newActiveRoll = target.getAttribute('data-id')
+  const newActiveRoll = target.closest('.saved-roll').getAttribute('data-id')
 
   await game.users.current.setFlag('wod5e', 'rollMenuActiveRoll', newActiveRoll)
 
