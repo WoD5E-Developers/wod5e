@@ -33,11 +33,9 @@ export const MigrateImageLinks = async function () {
   }
 
   const allLists = [
-    actorsList,
     actorsItemsList,
     itemsList,
     messagesList,
-    compendiumActorsList,
     compendiumActorItemsList,
     compendiumItemsList
   ]
