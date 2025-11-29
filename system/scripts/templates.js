@@ -91,6 +91,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/wod5e/display/shared/items/parts/modifier-display.hbs',
     'systems/wod5e/display/shared/items/parts/data-item-id.hbs',
     'systems/wod5e/display/shared/items/parts/item-uses.hbs',
+    'systems/wod5e/display/shared/items/parts/source.hbs',
 
     // Item Sheet Partials (Dropdowns)
     'systems/wod5e/display/shared/items/parts/skills.hbs',

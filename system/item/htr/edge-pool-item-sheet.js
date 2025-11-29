@@ -6,15 +6,15 @@ import {
 } from '../scripts/prepare-partials.js'
 import { Edges } from '../../api/def/edges.js'
 // Base item sheet to extend from
-import { WoDItem } from '../wod-item-base.js'
+import { WoDItemBase } from '../wod-item-base.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the WoDActor document
- * @extends {WoDItem}
+ * Extend the WoDItemBase document
+ * @extends {WoDItemBase}
  */
-export class EdgePoolItemSheet extends HandlebarsApplicationMixin(WoDItem) {
+export class EdgePoolItemSheet extends HandlebarsApplicationMixin(WoDItemBase) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
     actions: {}

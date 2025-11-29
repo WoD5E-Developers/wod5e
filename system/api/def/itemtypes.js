@@ -214,7 +214,7 @@ export class ItemTypes extends BaseDefinitionClass {
     img: 'systems/wod5e/assets/icons/items/gift.png',
     types: ['gift'],
     sheetClass: GiftItemSheet,
-    restrictedActorTypes: ['werewolf']
+    restrictedActorTypes: ['werewolf', 'spirit']
   }
 }
 

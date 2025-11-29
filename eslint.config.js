@@ -45,6 +45,7 @@ export default defineConfig([
         canvas: 'readonly',
         Actor: 'readonly',
         Item: 'readonly',
+        FormData: 'readonly',
 
         // System globals
         WOD5E: 'readonly',

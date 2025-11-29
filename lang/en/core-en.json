@@ -38,7 +38,6 @@
     "Amount": "Amount",
     "Any": "Any",
     "Cancel": "Cancel",
-    "Dismiss": "Dismiss",
     "Changelog": "Changelog",
     "Close": "Close",
     "Confirm": "Confirm",
@@ -46,6 +45,7 @@
     "ConfirmDeleteDescription": "Are you sure you want to delete <b>{string}</b>? This cannot be undone.",
     "Controls": "Controls",
     "Delete": "Delete",
+    "Dismiss": "Dismiss",
     "Edit": "Edit",
     "Exp": "Exp",
     "GamePaused": "Game Paused",
@@ -58,10 +58,10 @@
     "LicensedUnderDarkPack": "Licensed Under The Dark Pack",
     "LicensedUnderDarkPackFulltext": "Portions of the materials are the copyrights and trademarks of Paradox Interactive AB, and are used with permission. All rights reserved. For more information please visit <a href='https://worldofdarkness.com'>worldofdarkness.com</a>.",
     "MaxString": "Max {string}",
+    "MigrateSystemIdButton": "Migrate Now",
     "MigrateSystemIdCancel": "System ID migration declined for now. You can perform this migration manually by going to the \"Settings\" tab on the sidebar.",
     "MigrateSystemIdComplete": "System ID migration has completed. You must restart the world and download the new \"World of Darkness 5e\" system to load into this world again.",
     "MigrateSystemIdDescription": "World of Darkness 5e is updating its system ID from 'vtm5e' to 'wod5e.' By clicking confirm, the system will automatically perform any needed migrations and then reload the world. If you haven't already, it's highly recommended to make a backup of this world and download the new version of the system before performing this migration. Do you wish to proceed?",
-    "MigrateSystemIdButton": "Migrate Now",
     "MigrateSystemIdInProgress": "System ID migration in progress. Please do not shut down your world until this is complete.",
     "MigrateSystemIdTitle": "System ID Migration",
     "Mortal": "Mortal",
@@ -137,6 +137,40 @@
       "WillpowerFullTitle": "Willpower Tracker Full",
       "WillpowerReroll": "Willpower Reroll"
     },
+    "Compendiums": {
+      "Macros": {
+        "AdjustHunger": "Adjust Hunger",
+        "AdjustHungerBy": "Adjust Hunger by (+ or -)",
+        "AdjustRage": "Adjust Rage",
+        "AdjustRageBy": "Adjust Rage by (+ or -)",
+        "RandomCharacterGenerator": {
+          "Chat": {
+            "DerivedValues": "Derived Values"
+          },
+          "Dialog": {
+            "AutoDistribute": "Automatically distributes Attributes and Skills after creation.",
+            "NewCharacter": "New Character",
+            "SkillDistribution": "Skill Distribution:",
+            "Title": "Random Character Generator",
+            "Options": {
+              "Balanced": "Balanced (15 Skills)",
+              "JackOfAllTrades": "Jack of all trades (19 Skills)",
+              "Specialist": "Specialist (10 Skills)"
+            }
+          },
+          "Notifications": {
+            "ActorSystemData": "Actor System Data",
+            "AttemptedUpdateData": "Attempted Update Data:",
+            "AvailableProperties": "Available Properties:",
+            "ErrorCreatingActor": "Error creating the Actor.",
+            "ErrorSettingValues": "Error setting values.",
+            "PathNotFound": "Could not find Attribute or Skill path. See console (F12).",
+            "StringCreated": "{actorName} created with Attributes, Skills, Health, and Willpower.",
+            "UpdateError": "Update Error:"
+          }
+        }
+      }
+    },
     "Damage": {
       "Aggravated": "Aggravated",
       "Max": "Max",
@@ -211,6 +245,7 @@
       "NoDiceSelectedHint": "No dicepools added. Click \"Add Dice\" to begin constructing a dicepool.",
       "NoItemsFound": "There were no items found associated with Data Item ID \"${dataItemId}.\"",
       "Override": "Override",
+      "PageNumber": "Page Number",
       "Points": "Points",
       "Relative": "Relative",
       "ResetUses": "Reset Uses",
@@ -218,6 +253,7 @@
       "Rollable": "Rollable",
       "SelectFeature": "Select Feature",
       "ShowToChat": "Show to Chat",
+      "Sourcebook": "Sourcebook",
       "Static": "Static",
       "SuppressCondition": "Suppress Condition",
       "SyncFromDataItem": "Sync From Data Item",
@@ -277,7 +313,9 @@
       "Margin": "Margin",
       "Modifier": "Modifier",
       "MortalDice": "Mortal Dice",
+      "OpenRollMenu": "Open Roll Menu",
       "PromptInChat": "Prompt In Chat",
+      "RemoveRoll": "Remove Roll",
       "RollMode": "Roll Mode",
       "RollModifier": "Roll Modifier",
       "SelectableModifiers": "Selectable Modifiers",

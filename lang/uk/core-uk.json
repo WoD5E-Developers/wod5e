@@ -45,6 +45,7 @@
     "ConfirmDeleteDescription": "Ви впевнені, що хочете видалити <b>{string}</b>? Це не можна буде скасувати.",
     "Controls": "Керування",
     "Delete": "Видалити",
+    "_Dismiss": "",
     "Edit": "Редагувати",
     "Exp": "Досвід",
     "GamePaused": "Гра призупинена",
@@ -57,6 +58,7 @@
     "LicensedUnderDarkPack": "Ліцензовано під The Dark Pack",
     "LicensedUnderDarkPackFulltext": "Частини матеріалів є авторськими правами та торговими марками Paradox Interactive AB і використовуються з дозволу. Всі права захищені. Для отримання додаткової інформації відвідайте <a href='https://worldofdarkness.com'>worldofdarkness.com</a>.",
     "MaxString": "Макс {string}",
+    "_MigrateSystemIdButton": "",
     "_MigrateSystemIdCancel": "",
     "_MigrateSystemIdComplete": "",
     "_MigrateSystemIdDescription": "",
@@ -135,6 +137,40 @@
       "WillpowerFullTitle": "Трекер Сили Волі Заповнений",
       "WillpowerReroll": "Переброс за Силу Волі"
     },
+    "Compendiums": {
+      "Macros": {
+        "_AdjustHunger": "",
+        "_AdjustHungerBy": "",
+        "_AdjustRage": "",
+        "_AdjustRageBy": "",
+        "RandomCharacterGenerator": {
+          "Chat": {
+            "_DerivedValues": ""
+          },
+          "Dialog": {
+            "_AutoDistribute": "",
+            "_NewCharacter": "",
+            "_SkillDistribution": "",
+            "_Title": "",
+            "Options": {
+              "_Balanced": "",
+              "_JackOfAllTrades": "",
+              "_Specialist": ""
+            }
+          },
+          "Notifications": {
+            "_ActorSystemData": "",
+            "_AttemptedUpdateData": "",
+            "_AvailableProperties": "",
+            "_ErrorCreatingActor": "",
+            "_ErrorSettingValues": "",
+            "_PathNotFound": "",
+            "_StringCreated": "",
+            "_UpdateError": ""
+          }
+        }
+      }
+    },
     "Damage": {
       "Aggravated": "Агравоване",
       "Max": "Макс",
@@ -209,6 +245,7 @@
       "NoDiceSelectedHint": "Не додано наборів кісток. Натисніть \"Додати Кістки\", щоб почати створювати набір.",
       "_NoItemsFound": "",
       "Override": "Перезаписати",
+      "_PageNumber": "",
       "Points": "Бали",
       "Relative": "Відносно",
       "ResetUses": "Скинути Використання",
@@ -216,6 +253,7 @@
       "Rollable": "Можна кидати",
       "SelectFeature": "Виберіть Властивість",
       "ShowToChat": "Показати в чаті",
+      "_Sourcebook": "",
       "Static": "Статичний",
       "SuppressCondition": "Придушити Стан",
       "SyncFromDataItem": "Синхронізувати з Даних Предмета",
@@ -275,7 +313,9 @@
       "Margin": "Перевага",
       "Modifier": "Модифікатор",
       "MortalDice": "Кістки Смертного",
+      "_OpenRollMenu": "",
       "_PromptInChat": "",
+      "_RemoveRoll": "",
       "RollMode": "Режим Кидка",
       "RollModifier": "Модифікатор Кидка",
       "SelectableModifiers": "Вибіркові Модифікатори",

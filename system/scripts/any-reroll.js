@@ -5,7 +5,7 @@ import { WOD5eDice } from './system-rolls.js'
  * Initalise rerolls of any dice and its functions
  **/
 
-export const anyReroll = async (roll) => {
+export const _onAnyReroll = async (roll) => {
   // Variables
   const dice = roll.querySelectorAll('.die')
   const diceRolls = []

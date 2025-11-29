@@ -45,6 +45,7 @@
     "ConfirmDeleteDescription": "Tem certeza de que deseja excluir <b>{string}</b>? Esta ação não pode ser desfeita.",
     "Controls": "Controles",
     "Delete": "Deletar",
+    "_Dismiss": "",
     "Edit": "Editar",
     "Exp": "Experiência",
     "GamePaused": "Jogo Pausado",
@@ -57,6 +58,7 @@
     "LicensedUnderDarkPack": "Licenciado sob o Dark Pack",
     "LicensedUnderDarkPackFulltext": "Partes dos materiais são direitos autorais e marcas registradas da Paradox Interactive AB e são usadas com permissão. Todos os direitos reservados. Para mais informações, visite <a href='https://worldofdarkness.com'>worldofdarkness.com</a>.",
     "MaxString": "Máxima {string}",
+    "_MigrateSystemIdButton": "",
     "_MigrateSystemIdCancel": "",
     "_MigrateSystemIdComplete": "",
     "_MigrateSystemIdDescription": "",
@@ -135,6 +137,40 @@
       "WillpowerFullTitle": "Barra de Força de Vontade completa",
       "WillpowerReroll": "Rerrolagem com Força de Vontade"
     },
+    "Compendiums": {
+      "Macros": {
+        "_AdjustHunger": "",
+        "_AdjustHungerBy": "",
+        "_AdjustRage": "",
+        "_AdjustRageBy": "",
+        "RandomCharacterGenerator": {
+          "Chat": {
+            "_DerivedValues": ""
+          },
+          "Dialog": {
+            "_AutoDistribute": "",
+            "_NewCharacter": "",
+            "_SkillDistribution": "",
+            "_Title": "",
+            "Options": {
+              "_Balanced": "",
+              "_JackOfAllTrades": "",
+              "_Specialist": ""
+            }
+          },
+          "Notifications": {
+            "_ActorSystemData": "",
+            "_AttemptedUpdateData": "",
+            "_AvailableProperties": "",
+            "_ErrorCreatingActor": "",
+            "_ErrorSettingValues": "",
+            "_PathNotFound": "",
+            "_StringCreated": "",
+            "_UpdateError": ""
+          }
+        }
+      }
+    },
     "Damage": {
       "Aggravated": "Agravado",
       "Max": "Máx",
@@ -209,6 +245,7 @@
       "NoDiceSelectedHint": "Nenhuma parada de dados adicionada. Clique em \"Adicionar Dados\" para começar a construir uma parada de dados.",
       "_NoItemsFound": "",
       "Override": "Substituir",
+      "_PageNumber": "",
       "Points": "Pontos",
       "Relative": "Relativo",
       "ResetUses": "Redefinir Usos",
@@ -216,6 +253,7 @@
       "Rollable": "Rolável",
       "SelectFeature": "Selecione Característica",
       "ShowToChat": "Mostrar no Chat",
+      "_Sourcebook": "",
       "Static": "Estático",
       "SuppressCondition": "Suprimir Condição",
       "SyncFromDataItem": "Sincronizar a partir dos dados de item",
@@ -275,7 +313,9 @@
       "Margin": "Margem",
       "Modifier": "Modificador",
       "MortalDice": "Dados de Mortal",
+      "_OpenRollMenu": "",
       "_PromptInChat": "",
+      "_RemoveRoll": "",
       "RollMode": "Modo de Rolagem",
       "RollModifier": "Modificador de Rolagem",
       "SelectableModifiers": "Modificadores Selecionáveis",

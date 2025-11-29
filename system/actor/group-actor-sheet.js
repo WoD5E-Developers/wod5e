@@ -31,8 +31,8 @@ import { _addActor, _openActorSheet, _removeActor } from './scripts/group-member
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
- * Extend the WoDActor document
- * @extends {WoDActor}
+ * Extend the ActorSheetV2 document
+ * @extends {ActorSheetV2}
  */
 export class GroupActorSheet extends HandlebarsApplicationMixin(
   foundry.applications.sheets.ActorSheetV2

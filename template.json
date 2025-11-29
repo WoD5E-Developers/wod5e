@@ -835,7 +835,11 @@
     "templates": {
       "base": {
         "description": "",
-        "bonuses": []
+        "bonuses": [],
+        "source": {
+          "book": "",
+          "page": ""
+        }
       },
       "equipment": {
         "quantity": 1

@@ -45,6 +45,7 @@
     "ConfirmDeleteDescription": "Sei sicuro di voler eliminare<b>{string}</b>? Il processo è irreversibile.",
     "Controls": "Controlli",
     "Delete": "Elimina",
+    "_Dismiss": "",
     "Edit": "Modifica",
     "Exp": "Esp",
     "GamePaused": "Gioco in pausa",
@@ -57,6 +58,7 @@
     "_LicensedUnderDarkPack": "",
     "_LicensedUnderDarkPackFulltext": "",
     "MaxString": "{string} massimo",
+    "_MigrateSystemIdButton": "",
     "_MigrateSystemIdCancel": "",
     "_MigrateSystemIdComplete": "",
     "_MigrateSystemIdDescription": "",
@@ -135,6 +137,40 @@
       "WillpowerFullTitle": "La volontà è piena",
       "WillpowerReroll": "Ritira con Volontà"
     },
+    "Compendiums": {
+      "Macros": {
+        "_AdjustHunger": "",
+        "_AdjustHungerBy": "",
+        "_AdjustRage": "",
+        "_AdjustRageBy": "",
+        "RandomCharacterGenerator": {
+          "Chat": {
+            "_DerivedValues": ""
+          },
+          "Dialog": {
+            "_AutoDistribute": "",
+            "_NewCharacter": "",
+            "_SkillDistribution": "",
+            "_Title": "",
+            "Options": {
+              "_Balanced": "",
+              "_JackOfAllTrades": "",
+              "_Specialist": ""
+            }
+          },
+          "Notifications": {
+            "_ActorSystemData": "",
+            "_AttemptedUpdateData": "",
+            "_AvailableProperties": "",
+            "_ErrorCreatingActor": "",
+            "_ErrorSettingValues": "",
+            "_PathNotFound": "",
+            "_StringCreated": "",
+            "_UpdateError": ""
+          }
+        }
+      }
+    },
     "Damage": {
       "Aggravated": "Aggravato",
       "Max": "Massimo",
@@ -209,6 +245,7 @@
       "NoDiceSelectedHint": "Non hai inserito una riserva di dadi. Clicca  \"Aggiungi dadi\" per cominciare a crearla.",
       "_NoItemsFound": "",
       "Override": "Sovrascrivi",
+      "_PageNumber": "",
       "Points": "Punti",
       "Relative": "relativo",
       "ResetUses": "resetta gli utilizzi",
@@ -216,6 +253,7 @@
       "Rollable": "Tirabile",
       "SelectFeature": "Seleziona caratteristica",
       "ShowToChat": "Mostra in chat",
+      "_Sourcebook": "",
       "Static": "Statico",
       "SuppressCondition": "Annulla condizione",
       "SyncFromDataItem": "Sincronizza dai dati oggetto",
@@ -275,7 +313,9 @@
       "Margin": "Margine",
       "Modifier": "Modificatori",
       "MortalDice": "Dadi mortale",
+      "_OpenRollMenu": "",
       "_PromptInChat": "",
+      "_RemoveRoll": "",
       "RollMode": "Modalità di tiro",
       "RollModifier": "Modificatore",
       "SelectableModifiers": "Modificatori selezionabili",

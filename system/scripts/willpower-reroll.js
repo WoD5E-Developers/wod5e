@@ -5,7 +5,7 @@ import { WOD5eDice } from './system-rolls.js'
  * Initalise willpower rerolls and its functions
  **/
 
-export const willpowerReroll = async (roll) => {
+export const _onWillpowerReroll = async (roll) => {
   // Variables
   const dice = roll.querySelectorAll('.rerollable')
   const diceRolls = []

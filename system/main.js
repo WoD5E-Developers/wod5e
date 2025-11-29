@@ -4,6 +4,7 @@ import { WoDActorDirectory } from './ui/wod-actor-directory.js'
 import { ProseMirrorSettings } from './ui/prosemirror.js'
 // Item sheets
 import { WoDItem } from './item/item.js'
+import { WoDItemBase } from './item/wod-item-base.js'
 // Custom UI Classes
 import { WoDChatLog } from './ui/wod-chat-log.js'
 import { WoDChatMessage } from './ui/wod-chat-message.js'
@@ -30,8 +31,6 @@ import {
   WerewolfRageDie
 } from './dice/splat-dice.js'
 import { migrateWorld } from './scripts/migration.js'
-import { willpowerReroll } from './scripts/willpower-reroll.js'
-import { anyReroll } from './scripts/any-reroll.js'
 import { wod5eAPI } from './api/wod5e-api.js'
 import { WOD5eRoll } from './scripts/system-rolls.js'
 // WOD5E Definitions
@@ -50,6 +49,35 @@ import { _rollItem } from './actor/scripts/item-roll.js'
 import { _updateCSSVariable, cssVariablesRecord } from './scripts/update-css-variables.js'
 import { _updateToken } from './actor/wta/scripts/forms.js'
 import { RollPromptSockets } from './sockets/roll-prompt.js'
+import { WoDActorBase } from './actor/wod-actor-base.js'
+
+// Register the WOD5E global
+window.WOD5E = {
+  api: {
+    Roll: wod5eAPI.Roll,
+    PromptRoll: wod5eAPI.PromptRoll,
+    RollFromDataset: wod5eAPI.RollFromDataset,
+    getBasicDice: wod5eAPI.getBasicDice,
+    getAdvancedDice: wod5eAPI.getAdvancedDice,
+    getFlavorDescription: wod5eAPI.getFlavorDescription,
+    generateLabelAndLocalize: wod5eAPI.generateLabelAndLocalize,
+    migrateWorld,
+    _onRollItemFromMacro
+  },
+  WoDItemBase,
+  WoDActorBase,
+  Systems,
+  Attributes,
+  Skills,
+  Features,
+  ActorTypes,
+  ItemTypes,
+  Disciplines,
+  Edges,
+  Renown,
+  Gifts,
+  WereForms
+}
 
 // Anything that needs to be ran alongside the initialisation of the world
 Hooks.once('init', async function () {
@@ -143,34 +171,6 @@ Hooks.once('ready', async function () {
       '#FF2B2B80 #650202 #d84343 #f51f1f #D18125 #cc6d28 #ffb762 #ff8f00 #BE660080 #4e2100 #994101 #e97244'
   }
 
-  // Activate the API
-  window.WOD5E = {
-    api: {
-      Roll: wod5eAPI.Roll,
-      PromptRoll: wod5eAPI.PromptRoll,
-      RollFromDataset: wod5eAPI.RollFromDataset,
-      getBasicDice: wod5eAPI.getBasicDice,
-      getAdvancedDice: wod5eAPI.getAdvancedDice,
-      getFlavorDescription: wod5eAPI.getFlavorDescription,
-      generateLabelAndLocalize: wod5eAPI.generateLabelAndLocalize,
-      migrateWorld,
-      _onRollItemFromMacro
-    },
-    WoDItem,
-    WoDActor,
-    Systems,
-    Attributes,
-    Skills,
-    Features,
-    ActorTypes,
-    ItemTypes,
-    Disciplines,
-    Edges,
-    Renown,
-    Gifts,
-    WereForms
-  }
-
   // Migration functions
   migrateWorld()
 
@@ -207,48 +207,6 @@ Hooks.on('canvasReady', (canvas) => {
       _updateToken(token.actor, activeForm)
     }
   })
-})
-
-// Display the reroll options in the chat when messages are right clicked
-Hooks.on('getChatMessageContextOptions', (html, options) => {
-  options.push(
-    {
-      name: game.i18n.localize('WOD5E.Chat.WillpowerReroll'),
-      icon: '<i class="fas fa-redo"></i>',
-      condition: (li) => {
-        // Only show this context menu if the person is GM or author of the message
-        const message = game.messages.get(li.getAttribute('data-message-id'))
-
-        // Only show this context menu if there are re-rollable dice in the message
-        const rerollableDice = li.querySelectorAll('.rerollable').length
-
-        // Only show this context menu if there's not any already rerolled dice in the message
-        const rerolledDice = li.querySelectorAll('.rerolled').length
-
-        // All must be true to show the reroll dialog
-        return (game.user.isGM || message.isAuthor) && rerollableDice > 0 && rerolledDice === 0
-      },
-      callback: (li) => willpowerReroll(li)
-    },
-    {
-      name: game.i18n.localize('WOD5E.Chat.Reroll'),
-      icon: '<i class="fas fa-redo"></i>',
-      condition: (li) => {
-        // Only show this context menu if the person is GM or author of the message
-        const message = game.messages.get(li.getAttribute('data-message-id'))
-
-        // Only show this context menu if there are dice in the message
-        const dice = li.querySelectorAll('.die').length
-
-        // Only show this context menu if there's not any already rerolled dice in the message
-        const rerolledDice = li.querySelectorAll('.rerolled').length
-
-        // All must be true to show the reroll dialog
-        return (game.user.isGM || message.isAuthor) && dice > 0 && rerolledDice === 0
-      },
-      callback: (li) => anyReroll(li)
-    }
-  )
 })
 
 function _onRollItemFromMacro(itemName) {

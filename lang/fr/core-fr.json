@@ -45,6 +45,7 @@
     "ConfirmDeleteDescription": "Êtes vous sur de vouloir supprimer <b>{string}</b>? Vous ne pourrez pas revenir en arrière.",
     "Controls": "Options",
     "Delete": "Supprimer",
+    "_Dismiss": "",
     "Edit": "Éditer",
     "Exp": "Exp",
     "GamePaused": "Jeu en pause",
@@ -57,6 +58,7 @@
     "LicensedUnderDarkPack": "Licence Pack World of Darkness",
     "LicensedUnderDarkPackFulltext": "Certaines parties du matériel sont des droits d'auteur et des marques déposées de Paradox Interactive AB, et sont utilisées avec autorisation. Tous les droits sont réservés. Pour plus d'informations, veuillez consulter <a href='https://worldofdarkness.com'>worldofdarkness.com</a>.",
     "MaxString": "Max {string}",
+    "_MigrateSystemIdButton": "",
     "_MigrateSystemIdCancel": "",
     "_MigrateSystemIdComplete": "",
     "_MigrateSystemIdDescription": "",
@@ -135,6 +137,40 @@
       "WillpowerFullTitle": "Compteur de volonté au max",
       "WillpowerReroll": "Relance de la Volonté"
     },
+    "Compendiums": {
+      "Macros": {
+        "_AdjustHunger": "",
+        "_AdjustHungerBy": "",
+        "_AdjustRage": "",
+        "_AdjustRageBy": "",
+        "RandomCharacterGenerator": {
+          "Chat": {
+            "_DerivedValues": ""
+          },
+          "Dialog": {
+            "_AutoDistribute": "",
+            "_NewCharacter": "",
+            "_SkillDistribution": "",
+            "_Title": "",
+            "Options": {
+              "_Balanced": "",
+              "_JackOfAllTrades": "",
+              "_Specialist": ""
+            }
+          },
+          "Notifications": {
+            "_ActorSystemData": "",
+            "_AttemptedUpdateData": "",
+            "_AvailableProperties": "",
+            "_ErrorCreatingActor": "",
+            "_ErrorSettingValues": "",
+            "_PathNotFound": "",
+            "_StringCreated": "",
+            "_UpdateError": ""
+          }
+        }
+      }
+    },
     "Damage": {
       "Aggravated": "Aggravé",
       "Max": "Max",
@@ -209,6 +245,7 @@
       "NoDiceSelectedHint": "Aucun jet possible. Cliquez sur \"Ajouter dés\" pour configurer votre groupement de dés.",
       "_NoItemsFound": "",
       "Override": "Remplacer",
+      "_PageNumber": "",
       "Points": "Points",
       "Relative": "Relatif",
       "ResetUses": "Réinitialiser les utilisations",
@@ -216,6 +253,7 @@
       "Rollable": "Jet de dés",
       "SelectFeature": "Choix de l'Avantage",
       "ShowToChat": "Afficher pour discuter",
+      "_Sourcebook": "",
       "Static": "Statique",
       "SuppressCondition": "Supprimer la condition",
       "SyncFromDataItem": "Synchroniser depuis l'ID de l'objet",
@@ -275,7 +313,9 @@
       "Margin": "Marge",
       "Modifier": "Modificateur",
       "MortalDice": "Dé mortel",
+      "_OpenRollMenu": "",
       "_PromptInChat": "",
+      "_RemoveRoll": "",
       "RollMode": "Type de jet",
       "RollModifier": "Modificateur de jet",
       "SelectableModifiers": "Sélection de modificateurs",
