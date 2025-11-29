@@ -50,7 +50,7 @@ export const MigrateImageLinks = async function () {
 
   // Define the content of the Dialog
   const content = `<p>
-      There were ${total} entities needing to have their image paths updated. Do you wish to proceed?
+      There are ${total} documents needing to have their image paths updated from 'vtm5e' to 'wod5e'. Do you wish to have these image paths updated?
     </p>`
 
   const updateEntitiesConfirm = await foundry.applications.api.DialogV2.wait({
@@ -76,7 +76,6 @@ export const MigrateImageLinks = async function () {
     const migrationProgress = ui.notifications.info(
       `Migrating image paths of ${total} entities from vtm5e to wod5e. Do not close Foundry until complete.`,
       {
-        permanent: true,
         progress: true
       }
     )
