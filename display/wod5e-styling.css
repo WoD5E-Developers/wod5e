@@ -2339,6 +2339,12 @@ body.uk .actor.sheet {
 .locked .remove-actor {
   display: none;
 }
+/* Override for owned group mebers and their resource counters */
+.owned-group-member .resource-value-empty,
+.owned-group-member .resource-value-step {
+  display: inline-flex !important;
+  cursor: pointer !important;
+}
 /* Set resource counters to use the default cursor */
 .locked .resource-value-empty:not(.hunger-value, .rage-value),
 .locked .resource-value-step:not(.hunger-value, .rage-value),

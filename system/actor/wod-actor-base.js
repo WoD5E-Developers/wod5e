@@ -77,6 +77,8 @@ export class WoDActorBase extends HandlebarsApplicationMixin(
       restoreItemUses: _onRestoreItemUses,
 
       // Various other sheet functions
+      dotCounterChange: _onDotCounterChange,
+      dotCounterEmpty: _onDotCounterEmpty,
       editImage: _onEditImage,
       editSkill: _onEditSkill,
       toggleLock: _onToggleLock,
@@ -393,14 +395,6 @@ export class WoDActorBase extends HandlebarsApplicationMixin(
     })
     html.querySelectorAll('.resource-minus').forEach((el) => {
       el.addEventListener('click', _onResourceChange.bind(this))
-    })
-
-    // Resource dot counters
-    html.querySelectorAll('.resource-value .resource-value-step').forEach((el) => {
-      el.addEventListener('click', _onDotCounterChange.bind(this))
-    })
-    html.querySelectorAll('.resource-value .resource-value-empty').forEach((el) => {
-      el.addEventListener('click', _onDotCounterEmpty.bind(this))
     })
 
     // Activate the setup for the counters

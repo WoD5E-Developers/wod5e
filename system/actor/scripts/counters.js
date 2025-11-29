@@ -113,15 +113,16 @@ export const _setupDotCounters = async function (html) {
 }
 
 // Handle dot counters
-export const _onDotCounterChange = async function (event) {
+export const _onDotCounterChange = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   let actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
-  if (dataset.actorId) {
-    actor = game.actors.get(dataset.actorId)
+  const element = target
+  const dataset = event.target.dataset
+  const actorId = target.getAttribute('data-actor-id') || ''
+  if (actorId) {
+    actor = game.actors.get(actorId)
   } else {
     actor = this.actor
   }
@@ -134,10 +135,10 @@ export const _onDotCounterChange = async function (event) {
   const steps = parent.find('.resource-value-step')
 
   // Make sure that the dot counter can only be changed if the user has permission
-  if (this.actor.permission < 3) {
+  if (actor.permission < 3) {
     ui.notifications.warn(
       game.i18n.format('WOD5E.Notifications.NoSufficientPermission', {
-        string: this.actor.name
+        string: actor.name
       })
     )
     return
@@ -146,9 +147,12 @@ export const _onDotCounterChange = async function (event) {
   // Make sure that the dot counter can only be changed if the sheet is
   // unlocked or if it's the hunger/rage track.
   if (
-    this.actor.system.locked &&
+    !(actor.type === 'group') &&
+    actor.system.locked &&
     !parent.has('.hunger-value').length &&
-    !parent.has('.rage-value').length
+    !parent.has('.member-hunger').length &&
+    !parent.has('.rage-value').length &&
+    !parent.has('.member-rage').length
   ) {
     ui.notifications.warn(
       game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
@@ -168,16 +172,16 @@ export const _onDotCounterChange = async function (event) {
 }
 
 // Set dot counters to an empty value
-export const _onDotCounterEmpty = async function (event) {
+export const _onDotCounterEmpty = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables
   let actor
-  const element = event.currentTarget
-  const dataset = Object.assign({}, element.dataset)
+  const element = target
   const parent = $(element.parentNode)
-  if (dataset.actorId) {
-    actor = game.actors.get(dataset.actorId)
+  const actorId = target.getAttribute('data-actor-id') || ''
+  if (actorId) {
+    actor = game.actors.get(actorId)
   } else {
     actor = this.actor
   }
@@ -191,10 +195,12 @@ export const _onDotCounterEmpty = async function (event) {
   // unlocked or if it's the hunger track.
   // Bypass this if this function is being called from a group sheet
   if (
-    !(this.actor.type === 'group') &&
+    !(actor.type === 'group') &&
     actor.system.locked &&
     !parent.has('.hunger-value').length &&
-    !parent.has('.rage-value')
+    !parent.has('.member-hunger').length &&
+    !parent.has('.rage-value').length &&
+    !parent.has('.member-rage').length
   ) {
     ui.notifications.warn(
       game.i18n.format('WOD5E.Notifications.CannotModifyResourceString', {
