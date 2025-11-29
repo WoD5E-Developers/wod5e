@@ -73,6 +73,8 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
       removeMember: _removeActor,
 
       // Various other sheet functions
+      dotCounterChange: _onDotCounterChange,
+      dotCounterEmpty: _onDotCounterEmpty,
       editImage: _onEditImage,
       toggleLock: _onToggleLock,
       toggleCollapse: _onToggleCollapse
@@ -416,14 +418,6 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
       el.addEventListener('click', _onResourceChange.bind(this))
     })
 
-    // Resource dot counters
-    html.querySelectorAll('.resource-value .resource-value-step').forEach((el) => {
-      el.addEventListener('click', _onDotCounterChange.bind(this))
-    })
-    html.querySelectorAll('.resource-value .resource-value-empty').forEach((el) => {
-      el.addEventListener('click', _onDotCounterEmpty.bind(this))
-    })
-
     // Activate the setup for the counters
     _setupDotCounters(html)
     _setupSquareCounters(html)
@@ -609,3 +603,17 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
     return this.actor.updateEmbeddedDocuments('Item', updateData)
   }
 }
+
+// Handle actor updates
+Hooks.on('updateActor', (actor) => {
+  if (actor.type === 'group') {
+    // Re-render the actors directory
+    game.actors.render()
+  }
+
+  // Only do this if the actor has an associated group with them
+  if (actor.system?.group) {
+    // Update the group sheet
+    game.actors.get(actor.system.group).sheet.render()
+  }
+})
