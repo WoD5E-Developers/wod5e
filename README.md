@@ -78,7 +78,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 [Downloads]: https://img.shields.io/github/downloads/wod5e-developers/wod5e/wod5e.zip
 [Downloads URL]: https://github.com/WoD5E-Developers/wod5e/releases
 
-[Dark Pack]: https://s3-eu-north-1.amazonaws.com/pdx-campaign-wp-data/uploads/sites/10/2021/10/05102936/darkpack_logo2-300x300.png
+[Dark Pack]: ./assets/github/darkpack_logo2.png
 [Dark Pack URL]: https://www.paradoxinteractive.com/games/world-of-darkness/community/dark-pack-agreement
 [Dark Pack Agreement]: https://www.paradoxinteractive.com/games/world-of-darkness/community/dark-pack-agreement
 
