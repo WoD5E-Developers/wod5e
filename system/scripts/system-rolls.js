@@ -132,6 +132,9 @@ class WOD5eDice {
     system = actor?.system?.gamesystem || 'mortal',
     originMessage = ''
   }) {
+    // Grab the dice-related data for the given system
+    const systemData = WOD5E.Systems.getList({})[system]
+
     // Inner roll function
     const _roll = async (inputBasicDice, inputAdvancedDice, formData) => {
       // Get the difficulty and store it
@@ -145,14 +148,18 @@ class WOD5eDice {
 
       // Prevent trying to roll 0 dice; all dice pools should roll at least 1 die
       if (parseInt(inputBasicDice) === 0 && parseInt(inputAdvancedDice) === 0) {
-        if (system === 'vampire' && actor.system.hunger.value > 0) {
-          // Vampires with hunger above 0 should be rolling 1 hunger die
-          inputAdvancedDice = 1
-        } else if (system === 'werewolf' && actor.system.rage.value > 0) {
-          // Werewolves with rage above 0 should be rolling 1 rage die
+        // Determine if the system uses a resource (like hunger or rage)
+        let resourceValue = 0
+        if (systemData?.usesResourceOnAdvancedDice && systemData?.resourceValuePath) {
+          // Extract resource value
+          resourceValue = foundry.utils.getProperty(actor.system, systemData.resourceValuePath) ?? 0
+        }
+
+        if (resourceValue > 0) {
+          // If system uses a resource and the value of that resource is greater than 0, roll 1 advanced die
           inputAdvancedDice = 1
         } else {
-          // In all other cases, we just roll one basic die
+          // Otherwise, roll 1 basic die
           inputBasicDice = 1
         }
       }

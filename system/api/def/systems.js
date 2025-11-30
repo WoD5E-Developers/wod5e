@@ -28,18 +28,26 @@ export class Systems extends BaseDefinitionClass {
   }
 
   static mortal = {
-    label: 'WOD5E.Mortal'
+    label: 'WOD5E.Mortal',
+    usesResourceOnAdvancedDice: false
   }
 
   static vampire = {
-    label: 'TYPES.Actor.vampire'
+    label: 'TYPES.Actor.vampire',
+    usesResourceOnAdvancedDice: true,
+    resourceValuePath: 'hunger.value',
+    resourceUsage: 'add'
   }
 
   static werewolf = {
-    label: 'TYPES.Actor.werewolf'
+    label: 'TYPES.Actor.werewolf',
+    usesResourceOnAdvancedDice: true,
+    resourceValuePath: 'rage.value',
+    resourceUsage: 'subtract'
   }
 
   static hunter = {
+    usesResourceOnAdvancedDice: false,
     label: 'TYPES.Actor.hunter'
   }
 }
