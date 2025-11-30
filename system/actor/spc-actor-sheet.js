@@ -1,13 +1,3 @@
-// Preparation functions
-import {
-  prepareBiographyContext,
-  prepareFeaturesContext,
-  prepareEquipmentContext,
-  prepareNotepadContext,
-  prepareSettingsContext,
-  prepareLimitedContext,
-  prepareSpcStatsContext
-} from './scripts/prepare-partials.js'
 // Various button functions
 import { _onEditExceptionalPools } from './scripts/exceptional-dicepools.js'
 import { _onCreatePower, _onDeletePower } from './scripts/spc-powers.js'
@@ -160,31 +150,31 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
     switch (partId) {
       // Stats
       case 'stats':
-        return prepareSpcStatsContext(context, actor)
+        return this.prepareSpcStatsContext(context, actor)
 
       // Features
       case 'features':
-        return prepareFeaturesContext(context, actor)
+        return this.prepareFeaturesContext(context, actor)
 
       // Equipment
       case 'equipment':
-        return prepareEquipmentContext(context, actor)
+        return this.prepareEquipmentContext(context, actor)
 
       // Biography
       case 'biography':
-        return prepareBiographyContext(context, actor)
+        return this.prepareBiographyContext(context, actor)
 
       // Notepad
       case 'notepad':
-        return prepareNotepadContext(context, actor)
+        return this.prepareNotepadContext(context, actor)
 
       // Settings
       case 'settings':
-        return prepareSettingsContext(context, actor)
+        return this.prepareSettingsContext(context, actor)
 
       // Limited view
       case 'limited':
-        return prepareLimitedContext(context, actor)
+        return this.prepareLimitedContext(context, actor)
     }
 
     return context

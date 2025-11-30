@@ -27,6 +27,17 @@ import { _onWillpowerRoll } from './scripts/on-willpower-roll.js'
 import { _onToggleCollapse } from './scripts/on-toggle-collapse.js'
 import { _onToggleLimited } from './scripts/on-toggle-limited.js'
 import { _onRestoreItemUses, _onExpendItemUse } from './scripts/item-uses.js'
+import {
+  prepareBiographyContext,
+  prepareEquipmentContext,
+  prepareExperienceContext,
+  prepareFeaturesContext,
+  prepareLimitedContext,
+  prepareNotepadContext,
+  prepareSettingsContext,
+  prepareSpcStatsContext,
+  prepareStatsContext
+} from './scripts/prepare-partials.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
@@ -633,5 +644,41 @@ export class WoDActorBase extends HandlebarsApplicationMixin(
           contentElement.css('transition', '')
         }
       })
+  }
+
+  prepareStatsContext(context, actor) {
+    return prepareStatsContext(context, actor)
+  }
+
+  prepareExperienceContext(context, actor) {
+    return prepareExperienceContext(context, actor)
+  }
+
+  prepareFeaturesContext(context, actor) {
+    return prepareFeaturesContext(context, actor)
+  }
+
+  prepareEquipmentContext(context, actor) {
+    return prepareEquipmentContext(context, actor)
+  }
+
+  prepareBiographyContext(context, actor) {
+    return prepareBiographyContext(context, actor)
+  }
+
+  prepareNotepadContext(context, actor) {
+    return prepareNotepadContext(context, actor)
+  }
+
+  prepareSettingsContext(context, actor) {
+    return prepareSettingsContext(context, actor)
+  }
+
+  prepareLimitedContext(context, actor) {
+    return prepareLimitedContext(context, actor)
+  }
+
+  prepareSpcStatsContext(context, actor) {
+    return prepareSpcStatsContext(context, actor)
   }
 }

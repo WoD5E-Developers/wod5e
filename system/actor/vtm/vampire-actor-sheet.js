@@ -1,14 +1,3 @@
-// Preparation functions
-import {
-  prepareBiographyContext,
-  prepareExperienceContext,
-  prepareFeaturesContext,
-  prepareEquipmentContext,
-  prepareNotepadContext,
-  prepareSettingsContext,
-  prepareStatsContext,
-  prepareLimitedContext
-} from '../scripts/prepare-partials.js'
 import { prepareDisciplinesContext, prepareBloodContext } from './scripts/prepare-partials.js'
 // Various button functions
 import {
@@ -174,11 +163,11 @@ export class VampireActorSheet extends HandlebarsApplicationMixin(WoDActorBase) 
     switch (partId) {
       // Stats
       case 'stats':
-        return prepareStatsContext(context, actor)
+        return this.prepareStatsContext(context, actor)
 
       // Experience
       case 'experience':
-        return prepareExperienceContext(context, actor)
+        return this.prepareExperienceContext(context, actor)
 
       // Disciplines
       case 'disciplines':
@@ -190,27 +179,27 @@ export class VampireActorSheet extends HandlebarsApplicationMixin(WoDActorBase) 
 
       // Features
       case 'features':
-        return prepareFeaturesContext(context, actor)
+        return this.prepareFeaturesContext(context, actor)
 
       // Equipment
       case 'equipment':
-        return prepareEquipmentContext(context, actor)
+        return this.prepareEquipmentContext(context, actor)
 
       // Biography
       case 'biography':
-        return prepareBiographyContext(context, actor)
+        return this.prepareBiographyContext(context, actor)
 
       // Notepad
       case 'notepad':
-        return prepareNotepadContext(context, actor)
+        return this.prepareNotepadContext(context, actor)
 
       // Settings
       case 'settings':
-        return prepareSettingsContext(context, actor)
+        return this.prepareSettingsContext(context, actor)
 
       // Limited view
       case 'limited':
-        return prepareLimitedContext(context, actor)
+        return this.prepareLimitedContext(context, actor)
     }
 
     return context
