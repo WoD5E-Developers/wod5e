@@ -436,9 +436,6 @@ class WOD5eDice {
             el.addEventListener('change', function (event) {
               event.preventDefault()
 
-              // Actor data
-              const actorData = actor.system
-
               // Determine the input
               const modCheckbox = event.target
               const modifier = parseInt(event.currentTarget.dataset.value)
@@ -459,15 +456,12 @@ class WOD5eDice {
               if (!disableAdvancedDice) {
                 if (modifierIsNegative) {
                   // Apply dice to basicDice unless basicDice is 0
-                  if ((system === 'vampire' || system === 'werewolf') && basicValue === 0) {
+                  if (systemData.usesResourceOnAdvancedDice && basicValue === 0) {
                     applyDiceTo = 'advanced'
                   }
                 } else {
                   // Apply dice to advancedDice if advancedValue is below the actor's hunger/rage value
-                  if (
-                    (system === 'vampire' && advancedValue < actorData?.hunger.value) ||
-                    (system === 'werewolf' && advancedValue < actorData?.rage.value)
-                  ) {
+                  if (advancedValue < checkValue) {
                     applyDiceTo = 'advanced'
                   }
                 }
@@ -490,15 +484,16 @@ class WOD5eDice {
                   newValue = advancedValue + Math.abs(modifier)
 
                   // Determine what we're checking against
-                  if (system === 'vampire') {
-                    checkValue = actorData?.hunger.value
-                  }
-                  if (system === 'werewolf') {
-                    checkValue = actorData?.rage.value
+                  if (systemData?.usesResourceOnAdvancedDice && systemData?.resourceValuePath) {
+                    // Extract resource value
+                    checkValue = foundry.utils.getProperty(
+                      actor.system,
+                      systemData.resourceValuePath
+                    )
                   }
 
                   if (
-                    (newValue > actorData?.hunger.value || newValue > checkValue) &&
+                    newValue > checkValue &&
                     !(event.currentTarget.dataset.applyDiceTo === 'advanced')
                   ) {
                     // Check for any excess and apply it to basicDice
@@ -591,6 +586,9 @@ class WOD5eDice {
           _applyOblivionStains(actor, oblivionTriggers, rollMode)
         }
       }
+
+      // Send a hook
+      Hooks.callAll('wod5e.handleFailure', actor, system, failures, diceResults, rollMode)
     }
   }
 }
