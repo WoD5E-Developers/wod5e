@@ -28,7 +28,8 @@ import {
   HunterDie,
   HunterDesperationDie,
   WerewolfDie,
-  WerewolfRageDie
+  WerewolfRageDie,
+  WOD5eDie
 } from './dice/splat-dice.js'
 import { migrateWorld } from './scripts/migration.js'
 import { wod5eAPI } from './api/wod5e-api.js'
@@ -76,7 +77,8 @@ window.WOD5E = {
   Edges,
   Renown,
   Gifts,
-  WereForms
+  WereForms,
+  WOD5eDie
 }
 
 // Anything that needs to be ran alongside the initialisation of the world

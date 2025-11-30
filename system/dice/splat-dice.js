@@ -10,7 +10,7 @@ import {
   desperationDiceFaces
 } from './icons.js'
 
-class WOD5eDie extends foundry.dice.terms.Die {
+export class WOD5eDie extends foundry.dice.terms.Die {
   constructor(termData) {
     termData.faces = 10
 
