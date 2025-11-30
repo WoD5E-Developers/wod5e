@@ -1,7 +1,7 @@
 {
   "name": "wod5e",
-  "version": "5.0.0-prerelease",
-  "description": "CSS compiler for the Vampire 5e system",
+  "version": "1.0.0",
+  "description": "ESLint & other utiltiies for developing World of Darkness 5e",
   "scripts": {
     "gulp": "gulp",
     "eslint": "eslint -c .github/linters/.eslintrc.yml *",
@@ -13,7 +13,7 @@
     "last 3 versions"
   ],
   "author": "Veilza",
-  "license": "MIT",
+  "license": "./license",
   "private": true,
   "type": "module",
   "devDependencies": {
