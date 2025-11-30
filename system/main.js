@@ -51,6 +51,7 @@ import { _updateCSSVariable, cssVariablesRecord } from './scripts/update-css-var
 import { _updateToken } from './actor/wta/scripts/forms.js'
 import { RollPromptSockets } from './sockets/roll-prompt.js'
 import { WoDActorBase } from './actor/wod-actor-base.js'
+import { DiceRegistry } from './api/def/dice.js'
 
 // Register the WOD5E global
 window.WOD5E = {
@@ -78,7 +79,8 @@ window.WOD5E = {
   Renown,
   Gifts,
   WereForms,
-  WOD5eDie
+  WOD5eDie,
+  DiceRegistry
 }
 
 // Anything that needs to be ran alongside the initialisation of the world

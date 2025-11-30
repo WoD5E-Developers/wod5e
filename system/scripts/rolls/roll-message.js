@@ -1,14 +1,6 @@
 // Import dice face-related variables for icon paths
-import {
-  mortalDiceLocation,
-  vampireDiceLocation,
-  werewolfDiceLocation,
-  hunterDiceLocation,
-  normalDiceFaces,
-  hungerDiceFaces,
-  rageDiceFaces,
-  desperationDiceFaces
-} from '../../dice/icons.js'
+import { DiceRegistry } from '../../api/def/dice.js'
+import { normalDiceFaces } from '../../dice/icons.js'
 import { WOD5eRoll } from '../system-rolls.js'
 import { getRollFooter } from './roll-labels/get-label.js'
 
@@ -95,29 +87,10 @@ export async function generateRollMessageData({
       // Define the face of the die based on the above conditionals
       const dieFace = normalDiceFaces[dieResult]
 
-      // Use switch-cases to adjust splat-specific dice locations/faces
-      switch (system) {
-        case 'werewolf':
-          // Werewolf data
-          dieImg = `${werewolfDiceLocation}${dieFace}`
-          dieClasses.push(['werewolf-dice'])
-          break
-        case 'vampire':
-          // Vampire data
-          dieImg = `${vampireDiceLocation}${dieFace}`
-          dieClasses.push(['vampire-dice'])
-          break
-        case 'hunter':
-          // Hunter data
-          dieImg = `${hunterDiceLocation}${dieFace}`
-          dieClasses.push(['hunter-dice'])
-          break
-        default:
-          // Mortal data
-          dieImg = `${mortalDiceLocation}${dieFace}`
-          dieClasses.push(['mortal-dice'])
-          break
-      }
+      // Grab the die class from the DiceRegistry class
+      const dieConfig = DiceRegistry.basic[system] ?? DiceRegistry.basic['mortal']
+      dieImg = `${dieConfig.imgRoot}${dieFace}`
+      dieClasses.push(dieConfig.css)
 
       // Add any necessary data to the dice object
       rollData.results[index].img = dieImg
@@ -145,66 +118,23 @@ export async function generateRollMessageData({
 
     advancedDice.forEach((die, index) => {
       // Variables
-      let dieResult, dieImg, dieAltText, dieFace, dieTitle
+      let dieResult, dieImg, dieAltText, dieTitle
       const dieClasses = ['die', 'roll-img']
 
       // Mark any die that were rerolled / not used
       if (die.discarded) dieClasses.push(['rerolled'])
 
-      // Use switch-cases to adjust splat-specific dice locations/faces
-      switch (system) {
-        case 'werewolf':
-          // Werewolf die results
-          if (die.result === 10) {
-            // Handle critical successes
-            dieResult = 'critical'
-            dieClasses.push(['rerollable'])
-          } else if (die.result < 10 && die.result > 5) {
-            // Successes
-            dieResult = 'success'
-            dieClasses.push(['rerollable'])
-          } else if (die.result < 6 && die.result > 2) {
-            // Failures
-            dieResult = 'failure'
-            dieClasses.push(['rerollable'])
-          } else dieResult = 'brutal' // Brutal failures
-
-          // Werewolf data
-          dieFace = rageDiceFaces[dieResult]
-          dieImg = `${werewolfDiceLocation}${dieFace}`
-          dieClasses.push(['rage-dice'])
-          break
-        case 'vampire':
-          // Vampire die results
-          if (die.result === 10)
-            dieResult = 'critical' // Critical successes
-          else if (die.result < 10 && die.result > 5)
-            dieResult = 'success' // Successes
-          else if (die.result < 6 && die.result > 1)
-            dieResult = 'failure' // Failures
-          else dieResult = 'bestial' // Bestial failures
-
-          // Vampire data
-          dieFace = hungerDiceFaces[dieResult]
-          dieImg = `${vampireDiceLocation}${dieFace}`
-          dieClasses.push(['hunger-dice'])
-          break
-        case 'hunter':
-          // Hunter die results
-          if (die.result === 10)
-            dieResult = 'critical' // Critical successes
-          else if (die.result < 10 && die.result > 5)
-            dieResult = 'success' // Successes
-          else if (die.result < 6 && die.result > 1)
-            dieResult = 'failure' // Failures
-          else dieResult = 'criticalFailure' // Critical failures
-
-          // Hunter data
-          dieFace = desperationDiceFaces[dieResult]
-          dieImg = `${hunterDiceLocation}${dieFace}`
-          dieClasses.push(['desperation-dice'])
-          break
+      // Use our DiceRegistry class to grab the advanced dice class
+      const dieConfig = DiceRegistry.advanced[system]
+      if (!dieConfig) {
+        console.error(`No advanced dice registry for system: ${system}`)
+        return rollData
       }
+
+      dieResult = dieConfig.resultMap(die.result)
+      const dieFace = dieConfig.faces[dieResult]
+      dieImg = `${dieConfig.imgRoot}${dieFace}`
+      dieClasses.push(dieConfig.css)
 
       // Add any necessary data to the dice object
       rollData.results[index].img = dieImg
