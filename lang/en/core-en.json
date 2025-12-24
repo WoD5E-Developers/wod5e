@@ -165,7 +165,7 @@
             "ErrorCreatingActor": "Error creating the Actor.",
             "ErrorSettingValues": "Error setting values.",
             "PathNotFound": "Could not find Attribute or Skill path. See console (F12).",
-            "StringCreated": "{actorName} created with Attributes, Skills, Health, and Willpower.",
+            "StringCreated": "{string} created with Attributes, Skills, Health, and Willpower.",
             "UpdateError": "Update Error:"
           }
         }
