@@ -4,7 +4,9 @@ export const ProseMirrorSettings = async () => {
   const { defaultSchema, Schema } = foundry.prosemirror
   const { deepClone } = foundry.utils
 
-  // ---- Define the mark for the symbol span ----
+  /**
+   * Define the mark for the symbol span
+   */
   const wodSymbolMark = {
     attrs: {
       letter: { default: null }
@@ -21,18 +23,22 @@ export const ProseMirrorSettings = async () => {
     }
   }
 
-  // ---- Extend Foundry’s ProseMirror Schema ----
+  /**
+   * Extend Foundry’s ProseMirror Schema
+   */
   const extendedSchema = new Schema({
     nodes: defaultSchema.spec.nodes,
     marks: deepClone(defaultSchema.spec.marks).addToStart('wodSymbol', wodSymbolMark)
   })
 
-  // Replace the default schema
+  /**
+   * Replace the default schema
+   */
   Object.assign(foundry.prosemirror.defaultSchema, extendedSchema)
 
-  // ------------------------------------------
-  //  Add Dropdown Menu Entry
-  // ------------------------------------------
+  /**
+   * Add Dropdown Menu Entry
+   */
   Hooks.on('getProseMirrorMenuDropDowns', (menu, dropdowns) => {
     const wodMark = menu.schema.marks.wodSymbol
     if (!wodMark) return
@@ -59,6 +65,9 @@ export const ProseMirrorSettings = async () => {
     }
   })
 
+  /**
+   * Define inserting a symbol into the journal entry
+   */
   function insertWodSymbol(letter, schema) {
     return function (state, dispatch) {
       const { tr } = state
