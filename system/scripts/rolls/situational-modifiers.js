@@ -32,7 +32,25 @@ export async function getSituationalModifiers({ actor, selectors }) {
         modifiers.push(...matchingModifiers)
       }
     }
-
+    // Check for Group Modifiers
+    if (data.group) {
+      const groupActor = game.actors.get(data.group)
+      if (groupActor) {
+        // Iterate through group items to find bonuses
+        groupActor.items.forEach((item) => {
+          if (item.system.bonuses && Array.isArray(item.system.bonuses)) {
+            const groupItemModifiers = item.system.bonuses.filter(
+              (bonus) =>
+                selectors.some((selector) => bonus.paths.includes(selector)) ||
+                bonus.paths.includes('all')
+            )
+            if (groupItemModifiers.length > 0) {
+              modifiers.push(...groupItemModifiers)
+            }
+          }
+        })
+      }
+    }
     // Run a search for modifiers within the actor's data
     searchModifiers(data, '')
     function searchModifiers(obj, path) {
