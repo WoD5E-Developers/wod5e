@@ -488,7 +488,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
     event.dataTransfer.setData('text/plain', JSON.stringify(dragData))
   }
 
-  _onDragOver() { }
+  _onDragOver() {}
 
   async _onDrop(event) {
     const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event)
