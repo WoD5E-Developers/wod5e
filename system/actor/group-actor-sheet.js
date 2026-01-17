@@ -234,6 +234,9 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
   }
 
   async prepareItems(sheetData) {
+    // Make an array to store item-based modifiers
+    sheetData.system.itemModifiers = []
+
     // Do data manipulation we need to do for ALL items here
     sheetData.items.forEach(async (item) => {
       // Enrich item descriptions
@@ -485,7 +488,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
     event.dataTransfer.setData('text/plain', JSON.stringify(dragData))
   }
 
-  _onDragOver() {}
+  _onDragOver() { }
 
   async _onDrop(event) {
     const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event)
