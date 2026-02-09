@@ -1,29 +1,14 @@
-export const hunterBasicSuccess = {
+export const hunterBasicOnlySuccess = {
   _formula: '3dh',
   basicDice: {
     total: 2,
     results: [
       { result: 6, discarded: false },
-      { result: 8, discarded: false },
-      { result: 4, discarded: false }
-    ]
-  },
-  advancedDice: null
-}
-
-export const hunterDesperationSuccess = {
-  _formula: '2dh + 1ds',
-  basicDice: {
-    total: 1,
-    results: [
       { result: 7, discarded: false },
       { result: 2, discarded: false }
     ]
   },
-  advancedDice: {
-    total: 1,
-    results: [{ result: 6, discarded: false }]
-  }
+  advancedDice: null
 }
 
 export const hunterMixedDesperationSuccess = {
@@ -39,17 +24,4 @@ export const hunterMixedDesperationSuccess = {
     total: 1,
     results: [{ result: 7, discarded: false }]
   }
-}
-
-export const hunterBasicOnlySuccess = {
-  _formula: '3dh',
-  basicDice: {
-    total: 2,
-    results: [
-      { result: 6, discarded: false },
-      { result: 7, discarded: false },
-      { result: 2, discarded: false }
-    ]
-  },
-  advancedDice: null
 }
