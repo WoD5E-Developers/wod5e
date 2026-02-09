@@ -28,3 +28,19 @@ export const vampireMixedHungerSuccess = {
     results: [{ result: 6, discarded: false }]
   }
 }
+
+export const vampireHungerOnlyFailure = {
+  _formula: '0dv + 3dg',
+  basicDice: {
+    total: 0,
+    results: []
+  },
+  advancedDice: {
+    total: 0,
+    results: [
+      { result: 3, discarded: false },
+      { result: 4, discarded: false },
+      { result: 1, discarded: false }
+    ]
+  }
+}

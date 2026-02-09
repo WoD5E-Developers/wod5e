@@ -51,16 +51,6 @@ describe('generateRollMessage - Mortal', () => {
  * Vampire Rolls
  */
 describe('generateRollMessage - Vampire', () => {
-  it('handles mixed vampire + hunger dice success', async () => {
-    const result = await generateRollMessageData({
-      roll: vampireMixedHungerSuccess,
-      system: 'vampire',
-      title: 'Feeding Roll'
-    })
-
-    expect(result.totalResult).toBe(2)
-  })
-
   it('handles vampire rolls with only basic dice', async () => {
     const result = await generateRollMessageData({
       roll: vampireBasicOnlySuccess,
@@ -70,6 +60,16 @@ describe('generateRollMessage - Vampire', () => {
 
     expect(result.totalResult).toBeGreaterThan(0)
     expect(result.advancedDice).toBeNull
+  })
+
+  it('handles mixed vampire + hunger dice success', async () => {
+    const result = await generateRollMessageData({
+      roll: vampireMixedHungerSuccess,
+      system: 'vampire',
+      title: 'Feeding Roll'
+    })
+
+    expect(result.totalResult).toBe(2)
   })
 
   it('handles hunger dice with no successes', async () => {
@@ -87,16 +87,6 @@ describe('generateRollMessage - Vampire', () => {
  * Werewolf Rolls
  */
 describe('generateRollMessage - Werewolf', () => {
-  it('handles mixed werewolf + rage dice success', async () => {
-    const result = await generateRollMessageData({
-      roll: werewolfMixedRageSuccess,
-      system: 'werewolf',
-      title: 'Frenzy Roll'
-    })
-
-    expect(result.totalResult).toBeGreaterThan(0)
-  })
-
   it('handles werewolf rolls with only basic dice', async () => {
     const result = await generateRollMessageData({
       roll: werewolfBasicOnlySuccess,
@@ -107,22 +97,22 @@ describe('generateRollMessage - Werewolf', () => {
     expect(result.totalResult).toBeGreaterThan(0)
     expect(result.advancedDice).toBeNull()
   })
+
+  it('handles mixed werewolf + rage dice success', async () => {
+    const result = await generateRollMessageData({
+      roll: werewolfMixedRageSuccess,
+      system: 'werewolf',
+      title: 'Frenzy Roll'
+    })
+
+    expect(result.totalResult).toBeGreaterThan(0)
+  })
 })
 
 /**
  * Hunter Rolls
  */
 describe('generateRollMessage - Hunter', () => {
-  it('handles mixed hunter + desperation dice success', async () => {
-    const result = await generateRollMessageData({
-      roll: hunterMixedDesperationSuccess,
-      system: 'hunter',
-      title: 'Last Stand'
-    })
-
-    expect(result.totalResult).toBeGreaterThan(0)
-  })
-
   it('handles hunter rolls with only basic dice', async () => {
     const result = await generateRollMessageData({
       roll: hunterBasicOnlySuccess,
@@ -132,5 +122,15 @@ describe('generateRollMessage - Hunter', () => {
 
     expect(result.totalResult).toBeGreaterThan(0)
     expect(result.advancedDice).toBeNull()
+  })
+
+  it('handles mixed hunter + desperation dice success', async () => {
+    const result = await generateRollMessageData({
+      roll: hunterMixedDesperationSuccess,
+      system: 'hunter',
+      title: 'Last Stand'
+    })
+
+    expect(result.totalResult).toBeGreaterThan(0)
   })
 })
