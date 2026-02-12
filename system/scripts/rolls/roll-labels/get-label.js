@@ -7,16 +7,7 @@ export const getRollFooter = async function (system, data) {
   const labelData = await getLabel(system, data)
   const resultText = labelData.labelText
 
-  // Construct the resultLabel from labelClass and labelText
-  let resultLabel = `<div class="roll-result-label ${labelData.labelClass}">${labelData.labelText}</div>`
-
-  // Combine the totalAndDifficulty element with the resultLabel element
-  if (labelData.showTotalAndDifficulty) {
-    resultLabel = data.totalAndDifficulty + resultLabel
-  }
-
-  // Otherwise, just return the resultLabel
-  return { resultLabel, resultText }
+  return { labelData, resultText }
 }
 
 export const getLabel = async function (system, data) {
