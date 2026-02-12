@@ -35,6 +35,7 @@ describe('generateRollMessage - Mortal', () => {
     })
 
     expect(result.totalResult).toBe(2)
+    expect(result.labelData.labelText).toBe('2 WOD5E.RollList.Successes')
   })
 
   it('handles a mortal roll with zero successes', async () => {
@@ -44,6 +45,7 @@ describe('generateRollMessage - Mortal', () => {
     })
 
     expect(result.totalResult).toBe(0)
+    expect(result.labelData.labelText).toBe('WOD5E.RollList.Fail')
   })
 })
 
@@ -60,6 +62,7 @@ describe('generateRollMessage - Vampire', () => {
 
     expect(result.totalResult).toBeGreaterThan(0)
     expect(result.advancedDice).toBeNull
+    expect(result.labelData.labelText).toBe('1 WOD5E.RollList.Success')
   })
 
   it('handles mixed vampire + hunger dice success', async () => {
@@ -70,6 +73,7 @@ describe('generateRollMessage - Vampire', () => {
     })
 
     expect(result.totalResult).toBe(2)
+    expect(result.labelData.labelText).toBe('2 WOD5E.RollList.Successes')
   })
 
   it('handles hunger dice with no successes', async () => {
@@ -80,6 +84,7 @@ describe('generateRollMessage - Vampire', () => {
     })
 
     expect(result.totalResult).toBe(0)
+    expect(result.labelData.labelText).toBe('WOD5E.VTM.PossibleBestialFailure')
   })
 })
 
@@ -96,6 +101,7 @@ describe('generateRollMessage - Werewolf', () => {
 
     expect(result.totalResult).toBeGreaterThan(0)
     expect(result.advancedDice).toBeNull()
+    expect(result.labelData.labelText).toBe('2 WOD5E.RollList.Successes')
   })
 
   it('handles mixed werewolf + rage dice success', async () => {
@@ -106,6 +112,7 @@ describe('generateRollMessage - Werewolf', () => {
     })
 
     expect(result.totalResult).toBeGreaterThan(0)
+    expect(result.labelData.labelText).toBe('2 WOD5E.RollList.Successes')
   })
 })
 
@@ -122,6 +129,7 @@ describe('generateRollMessage - Hunter', () => {
 
     expect(result.totalResult).toBeGreaterThan(0)
     expect(result.advancedDice).toBeNull()
+    expect(result.labelData.labelText).toBe('2 WOD5E.RollList.Successes')
   })
 
   it('handles mixed hunter + desperation dice success', async () => {
@@ -132,5 +140,6 @@ describe('generateRollMessage - Hunter', () => {
     })
 
     expect(result.totalResult).toBeGreaterThan(0)
+    expect(result.labelData.labelText).toBe('2 WOD5E.RollList.Successes')
   })
 })
