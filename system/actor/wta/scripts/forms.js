@@ -80,6 +80,9 @@ export const handleFormChange = async function (event, target, actor, form, dice
   // Variables yet to be defined
   const selectors = []
 
+  // If we get a call to change the active form without a new form selected, do nothing
+  if (actor.system.activeForm === form) return
+
   // If automatedRage is turned on and the actor's rage is 0, present a warning
   if (game.settings.get('wod5e', 'automatedRage') && actor.system.rage.value === 0) {
     _onInsufficientRage(actor, form)
