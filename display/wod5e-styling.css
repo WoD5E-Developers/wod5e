@@ -697,34 +697,43 @@ h3.item-name {
 .roll-menu.application .clickable-button:hover {
   font-weight: bold;
 }
-.roll-menu.application .saved-rolls {
+.roll-menu.application .roll-menu-sidebar {
   padding-right: 1rem;
   border-right: 1px solid;
   width: 150px;
   display: flex;
   flex-direction: column;
 }
-.roll-menu.application .saved-rolls .title {
+.roll-menu.application .roll-menu-sidebar .title {
   font-size: 16pt;
   text-align: center;
 }
-.roll-menu.application .saved-rolls .saved-rolls-list {
+.roll-menu.application .roll-menu-sidebar .roll-builder {
+  font-size: 14pt;
+  margin-top: 10px;
+  text-align: center;
+}
+.roll-menu.application .roll-menu-sidebar hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.roll-menu.application .roll-menu-sidebar .active {
+  font-weight: bold;
+}
+.roll-menu.application .roll-menu-sidebar .saved-rolls-list {
   padding: 5px;
   display: flex;
   flex-grow: 1;
   overflow-y: scroll;
 }
-.roll-menu.application .saved-rolls .saved-rolls-list .saved-roll .remove-saved-roll {
+.roll-menu.application .roll-menu-sidebar .saved-rolls-list .saved-roll .remove-saved-roll {
   flex-grow: 0;
   padding: 3px;
 }
-.roll-menu.application .saved-rolls .saved-rolls-list .saved-roll.active {
-  font-weight: bold;
-}
-.roll-menu.application .saved-rolls .saved-rolls-list .saved-roll:not(.active) {
+.roll-menu.application .roll-menu-sidebar .saved-rolls-list .saved-roll:not(.active) {
   cursor: pointer;
 }
-.roll-menu.application .saved-rolls .saved-rolls-footer {
+.roll-menu.application .roll-menu-sidebar .saved-rolls-footer {
   margin-top: auto;
   padding: 0.5rem;
   text-align: center;

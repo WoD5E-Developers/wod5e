@@ -82,7 +82,7 @@
     font-weight: bold;
   }
 
-  .saved-rolls {
+  .roll-menu-sidebar {
     padding-right: 1rem;
     border-right: 1px solid;
     width: 150px;
@@ -92,6 +92,21 @@
     .title {
       font-size: 16pt;
       text-align: center;
+    }
+
+    .roll-builder {
+      font-size: 14pt;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    hr {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .active {
+      font-weight: bold;
     }
 
     .saved-rolls-list {
@@ -105,10 +120,6 @@
           flex-grow: 0;
           padding: 3px;
         }
-      }
-
-      .saved-roll.active {
-        font-weight: bold;
       }
 
       .saved-roll:not(.active) {

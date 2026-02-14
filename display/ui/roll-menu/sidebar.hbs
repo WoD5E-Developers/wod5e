@@ -1,8 +1,14 @@
-<div class="saved-rolls">
+<div class="roll-menu-sidebar">
+  <div class="flexcol roll-builder {{#ifeq activeRollID 'temp'}}active{{else}}clickable-button{{/ifeq}}">
+    <div data-action="openRollBuilder">
+      Roll Builder
+    </div>
+  </div>
+  <hr>
   <div class="title">Saved Rolls</div>
   <div class="flexcol saved-rolls-list">
     {{#each savedRolls as |roll key|}}
-      <div class="flexrow saved-roll {{#ifeq key ../activeRollID}}active{{/ifeq}}" data-id="{{key}}">
+      <div class="flexrow saved-roll {{#ifeq ../activeRollID key}}active{{else}}clickable-button{{/ifeq}}" data-id="{{key}}">
         <div data-action="removeSavedRoll" class="remove-saved-roll" title="{{localize 'WOD5E.RollList.RemoveRoll'}}">
           x
         </div>

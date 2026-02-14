@@ -1,4 +1,5 @@
 import { _onAddNewRoll } from './scripts/on-add-new-dice.js'
+import { _onOpenRollBuilder } from './scripts/on-open-roll-builder.js'
 import { _onPromptInChat } from './scripts/on-prompt-in-chat.js'
 import { _onRemoveSavedRoll } from './scripts/on-remove-roll.js'
 import { _onRollFromRollMenu } from './scripts/on-roll-from-roll-menu.js'
@@ -29,7 +30,8 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
       addNewRoll: _onAddNewRoll,
       rollFromRollMenu: _onRollFromRollMenu,
       promptInChat: _onPromptInChat,
-      removeSavedRoll: _onRemoveSavedRoll
+      removeSavedRoll: _onRemoveSavedRoll,
+      openRollBuilder: _onOpenRollBuilder
     }
   }
 
@@ -44,9 +46,14 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
 
   async _prepareContext() {
     const data = await super._prepareContext()
+    const rollMenuSavedRolls = game.users.current.getFlag('wod5e', 'rollMenuSavedRolls') || {}
 
     data.activeRollID = game.users.current.getFlag('wod5e', 'rollMenuActiveRoll') || ''
-    data.savedRolls = game.users.current.getFlag('wod5e', 'rollMenuSavedRolls') || {}
+    data.allRolls = rollMenuSavedRolls
+
+    // Simple and performant way to snip out the 'temp' key here
+    // eslint-disable-next-line no-unused-vars
+    data.savedRolls = (({ temp, ...rolls }) => rolls)(rollMenuSavedRolls ?? {})
 
     // Splat definitions
     data.splatOptions = WOD5E.Systems.getList({})
@@ -67,7 +74,7 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
       case 'body':
         // Part-specific data
         if (context.activeRollID) {
-          context.activeRoll = context.savedRolls[context.activeRollID]
+          context.activeRoll = context.allRolls[context.activeRollID]
         }
 
         break
@@ -81,9 +88,9 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
 
     let activeRoll = game.users.current.getFlag('wod5e', 'rollMenuActiveRoll') || ''
 
-    // If there's no active roll, generate a new ID
+    // If there's no active roll, save to a 'temp' ID that's used for the roll builder
     if (!activeRoll) {
-      activeRoll = foundry.utils.randomID(8)
+      activeRoll = 'temp'
       game.users.current.setFlag('wod5e', 'rollMenuActiveRoll', activeRoll)
     }
 
