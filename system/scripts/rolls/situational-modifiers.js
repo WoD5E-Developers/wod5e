@@ -33,7 +33,10 @@ export async function getSituationalModifiers({ actor, selectors }) {
   // Check for Impaired Willpower
   if (data?.willpower?.max > 0) {
     const wpDamage = (data.willpower.superficial || 0) + (data.willpower.aggravated || 0)
-    if (wpDamage >= data.willpower.max && (selectors.includes('social') || selectors.includes('mental'))) {
+    if (
+      wpDamage >= data.willpower.max &&
+      (selectors.includes('social') || selectors.includes('mental'))
+    ) {
       activeModifiers.push({
         source: game.i18n.localize('WOD5E.ImpairedWillpower'),
         value: -2,
