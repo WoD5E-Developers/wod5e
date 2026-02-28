@@ -10,6 +10,30 @@ export async function getSituationalModifiers({ actor, selectors }) {
   const allModifiers = getModifiers(data, selectors)
   const activeModifiers = filterModifiers(data, allModifiers)
 
+  // Check for Impaired Health
+  if (data?.health?.max > 0) {
+    const healthDamage = (data.health.superficial || 0) + (data.health.aggravated || 0)
+    if (healthDamage >= data.health.max && selectors.includes('physical')) {
+      activeModifiers.push({
+        source: game.i18n.localize('WOD5E.ImpairedHealth'),
+        value: -2,
+        isActive: true
+      })
+    }
+  }
+
+  // Check for Impaired Willpower
+  if (data?.willpower?.max > 0) {
+    const wpDamage = (data.willpower.superficial || 0) + (data.willpower.aggravated || 0)
+    if (wpDamage >= data.willpower.max && (selectors.includes('social') || selectors.includes('mental'))) {
+      activeModifiers.push({
+        source: game.i18n.localize('WOD5E.ImpairedWillpower'),
+        value: -2,
+        isActive: true
+      })
+    }
+  }
+
   // Return the array of modifiers to whatever called for it
   return activeModifiers
 

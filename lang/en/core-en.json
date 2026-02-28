@@ -51,6 +51,8 @@
     "GamePaused": "Game Paused",
     "GroupSheet": "Group Sheet",
     "Health": "Health",
+    "ImpairedHealth": "Impaired Health",
+    "ImpairedWillpower": "Impaired Willpower",
     "Inactive": "Inactive",
     "Issues": "Issues",
     "Label": "Label",
