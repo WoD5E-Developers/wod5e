@@ -12,8 +12,16 @@ export async function getSituationalModifiers({ actor, selectors }) {
 
   // Check for Impaired Health
   if (data?.health?.max > 0) {
-    const healthDamage = (data.health.superficial || 0) + (data.health.aggravated || 0)
-    if (healthDamage >= data.health.max && selectors.includes('physical')) {
+    let healthDamage = (data.health.superficial || 0) + (data.health.aggravated || 0)
+    let maxHealth = data.health.max
+
+    // Account for werewolf Crinos form bonus health
+    if (data.activeForm === 'crinos' && data.crinosHealth) {
+      healthDamage += (data.crinosHealth.superficial || 0) + (data.crinosHealth.aggravated || 0)
+      maxHealth += data.crinosHealth.max || 0
+    }
+
+    if (healthDamage >= maxHealth && selectors.includes('physical')) {
       activeModifiers.push({
         source: game.i18n.localize('WOD5E.ImpairedHealth'),
         value: -2,
