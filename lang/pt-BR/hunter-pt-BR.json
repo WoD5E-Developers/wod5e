@@ -19,7 +19,7 @@
       "DesperationDice": "Dados de Desespero",
       "DesperationDiceFields": "Campos de Dados de Desespero",
       "DesperationFailure": "Perigo ou Desespero",
-      "DesperationSuccess": "Successo com Perigo, ou Desespero",
+      "DesperationSuccess": "Sucesso com Perigo, ou Desespero",
       "DesperationUnavailable": "Dados de Desespero indisponíveis enquanto em Aflição",
       "Drive": "Ímpeto",
       "DroneJockey": "Jóquei de Drones",
@@ -51,8 +51,8 @@
       "SuggestedDrives": "Veículos Sugeridos",
       "SuggestedEdges": "Trunfos Sugeridos",
       "ThwartTheUnnatural": "Frustrar o Sobrenatural",
-      "_Turncoat": "",
-      "_UnnaturalChanges": ""
+      "Turncoat": "Perfídia",
+      "UnnaturalChanges": "Mudanças Não Naturais"
     }
   }
 }
