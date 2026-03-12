@@ -34,7 +34,7 @@ export async function _damageWillpower(event, target, actor, willpowerDamage, ro
     } else {
       // If the willpower boxes are fully ticked with aggravated damage
       // then tell the chat and don't increase any values.
-      foundry.documents.ChatMessage.implementation.create({
+      let messageData = {
         flags: {
           wod5e: {
             name: `${prependTitle}${game.i18n.localize('WOD5E.Chat.WillpowerFullTitle')}`,
@@ -42,7 +42,14 @@ export async function _damageWillpower(event, target, actor, willpowerDamage, ro
             description: game.i18n.localize('WOD5E.Chat.WillpowerFull')
           }
         }
-      })
+      }
+
+      messageData = foundry.documents.ChatMessage.implementation.applyRollMode(
+        messageData,
+        rollMode
+      )
+
+      foundry.documents.ChatMessage.implementation.create(messageData)
 
       // End the function here
       return
@@ -57,7 +64,7 @@ export async function _damageWillpower(event, target, actor, willpowerDamage, ro
     })
   }
 
-  foundry.documents.ChatMessage.implementation.create({
+  let messageData = {
     flags: {
       wod5e: {
         name: `${prependTitle}${game.i18n.localize('WOD5E.Chat.WillpowerDamage')}`,
@@ -68,5 +75,9 @@ export async function _damageWillpower(event, target, actor, willpowerDamage, ro
         })}`
       }
     }
-  })
+  }
+
+  messageData = foundry.documents.ChatMessage.implementation.applyRollMode(messageData, rollMode)
+
+  foundry.documents.ChatMessage.implementation.create(messageData)
 }
