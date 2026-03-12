@@ -28,7 +28,7 @@ export const _onPromptInChat = async function (event) {
   // Create the chat message
   foundry.documents.ChatMessage.implementation.create({
     title: `${activeRollObject.name}`,
-    flavor: `<b>Test of:</b> ${activeRollObject.dice.skill} + ${activeRollObject.dice.attribute}${
+    flavor: `<b>${game.i18n.localize('WOD5E.RollList.TestOf')}:</b> ${activeRollObject.dice.skill} + ${activeRollObject.dice.attribute}${
       // Dynamically determine whether to append the 'difficulty' part of the title or not
       activeRollObject.difficulty > 0
         ? ' vs <b>' +

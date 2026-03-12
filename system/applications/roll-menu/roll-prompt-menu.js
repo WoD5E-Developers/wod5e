@@ -17,7 +17,7 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     },
     window: {
       icon: 'fa-solid fa-dice-d10',
-      title: 'Roll Menu',
+      title: 'WOD5E.RollList.RollMenu',
       resizable: true
     },
     classes: ['wod5e', 'dialog-app', 'sheet', 'application', 'roll-menu'],
@@ -129,8 +129,8 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     const explanationElement = document.createElement('div')
     explanationElement.classList.add('roll-menu-hint')
     explanationElement.innerHTML = `
-      <div title="The Roll Menu is an application where you can handle all non-actor rolls or rolls that require greater control over the data than what the actor sheets provide. This includes prompting players for specific rolls, constructing extended rolls, and saving custom rolls used across actors.">
-        <i class="fa-solid fa-circle-info"></i> <i>What is the Roll Menu?</i>
+      <div title="${game.i18n.localize('WOD5E.RollList.WhatIsRollMenuDescription')}">
+        <i class="fa-solid fa-circle-info"></i> <i>${game.i18n.localize('WOD5E.RollList.WhatIsRollMenu')}</i>
       </div>
     `
 

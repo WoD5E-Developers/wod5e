@@ -316,15 +316,22 @@
       "_OpenRollMenu": "",
       "_PromptInChat": "",
       "_RemoveRoll": "",
+      "_RollBuilder": "",
+      "_RollMenu": "",
       "RollMode": "Режим Кидка",
       "RollModifier": "Модифікатор Кидка",
+      "_SavedRolls": "",
       "SelectableModifiers": "Вибіркові Модифікатори",
       "SelectRoll": "Виберіть Кидок",
       "Source": "Джерело",
       "Success": "Успіх",
       "SuccessBy": "Успіх на {string}",
       "Successes": "Успіхи",
-      "Total": "Всього"
+      "_TestOf": "",
+      "Total": "Всього",
+      "_Unnamed": "",
+      "_WhatIsRollMenu": "",
+      "_WhatIsRollMenuDescription": ""
     },
     "Settings": {
       "ActorBackgroundOverride": "Фон Персонажа за Замовчуванням",

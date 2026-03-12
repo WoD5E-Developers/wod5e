@@ -316,15 +316,22 @@
       "_OpenRollMenu": "",
       "_PromptInChat": "",
       "_RemoveRoll": "",
+      "_RollBuilder": "",
+      "_RollMenu": "",
       "_RollMode": "",
       "_RollModifier": "",
+      "_SavedRolls": "",
       "_SelectableModifiers": "",
       "_SelectRoll": "",
       "_Source": "",
       "_Success": "",
       "_SuccessBy": "",
       "_Successes": "",
-      "_Total": ""
+      "_TestOf": "",
+      "_Total": "",
+      "_Unnamed": "",
+      "_WhatIsRollMenu": "",
+      "_WhatIsRollMenuDescription": ""
     },
     "Settings": {
       "_ActorBackgroundOverride": "",

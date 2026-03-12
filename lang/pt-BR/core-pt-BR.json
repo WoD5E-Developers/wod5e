@@ -316,15 +316,22 @@
       "OpenRollMenu": "Abrir Menu de Rolagem",
       "PromptInChat": "Prompt no Chat",
       "RemoveRoll": "Remover Rolagem",
+      "_RollBuilder": "",
+      "_RollMenu": "",
       "RollMode": "Modo de Rolagem",
       "RollModifier": "Modificador de Rolagem",
+      "_SavedRolls": "",
       "SelectableModifiers": "Modificadores Selecionáveis",
       "SelectRoll": "Selecione a Rolagem",
       "Source": "Fonte",
       "Success": "Sucesso",
       "SuccessBy": "Sucesso por",
       "Successes": "Sucessos",
-      "Total": "Total"
+      "_TestOf": "",
+      "Total": "Total",
+      "_Unnamed": "",
+      "_WhatIsRollMenu": "",
+      "_WhatIsRollMenuDescription": ""
     },
     "Settings": {
       "ActorBackgroundOverride": "Plano de Fundo do Ator Padrão",

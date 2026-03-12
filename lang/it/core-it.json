@@ -316,15 +316,22 @@
       "_OpenRollMenu": "",
       "_PromptInChat": "",
       "_RemoveRoll": "",
+      "_RollBuilder": "",
+      "_RollMenu": "",
       "RollMode": "Modalità di tiro",
       "RollModifier": "Modificatore",
+      "_SavedRolls": "",
       "SelectableModifiers": "Modificatori selezionabili",
       "SelectRoll": "Seleziona tiro",
       "Source": "Fonte",
       "Success": "Successo",
       "SuccessBy": "Successo di",
       "Successes": "Successi",
-      "Total": "Totale"
+      "_TestOf": "",
+      "Total": "Totale",
+      "_Unnamed": "",
+      "_WhatIsRollMenu": "",
+      "_WhatIsRollMenuDescription": ""
     },
     "Settings": {
       "ActorBackgroundOverride": "Sfondo di default",

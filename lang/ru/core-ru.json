@@ -316,15 +316,22 @@
       "_OpenRollMenu": "",
       "_PromptInChat": "",
       "_RemoveRoll": "",
+      "_RollBuilder": "",
+      "_RollMenu": "",
       "RollMode": "Режим броска",
       "RollModifier": "Модификатор броска",
+      "_SavedRolls": "",
       "SelectableModifiers": "Выбранные модификаторы",
       "SelectRoll": "Сформируйте проверку",
       "Source": "Источник",
       "Success": "Успех",
       "SuccessBy": "Успешен на {string}",
       "Successes": "Успехов",
-      "Total": "Результат"
+      "_TestOf": "",
+      "Total": "Результат",
+      "_Unnamed": "",
+      "_WhatIsRollMenu": "",
+      "_WhatIsRollMenuDescription": ""
     },
     "Settings": {
       "_ActorBackgroundOverride": "",

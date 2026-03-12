@@ -316,15 +316,22 @@
       "OpenRollMenu": "Open Roll Menu",
       "PromptInChat": "Prompt In Chat",
       "RemoveRoll": "Remove Roll",
+      "RollBuilder": "Roll Builder",
+      "RollMenu": "Roll Menu",
       "RollMode": "Roll Mode",
       "RollModifier": "Roll Modifier",
+      "SavedRolls": "Saved Rolls",
       "SelectableModifiers": "Selectable Modifiers",
       "SelectRoll": "Select Roll",
       "Source": "Source",
       "Success": "Success",
       "SuccessBy": "Success by {string}",
       "Successes": "Successes",
-      "Total": "Total"
+      "TestOf": "Test of",
+      "Total": "Total",
+      "Unnamed": "Unnamed",
+      "WhatIsRollMenu": "What is the Roll Menu?",
+      "WhatIsRollMenuDescription": "The Roll Menu is an application where you can handle all non-actor rolls or rolls that require greater control over the data than what the actor sheets provide. This includes prompting players for specific rolls, constructing extended rolls, and saving custom rolls used across actors."
     },
     "Settings": {
       "ActorBackgroundOverride": "Default Actor Background",

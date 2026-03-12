@@ -316,15 +316,22 @@
       "_OpenRollMenu": "",
       "_PromptInChat": "",
       "_RemoveRoll": "",
+      "_RollBuilder": "",
+      "_RollMenu": "",
       "RollMode": "Type de jet",
       "RollModifier": "Modificateur de jet",
+      "_SavedRolls": "",
       "SelectableModifiers": "Sélection de modificateurs",
       "SelectRoll": "Sélection de jet",
       "Source": "Source",
       "Success": "succès",
       "SuccessBy": "Marge de succès de {string}",
       "Successes": "Succès",
-      "Total": "Total"
+      "_TestOf": "",
+      "Total": "Total",
+      "_Unnamed": "",
+      "_WhatIsRollMenu": "",
+      "_WhatIsRollMenuDescription": ""
     },
     "Settings": {
       "ActorBackgroundOverride": "Arrière plan personnage par défaut",

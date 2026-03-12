@@ -316,15 +316,22 @@
       "_OpenRollMenu": "",
       "_PromptInChat": "",
       "_RemoveRoll": "",
+      "_RollBuilder": "",
+      "_RollMenu": "",
       "RollMode": "Wurf-Modus",
       "RollModifier": "Wurf-Modifikator",
+      "_SavedRolls": "",
       "SelectableModifiers": "Auswählbare Modifikatoren",
       "SelectRoll": "Wurf auswählen",
       "Source": "Quelle",
       "Success": "Erfolg",
       "SuccessBy": "Erfolg mit Differenz {string}",
       "Successes": "Erfolge",
-      "Total": "Gesamt"
+      "_TestOf": "",
+      "Total": "Gesamt",
+      "_Unnamed": "",
+      "_WhatIsRollMenu": "",
+      "_WhatIsRollMenuDescription": ""
     },
     "Settings": {
       "ActorBackgroundOverride": "Standard-Charakterbogenhintergrund",
