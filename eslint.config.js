@@ -47,6 +47,7 @@ export default defineConfig([
         Actor: 'readonly',
         Item: 'readonly',
         FormData: 'readonly',
+        JournalEntryPage: 'readonly',
 
         // System globals
         WOD5E: 'readonly',

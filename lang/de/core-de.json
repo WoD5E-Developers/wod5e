@@ -296,6 +296,7 @@
       "NoActorDefined": "Kein Charakter definiert",
       "NoSufficientPermission": "Keine ausreichenden Berechtigungen, um \"{string}.\" zu editieren.",
       "_NoTokenSelected": "",
+      "_RollIdNotFound": "",
       "StringAlreadyInCurrentGroup": "Charakter \"{string}\" ist bereits in dieser Gruppe vorhanden.",
       "StringAlreadyInOtherGroup": "Charakter \"{string}\" ist bereits in anderer Gruppe eingetragen."
     },

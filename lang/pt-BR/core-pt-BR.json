@@ -296,6 +296,7 @@
       "NoActorDefined": "Nenhum ator definido",
       "NoSufficientPermission": "Permissões insuficientes",
       "NoTokenSelected": "Não é possível processar a rolagem: Nenhum token selecionado.",
+      "_RollIdNotFound": "",
       "StringAlreadyInCurrentGroup": "O ator \"{string}\" já faz parte deste grupo.",
       "StringAlreadyInOtherGroup": "O ator \"{string}\" já está em um grupo existente."
     },

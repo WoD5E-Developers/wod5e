@@ -2,7 +2,7 @@ import { _onAddNewRoll } from './scripts/on-add-new-dice.js'
 import { _onOpenRollBuilder } from './scripts/on-open-roll-builder.js'
 import { _onPromptInChat } from './scripts/on-prompt-in-chat.js'
 import { _onRemoveSavedRoll } from './scripts/on-remove-roll.js'
-import { _onRollFromRollMenu } from './scripts/on-roll-from-roll-menu.js'
+import { _onRollFromMenu } from './scripts/on-roll-from-menu.js'
 import { _onSelectSavedRoll } from './scripts/on-select-saved-roll.js'
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
@@ -28,7 +28,7 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
     actions: {
       selectSavedRoll: _onSelectSavedRoll,
       addNewRoll: _onAddNewRoll,
-      rollFromRollMenu: _onRollFromRollMenu,
+      rollFromRollMenu: _onRollFromMenu,
       promptInChat: _onPromptInChat,
       removeSavedRoll: _onRemoveSavedRoll,
       openRollBuilder: _onOpenRollBuilder

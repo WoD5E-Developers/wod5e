@@ -54,6 +54,7 @@ import { Edges } from './api/def/edges.js'
 import { Renown } from './api/def/renown.js'
 import { WereForms } from './api/def/were-forms.js'
 import { Gifts } from './api/def/gifts.js'
+import { rollPrompt, rollPromptToChat } from './ui/custom-enrichers/roll-prompt-enrichers.js'
 
 // Register the WOD5E global
 window.WOD5E = {
@@ -111,6 +112,8 @@ Hooks.once('init', async function () {
   CONFIG.Dice.terms.s = HunterDesperationDie
   CONFIG.Dice.terms.w = WerewolfDie
   CONFIG.Dice.terms.r = WerewolfRageDie
+  // Custom enrichers
+  CONFIG.TextEditor.enrichers.push(rollPrompt, rollPromptToChat)
 
   // Loop through each entry in the actorTypesList and register their sheet classes
   const actorTypesList = ActorTypes.getList({})

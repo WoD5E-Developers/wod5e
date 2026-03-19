@@ -296,6 +296,7 @@
       "NoActorDefined": "Aucun personnage défini",
       "NoSufficientPermission": "Vous n'avez pas suffisamment de permissions pour modifier ce personnage",
       "_NoTokenSelected": "",
+      "_RollIdNotFound": "",
       "StringAlreadyInCurrentGroup": "{string} appartient déjà au groupe actuel",
       "StringAlreadyInOtherGroup": "{string} appartient déjà à un autre groupe"
     },

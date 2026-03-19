@@ -296,6 +296,7 @@
       "NoActorDefined": "No actor defined",
       "NoSufficientPermission": "You do not have sufficient permissions to modify actor \"{string}.\"",
       "NoTokenSelected": "Unable to process roll: No token selected.",
+      "RollIdNotFound": "Roll ID \"{string}\" not found.",
       "StringAlreadyInCurrentGroup": "Actor \"{string}\" is already part of this group.",
       "StringAlreadyInOtherGroup": "Actor \"{string}\" is already in an existing group."
     },
