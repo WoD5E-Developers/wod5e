@@ -38,7 +38,7 @@ The lead system developer is [Veilza](https://github.com/Veilza), and the origin
 
 There's lots of other people who contribute to the system, too, and you can find the full list of them down [here](https://github.com/WoD5E-Developers/.github/blob/main/contributors.md)!
 
-If you'd like to help contribute too, just open a pull request any time!
+If you'd like to help contribute too, just open a pull request any time! Per Foundry's [AI Content Policy], and the "No AI" label has been applied to the WOD5E package, we do not allow any AI-generated code to be merged into the repository in order to remain compliant. If your merge request is suspected to contain AI-generated code, it will be closed.
 
 If you'd like to help contribute localization updates, you can either open up an issue with the "Localization" issue type, or you can do a pull request with updates as needed.
 
@@ -68,6 +68,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 [Foundry Version Support]: https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dplastic%26url%3Dhttps%3A%2F%2Fgithub.com%2FWoD5E-Developers%2Fwod5e%2Freleases%2Flatest%2Fdownload%2Fsystem.json
 [System URL]: https://foundryvtt.com/packages/wod5e/
+[AI Content Policy]: https://foundryvtt.com/article/ai-policy/
 
 [GNU GPL v3 License]: https://img.shields.io/badge/License-GNU_GPL_v3-green
 [License URL]: ./LICENSE.md
