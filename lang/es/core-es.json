@@ -73,6 +73,7 @@
     "RemoveFromGroup": "Quitar del grupo",
     "Reset": "Restablecer",
     "Save": "Guardar",
+    "_StringCopiedToClipboard": "",
     "Submit": "Enviar",
     "System": "Sistema",
     "Value": "Valor",
@@ -303,6 +304,8 @@
     "RollList": {
       "AddCustomModifier": "Añadir Modificador Personalizado",
       "_AddNewRoll": "",
+      "_CopyRoll": "",
+      "_CopyRollPrompt": "",
       "CriticalSuccess": "Éxito crítico",
       "CustomModifiers": "Modificadores personalizados",
       "Difficulty": "Dificultad",

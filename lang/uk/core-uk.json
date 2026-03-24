@@ -73,6 +73,7 @@
     "RemoveFromGroup": "Видалити з групи",
     "Reset": "Скинути",
     "Save": "Зберегти",
+    "_StringCopiedToClipboard": "",
     "Submit": "Підтвердити",
     "System": "Система",
     "Value": "Значення",
@@ -303,6 +304,8 @@
     "RollList": {
       "AddCustomModifier": "Додати Користувацький Модифікатор",
       "_AddNewRoll": "",
+      "_CopyRoll": "",
+      "_CopyRollPrompt": "",
       "CriticalSuccess": "Критичний Успіх",
       "CustomModifiers": "Користувацькі Модифікатори",
       "Difficulty": "Складність",

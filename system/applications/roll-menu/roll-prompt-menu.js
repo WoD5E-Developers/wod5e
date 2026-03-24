@@ -1,4 +1,6 @@
 import { _onAddNewRoll } from './scripts/on-add-new-dice.js'
+import { _onCopyRollPrompt } from './scripts/on-copy-roll-prompt.js'
+import { _onCopyRoll } from './scripts/on-copy-roll.js'
 import { _onOpenRollBuilder } from './scripts/on-open-roll-builder.js'
 import { _onPromptInChat } from './scripts/on-prompt-in-chat.js'
 import { _onRemoveSavedRoll } from './scripts/on-remove-roll.js'
@@ -31,8 +33,29 @@ export class RollMenuApplication extends HandlebarsApplicationMixin(ApplicationV
       rollFromRollMenu: _onRollFromMenu,
       promptInChat: _onPromptInChat,
       removeSavedRoll: _onRemoveSavedRoll,
-      openRollBuilder: _onOpenRollBuilder
+      openRollBuilder: _onOpenRollBuilder,
+      copyRoll: _onCopyRoll,
+      copyRollPrompt: _onCopyRollPrompt
     }
+  }
+
+  _getHeaderControls() {
+    const controls = super._getHeaderControls()
+
+    controls.push(
+      {
+        icon: 'fa-solid fa-passport',
+        label: 'WOD5E.RollList.CopyRoll',
+        action: 'copyRoll'
+      },
+      {
+        icon: 'fa-solid fa-passport',
+        label: 'WOD5E.RollList.CopyRollPrompt',
+        action: 'copyRollPrompt'
+      }
+    )
+
+    return controls
   }
 
   static PARTS = {

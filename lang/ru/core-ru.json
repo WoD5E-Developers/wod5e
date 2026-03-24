@@ -73,6 +73,7 @@
     "RemoveFromGroup": "Удалить из группы",
     "Reset": "Сброс",
     "Save": "Сохранить",
+    "_StringCopiedToClipboard": "",
     "Submit": "Подтвердить",
     "System": "Бросок",
     "Value": "Значение",
@@ -303,6 +304,8 @@
     "RollList": {
       "AddCustomModifier": "Добавить пользовательский модификатор",
       "_AddNewRoll": "",
+      "_CopyRoll": "",
+      "_CopyRollPrompt": "",
       "CriticalSuccess": "Триумф",
       "CustomModifiers": "Пользовательские модификаторы",
       "Difficulty": "Сложность",

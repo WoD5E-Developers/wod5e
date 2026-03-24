@@ -73,6 +73,7 @@
     "_RemoveFromGroup": "",
     "_Reset": "",
     "_Save": "",
+    "_StringCopiedToClipboard": "",
     "_Submit": "",
     "_System": "",
     "_Value": "",
@@ -303,6 +304,8 @@
     "RollList": {
       "_AddCustomModifier": "",
       "_AddNewRoll": "",
+      "_CopyRoll": "",
+      "_CopyRollPrompt": "",
       "_CriticalSuccess": "",
       "_CustomModifiers": "",
       "_Difficulty": "",

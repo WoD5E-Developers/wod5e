@@ -28,7 +28,7 @@ export class WoDChatMessage extends ChatMessage {
     const speakerActor = this.speakerActor
     const data = this.toObject(false)
     data.content = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-      data?.flags?.wod5e?.description || '',
+      data?.flags?.wod5e?.description || this.content,
       {
         rollData: this.getRollData(),
         secrets: speakerActor?.isOwner ?? game.user.isGM
