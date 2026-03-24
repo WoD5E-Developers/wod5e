@@ -11,10 +11,10 @@ export const _onRollFromMenu = async function (event) {
 
   // Get the saved roll ID from either the ID passed through the dataset, or the currently active roll
   if (dataset?.id) {
-    // Data array format: {User}.{ID}
+    // Data array expected format: {User}.{ID}
     const dataArray = dataset?.id.split('.')
-    const dataUser = dataArray[0]
-    const dataId = dataArray[1]
+    const dataUser = dataArray[0] || ''
+    const dataId = dataArray[1] || ''
 
     // If we have an ID, we use that
     savedRolls = await game.users.get(dataUser).getFlag('wod5e', 'rollMenuSavedRolls')

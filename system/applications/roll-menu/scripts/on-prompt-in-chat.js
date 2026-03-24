@@ -7,8 +7,8 @@ export const _onPromptInChat = async function (event) {
   if (dataset?.id) {
     // Data array format: {User}.{ID}
     const dataArray = dataset?.id.split('.')
-    const dataUser = dataArray[0]
-    const dataId = dataArray[1]
+    const dataUser = dataArray[0] || ''
+    const dataId = dataArray[1] || ''
 
     // If we have an ID, we use that
     savedRolls = await game.users.get(dataUser).getFlag('wod5e', 'rollMenuSavedRolls')
