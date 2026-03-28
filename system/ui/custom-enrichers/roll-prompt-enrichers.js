@@ -41,7 +41,7 @@ async function rollPromptToChatEnricher(match) {
 
   // Visuals
   a.classList.add('content-link')
-  a.innerHTML = `<i class="fa-solid fa-dice-d10" insert></i> ${label}`
+  a.innerHTML = `<i class="fas fa-comment-alt" insert></i> ${label}`
 
   // Data & Functionality
   a.classList.add('content-link')
