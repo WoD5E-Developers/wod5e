@@ -259,6 +259,7 @@
       "SuppressCondition": "Supprimer la condition",
       "SyncFromDataItem": "Synchroniser depuis l'ID de l'objet",
       "SyncToDataItems": "Synchroniser vers l'ID de l'objet",
+      "_ToggleConditionSuppression": "",
       "Type": "Type",
       "Upgrade": "Augmenter",
       "UseSkill": "Utiliser une compétences",

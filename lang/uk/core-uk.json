@@ -259,6 +259,7 @@
       "SuppressCondition": "Придушити Стан",
       "SyncFromDataItem": "Синхронізувати з Даних Предмета",
       "SyncToDataItems": "Синхронізувати до Даних Предметів",
+      "_ToggleConditionSuppression": "",
       "Type": "Тип",
       "Upgrade": "Покращити",
       "UseSkill": "Використовувати Навички",

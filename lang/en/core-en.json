@@ -259,6 +259,7 @@
       "SuppressCondition": "Suppress Condition",
       "SyncFromDataItem": "Sync From Data Item",
       "SyncToDataItems": "Sync To Data Items",
+      "ToggleConditionSuppression": "Toggle Condition Suppression",
       "Type": "Type",
       "Upgrade": "Upgrade",
       "UseSkill": "Use Skills",

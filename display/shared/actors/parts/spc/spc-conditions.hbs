@@ -18,6 +18,8 @@
                         <div class="item-controls">
                             <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{condition._id}}" title="{{localize 'WOD5E.Edit'}}"><i
                                 class="fas fa-edit"></i></a>
+                            <a class="item-control condition-suppression" data-action="toggleConditionSuppression" data-item-id="{{condition._id}}" title="{{localize 'WOD5E.ItemsList.ToggleConditionSuppression'}}"><i
+                                class="fa-solid {{#if condition.system.suppressed}}fa-toggle-off{{else}}fa-toggle-on{{/if}}"></i></a>
                             <a class="item-control item-delete" data-action="itemDelete" data-item-id="{{condition._id}}" title="{{localize 'WOD5E.Delete'}}"><i
                                 class="fas fa-trash"></i></a>
                         </div>

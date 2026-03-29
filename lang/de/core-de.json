@@ -259,6 +259,7 @@
       "SuppressCondition": "Zustand unterdrücken",
       "SyncFromDataItem": "Von Daten-Gegenstand synchronisieren",
       "SyncToDataItems": "Nach Daten-Gegenstand synchronisieren",
+      "_ToggleConditionSuppression": "",
       "Type": "Typ",
       "Upgrade": "Aufwerten",
       "UseSkill": "Fähigkeiten einsetzen",

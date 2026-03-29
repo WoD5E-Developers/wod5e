@@ -259,6 +259,7 @@
       "SuppressCondition": "Annulla condizione",
       "SyncFromDataItem": "Sincronizza dai dati oggetto",
       "SyncToDataItems": "Sicronizza verso i dati oggetto",
+      "_ToggleConditionSuppression": "",
       "Type": "Tipo",
       "Upgrade": "Upgrade",
       "UseSkill": "Usa Abilità",

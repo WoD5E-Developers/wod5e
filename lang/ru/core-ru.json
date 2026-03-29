@@ -259,6 +259,7 @@
       "SuppressCondition": "Подавлять условие",
       "SyncFromDataItem": "Синхронизировать из элемента Данных",
       "SyncToDataItems": "Синхронизировать с Элементами Данных",
+      "_ToggleConditionSuppression": "",
       "Type": "Тип",
       "Upgrade": "Улучшение",
       "UseSkill": "Использовать навыки",

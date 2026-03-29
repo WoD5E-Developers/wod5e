@@ -2,7 +2,6 @@
 .locked .item-edit,
 .locked .item-create,
 .locked .item-delete,
-.locked .item-edit,
 .locked .edit-skill,
 .locked .add-edge,
 .locked .add-edge-pool,
@@ -23,7 +22,10 @@
 .locked .add-data-item,
 .locked .edit-data-item,
 /* Group Sheet */
-.locked .remove-actor {
+.locked .remove-actor,
+/* Slight hack to only show condition suppression
+ button when the sheet is unlocked */
+.actor:not(.locked) .condition-suppression {
   display: none;
 }
 

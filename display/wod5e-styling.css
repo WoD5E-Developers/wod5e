@@ -2026,7 +2026,7 @@ body.uk .actor.sheet {
 }
 .actor.sheet .stats-content .side-panel .item-controls {
   text-align-last: right;
-  max-width: 30px;
+  max-width: 35px;
 }
 .actor.sheet .stats-content .edit-skill {
   margin-left: -15px;
@@ -2327,7 +2327,6 @@ body.uk .actor.sheet {
 .locked .item-edit,
 .locked .item-create,
 .locked .item-delete,
-.locked .item-edit,
 .locked .edit-skill,
 .locked .add-edge,
 .locked .add-edge-pool,
@@ -2345,7 +2344,8 @@ body.uk .actor.sheet {
 .locked .power-delete,
 .locked .add-data-item,
 .locked .edit-data-item,
-.locked .remove-actor {
+.locked .remove-actor,
+.actor:not(.locked) .condition-suppression {
   display: none;
 }
 /* Override for owned group mebers and their resource counters */
