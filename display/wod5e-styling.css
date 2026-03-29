@@ -250,7 +250,7 @@
   font-weight: 300;
   font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v50/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuaabWmT.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v51/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuaabWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
@@ -258,7 +258,7 @@
   font-weight: 400;
   font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v50/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbWmT.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v51/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
@@ -266,7 +266,7 @@
   font-weight: 500;
   font-stretch: normal;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v50/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bWmT.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v51/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bWmT.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Amarante';
@@ -697,34 +697,43 @@ h3.item-name {
 .roll-menu.application .clickable-button:hover {
   font-weight: bold;
 }
-.roll-menu.application .saved-rolls {
+.roll-menu.application .roll-menu-sidebar {
   padding-right: 1rem;
   border-right: 1px solid;
   width: 150px;
   display: flex;
   flex-direction: column;
 }
-.roll-menu.application .saved-rolls .title {
+.roll-menu.application .roll-menu-sidebar .title {
   font-size: 16pt;
   text-align: center;
 }
-.roll-menu.application .saved-rolls .saved-rolls-list {
+.roll-menu.application .roll-menu-sidebar .roll-builder {
+  font-size: 14pt;
+  margin-top: 10px;
+  text-align: center;
+}
+.roll-menu.application .roll-menu-sidebar hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.roll-menu.application .roll-menu-sidebar .active {
+  font-weight: bold;
+}
+.roll-menu.application .roll-menu-sidebar .saved-rolls-list {
   padding: 5px;
   display: flex;
   flex-grow: 1;
   overflow-y: scroll;
 }
-.roll-menu.application .saved-rolls .saved-rolls-list .saved-roll .remove-saved-roll {
+.roll-menu.application .roll-menu-sidebar .saved-rolls-list .saved-roll .remove-saved-roll {
   flex-grow: 0;
   padding: 3px;
 }
-.roll-menu.application .saved-rolls .saved-rolls-list .saved-roll.active {
-  font-weight: bold;
-}
-.roll-menu.application .saved-rolls .saved-rolls-list .saved-roll:not(.active) {
+.roll-menu.application .roll-menu-sidebar .saved-rolls-list .saved-roll:not(.active) {
   cursor: pointer;
 }
-.roll-menu.application .saved-rolls .saved-rolls-footer {
+.roll-menu.application .roll-menu-sidebar .saved-rolls-footer {
   margin-top: auto;
   padding: 0.5rem;
   text-align: center;
@@ -2017,7 +2026,7 @@ body.uk .actor.sheet {
 }
 .actor.sheet .stats-content .side-panel .item-controls {
   text-align-last: right;
-  max-width: 30px;
+  max-width: 35px;
 }
 .actor.sheet .stats-content .edit-skill {
   margin-left: -15px;
@@ -2318,7 +2327,6 @@ body.uk .actor.sheet {
 .locked .item-edit,
 .locked .item-create,
 .locked .item-delete,
-.locked .item-edit,
 .locked .edit-skill,
 .locked .add-edge,
 .locked .add-edge-pool,
@@ -2336,7 +2344,8 @@ body.uk .actor.sheet {
 .locked .power-delete,
 .locked .add-data-item,
 .locked .edit-data-item,
-.locked .remove-actor {
+.locked .remove-actor,
+.actor:not(.locked) .condition-suppression {
   display: none;
 }
 /* Override for owned group mebers and their resource counters */

@@ -1,11 +1,17 @@
-export const _onPromptInChat = async function (event) {
+export const _onRollFromMenu = async function (event) {
   const dataset = event.target.dataset
   let rollId
   let savedRolls = []
 
+  // Ensure we have a valid actor selected
+  const actor = game.actors.get(ChatMessage.getSpeaker().actor)
+  if (!actor) {
+    return ui.notifications.warn(game.i18n.localize('WOD5E.Notifications.NoTokenSelected'))
+  }
+
   // Get the saved roll ID from either the ID passed through the dataset, or the currently active roll
   if (dataset?.id) {
-    // Data array format: {User}.{ID}
+    // Data array expected format: {User}.{ID}
     const dataArray = dataset?.id.split('.')
     const dataUser = dataArray[0] || ''
     const dataId = dataArray[1] || ''
@@ -42,39 +48,13 @@ export const _onPromptInChat = async function (event) {
     valuePathsArray.push(`attributes.${activeRollObject.dice.attribute}.value`)
   }
 
-  // Compile the list of tokens selected and use them as
-  // the basis for default users being prompted for the roll
-  const promptedRolls = {}
-  const tokens = canvas.tokens.controlled
-  const actorsList = tokens.map((i) => i.actor)
-  actorsList.forEach((actor) => {
-    promptedRolls[actor.id] = {
-      actor,
-      rolled: false
-    }
-  })
-
-  // Create the chat message
-  foundry.documents.ChatMessage.implementation.create({
-    title: `${activeRollObject.name}`,
-    flavor: `<b>${game.i18n.localize('WOD5E.RollList.TestOf')}:</b> ${activeRollObject.dice.skill} + ${activeRollObject.dice.attribute}${
-      // Dynamically determine whether to append the 'difficulty' part of the title or not
-      activeRollObject.difficulty > 0
-        ? ' vs <b>' +
-          game.i18n.format('WOD5E.Chat.DifficultyString', {
-            string: activeRollObject.difficulty
-          }) +
-          '</b>'
-        : ''
-    }`,
-    flags: {
-      wod5e: {
-        template: 'systems/wod5e/display/ui/chat/chat-message-roll-prompt.hbs',
-        valuePaths: valuePathsArray.join(' '),
-        isRollPrompt: true,
-        promptedRolls,
-        difficulty: activeRollObject.difficulty
-      }
-    }
+  // Pipe the roll to our RollFromDataset function
+  WOD5E.api.RollFromDataset({
+    dataset: {
+      label: activeRollObject.name,
+      valuePaths: valuePathsArray.join(' '),
+      difficulty: activeRollObject.difficulty
+    },
+    actor
   })
 }

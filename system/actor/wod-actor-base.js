@@ -38,6 +38,7 @@ import {
   prepareSpcStatsContext,
   prepareStatsContext
 } from './scripts/prepare-partials.js'
+import { _onToggleConditionSuppression } from './scripts/toggle-condition-suppression.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
@@ -97,7 +98,8 @@ export class WoDActorBase extends HandlebarsApplicationMixin(
       toggleCollapse: _onToggleCollapse,
       addExperience: _onAddExperience,
       removeExperience: _onRemoveExperience,
-      editExperience: _onEditExperience
+      editExperience: _onEditExperience,
+      toggleConditionSuppression: _onToggleConditionSuppression
     },
     dragDrop: [
       {

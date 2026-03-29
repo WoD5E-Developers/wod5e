@@ -40,7 +40,18 @@ export async function generateRollMessageData({
     advancedDice = await generateAdvancedDiceDisplay(advancedDice)
   }
 
-  const { totalResult, resultLabel, resultText } = await generateResult(basicDice, advancedDice)
+  const { totalResult, totalAndDifficulty, labelData, resultText } = await generateResult(
+    basicDice,
+    advancedDice
+  )
+
+  // Construct the resultLabel from labelClass and labelText
+  let resultLabel = `<div class="roll-result-label ${labelData.labelClass}">${labelData.labelText}</div>`
+
+  // Combine the totalAndDifficulty element with the resultLabel element
+  if (labelData.showTotalAndDifficulty) {
+    resultLabel = totalAndDifficulty + resultLabel
+  }
 
   const rollMessageData = {
     fullFormula: roll._formula,
@@ -54,6 +65,7 @@ export async function generateRollMessageData({
     margin: totalResult > difficulty ? totalResult - difficulty : 0,
     enrichedResultLabel:
       await foundry.applications.ux.TextEditor.implementation.enrichHTML(resultLabel),
+    labelData,
     activeModifiers,
     isContentVisible,
     resultText
@@ -210,14 +222,13 @@ export async function generateRollMessageData({
     totalAndDifficulty += '</div>'
 
     // Generate the result label depending on the splat and difficulty
-    const { resultLabel, resultText } = await getRollFooter(system, {
+    const { labelData, resultText } = await getRollFooter(system, {
       totalResult,
       difficulty,
       basicDice,
-      advancedDice,
-      totalAndDifficulty
+      advancedDice
     })
 
-    return { totalResult, resultLabel, resultText }
+    return { totalResult, totalAndDifficulty, labelData, resultText }
   }
 }

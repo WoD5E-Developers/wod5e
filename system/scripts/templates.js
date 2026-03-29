@@ -109,8 +109,8 @@ export const preloadHandlebarsTemplates = async function () {
     // Menu Partials
     'systems/wod5e/display/ui/automation-menu.hbs',
     'systems/wod5e/display/ui/storyteller-menu.hbs',
-    'systems/wod5e/display/ui/parts/storyteller-menu/modification-menu.hbs',
-    'systems/wod5e/display/ui/parts/storyteller-menu/custom-menu.hbs',
+    'systems/wod5e/display/ui/storyteller-menu/modification-menu.hbs',
+    'systems/wod5e/display/ui/storyteller-menu/custom-menu.hbs',
     'systems/wod5e/display/ui/select-dialog.hbs'
   ]
 
