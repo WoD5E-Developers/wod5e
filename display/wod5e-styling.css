@@ -1481,6 +1481,7 @@ body.uk .actor.sheet {
   /* Sheet tabs */
   /* Basic Item List Layout */
   /* Apply these to all "items," even ones not in "item-list"s */
+  /* For things like conditions which don't fall under an item-header */
   /* General Resources */
   /* Statistics Page */
 }
@@ -1946,6 +1947,10 @@ body.uk .actor.sheet {
 }
 .actor.sheet .item-header .item-controls {
   text-align-last: right;
+}
+.actor.sheet .item .item-controls {
+  flex-flow: row;
+  display: flex;
 }
 .actor.sheet .item-name {
   text-wrap: nowrap;
