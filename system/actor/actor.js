@@ -298,9 +298,9 @@ export class WoDActor extends Actor {
 async function updateActorProperty(actor, key, mode, value) {
   const current = foundry.utils.getProperty(actor, key)
   let updatedData
-  if (Number(mode) === CONST.ACTIVE_EFFECT_MODES.ADD) {
+  if (Number(mode) === CONST.ACTIVE_EFFECT_CHANGE_TYPES.add) {
     updatedData = Number(current) + Number(value)
-  } else if (Number(mode) === CONST.ACTIVE_EFFECT_MODES.OVERRIDE) {
+  } else if (Number(mode) === CONST.ACTIVE_EFFECT_CHANGE_TYPES.override) {
     updatedData = Number(value)
   }
 
