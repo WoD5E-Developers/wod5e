@@ -2576,6 +2576,7 @@ body.uk .actor.sheet {
 }
 .spc.sheet .list-resource .item-controls {
   text-align: right;
+  flex-grow: 0;
 }
 .locked .exceptional-pools-list {
   place-content: center;
