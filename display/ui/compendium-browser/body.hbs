@@ -1,0 +1,31 @@
+<div class="compendium-browser-body flexcol">
+  <div class="results-list flexcol">
+    {{#ifgr itemsInList.length 0}}
+      {{#each itemsInList as |item|}}
+        <div class="result-item flexrow clickable" data-id="{{item.id}}" data-action="openItem">
+          <img class="result-image" src="{{item.img}}" alt="{{item.name}}"/>
+
+          <div class="result-details flexcol">
+            <div class="result-name">
+              {{item.name}}
+            </div>
+
+            <div class="result-type">
+              {{item.type}}
+            </div>
+
+            {{#if item.description}}
+              <div class="result-description">
+                {{item.description}}
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      {{/each}}
+    {{else}}
+      <div class="no-results">
+        No results found.
+      </div>
+    {{/ifgr}}
+  </div>
+</div>
