@@ -1,4 +1,5 @@
 // Preparation functions
+import { _onRemoveItem } from '../scripts/on-remove-item.js'
 import {
   prepareDescriptionContext,
   prepareModifiersContext,
@@ -16,7 +17,24 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
 export class AuspiceItemSheet extends HandlebarsApplicationMixin(WoDItemBase) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
-    actions: {}
+    actions: {
+      removeAuspice: _onRemoveItem
+    }
+  }
+
+  _getHeaderControls() {
+    const controls = super._getHeaderControls()
+    const item = this.item
+
+    if (item?.isOwned) {
+      controls.push({
+        icon: 'fas fa-trash',
+        label: 'WOD5E.WTA.RemoveAuspice',
+        action: 'removeAuspice'
+      })
+    }
+
+    return controls
   }
 
   static PARTS = {

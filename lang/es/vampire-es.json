@@ -88,6 +88,7 @@
       "Remorse": "Remordimiento",
       "RemorseFailed": "Remordimiento fallado",
       "RemorseFailedDescription": "{actor} ha fallado el control de Remordimiento. Sus máculas se han eliminado y su humanidad se ha reducido en 1.",
+      "_RemoveClan": "",
       "ResistFrenzy": "Resistir Frenesí",
       "ResistingFrenzy": "Resistiendo el Frenesí",
       "ResistingFrenzyFailed": "Frenesí no resistido",

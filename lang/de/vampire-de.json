@@ -88,6 +88,7 @@
       "Remorse": "Reue",
       "RemorseFailed": "Keine Reue",
       "RemorseFailedDescription": "{actor} hat den Reue-Check nicht bestanden. Makel wurden entfernt und Menschlichkeit um 1 reduziert.",
+      "_RemoveClan": "",
       "ResistFrenzy": "Rasereiwurf",
       "ResistingFrenzy": "Raserei widerstehen",
       "ResistingFrenzyFailed": "Raserei verfallen",

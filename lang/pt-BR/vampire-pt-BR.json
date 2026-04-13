@@ -88,6 +88,7 @@
       "Remorse": "Remorso",
       "RemorseFailed": "Falha na rolagem de Remorso",
       "RemorseFailedDescription": "{actor} falhou na rolagem de Remorso. Suas manchas foram limpas e sua humanidade foi reduzida em 1.",
+      "_RemoveClan": "",
       "ResistFrenzy": "Resistir ao Frenesi",
       "ResistingFrenzy": "Resistindo ao Frenesi",
       "ResistingFrenzyFailed": "Falha ao resistir ao Frenesi",
