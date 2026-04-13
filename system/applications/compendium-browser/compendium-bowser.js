@@ -17,7 +17,7 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
     },
     classes: ['wod5e', 'dialog-app', 'sheet', 'application', 'compendium-browser'],
     position: {
-      width: 600,
+      width: 900,
       height: 500
     },
     actions: {}

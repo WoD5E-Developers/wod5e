@@ -618,6 +618,17 @@ h3.item-name {
   margin-right: 3px;
 }
 
+.compendium-browser .window-content {
+  display: flex;
+  flex-direction: row;
+}
+.compendium-browser .results-list {
+  margin: 0 20px 0 20px;
+}
+.compendium-browser .results-list .result-item .result-image {
+  max-width: 50px;
+}
+
 /* Foundry Controls UI */
 #players,
 .bar-controls {
