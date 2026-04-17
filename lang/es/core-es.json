@@ -44,6 +44,7 @@
     "ConfirmDelete": "Confirmar borrado",
     "ConfirmDeleteDescription": "¿Seguro que quieres borrar <b>{string}</b>?",
     "Controls": "Controles",
+    "_Core": "",
     "Delete": "Borrar",
     "_Dismiss": "",
     "Edit": "Editar",
@@ -139,6 +140,10 @@
       "WillpowerFull": "La fuerza de voluntad está totalmente dañada, ya no puede dañarla.",
       "WillpowerFullTitle": "Registro de fuerza de voluntad lleno",
       "WillpowerReroll": "Repetición"
+    },
+    "CompendiumBrowser": {
+      "_ControlHint": "",
+      "_Label": ""
     },
     "Compendiums": {
       "Macros": {

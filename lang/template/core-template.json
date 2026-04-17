@@ -44,6 +44,7 @@
     "_ConfirmDelete": "",
     "_ConfirmDeleteDescription": "",
     "_Controls": "",
+    "_Core": "",
     "_Delete": "",
     "_Dismiss": "",
     "_Edit": "",
@@ -139,6 +140,10 @@
       "_WillpowerFull": "",
       "_WillpowerFullTitle": "",
       "_WillpowerReroll": ""
+    },
+    "CompendiumBrowser": {
+      "_ControlHint": "",
+      "_Label": ""
     },
     "Compendiums": {
       "Macros": {

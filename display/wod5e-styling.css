@@ -622,11 +622,44 @@ h3.item-name {
   display: flex;
   flex-direction: row;
 }
-.compendium-browser .results-list {
+.compendium-browser .compendium-browser-body {
+  display: flex;
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+.compendium-browser .compendium-browser-body .results-list {
   margin: 0 20px 0 20px;
 }
-.compendium-browser .results-list .result-item .result-image {
-  max-width: 50px;
+.compendium-browser .compendium-browser-body .results-list .result-item .result-image {
+  flex: 0 0 50px;
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  object-position: 50% 0;
+}
+.filters-section {
+  margin-top: 10px;
+}
+.multi-select {
+  position: relative;
+}
+.multi-select .multi-select-dropdown {
+  left: 0;
+  border: 1px solid;
+  padding: 5px;
+  z-index: 10;
+  min-width: 150px;
+}
+.multi-select .multi-select-dropdown input {
+  max-width: fit-content;
+  line-height: 0;
+}
+.multi-select .multi-select-dropdown.hidden {
+  display: none;
+}
+.multi-select .multi-select-option {
+  gap: 5px;
+  padding: 2px 0;
 }
 
 /* Foundry Controls UI */

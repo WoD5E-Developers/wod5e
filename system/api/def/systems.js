@@ -27,8 +27,8 @@ export class Systems extends BaseDefinitionClass {
     Systems.initializeLabels()
   }
 
-  static mortal = {
-    label: 'WOD5E.Mortal',
+  static core = {
+    label: 'WOD5E.Core',
     usesResourceOnAdvancedDice: false
   }
 

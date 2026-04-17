@@ -44,6 +44,7 @@
     "_ConfirmDelete": "",
     "_ConfirmDeleteDescription": "",
     "_Controls": "",
+    "_Core": "",
     "Delete": "Usuń",
     "_Dismiss": "",
     "Edit": "Edytuj",
@@ -139,6 +140,10 @@
       "WillpowerFull": "Nie można użyć Siły Woli, cała została wydana",
       "WillpowerFullTitle": "Willpower Tracker Full",
       "WillpowerReroll": "Przerzut Siły Woli"
+    },
+    "CompendiumBrowser": {
+      "_ControlHint": "",
+      "_Label": ""
     },
     "Compendiums": {
       "Macros": {

@@ -1,4 +1,4 @@
-export const getItems = async function ({ type = '' }) {
+export const getItems = async function ({ types = [] }) {
   let allReturnedItems = []
 
   /**
@@ -11,7 +11,7 @@ export const getItems = async function ({ type = '' }) {
   for (const compendium of compendiumsItemsList) {
     const docs = await compendium.getDocuments()
 
-    const compendiumItems = docs.filter((item) => item.type === type)
+    const compendiumItems = docs.filter((item) => types.length === 0 || types.includes(item.type))
 
     // If there's any items we need from here, push them to our 'all returned items' list
     if (compendiumItems.length > 0) {
@@ -23,7 +23,9 @@ export const getItems = async function ({ type = '' }) {
    * Handle getting items from the world itself (not in any compendiums)
    * We don't need to be as verbose as we were with the ones inside compendiums
    */
-  const worldItemsList = game.items.filter((item) => item.type === type)
+  const worldItemsList = game.items.filter(
+    (item) => types.length === 0 || types.includes(item.type)
+  )
   allReturnedItems.push(...worldItemsList)
 
   return allReturnedItems

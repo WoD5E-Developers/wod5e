@@ -111,7 +111,11 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/wod5e/display/ui/storyteller-menu.hbs',
     'systems/wod5e/display/ui/storyteller-menu/modification-menu.hbs',
     'systems/wod5e/display/ui/storyteller-menu/custom-menu.hbs',
-    'systems/wod5e/display/ui/select-dialog.hbs'
+    'systems/wod5e/display/ui/select-dialog.hbs',
+
+    // Compendium partials
+    'systems/wod5e/display/ui/compendium-browser/parts/filter-splats.hbs',
+    'systems/wod5e/display/ui/compendium-browser/parts/filter-types.hbs'
   ]
 
   /* Load the template parts

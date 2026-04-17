@@ -2,19 +2,8 @@
   <div class="search-section">
     <input type="text" name="search" class="search-input" placeholder="Search..." data-action="search"/>
   </div>
-  <hr>
-  <div class="filters-section flexcol">
-    <div class="filter-group">
-      <label>Type</label>
-      <select name="type" data-action="filter">
-        <option value="">All</option>
-        <option value="core">Core</option>
-        <option value="vampire">VTM</option>
-        <option value="werewolf">WTA</option>
-        <option value="hunter">HTR</option>
-      </select>
-    </div>
-  </div>
+  {{> "systems/wod5e/display/ui/compendium-browser/parts/filter-splats.hbs"}}
+  {{> "systems/wod5e/display/ui/compendium-browser/parts/filter-types.hbs"}}
   <hr>
   <div class="results-count">
     {{itemsInList.length}} Results

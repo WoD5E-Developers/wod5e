@@ -1,3 +1,4 @@
+import { _onToggleDropdown, _onUpdateFilter } from './scripts/dropdown-actions.js'
 import { getItems } from './scripts/get-items.js'
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
@@ -20,21 +21,37 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
       width: 900,
       height: 500
     },
-    actions: {}
+    actions: {
+      toggleDropdown: _onToggleDropdown,
+      updateFilter: _onUpdateFilter
+    }
   }
 
   constructor(application, options) {
     super(application, options)
+
+    this.filters = {
+      splats: Object.entries(WOD5E.Systems.getList({})).map(([id, system]) => {
+        return {
+          id,
+          label: system.label,
+          enabled: true
+        }
+      }),
+      types: Object.entries(WOD5E.ItemTypes.getList({})).map(([id, item]) => {
+        return {
+          id,
+          label: item.label,
+          system: item.system,
+          enabled: true
+        }
+      }),
+      sources: []
+    }
   }
 
   _getHeaderControls() {
     const controls = super._getHeaderControls()
-
-    controls.push({
-      icon: 'fa-solid fa-passport',
-      label: 'WOD5E.CompendiumBrowser.ConfigureSources',
-      action: 'configureSources'
-    })
 
     return controls
   }
@@ -51,16 +68,16 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
   async _prepareContext() {
     const data = await super._prepareContext()
 
-    // Splat definitions
-    data.splatOptions = WOD5E.Systems.getList({})
+    // Filter down to which ones are enabled and map to an array of strings
+    data.enabledSplats = this.filters.types
+      .filter((splat) => splat.enabled)
+      .map((splat) => splat.id)
+    data.enabledItems = this.filters.types.filter((type) => type.enabled).map((type) => type.id)
 
-    data.filters = {}
-
+    // Grab which items should be listed
     data.itemsInList = await getItems({
-      type: 'clan'
+      types: data.enabledItems
     })
-
-    console.log(data)
 
     return data
   }
@@ -71,7 +88,8 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
     switch (partId) {
       case 'sidebar':
         // Part-specific data
-        //console.log('Test1')
+        context.splatFilterOptions = this.filters.splats
+        context.typeFilterOptions = this.filters.types
 
         break
       case 'body':

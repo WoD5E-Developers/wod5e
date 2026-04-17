@@ -4,13 +4,53 @@
     flex-direction: row;
   }
 
-  .results-list {
-    margin: 0 20px 0 20px;
+  .compendium-browser-body {
+    display: flex;
+    flex-grow: 1;
+    overflow-y: scroll;
 
-    .result-item {
-      .result-image {
-        max-width: 50px;
+    .results-list {
+      margin: 0 20px 0 20px;
+
+      .result-item {
+        .result-image {
+          flex: 0 0 50px;
+          height: 50px;
+          width: 50px;
+          object-fit: cover;
+          object-position: 50% 0;
+        }
       }
     }
+  }
+}
+
+.filters-section {
+  margin-top: 10px;
+}
+
+.multi-select {
+  position: relative;
+
+  .multi-select-dropdown {
+    left: 0;
+    border: 1px solid;
+    padding: 5px;
+    z-index: 10;
+    min-width: 150px;
+
+    input {
+      max-width: fit-content;
+      line-height: 0;
+    }
+  }
+
+  .multi-select-dropdown.hidden {
+    display: none;
+  }
+
+  .multi-select-option {
+    gap: 5px;
+    padding: 2px 0;
   }
 }
