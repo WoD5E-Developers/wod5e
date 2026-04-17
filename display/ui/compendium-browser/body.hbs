@@ -2,7 +2,7 @@
   <div class="results-list flexcol">
     {{#ifgr itemsInList.length 0}}
       {{#each itemsInList as |item|}}
-        <div class="result-item flexrow clickable" data-id="{{item.id}}" data-action="openItem">
+        <div class="result-item flexrow clickable" data-uuid="{{item.uuid}}" data-action="openItem">
           <img class="result-image" src="{{item.img}}" alt="{{item.name}}"/>
 
           <div class="result-details flexcol">
@@ -11,7 +11,9 @@
             </div>
 
             <div class="result-type">
-              {{item.type}}
+              <i>
+                {{localize (concat "TYPES.Item." item.type )}}
+              </i>
             </div>
 
             {{#if item.description}}

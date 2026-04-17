@@ -630,6 +630,9 @@ h3.item-name {
 .compendium-browser .compendium-browser-body .results-list {
   margin: 0 20px 0 20px;
 }
+.compendium-browser .compendium-browser-body .results-list .result-item {
+  padding: 3px;
+}
 .compendium-browser .compendium-browser-body .results-list .result-item .result-image {
   flex: 0 0 50px;
   height: 50px;
@@ -637,8 +640,33 @@ h3.item-name {
   object-fit: cover;
   object-position: 50% 0;
 }
-.filters-section {
+.compendium-browser .compendium-browser-body .results-list .result-item .result-details {
+  margin-left: 10px;
+}
+.compendium-browser .compendium-browser-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-right: 6px;
+  border-right: 1px solid;
+}
+.compendium-browser .compendium-browser-sidebar .search-section {
+  flex: 0 0 auto;
+}
+.compendium-browser .compendium-browser-sidebar .search-filters {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+.compendium-browser .compendium-browser-sidebar .search-filters .filters-section {
   margin-top: 10px;
+}
+.compendium-browser .compendium-browser-sidebar .results-count {
+  flex: 0 0 auto;
+  text-align: center;
 }
 .multi-select {
   position: relative;

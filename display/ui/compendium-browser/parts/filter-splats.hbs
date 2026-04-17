@@ -2,7 +2,11 @@
   <div class="filter-group">
     <div class="multi-select-toggle clickable-button" data-action="toggleDropdown">
       Splats
-      <i class="fa-solid fa-chevron-down"></i>
+      {{#if splatFilterStatus}}
+        <i class="fa-solid fa-chevron-down"></i>
+      {{else}}
+        <i class="fa-solid fa-chevron-up"></i>
+      {{/if}}
     </div>
 
     <div class="multi-select-dropdown">

@@ -2,9 +2,10 @@
   <div class="search-section">
     <input type="text" name="search" class="search-input" placeholder="Search..." data-action="search"/>
   </div>
-  {{> "systems/wod5e/display/ui/compendium-browser/parts/filter-splats.hbs"}}
-  {{> "systems/wod5e/display/ui/compendium-browser/parts/filter-types.hbs"}}
-  <hr>
+  <div class="search-filters">
+    {{> "systems/wod5e/display/ui/compendium-browser/parts/filter-splats.hbs"}}
+    {{> "systems/wod5e/display/ui/compendium-browser/parts/filter-types.hbs"}}
+  </div>
   <div class="results-count">
     {{itemsInList.length}} Results
   </div>

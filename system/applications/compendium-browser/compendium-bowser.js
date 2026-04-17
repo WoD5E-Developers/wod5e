@@ -1,5 +1,6 @@
 import { _onToggleDropdown, _onUpdateFilter } from './scripts/dropdown-actions.js'
 import { getItems } from './scripts/get-items.js'
+import { _onOpenItem } from './scripts/on-open-item.js'
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 
@@ -23,7 +24,8 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
     },
     actions: {
       toggleDropdown: _onToggleDropdown,
-      updateFilter: _onUpdateFilter
+      updateFilter: _onUpdateFilter,
+      openItem: _onOpenItem
     }
   }
 
@@ -31,21 +33,27 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
     super(application, options)
 
     this.filters = {
-      splats: Object.entries(WOD5E.Systems.getList({})).map(([id, system]) => {
-        return {
-          id,
-          label: system.label,
-          enabled: true
-        }
-      }),
-      types: Object.entries(WOD5E.ItemTypes.getList({})).map(([id, item]) => {
-        return {
-          id,
-          label: item.label,
-          system: item.system,
-          enabled: true
-        }
-      }),
+      splats: {
+        open: true,
+        options: Object.entries(WOD5E.Systems.getList({})).map(([id, system]) => {
+          return {
+            id,
+            label: system.label,
+            enabled: true
+          }
+        })
+      },
+      types: {
+        open: false,
+        options: Object.entries(WOD5E.ItemTypes.getList({})).map(([id, item]) => {
+          return {
+            id,
+            label: item.label,
+            system: item.system,
+            enabled: true
+          }
+        })
+      },
       sources: []
     }
   }
@@ -69,10 +77,14 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
     const data = await super._prepareContext()
 
     // Filter down to which ones are enabled and map to an array of strings
-    data.enabledSplats = this.filters.types
+    data.splatFilterStatus = this.filters.splats.open
+    data.enabledSplats = this.filters.splats.options
       .filter((splat) => splat.enabled)
       .map((splat) => splat.id)
-    data.enabledItems = this.filters.types.filter((type) => type.enabled).map((type) => type.id)
+    data.itemFilterStatus = this.filters.types.open
+    data.enabledItems = this.filters.types.options
+      .filter((type) => type.enabled)
+      .map((type) => type.id)
 
     // Grab which items should be listed
     data.itemsInList = await getItems({
@@ -88,8 +100,8 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
     switch (partId) {
       case 'sidebar':
         // Part-specific data
-        context.splatFilterOptions = this.filters.splats
-        context.typeFilterOptions = this.filters.types
+        context.splatFilterOptions = this.filters.splats.options
+        context.typeFilterOptions = this.filters.types.options
 
         break
       case 'body':

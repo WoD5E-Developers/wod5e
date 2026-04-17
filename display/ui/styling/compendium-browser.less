@@ -13,6 +13,8 @@
       margin: 0 20px 0 20px;
 
       .result-item {
+        padding: 3px;
+
         .result-image {
           flex: 0 0 50px;
           height: 50px;
@@ -20,13 +22,43 @@
           object-fit: cover;
           object-position: 50% 0;
         }
+
+        .result-details {
+          margin-left: 10px;
+        }
       }
     }
   }
-}
 
-.filters-section {
-  margin-top: 10px;
+  .compendium-browser-sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-right: 6px;
+    border-right: 1px solid;
+
+    .search-section {
+      flex: 0 0 auto;
+    }
+
+    .search-filters {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 20px;
+
+      .filters-section {
+        margin-top: 10px;
+      }
+    }
+
+    .results-count {
+      flex: 0 0 auto;
+      text-align: center;
+    }
+  }
 }
 
 .multi-select {
