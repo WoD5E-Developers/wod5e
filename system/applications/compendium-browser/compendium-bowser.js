@@ -49,8 +49,9 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
           return {
             id,
             label: item.label,
-            system: item.system,
-            enabled: true
+            splat: item.splat,
+            enabled: true,
+            hidden: false
           }
         })
       },
@@ -83,7 +84,7 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
       .map((splat) => splat.id)
     data.itemFilterStatus = this.filters.types.open
     data.enabledItems = this.filters.types.options
-      .filter((type) => type.enabled)
+      .filter((type) => type.enabled && !type.hidden)
       .map((type) => type.id)
 
     // Grab which items should be listed
@@ -101,7 +102,7 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
       case 'sidebar':
         // Part-specific data
         context.splatFilterOptions = this.filters.splats.options
-        context.typeFilterOptions = this.filters.types.options
+        context.typeFilterOptions = this.filters.types.options.filter((option) => !option.hidden)
 
         break
       case 'body':
