@@ -297,9 +297,24 @@
       "path": "lang/uk/werewolf-uk.json"
     },
     {
-      "lang": "uk",
-      "name": "Hunter (Ukrainian)",
-      "path": "lang/uk/hunter-uk.json"
+      "lang": "ja",
+      "name": "Core (Japanese)",
+      "path": "lang/ja/core-ja.json"
+    },
+    {
+      "lang": "ja",
+      "name": "Vampire (Japanese)",
+      "path": "lang/ja/vampire-ja.json"
+    },
+    {
+      "lang": "ja",
+      "name": "Werewolf (Japanese)",
+      "path": "lang/ja/werewolf-ja.json"
+    },
+    {
+      "lang": "ja",
+      "name": "Hunter (Japanese)",
+      "path": "lang/ja/hunter-ja.json"
     }
   ]
 }
