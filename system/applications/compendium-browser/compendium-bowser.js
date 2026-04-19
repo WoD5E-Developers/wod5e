@@ -33,6 +33,9 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
     super(application, options)
 
     this.filters = {
+      text: {
+        string: ''
+      },
       splats: {
         open: true,
         options: Object.entries(WOD5E.Systems.getList({})).map(([id, system]) => {
@@ -86,11 +89,7 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
     data.enabledItems = this.filters.types.options
       .filter((type) => type.enabled && !type.hidden)
       .map((type) => type.id)
-
-    // Grab which items should be listed
-    data.itemsInList = await getItems({
-      types: data.enabledItems
-    })
+    data.textFilter = this.filters.text?.string || ''
 
     return data
   }
@@ -107,7 +106,11 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
         break
       case 'body':
         // Part-specific data
-        //console.log('Test2')
+        // Grab which items should be listed
+        context.itemsInList = await getItems({
+          types: context.enabledItems,
+          text: context.textFilter
+        })
 
         break
     }
@@ -118,9 +121,12 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
   static async applicationHandler(event, form, formData) {
     const data = formData.object
 
-    console.log(data)
+    // Grab what string we're using for the search and set it in our filters
+    this.filters.text.string = data?.search || ''
 
-    // Re-render the application
-    this.render()
+    // Re-render the body, since it's the only part we're modifying
+    this.render(false, {
+      parts: ['body']
+    })
   }
 }
