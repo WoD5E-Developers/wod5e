@@ -621,14 +621,16 @@ h3.item-name {
 .compendium-browser .window-content {
   display: flex;
   flex-direction: row;
+  padding: 0;
 }
 .compendium-browser .compendium-browser-body {
-  display: flex;
   flex-grow: 1;
-  overflow-y: scroll;
+  height: 100%;
 }
 .compendium-browser .compendium-browser-body .results-list {
-  margin: 0 20px 0 20px;
+  flex: 1 1 auto;
+  margin: 0 0 0 20px;
+  overflow-y: scroll;
 }
 .compendium-browser .compendium-browser-body .results-list .result-item {
   padding: 3px;
@@ -643,12 +645,19 @@ h3.item-name {
 .compendium-browser .compendium-browser-body .results-list .result-item .result-details {
   margin-left: 10px;
 }
+.compendium-browser .compendium-browser-body .results-count {
+  border-top: 1px solid;
+  background-color: #313131;
+  flex: 0 0 auto;
+  text-align: center;
+}
 .compendium-browser .compendium-browser-sidebar {
   display: flex;
   flex-direction: column;
   height: 100%;
   padding-right: 6px;
   border-right: 1px solid;
+  padding: 10px;
 }
 .compendium-browser .compendium-browser-sidebar .search-section {
   flex: 0 0 auto;
@@ -663,10 +672,6 @@ h3.item-name {
 }
 .compendium-browser .compendium-browser-sidebar .search-filters .filters-section {
   margin-top: 10px;
-}
-.compendium-browser .compendium-browser-sidebar .results-count {
-  flex: 0 0 auto;
-  text-align: center;
 }
 .multi-select {
   position: relative;

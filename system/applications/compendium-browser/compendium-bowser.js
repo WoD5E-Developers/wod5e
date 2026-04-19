@@ -26,11 +26,19 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
       toggleDropdown: _onToggleDropdown,
       updateFilter: _onUpdateFilter,
       openItem: _onOpenItem
-    }
+    },
+    dragDrop: [
+      {
+        dragSelector: '[data-drag]',
+        dropSelector: null
+      }
+    ]
   }
 
   constructor(application, options) {
     super(application, options)
+
+    this.#dragDrop = this.#createDragDropHandlers()
 
     this.filters = {
       text: {
@@ -129,4 +137,44 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
       parts: ['body']
     })
   }
+
+  async _onRender() {
+    // Drag and drop functionality
+    this.#dragDrop.forEach((d) => d.bind(this.element))
+  }
+
+  #createDragDropHandlers() {
+    return this.options.dragDrop.map((d) => {
+      d.permissions = {
+        dragstart: true,
+        drop: false
+      }
+
+      d.callbacks = {
+        dragstart: this._onDragStart.bind(this),
+        dragover: this._onDragOver.bind(this)
+      }
+      return new foundry.applications.ux.DragDrop(d)
+    })
+  }
+
+  #dragDrop
+
+  _onDragStart(event) {
+    const dataset = event.target.dataset
+    if ('link' in dataset) return
+
+    // Extract the data you need
+    const dragData = {
+      type: dataset.type,
+      uuid: dataset.documentUuid
+    }
+
+    if (!dragData) return
+
+    // Set data transfer
+    event.dataTransfer.setData('text/plain', JSON.stringify(dragData))
+  }
+
+  _onDragOver() {}
 }

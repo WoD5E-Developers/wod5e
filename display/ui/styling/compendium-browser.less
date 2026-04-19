@@ -2,15 +2,17 @@
   .window-content {
     display: flex;
     flex-direction: row;
+    padding: 0;
   }
 
   .compendium-browser-body {
-    display: flex;
     flex-grow: 1;
-    overflow-y: scroll;
+    height: 100%;
 
     .results-list {
-      margin: 0 20px 0 20px;
+      flex: 1 1 auto;
+      margin: 0 0 0 20px;
+      overflow-y: scroll;
 
       .result-item {
         padding: 3px;
@@ -28,6 +30,13 @@
         }
       }
     }
+
+    .results-count {
+      border-top: 1px solid;
+      background-color: rgb(49, 49, 49);
+      flex: 0 0 auto;
+      text-align: center;
+    }
   }
 
   .compendium-browser-sidebar {
@@ -36,6 +45,7 @@
     height: 100%;
     padding-right: 6px;
     border-right: 1px solid;
+    padding: 10px;
 
     .search-section {
       flex: 0 0 auto;
@@ -52,11 +62,6 @@
       .filters-section {
         margin-top: 10px;
       }
-    }
-
-    .results-count {
-      flex: 0 0 auto;
-      text-align: center;
     }
   }
 }
