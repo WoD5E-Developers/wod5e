@@ -44,6 +44,7 @@
     "ConfirmDelete": "Confirmer la suppresion",
     "ConfirmDeleteDescription": "Êtes vous sur de vouloir supprimer <b>{string}</b>? Vous ne pourrez pas revenir en arrière.",
     "Controls": "Options",
+    "_Core": "",
     "Delete": "Supprimer",
     "_Dismiss": "",
     "Edit": "Éditer",
@@ -139,6 +140,10 @@
       "WillpowerFull": "La volonté est entièrement endommagée, impossible de l'endommager davantage.",
       "WillpowerFullTitle": "Compteur de volonté au max",
       "WillpowerReroll": "Relance de la Volonté"
+    },
+    "CompendiumBrowser": {
+      "_ControlHint": "",
+      "_Label": ""
     },
     "Compendiums": {
       "Macros": {

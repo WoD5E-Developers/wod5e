@@ -44,6 +44,7 @@
     "ConfirmDelete": "Löschen bestätigen",
     "ConfirmDeleteDescription": "Soll <b>{string}</b> wirklich gelöscht werden? Dies kann nicht rückgängig gemacht werden.",
     "Controls": "Steuerung",
+    "_Core": "",
     "Delete": "Löschen",
     "_Dismiss": "",
     "Edit": "Bearbeiten",
@@ -139,6 +140,10 @@
       "WillpowerFull": "Willenskraft ist vollständig aufgebraucht, kann sie nicht weiter verringern.",
       "WillpowerFullTitle": "Willenskraft aufgebraucht",
       "WillpowerReroll": "Mit Willenskraft neuwürfeln …"
+    },
+    "CompendiumBrowser": {
+      "_ControlHint": "",
+      "_Label": ""
     },
     "Compendiums": {
       "Macros": {

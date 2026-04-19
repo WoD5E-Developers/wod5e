@@ -1,0 +1,21 @@
+<div class="multi-select filters-section" data-filter-type="splats">
+  <div class="filter-group">
+    <div class="multi-select-toggle clickable-button" data-action="toggleDropdown">
+      Splats
+      {{#if splatFilterStatus}}
+        <i class="fa-solid fa-chevron-down"></i>
+      {{else}}
+        <i class="fa-solid fa-chevron-up"></i>
+      {{/if}}
+    </div>
+
+    <div class="multi-select-dropdown">
+      {{#each splatFilterOptions as |option|}}
+        <label class="multi-select-option flexrow">
+          <input type="checkbox" data-id="{{option.id}}" data-action="updateFilter"{{#if option.enabled}} checked{{/if}}/>
+          <span>{{option.label}}</span>
+        </label>
+      {{/each}}
+    </div>
+  </div>
+</div>

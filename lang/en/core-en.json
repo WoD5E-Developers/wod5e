@@ -44,6 +44,7 @@
     "ConfirmDelete": "Confirm Delete",
     "ConfirmDeleteDescription": "Are you sure you want to delete <b>{string}</b>? This cannot be undone.",
     "Controls": "Controls",
+    "Core": "Core",
     "Delete": "Delete",
     "Dismiss": "Dismiss",
     "Edit": "Edit",
@@ -139,6 +140,10 @@
       "WillpowerFull": "Willpower is fully damaged, cannot damage it further.",
       "WillpowerFullTitle": "Willpower Tracker Full",
       "WillpowerReroll": "Willpower Reroll"
+    },
+    "CompendiumBrowser": {
+      "ControlHint": "Opens the World of Darkness 5e compendium browser.",
+      "Label": "Compendium Browser"
     },
     "Compendiums": {
       "Macros": {
