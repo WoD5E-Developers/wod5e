@@ -1,5 +1,6 @@
 export const getItems = async function ({ types = [], text = '' }) {
   let allReturnedItems = []
+  text = text.toLowerCase()
 
   /**
    * Handle getting items from compendiums
@@ -13,7 +14,8 @@ export const getItems = async function ({ types = [], text = '' }) {
 
     const compendiumItems = docs.filter(
       (item) =>
-        (types.length === 0 || types.includes(item.type)) && (!text || item.name.includes(text))
+        (types.length === 0 || types.includes(item.type)) &&
+        (!text || item.name.toLowerCase().includes(text))
     )
 
     // If there's any items we need from here, push them to our 'all returned items' list
@@ -28,7 +30,8 @@ export const getItems = async function ({ types = [], text = '' }) {
    */
   const worldItemsList = game.items.filter(
     (item) =>
-      (types.length === 0 || types.includes(item.type)) && (!text || item.name.includes(text))
+      (types.length === 0 || types.includes(item.type)) &&
+      (!text || item.name.toLowerCase().includes(text))
   )
   allReturnedItems.push(...worldItemsList)
 
