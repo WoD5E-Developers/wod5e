@@ -88,6 +88,7 @@
       "Remorse": "悔恨",
       "RemorseFailed": "悔恨チェック失敗",
       "RemorseFailedDescription": "{actor} は悔恨チェックに失敗した。その者の罪は白く塗りつぶされ、人間性が1減少した。",
+      "_RemoveClan": "",
       "ResistFrenzy": "狂乱に抵抗",
       "ResistingFrenzy": "狂乱に抵抗中",
       "ResistingFrenzyFailed": "狂乱への抵抗失敗",

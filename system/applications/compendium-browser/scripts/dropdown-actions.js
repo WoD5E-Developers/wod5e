@@ -37,13 +37,9 @@ export const _onUpdateFilter = async function (event, target) {
       (itemType) => itemType.splat === filterOption
     )
 
-    console.log(typesToUpdate)
-
     typesToUpdate.forEach((itemType) => {
       itemType.hidden = !checkedStatus
     })
-
-    console.log(this.filters.types)
   }
 
   this.render()

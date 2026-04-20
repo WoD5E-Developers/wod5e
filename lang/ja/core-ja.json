@@ -44,6 +44,7 @@
     "ConfirmDelete": "削除の確認",
     "ConfirmDeleteDescription": "本当に<b>{string}</b>を削除しますか？この操作は元に戻せません。",
     "Controls": "操作",
+    "_Core": "",
     "Delete": "削除",
     "Dismiss": "却下",
     "Edit": "編集",
@@ -74,6 +75,7 @@
     "RemoveFromGroup": "グループから除外",
     "Reset": "リセット",
     "Save": "保存",
+    "_Search": "",
     "_StringAgo": "",
     "_StringCopiedToClipboard": "",
     "Submit": "送信",
@@ -139,6 +141,10 @@
       "WillpowerFull": "意志力は完全にダメージを受けており、これ以上ダメージを与えられません。",
       "WillpowerFullTitle": "意志力トラッカー上限",
       "WillpowerReroll": "意志力による振り直し"
+    },
+    "CompendiumBrowser": {
+      "_ControlHint": "",
+      "_Label": ""
     },
     "Compendiums": {
       "Macros": {

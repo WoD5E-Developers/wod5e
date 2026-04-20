@@ -68,6 +68,17 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
       },
       sources: []
     }
+
+    // If a "type" was provided by the application, disable all other types
+    if (application?.type) {
+      const typesToUpdate = this.filters.types.options.filter(
+        (itemType) => itemType.id != application.type
+      )
+
+      typesToUpdate.forEach((itemType) => {
+        itemType.enabled = false
+      })
+    }
   }
 
   _getHeaderControls() {

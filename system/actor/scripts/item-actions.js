@@ -13,6 +13,7 @@ import { formatDataItemId } from './format-data-item-id.js'
 import { _updateSelectedPerk } from '../htr/scripts/edges.js'
 import { _updateSelectedDisciplinePower } from '../vtm/scripts/disciplines.js'
 import { _updateSelectedGiftPower } from '../wta/scripts/gifts.js'
+import { CompendiumBrowserApplication } from '../../applications/compendium-browser/compendium-bowser.js'
 
 export const _onCreateItem = async function (event, target) {
   event.preventDefault()
@@ -305,4 +306,16 @@ async function appendSubtypeData(type, subtype, itemData) {
   }
 
   return itemData
+}
+
+// Open up the compendium browser with the specified item type filtered down to
+export const _onSearchItem = async function (event, target) {
+  event.preventDefault()
+
+  // Top-level variables
+  const type = target.getAttribute('data-type')
+
+  new CompendiumBrowserApplication({
+    type
+  }).render(true)
 }

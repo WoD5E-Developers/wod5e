@@ -22,7 +22,13 @@ import { _onEditImage } from './scripts/on-edit-image.js'
 import { _onToggleLock } from './scripts/on-toggle-lock.js'
 import { _onEditSkill } from './scripts/on-edit-skill.js'
 import { _onAddExperience, _onRemoveExperience, _onEditExperience } from './scripts/experience.js'
-import { _onCreateItem, _onItemChat, _onItemEdit, _onItemDelete } from './scripts/item-actions.js'
+import {
+  _onCreateItem,
+  _onItemChat,
+  _onItemEdit,
+  _onItemDelete,
+  _onSearchItem
+} from './scripts/item-actions.js'
 import { _onWillpowerRoll } from './scripts/on-willpower-roll.js'
 import { _onToggleCollapse } from './scripts/on-toggle-collapse.js'
 import { _onToggleLimited } from './scripts/on-toggle-limited.js'
@@ -81,6 +87,7 @@ export class WoDActorBase extends HandlebarsApplicationMixin(
 
       // Item actions
       createItem: _onCreateItem,
+      searchItem: _onSearchItem,
       rollItem: _onRollItem,
       itemChat: _onItemChat,
       itemEdit: _onItemEdit,
