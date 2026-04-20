@@ -44,6 +44,16 @@
     }
   }
 
+  .item-controls {
+    display: flex;
+    flex-grow: 0;
+    text-align: right;
+
+    .search-data-item {
+      position: unset;
+    }
+  }
+
   .power-category {
     padding: 3px;
 
@@ -68,12 +78,9 @@
     flex-direction: column;
 
     .item-name {
+      display: flex;
       margin-left: 10px;
-    }
-
-    .item-controls {
-      text-align: right;
-      flex-grow: 0;
+      flex-grow: 1;
     }
   }
 }
