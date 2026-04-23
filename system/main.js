@@ -58,6 +58,7 @@ import { rollPrompt, rollPromptToChat } from './ui/custom-enrichers/roll-prompt-
 import { RollMenuApplication } from './applications/roll-menu/roll-prompt-menu.js'
 import { CompendiumBrowserApplication } from './applications/compendium-browser/compendium-bowser.js'
 import { loadControls } from './scripts/controls.js'
+import { WoDCompendiumDirectory } from './ui/wod-compendium.js'
 
 // Register the WOD5E global
 window.WOD5E = {
@@ -107,6 +108,7 @@ Hooks.once('init', async function () {
   // Custom UI implementations
   CONFIG.ui.chat = WoDChatLog
   CONFIG.ui.settings = WoDSettings
+  CONFIG.ui.compendium = WoDCompendiumDirectory
   CONFIG.ui.hotbar = WoDHotbar
   CONFIG.ui.actors = WoDActorDirectory
   CONFIG.ui.pause = WoDPause

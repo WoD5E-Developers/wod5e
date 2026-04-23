@@ -993,6 +993,10 @@ h3.item-name {
 #sidebar-tabs > .item {
   border-radius: 0;
 }
+/* Compendium Sidebar */
+.compendium-sidebar .wod5e-compendium-search {
+  margin: 0 8px 0 8px;
+}
 /* Settings Sidebar */
 .settings-sidebar h2 {
   margin-bottom: 0;
@@ -2899,7 +2903,8 @@ prose-mirror .editor-menu button {
   padding-left: 10px;
 }
 .chat-message button,
-.directory .action-buttons button {
+.directory .action-buttons button,
+.compendium-sidebar .wod5e-compendium-search {
   background: #2e2d77;
   color: var(--system-color-6);
 }
@@ -3396,7 +3401,8 @@ prose-mirror .editor-menu button {
   background-color: var(--hunter-color-1);
 }
 .wod-hunter-theme .chat-message button,
-.wod-hunter-theme .directory .action-buttons button {
+.wod-hunter-theme .directory .action-buttons button,
+.wod-hunter-theme .compendium-sidebar .wod5e-compendium-search {
   background: #020202;
   color: var(--system-color-6);
 }
