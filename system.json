@@ -297,6 +297,11 @@
       "path": "lang/uk/werewolf-uk.json"
     },
     {
+      "lang": "uk",
+      "name": "Hunter (Ukrainian)",
+      "path": "lang/uk/hunter-uk.json"
+    },
+    {
       "lang": "ja",
       "name": "Core (Japanese)",
       "path": "lang/ja/core-ja.json"
