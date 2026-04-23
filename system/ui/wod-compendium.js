@@ -17,8 +17,8 @@ export class WoDCompendiumDirectory extends foundry.applications.sidebar.tabs.Co
       '.compendium-sidebar .directory-header .header-actions'
     )
     const wod5eCompendiumBrowserButton = `<button type="button" class="wod5e-compendium-search" data-action="wod5eCompendiumBrowser">
-        <i class="fa-solid fa-book-atlas" inert=""></i>
-        <span>WOD5E Compendium Browser</span>
+        <i class="fa-solid fa-magnifying-glass" inert=""></i>
+        <span>${game.i18n.localize('WOD5E.CompendiumBrowser.SidebarLabel')}</span>
     </button>`
 
     headerActionsRow.forEach((row) => {

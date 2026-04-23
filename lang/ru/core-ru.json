@@ -144,7 +144,11 @@
     },
     "CompendiumBrowser": {
       "_ControlHint": "",
-      "_Label": ""
+      "_ItemType": "",
+      "_Label": "",
+      "_NoResultsFound": "",
+      "_SidebarLabel": "",
+      "_System": ""
     },
     "Compendiums": {
       "Macros": {

@@ -144,7 +144,11 @@
     },
     "CompendiumBrowser": {
       "ControlHint": "Opens the World of Darkness 5e compendium browser.",
-      "Label": "Compendium Browser"
+      "ItemType": "Item Type",
+      "Label": "Compendium Browser",
+      "NoResultsFound": "No results found",
+      "SidebarLabel": "WOD5E Compendium Browser",
+      "System": "System"
     },
     "Compendiums": {
       "Macros": {
