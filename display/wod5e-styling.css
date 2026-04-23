@@ -2643,6 +2643,9 @@ body.uk .actor.sheet {
   place-content: center;
   text-wrap: nowrap;
 }
+.spc.sheet .item {
+  margin: 2px 0 2px 0;
+}
 .spc.sheet .item-controls {
   display: flex;
   flex-grow: 0;
