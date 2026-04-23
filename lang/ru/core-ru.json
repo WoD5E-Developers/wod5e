@@ -44,6 +44,7 @@
     "ConfirmDelete": "Подтвердите удаление",
     "ConfirmDeleteDescription": "Вы уверены, что хотите удалить <b>{string}</b>? Это невозможно отменить.",
     "Controls": "Управление",
+    "_Core": "",
     "Delete": "Удалить",
     "_Dismiss": "",
     "Edit": "Изменить",
@@ -74,6 +75,7 @@
     "RemoveFromGroup": "Удалить из группы",
     "Reset": "Сброс",
     "Save": "Сохранить",
+    "_Search": "",
     "_StringAgo": "",
     "_StringCopiedToClipboard": "",
     "Submit": "Подтвердить",
@@ -139,6 +141,14 @@
       "WillpowerFull": "Воля исчерпана, нельзя получить больше стресса.",
       "WillpowerFullTitle": "Шкала Воли полностью заполнена",
       "WillpowerReroll": "Переброс за Волю"
+    },
+    "CompendiumBrowser": {
+      "_ControlHint": "",
+      "_ItemType": "",
+      "_Label": "",
+      "_NoResultsFound": "",
+      "_SidebarLabel": "",
+      "_System": ""
     },
     "Compendiums": {
       "Macros": {

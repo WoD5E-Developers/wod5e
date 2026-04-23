@@ -44,6 +44,7 @@
     "_ConfirmDelete": "",
     "_ConfirmDeleteDescription": "",
     "_Controls": "",
+    "_Core": "",
     "_Delete": "",
     "_Dismiss": "",
     "_Edit": "",
@@ -74,6 +75,7 @@
     "_RemoveFromGroup": "",
     "_Reset": "",
     "_Save": "",
+    "_Search": "",
     "_StringAgo": "",
     "_StringCopiedToClipboard": "",
     "_Submit": "",
@@ -139,6 +141,14 @@
       "_WillpowerFull": "",
       "_WillpowerFullTitle": "",
       "_WillpowerReroll": ""
+    },
+    "CompendiumBrowser": {
+      "_ControlHint": "",
+      "_ItemType": "",
+      "_Label": "",
+      "_NoResultsFound": "",
+      "_SidebarLabel": "",
+      "_System": ""
     },
     "Compendiums": {
       "Macros": {

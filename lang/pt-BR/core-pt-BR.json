@@ -44,6 +44,7 @@
     "ConfirmDelete": "Confirmar exclusão",
     "ConfirmDeleteDescription": "Tem certeza de que deseja excluir <b>{string}</b>? Esta ação não pode ser desfeita.",
     "Controls": "Controles",
+    "_Core": "",
     "Delete": "Deletar",
     "Dismiss": "Dispensar",
     "Edit": "Editar",
@@ -74,6 +75,7 @@
     "RemoveFromGroup": "Remover do grupo",
     "Reset": "Redefinir",
     "Save": "Salvar",
+    "_Search": "",
     "_StringAgo": "",
     "_StringCopiedToClipboard": "",
     "Submit": "Enviar",
@@ -139,6 +141,14 @@
       "WillpowerFull": "A força de vontade está totalmente danificada, não pode danificá-la mais.",
       "WillpowerFullTitle": "Barra de Força de Vontade completa",
       "WillpowerReroll": "Rerrolagem com Força de Vontade"
+    },
+    "CompendiumBrowser": {
+      "_ControlHint": "",
+      "_ItemType": "",
+      "_Label": "",
+      "_NoResultsFound": "",
+      "_SidebarLabel": "",
+      "_System": ""
     },
     "Compendiums": {
       "Macros": {

@@ -7,6 +7,7 @@ import {
 import { prepareBaneContext } from './scripts/prepare-partials.js'
 // Base item sheet to extend from
 import { WoDItemBase } from '../wod-item-base.js'
+import { _onRemoveItem } from '../scripts/on-remove-item.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
@@ -17,7 +18,24 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
 export class ClanItemSheet extends HandlebarsApplicationMixin(WoDItemBase) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
-    actions: {}
+    actions: {
+      removeClan: _onRemoveItem
+    }
+  }
+
+  _getHeaderControls() {
+    const controls = super._getHeaderControls()
+    const item = this.item
+
+    if (item?.isOwned) {
+      controls.push({
+        icon: 'fas fa-trash',
+        label: 'WOD5E.VTM.RemoveClan',
+        action: 'removeClan'
+      })
+    }
+
+    return controls
   }
 
   static PARTS = {

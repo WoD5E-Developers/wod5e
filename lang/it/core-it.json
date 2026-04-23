@@ -44,6 +44,7 @@
     "ConfirmDelete": "Conferma Eliminazione",
     "ConfirmDeleteDescription": "Sei sicuro di voler eliminare<b>{string}</b>? Il processo è irreversibile.",
     "Controls": "Controlli",
+    "_Core": "",
     "Delete": "Elimina",
     "_Dismiss": "",
     "Edit": "Modifica",
@@ -74,6 +75,7 @@
     "RemoveFromGroup": "Rimuovi dal gruppo",
     "Reset": "Reset",
     "Save": "Salva",
+    "_Search": "",
     "_StringAgo": "",
     "_StringCopiedToClipboard": "",
     "Submit": "Invia",
@@ -139,6 +141,14 @@
       "WillpowerFull": "La forza di volontà è completamente danneggiata, non può danneggiarla ulteriormente.",
       "WillpowerFullTitle": "La volontà è piena",
       "WillpowerReroll": "Ritira con Volontà"
+    },
+    "CompendiumBrowser": {
+      "_ControlHint": "",
+      "_ItemType": "",
+      "_Label": "",
+      "_NoResultsFound": "",
+      "_SidebarLabel": "",
+      "_System": ""
     },
     "Compendiums": {
       "Macros": {

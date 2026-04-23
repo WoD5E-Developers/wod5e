@@ -55,6 +55,10 @@ import { Renown } from './api/def/renown.js'
 import { WereForms } from './api/def/were-forms.js'
 import { Gifts } from './api/def/gifts.js'
 import { rollPrompt, rollPromptToChat } from './ui/custom-enrichers/roll-prompt-enrichers.js'
+import { RollMenuApplication } from './applications/roll-menu/roll-prompt-menu.js'
+import { CompendiumBrowserApplication } from './applications/compendium-browser/compendium-bowser.js'
+import { loadControls } from './scripts/controls.js'
+import { WoDCompendiumDirectory } from './ui/wod-compendium.js'
 
 // Register the WOD5E global
 window.WOD5E = {
@@ -68,6 +72,10 @@ window.WOD5E = {
     generateLabelAndLocalize: wod5eAPI.generateLabelAndLocalize,
     migrateWorld,
     _onRollItemFromMacro
+  },
+  applications: {
+    RollMenuApplication,
+    CompendiumBrowserApplication
   },
   WoDItemBase,
   WoDActorBase,
@@ -100,6 +108,7 @@ Hooks.once('init', async function () {
   // Custom UI implementations
   CONFIG.ui.chat = WoDChatLog
   CONFIG.ui.settings = WoDSettings
+  CONFIG.ui.compendium = WoDCompendiumDirectory
   CONFIG.ui.hotbar = WoDHotbar
   CONFIG.ui.actors = WoDActorDirectory
   CONFIG.ui.pause = WoDPause
@@ -157,6 +166,9 @@ Hooks.once('init', async function () {
 
   // Load settings into Foundry
   loadSettings()
+
+  // Load keybindings
+  loadControls()
 
   // Initialize header font preference on game init
   _updateHeaderFontPreference()

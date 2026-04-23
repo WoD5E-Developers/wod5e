@@ -88,6 +88,7 @@
       "Remorse": "Муки совести",
       "RemorseFailed": "Неудачное раскаяние",
       "RemorseFailedDescription": "{actor} не прошел(-ла) проверку на раскаяние. Пятна были очищены, а человечность уменьшена на 1.",
+      "_RemoveClan": "",
       "ResistFrenzy": "Удержать зверя",
       "ResistingFrenzy": "Сопротивление Ярости",
       "ResistingFrenzyFailed": "Неудачное сопротивление Ярости",

@@ -44,6 +44,20 @@
     }
   }
 
+  .item {
+    margin: 2px 0 2px 0;
+  }
+
+  .item-controls {
+    display: flex;
+    flex-grow: 0;
+    text-align: right;
+
+    .search-data-item {
+      position: unset;
+    }
+  }
+
   .power-category {
     padding: 3px;
 
@@ -68,11 +82,9 @@
     flex-direction: column;
 
     .item-name {
+      display: flex;
       margin-left: 10px;
-    }
-
-    .item-controls {
-      text-align: right;
+      flex-grow: 1;
     }
   }
 }

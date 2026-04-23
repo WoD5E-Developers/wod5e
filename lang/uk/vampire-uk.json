@@ -88,6 +88,7 @@
       "Remorse": "Каяття",
       "RemorseFailed": "Каяття Не Вдалося",
       "RemorseFailedDescription": "{actor} не пройшов перевірку Каяття. Плями очищено, а людяність зменшено на 1.",
+      "_RemoveClan": "",
       "ResistFrenzy": "Опір Сказу",
       "ResistingFrenzy": "Опір Сказу",
       "ResistingFrenzyFailed": "Опір Сказу не вдався",

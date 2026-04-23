@@ -1,0 +1,17 @@
+<div class="multi-select filters-section" data-filter-type="types">
+  <div class="filter-group">
+    <div class="multi-select-toggle clickable-button" data-action="toggleDropdown">
+      {{localize 'WOD5E.CompendiumBrowser.ItemType'}}
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <div class="multi-select-dropdown">
+      {{#each typeFilterOptions as |option|}}
+        <label class="multi-select-option flexrow">
+          <input type="checkbox" data-id="{{option.id}}" data-action="updateFilter"{{#if option.enabled}} checked{{/if}}/>
+          <span>{{option.label}}</span>
+        </label>
+      {{/each}}
+    </div>
+  </div>
+</div>

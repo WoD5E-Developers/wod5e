@@ -44,6 +44,7 @@
     "ConfirmDelete": "Підтвердити видалення",
     "ConfirmDeleteDescription": "Ви впевнені, що хочете видалити <b>{string}</b>? Це не можна буде скасувати.",
     "Controls": "Керування",
+    "_Core": "",
     "Delete": "Видалити",
     "_Dismiss": "",
     "Edit": "Редагувати",
@@ -74,6 +75,7 @@
     "RemoveFromGroup": "Видалити з групи",
     "Reset": "Скинути",
     "Save": "Зберегти",
+    "_Search": "",
     "_StringAgo": "",
     "_StringCopiedToClipboard": "",
     "Submit": "Підтвердити",
@@ -139,6 +141,14 @@
       "WillpowerFull": "Сила Волі повністю ушкоджена, не можна ушкодити більше.",
       "WillpowerFullTitle": "Трекер Сили Волі Заповнений",
       "WillpowerReroll": "Переброс за Силу Волі"
+    },
+    "CompendiumBrowser": {
+      "_ControlHint": "",
+      "_ItemType": "",
+      "_Label": "",
+      "_NoResultsFound": "",
+      "_SidebarLabel": "",
+      "_System": ""
     },
     "Compendiums": {
       "Macros": {
