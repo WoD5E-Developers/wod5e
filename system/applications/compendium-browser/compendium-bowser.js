@@ -110,10 +110,12 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
 
   static PARTS = {
     sidebar: {
-      template: 'systems/wod5e/display/ui/compendium-browser/sidebar.hbs'
+      template: 'systems/wod5e/display/ui/compendium-browser/sidebar.hbs',
+      scrollable: ['.search-filters']
     },
     body: {
-      template: 'systems/wod5e/display/ui/compendium-browser/body.hbs'
+      template: 'systems/wod5e/display/ui/compendium-browser/body.hbs',
+      scrollable: ['.results-list']
     }
   }
 
