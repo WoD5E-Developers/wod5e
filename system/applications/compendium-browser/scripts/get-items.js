@@ -1,6 +1,5 @@
 export const getItems = async function ({ types = [], text = '' }) {
   let allReturnedItems = []
-  text = text.toLowerCase()
 
   /**
    * Handle getting items from compendiums
@@ -12,12 +11,7 @@ export const getItems = async function ({ types = [], text = '' }) {
   for (const compendium of compendiumsItemsList) {
     const docs = await compendium.getDocuments()
 
-    const compendiumItems = docs.filter(
-      (item) =>
-        (types.length === 0 || types.includes(item.type)) &&
-        (!text || item.name.toLowerCase().includes(text)) &&
-        item?.permission > 0
-    )
+    const compendiumItems = await filterDocuments(docs, types, text)
 
     // If there's any items we need from here, push them to our 'all returned items' list
     if (compendiumItems.length > 0) {
@@ -29,13 +23,47 @@ export const getItems = async function ({ types = [], text = '' }) {
    * Handle getting items from the world itself (not in any compendiums)
    * We don't need to be as verbose as we were with the ones inside compendiums
    */
-  const worldItemsList = game.items.filter(
-    (item) =>
-      (types.length === 0 || types.includes(item.type)) &&
-      (!text || item.name.toLowerCase().includes(text)) &&
-      item?.permission > 0
-  )
+  const worldItemsList = await filterDocuments(game.items, types, text)
   allReturnedItems.push(...worldItemsList)
 
   return allReturnedItems
+}
+
+export const filterDocuments = function (documents, types = [], text = '') {
+  // Normalize the text provided
+  const normalizedText = text.toLowerCase().trim()
+  // Map types to something sane to use
+  const typeMap = new Map(types.map((type) => [type.id, type]))
+
+  return documents.filter((item) => {
+    // Determine which type filter we need to pull from the map
+    const typeFilter = typeMap.get(item.type)
+
+    // If type filters exist and this item type is not enabled, exclude it
+    if (types.length > 0 && !typeFilter) return false
+
+    // Text filter
+    if (normalizedText && !item.name.toLowerCase().includes(normalizedText)) {
+      return false
+    }
+
+    // Permission filter (must have at least "limited" permissions)
+    if (item.permission <= 0) return false
+
+    // If we don't have a type filter, then we don't need subtype filtering and
+    // just return the item
+    if (!typeFilter) return true
+
+    // If we don't have any subtype filters, just return the item
+    if (!typeFilter.subtypes?.length) return true
+
+    // If subtype filters exist but this type has no subtype path, return the item
+    if (!typeFilter.subtypePath) return true
+
+    // Grab the subtype value
+    const itemSubtype = foundry.utils.getProperty(item.system, typeFilter.subtypePath)
+
+    // Match the subtype against the subtype list
+    return typeFilter.subtypes.includes(itemSubtype)
+  })
 }

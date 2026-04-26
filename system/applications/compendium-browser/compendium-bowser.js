@@ -61,6 +61,16 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
             id,
             label: item.label,
             splat: item.splat,
+            subtypes: Object.entries(item?.subtypes ? item?.subtypes.getList({}) : {}).map(
+              ([id, subtype]) => {
+                return {
+                  id,
+                  label: subtype.label,
+                  enabled: true
+                }
+              }
+            ),
+            subtypePath: item.subtypePath,
             enabled: true,
             hidden: false
           }
@@ -78,6 +88,17 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
       typesToUpdate.forEach((itemType) => {
         itemType.enabled = false
       })
+
+      // If a "subtype" was provided too, further filter down
+      if (application?.subtype) {
+        const subtypesToUpdate = this.filters.types.options
+          .filter((itemType) => itemType.id === application.type)[0]
+          .subtypes.filter((itemSubtype) => itemSubtype.id != application.subtype)
+
+        subtypesToUpdate.forEach((itemSubtype) => {
+          itemSubtype.enabled = false
+        })
+      }
     }
   }
 
@@ -89,10 +110,12 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
 
   static PARTS = {
     sidebar: {
-      template: 'systems/wod5e/display/ui/compendium-browser/sidebar.hbs'
+      template: 'systems/wod5e/display/ui/compendium-browser/sidebar.hbs',
+      scrollable: ['.search-filters']
     },
     body: {
-      template: 'systems/wod5e/display/ui/compendium-browser/body.hbs'
+      template: 'systems/wod5e/display/ui/compendium-browser/body.hbs',
+      scrollable: ['.results-list']
     }
   }
 
@@ -105,9 +128,13 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
       .filter((splat) => splat.enabled)
       .map((splat) => splat.id)
     data.itemFilterStatus = this.filters.types.open
-    data.enabledItems = this.filters.types.options
+    data.enabledTypes = this.filters.types.options
       .filter((type) => type.enabled && !type.hidden)
-      .map((type) => type.id)
+      .map((type) => ({
+        id: type.id,
+        subtypePath: type?.subtypePath,
+        subtypes: type?.subtypes.filter((subtype) => subtype.enabled).map((subtype) => subtype.id)
+      }))
     data.textFilter = this.filters.text?.string || ''
 
     return data
@@ -127,7 +154,8 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
         // Part-specific data
         // Grab which items should be listed
         context.itemsInList = await getItems({
-          types: context.enabledItems,
+          types: context.enabledTypes,
+          subtypePath: context.subtypePath,
           text: context.textFilter
         })
 
