@@ -694,6 +694,9 @@ h3.item-name {
   gap: 5px;
   padding: 2px 0;
 }
+.multi-select .subtype-option {
+  margin-left: 15px;
+}
 
 /* Foundry Controls UI */
 #players,

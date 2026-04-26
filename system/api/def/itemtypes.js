@@ -45,6 +45,11 @@ import { TribeItemModel } from '../../item/data-models/wta/tribe-item-model.js'
 import { AuspiceItemModel } from '../../item/data-models/wta/auspice-item-model.js'
 import { TalismanItemModel } from '../../item/data-models/wta/talisman-item-model.js'
 import { GiftItemModel } from '../../item/data-models/wta/gift-item-model.js'
+import { Features } from './features.js'
+import { Weapons } from './weapons.js'
+import { Disciplines } from './disciplines.js'
+import { Edges } from './edges.js'
+import { Gifts } from './gifts.js'
 
 /*
  *   Each item type is defined through here; this includes the item's label,
@@ -72,7 +77,9 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['feature'],
     sheetClass: FeatureItemSheet,
     sheetModel: FeatureItemModel,
-    splat: 'core'
+    splat: 'core',
+    subtypes: Features,
+    subtypePath: 'featuretype'
   }
 
   static customRoll = {
@@ -100,7 +107,9 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['weapon'],
     sheetClass: WeaponItemSheet,
     sheetModel: WeaponItemModel,
-    splat: 'core'
+    splat: 'core',
+    subtypes: Weapons,
+    subtypePath: 'weaponType'
   }
 
   static gear = {
@@ -177,7 +186,9 @@ export class ItemTypes extends BaseDefinitionClass {
     sheetClass: DisciplineItemSheet,
     restrictedActorTypes: ['vampire', 'ghoul'],
     sheetModel: PowerItemModel,
-    splat: 'vampire'
+    splat: 'vampire',
+    subtypes: Disciplines,
+    subtypePath: 'discipline'
   }
 
   static boon = {
@@ -222,7 +233,9 @@ export class ItemTypes extends BaseDefinitionClass {
     sheetClass: PerkItemSheet,
     restrictedActorTypes: ['hunter'],
     sheetModel: PerkItemModel,
-    splat: 'hunter'
+    splat: 'hunter',
+    subtypes: Edges,
+    subtypePath: 'edge'
   }
 
   static edgepool = {
@@ -233,7 +246,9 @@ export class ItemTypes extends BaseDefinitionClass {
     restrictedActorTypes: ['hunter'],
     excludedActorTypes: ['spc'],
     sheetModel: EdgePoolItemModel,
-    splat: 'hunter'
+    splat: 'hunter',
+    subtypes: Edges,
+    subtypePath: 'edge'
   }
 
   // Werewolf Items
@@ -278,7 +293,9 @@ export class ItemTypes extends BaseDefinitionClass {
     sheetClass: GiftItemSheet,
     restrictedActorTypes: ['werewolf', 'spirit'],
     sheetModel: GiftItemModel,
-    splat: 'werewolf'
+    splat: 'werewolf',
+    subtypes: Gifts,
+    subtypePath: 'giftType'
   }
 }
 
