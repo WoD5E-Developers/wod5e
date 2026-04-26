@@ -314,8 +314,10 @@ export const _onSearchItem = async function (event, target) {
 
   // Top-level variables
   const type = target.getAttribute('data-type')
+  const subtype = target.getAttribute('data-subtype')
 
   new CompendiumBrowserApplication({
-    type
+    type,
+    subtype
   }).render(true)
 }
