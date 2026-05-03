@@ -23,7 +23,7 @@ export const _onConfigureSources = async function () {
       active: true
     }
   }
-  const mergedSources = foundry.utils.mergeObject(allSources, currentSources)
+  const mergedSources = foundry.utils.mergeObject(allSources, currentSources, { inplace: false })
 
   // Mark old saved sources as hidden
   // Basically the concern is if someone deactivates a module
@@ -43,7 +43,9 @@ export const _onConfigureSources = async function () {
 
   // Gather and push the list of non-hidden options and whether they're checked or not
   let options = ''
-  for (const [id, value] of Object.entries(mergedSources).filter((source) => !source.hidden)) {
+  for (const [id, value] of Object.entries(mergedSources)) {
+    if (value?.hidden) continue
+
     const checkedStatus = value.active ? ' checked' : ''
     options += `
       <div class="flexrow source-option">
@@ -75,6 +77,8 @@ export const _onConfigureSources = async function () {
         const sources = {}
 
         for (const [id] of Object.entries(mergedSources)) {
+          if (!allSources[id]) continue
+
           sources[id] = {
             active: !!formData[id]
           }
