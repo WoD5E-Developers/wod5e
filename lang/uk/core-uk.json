@@ -143,6 +143,7 @@
       "WillpowerReroll": "Переброс за Силу Волі"
     },
     "CompendiumBrowser": {
+      "_ConfigureSources": "",
       "_ControlHint": "",
       "_ItemType": "",
       "_Label": "",

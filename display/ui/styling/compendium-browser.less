@@ -47,6 +47,10 @@
     border-right: 1px solid;
     padding: 10px;
 
+    .multi-select-toggle {
+      cursor: pointer;
+    }
+
     .search-section {
       flex: 0 0 auto;
     }
@@ -63,6 +67,23 @@
         margin-top: 10px;
       }
     }
+  }
+}
+
+.sources-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  align-content: flex-start;
+  max-height: 400px;
+  flex-wrap: nowrap;
+
+  .source-checkbox {
+    flex-grow: 0;
+  }
+
+  .source-option {
+    align-self: start;
   }
 }
 

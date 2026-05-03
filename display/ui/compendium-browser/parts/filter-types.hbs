@@ -2,28 +2,34 @@
   <div class="filter-group">
     <div class="multi-select-toggle clickable-button" data-action="toggleDropdown">
       {{localize 'WOD5E.CompendiumBrowser.ItemType'}}
-      <i class="fa-solid fa-chevron-down"></i>
+      {{#if itemFilterStatus}}
+        <i class="fa-solid fa-chevron-up"></i>
+      {{else}}
+        <i class="fa-solid fa-chevron-down"></i>
+      {{/if}}
     </div>
 
-    <div class="multi-select-dropdown">
-      {{#each typeFilterOptions as |option|}}
-        <label class="multi-select-option flexrow">
-          <input type="checkbox" data-id="{{option.id}}" data-filter-priority="primary" data-action="updateFilter"{{#if option.enabled}} checked{{/if}}/>
-          <span>{{option.label}}</span>
-        </label>
-        {{#if option.enabled}}
-          {{#ifgr option.subtypes.length 0}}
-            <div>
-              {{#each option.subtypes as |subtypeOption|}}
-                <label class="subtype-option flexrow">
-                  <input type="checkbox" data-id="{{option.id}}" data-subtype="{{subtypeOption.id}}" data-filter-priority="secondary" data-action="updateFilter"{{#if subtypeOption.enabled}} checked{{/if}}/>
-                  <span>{{subtypeOption.label}}</span>
-                </label>
-              {{/each}}
-            </div>
-          {{/ifgr}}
-        {{/if}}
-      {{/each}}
-    </div>
+    {{#if itemFilterStatus}}
+      <div class="multi-select-dropdown">
+        {{#each typeFilterOptions as |option|}}
+          <label class="multi-select-option flexrow">
+            <input type="checkbox" data-id="{{option.id}}" data-filter-priority="primary" data-action="updateFilter"{{#if option.enabled}} checked{{/if}}/>
+            <span>{{option.label}}</span>
+          </label>
+          {{#if option.enabled}}
+            {{#ifgr option.subtypes.length 0}}
+              <div>
+                {{#each option.subtypes as |subtypeOption|}}
+                  <label class="subtype-option flexrow">
+                    <input type="checkbox" data-id="{{option.id}}" data-subtype="{{subtypeOption.id}}" data-filter-priority="secondary" data-action="updateFilter"{{#if subtypeOption.enabled}} checked{{/if}}/>
+                    <span>{{subtypeOption.label}}</span>
+                  </label>
+                {{/each}}
+              </div>
+            {{/ifgr}}
+          {{/if}}
+        {{/each}}
+      </div>
+    {{/if}}
   </div>
 </div>
