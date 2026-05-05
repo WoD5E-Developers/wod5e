@@ -1,4 +1,4 @@
-export const getItems = async function ({ types = [], text = '' }) {
+export const getItems = async function ({ types = [], text = '', disabledSources = {} }) {
   let allReturnedItems = []
 
   /**
@@ -9,8 +9,10 @@ export const getItems = async function ({ types = [], text = '' }) {
     (compendium) => compendium.metadata.type === 'Item'
   )
   for (const compendium of compendiumsItemsList) {
-    const docs = await compendium.getDocuments()
+    if (disabledSources.includes(`${compendium.metadata.packageName}-${compendium.metadata.name}`))
+      continue
 
+    const docs = await compendium.getDocuments()
     const compendiumItems = await filterDocuments(docs, types, text)
 
     // If there's any items we need from here, push them to our 'all returned items' list
@@ -22,9 +24,14 @@ export const getItems = async function ({ types = [], text = '' }) {
   /**
    * Handle getting items from the world itself (not in any compendiums)
    * We don't need to be as verbose as we were with the ones inside compendiums
+   *
+   * Also includes a filter - if 'world' is disabled in sources, we don't need
+   * to look up any world items.
    */
-  const worldItemsList = await filterDocuments(game.items, types, text)
-  allReturnedItems.push(...worldItemsList)
+  if (!disabledSources.includes('world')) {
+    const worldItemsList = await filterDocuments(game.items, types, text)
+    allReturnedItems.push(...worldItemsList)
+  }
 
   return allReturnedItems
 }

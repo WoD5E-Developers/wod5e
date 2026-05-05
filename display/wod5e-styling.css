@@ -659,6 +659,9 @@ h3.item-name {
   border-right: 1px solid;
   padding: 10px;
 }
+.compendium-browser .compendium-browser-sidebar .multi-select-toggle {
+  cursor: pointer;
+}
 .compendium-browser .compendium-browser-sidebar .search-section {
   flex: 0 0 auto;
 }
@@ -672,6 +675,20 @@ h3.item-name {
 }
 .compendium-browser .compendium-browser-sidebar .search-filters .filters-section {
   margin-top: 10px;
+}
+.sources-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  align-content: flex-start;
+  max-height: 400px;
+  flex-wrap: nowrap;
+}
+.sources-list .source-checkbox {
+  flex-grow: 0;
+}
+.sources-list .source-option {
+  align-self: start;
 }
 .multi-select {
   position: relative;

@@ -4,14 +4,11 @@ export const _onToggleDropdown = async function (event, target) {
   // Hide the dropdown
   const filter = target.closest('.multi-select')
   const type = filter.getAttribute('data-filter-type')
-  const dropdown = filter.querySelector('.multi-select-dropdown')
-  dropdown.classList.toggle('hidden')
 
   // Toggle the dropdown's state in the application
   const filterObject = this.filters[type]
-  const option = filterObject.find((o) => o.id === type)
-  if (option) {
-    option.open = !option.open
+  if (filterObject) {
+    filterObject.open = !filterObject.open
   }
 
   this.render()

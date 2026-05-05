@@ -1,5 +1,6 @@
 import { _onToggleDropdown, _onUpdateFilter } from './scripts/dropdown-actions.js'
 import { getItems } from './scripts/get-items.js'
+import { _onConfigureSources } from './scripts/on-configure-sources.js'
 import { _onOpenItem } from './scripts/on-open-item.js'
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
@@ -25,7 +26,8 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
     actions: {
       toggleDropdown: _onToggleDropdown,
       updateFilter: _onUpdateFilter,
-      openItem: _onOpenItem
+      openItem: _onOpenItem,
+      configureSources: _onConfigureSources
     },
     dragDrop: [
       {
@@ -75,8 +77,7 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
             hidden: false
           }
         })
-      },
-      sources: []
+      }
     }
 
     // If a "type" was provided by the application, disable all other types
@@ -105,6 +106,12 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
   _getHeaderControls() {
     const controls = super._getHeaderControls()
 
+    controls.push({
+      icon: 'fa-solid fa-gear',
+      label: 'WOD5E.CompendiumBrowser.ConfigureSources',
+      action: 'configureSources'
+    })
+
     return controls
   }
 
@@ -121,6 +128,8 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
 
   async _prepareContext() {
     const data = await super._prepareContext()
+    const currentUser = game.users.current
+    const compendiumBrowserConfig = currentUser?.flags?.wod5e?.compendiumBrowser
 
     // Filter down to which ones are enabled and map to an array of strings
     data.splatFilterStatus = this.filters.splats.open
@@ -136,6 +145,11 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
         subtypes: type?.subtypes.filter((subtype) => subtype.enabled).map((subtype) => subtype.id)
       }))
     data.textFilter = this.filters.text?.string || ''
+    // This is weird; normally we don't have to filter an object, but we don't want to pass everything over to
+    // the filtering function. So, we do this
+    data.disabledSources = Object.keys(compendiumBrowserConfig?.sources || {}).filter(
+      (key) => !compendiumBrowserConfig.sources[key].active
+    )
 
     return data
   }
@@ -156,7 +170,8 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
         context.itemsInList = await getItems({
           types: context.enabledTypes,
           subtypePath: context.subtypePath,
-          text: context.textFilter
+          text: context.textFilter,
+          disabledSources: context.disabledSources
         })
 
         break

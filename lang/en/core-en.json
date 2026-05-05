@@ -143,6 +143,7 @@
       "WillpowerReroll": "Willpower Reroll"
     },
     "CompendiumBrowser": {
+      "ConfigureSources": "Configure Sources",
       "ControlHint": "Opens the World of Darkness 5e compendium browser.",
       "ItemType": "Item Type",
       "Label": "Compendium Browser",

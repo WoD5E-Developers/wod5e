@@ -143,6 +143,7 @@
       "WillpowerReroll": "Mit Willenskraft neuwürfeln …"
     },
     "CompendiumBrowser": {
+      "_ConfigureSources": "",
       "_ControlHint": "",
       "_ItemType": "",
       "_Label": "",

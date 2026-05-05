@@ -143,6 +143,7 @@
       "WillpowerReroll": "Przerzut Siły Woli"
     },
     "CompendiumBrowser": {
+      "_ConfigureSources": "",
       "_ControlHint": "",
       "_ItemType": "",
       "_Label": "",
