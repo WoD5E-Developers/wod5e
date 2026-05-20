@@ -8,7 +8,7 @@
     </div>
     <div class="resource flex-group-center health">
         <div class="resource-content flexcol flex-center flex-between">
-            <div class="resource-counter editable" data-states="x:aggravated,/:superficial" data-max="{{health.max}}"
+            <div class="resource-counter editable" data-states="/:superficial,x:aggravated" data-max="{{health.max}}"
                 data-superficial="{{health.superficial}}" data-aggravated="{{health.aggravated}}"
                 data-name="system.health">
                 {{#numLoop health.max}}
@@ -16,7 +16,7 @@
                 {{/numLoop}}
             </div>
             {{#ifeq activeForm "crinos"}}
-                <div class="resource-counter editable crinos-health" data-states="x:aggravated,/:superficial" data-max="{{crinosHealth.max}}"
+                <div class="resource-counter editable crinos-health" data-states="/:superficial,x:aggravated" data-max="{{crinosHealth.max}}"
                     data-superficial="{{crinosHealth.superficial}}" data-aggravated="{{crinosHealth.aggravated}}"
                     data-name="system.crinosHealth">
                     {{#numLoop crinosHealth.max}}
