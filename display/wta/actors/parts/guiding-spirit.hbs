@@ -1,0 +1,20 @@
+<div class="flexcol detail-row">
+    <label class="resource-label field-header">{{localize "WOD5E.WTA.GuidingSpirit"}}</label>
+    <div class="resource resource-content">
+        {{#if guidingSpirit}}
+            <span class="data-item nowrap">
+                {{guidingSpirit.name}}
+            </span>
+            <a class="edit-data-item" data-action="itemEdit" data-item-id="{{guidingSpirit.id}}">
+                <i class="fa-solid fa-pen-nib"></i>
+            </a>
+        {{else}}
+            <a class="search-data-item" data-action="searchItem" title="{{localize 'WOD5E.Search'}}" data-type="guidingspirit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+            <a class="add-data-item" data-action="createItem" title="{{localize 'WOD5E.Add'}}" data-type="guidingspirit">
+                <i class="fa-solid fa-plus"></i>
+            </a>
+        {{/if}}
+    </div>
+</div>

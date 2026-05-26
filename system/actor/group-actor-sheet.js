@@ -17,7 +17,13 @@ import {
 // Various button functions
 import { _onEditImage } from './scripts/on-edit-image.js'
 import { _onToggleLock } from './scripts/on-toggle-lock.js'
-import { _onCreateItem, _onItemChat, _onItemEdit, _onItemDelete } from './scripts/item-actions.js'
+import {
+  _onCreateItem,
+  _onItemChat,
+  _onItemEdit,
+  _onItemDelete,
+  _onSearchItem
+} from './scripts/item-actions.js'
 import { _onToggleCollapse } from './scripts/on-toggle-collapse.js'
 import { _addActor, _openActorSheet, _removeActor } from './scripts/group-members.js'
 import {
@@ -65,6 +71,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
     actions: {
       // Item actions
       createItem: _onCreateItem,
+      searchItem: _onSearchItem,
       itemChat: _onItemChat,
       itemEdit: _onItemEdit,
       itemDelete: _onItemDelete,
@@ -194,6 +201,14 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
     // Handle figuring out hunting difficulty
     if (actorData.groupType === 'coterie') {
       data.huntingDifficulty = 7 - actorData.chasse.value
+    }
+
+    // Handle defining out the guiding spirit
+    if (actorData.groupType === 'pack') {
+      // Filters for the guiding spirit item, if one xists
+      const guidingSpiritFilter = actor.items.filter((item) => item.type === 'guidingspirit')
+
+      data.guidingSpirit = guidingSpiritFilter[0]
     }
 
     // Transform any data needed for sheet rendering

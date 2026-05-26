@@ -1,0 +1,15 @@
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="field-header flex-group-center">
+        {{localize 'WOD5E.WTA.Favor'}}
+    </div>
+    <prose-mirror name="system.favor" value="{{favor}}" toggled="true" compact="true">
+        {{{enrichedFavor}}}
+    </prose-mirror>
+
+    <div class="field-header flex-group-center">
+        {{localize 'WOD5E.WTA.Ban'}}
+    </div>
+    <prose-mirror name="system.ban" value="{{ban}}" toggled="true" compact="true">
+        {{{enrichedBan}}}
+    </prose-mirror>
+</section>

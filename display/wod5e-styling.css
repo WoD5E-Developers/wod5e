@@ -1479,6 +1479,10 @@ h3.item-name {
 .group-header.pack {
   background-color: var(--pack-group-header) !important;
 }
+.sheet .tab[data-tab="details"] prose-mirror,
+.sheet .tab[data-tab="patronSpirit"] prose-mirror {
+  max-height: 150px;
+}
 /* Dialogs Windows */
 .werewolf.dialog.window-app,
 .werewolf.dialog.application {
@@ -2239,7 +2243,10 @@ body.uk .actor.sheet {
 .group.sheet .actor-header .coterie-features .field-header,
 .group.sheet .actor-header .cell-features .field-header,
 .group.sheet .actor-header .pack-features .field-header {
-  max-width: 150px;
+  max-width: 175px;
+  text-wrap-mode: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 .group.sheet .tab[data-tab="members"] .group-member {
   padding: 5px 0;
