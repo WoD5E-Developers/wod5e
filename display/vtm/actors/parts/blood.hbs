@@ -80,44 +80,13 @@
                         <label class="resource-label field-header">{{localize 'WOD5E.VTM.PredatorType'}}</label>
                     {{/if}}
                     <div class="resource resource-content">
-                        {{#if predator}}
-                            <span class="data-item">
-                                {{predator.name}}
-                            </span>
-                            <a class="edit-data-item" data-action="itemEdit" data-item-id="{{predator.id}}">
-                                <i class="fa-solid fa-pen-nib"></i>
-                            </a>
-                        {{else}}
-                            <a class="search-data-item" data-action="searchItem" title="{{localize 'WOD5E.Search'}}" data-type="predatorType">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </a>
-                            <a class="add-data-item" data-action="createItem" title="{{localize 'WOD5E.Add'}}" data-type="predatorType">
-                                <i class="fa-solid fa-plus"></i>
-                            </a>
-                        {{/if}}
+                        {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs" item=predator type="predatorType"}}
                     </div>
                 </div>
                 <div class="flexcol">
                     <label class="resource-label field-header">{{localize 'WOD5E.VTM.BloodResonance'}}</label>
                     <div class="resource resource-content">
-                        {{#if resonance}}
-                            <span class="data-item">
-                                {{resonance.name}}
-                            </span>
-                            <a class="edit-data-item" data-action="itemEdit" data-item-id="{{resonance.id}}">
-                                <i class="fa-solid fa-pen-nib"></i>
-                            </a>
-                            <a class="remove-data-item" data-action="itemDelete" data-item-id="{{resonance.id}}">
-                                <i class="fa-solid fa-xmark"></i>
-                            </a>
-                        {{else}}
-                            <a class="search-data-item" data-action="searchItem" title="{{localize 'WOD5E.Search'}}" data-type="resonance">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </a>
-                            <a class="add-data-item" data-action="createItem" title="{{localize 'WOD5E.Add'}}" data-type="resonance">
-                                <i class="fa-solid fa-plus"></i>
-                            </a>
-                        {{/if}}
+                        {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs" item=resonance type="resonance"}}
                     </div>
                 </div>
             </div>

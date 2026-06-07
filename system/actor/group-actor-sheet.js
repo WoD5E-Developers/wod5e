@@ -20,7 +20,7 @@ import { _onToggleLock } from './scripts/on-toggle-lock.js'
 import {
   _onCreateItem,
   _onItemChat,
-  _onItemEdit,
+  _onItemOpen,
   _onItemDelete,
   _onSearchItem
 } from './scripts/item-actions.js'
@@ -73,7 +73,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
       createItem: _onCreateItem,
       searchItem: _onSearchItem,
       itemChat: _onItemChat,
-      itemEdit: _onItemEdit,
+      itemOpen: _onItemOpen,
       itemDelete: _onItemDelete,
 
       // Members functions

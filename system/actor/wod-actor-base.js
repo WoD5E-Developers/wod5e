@@ -25,7 +25,7 @@ import { _onAddExperience, _onRemoveExperience, _onEditExperience } from './scri
 import {
   _onCreateItem,
   _onItemChat,
-  _onItemEdit,
+  _onItemOpen,
   _onItemDelete,
   _onSearchItem
 } from './scripts/item-actions.js'
@@ -90,7 +90,7 @@ export class WoDActorBase extends HandlebarsApplicationMixin(
       searchItem: _onSearchItem,
       rollItem: _onRollItem,
       itemChat: _onItemChat,
-      itemEdit: _onItemEdit,
+      itemOpen: _onItemOpen,
       itemDelete: _onItemDelete,
       expendItemUse: _onExpendItemUse,
       restoreItemUses: _onRestoreItemUses,

@@ -30,21 +30,7 @@
                         <div class="flexcol shared-row">
                             <label class="resource-label field-header">{{localize 'WOD5E.HTR.Drive'}}</label>
                             <div class="resource resource-content">
-                                {{#if drive}}
-                                    <span class="data-item nowrap">
-                                        {{drive.name}}
-                                    </span>
-                                    <a class="edit-data-item" data-action="itemEdit" data-item-id="{{drive.id}}">
-                                        <i class="fa-solid fa-pen-nib"></i>
-                                    </a>
-                                {{else}}
-                                    <a class="search-data-item" data-action="searchItem" title="{{localize 'WOD5E.Search'}}" data-type="drive">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </a>
-                                    <a class="add-data-item" data-action="createItem" title="{{localize 'WOD5E.Add'}}" data-type="drive">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </a>
-                                {{/if}}
+                                {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs" item=drive type="drive"}}
                             </div>
                         </div>
                     </div>
@@ -52,21 +38,7 @@
                         <div class="flexcol shared-row">
                             <label class="resource-label field-header">{{localize 'WOD5E.HTR.Creed'}}</label>
                             <div class="resource resource-content">
-                                {{#if creed}}
-                                    <span class="data-item nowrap">
-                                        {{creed.name}}
-                                    </span>
-                                    <a class="edit-data-item" data-action="itemEdit" data-item-id="{{creed.id}}">
-                                        <i class="fa-solid fa-pen-nib"></i>
-                                    </a>
-                                {{else}}
-                                    <a class="search-data-item" data-action="searchItem" title="{{localize 'WOD5E.Search'}}" data-type="creed">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </a>
-                                    <a class="add-data-item" data-action="createItem" title="{{localize 'WOD5E.Add'}}" data-type="creed">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </a>
-                                {{/if}}
+                                {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs" item=creed type="creed"}}
                             </div>
                         </div>
                     </div>
