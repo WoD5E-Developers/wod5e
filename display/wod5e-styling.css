@@ -2390,11 +2390,11 @@ body.uk .actor.sheet {
   align-items: center;
 }
 .item.sheet .item-header .profile-img {
-  flex: 0 0 100px;
-  min-height: 50px;
-  max-height: 205px;
-  height: auto;
-  width: 100px;
+  max-height: 100px;
+  max-width: 100px;
+  height: fit-content;
+  width: fit-content;
+  padding: 5px;
   margin-right: 0;
 }
 .item.sheet .item-header .header-fields {
