@@ -8,6 +8,7 @@
       "spc": "Story Character",
       "vampire": "Vampire",
       "werewolf": "Werewolf"
+      "mage": "Mage"
     },
     "Item": {
       "armor": "Armor",
