@@ -37,6 +37,12 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/wod5e/display/htr/actors/parts/redemption.hbs',
     'systems/wod5e/display/htr/actors/parts/creed-fields.hbs',
 
+    // Mage: the Ascension Sheet Partials
+    'systems/wod5e/display/mta/actors/parts/paradox.hbs',
+    'systems/wod5e/display/mta/actors/parts/quintessence-button.hbs',
+    'systems/wod5e/display/mta/actors/parts/spheres.hbs',
+    'systems/wod5e/display/mta/actors/parts/magick.hbs',
+
     // Vampire Sheet Partials
     'systems/wod5e/display/vtm/actors/parts/disciplines.hbs',
     'systems/wod5e/display/vtm/actors/parts/blood.hbs',
@@ -58,12 +64,6 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/wod5e/display/wta/actors/parts/patron-spirit.hbs',
     'systems/wod5e/display/wta/actors/parts/favor.hbs',
     'systems/wod5e/display/wta/actors/parts/ban.hbs',
-
-    // Mage: the Ascension Sheet Partials
-    'systems/wod5e/display/mta/actors/parts/paradox.hbs',
-    'systems/wod5e/display/mta/actors/parts/quintessence-button.hbs',
-    'systems/wod5e/display/mta/actors/parts/spheres.hbs',
-    'systems/wod5e/display/mta/actors/parts/magick.hbs',
 
     // SPC Sheet Partials
     'systems/wod5e/display/shared/actors/parts/spc/stats.hbs',

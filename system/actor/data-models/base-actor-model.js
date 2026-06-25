@@ -1,10 +1,10 @@
 import { attributeFields } from './fields/attribute-fields.js'
 import { hunterFields } from './fields/hunter-fields.js'
+import { mageFields } from './fields/mage-fields.js'
 import { settingFields } from './fields/setting-fields.js'
 import { skillFields } from './fields/skill-fields.js'
 import { vampireFields } from './fields/vampire-fields.js'
 import { werewolfFields } from './fields/werewolf-fields.js'
-import { mageFields } from './fields/mage-fields.js'
 
 export class WoDActorModel extends foundry.abstract.TypeDataModel {
   static defineSchema() {
