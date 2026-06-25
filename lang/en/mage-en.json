@@ -1,0 +1,63 @@
+{
+  "WOD5E": {
+    "MTA": {
+      "Arete": "Arete",
+      "AreteHint": "Sets the maximum sphere rating and Quintessence dice per roll",
+
+      "Paradox": "Paradox",
+      "PermanentParadox": "Permanent Paradox",
+      "PermanentParadoxHint": "Floor for Quintessence absorption from normal sources",
+      "ParadoxCheckTitle": "Paradox Check ({dice} dice)",
+      "ParadoxMaxTitle": "Paradox at Maximum",
+      "ParadoxMaxDescription": "{actor}'s Paradox has reached its maximum — Reality strikes back.",
+
+      "Quintessence": "Quintessence",
+      "QuintessencePerRoll": "Quintessence dice per roll",
+      "AretePlusPrime": "Arete + Prime",
+      "SpendQuintessence": "Spend Quintessence",
+      "QuintessenceSpendPrompt": "How many Quintessence to spend? (max {max} per roll)",
+      "MaxPerRoll": "Max per roll",
+
+      "AbsorbQuintessence": "Absorb Quintessence",
+      "AbsorbAmountLabel": "Amount absorbed",
+      "AbsorbSourceLabel": "Source type",
+      "SourceNormal": "Normal source",
+      "SourceNode": "Node",
+      "SourceSentient": "Sentient being",
+      "QuintessenceAbsorbed": "Quintessence Absorbed",
+      "QuintessenceAbsorbedDescription": "{actor} absorbed {amount} Quintessence from {source}. Paradox reduced by {paradoxRemoved} (floor: {floor}). Current Paradox: {newParadox}.",
+
+      "Quiet": "Quiet",
+      "Hubris": "Hubris",
+
+      "Spheres": "Spheres",
+      "Sphere": "Sphere",
+      "SelectSphere": "Select a Sphere",
+      "AddSphere": "Add Sphere",
+      "AddSpherePower": "Add Sphere Power",
+      "NoSphereSelected": "No sphere selected",
+      "NoPowerSelected": "No power selected",
+      "ExceedsArete": "Sphere rating exceeds current Arete",
+
+      "Correspondence": "Correspondence",
+      "Entropy": "Entropy",
+      "Forces": "Forces",
+      "Life": "Life",
+      "Matter": "Matter",
+      "Mind": "Mind",
+      "Prime": "Prime",
+      "Spirit": "Spirit",
+      "Time": "Time",
+
+      "Tradition": "Tradition",
+      "Magick": "Magick",
+
+      "Mage": "Mage"
+    }
+  },
+  "TYPES": {
+    "Actor": {
+      "mage": "Mage"
+    }
+  }
+}

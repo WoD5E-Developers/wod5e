@@ -1,0 +1,115 @@
+{{!-- Magick Tab — Arete, Paradox, Quiet/Hubris, Quintessence economy --}}
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="flexrow">
+
+        {{!-- Left column: Arete & Paradox --}}
+        <div class="flexcol">
+
+            {{!-- Arete --}}
+            <div class="flex-group-center nogrow">
+                <div class="flexcol resource">
+                    <label class="resource-label field-header">{{localize "WOD5E.MTA.Arete"}}</label>
+                    <div class="resource-content flexrow flex-center flex-between">
+                        <div class="resource-value" data-value="{{arete}}" data-name="system.arete">
+                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                            {{#numLoop 10}}
+                            <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                            {{/numLoop}}
+                        </div>
+                    </div>
+                    <div class="resource-hint">
+                        {{localize "WOD5E.MTA.AreteHint"}}
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Paradox --}}
+            <div class="flex-group-center nogrow">
+                <div class="flexcol resource">
+                    <label class="resource-label field-header">{{localize "WOD5E.MTA.Paradox"}}</label>
+                    <div class="resource-content flexrow flex-center flex-between">
+                        <div class="resource-value" data-value="{{paradox.value}}" data-name="system.paradox.value">
+                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                            {{#numLoop paradox.max}}
+                            <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                            {{/numLoop}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Permanent Paradox --}}
+            <div class="flex-group-center nogrow">
+                <div class="flexcol resource">
+                    <label class="resource-label field-header">{{localize "WOD5E.MTA.PermanentParadox"}}</label>
+                    <div class="resource-content flexrow flex-center flex-between">
+                        <input class="resource" type="number" name="system.permanentParadox"
+                            value="{{permanentParadox}}" min="0" max="5" />
+                    </div>
+                    <div class="resource-hint">
+                        {{localize "WOD5E.MTA.PermanentParadoxHint"}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        {{!-- Right column: Quintessence, Quiet, Hubris --}}
+        <div class="flexcol">
+
+            {{!-- Quintessence economy info --}}
+            <div class="flex-group-center nogrow">
+                <div class="flexcol resource">
+                    <label class="resource-label field-header">{{localize "WOD5E.MTA.Quintessence"}}</label>
+                    <div class="resource-contents resource">
+                        {{localize "WOD5E.MTA.QuintessencePerRoll"}}: <strong>{{quintessencePerRoll}}</strong>
+                        <span class="resource-hint">({{localize "WOD5E.MTA.AretePlusPrime"}})</span>
+                    </div>
+                    <div class="flexrow flex-center">
+                        {{!-- Spend button (triggers Paradox Checks) --}}
+                        <button class="rollable" data-action="spendQuintessence" type="button">
+                            <i class="fa-solid fa-wand-sparkles"></i>
+                            {{localize "WOD5E.MTA.SpendQuintessence"}}
+                        </button>
+                        {{!-- Absorb button (reduces Paradox) --}}
+                        <button class="rollable" data-action="absorbQuintessence" type="button">
+                            <i class="fa-solid fa-arrow-down-to-line"></i>
+                            {{localize "WOD5E.MTA.AbsorbQuintessence"}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Quiet track --}}
+            <div class="flex-group-center nogrow">
+                <div class="flexcol resource">
+                    <label class="resource-label field-header">{{localize "WOD5E.MTA.Quiet"}}</label>
+                    <div class="resource-content flexrow flex-center flex-between">
+                        <div class="resource-value" data-value="{{quiet.value}}" data-name="system.quiet.value">
+                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                            {{#numLoop quiet.max}}
+                            <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                            {{/numLoop}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Hubris track --}}
+            <div class="flex-group-center nogrow">
+                <div class="flexcol resource">
+                    <label class="resource-label field-header">{{localize "WOD5E.MTA.Hubris"}}</label>
+                    <div class="resource-content flexrow flex-center flex-between">
+                        <div class="resource-value" data-value="{{hubris.value}}" data-name="system.hubris.value">
+                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                            {{#numLoop hubris.max}}
+                            <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                            {{/numLoop}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

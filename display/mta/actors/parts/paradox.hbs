@@ -1,0 +1,11 @@
+{{!-- Paradox track (0–5), mirrors hunger.hbs --}}
+<div class="resource flex-group-center paradox">
+    <div class="resource-content flexrow flex-center flex-between">
+        <div class="resource-value" data-value="{{paradox.value}}" data-name="system.paradox.value">
+            <span class="resource-value-empty paradox-value" data-action="dotCounterEmpty"></span>
+            {{#numLoop paradox.max}}
+            <span class="resource-value-step paradox-value" data-action="dotCounterChange" data-index="{{this}}"></span>
+            {{/numLoop}}
+        </div>
+    </div>
+</div>

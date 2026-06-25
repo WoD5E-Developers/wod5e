@@ -1,0 +1,167 @@
+{{!-- Spheres Tab — mirrors disciplines.hbs in structure --}}
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="flexrow">
+
+        {{!-- Left column: sphere tree --}}
+        <div class="item-list">
+            <div class="flexrow flex-center">
+                <div class="item-header">{{localize 'WOD5E.MTA.Spheres'}}</div>
+                <div class="item-controls">
+                    <a class="item-control search-data-item flex-center" data-action="searchItem"
+                        title="{{localize 'WOD5E.Search'}}" data-type="power">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </a>
+                    <a class="item-control add-sphere flex-center"
+                        title="{{localize 'WOD5E.MTA.AddSphere'}}" data-action="addSphere">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+
+            <ul class="powers-display-tree category">
+                {{#each spheres as |sphere key|}}
+                    {{#if sphere.visible}}
+                        <span class="parent flexrow">
+                            <div class="icon category-select{{#if sphere.selected}} selected{{/if}}"
+                                data-action="selectSphere" data-sphere="{{key}}"></div>
+                            <a class="select-label" data-action="selectSphere" data-sphere="{{key}}">
+                                {{sphere.displayName}}
+                                {{!-- Warn if sphere rating exceeds current Arete --}}
+                                {{#if sphere.exceedsArete}}
+                                    <span class="arete-warning" title="{{localize 'WOD5E.MTA.ExceedsArete'}}">
+                                        <i class="fa-solid fa-triangle-exclamation"></i>
+                                    </span>
+                                {{/if}}
+                            </a>
+
+                            <div class="item-controls">
+                                {{!-- Roll with attribute/skill combination --}}
+                                <a class="rollable sphere-dice" data-action="roll"
+                                    title="{{localize 'WOD5E.RollList.Label'}}"
+                                    data-value-paths="spheres.{{key}}.value"
+                                    data-sphere="{{key}}" data-select-dialog="true">
+                                    <i class="fa-solid fa-dice-d10"></i>
+                                </a>
+                                {{!-- Post sphere description to chat --}}
+                                <a class="item-control sphere-chat" data-action="sphereChat"
+                                    title="{{localize 'WOD5E.ItemsList.ShowToChat'}}" data-sphere="{{key}}">
+                                    <i class="fas fa-comment-alt"></i>
+                                </a>
+                                {{!-- Delete only when no powers are attached --}}
+                                {{#if (eq sphere.powers.length 0)}}
+                                    <a class="item-control sphere-delete" data-action="removeSphere"
+                                        title="{{localize 'WOD5E.Delete'}}" data-sphere="{{key}}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                {{/if}}
+                            </div>
+
+                            {{!-- Sphere dots — max capped at Arete --}}
+                            <div class="power-resource-dots">
+                                <div class="resource-value" data-value="{{sphere.value}}"
+                                    data-name="system.spheres.{{key}}.value">
+                                    <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                    {{#numLoop 5}}
+                                        <span class="resource-value-step" data-action="dotCounterChange"
+                                            data-index="{{this}}"></span>
+                                    {{/numLoop}}
+                                </div>
+                            </div>
+                        </span>
+
+                        <ul>
+                            {{#each sphere.powers as |power key|}}
+                                <li>
+                                    <span>
+                                        <div class="icon power-select{{#if power.system.selected}} selected{{/if}}"
+                                            data-action="selectSpherePower" data-power="{{power.id}}"
+                                            style="background-image: url('{{power.img}}');"></div>
+                                        <a class="select-label" data-action="selectSpherePower"
+                                            data-power="{{power.id}}">{{power.name}}</a>
+                                    </span>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+
+        {{!-- Right column: selected sphere / power detail --}}
+        <div class="powers-list item-list">
+            {{#if selectedSphere}}
+                <div class="discipline category collapsible-container">
+                    <div class="flex-center item-header collapsible" data-action="toggleCollapse">
+                        <div class="item-name">
+                            {{selectedSphere.displayName}}
+                            <a class="item-control item-create" data-action="createItem"
+                                title="{{localize 'WOD5E.MTA.AddSpherePower'}}"
+                                data-type="power" data-subtype="{{selectedSphere.id}}">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="discipline-description collapsible-content">
+                        <prose-mirror name="system.spheres.{{selectedSphere.id}}.description"
+                            value="{{selectedSphere.description}}" toggled="true" compact="true">
+                            {{{enrichedSelectedSphereDescription}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+            {{else}}
+                <div class="discipline category flex-center">
+                    {{localize 'WOD5E.MTA.NoSphereSelected'}}
+                </div>
+            {{/if}}
+
+            {{#if selectedSpherePower}}
+                <div class="discipline category">
+                    <div class="flex-center">
+                        <div class="flexrow">
+                            <span class="item-name item-header">
+                                {{#if (isNotEmpty selectedSpherePower.system.dicepool)}}
+                                    <a class="item-image rollable-item" data-action="rollItem"
+                                        data-item-uuid="{{selectedSpherePower.uuid}}">
+                                        <i class="fa-solid fa-dice-d10"></i>
+                                    </a>
+                                {{/if}}
+                                {{selectedSpherePower.name}}
+                            </span>
+                            <div class="item-controls flex-group-right">
+                                <a class="item-control item-edit" data-action="itemEdit"
+                                    title="{{localize 'WOD5E.Edit'}}" data-item-id="{{selectedSpherePower._id}}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a class="item-control item-chat" data-action="itemChat"
+                                    title="{{localize 'WOD5E.ItemsList.ShowToChat'}}"
+                                    data-item-id="{{selectedSpherePower._id}}">
+                                    <i class="fas fa-comment-alt"></i>
+                                </a>
+                                <a class="item-control item-delete" data-action="itemDelete"
+                                    title="{{localize 'WOD5E.Delete'}}" data-item-id="{{selectedSpherePower._id}}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="discipline-description">
+                        <div class="flex-center flexrow">
+                            <div class="flex-center">
+                                <b>{{localize "WOD5E.Level"}}: {{selectedSpherePower.system.level}}</b>
+                            </div>
+                        </div>
+                        {{#if selectedSpherePowerDescription}}
+                            <div class="power-description">
+                                {{{selectedSpherePowerDescription}}}
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+            {{else}}
+                <div class="discipline category flex-center">
+                    {{localize 'WOD5E.MTA.NoPowerSelected'}}
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</section>
