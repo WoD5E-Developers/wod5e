@@ -59,6 +59,12 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/wod5e/display/wta/actors/parts/favor.hbs',
     'systems/wod5e/display/wta/actors/parts/ban.hbs',
 
+    // Mage: the Ascension Sheet Partials
+    'systems/wod5e/display/mta/actors/parts/paradox.hbs',
+    'systems/wod5e/display/mta/actors/parts/quintessence-button.hbs',
+    'systems/wod5e/display/mta/actors/parts/spheres.hbs',
+    'systems/wod5e/display/mta/actors/parts/magick.hbs',
+
     // SPC Sheet Partials
     'systems/wod5e/display/shared/actors/parts/spc/stats.hbs',
     'systems/wod5e/display/shared/actors/parts/spc/spc-traits.hbs',

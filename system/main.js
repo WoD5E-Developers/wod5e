@@ -54,6 +54,7 @@ import { Edges } from './api/def/edges.js'
 import { Renown } from './api/def/renown.js'
 import { WereForms } from './api/def/were-forms.js'
 import { Gifts } from './api/def/gifts.js'
+import { Spheres } from './api/def/spheres.js'
 import { rollPrompt, rollPromptToChat } from './ui/custom-enrichers/roll-prompt-enrichers.js'
 import { RollMenuApplication } from './applications/roll-menu/roll-prompt-menu.js'
 import { CompendiumBrowserApplication } from './applications/compendium-browser/compendium-bowser.js'
@@ -92,6 +93,7 @@ window.WOD5E = {
   Renown,
   Gifts,
   WereForms,
+  Spheres,
   WOD5eDie,
   DiceRegistry
 }

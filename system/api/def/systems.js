@@ -50,6 +50,11 @@ export class Systems extends BaseDefinitionClass {
     usesResourceOnAdvancedDice: false,
     label: 'TYPES.Actor.hunter'
   }
+
+  static mage = {
+    label: 'TYPES.Actor.mage',
+    usesResourceOnAdvancedDice: false
+  }
 }
 
 // Hook to call onReady when the game is ready

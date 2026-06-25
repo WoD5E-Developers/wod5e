@@ -47,6 +47,7 @@
       "ghoul": {},
       "hunter": {},
       "werewolf": {},
+      "mage": {},
       "group": {}
     },
     "Item": {
@@ -130,6 +131,11 @@
       "lang": "en",
       "name": "Vampire (English)",
       "path": "lang/en/vampire-en.json"
+    },
+    { 
+      "lang": "en",
+      "name": "Mage (English)",
+      "path": "lang/en/mage-en.json"
     },
     {
       "lang": "en",

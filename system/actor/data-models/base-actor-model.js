@@ -4,6 +4,7 @@ import { settingFields } from './fields/setting-fields.js'
 import { skillFields } from './fields/skill-fields.js'
 import { vampireFields } from './fields/vampire-fields.js'
 import { werewolfFields } from './fields/werewolf-fields.js'
+import { mageFields } from './fields/mage-fields.js'
 
 export class WoDActorModel extends foundry.abstract.TypeDataModel {
   static defineSchema() {
@@ -103,6 +104,7 @@ export class WoDActorModel extends foundry.abstract.TypeDataModel {
     Object.assign(schema, vampireFields())
     Object.assign(schema, werewolfFields())
     Object.assign(schema, hunterFields())
+    Object.assign(schema, mageFields())
 
     return schema
   }

@@ -12,6 +12,8 @@ import { GhoulActorSheet } from '../../actor/vtm/ghoul-actor-sheet.js'
 import { HunterActorSheet } from '../../actor/htr/hunter-actor-sheet.js'
 // Werewolf system
 import { WerewolfActorSheet } from '../../actor/wta/werewolf-actor-sheet.js'
+// Mage system
+import { MageActorSheet } from '../../actor/mta/mage-actor-sheet.js'
 // Actor models
 import { WoDActorModel } from '../../actor/data-models/base-actor-model.js'
 import { SPCActorModel } from '../../actor/data-models/spc-actor-model.js'
@@ -63,6 +65,13 @@ export class ActorTypes extends BaseDefinitionClass {
     label: 'TYPES.Actor.werewolf',
     types: ['werewolf'],
     sheetClass: WerewolfActorSheet,
+    sheetModel: WoDActorModel
+  }
+
+  static mage = {
+    label: 'TYPES.Actor.mage',
+    types: ['mage'],
+    sheetClass: MageActorSheet,
     sheetModel: WoDActorModel
   }
 
