@@ -1,31 +1,19 @@
-import { prepareSpheresContext, prepareMagickContext } from './scripts/prepare-partials.js'
-import {
-  _onAddSphere,
-  _onSphereToChat,
-  _onRemoveSphere,
-  _onSelectSphere,
-  _onSelectSpherePower
-} from './scripts/spheres.js'
-import { _onSpendQuintessence } from './scripts/paradox.js'
-import { _onAbsorbQuintessence } from './scripts/quintessence.js'
+import { prepareMagickContext } from './scripts/prepare-partials.js'
+import { _onParadoxRoll, _onAbsorbQuintessence } from './scripts/paradox.js'
 import { WoDActorBase } from '../wod-actor-base.js'
 
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 /**
  * Mage: the Ascension actor sheet.
- * Extends WoDActorBase exactly as VampireActorSheet and WerewolfActorSheet do.
+ * Spheres sit inside the Stats tab (appended below Skills).
+ * The dedicated Spheres tab is removed.
  */
 export class MageActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'actor', 'sheet', 'mage'],
     actions: {
-      addSphere: _onAddSphere,
-      removeSphere: _onRemoveSphere,
-      sphereChat: _onSphereToChat,
-      selectSphere: _onSelectSphere,
-      selectSpherePower: _onSelectSpherePower,
-      spendQuintessence: _onSpendQuintessence,
+      paradoxRoll:       _onParadoxRoll,
       absorbQuintessence: _onAbsorbQuintessence
     }
   }
@@ -38,13 +26,10 @@ export class MageActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
       template: 'systems/wod5e/display/shared/actors/parts/tab-navigation.hbs'
     },
     stats: {
-      template: 'systems/wod5e/display/shared/actors/parts/stats.hbs'
+      template: 'systems/wod5e/display/mta/actors/parts/stats.hbs'
     },
     experience: {
       template: 'systems/wod5e/display/shared/actors/parts/experience.hbs'
-    },
-    spheres: {
-      template: 'systems/wod5e/display/mta/actors/parts/spheres.hbs'
     },
     magick: {
       template: 'systems/wod5e/display/mta/actors/parts/magick.hbs'
@@ -85,12 +70,6 @@ export class MageActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
       title: 'WOD5E.Tabs.Experience',
       icon: '<i class="fa-solid fa-file-contract"></i>'
     },
-    spheres: {
-      id: 'spheres',
-      group: 'primary',
-      title: 'WOD5E.MTA.Spheres',
-      icon: '<i class="fa-solid fa-circle-nodes"></i>'
-    },
     magick: {
       id: 'magick',
       group: 'primary',
@@ -130,21 +109,17 @@ export class MageActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
   }
 
   async _prepareContext() {
-    const data = await super._prepareContext()
+    const data  = await super._prepareContext()
     const actor = this.actor
     const actorData = actor.system
 
-    const traditionFilter = actor.items.filter((item) => item.type === 'tradition')
+    data.tradition           = actorData.tradition
+    data.paradox             = actorData.paradox
+    data.permanentParadox    = actorData.permanentParadox
+    data.arete               = actorData.arete
 
-    data.paradox = actorData.paradox
-    data.permanentParadox = actorData.permanentParadox
-    data.arete = actorData.arete
-    data.quiet = actorData.quiet
-    data.hubris = actorData.hubris
-    data.tradition = traditionFilter[0]
-
-    // Quintessence per roll exposed for the header display
-    const primeSphere = actorData.spheres?.prime?.value ?? 0
+    // Quintessence per roll for header tooltip (Arete + Prime)
+    const primeSphere = actorData.spheres?.prime ?? 0
     data.quintessencePerRoll = Math.max(1, actorData.arete + primeSphere)
 
     return data
@@ -154,16 +129,18 @@ export class MageActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
     context = { ...(await super._preparePartContext(partId, context, options)) }
 
     const actor = this.actor
+    const actorData = actor.system
 
     switch (partId) {
       case 'stats':
-        return this.prepareStatsContext(context, actor)
+        // Use the base stats context, then append sphere values
+        context = await this.prepareStatsContext(context, actor)
+        context.spheres = actorData.spheres
+        context.arete   = actorData.arete
+        return context
 
       case 'experience':
         return this.prepareExperienceContext(context, actor)
-
-      case 'spheres':
-        return prepareSpheresContext(context, actor)
 
       case 'magick':
         return prepareMagickContext(context, actor)

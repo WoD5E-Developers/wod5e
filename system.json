@@ -22,7 +22,8 @@
     ],
     "styles": [
         "display/wod5e-styling.css",
-        "lib/flexdatalist/flexdatalist.css"
+        "lib/flexdatalist/flexdatalist.css",
+        "display/mta/mage-styling.css"
     ],
     "primaryTokenAttribute": "health",
     "secondaryTokenAttribute": "willpower",

@@ -2,52 +2,38 @@
 <header class="actor-header" {{#if headerbg}} style="background: url({{headerbg}}) center;"{{/if}}>
     <div class="header-fields">
         <div class="header-fields-left">
-            {{!-- Health Tracker --}}
             {{> "systems/wod5e/display/shared/actors/parts/health.hbs"}}
-            {{!-- Willpower Tracker --}}
             {{> "systems/wod5e/display/shared/actors/parts/willpower.hbs"}}
         </div>
     </div>
 
-    {{!-- Centre profile image --}}
     {{> "systems/wod5e/display/shared/actors/parts/header-profile.hbs"}}
 
     <div class="header-fields">
         <div class="header-fields-right">
             <div class="flexcol">
 
-                {{!-- Tradition row --}}
+                {{!-- Tradition: plain text input --}}
                 <div class="field-section flexrow">
                     <div class="flexrow nowrap flexend">
                         <div class="flexcol shared-row">
                             <label class="resource-label field-header">{{localize 'WOD5E.MTA.Tradition'}}</label>
-                            <div class="resource resource-content">
-                                {{#if tradition}}
-                                    <span class="data-item nowrap">{{tradition.name}}</span>
-                                    <a class="edit-data-item" data-action="itemEdit" data-item-id="{{tradition.id}}">
-                                        <i class="fa-solid fa-pen-nib"></i>
-                                    </a>
-                                {{else}}
-                                    <a class="search-data-item" data-action="searchItem"
-                                        title="{{localize 'WOD5E.Search'}}" data-type="tradition">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </a>
-                                    <a class="add-data-item" data-action="createItem"
-                                        title="{{localize 'WOD5E.Add'}}" data-type="tradition">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </a>
-                                {{/if}}
-                            </div>
+                            <input class="resource" type="text" name="system.tradition"
+                                value="{{tradition}}"
+                                placeholder="{{localize 'WOD5E.MTA.Tradition'}}"/>
                         </div>
                     </div>
                 </div>
 
-                {{!-- Paradox track + Quintessence spend button --}}
+                {{!-- Paradox dots + roll button --}}
                 <div class="flexcol field-section">
                     <label class="resource-label field-header">{{localize "WOD5E.MTA.Paradox"}}</label>
                     <div class="flexrow">
                         {{> "systems/wod5e/display/mta/actors/parts/paradox.hbs"}}
-                        {{> "systems/wod5e/display/mta/actors/parts/quintessence-button.hbs"}}
+                        <button class="rollable paradox-roll-btn" data-action="paradoxRoll" type="button"
+                            title="{{localize 'WOD5E.MTA.ParadoxRollTitle'}} ({{localize 'WOD5E.MTA.QuintessenceDice'}}: {{quintessencePerRoll}})">
+                            <i class="fa-solid fa-dice-d10"></i>
+                        </button>
                     </div>
                 </div>
 

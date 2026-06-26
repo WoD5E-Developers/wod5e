@@ -39,9 +39,8 @@ export const preloadHandlebarsTemplates = async function () {
 
     // Mage: the Ascension Sheet Partials
     'systems/wod5e/display/mta/actors/parts/paradox.hbs',
-    'systems/wod5e/display/mta/actors/parts/quintessence-button.hbs',
-    'systems/wod5e/display/mta/actors/parts/spheres.hbs',
     'systems/wod5e/display/mta/actors/parts/magick.hbs',
+    'systems/wod5e/display/mta/actors/parts/stats.hbs',
 
     // Vampire Sheet Partials
     'systems/wod5e/display/vtm/actors/parts/disciplines.hbs',

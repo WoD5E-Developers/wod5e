@@ -1,0 +1,274 @@
+{{!-- Mage Stats Tab: Attributes + Skills (shared) + Spheres (3-column grid below) --}}
+<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <div class="stats-content">
+        <div class="skills-attributes">
+
+            {{!-- ATTRIBUTES --}}
+            <div class="resource-header">
+                <label class="header-label">{{localize "WOD5E.AttributesList.Attributes"}}</label>
+            </div>
+            <div class="stats-container attributes">
+                <div class="grid grid-3col stats-footer">
+                    <div class="field-header">{{localize "WOD5E.SPC.Physical"}}</div>
+                    <div class="field-header">{{localize "WOD5E.SPC.Social"}}</div>
+                    <div class="field-header">{{localize "WOD5E.SPC.Mental"}}</div>
+                </div>
+                <div class="stats-content">
+                    {{#each sortedAttributes as |type key|}}
+                        <div class="attributes stats-list">
+                            {{#each type as |attribute key|}}
+                                <div class="attribute">
+                                    <label class="resource-label rollable" data-action="roll"
+                                        data-value-paths="attributes.{{attribute.id}}.value"
+                                        data-select-dialog="true"
+                                        data-attribute="{{attribute.id}}">{{attribute.displayName}}</label>
+                                    {{#if ../../settings.skillAttributeInputs}}
+                                        {{#if ../../locked}}
+                                            <b>{{attribute.value}}</b>
+                                        {{else}}
+                                            <input class="resource-value skill-attribute-input"
+                                                name="system.attributes.{{attribute.id}}.value"
+                                                type="number" value="{{attribute.value}}"/>
+                                        {{/if}}
+                                    {{else}}
+                                        <div class="resource-value" data-value="{{attribute.value}}"
+                                            data-name="system.attributes.{{attribute.id}}.value">
+                                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                            {{#numLoop 5}}
+                                                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                                            {{/numLoop}}
+                                        </div>
+                                    {{/if}}
+                                </div>
+                            {{/each}}
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            {{!-- SKILLS --}}
+            <label class="resource-header">{{localize "WOD5E.SkillsList.Skills"}}</label>
+            <div class="stats-container skills">
+                <div class="stats-content">
+                    {{#each sortedSkills as |type key|}}
+                        <div class="skills stats-list">
+                            {{#each type as |skill key|}}
+                                <div class="skill">
+                                    <div class="resource-label">
+                                        <a class="edit-skill" data-action="editSkill" title="Edit skill" data-skill="{{skill.id}}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <label class="rollable{{#if skill.bonuses}} specialty-available{{/if}}"
+                                            data-action="roll"
+                                            data-value-paths="skills.{{skill.id}}.value"
+                                            data-skill="{{skill.id}}"
+                                            data-select-dialog="true"
+                                            data-use-flavor-path="true"
+                                            data-flavor-path="skills.{{skill.id}}.description"
+                                            data-macroid="{{skill.macroid}}">{{skill.displayName}}</label>
+                                        {{#if hasSpecialties}}
+                                            <label class="specialty"
+                                                title="{{localize 'WOD5E.SkillsList.Specialties'}}:{{#each skill.specialtiesList as |bonus|}} {{bonus}}{{#unless @last}},{{/unless}}{{/each}}">S</label>
+                                        {{/if}}
+                                    </div>
+                                    {{#if ../../settings.skillAttributeInputs}}
+                                        {{#if ../../locked}}
+                                            <b>{{skill.value}}</b>
+                                        {{else}}
+                                            <input class="resource-value skill-attribute-input"
+                                                name="system.skills.{{skill.id}}.value"
+                                                type="number" value="{{skill.value}}"/>
+                                        {{/if}}
+                                    {{else}}
+                                        <div class="resource-value" data-value="{{skill.value}}"
+                                            data-name="system.skills.{{skill.id}}.value">
+                                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                            {{#numLoop 5}}
+                                                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                                            {{/numLoop}}
+                                        </div>
+                                    {{/if}}
+                                </div>
+                            {{/each}}
+                        </div>
+                    {{/each}}
+                </div>
+                <div class="grid grid-3col stats-footer">
+                    <div class="field-header">{{localize "WOD5E.SPC.Physical"}}</div>
+                    <div class="field-header">{{localize "WOD5E.SPC.Social"}}</div>
+                    <div class="field-header">{{localize "WOD5E.SPC.Mental"}}</div>
+                </div>
+            </div>
+
+            {{!-- SPHERES: 9 spheres in 3 columns, styled like skills/attributes --}}
+            <label class="resource-header">{{localize "WOD5E.MTA.Spheres"}}</label>
+            <div class="stats-container mta-spheres">
+                <div class="stats-content">
+                    {{!-- Row 1: Correspondence · Entropy · Forces --}}
+                    <div class="skills stats-list">
+                        <div class="skill">
+                            <label class="resource-label rollable" data-action="roll"
+                                data-value-paths="spheres.correspondence"
+                                data-select-dialog="true">{{localize "WOD5E.MTA.Correspondence"}}</label>
+                            <div class="resource-value mta-sphere-dots{{#if (gt spheres.correspondence arete)}} mta-exceeds-arete{{/if}}"
+                                data-value="{{spheres.correspondence}}"
+                                data-name="system.spheres.correspondence">
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                {{#numLoop 5}}<span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>{{/numLoop}}
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <label class="resource-label rollable" data-action="roll"
+                                data-value-paths="spheres.entropy"
+                                data-select-dialog="true">{{localize "WOD5E.MTA.Entropy"}}</label>
+                            <div class="resource-value mta-sphere-dots{{#if (gt spheres.entropy arete)}} mta-exceeds-arete{{/if}}"
+                                data-value="{{spheres.entropy}}"
+                                data-name="system.spheres.entropy">
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                {{#numLoop 5}}<span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>{{/numLoop}}
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <label class="resource-label rollable" data-action="roll"
+                                data-value-paths="spheres.forces"
+                                data-select-dialog="true">{{localize "WOD5E.MTA.Forces"}}</label>
+                            <div class="resource-value mta-sphere-dots{{#if (gt spheres.forces arete)}} mta-exceeds-arete{{/if}}"
+                                data-value="{{spheres.forces}}"
+                                data-name="system.spheres.forces">
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                {{#numLoop 5}}<span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>{{/numLoop}}
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- Row 2: Life · Matter · Mind --}}
+                    <div class="skills stats-list">
+                        <div class="skill">
+                            <label class="resource-label rollable" data-action="roll"
+                                data-value-paths="spheres.life"
+                                data-select-dialog="true">{{localize "WOD5E.MTA.Life"}}</label>
+                            <div class="resource-value mta-sphere-dots{{#if (gt spheres.life arete)}} mta-exceeds-arete{{/if}}"
+                                data-value="{{spheres.life}}"
+                                data-name="system.spheres.life">
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                {{#numLoop 5}}<span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>{{/numLoop}}
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <label class="resource-label rollable" data-action="roll"
+                                data-value-paths="spheres.matter"
+                                data-select-dialog="true">{{localize "WOD5E.MTA.Matter"}}</label>
+                            <div class="resource-value mta-sphere-dots{{#if (gt spheres.matter arete)}} mta-exceeds-arete{{/if}}"
+                                data-value="{{spheres.matter}}"
+                                data-name="system.spheres.matter">
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                {{#numLoop 5}}<span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>{{/numLoop}}
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <label class="resource-label rollable" data-action="roll"
+                                data-value-paths="spheres.mind"
+                                data-select-dialog="true">{{localize "WOD5E.MTA.Mind"}}</label>
+                            <div class="resource-value mta-sphere-dots{{#if (gt spheres.mind arete)}} mta-exceeds-arete{{/if}}"
+                                data-value="{{spheres.mind}}"
+                                data-name="system.spheres.mind">
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                {{#numLoop 5}}<span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>{{/numLoop}}
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- Row 3: Prime · Spirit · Time --}}
+                    <div class="skills stats-list">
+                        <div class="skill">
+                            <label class="resource-label rollable" data-action="roll"
+                                data-value-paths="spheres.prime"
+                                data-select-dialog="true">{{localize "WOD5E.MTA.Prime"}}</label>
+                            <div class="resource-value mta-sphere-dots{{#if (gt spheres.prime arete)}} mta-exceeds-arete{{/if}}"
+                                data-value="{{spheres.prime}}"
+                                data-name="system.spheres.prime">
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                {{#numLoop 5}}<span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>{{/numLoop}}
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <label class="resource-label rollable" data-action="roll"
+                                data-value-paths="spheres.spirit"
+                                data-select-dialog="true">{{localize "WOD5E.MTA.Spirit"}}</label>
+                            <div class="resource-value mta-sphere-dots{{#if (gt spheres.spirit arete)}} mta-exceeds-arete{{/if}}"
+                                data-value="{{spheres.spirit}}"
+                                data-name="system.spheres.spirit">
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                {{#numLoop 5}}<span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>{{/numLoop}}
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <label class="resource-label rollable" data-action="roll"
+                                data-value-paths="spheres.time"
+                                data-select-dialog="true">{{localize "WOD5E.MTA.Time"}}</label>
+                            <div class="resource-value mta-sphere-dots{{#if (gt spheres.time arete)}} mta-exceeds-arete{{/if}}"
+                                data-value="{{spheres.time}}"
+                                data-name="system.spheres.time">
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                {{#numLoop 5}}<span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>{{/numLoop}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        {{!-- Side panel: Conditions + Custom Rolls (identical to shared stats) --}}
+        <div class="side-panel">
+            <div class="stat-panel-section">
+                <label class="resource-header">{{localize "WOD5E.ItemsList.Conditions"}}</label>
+                <div class="stats-container">
+                    <div class="items-list flexcol">
+                        {{#each conditions as |condition id|}}
+                            <div class="item flexrow{{#if condition.system.suppressed}} suppressed{{/if}}"
+                                data-drag="true" data-item-id="{{condition.id}}"
+                                data-document-uuid="{{condition.uuid}}" data-type="Item">
+                                <div class="item-image clickable" data-action="itemChat" data-item-id="{{condition._id}}">
+                                    <img src="{{condition.img}}" title="{{condition.name}}" width="24" height="24" alt="{{condition.name}}" />
+                                </div>
+                                <div class="item-name">{{condition.name}}</div>
+                                <div class="item-controls">
+                                    <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{condition._id}}" title="{{localize 'WOD5E.Edit'}}"><i class="fas fa-edit"></i></a>
+                                    <a class="item-control condition-suppression" data-action="toggleConditionSuppression" data-item-id="{{condition._id}}" title="{{localize 'WOD5E.ItemsList.ToggleConditionSuppression'}}"><i class="fa-solid {{#if condition.system.suppressed}}fa-toggle-off{{else}}fa-toggle-on{{/if}}"></i></a>
+                                    <a class="item-control condition-delete" data-action="itemDelete" data-item-id="{{condition._id}}" title="{{localize 'WOD5E.Delete'}}"><i class="fas fa-trash"></i></a>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                    <div class="flex-group-center">
+                        <a class="item-control search-data-item flex-center" data-action="searchItem" title="{{localize 'WOD5E.Search'}}" data-type="condition"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.Add'}}" data-type="condition"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-panel-section">
+                <label class="resource-header">{{localize "WOD5E.ItemsList.CustomRolls"}}</label>
+                <div class="stats-container">
+                    <div class="items-list flexcol">
+                        {{#each customRolls as |roll id|}}
+                            <div class="item flexrow" data-drag="true" data-item-id="{{roll.id}}"
+                                data-document-uuid="{{roll.uuid}}" data-type="Item">
+                                <div class="item-image rollable-item" data-action="rollItem" data-item-uuid="{{roll.uuid}}">
+                                    <img src="{{roll.img}}" title="{{roll.name}}" width="24" height="24" alt="{{roll.name}}" />
+                                </div>
+                                <div class="item-name">{{roll.name}}</div>
+                                <div class="item-controls">
+                                    <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{roll._id}}" title="{{localize 'WOD5E.Edit'}}"><i class="fas fa-edit"></i></a>
+                                    <a class="item-control item-delete" data-action="itemDelete" data-item-id="{{roll._id}}" title="{{localize 'WOD5E.Delete'}}"><i class="fas fa-trash"></i></a>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                    <div class="flex-group-center">
+                        <a class="item-control search-data-item flex-center" data-action="searchItem" title="{{localize 'WOD5E.Search'}}" data-type="customRoll"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.Add'}}" data-type="customRoll"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

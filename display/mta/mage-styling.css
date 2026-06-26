@@ -1,0 +1,130 @@
+/* ============================================================
+   Mage: the Ascension — sheet styling for WoD5E
+   Dot colour: #853bbc  |  Accent darks: #5a2080 / #3d1459
+   ============================================================ */
+
+:root {
+  --mage-color-1:  #5a2080;   /* dark — borders, header bg, tab bar */
+  --mage-color-2:  #853bbc;   /* mid — active dots, buttons, accent  */
+  --mage-color-3:  #b06edc;   /* light — hover states                */
+  --mage-color-4:  #3d1459;   /* deepest — window shadow / header    */
+}
+
+/* ── Window chrome ──────────────────────────────────────────── */
+.sheet.mage {
+  box-shadow: 0 0 10px var(--mage-color-4);
+}
+.sheet.mage .window-header {
+  background: var(--mage-color-1);
+}
+.sheet.mage .window-content {
+  scrollbar-color: var(--mage-color-2) var(--mage-color-1);
+}
+
+/* ── Actor sheet header ─────────────────────────────────────── */
+.actor.sheet.mage .actor-header {
+  border-bottom: 2px solid var(--mage-color-1);
+}
+.actor.sheet.mage .profile-img,
+.actor.sheet.mage .actor-header input,
+.actor.sheet.mage .actor-header .resource {
+  border: 1px solid var(--mage-color-1);
+}
+
+/* ── Tab bar ────────────────────────────────────────────────── */
+.actor.sheet.mage .tabs-container {
+  background-color: var(--mage-color-2);
+}
+.actor.sheet.mage .tabs-container .navicon .wod5e-symbol {
+  color: var(--mage-color-2);
+}
+.actor.sheet.mage .tabs-container .active .navicon {
+  background-color: var(--mage-color-1);
+  color: var(--system-color-6);
+}
+.actor.sheet.mage .tabs-container .active .navicon .wod5e-symbol {
+  color: var(--system-color-6);
+}
+
+/* ── Banner ─────────────────────────────────────────────────── */
+.actor.sheet.mage .sheet-banner {
+  background-color: var(--mage-color-1);
+  color: var(--system-color-6);
+}
+
+/* ── Dot counter — filled dots ──────────────────────────────── */
+/* Covers: Arete, Paradox, Permanent Paradox, and Spheres */
+.sheet.mage .resource-value .resource-value-step.active,
+.sheet.mage .resource-value-static .resource-value-static-step.active {
+  background-color: var(--mage-color-2);
+}
+
+/* ── Square counter — filled squares (Quiet & Hubris) ───────── */
+.sheet.mage .resource-counter .resource-counter-step[data-state="-"] {
+  background-color: var(--mage-color-2);
+}
+
+/* ── Rollable buttons ───────────────────────────────────────── */
+.sheet.mage button.rollable {
+  background-color: var(--mage-color-1);
+  color: var(--system-color-6);
+}
+.sheet.mage button.rollable:hover {
+  background-color: var(--mage-color-3);
+}
+
+/* ── Paradox roll button sizing (matches rouse button) ──────── */
+.actor.sheet.mage .paradox-roll-btn {
+  max-width: 35px;
+  height: 35px;
+  margin-top: -5px;
+}
+
+/* ── ProseMirror editor ─────────────────────────────────────── */
+.actor.sheet.mage prose-mirror .editor-menu button:hover {
+  background-color: var(--mage-color-2);
+}
+.actor.sheet.mage prose-mirror .editor-content {
+  scrollbar-color: var(--mage-color-2) var(--color-scrollbar-track);
+  font-size: 10pt;
+}
+
+/* ── Spheres section in the Stats tab ──────────────────────── */
+/* No column header labels (no Physical / Social / Mental),
+   but we still want the same grid rhythm as skills. */
+.actor.sheet.mage .stats-container.mta-spheres .stats-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Sphere dot rows reuse .skills .stats-list layout naturally;
+   override column count so all 9 sit in one 3×3 block. */
+.actor.sheet.mage .stats-container.mta-spheres .skills.stats-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Warning colour when a sphere rating exceeds current Arete */
+.actor.sheet.mage .mta-sphere-dots.mta-exceeds-arete .resource-value-step.active {
+  background-color: #c0392b;
+}
+.actor.sheet.mage .mta-sphere-dots.mta-exceeds-arete .resource-value-step {
+  border-color: #c0392b;
+}
+
+/* ── Quiet / Hubris square counters ────────────────────────── */
+/* Give them a little breathing room in the Magick tab */
+.actor.sheet.mage .resource-counter.mta-integrity {
+  margin: 4px 0;
+}
+
+/* ── Dialogs ────────────────────────────────────────────────── */
+.mage.dialog.window-app,
+.mage.dialog.application {
+  border: 4px solid var(--mage-color-1);
+}
+.mage.dialog.window-app .window-header,
+.mage.dialog.application .window-header {
+  background: var(--mage-color-1);
+  border-bottom: 4px double var(--system-color-6);
+}

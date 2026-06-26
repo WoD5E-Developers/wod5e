@@ -2,53 +2,48 @@ import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
 
 /**
- * Roll Paradox Checks equal to the number of Quintessence points being spent.
- * Each die that rolls 8+ adds 1 Paradox to the actor.
+ * Roll Paradox Checks — a pool of basic dice where each 8+ adds 1 Paradox.
+ * Called directly from the Paradox roll button on the header.
  *
- * @param {Actor}  actor      - The Mage actor spending Quintessence
- * @param {number} diceCount  - Number of Paradox Check dice (= Quintessence spent)
- * @param {string} rollMode   - Optional roll mode override
+ * @param {Event} event
  */
-export const _onParadoxCheck = async function (actor, diceCount, rollMode) {
-  // Default to the current game roll mode if none provided
-  if (!rollMode) rollMode = game.settings.get('core', 'rollMode')
+export const _onParadoxRoll = async function (event) {
+  event.preventDefault()
+
+  const actor = this.actor
+  const actorData = actor.system
 
   const selectors = ['paradox']
-
-  // Gather any active situational modifiers tagged for paradox
   const activeModifiers = await getActiveModifiers({ actor, selectors })
-  const totalDice = Math.max(1, diceCount + activeModifiers.totalValue)
 
-  // Fire the roll — basic dice only; paradox checks don't use the advanced die pool
+  // Default pool is 1; the ST or player adjusts via the roll dialog
+  const baseDice = 1 + activeModifiers.totalValue
+
   await WOD5eDice.Roll({
-    basicDice: totalDice,
-    title: game.i18n.format('WOD5E.MTA.ParadoxCheckTitle', { dice: totalDice }),
+    basicDice: Math.max(1, baseDice),
+    title: game.i18n.localize('WOD5E.MTA.ParadoxRollTitle'),
     selectors,
     actor,
-    data: actor.system,
+    data: actorData,
     disableAdvancedDice: true,
-    quickRoll: true,
-    rollMode,
-    // After the roll resolves, count 8+ results and apply Paradox
+    quickRoll: false,   // false = opens roll dialog so pool can be adjusted
     callback: async (err, rollData) => {
       if (err) {
-        console.error('World of Darkness 5e | Paradox Check error: ' + err)
+        console.error('World of Darkness 5e | Paradox Roll error: ' + err)
         return
       }
 
-      // Count results of 8 or higher as paradox successes
+      // Each die showing 8+ increases Paradox by 1
       const results = rollData.terms[0]?.results ?? []
       const paradoxGained = results.filter((r) => r.active && r.result >= 8).length
 
       if (paradoxGained > 0) {
-        const currentParadox = actor.system.paradox.value
-        const paradoxMax = actor.system.paradox.max
-        const newParadox = Math.min(currentParadox + paradoxGained, paradoxMax)
+        const current = actorData.paradox.value
+        const max = actorData.paradox.max
+        const newValue = Math.min(current + paradoxGained, max)
+        await actor.update({ 'system.paradox.value': newValue })
 
-        await actor.update({ 'system.paradox.value': newParadox })
-
-        // Warn if Paradox hits maximum
-        if (newParadox >= paradoxMax) {
+        if (newValue >= max) {
           foundry.documents.ChatMessage.implementation.create({
             flags: {
               wod5e: {
@@ -67,53 +62,87 @@ export const _onParadoxCheck = async function (actor, diceCount, rollMode) {
 }
 
 /**
- * Spend Quintessence: calculate available dice (Arete + Prime sphere rating),
- * deduct the spent amount, then trigger Paradox Checks.
+ * Absorb Quintessence — reduces Paradox, respecting the permanentParadox floor.
+ * Paradox cannot go below permanentParadox from normal sources.
+ * Only a Node or sentient-being drain can reach 0.
  *
- * Called from buttons/actions on the mage sheet.
- *
- * @param {Event}  event
+ * @param {Event} event
  */
-export const _onSpendQuintessence = async function (event) {
+export const _onAbsorbQuintessence = async function (event) {
   event.preventDefault()
 
   const actor = this.actor
   const actorData = actor.system
 
-  // Quintessence per roll = Arete + Prime sphere rating (floor 1)
-  const arete = actorData.arete ?? 1
-  const primeSphere = actorData.spheres?.prime?.value ?? 0
-  const maxPerRoll = Math.max(1, arete + primeSphere)
-
-  // Prompt for how many points to spend this roll
-  const content = new foundry.data.fields.NumberField({
-    label: game.i18n.format('WOD5E.MTA.QuintessenceSpendPrompt', { max: maxPerRoll }),
+  const amountField = new foundry.data.fields.NumberField({
+    label: game.i18n.localize('WOD5E.MTA.AbsorbAmountLabel'),
     min: 1,
-    max: maxPerRoll,
     initial: 1,
     integer: true,
     required: true
-  }).toFormGroup(
-    {},
-    { name: 'amount' }
-  ).outerHTML
+  }).toFormGroup({}, { name: 'amount' }).outerHTML
 
-  const amountToSpend = await foundry.applications.api.DialogV2.prompt({
-    window: { title: game.i18n.localize('WOD5E.MTA.SpendQuintessence') },
+  const sourceField = new foundry.data.fields.StringField({
+    label: game.i18n.localize('WOD5E.MTA.AbsorbSourceLabel'),
+    choices: {
+      normal:   game.i18n.localize('WOD5E.MTA.SourceNormal'),
+      node:     game.i18n.localize('WOD5E.MTA.SourceNode'),
+      sentient: game.i18n.localize('WOD5E.MTA.SourceSentient')
+    },
+    initial: 'normal',
+    required: true
+  }).toFormGroup({}, { name: 'source' }).outerHTML
+
+  const formData = await foundry.applications.api.DialogV2.prompt({
+    window: { title: game.i18n.localize('WOD5E.MTA.AbsorbQuintessence') },
     classes: ['wod5e', 'dialog', 'mage'],
-    content,
+    content: amountField + sourceField,
     ok: {
       callback: (ev, button) =>
-        Number(new foundry.applications.ux.FormDataExtended(button.form).object.amount)
+        new foundry.applications.ux.FormDataExtended(button.form).object
     },
     modal: true
   })
 
-  if (!amountToSpend || amountToSpend < 1) return
+  if (!formData) return
 
-  // Clamp to the per-roll maximum
-  const spent = Math.min(amountToSpend, maxPerRoll)
+  const amount     = Number(formData.amount) || 1
+  const sourceType = formData.source || 'normal'
 
-  // Roll Paradox Checks equal to the number of points spent
-  await _onParadoxCheck(actor, spent)
+  const currentParadox    = actorData.paradox.value
+  const permanentParadox  = actorData.permanentParadox.value ?? 0
+
+  // Normal sources: floor is permanentParadox (minimum 1 if perm > 0, otherwise 0)
+  // Node / sentient: can drain to 0
+  const floor =
+    sourceType === 'node' || sourceType === 'sentient'
+      ? 0
+      : permanentParadox
+
+  const newParadox    = Math.max(floor, currentParadox - amount)
+  const paradoxRemoved = currentParadox - newParadox
+
+  await actor.update({ 'system.paradox.value': newParadox })
+
+  const sourceKey =
+    sourceType === 'node'     ? 'WOD5E.MTA.SourceNode' :
+    sourceType === 'sentient' ? 'WOD5E.MTA.SourceSentient' :
+                                'WOD5E.MTA.SourceNormal'
+
+  foundry.documents.ChatMessage.implementation.create({
+    flags: {
+      wod5e: {
+        name: game.i18n.localize('WOD5E.MTA.QuintessenceAbsorbed'),
+        img: 'systems/wod5e/assets/icons/dice/mortal/normal-success.png',
+        description: game.i18n.format('WOD5E.MTA.QuintessenceAbsorbedDescription', {
+          actor: actor.name,
+          amount,
+          paradoxRemoved,
+          newParadox,
+          source: game.i18n.localize(sourceKey),
+          floor
+        })
+      }
+    }
+  })
 }
