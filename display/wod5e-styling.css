@@ -379,11 +379,11 @@
   font-family: "vampireRevised", "sans-serif";
 }
 /* ProseMirror Alterations */
-prose-mirror {
+.application.sheet prose-mirror {
   width: -webkit-fill-available;
   height: inherit;
 }
-prose-mirror .editor-menu {
+.application.sheet prose-mirror .editor-menu {
   height: 35px;
   padding: 2px;
   border-radius: 0;
