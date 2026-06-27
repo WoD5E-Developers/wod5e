@@ -100,13 +100,14 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
   async _prepareContext() {
     // Top-level variables
     const data = this.data
-    const actorData = this.document.system
+    console.log(this)
+    const actorData = this?.document?.system
 
     // Prepare tabs
     data.tabs = this.#getTabs()
 
     // Define the data the template needs
-    data.skillData = actorData.skills[this.data.skill]
+    data.skillData = actorData ? actorData.skills[this.data.skill] : {}
 
     return data
   }

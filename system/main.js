@@ -241,6 +241,24 @@ Hooks.on('canvasReady', (canvas) => {
   })
 })
 
+// Whenever an actor updates, we want to check for if the 'locked' variable changes
+// and then we want to re-render the item as part of this since items can be
+// in a read-only state (derived from the actor itself)
+Hooks.on('updateActor', (actor, changes) => {
+  // Check if the 'system.locked' property is changed
+  if (!foundry.utils.hasProperty(changes, 'system.locked')) return
+
+  // Re-render all item sheets with the actor as the parent
+  const activeWindows = foundry.applications.api.ApplicationV2.instances()
+  const activeActorItemWindows = [...activeWindows].filter((application) => {
+    const item = application.document
+    return application.rendered && item?.parent?.uuid === actor.uuid
+  })
+  for (const app of activeActorItemWindows) {
+    app.render(false)
+  }
+})
+
 function _onRollItemFromMacro(itemName) {
   const speaker = ChatMessage.getSpeaker()
   let actor
