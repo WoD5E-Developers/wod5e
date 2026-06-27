@@ -166,6 +166,13 @@ export class WoDActorBase extends HandlebarsApplicationMixin(
       ? Number(actorData.exp.value) || Number(actorData.exp.max)
       : false
 
+    let locked = true
+    const userOwnsActor =
+      actor?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) ?? false
+    if (userOwnsActor) {
+      locked = actorData.locked
+    }
+
     // Transform any data needed for sheet rendering
     return {
       ...data,
@@ -181,7 +188,7 @@ export class WoDActorBase extends HandlebarsApplicationMixin(
       hasSkillAttributeData: actorData.hasSkillAttributeData,
       gamesystem: actorData.gamesystem,
       isOwner: actor.isOwner,
-      locked: actorData.locked,
+      locked,
       showLegacyXP,
 
       features: actorData.features,

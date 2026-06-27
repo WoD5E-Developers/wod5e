@@ -211,6 +211,13 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
       data.guidingSpirit = guidingSpiritFilter[0]
     }
 
+    let locked = true
+    const userOwnsActor =
+      actor?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) ?? false
+    if (userOwnsActor) {
+      locked = actorData.locked
+    }
+
     // Transform any data needed for sheet rendering
     return {
       ...data,
@@ -221,7 +228,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
       settings: actorData.settings,
 
       isOwner: actor.isOwner,
-      locked: actorData.locked,
+      locked,
 
       features: actorData.features,
 
