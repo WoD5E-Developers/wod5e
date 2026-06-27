@@ -100,7 +100,6 @@ export class SkillApplication extends HandlebarsApplicationMixin(ApplicationV2) 
   async _prepareContext() {
     // Top-level variables
     const data = this.data
-    console.log(this)
     const actorData = this?.document?.system
 
     // Prepare tabs
