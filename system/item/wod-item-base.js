@@ -104,12 +104,36 @@ export class WoDItemBase extends HandlebarsApplicationMixin(
     // Define the data the template needs
     this.item.system.gamesystem = actor ? actor?.system?.gamesystem : itemData.gamesystem
 
+    // Determine whether the item is locked from the user or not based on permissions
+    let locked = true
+    if (actor) {
+      // Here, we check if the user owns the actor (if there is a actor as the item's parent)
+      // If so, go by the actor's locked state
+      const userOwnsActor =
+        actor?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) ?? false
+
+      if (userOwnsActor) {
+        locked = actor?.system?.locked
+      }
+    } else {
+      // Here, we're checking if the user owns the item (in the case the item has no parent actor)
+      // If the user can edit the item, we set locked to false
+      const userCanEditItem =
+        item?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) ?? false
+
+      if (userCanEditItem) {
+        locked = false
+      }
+    }
+
     // Transform any data needed for sheet rendering
     return {
       ...data,
 
       name: item.name,
       img: item.img,
+
+      locked,
 
       diceOptions: await getDicepoolList(item),
 

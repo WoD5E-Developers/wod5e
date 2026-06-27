@@ -50,6 +50,8 @@ import { Weapons } from './weapons.js'
 import { Disciplines } from './disciplines.js'
 import { Edges } from './edges.js'
 import { Gifts } from './gifts.js'
+import { GuidingSpiritItemModel } from '../../item/data-models/wta/guiding-spirit-item-model.js'
+import { GuidingSpiritItemSheet } from '../../item/wta/guiding-spirit-sheet.js'
 
 /*
  *   Each item type is defined through here; this includes the item's label,
@@ -296,6 +298,17 @@ export class ItemTypes extends BaseDefinitionClass {
     splat: 'werewolf',
     subtypes: Gifts,
     subtypePath: 'giftType'
+  }
+
+  static guidingspirit = {
+    label: 'TYPES.Item.guidingspirit',
+    img: 'systems/wod5e/assets/icons/items/gift.png',
+    types: ['guidingspirit'],
+    sheetClass: GuidingSpiritItemSheet,
+    restrictedActorTypes: ['pack'],
+    limitOnePerActor: true,
+    sheetModel: GuidingSpiritItemModel,
+    splat: 'werewolf'
   }
 }
 

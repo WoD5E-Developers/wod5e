@@ -188,7 +188,7 @@ export const _onItemChat = async function (event, target) {
   })
 }
 
-export const _onItemEdit = async function (event, target) {
+export const _onItemOpen = async function (event, target) {
   event.preventDefault()
 
   // Top-level variables

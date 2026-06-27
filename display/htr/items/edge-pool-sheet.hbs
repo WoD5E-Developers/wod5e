@@ -1,7 +1,11 @@
 <header class="item-header">
     <img class="profile-img" data-action="editImage" src="{{img}}" data-edit="img" title="{{name}}" alt="Item Image" />
     <div class="header-fields">
-        <input class="itemname" name="name" type="text" value="{{name}}" placeholder="{{localize 'WOD5E.Name'}}"/>
+        {{#if locked}}
+            <h1>{{name}}</h1>
+        {{else}}
+            <input class="itemname" name="name" type="text" value="{{name}}" placeholder="{{localize 'WOD5E.Name'}}"/>
+        {{/if}}
         <div class="flexrow flex-center header-details">
             <!-- Select the edge this edge pool belongs to -->
             <label>

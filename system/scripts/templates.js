@@ -27,6 +27,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/wod5e/display/shared/actors/parts/touchstones-convictions.hbs',
     'systems/wod5e/display/shared/actors/parts/experience.hbs',
     'systems/wod5e/display/shared/actors/limited-sheet.hbs',
+    'systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs',
 
     // Hunter Sheet Partials
     'systems/wod5e/display/htr/actors/parts/danger.hbs',
@@ -58,6 +59,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/wod5e/display/wta/actors/parts/patron-spirit.hbs',
     'systems/wod5e/display/wta/actors/parts/favor.hbs',
     'systems/wod5e/display/wta/actors/parts/ban.hbs',
+    'systems/wod5e/display/wta/actors/parts/guiding-spirit.hbs',
 
     // SPC Sheet Partials
     'systems/wod5e/display/shared/actors/parts/spc/stats.hbs',

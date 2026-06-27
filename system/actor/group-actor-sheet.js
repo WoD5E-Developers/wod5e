@@ -17,7 +17,13 @@ import {
 // Various button functions
 import { _onEditImage } from './scripts/on-edit-image.js'
 import { _onToggleLock } from './scripts/on-toggle-lock.js'
-import { _onCreateItem, _onItemChat, _onItemEdit, _onItemDelete } from './scripts/item-actions.js'
+import {
+  _onCreateItem,
+  _onItemChat,
+  _onItemOpen,
+  _onItemDelete,
+  _onSearchItem
+} from './scripts/item-actions.js'
 import { _onToggleCollapse } from './scripts/on-toggle-collapse.js'
 import { _addActor, _openActorSheet, _removeActor } from './scripts/group-members.js'
 import {
@@ -65,8 +71,9 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
     actions: {
       // Item actions
       createItem: _onCreateItem,
+      searchItem: _onSearchItem,
       itemChat: _onItemChat,
-      itemEdit: _onItemEdit,
+      itemOpen: _onItemOpen,
       itemDelete: _onItemDelete,
 
       // Members functions
@@ -196,6 +203,21 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
       data.huntingDifficulty = 7 - actorData.chasse.value
     }
 
+    // Handle defining out the guiding spirit
+    if (actorData.groupType === 'pack') {
+      // Filters for the guiding spirit item, if one xists
+      const guidingSpiritFilter = actor.items.filter((item) => item.type === 'guidingspirit')
+
+      data.guidingSpirit = guidingSpiritFilter[0]
+    }
+
+    let locked = true
+    const userOwnsActor =
+      actor?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) ?? false
+    if (userOwnsActor) {
+      locked = actorData.locked
+    }
+
     // Transform any data needed for sheet rendering
     return {
       ...data,
@@ -206,7 +228,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
       settings: actorData.settings,
 
       isOwner: actor.isOwner,
-      locked: actorData.locked,
+      locked,
 
       features: actorData.features,
 

@@ -1,0 +1,15 @@
+{{#if item}}
+    <span class="data-item nowrap{{#if locked}} clickable{{/if}}"{{#if locked}} data-action="itemOpen" data-item-id="{{item.id}}"{{/if}}>
+        {{item.name}}
+    </span>
+    <a class="edit-data-item" data-action="itemOpen" data-item-id="{{item.id}}">
+        <i class="fa-solid fa-pen-nib"></i>
+    </a>
+{{else}}
+    <a class="search-data-item" data-action="searchItem" title="{{localize "WOD5E.Search"}}" data-type="{{type}}">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </a>
+    <a class="add-data-item" data-action="createItem" title="{{localize "WOD5E.Add"}}" data-type="{{type}}">
+        <i class="fa-solid fa-plus"></i>
+    </a>
+{{/if}}
