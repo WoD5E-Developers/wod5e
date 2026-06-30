@@ -53,7 +53,11 @@ export class Systems extends BaseDefinitionClass {
 
   static mage = {
     label: 'TYPES.Actor.mage',
-    usesResourceOnAdvancedDice: false
+    // Paradox dice replace basic dice up to the Paradox track value,
+    // exactly mirroring how Hunger works in V5 (resourceUsage: 'add').
+    usesResourceOnAdvancedDice: true,
+    resourceValuePath: 'paradox.value',
+    resourceUsage: 'add'
   }
 }
 

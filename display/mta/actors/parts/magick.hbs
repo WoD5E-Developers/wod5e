@@ -1,111 +1,199 @@
-{{!-- Magick Tab: Arete, Paradox, Permanent Paradox, Quiet (squares), Hubris (squares) --}}
+{{!-- Magick Tab — Left: Affiliation/Tradition/Essence (styled like Concept/
+     Chronicle, full width, 16pt titles) followed by Arete, Paradox
+     (5-square superficial/aggravated), Quintessence, Quiet, Hubris (dot
+     tracks, full width, original small title size). Right: Paradigm,
+     Practice, Tools (styled like Tenets/Touchstones, no visibility toggle,
+     16pt titles). --}}
 <section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
     <div class="flexrow">
 
-        {{!-- Left: Arete + Paradox tracks --}}
+        {{!-- Left column: identity fields, then all trackers --}}
         <div class="flexcol">
 
-            {{!-- Arete (dots 1–10) --}}
-            <div class="flex-group-center nogrow">
-                <div class="flexcol resource">
-                    <label class="resource-label field-header">{{localize "WOD5E.MTA.Arete"}}</label>
-                    <div class="resource-content flexrow flex-center flex-between">
-                        <div class="resource-value" data-value="{{arete}}" data-name="system.arete">
-                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
-                            {{#numLoop 10}}
-                            <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
-                            {{/numLoop}}
-                        </div>
+            {{!-- Affiliation/Tradition/Essence — full width, 16pt titles
+                 (wrapped in .character-details so the Magick-tab CSS applies) --}}
+            <div class="character-details flexcol">
+                <div class="flexcol flex-group-center">
+
+                    {{!-- Affiliation: styled like Concept --}}
+                    <div class="flexcol detail-row">
+                        <label class="resource-label field-header">{{localize "WOD5E.MTA.Affiliation"}}</label>
+                        <input type="text" name="system.affiliation" value="{{affiliation}}"
+                            placeholder="{{localize 'WOD5E.MTA.Affiliation'}}" />
                     </div>
-                    <div class="resource-hint">{{localize "WOD5E.MTA.AreteHint"}}</div>
+
+                    {{!-- Tradition: styled like Chronicle --}}
+                    <div class="flexcol detail-row">
+                        <label class="resource-label field-header">{{localize "WOD5E.MTA.Tradition"}}</label>
+                        <input type="text" name="system.tradition" value="{{tradition}}"
+                            placeholder="{{localize 'WOD5E.MTA.Tradition'}}" />
+                    </div>
+
+                    {{!-- Essence: same style as Affiliation/Tradition --}}
+                    <div class="flexcol detail-row">
+                        <label class="resource-label field-header">{{localize "WOD5E.MTA.Essence"}}</label>
+                        <input type="text" name="system.essence" value="{{essence}}"
+                            placeholder="{{localize 'WOD5E.MTA.Essence'}}" />
+                    </div>
+
                 </div>
             </div>
 
-            {{!-- Paradox (dots 0–5) --}}
-            <div class="flex-group-center nogrow">
-                <div class="flexcol resource">
-                    <label class="resource-label field-header">{{localize "WOD5E.MTA.Paradox"}}</label>
-                    <div class="resource-content flexrow flex-center flex-between">
-                        <div class="resource-value" data-value="{{paradox.value}}" data-name="system.paradox.value">
-                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
-                            {{#numLoop paradox.max}}
-                            <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
-                            {{/numLoop}}
+            {{!-- Trackers: Arete, Paradox, Quintessence, Quiet, Hubris.
+                 Full width, original (non-16pt) title size — kept outside
+                 .character-details so the Magick-tab font-size override
+                 doesn't apply to them. --}}
+            <div class="mta-trackers flexcol">
+
+                {{!-- Arete (dots 0–5) --}}
+                <div class="flex-group-center nogrow">
+                    <div class="flexcol resource">
+                        <label class="resource-label field-header">{{localize "WOD5E.MTA.Arete"}}</label>
+                        <div class="resource-content flexrow flex-center flex-between">
+                            <div class="resource-value" data-value="{{arete}}" data-name="system.arete">
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                {{#numLoop 5}}
+                                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                                {{/numLoop}}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {{!-- Permanent Paradox (dots 0–5) --}}
-            <div class="flex-group-center nogrow">
-                <div class="flexcol resource">
-                    <label class="resource-label field-header">{{localize "WOD5E.MTA.PermanentParadox"}}</label>
-                    <div class="resource-content flexrow flex-center flex-between">
-                        <div class="resource-value" data-value="{{permanentParadox.value}}" data-name="system.permanentParadox.value">
-                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
-                            {{#numLoop permanentParadox.max}}
-                            <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
-                            {{/numLoop}}
+                {{!-- Paradox (5 squares: superficial + aggravated). Burst icon triggers
+                     Backlash roll; dice button triggers a quick Paradox Check (Rouse-style). --}}
+                <div class="flex-group-center nogrow">
+                    <div class="flexcol resource">
+                        <div class="flexrow flex-center flex-between">
+                            <label class="resource-label field-header">
+                                {{localize "WOD5E.MTA.Paradox"}}
+                                <a class="rollable paradox-backlash-trigger" data-action="paradoxBacklashRoll"
+                                    title="{{localize 'WOD5E.MTA.ParadoxBacklashTitle'}}">
+                                    <i class="fa-solid fa-burst"></i>
+                                </a>
+                            </label>
+                            <button class="rollable paradox-roll-btn" data-action="paradoxRoll" type="button"
+                                title="{{localize 'WOD5E.MTA.ParadoxRollTitle'}}">
+                                <i class="fa-solid fa-dice-d10"></i>
+                            </button>
+                        </div>
+                        <div class="resource resource-content flexrow flex-group-center flex-between">
+                            <div class="resource-counter editable" data-states="/:superficial,x:aggravated"
+                                data-max="{{paradox.max}}"
+                                data-superficial="{{paradox.superficial}}"
+                                data-aggravated="{{paradox.aggravated}}"
+                                data-name="system.paradox">
+                                {{#numLoop paradox.max}}
+                                <span class="resource-counter-step" data-action="squareCounterChange"
+                                    data-index="{{this}}" data-state=""></span>
+                                {{/numLoop}}
+                            </div>
                         </div>
                     </div>
-                    <div class="resource-hint">{{localize "WOD5E.MTA.PermanentParadoxHint"}}</div>
                 </div>
-            </div>
 
+                {{!-- Quintessence (dot track) --}}
+                <div class="flex-group-center nogrow">
+                    <div class="flexcol resource">
+                        <label class="resource-label field-header">{{localize "WOD5E.MTA.Quintessence"}}</label>
+                        <div class="resource-content flexrow flex-center flex-between">
+                            <div class="resource-value" data-value="{{quintessence.value}}" data-name="system.quintessence.value">
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                {{#numLoop quintessence.max}}
+                                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                                {{/numLoop}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Quiet (dots 0–5), clickable label for Quiet roll --}}
+                <div class="flex-group-center nogrow">
+                    <div class="flexcol resource">
+                        <label class="resource-label field-header rollable" data-action="quietRoll"
+                            title="{{localize 'WOD5E.MTA.QuietRollTitle'}}">
+                            {{localize "WOD5E.MTA.Quiet"}}
+                            <i class="fa-solid fa-dice-d10"></i>
+                        </label>
+                        <div class="resource-content flexrow flex-center flex-between">
+                            <div class="resource-value" data-value="{{quiet.value}}" data-name="system.quiet.value">
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                {{#numLoop quiet.max}}
+                                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                                {{/numLoop}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Hubris (dots 0–5), clickable label for Hubris roll --}}
+                <div class="flex-group-center nogrow">
+                    <div class="flexcol resource">
+                        <label class="resource-label field-header rollable" data-action="hubrisRoll"
+                            title="{{localize 'WOD5E.MTA.HubrisRollTitle'}}">
+                            {{localize "WOD5E.MTA.Hubris"}}
+                            <i class="fa-solid fa-dice-d10"></i>
+                        </label>
+                        <div class="resource-content flexrow flex-center flex-between">
+                            <div class="resource-value" data-value="{{hubris.value}}" data-name="system.hubris.value">
+                                <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
+                                {{#numLoop hubris.max}}
+                                <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
+                                {{/numLoop}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-        {{!-- Right: Absorb Quintessence + Quiet + Hubris squares --}}
-        <div class="flexcol">
+        {{!-- Right column: Paradigm, Practice, Tools — styled like Tenets/
+             Touchstones (16pt titles, full width, no visibility toggle) --}}
+        <div class="character-details flexcol">
+            <div class="flexcol flex-group-center">
 
-            {{!-- Absorb Quintessence button --}}
-            <div class="flex-group-center nogrow">
-                <div class="flexcol resource">
-                    <label class="resource-label field-header">{{localize "WOD5E.MTA.Quintessence"}}</label>
-                    <div class="flexrow flex-center">
-                        <button class="rollable" data-action="absorbQuintessence" type="button">
-                            <i class="fa-solid fa-arrow-down-to-line"></i>
-                            {{localize "WOD5E.MTA.AbsorbQuintessence"}}
-                        </button>
+                {{!-- Paradigm: styled like Chronicle Tenets, no visibility toggle --}}
+                <div class="description-field">
+                    <div class="flex-center field-header">
+                        <label class="resource-label">{{localize "WOD5E.MTA.Paradigm"}}</label>
                     </div>
-                    <div class="resource-hint">
-                        {{localize "WOD5E.MTA.QuintessencePerRoll"}}: {{quintessencePerRoll}}
-                        ({{localize "WOD5E.MTA.AretePlusPrime"}})
-                    </div>
-                </div>
-            </div>
-
-            {{!-- Quiet (squares 0–5) --}}
-            <div class="flex-group-center nogrow">
-                <div class="flexcol resource">
-                    <label class="resource-label field-header">{{localize "WOD5E.MTA.Quiet"}}</label>
-                    <div class="resource resource-content flexrow flex-group-center flex-between">
-                        <div class="resource-counter editable mta-integrity" data-states="-:value"
-                            data-value="{{quiet.value}}" data-name="system.quiet">
-                            {{#numLoop quiet.max}}
-                            <span class="resource-counter-step" data-action="squareCounterChange"
-                                data-index="{{this}}" data-state=""></span>
-                            {{/numLoop}}
-                        </div>
+                    <div class="description-content resource">
+                        <prose-mirror name="system.paradigm" value="{{paradigm}}"
+                            toggled="true" compact="true">
+                            {{{enrichedParadigm}}}
+                        </prose-mirror>
                     </div>
                 </div>
-            </div>
 
-            {{!-- Hubris (squares 0–5) --}}
-            <div class="flex-group-center nogrow">
-                <div class="flexcol resource">
-                    <label class="resource-label field-header">{{localize "WOD5E.MTA.Hubris"}}</label>
-                    <div class="resource resource-content flexrow flex-group-center flex-between">
-                        <div class="resource-counter editable mta-integrity" data-states="-:value"
-                            data-value="{{hubris.value}}" data-name="system.hubris">
-                            {{#numLoop hubris.max}}
-                            <span class="resource-counter-step" data-action="squareCounterChange"
-                                data-index="{{this}}" data-state=""></span>
-                            {{/numLoop}}
-                        </div>
+                {{!-- Practice: styled like Touchstones, no visibility toggle --}}
+                <div class="description-field">
+                    <div class="flex-center field-header">
+                        <label class="resource-label">{{localize "WOD5E.MTA.Practice"}}</label>
+                    </div>
+                    <div class="description-content resource">
+                        <prose-mirror name="system.practice" value="{{practice}}"
+                            toggled="true" compact="true">
+                            {{{enrichedPractice}}}
+                        </prose-mirror>
                     </div>
                 </div>
-            </div>
 
+                {{!-- Tools: same style, no visibility toggle --}}
+                <div class="description-field">
+                    <div class="flex-center field-header">
+                        <label class="resource-label">{{localize "WOD5E.MTA.Tools"}}</label>
+                    </div>
+                    <div class="description-content resource">
+                        <prose-mirror name="system.tools" value="{{tools}}"
+                            toggled="true" compact="true">
+                            {{{enrichedTools}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+
+            </div>
         </div>
+
     </div>
 </section>

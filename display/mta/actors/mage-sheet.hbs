@@ -13,25 +13,21 @@
         <div class="header-fields-right">
             <div class="flexcol">
 
-                {{!-- Tradition: plain text input --}}
-                <div class="field-section flexrow">
-                    <div class="flexrow nowrap flexend">
-                        <div class="flexcol shared-row">
-                            <label class="resource-label field-header">{{localize 'WOD5E.MTA.Tradition'}}</label>
-                            <input class="resource" type="text" name="system.tradition"
-                                value="{{tradition}}"
-                                placeholder="{{localize 'WOD5E.MTA.Tradition'}}"/>
-                        </div>
-                    </div>
-                </div>
-
-                {{!-- Paradox dots + roll button --}}
+                {{!-- Paradox: 0–5 dot track. The burst icon next to the label triggers
+                     a Backlash roll; the d10 button rolls a quick Paradox Check
+                     (Rouse-style, opens dice/difficulty/roll-mode dialog). --}}
                 <div class="flexcol field-section">
-                    <label class="resource-label field-header">{{localize "WOD5E.MTA.Paradox"}}</label>
+                    <label class="resource-label field-header">
+                        {{localize "WOD5E.MTA.Paradox"}}
+                        <a class="rollable paradox-backlash-trigger" data-action="paradoxBacklashRoll"
+                            title="{{localize 'WOD5E.MTA.ParadoxBacklashTitle'}}">
+                            <i class="fa-solid fa-burst"></i>
+                        </a>
+                    </label>
                     <div class="flexrow">
                         {{> "systems/wod5e/display/mta/actors/parts/paradox.hbs"}}
                         <button class="rollable paradox-roll-btn" data-action="paradoxRoll" type="button"
-                            title="{{localize 'WOD5E.MTA.ParadoxRollTitle'}} ({{localize 'WOD5E.MTA.QuintessenceDice'}}: {{quintessencePerRoll}})">
+                            title="{{localize 'WOD5E.MTA.ParadoxRollTitle'}}">
                             <i class="fa-solid fa-dice-d10"></i>
                         </button>
                     </div>

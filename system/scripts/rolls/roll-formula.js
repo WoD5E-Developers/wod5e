@@ -8,6 +8,7 @@ import {
   WerewolfDie,
   WerewolfRageDie
 } from '../../dice/splat-dice.js'
+import { MageDie, ParadoxDie } from '../../dice/mage-dice.js'
 
 /**
  * Function to help construct the roll formula from given sets of dice
@@ -44,6 +45,19 @@ export async function generateRollFormula({
   } else if (system === 'hunter') {
     // Construct the Hunter roll formula by merging Hunter Dice and Desperation Dice
     rollFormula = `${basicDice}d${HunterDie.DENOMINATION}${successFormula} + ${advancedDice}d${HunterDesperationDie.DENOMINATION}${successFormula}`
+  } else if (system === 'mage') {
+    // By the time we reach here, roll.js has already done the Paradox replacement:
+    //   advancedDice = Math.min(totalPool, paradox.value)   — the Paradox dice
+    //   basicDice    = totalPool - advancedDice              — the remaining normal dice
+    // So we just use the values as-is, exactly like the vampire branch does with
+    // basicDice (normal) and advancedDice (hunger). No re-splitting needed.
+    if (advancedDice === 0) {
+      rollFormula = `${Math.max(1, basicDice)}d${MageDie.DENOMINATION}${successFormula}`
+    } else if (basicDice === 0) {
+      rollFormula = `${advancedDice}d${ParadoxDie.DENOMINATION}${successFormula}`
+    } else {
+      rollFormula = `${basicDice}d${MageDie.DENOMINATION}${successFormula} + ${advancedDice}d${ParadoxDie.DENOMINATION}${successFormula}`
+    }
   } else {
     // Construct the Mortal roll formula; it doesn't need any secondary rolls
     rollFormula = `${basicDice}d${MortalDie.DENOMINATION}${successFormula}`

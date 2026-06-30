@@ -1,5 +1,7 @@
 import { prepareMagickContext } from './scripts/prepare-partials.js'
-import { _onParadoxRoll, _onAbsorbQuintessence } from './scripts/paradox.js'
+import { _onParadoxRoll, _onParadoxBacklashRoll } from './scripts/paradox.js'
+import { _onHubrisRoll, _onQuietRoll } from './scripts/integrity-rolls.js'
+import { _onSphereRoll } from '../../scripts/rolls/sphere-roll.js'
 import { WoDActorBase } from '../wod-actor-base.js'
 
 const { HandlebarsApplicationMixin } = foundry.applications.api
@@ -7,14 +9,16 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
 /**
  * Mage: the Ascension actor sheet.
  * Spheres sit inside the Stats tab (appended below Skills).
- * The dedicated Spheres tab is removed.
  */
 export class MageActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'actor', 'sheet', 'mage'],
     actions: {
-      paradoxRoll:       _onParadoxRoll,
-      absorbQuintessence: _onAbsorbQuintessence
+      paradoxRoll:         _onParadoxRoll,
+      paradoxBacklashRoll: _onParadoxBacklashRoll,
+      hubrisRoll:          _onHubrisRoll,
+      quietRoll:           _onQuietRoll,
+      sphereRoll:          _onSphereRoll
     }
   }
 
@@ -113,14 +117,10 @@ export class MageActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
     const actor = this.actor
     const actorData = actor.system
 
-    data.tradition           = actorData.tradition
-    data.paradox             = actorData.paradox
-    data.permanentParadox    = actorData.permanentParadox
-    data.arete               = actorData.arete
-
-    // Quintessence per roll for header tooltip (Arete + Prime)
-    const primeSphere = actorData.spheres?.prime ?? 0
-    data.quintessencePerRoll = Math.max(1, actorData.arete + primeSphere)
+    data.tradition    = actorData.tradition
+    data.affiliation  = actorData.affiliation
+    data.paradox      = actorData.paradox
+    data.arete        = actorData.arete
 
     return data
   }
@@ -133,7 +133,6 @@ export class MageActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
 
     switch (partId) {
       case 'stats':
-        // Use the base stats context, then append sphere values
         context = await this.prepareStatsContext(context, actor)
         context.spheres = actorData.spheres
         context.arete   = actorData.arete
@@ -145,8 +144,13 @@ export class MageActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
       case 'magick':
         return prepareMagickContext(context, actor)
 
-      case 'features':
-        return this.prepareFeaturesContext(context, actor)
+      case 'features': {
+        // Mage doesn't use Ambition/Desire (those are vampire-specific
+        // headers); hide them on the shared core-details partial.
+        const featuresContext = await this.prepareFeaturesContext(context, actor)
+        featuresContext.showAmbitionDesire = false
+        return featuresContext
+      }
 
       case 'equipment':
         return this.prepareEquipmentContext(context, actor)

@@ -127,6 +127,11 @@ export const _onConfirmRoll = async function (dataset, actor) {
       // Calculate the number of normal dice to roll by subtracting
       // the number of rage dice from them, minimum zero
       basicDice = Math.max(basicDice - advancedDice, 0)
+    } else if (system === 'mage') {
+      // Paradox dice replace basic dice up to the current Paradox value,
+      // exactly mirroring V5 Hunger dice behaviour
+      advancedDice = Math.min(basicDice, advancedDice)
+      basicDice = Math.max(basicDice - advancedDice, 0)
     }
   }
 

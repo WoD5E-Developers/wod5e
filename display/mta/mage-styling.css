@@ -52,14 +52,43 @@
   color: var(--system-color-6);
 }
 
+/* ── Multi-line text fields (Paradigm, Practice, Tools) ─────────────────── */
+.actor.sheet.mage .mta-textarea {
+  width: 100%;
+  min-height: 70px;
+  resize: vertical;
+  background: var(--color-cool-3, rgba(0, 0, 0, 0.05));
+  border: 1px solid var(--mage-color-1);
+  border-radius: 3px;
+  padding: 4px 6px;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+.actor.sheet.mage .mta-textarea:focus {
+  outline: 1px solid var(--mage-color-2);
+}
+
+/* ── Clickable resource labels (Paradox / Quiet / Hubris roll triggers) ─── */
+.actor.sheet.mage .resource-label.rollable {
+  cursor: pointer;
+}
+.actor.sheet.mage .resource-label.rollable:hover {
+  color: var(--mage-color-2);
+}
+.actor.sheet.mage .resource-label.rollable i {
+  margin-left: 4px;
+  font-size: 0.85em;
+}
+
 /* ── Dot counter — filled dots ──────────────────────────────── */
-/* Covers: Arete, Paradox, Permanent Paradox, and Spheres */
+/* Covers: Arete, Quintessence, Quiet, Hubris, and Spheres (all dot tracks) */
 .sheet.mage .resource-value .resource-value-step.active,
 .sheet.mage .resource-value-static .resource-value-static-step.active {
   background-color: var(--mage-color-2);
 }
 
-/* ── Square counter — filled squares (Quiet & Hubris) ───────── */
+/* ── Square counter — Paradox (superficial/aggravated, 5 squares) ───────── */
 .sheet.mage .resource-counter .resource-counter-step[data-state="-"] {
   background-color: var(--mage-color-2);
 }
@@ -73,11 +102,46 @@
   background-color: var(--mage-color-3);
 }
 
-/* ── Paradox roll button sizing (matches rouse button) ──────── */
+/* ── Paradox dice images in chat rolls ──────────────────────────────────── */
+/* The .paradox-dice class is assigned by DiceRegistry in roll-message.js.
+   We tint every face image to the mage purple, mirroring how hunger-dice
+   uses the dark red tint in the VTM stylesheet. */
+.sheet.mage .paradox-dice,
+.chat-message .paradox-dice {
+  filter: sepia(1) saturate(4) hue-rotate(240deg) brightness(0.85);
+}
+
+/* Sharper override: use a colour-matching drop-shadow so the purple reads
+   clearly against both light and dark UI themes */
+.chat-message .paradox-dice {
+  filter: none;
+  background-color: transparent;
+  /* Tint via an SVG-style colour matrix isn't available in CSS alone,
+     so we rely on the die image assets themselves being purple-tinted.
+     The rule below adds a coloured outline that immediately identifies
+     these as Paradox dice even before custom art is available. */
+  outline: 2px solid #853bbc;
+  border-radius: 4px;
+}
+
+/* ── Paradox die colour in the roll dialog ──────────────────────────────── */
+.mage.roll-dialog .advanced-dice img {
+  filter: sepia(1) saturate(5) hue-rotate(245deg) brightness(0.9);
+}
 .actor.sheet.mage .paradox-roll-btn {
   max-width: 35px;
   height: 35px;
   margin-top: -5px;
+}
+
+/* ── Paradox Backlash trigger icon (next to Paradox label) ──────────────── */
+.actor.sheet.mage .paradox-backlash-trigger {
+  cursor: pointer;
+  margin-left: 4px;
+  color: inherit;
+}
+.actor.sheet.mage .paradox-backlash-trigger:hover {
+  color: var(--mage-color-2);
 }
 
 /* ── ProseMirror editor ─────────────────────────────────────── */
@@ -112,10 +176,30 @@
   border-color: #c0392b;
 }
 
-/* ── Quiet / Hubris square counters ────────────────────────── */
-/* Give them a little breathing room in the Magick tab */
-.actor.sheet.mage .resource-counter.mta-integrity {
-  margin: 4px 0;
+/* ── Magick tab layout ───────────────────────────────────────────────────
+   Mirrors the Features tab's .character-details styling exactly so
+   Affiliation/Tradition/Paradigm/Practice/Tools match Concept/Chronicle/
+   Tenets/Touchstones in font size and full-width layout. */
+.actor.sheet.mage .tab[data-tab="magick"] > .flexrow {
+  align-items: flex-start;
+}
+.actor.sheet.mage .tab[data-tab="magick"] .character-details .field-header {
+  font-size: 16pt;
+}
+.actor.sheet.mage .tab[data-tab="magick"] .character-details .detail-row {
+  width: 100%;
+  margin-bottom: 5px;
+}
+.actor.sheet.mage .tab[data-tab="magick"] .character-details .description-field {
+  width: -webkit-fill-available;
+  width: -moz-available;
+}
+.actor.sheet.mage .tab[data-tab="magick"] .character-details .description-field .resource-label {
+  flex-wrap: nowrap;
+  display: inline-flex;
+}
+.actor.sheet.mage .tab[data-tab="magick"] .character-details .description-field .description-content {
+  text-align: initial;
 }
 
 /* ── Dialogs ────────────────────────────────────────────────── */

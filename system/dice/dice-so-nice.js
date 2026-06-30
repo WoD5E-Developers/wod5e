@@ -651,4 +651,61 @@ export const loadDiceSoNice = async function (dice3d) {
     },
     'd10'
   )
+
+  // ── Mage: the Ascension — Paradox dice (dx) ────────────────────────────
+  // Purple (#853bbc) body, white icons, bestial-fail face on a 1.
+  // Reuses existing DSN assets; the colorset provides the purple tint.
+
+  dice3d.addColorset(
+    {
+      name: 'paradox',
+      description: 'MtA Paradox Dice',
+      category: 'MtA',
+      foreground: '#ffffff',
+      background: '#853bbc',
+      texture: 'none',
+      edge: '#5a2080',
+      material: 'plastic',
+      font: 'Arial Black',
+      fontScale: {
+        d6: 1.1,
+        df: 2.2,
+        dx: 0.8
+      }
+    },
+    'default'
+  )
+
+  dice3d.addDicePreset(
+    {
+      type: 'dx',
+      labels: [
+        'systems/wod5e/assets/icons/dsn/bestial-fail-dsn.png',
+        'systems/wod5e/assets/icons/dsn/normal-fail-dsn.png',
+        'systems/wod5e/assets/icons/dsn/normal-fail-dsn.png',
+        'systems/wod5e/assets/icons/dsn/normal-fail-dsn.png',
+        'systems/wod5e/assets/icons/dsn/normal-fail-dsn.png',
+        'systems/wod5e/assets/icons/dsn/normal-success-dsn.png',
+        'systems/wod5e/assets/icons/dsn/normal-success-dsn.png',
+        'systems/wod5e/assets/icons/dsn/normal-success-dsn.png',
+        'systems/wod5e/assets/icons/dsn/normal-success-dsn.png',
+        'systems/wod5e/assets/icons/dsn/normal-crit-dsn.png'
+      ],
+      bumpMaps: [
+        'systems/wod5e/assets/icons/dsn/bestial-fail-dsn-bump.png',
+        '',
+        '',
+        '',
+        '',
+        'systems/wod5e/assets/icons/dsn/normal-success-dsn-bump.png',
+        'systems/wod5e/assets/icons/dsn/normal-success-dsn-bump.png',
+        'systems/wod5e/assets/icons/dsn/normal-success-dsn-bump.png',
+        'systems/wod5e/assets/icons/dsn/normal-success-dsn-bump.png',
+        'systems/wod5e/assets/icons/dsn/normal-crit-dsn-bump.png'
+      ],
+      colorset: 'paradox',
+      system: 'wod5e'
+    },
+    'd10'
+  )
 }

@@ -1,10 +1,16 @@
-{{!-- Paradox dot track (0–5) --}}
-<div class="resource flex-group-center mta-paradox">
-    <div class="resource-content flexrow flex-center flex-between">
-        <div class="resource-value" data-value="{{paradox.value}}" data-name="system.paradox.value">
-            <span class="resource-value-empty paradox-value" data-action="dotCounterEmpty"></span>
+{{!-- Paradox square track (0–5). Superficial = normal Paradox.
+     Aggravated = Permanent Paradox (cannot be cleared except by
+     draining a Node or sentient being). Mirrors health.hbs exactly. --}}
+<div class="resource flex-group-center paradox">
+    <div class="resource-content flexcol flex-center flex-between">
+        <div class="resource-counter editable" data-states="/:superficial,x:aggravated"
+            data-max="{{paradox.max}}"
+            data-superficial="{{paradox.superficial}}"
+            data-aggravated="{{paradox.aggravated}}"
+            data-name="system.paradox">
             {{#numLoop paradox.max}}
-            <span class="resource-value-step paradox-value" data-action="dotCounterChange" data-index="{{this}}"></span>
+                <span class="resource-counter-step" data-action="squareCounterChange"
+                    data-index="{{this}}" data-state=""></span>
             {{/numLoop}}
         </div>
     </div>

@@ -2,48 +2,61 @@ import { WOD5eDice } from '../../../scripts/system-rolls.js'
 import { getActiveModifiers } from '../../../scripts/rolls/situational-modifiers.js'
 
 /**
- * Roll Paradox Checks — a pool of basic dice where each 8+ adds 1 Paradox.
- * Called directly from the Paradox roll button on the header.
+ * Paradox Roll — works like a Vampire Rouse Check, but rolls Paradox dice.
+ * Opens a dialog (mage-roll-dialog.hbs) to choose dice count, difficulty,
+ * and roll mode — same flow as Rouse but with the selection window shown.
  *
- * @param {Event} event
+ * On a failure (no success, i.e. result < 6), increases Paradox (superficial)
+ * by 1 per failed die, capped at the track max minus current aggravated.
  */
 export const _onParadoxRoll = async function (event) {
   event.preventDefault()
 
-  const actor = this.actor
+  const actor     = this.actor
   const actorData = actor.system
-
   const selectors = ['paradox']
-  const activeModifiers = await getActiveModifiers({ actor, selectors })
 
-  // Default pool is 1; the ST or player adjusts via the roll dialog
-  const baseDice = 1 + activeModifiers.totalValue
+  const activeModifiers = await getActiveModifiers({ actor, selectors })
+  const diceCount = Math.max(1, 1 + activeModifiers.totalValue)
 
   await WOD5eDice.Roll({
-    basicDice: Math.max(1, baseDice),
-    title: game.i18n.localize('WOD5E.MTA.ParadoxRollTitle'),
-    selectors,
+    advancedDice: diceCount,
     actor,
     data: actorData,
-    disableAdvancedDice: true,
-    quickRoll: false,   // false = opens roll dialog so pool can be adjusted
+    title: game.i18n.localize('WOD5E.MTA.ParadoxRollTitle'),
+    selectors,
+    system: 'mage',
+    disableBasicDice: true,
+    quickRoll: false,
     callback: async (err, rollData) => {
       if (err) {
         console.error('World of Darkness 5e | Paradox Roll error: ' + err)
         return
       }
 
-      // Each die showing 8+ increases Paradox by 1
-      const results = rollData.terms[0]?.results ?? []
-      const paradoxGained = results.filter((r) => r.active && r.result >= 8).length
+      // rollData is a shallow spread of the WOD5eRoll instance, so getters
+      // like .basicDice/.advancedDice are lost — read directly from .terms
+      // instead, filtering by dieType (set on each die term).
+      const advancedTerm = rollData.terms?.find((t) => t.dieType === 'advanced')
+      const results = advancedTerm?.results ?? []
+      const failures = results.filter(
+        (r) => r.active && r.success === false && !r.discarded
+      ).length
 
-      if (paradoxGained > 0) {
-        const current = actorData.paradox.value
+      if (failures > 0) {
         const max = actorData.paradox.max
-        const newValue = Math.min(current + paradoxGained, max)
-        await actor.update({ 'system.paradox.value': newValue })
+        const currentSuperficial = actorData.paradox.superficial
+        const currentAggravated  = actorData.paradox.aggravated
+        const currentTotal = currentSuperficial + currentAggravated
 
-        if (newValue >= max) {
+        const newSuperficial = Math.min(
+          currentSuperficial + failures,
+          max - currentAggravated
+        )
+
+        await actor.update({ 'system.paradox.superficial': newSuperficial })
+
+        if (currentTotal >= max) {
           foundry.documents.ChatMessage.implementation.create({
             flags: {
               wod5e: {
@@ -62,87 +75,73 @@ export const _onParadoxRoll = async function (event) {
 }
 
 /**
- * Absorb Quintessence — reduces Paradox, respecting the permanentParadox floor.
- * Paradox cannot go below permanentParadox from normal sources.
- * Only a Node or sentient-being drain can reach 0.
+ * Paradox Backlash roll.
  *
- * @param {Event} event
+ * Dice pool = current Paradox value (superficial + aggravated), capped at
+ * a maximum of 5 dice. Plain pool roll — does NOT replace dice with
+ * Paradox dice.
+ *
+ * Each success removes 1 superficial Paradox. Each success that isn't a 10
+ * counts as 1 point of Backlash damage (a 10 is still a success and still
+ * removes 1 superficial Paradox, but doesn't add to the Backlash total).
+ *
+ * Posts a chat message: "<name> has received N backlash damage."
  */
-export const _onAbsorbQuintessence = async function (event) {
+export const _onParadoxBacklashRoll = async function (event) {
   event.preventDefault()
 
-  const actor = this.actor
+  const actor     = this.actor
   const actorData = actor.system
 
-  const amountField = new foundry.data.fields.NumberField({
-    label: game.i18n.localize('WOD5E.MTA.AbsorbAmountLabel'),
-    min: 1,
-    initial: 1,
-    integer: true,
-    required: true
-  }).toFormGroup({}, { name: 'amount' }).outerHTML
+  const currentParadox =
+    (actorData.paradox.superficial ?? 0) + (actorData.paradox.aggravated ?? 0)
 
-  const sourceField = new foundry.data.fields.StringField({
-    label: game.i18n.localize('WOD5E.MTA.AbsorbSourceLabel'),
-    choices: {
-      normal:   game.i18n.localize('WOD5E.MTA.SourceNormal'),
-      node:     game.i18n.localize('WOD5E.MTA.SourceNode'),
-      sentient: game.i18n.localize('WOD5E.MTA.SourceSentient')
-    },
-    initial: 'normal',
-    required: true
-  }).toFormGroup({}, { name: 'source' }).outerHTML
+  if (currentParadox <= 0) {
+    ui.notifications.info(game.i18n.localize('WOD5E.MTA.NoParadoxToRoll'))
+    return
+  }
 
-  const formData = await foundry.applications.api.DialogV2.prompt({
-    window: { title: game.i18n.localize('WOD5E.MTA.AbsorbQuintessence') },
-    classes: ['wod5e', 'dialog', 'mage'],
-    content: amountField + sourceField,
-    ok: {
-      callback: (ev, button) =>
-        new foundry.applications.ux.FormDataExtended(button.form).object
-    },
-    modal: true
-  })
+  const pool = Math.min(currentParadox, 5)
 
-  if (!formData) return
-
-  const amount     = Number(formData.amount) || 1
-  const sourceType = formData.source || 'normal'
-
-  const currentParadox    = actorData.paradox.value
-  const permanentParadox  = actorData.permanentParadox.value ?? 0
-
-  // Normal sources: floor is permanentParadox (minimum 1 if perm > 0, otherwise 0)
-  // Node / sentient: can drain to 0
-  const floor =
-    sourceType === 'node' || sourceType === 'sentient'
-      ? 0
-      : permanentParadox
-
-  const newParadox    = Math.max(floor, currentParadox - amount)
-  const paradoxRemoved = currentParadox - newParadox
-
-  await actor.update({ 'system.paradox.value': newParadox })
-
-  const sourceKey =
-    sourceType === 'node'     ? 'WOD5E.MTA.SourceNode' :
-    sourceType === 'sentient' ? 'WOD5E.MTA.SourceSentient' :
-                                'WOD5E.MTA.SourceNormal'
-
-  foundry.documents.ChatMessage.implementation.create({
-    flags: {
-      wod5e: {
-        name: game.i18n.localize('WOD5E.MTA.QuintessenceAbsorbed'),
-        img: 'systems/wod5e/assets/icons/dice/mortal/normal-success.png',
-        description: game.i18n.format('WOD5E.MTA.QuintessenceAbsorbedDescription', {
-          actor: actor.name,
-          amount,
-          paradoxRemoved,
-          newParadox,
-          source: game.i18n.localize(sourceKey),
-          floor
-        })
+  await WOD5eDice.Roll({
+    basicDice: pool,
+    actor,
+    data: actorData,
+    title: game.i18n.localize('WOD5E.MTA.ParadoxBacklashTitle'),
+    selectors: ['paradox'],
+    system: 'mortal',           // plain pool — no Paradox-die replacement
+    disableAdvancedDice: true,
+    quickRoll: true,
+    callback: async (err, rollData) => {
+      if (err) {
+        console.error('World of Darkness 5e | Paradox Backlash error: ' + err)
+        return
       }
+
+      // rollData is a shallow spread of the WOD5eRoll instance, so getters
+      // like .basicDice/.advancedDice are lost — read directly from .terms
+      // instead, filtering by dieType (set on each die term).
+      const basicTerm = rollData.terms?.find((t) => t.dieType === 'basic')
+      const results = basicTerm?.results ?? []
+      const activeResults = results.filter((r) => r.active)
+
+      // A 10 counts as 1 success (no extra weight). Every success that
+      // isn't a 10 contributes 1 point of Backlash damage.
+      const successes = activeResults.filter((r) => r.result >= 6).length
+      const tens       = activeResults.filter((r) => r.result === 10).length
+      const backlash    = successes - tens
+
+      // Remove superficial Paradox equal to the number of successes
+      const newSuperficial = Math.max(0, actorData.paradox.superficial - successes)
+      await actor.update({ 'system.paradox.superficial': newSuperficial })
+
+      foundry.documents.ChatMessage.implementation.create({
+        speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }),
+        content: `<p>${game.i18n.format('WOD5E.MTA.BacklashDamageMessage', {
+          actor: actor.name,
+          amount: backlash
+        })}</p>`
+      })
     }
   })
 }

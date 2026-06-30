@@ -2,31 +2,31 @@
   "WOD5E": {
     "MTA": {
       "Arete": "Arete",
-      "AreteHint": "Sets the maximum Sphere rating and Quintessence dice per roll (Arete + Prime)",
 
       "Paradox": "Paradox",
-      "PermanentParadox": "Permanent Paradox",
-      "PermanentParadoxHint": "Paradox floor for normal Quintessence absorption. Only a Node or sentient drain can reach 0.",
-      "ParadoxRollTitle": "Paradox Roll",
+      "ParadoxRollTitle": "Paradox Check",
+      "ParadoxBacklashTitle": "Paradox Backlash",
       "ParadoxMaxTitle": "Paradox at Maximum",
       "ParadoxMaxDescription": "{actor}'s Paradox has reached its maximum — Reality strikes back.",
+      "NoParadoxToRoll": "No Paradox to roll.",
+      "BacklashDamageMessage": "{actor} has received {amount} backlash damage.",
 
       "Quintessence": "Quintessence",
-      "QuintessencePerRoll": "Quintessence dice per roll",
-      "QuintessenceDice": "Quintessence dice",
-      "AretePlusPrime": "Arete + Prime",
-      "AbsorbQuintessence": "Absorb Quintessence",
-      "AbsorbAmountLabel": "Amount absorbed",
-      "AbsorbSourceLabel": "Source type",
-      "SourceNormal": "Normal source",
-      "SourceNode": "Node",
-      "SourceSentient": "Sentient being",
-      "QuintessenceAbsorbed": "Quintessence Absorbed",
-      "QuintessenceAbsorbedDescription": "{actor} absorbed {amount} Quintessence from {source}. Paradox reduced by {paradoxRemoved} (floor: {floor}). Current Paradox: {newParadox}.",
 
       "Quiet": "Quiet",
-      "Hubris": "Hubris",
+      "QuietRollTitle": "Quiet Roll",
 
+      "Hubris": "Hubris",
+      "HubrisRollTitle": "Hubris Roll",
+
+      "Affiliation": "Affiliation",
+      "Tradition": "Tradition",
+      "Essence": "Essence",
+      "Paradigm": "Paradigm",
+      "Practice": "Practice",
+      "Tools": "Tools",
+
+      "Sphere": "Sphere",
       "Spheres": "Spheres",
       "Correspondence": "Correspondence",
       "Entropy": "Entropy",
@@ -38,7 +38,15 @@
       "Spirit": "Spirit",
       "Time": "Time",
 
-      "Tradition": "Tradition",
+      "SpellcastingRoll": "Spellcasting Roll",
+      "MageDice": "Mage Dice",
+      "ParadoxDice": "Paradox Dice",
+
+      "ParadoxFailure": "Paradox Failure",
+      "PossibleParadoxFailure": "Possible Paradox Failure",
+      "ParadoxCritical": "Paradox Critical",
+      "PossibleParadoxCritical": "Possible Paradox Critical",
+
       "Magick": "Magick",
       "Mage": "Mage"
     }

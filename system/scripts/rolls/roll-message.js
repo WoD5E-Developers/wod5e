@@ -153,6 +153,12 @@ export async function generateRollMessageData({
         dieClasses.push('rerollable')
       }
 
+      // Paradox dice can NEVER be rerolled using Willpower — do not add 'rerollable'
+      // (for all other systems with advanced dice, they remain rerollable by default)
+      if (system !== 'werewolf' && system !== 'mage') {
+        dieClasses.push('rerollable')
+      }
+
       // Add any necessary data to the dice object
       rollData.results[index].img = dieImg
       rollData.results[index].classes = dieClasses.join(' ')

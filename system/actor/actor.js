@@ -91,7 +91,8 @@ export class WoDActor extends Actor {
       ghoul: 'vampire',
       hunter: 'hunter',
       werewolf: 'werewolf',
-      spirit: 'werewolf'
+      spirit: 'werewolf',
+      mage: 'mage'
     }
 
     // Set gamesystem of an SPC
@@ -100,6 +101,15 @@ export class WoDActor extends Actor {
     } else if (actorData.type !== 'group') {
       // Set the gamesystem of a non-SPC non-group character
       systemData.gamesystem = typeMapping[actorData.type] || 'mortal'
+    }
+
+    // Mage: mirror the Paradox square track (superficial + aggravated) into
+    // a derived .value field, so resourceValuePath ('paradox.value') and any
+    // other code expecting a flat value continue to work correctly now that
+    // Paradox is a Health/Willpower-style superficial/aggravated track.
+    if (systemData?.gamesystem === 'mage' && systemData?.paradox) {
+      systemData.paradox.value =
+        (systemData.paradox.superficial ?? 0) + (systemData.paradox.aggravated ?? 0)
     }
 
     if (systemData?.hasSkillAttributeData) {

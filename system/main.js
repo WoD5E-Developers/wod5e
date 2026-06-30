@@ -34,6 +34,7 @@ import {
   WerewolfRageDie,
   WOD5eDie
 } from './dice/splat-dice.js'
+import { MageDie, ParadoxDie } from './dice/mage-dice.js'
 import { migrateWorld } from './scripts/migration.js'
 import { wod5eAPI } from './api/wod5e-api.js'
 import { WOD5eRoll } from './scripts/system-rolls.js'
@@ -54,7 +55,6 @@ import { Edges } from './api/def/edges.js'
 import { Renown } from './api/def/renown.js'
 import { WereForms } from './api/def/were-forms.js'
 import { Gifts } from './api/def/gifts.js'
-import { Spheres } from './api/def/spheres.js'
 import { rollPrompt, rollPromptToChat } from './ui/custom-enrichers/roll-prompt-enrichers.js'
 import { RollMenuApplication } from './applications/roll-menu/roll-prompt-menu.js'
 import { CompendiumBrowserApplication } from './applications/compendium-browser/compendium-bowser.js'
@@ -93,7 +93,6 @@ window.WOD5E = {
   Renown,
   Gifts,
   WereForms,
-  Spheres,
   WOD5eDie,
   DiceRegistry
 }
@@ -123,6 +122,8 @@ Hooks.once('init', async function () {
   CONFIG.Dice.terms.s = HunterDesperationDie
   CONFIG.Dice.terms.w = WerewolfDie
   CONFIG.Dice.terms.r = WerewolfRageDie
+  CONFIG.Dice.terms.p = MageDie
+  CONFIG.Dice.terms.x = ParadoxDie
   // Custom enrichers
   CONFIG.TextEditor.enrichers.push(rollPrompt, rollPromptToChat)
 

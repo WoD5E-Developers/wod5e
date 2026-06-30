@@ -41,6 +41,8 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/wod5e/display/mta/actors/parts/paradox.hbs',
     'systems/wod5e/display/mta/actors/parts/magick.hbs',
     'systems/wod5e/display/mta/actors/parts/stats.hbs',
+    // Mage roll dialog
+    'systems/wod5e/display/ui/mage-roll-dialog.hbs',
 
     // Vampire Sheet Partials
     'systems/wod5e/display/vtm/actors/parts/disciplines.hbs',
