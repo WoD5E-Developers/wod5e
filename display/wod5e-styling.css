@@ -1987,6 +1987,9 @@ body.uk .actor.sheet {
   gap: unset;
   border-top: 0;
   border-bottom: 0;
+  /* Force-override for the LockView Module */
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 .actor.sheet .sheet-tabs > [data-tab] {
   display: flex;
