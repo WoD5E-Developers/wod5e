@@ -22,6 +22,7 @@
       "feature": "Vantagem",
       "gear": "Equipamento",
       "gift": "Dom",
+      "_guidingspirit": "",
       "perk": "Distinção",
       "power": "Disciplina",
       "predatorType": "Tipo de Predador",
@@ -44,7 +45,9 @@
     "ConfirmDelete": "Confirmar exclusão",
     "ConfirmDeleteDescription": "Tem certeza de que deseja excluir <b>{string}</b>? Esta ação não pode ser desfeita.",
     "Controls": "Controles",
+    "_Core": "",
     "Delete": "Deletar",
+    "_Details": "",
     "Dismiss": "Dispensar",
     "Edit": "Editar",
     "Exp": "Experiência",
@@ -74,6 +77,7 @@
     "RemoveFromGroup": "Remover do grupo",
     "Reset": "Redefinir",
     "Save": "Salvar",
+    "_Search": "",
     "_StringAgo": "",
     "_StringCopiedToClipboard": "",
     "Submit": "Enviar",
@@ -139,6 +143,15 @@
       "WillpowerFull": "A força de vontade está totalmente danificada, não pode danificá-la mais.",
       "WillpowerFullTitle": "Barra de Força de Vontade completa",
       "WillpowerReroll": "Rerrolagem com Força de Vontade"
+    },
+    "CompendiumBrowser": {
+      "_ConfigureSources": "",
+      "_ControlHint": "",
+      "_ItemType": "",
+      "_Label": "",
+      "_NoResultsFound": "",
+      "_SidebarLabel": "",
+      "_System": ""
     },
     "Compendiums": {
       "Macros": {

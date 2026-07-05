@@ -22,6 +22,7 @@
       "feature": "Cechy",
       "_gear": "",
       "_gift": "",
+      "_guidingspirit": "",
       "perk": "Perk",
       "power": "Dyscyplinę",
       "_predatorType": "",
@@ -44,7 +45,9 @@
     "_ConfirmDelete": "",
     "_ConfirmDeleteDescription": "",
     "_Controls": "",
+    "_Core": "",
     "Delete": "Usuń",
+    "_Details": "",
     "_Dismiss": "",
     "Edit": "Edytuj",
     "Exp": "PD",
@@ -74,6 +77,7 @@
     "_RemoveFromGroup": "",
     "_Reset": "",
     "_Save": "",
+    "_Search": "",
     "_StringAgo": "",
     "_StringCopiedToClipboard": "",
     "_Submit": "",
@@ -139,6 +143,15 @@
       "WillpowerFull": "Nie można użyć Siły Woli, cała została wydana",
       "WillpowerFullTitle": "Willpower Tracker Full",
       "WillpowerReroll": "Przerzut Siły Woli"
+    },
+    "CompendiumBrowser": {
+      "_ConfigureSources": "",
+      "_ControlHint": "",
+      "_ItemType": "",
+      "_Label": "",
+      "_NoResultsFound": "",
+      "_SidebarLabel": "",
+      "_System": ""
     },
     "Compendiums": {
       "Macros": {

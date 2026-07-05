@@ -22,6 +22,7 @@
       "feature": "Caratteristica",
       "gear": "Equipaggiamento",
       "gift": "Dono",
+      "_guidingspirit": "",
       "perk": "Beneficio",
       "power": "Disciplina",
       "predatorType": "Tipo di predatore",
@@ -44,7 +45,9 @@
     "ConfirmDelete": "Conferma Eliminazione",
     "ConfirmDeleteDescription": "Sei sicuro di voler eliminare<b>{string}</b>? Il processo è irreversibile.",
     "Controls": "Controlli",
+    "_Core": "",
     "Delete": "Elimina",
+    "_Details": "",
     "_Dismiss": "",
     "Edit": "Modifica",
     "Exp": "Esp",
@@ -74,6 +77,7 @@
     "RemoveFromGroup": "Rimuovi dal gruppo",
     "Reset": "Reset",
     "Save": "Salva",
+    "_Search": "",
     "_StringAgo": "",
     "_StringCopiedToClipboard": "",
     "Submit": "Invia",
@@ -139,6 +143,15 @@
       "WillpowerFull": "La forza di volontà è completamente danneggiata, non può danneggiarla ulteriormente.",
       "WillpowerFullTitle": "La volontà è piena",
       "WillpowerReroll": "Ritira con Volontà"
+    },
+    "CompendiumBrowser": {
+      "_ConfigureSources": "",
+      "_ControlHint": "",
+      "_ItemType": "",
+      "_Label": "",
+      "_NoResultsFound": "",
+      "_SidebarLabel": "",
+      "_System": ""
     },
     "Compendiums": {
       "Macros": {

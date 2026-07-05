@@ -18,18 +18,7 @@
                         <div class="flexcol shared-row">
                             <label class="resource-label field-header">{{localize 'WOD5E.VTM.Clan'}}</label>
                             <div class="resource resource-content">
-                                {{#if clan}}
-                                    <span class="data-item nowrap">
-                                        {{clan.name}}
-                                    </span>
-                                    <a class="edit-data-item" data-action="itemEdit" data-item-id="{{clan.id}}">
-                                        <i class="fa-solid fa-pen-nib"></i>
-                                    </a>
-                                {{else}}
-                                    <a class="add-data-item" data-action="createItem" data-type="clan">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </a>
-                                {{/if}}
+                                {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs" item=clan type="clan"}}
                             </div>
                         </div>
                     </div>

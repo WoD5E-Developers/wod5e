@@ -7,7 +7,9 @@
                 </div>
                 <!-- Item controls for gift item sections -->
                 <div class="item-controls">
-                    <!-- Add new feature item -->
+                    <a class="item-control search-data-item flex-center" data-action="searchItem" title="{{localize 'WOD5E.Search'}}" data-type="feature" data-subtype="{{key}}">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </a>
                     <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.Add'}}" data-type="feature" data-subtype="{{key}}">
                         <i class="fas fa-plus"></i>
                     </a>
@@ -37,7 +39,7 @@
                     {{/if}}
                     <div class="item-controls">
                         <!-- Icon to edit the item -->
-                        <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{item._id}}" title="{{localize 'WOD5E.Edit'}}">
+                        <a class="item-control item-edit" data-action="itemOpen" data-item-id="{{item._id}}" title="{{localize 'WOD5E.Edit'}}">
                             <i class="fas fa-edit"></i>
                         </a>
                         <!-- Icon to delete the item -->

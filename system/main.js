@@ -55,6 +55,10 @@ import { Renown } from './api/def/renown.js'
 import { WereForms } from './api/def/were-forms.js'
 import { Gifts } from './api/def/gifts.js'
 import { rollPrompt, rollPromptToChat } from './ui/custom-enrichers/roll-prompt-enrichers.js'
+import { RollMenuApplication } from './applications/roll-menu/roll-prompt-menu.js'
+import { CompendiumBrowserApplication } from './applications/compendium-browser/compendium-bowser.js'
+import { loadControls } from './scripts/controls.js'
+import { WoDCompendiumDirectory } from './ui/wod-compendium.js'
 
 // Register the WOD5E global
 window.WOD5E = {
@@ -68,6 +72,10 @@ window.WOD5E = {
     generateLabelAndLocalize: wod5eAPI.generateLabelAndLocalize,
     migrateWorld,
     _onRollItemFromMacro
+  },
+  applications: {
+    RollMenuApplication,
+    CompendiumBrowserApplication
   },
   WoDItemBase,
   WoDActorBase,
@@ -100,6 +108,7 @@ Hooks.once('init', async function () {
   // Custom UI implementations
   CONFIG.ui.chat = WoDChatLog
   CONFIG.ui.settings = WoDSettings
+  CONFIG.ui.compendium = WoDCompendiumDirectory
   CONFIG.ui.hotbar = WoDHotbar
   CONFIG.ui.actors = WoDActorDirectory
   CONFIG.ui.pause = WoDPause
@@ -157,6 +166,9 @@ Hooks.once('init', async function () {
 
   // Load settings into Foundry
   loadSettings()
+
+  // Load keybindings
+  loadControls()
 
   // Initialize header font preference on game init
   _updateHeaderFontPreference()
@@ -227,6 +239,24 @@ Hooks.on('canvasReady', (canvas) => {
       _updateToken(token.actor, activeForm)
     }
   })
+})
+
+// Whenever an actor updates, we want to check for if the 'locked' variable changes
+// and then we want to re-render the item as part of this since items can be
+// in a read-only state (derived from the actor itself)
+Hooks.on('updateActor', (actor, changes) => {
+  // Check if the 'system.locked' property is changed
+  if (!foundry.utils.hasProperty(changes, 'system.locked')) return
+
+  // Re-render all item sheets with the actor as the parent
+  const activeWindows = foundry.applications.api.ApplicationV2.instances()
+  const activeActorItemWindows = [...activeWindows].filter((application) => {
+    const item = application.document
+    return application.rendered && item?.parent?.uuid === actor.uuid
+  })
+  for (const app of activeActorItemWindows) {
+    app.render(false)
+  }
 })
 
 function _onRollItemFromMacro(itemName) {

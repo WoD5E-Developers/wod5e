@@ -253,10 +253,10 @@ export const _setupSquareCounters = async function (html) {
         values.fill('/', fulls, fulls + halfs)
       } else {
         // General use
-        values = new Array(halfs + crossed)
+        values = new Array(crossed + halfs)
 
-        values.fill('/', 0, halfs)
-        values.fill('x', halfs, halfs + crossed)
+        values.fill('x', 0, crossed)
+        values.fill('/', crossed, crossed + halfs)
       }
 
       // Iterate through the data states now that they're properly defined

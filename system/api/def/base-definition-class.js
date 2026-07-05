@@ -11,7 +11,8 @@ export class BaseDefinitionClass {
     custom = false,
     disableSort = false,
     prependType = false,
-    useValuePath = false
+    useValuePath = false,
+    useRenamedLabel = true
   }) {
     // Filter based on given filters provided with the function, if any
     const filteredEntries = Object.entries(this).filter(
@@ -20,7 +21,8 @@ export class BaseDefinitionClass {
         value !== null &&
         !Array.isArray(value) &&
         (!type || value.type === type) &&
-        (!custom || value.custom === custom)
+        (!custom || value.custom === custom) &&
+        !value.hidden
     )
 
     // Sort based on either the displayName
@@ -45,6 +47,12 @@ export class BaseDefinitionClass {
       } else {
         // If neither condition is true, use the key
         newKey = key
+      }
+
+      // By default, replace the 'label' field with whatever
+      // the renamed value is
+      if (useRenamedLabel && value.rename) {
+        value.label = value.rename
       }
 
       accumulator[newKey] = value

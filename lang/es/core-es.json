@@ -22,6 +22,7 @@
       "feature": "Rasgo",
       "gear": "Equipo",
       "gift": "Don",
+      "_guidingspirit": "",
       "perk": "Beneficio",
       "power": "Disciplina",
       "predatorType": "Tipo de depredador",
@@ -44,7 +45,9 @@
     "ConfirmDelete": "Confirmar borrado",
     "ConfirmDeleteDescription": "¿Seguro que quieres borrar <b>{string}</b>?",
     "Controls": "Controles",
+    "_Core": "",
     "Delete": "Borrar",
+    "_Details": "",
     "_Dismiss": "",
     "Edit": "Editar",
     "Exp": "Experiencia",
@@ -74,6 +77,7 @@
     "RemoveFromGroup": "Quitar del grupo",
     "Reset": "Restablecer",
     "Save": "Guardar",
+    "_Search": "",
     "_StringAgo": "",
     "_StringCopiedToClipboard": "",
     "Submit": "Enviar",
@@ -139,6 +143,15 @@
       "WillpowerFull": "La fuerza de voluntad está totalmente dañada, ya no puede dañarla.",
       "WillpowerFullTitle": "Registro de fuerza de voluntad lleno",
       "WillpowerReroll": "Repetición"
+    },
+    "CompendiumBrowser": {
+      "_ConfigureSources": "",
+      "_ControlHint": "",
+      "_ItemType": "",
+      "_Label": "",
+      "_NoResultsFound": "",
+      "_SidebarLabel": "",
+      "_System": ""
     },
     "Compendiums": {
       "Macros": {

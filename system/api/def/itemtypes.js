@@ -45,11 +45,21 @@ import { TribeItemModel } from '../../item/data-models/wta/tribe-item-model.js'
 import { AuspiceItemModel } from '../../item/data-models/wta/auspice-item-model.js'
 import { TalismanItemModel } from '../../item/data-models/wta/talisman-item-model.js'
 import { GiftItemModel } from '../../item/data-models/wta/gift-item-model.js'
+import { Features } from './features.js'
+import { Weapons } from './weapons.js'
+import { Disciplines } from './disciplines.js'
+import { Edges } from './edges.js'
+import { Gifts } from './gifts.js'
+import { GuidingSpiritItemModel } from '../../item/data-models/wta/guiding-spirit-item-model.js'
+import { GuidingSpiritItemSheet } from '../../item/wta/guiding-spirit-sheet.js'
 
 /*
  *   Each item type is defined through here; this includes the item's label,
  *   id ('types'), class, restricted actor types (a whitelist), and excluded
  *   actor types (a blacklist.)
+ *
+ *   As of 5.4.0, this also includes the 'splat' (core, vampire, werewolf, hunter)
+ *   to assist with compendium browser filtering
  *
  *   The "limitOnePerActor" property also enforces if an actor isn't supposed
  *   to have more than one of that item, and it'll make the actor sheet delete
@@ -68,7 +78,10 @@ export class ItemTypes extends BaseDefinitionClass {
     img: 'systems/wod5e/assets/icons/items/feature.svg',
     types: ['feature'],
     sheetClass: FeatureItemSheet,
-    sheetModel: FeatureItemModel
+    sheetModel: FeatureItemModel,
+    splat: 'core',
+    subtypes: Features,
+    subtypePath: 'featuretype'
   }
 
   static customRoll = {
@@ -77,7 +90,8 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['customRoll'],
     sheetClass: CustomRollItemSheet,
     excludedActorTypes: ['group', 'spc'],
-    sheetModel: CustomRollItemModel
+    sheetModel: CustomRollItemModel,
+    splat: 'core'
   }
 
   static armor = {
@@ -85,7 +99,8 @@ export class ItemTypes extends BaseDefinitionClass {
     img: '',
     types: ['armor'],
     sheetClass: ArmorItemSheet,
-    sheetModel: ArmorItemModel
+    sheetModel: ArmorItemModel,
+    splat: 'core'
   }
 
   static weapon = {
@@ -93,7 +108,10 @@ export class ItemTypes extends BaseDefinitionClass {
     img: '',
     types: ['weapon'],
     sheetClass: WeaponItemSheet,
-    sheetModel: WeaponItemModel
+    sheetModel: WeaponItemModel,
+    splat: 'core',
+    subtypes: Weapons,
+    subtypePath: 'weaponType'
   }
 
   static gear = {
@@ -101,7 +119,8 @@ export class ItemTypes extends BaseDefinitionClass {
     img: '',
     types: ['gear'],
     sheetClass: GearItemSheet,
-    sheetModel: GearItemModel
+    sheetModel: GearItemModel,
+    splat: 'core'
   }
 
   static trait = {
@@ -110,7 +129,8 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['trait'],
     sheetClass: TraitItemSheet,
     restrictedActorTypes: ['spc'],
-    sheetModel: TraitItemModel
+    sheetModel: TraitItemModel,
+    splat: 'core'
   }
 
   static condition = {
@@ -120,7 +140,8 @@ export class ItemTypes extends BaseDefinitionClass {
     sheetClass: ConditionItemSheet,
     restrictedActorTypes: [],
     excludedActorTypes: ['group'],
-    sheetModel: ConditionItemModel
+    sheetModel: ConditionItemModel,
+    splat: 'core'
   }
 
   // Vampire Items
@@ -132,7 +153,8 @@ export class ItemTypes extends BaseDefinitionClass {
     restrictedActorTypes: ['vampire'],
     excludedActorTypes: ['spc'],
     limitOnePerActor: true,
-    sheetModel: ClanItemModel
+    sheetModel: ClanItemModel,
+    splat: 'vampire'
   }
 
   static predatorType = {
@@ -143,7 +165,8 @@ export class ItemTypes extends BaseDefinitionClass {
     restrictedActorTypes: ['vampire'],
     excludedActorTypes: ['spc'],
     limitOnePerActor: true,
-    sheetModel: PredatorTypeItemModel
+    sheetModel: PredatorTypeItemModel,
+    splat: 'vampire'
   }
 
   static resonance = {
@@ -154,7 +177,8 @@ export class ItemTypes extends BaseDefinitionClass {
     restrictedActorTypes: ['vampire'],
     excludedActorTypes: ['spc'],
     limitOnePerActor: true,
-    sheetModel: ResonanceItemModel
+    sheetModel: ResonanceItemModel,
+    splat: 'vampire'
   }
 
   static power = {
@@ -163,7 +187,10 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['power'],
     sheetClass: DisciplineItemSheet,
     restrictedActorTypes: ['vampire', 'ghoul'],
-    sheetModel: PowerItemModel
+    sheetModel: PowerItemModel,
+    splat: 'vampire',
+    subtypes: Disciplines,
+    subtypePath: 'discipline'
   }
 
   static boon = {
@@ -172,7 +199,8 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['boon'],
     sheetClass: BoonItemSheet,
     restrictedActorTypes: ['vampire', 'ghoul', 'coterie'],
-    sheetModel: BoonItemModel
+    sheetModel: BoonItemModel,
+    splat: 'vampire'
   }
 
   // Hunter Items
@@ -184,7 +212,8 @@ export class ItemTypes extends BaseDefinitionClass {
     restrictedActorTypes: ['hunter'],
     excludedActorTypes: ['spc'],
     limitOnePerActor: true,
-    sheetModel: CreedItemModel
+    sheetModel: CreedItemModel,
+    splat: 'hunter'
   }
 
   static drive = {
@@ -195,7 +224,8 @@ export class ItemTypes extends BaseDefinitionClass {
     restrictedActorTypes: ['hunter'],
     excludedActorTypes: ['spc'],
     limitOnePerActor: true,
-    sheetModel: DriveItemModel
+    sheetModel: DriveItemModel,
+    splat: 'hunter'
   }
 
   static perk = {
@@ -204,7 +234,10 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['perk'],
     sheetClass: PerkItemSheet,
     restrictedActorTypes: ['hunter'],
-    sheetModel: PerkItemModel
+    sheetModel: PerkItemModel,
+    splat: 'hunter',
+    subtypes: Edges,
+    subtypePath: 'edge'
   }
 
   static edgepool = {
@@ -214,7 +247,10 @@ export class ItemTypes extends BaseDefinitionClass {
     sheetClass: EdgePoolItemSheet,
     restrictedActorTypes: ['hunter'],
     excludedActorTypes: ['spc'],
-    sheetModel: EdgePoolItemModel
+    sheetModel: EdgePoolItemModel,
+    splat: 'hunter',
+    subtypes: Edges,
+    subtypePath: 'edge'
   }
 
   // Werewolf Items
@@ -226,7 +262,8 @@ export class ItemTypes extends BaseDefinitionClass {
     restrictedActorTypes: ['werewolf'],
     excludedActorTypes: ['spc'],
     limitOnePerActor: true,
-    sheetModel: TribeItemModel
+    sheetModel: TribeItemModel,
+    splat: 'werewolf'
   }
 
   static auspice = {
@@ -237,7 +274,8 @@ export class ItemTypes extends BaseDefinitionClass {
     restrictedActorTypes: ['werewolf'],
     excludedActorTypes: ['spc'],
     limitOnePerActor: true,
-    sheetModel: AuspiceItemModel
+    sheetModel: AuspiceItemModel,
+    splat: 'werewolf'
   }
 
   static talisman = {
@@ -246,7 +284,8 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['talisman'],
     sheetClass: TalismanItemSheet,
     restrictedActorTypes: ['werewolf', 'pack'],
-    sheetModel: TalismanItemModel
+    sheetModel: TalismanItemModel,
+    splat: 'werewolf'
   }
 
   static gift = {
@@ -255,7 +294,21 @@ export class ItemTypes extends BaseDefinitionClass {
     types: ['gift'],
     sheetClass: GiftItemSheet,
     restrictedActorTypes: ['werewolf', 'spirit'],
-    sheetModel: GiftItemModel
+    sheetModel: GiftItemModel,
+    splat: 'werewolf',
+    subtypes: Gifts,
+    subtypePath: 'giftType'
+  }
+
+  static guidingspirit = {
+    label: 'TYPES.Item.guidingspirit',
+    img: 'systems/wod5e/assets/icons/items/gift.png',
+    types: ['guidingspirit'],
+    sheetClass: GuidingSpiritItemSheet,
+    restrictedActorTypes: ['pack'],
+    limitOnePerActor: true,
+    sheetModel: GuidingSpiritItemModel,
+    splat: 'werewolf'
   }
 }
 

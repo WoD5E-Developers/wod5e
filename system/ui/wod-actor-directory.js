@@ -3,8 +3,10 @@
  * @extends {ActorDirectory}
  */
 export class WoDActorDirectory extends foundry.applications.sidebar.tabs.ActorDirectory {
-  constructor(...args) {
-    super(...args)
+  async _onRender(context, options) {
+    await super._onRender(context, options)
+
+    const html = this.element
 
     // The structure of the sidebar we're going to be manipulating
     const actorStructure = game.actors.tree
@@ -34,12 +36,6 @@ export class WoDActorDirectory extends foundry.applications.sidebar.tabs.ActorDi
         })
       }
     })
-  }
-
-  async _onRender(context, options) {
-    await super._onRender(context, options)
-
-    const html = this.element
 
     // Define the directory list so that we can modify its structure
     const directoryList = html.querySelector('.directory-list')

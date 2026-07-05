@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="item-name">{{condition.name}}</div>
                                 <div class="item-controls">
-                                    <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{condition._id}}" title="{{localize 'WOD5E.Edit'}}"><i
+                                    <a class="item-control item-edit" data-action="itemOpen" data-item-id="{{condition._id}}" title="{{localize 'WOD5E.Edit'}}"><i
                                         class="fas fa-edit"></i></a>
                                     <a class="item-control condition-suppression" data-action="toggleConditionSuppression" data-item-id="{{condition._id}}" title="{{localize 'WOD5E.ItemsList.ToggleConditionSuppression'}}"><i
                                         class="fa-solid {{#if condition.system.suppressed}}fa-toggle-off{{else}}fa-toggle-on{{/if}}"></i></a>
@@ -111,8 +111,11 @@
                         {{/each}}
                     </div>
                     <div class="flex-group-center">
+                        <a class="item-control search-data-item flex-center" data-action="searchItem" title="{{localize 'WOD5E.Search'}}" data-type="condition">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </a>
                         <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.Add'}}" data-type="condition">
-                            <i class="fas fa-plus"></i> {{localize "WOD5E.Add"}}
+                            <i class="fas fa-plus"></i>
                         </a>
                     </div>
                 </div>
@@ -128,7 +131,7 @@
                                 </div>
                                 <div class="item-name">{{roll.name}}</div>
                                 <div class="item-controls">
-                                    <a class="item-control item-edit" data-action="itemEdit" data-item-id="{{roll._id}}" title="{{localize 'WOD5E.Edit'}}"><i
+                                    <a class="item-control item-edit" data-action="itemOpen" data-item-id="{{roll._id}}" title="{{localize 'WOD5E.Edit'}}"><i
                                         class="fas fa-edit"></i></a>
                                     <a class="item-control item-delete" data-action="itemDelete" data-item-id="{{roll._id}}" title="{{localize 'WOD5E.Delete'}}"><i
                                         class="fas fa-trash"></i></a>
@@ -137,8 +140,11 @@
                         {{/each}}
                     </div>
                     <div class="flex-group-center">
+                        <a class="item-control search-data-item flex-center" data-action="searchItem" title="{{localize 'WOD5E.Search'}}" data-type="customRoll">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </a>
                         <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.Add'}}" data-type="customRoll">
-                            <i class="fas fa-plus"></i> {{localize "WOD5E.Add"}}
+                            <i class="fas fa-plus"></i>
                         </a>
                     </div>
                 </div>

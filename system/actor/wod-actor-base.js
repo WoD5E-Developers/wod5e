@@ -22,7 +22,13 @@ import { _onEditImage } from './scripts/on-edit-image.js'
 import { _onToggleLock } from './scripts/on-toggle-lock.js'
 import { _onEditSkill } from './scripts/on-edit-skill.js'
 import { _onAddExperience, _onRemoveExperience, _onEditExperience } from './scripts/experience.js'
-import { _onCreateItem, _onItemChat, _onItemEdit, _onItemDelete } from './scripts/item-actions.js'
+import {
+  _onCreateItem,
+  _onItemChat,
+  _onItemOpen,
+  _onItemDelete,
+  _onSearchItem
+} from './scripts/item-actions.js'
 import { _onWillpowerRoll } from './scripts/on-willpower-roll.js'
 import { _onToggleCollapse } from './scripts/on-toggle-collapse.js'
 import { _onToggleLimited } from './scripts/on-toggle-limited.js'
@@ -81,9 +87,10 @@ export class WoDActorBase extends HandlebarsApplicationMixin(
 
       // Item actions
       createItem: _onCreateItem,
+      searchItem: _onSearchItem,
       rollItem: _onRollItem,
       itemChat: _onItemChat,
-      itemEdit: _onItemEdit,
+      itemOpen: _onItemOpen,
       itemDelete: _onItemDelete,
       expendItemUse: _onExpendItemUse,
       restoreItemUses: _onRestoreItemUses,
@@ -159,6 +166,13 @@ export class WoDActorBase extends HandlebarsApplicationMixin(
       ? Number(actorData.exp.value) || Number(actorData.exp.max)
       : false
 
+    let locked = true
+    const userOwnsActor =
+      actor?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) ?? false
+    if (userOwnsActor) {
+      locked = actorData.locked
+    }
+
     // Transform any data needed for sheet rendering
     return {
       ...data,
@@ -174,7 +188,7 @@ export class WoDActorBase extends HandlebarsApplicationMixin(
       hasSkillAttributeData: actorData.hasSkillAttributeData,
       gamesystem: actorData.gamesystem,
       isOwner: actor.isOwner,
-      locked: actorData.locked,
+      locked,
       showLegacyXP,
 
       features: actorData.features,

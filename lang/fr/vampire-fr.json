@@ -88,6 +88,7 @@
       "Remorse": "Remords",
       "RemorseFailed": "Échec du Test de Remord",
       "RemorseFailedDescription": "{actor} a raté son test de Remords. Ses Flétrissures ont été effacées et son Humanité a été réduite de 1.",
+      "_RemoveClan": "",
       "ResistFrenzy": "Test de Frénésie",
       "ResistingFrenzy": "Test de Frénésie",
       "ResistingFrenzyFailed": "Échec du Test de Frénésie",

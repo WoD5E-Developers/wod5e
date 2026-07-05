@@ -1,0 +1,118 @@
+.compendium-browser {
+  .window-content {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+  }
+
+  .compendium-browser-body {
+    flex-grow: 1;
+    height: 100%;
+
+    .results-list {
+      flex: 1 1 auto;
+      margin: 0 0 0 20px;
+      overflow-y: scroll;
+
+      .result-item {
+        padding: 3px;
+
+        .result-image {
+          flex: 0 0 50px;
+          height: 50px;
+          width: 50px;
+          object-fit: cover;
+          object-position: 50% 0;
+        }
+
+        .result-details {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .results-count {
+      border-top: 1px solid;
+      background-color: rgb(49, 49, 49);
+      flex: 0 0 auto;
+      text-align: center;
+    }
+  }
+
+  .compendium-browser-sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-right: 6px;
+    border-right: 1px solid;
+    padding: 10px;
+
+    .multi-select-toggle {
+      cursor: pointer;
+    }
+
+    .search-section {
+      flex: 0 0 auto;
+    }
+
+    .search-filters {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 20px;
+
+      .filters-section {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+.sources-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  align-content: flex-start;
+  max-height: 400px;
+  flex-wrap: nowrap;
+
+  .source-checkbox {
+    flex-grow: 0;
+  }
+
+  .source-option {
+    align-self: start;
+  }
+}
+
+.multi-select {
+  position: relative;
+
+  .multi-select-dropdown {
+    left: 0;
+    border: 1px solid;
+    padding: 5px;
+    z-index: 10;
+    min-width: 150px;
+
+    input {
+      max-width: fit-content;
+      line-height: 0;
+    }
+  }
+
+  .multi-select-dropdown.hidden {
+    display: none;
+  }
+
+  .multi-select-option {
+    gap: 5px;
+    padding: 2px 0;
+  }
+
+  .subtype-option {
+    margin-left: 15px;
+  }
+}

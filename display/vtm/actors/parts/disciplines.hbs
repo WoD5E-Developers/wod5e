@@ -4,9 +4,11 @@
             <div class="flexrow flex-center">
                 <div class="item-header">{{localize 'WOD5E.VTM.Disciplines'}}</div>
                 <div class="item-controls">
+                    <a class="item-control search-data-item flex-center" data-action="searchItem" title="{{localize 'WOD5E.Search'}}" data-type="power">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </a>
                     <a class="item-control add-discipline flex-center" title="{{localize 'WOD5E.VTM.AddDiscipline'}}" data-action="addDiscipline">
                         <i class="fas fa-plus"></i>
-                        {{localize "WOD5E.VTM.AddDiscipline"}}
                     </a>
                 </div>
             </div>
@@ -68,7 +70,6 @@
                     <div class="flex-center item-header collapsible" data-action="toggleCollapse">
                         <div class="item-name">
                             {{selectedDiscipline.displayName}}
-                            <!-- Add new discipline power -->
                             <a class="item-control item-create" data-action="createItem" title="{{localize 'WOD5E.VTM.AddDiscipline'}}" data-type="power" data-subtype="{{selectedDiscipline.id}}">
                                 <i class="fas fa-plus"></i>
                             </a>
@@ -102,7 +103,7 @@
                             </span>
                             <div class="item-controls flex-group-right">
                                 <!-- Icon to edit the power -->
-                                <a class="item-control item-edit" data-action="itemEdit" title="{{localize 'WOD5E.Edit'}}" data-item-id="{{selectedDisciplinePower._id}}">
+                                <a class="item-control item-edit" data-action="itemOpen" title="{{localize 'WOD5E.Edit'}}" data-item-id="{{selectedDisciplinePower._id}}">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <!-- Icon to display the power in chat -->

@@ -22,6 +22,7 @@
       "feature": "Avantage",
       "gear": "Équipement",
       "gift": "Don",
+      "_guidingspirit": "",
       "perk": "Extra",
       "power": "Discipline",
       "predatorType": "Prédation",
@@ -44,7 +45,9 @@
     "ConfirmDelete": "Confirmer la suppresion",
     "ConfirmDeleteDescription": "Êtes vous sur de vouloir supprimer <b>{string}</b>? Vous ne pourrez pas revenir en arrière.",
     "Controls": "Options",
+    "_Core": "",
     "Delete": "Supprimer",
+    "_Details": "",
     "_Dismiss": "",
     "Edit": "Éditer",
     "Exp": "Exp",
@@ -74,6 +77,7 @@
     "RemoveFromGroup": "Retirer du groupe",
     "Reset": "Réinitialiser",
     "Save": "Enregistrer",
+    "_Search": "",
     "_StringAgo": "",
     "_StringCopiedToClipboard": "",
     "Submit": "Valider",
@@ -139,6 +143,15 @@
       "WillpowerFull": "La volonté est entièrement endommagée, impossible de l'endommager davantage.",
       "WillpowerFullTitle": "Compteur de volonté au max",
       "WillpowerReroll": "Relance de la Volonté"
+    },
+    "CompendiumBrowser": {
+      "_ConfigureSources": "",
+      "_ControlHint": "",
+      "_ItemType": "",
+      "_Label": "",
+      "_NoResultsFound": "",
+      "_SidebarLabel": "",
+      "_System": ""
     },
     "Compendiums": {
       "Macros": {

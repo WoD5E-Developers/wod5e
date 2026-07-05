@@ -27,6 +27,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/wod5e/display/shared/actors/parts/touchstones-convictions.hbs',
     'systems/wod5e/display/shared/actors/parts/experience.hbs',
     'systems/wod5e/display/shared/actors/limited-sheet.hbs',
+    'systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs',
 
     // Hunter Sheet Partials
     'systems/wod5e/display/htr/actors/parts/danger.hbs',
@@ -58,6 +59,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/wod5e/display/wta/actors/parts/patron-spirit.hbs',
     'systems/wod5e/display/wta/actors/parts/favor.hbs',
     'systems/wod5e/display/wta/actors/parts/ban.hbs',
+    'systems/wod5e/display/wta/actors/parts/guiding-spirit.hbs',
 
     // SPC Sheet Partials
     'systems/wod5e/display/shared/actors/parts/spc/stats.hbs',
@@ -111,7 +113,11 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/wod5e/display/ui/storyteller-menu.hbs',
     'systems/wod5e/display/ui/storyteller-menu/modification-menu.hbs',
     'systems/wod5e/display/ui/storyteller-menu/custom-menu.hbs',
-    'systems/wod5e/display/ui/select-dialog.hbs'
+    'systems/wod5e/display/ui/select-dialog.hbs',
+
+    // Compendium partials
+    'systems/wod5e/display/ui/compendium-browser/parts/filter-splats.hbs',
+    'systems/wod5e/display/ui/compendium-browser/parts/filter-types.hbs'
   ]
 
   /* Load the template parts

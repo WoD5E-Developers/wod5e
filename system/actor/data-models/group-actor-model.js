@@ -23,7 +23,9 @@ export class GroupActorModel extends WoDActorModel {
 
     // Header fields
     schema.headers = new fields.SchemaField({
-      concept: new fields.StringField({ initial: '' })
+      concept: new fields.StringField({ initial: '' }),
+      chronicle: new fields.StringField({ initial: '' }),
+      tenets: new fields.HTMLField({ initial: '' })
     })
 
     // Setting fields
@@ -36,6 +38,7 @@ export class GroupActorModel extends WoDActorModel {
     schema.biography = new fields.HTMLField({ initial: '' })
     schema.notes = new fields.HTMLField({ initial: '' })
     schema.privatenotes = new fields.HTMLField({ initial: '' })
+    schema.equipment = new fields.HTMLField({ initial: '' })
 
     // Splat-specific fields
     Object.assign(schema, coterieFields)

@@ -22,6 +22,7 @@
       "feature": "Merkmal",
       "gear": "Ausrüstung",
       "gift": "Gabe",
+      "_guidingspirit": "",
       "perk": "Verstärkung",
       "power": "Disziplin",
       "predatorType": "Jagdverhalten",
@@ -44,7 +45,9 @@
     "ConfirmDelete": "Löschen bestätigen",
     "ConfirmDeleteDescription": "Soll <b>{string}</b> wirklich gelöscht werden? Dies kann nicht rückgängig gemacht werden.",
     "Controls": "Steuerung",
+    "_Core": "",
     "Delete": "Löschen",
+    "_Details": "",
     "_Dismiss": "",
     "Edit": "Bearbeiten",
     "Exp": "EP",
@@ -74,6 +77,7 @@
     "RemoveFromGroup": "Aus Gruppe entfernen",
     "Reset": "Zurücksetzen",
     "Save": "Speichern",
+    "_Search": "",
     "_StringAgo": "",
     "_StringCopiedToClipboard": "",
     "Submit": "Absenden",
@@ -139,6 +143,15 @@
       "WillpowerFull": "Willenskraft ist vollständig aufgebraucht, kann sie nicht weiter verringern.",
       "WillpowerFullTitle": "Willenskraft aufgebraucht",
       "WillpowerReroll": "Mit Willenskraft neuwürfeln …"
+    },
+    "CompendiumBrowser": {
+      "_ConfigureSources": "",
+      "_ControlHint": "",
+      "_ItemType": "",
+      "_Label": "",
+      "_NoResultsFound": "",
+      "_SidebarLabel": "",
+      "_System": ""
     },
     "Compendiums": {
       "Macros": {

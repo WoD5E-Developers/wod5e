@@ -15,6 +15,10 @@
   overflow: hidden;
   border-radius: 0;
 
+  .align-center {
+    justify-content: center;
+  }
+
   .window-content {
     padding: 0;
     padding-bottom: 20px;
@@ -56,6 +60,11 @@
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 85%;
+    }
+
+    .search-data-item {
+      position: absolute;
+      right: 23px;
     }
 
     .edit-data-item,
@@ -513,6 +522,10 @@
     border-top: 0;
     border-bottom: 0;
 
+    /* Force-override for the LockView Module */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
     > [data-tab] {
       display: flex;
       height: 50px;
@@ -567,8 +580,10 @@
         }
 
         .item-header {
-          font-size: 16pt;
-          font-weight: bold;
+          .item-name {
+            font-size: 16pt;
+            font-weight: bold;
+          }
 
           .item-controls {
             text-align-last: right;
@@ -597,8 +612,10 @@
 
   /* Apply these to all "items," even ones not in "item-list"s */
   .item-header {
-    font-size: 16pt;
-    font-weight: bold;
+    .item-name {
+      font-size: 16pt;
+      font-weight: bold;
+    }
 
     .item-controls {
       text-align-last: right;
@@ -733,13 +750,18 @@
   font-size: 16pt;
 }
 
-/* Vampire Font in the sheet banners */
+/* Vampire Font in headers and the sheet banner */
 .vampire-font-headers.en {
   .sheet-banner,
   .field-header,
   .resource-header,
-  .item-header,
   .specialty {
     font-family: "vampireRevised", "sans-serif";
+  }
+
+  .item-header {
+    .item-name {
+      font-family: "vampireRevised", "sans-serif";
+    }
   }
 }

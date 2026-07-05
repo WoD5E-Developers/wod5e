@@ -379,11 +379,11 @@
   font-family: "vampireRevised", "sans-serif";
 }
 /* ProseMirror Alterations */
-prose-mirror {
+.application.sheet prose-mirror {
   width: -webkit-fill-available;
   height: inherit;
 }
-prose-mirror .editor-menu {
+.application.sheet prose-mirror .editor-menu {
   height: 35px;
   padding: 2px;
   border-radius: 0;
@@ -616,6 +616,103 @@ h3.item-name {
   flex-grow: 0;
   cursor: pointer;
   margin-right: 3px;
+}
+
+.compendium-browser .window-content {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+}
+.compendium-browser .compendium-browser-body {
+  flex-grow: 1;
+  height: 100%;
+}
+.compendium-browser .compendium-browser-body .results-list {
+  flex: 1 1 auto;
+  margin: 0 0 0 20px;
+  overflow-y: scroll;
+}
+.compendium-browser .compendium-browser-body .results-list .result-item {
+  padding: 3px;
+}
+.compendium-browser .compendium-browser-body .results-list .result-item .result-image {
+  flex: 0 0 50px;
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  object-position: 50% 0;
+}
+.compendium-browser .compendium-browser-body .results-list .result-item .result-details {
+  margin-left: 10px;
+}
+.compendium-browser .compendium-browser-body .results-count {
+  border-top: 1px solid;
+  background-color: #313131;
+  flex: 0 0 auto;
+  text-align: center;
+}
+.compendium-browser .compendium-browser-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-right: 6px;
+  border-right: 1px solid;
+  padding: 10px;
+}
+.compendium-browser .compendium-browser-sidebar .multi-select-toggle {
+  cursor: pointer;
+}
+.compendium-browser .compendium-browser-sidebar .search-section {
+  flex: 0 0 auto;
+}
+.compendium-browser .compendium-browser-sidebar .search-filters {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+.compendium-browser .compendium-browser-sidebar .search-filters .filters-section {
+  margin-top: 10px;
+}
+.sources-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  align-content: flex-start;
+  max-height: 400px;
+  flex-wrap: nowrap;
+}
+.sources-list .source-checkbox {
+  flex-grow: 0;
+}
+.sources-list .source-option {
+  align-self: start;
+}
+.multi-select {
+  position: relative;
+}
+.multi-select .multi-select-dropdown {
+  left: 0;
+  border: 1px solid;
+  padding: 5px;
+  z-index: 10;
+  min-width: 150px;
+}
+.multi-select .multi-select-dropdown input {
+  max-width: fit-content;
+  line-height: 0;
+}
+.multi-select .multi-select-dropdown.hidden {
+  display: none;
+}
+.multi-select .multi-select-option {
+  gap: 5px;
+  padding: 2px 0;
+}
+.multi-select .subtype-option {
+  margin-left: 15px;
 }
 
 /* Foundry Controls UI */
@@ -915,6 +1012,10 @@ h3.item-name {
 }
 #sidebar-tabs > .item {
   border-radius: 0;
+}
+/* Compendium Sidebar */
+.compendium-sidebar .wod5e-compendium-search {
+  margin: 0 8px 0 8px;
 }
 /* Settings Sidebar */
 .settings-sidebar h2 {
@@ -1378,6 +1479,10 @@ h3.item-name {
 .group-header.pack {
   background-color: var(--pack-group-header) !important;
 }
+.sheet .tab[data-tab="details"] prose-mirror,
+.sheet .tab[data-tab="patronSpirit"] prose-mirror {
+  max-height: 150px;
+}
 /* Dialogs Windows */
 .werewolf.dialog.window-app,
 .werewolf.dialog.application {
@@ -1485,6 +1590,9 @@ body.uk .actor.sheet {
   /* General Resources */
   /* Statistics Page */
 }
+.actor.sheet .align-center {
+  justify-content: center;
+}
 .actor.sheet .window-content {
   padding: 0;
   padding-bottom: 20px;
@@ -1519,6 +1627,10 @@ body.uk .actor.sheet {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 85%;
+}
+.actor.sheet .resource .search-data-item {
+  position: absolute;
+  right: 23px;
 }
 .actor.sheet .resource .edit-data-item,
 .actor.sheet .resource .add-data-item {
@@ -1875,6 +1987,9 @@ body.uk .actor.sheet {
   gap: unset;
   border-top: 0;
   border-bottom: 0;
+  /* Force-override for the LockView Module */
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 .actor.sheet .sheet-tabs > [data-tab] {
   display: flex;
@@ -1920,7 +2035,7 @@ body.uk .actor.sheet {
   border-radius: 50%;
   padding: 2px;
 }
-.actor.sheet .item-list .category .item .item-header {
+.actor.sheet .item-list .category .item .item-header .item-name {
   font-size: 16pt;
   font-weight: bold;
 }
@@ -1941,7 +2056,7 @@ body.uk .actor.sheet {
 .actor.sheet .item-list .category .item .item-controls .item-control {
   margin-left: 3px;
 }
-.actor.sheet .item-header {
+.actor.sheet .item-header .item-name {
   font-size: 16pt;
   font-weight: bold;
 }
@@ -2049,12 +2164,14 @@ body.uk .actor.sheet {
 .field-header.big-header {
   font-size: 16pt;
 }
-/* Vampire Font in the sheet banners */
+/* Vampire Font in headers and the sheet banner */
 .vampire-font-headers.en .sheet-banner,
 .vampire-font-headers.en .field-header,
 .vampire-font-headers.en .resource-header,
-.vampire-font-headers.en .item-header,
 .vampire-font-headers.en .specialty {
+  font-family: "vampireRevised", "sans-serif";
+}
+.vampire-font-headers.en .item-header .item-name {
   font-family: "vampireRevised", "sans-serif";
 }
 
@@ -2129,7 +2246,10 @@ body.uk .actor.sheet {
 .group.sheet .actor-header .coterie-features .field-header,
 .group.sheet .actor-header .cell-features .field-header,
 .group.sheet .actor-header .pack-features .field-header {
-  max-width: 150px;
+  max-width: 175px;
+  text-wrap-mode: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 .group.sheet .tab[data-tab="members"] .group-member {
   padding: 5px 0;
@@ -2273,11 +2393,11 @@ body.uk .actor.sheet {
   align-items: center;
 }
 .item.sheet .item-header .profile-img {
-  flex: 0 0 100px;
-  min-height: 50px;
-  max-height: 205px;
-  height: auto;
-  width: 100px;
+  max-height: 100px;
+  max-width: 100px;
+  height: fit-content;
+  width: fit-content;
+  padding: 5px;
   margin-right: 0;
 }
 .item.sheet .item-header .header-fields {
@@ -2347,6 +2467,7 @@ body.uk .actor.sheet {
 .locked .exceptionalskill-delete,
 .locked .power-create,
 .locked .power-delete,
+.locked .search-data-item,
 .locked .add-data-item,
 .locked .edit-data-item,
 .locked .remove-actor,
@@ -2552,6 +2673,17 @@ body.uk .actor.sheet {
   place-content: center;
   text-wrap: nowrap;
 }
+.spc.sheet .item {
+  margin: 2px 0 2px 0;
+}
+.spc.sheet .item-controls {
+  display: flex;
+  flex-grow: 0;
+  text-align: right;
+}
+.spc.sheet .item-controls .search-data-item {
+  position: unset;
+}
 .spc.sheet .power-category {
   padding: 3px;
 }
@@ -2572,10 +2704,9 @@ body.uk .actor.sheet {
   flex-direction: column;
 }
 .spc.sheet .list-resource .item-name {
+  display: flex;
   margin-left: 10px;
-}
-.spc.sheet .list-resource .item-controls {
-  text-align: right;
+  flex-grow: 1;
 }
 .locked .exceptional-pools-list {
   place-content: center;
@@ -2805,7 +2936,8 @@ prose-mirror .editor-menu button {
   padding-left: 10px;
 }
 .chat-message button,
-.directory .action-buttons button {
+.directory .action-buttons button,
+.compendium-sidebar .wod5e-compendium-search {
   background: #2e2d77;
   color: var(--system-color-6);
 }
@@ -3302,7 +3434,8 @@ prose-mirror .editor-menu button {
   background-color: var(--hunter-color-1);
 }
 .wod-hunter-theme .chat-message button,
-.wod-hunter-theme .directory .action-buttons button {
+.wod-hunter-theme .directory .action-buttons button,
+.wod-hunter-theme .compendium-sidebar .wod5e-compendium-search {
   background: #020202;
   color: var(--system-color-6);
 }

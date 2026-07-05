@@ -124,6 +124,7 @@ export class ActorUX {
         const duplicateItemTypeInstances = actor.items
           .filter((item) => item.type === itemType)
           .map((item) => item.id)
+
         actor.deleteEmbeddedDocuments('Item', duplicateItemTypeInstances)
       }
     }
