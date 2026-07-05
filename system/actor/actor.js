@@ -155,8 +155,11 @@ export class WoDActor extends Actor {
 
     // Prepare derived health and willpower values
     if (actorData.type !== 'group') {
-      systemData.health = await getDerivedHealth(systemData)
-      systemData.willpower = await getDerivedWillpower(systemData)
+      const derivedHealth = await getDerivedHealth(systemData)
+      this.update({ 'system.health.value': derivedHealth })
+
+      const derivedWillpower = await getDerivedWillpower(systemData)
+      this.update({ 'system.willpower.value': derivedWillpower })
     }
 
     // Get desperation value if the actor has a group set
