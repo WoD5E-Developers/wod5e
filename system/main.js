@@ -1,7 +1,7 @@
 // Custom UI Classes
 import { WoDChatLog } from './ui/wod-chat-log.js'
 import { WoDChatMessage } from './ui/wod-chat-message.js'
-import { WoDHotbar } from './ui/wod-hotbar.js'
+import { loadHotbarDrop, _onRollItemFromMacro } from './scripts/hotbar-drop.js'
 import { WoDSettings } from './ui/wod-settings.js'
 import { WoDPause } from './ui/wod-game-pause.js'
 // FVTT and module functionality
@@ -37,7 +37,6 @@ import {
 import { migrateWorld } from './scripts/migration.js'
 import { wod5eAPI } from './api/wod5e-api.js'
 import { WOD5eRoll } from './scripts/system-rolls.js'
-import { _rollItem } from './actor/scripts/item-roll.js'
 import { _updateCSSVariable, cssVariablesRecord } from './scripts/update-css-variables.js'
 import { _updateToken } from './actor/wta/scripts/forms.js'
 import { RollPromptSockets } from './sockets/roll-prompt.js'
@@ -109,7 +108,6 @@ Hooks.once('init', async function () {
   CONFIG.ui.chat = WoDChatLog
   CONFIG.ui.settings = WoDSettings
   CONFIG.ui.compendium = WoDCompendiumDirectory
-  CONFIG.ui.hotbar = WoDHotbar
   CONFIG.ui.actors = WoDActorDirectory
   CONFIG.ui.pause = WoDPause
   // Custom dice rolling functionality
@@ -169,6 +167,9 @@ Hooks.once('init', async function () {
 
   // Load keybindings
   loadControls()
+
+  // Load hotbar drop functionality
+  loadHotbarDrop()
 
   // Initialize header font preference on game init
   _updateHeaderFontPreference()
@@ -258,15 +259,3 @@ Hooks.on('updateActor', (actor, changes) => {
     app.render(false)
   }
 })
-
-function _onRollItemFromMacro(itemName) {
-  const speaker = ChatMessage.getSpeaker()
-  let actor
-  if (speaker.token) actor = game.actors.tokens[speaker.token]
-  if (!actor) actor = game.actors.get(speaker.actor)
-  const item = actor ? actor.items.find((i) => i.name === itemName) : null
-  if (!item)
-    return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`)
-
-  _rollItem(actor, item)
-}
