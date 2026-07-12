@@ -19,7 +19,7 @@ export class ClanItemSheet extends HandlebarsApplicationMixin(WoDItemBase) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
     actions: {
-      removeClan: _onRemoveItem
+      removeItem: _onRemoveItem
     }
   }
 
@@ -30,8 +30,10 @@ export class ClanItemSheet extends HandlebarsApplicationMixin(WoDItemBase) {
     if (item?.isOwned) {
       controls.push({
         icon: 'fas fa-trash',
-        label: 'WOD5E.VTM.RemoveClan',
-        action: 'removeClan'
+        label: game.i18n.format('WOD5E.RemoveString', {
+          string: game.i18n.localize('TYPES.Item.clan')
+        }),
+        action: 'removeItem'
       })
     }
 

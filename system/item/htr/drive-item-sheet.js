@@ -19,7 +19,7 @@ export class DriveItemSheet extends HandlebarsApplicationMixin(WoDItemBase) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
     actions: {
-      removeDrive: _onRemoveItem
+      removeItem: _onRemoveItem
     }
   }
 
@@ -30,8 +30,10 @@ export class DriveItemSheet extends HandlebarsApplicationMixin(WoDItemBase) {
     if (item?.isOwned) {
       controls.push({
         icon: 'fas fa-trash',
-        label: 'WOD5E.HTR.RemoveDrive',
-        action: 'removeDrive'
+        label: game.i18n.format('WOD5E.RemoveString', {
+          string: game.i18n.localize('TYPES.Item.drive')
+        }),
+        action: 'removeItem'
       })
     }
 

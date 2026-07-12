@@ -19,7 +19,7 @@ export class GuidingSpiritItemSheet extends HandlebarsApplicationMixin(WoDItemBa
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
     actions: {
-      removeGuidingSpirit: _onRemoveItem
+      removeItem: _onRemoveItem
     }
   }
 
@@ -30,8 +30,10 @@ export class GuidingSpiritItemSheet extends HandlebarsApplicationMixin(WoDItemBa
     if (item?.isOwned) {
       controls.push({
         icon: 'fas fa-trash',
-        label: 'WOD5E.WTA.RemoveGuidingSpirit',
-        action: 'removeGuidingSpirit'
+        label: game.i18n.format('WOD5E.RemoveString', {
+          string: game.i18n.localize('TYPES.Item.guidingspirit')
+        }),
+        action: 'removeItem'
       })
     }
 
