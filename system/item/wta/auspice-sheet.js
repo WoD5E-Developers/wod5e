@@ -18,7 +18,7 @@ export class AuspiceItemSheet extends HandlebarsApplicationMixin(WoDItemBase) {
   static DEFAULT_OPTIONS = {
     classes: ['wod5e', 'item', 'sheet'],
     actions: {
-      removeAuspice: _onRemoveItem
+      removeItem: _onRemoveItem
     }
   }
 
@@ -29,8 +29,10 @@ export class AuspiceItemSheet extends HandlebarsApplicationMixin(WoDItemBase) {
     if (item?.isOwned) {
       controls.push({
         icon: 'fas fa-trash',
-        label: 'WOD5E.WTA.RemoveAuspice',
-        action: 'removeAuspice'
+        label: game.i18n.format('WOD5E.RemoveString', {
+          string: game.i18n.localize('TYPES.Item.auspice')
+        }),
+        action: 'removeItem'
       })
     }
 

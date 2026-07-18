@@ -75,6 +75,7 @@
     "Now": "Now",
     "OpenSheet": "Open sheet",
     "RemoveFromGroup": "Remove from group",
+    "RemoveString": "Remove {string}",
     "Reset": "Reset",
     "Save": "Save",
     "Search": "Search",
