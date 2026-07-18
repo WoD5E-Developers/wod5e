@@ -154,7 +154,7 @@ export class WoDActor extends Actor {
     }
 
     // Prepare derived health and willpower values
-    if (actorData.type !== 'group') {
+    if (actorData.type !== 'group' && this.isOwner) {
       const derivedHealth = await getDerivedHealth(systemData)
       this.update({ 'system.health.value': derivedHealth })
 
