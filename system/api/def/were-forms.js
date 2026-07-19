@@ -59,7 +59,7 @@ export class WereForms extends BaseDefinitionClass {
       {
         source: 'WOD5E.WTA.GlabroName',
         value: 2,
-        paths: ['attributes.strength', 'attributes.dexterity', 'attributes.stamina'],
+        paths: ['attributes.strength', 'attributes.dexterity', 'attributes.stamina', 'physical'],
         activeWhen: {
           check: 'isEqual',
           path: 'activeForm',
@@ -69,7 +69,7 @@ export class WereForms extends BaseDefinitionClass {
       {
         source: 'WOD5E.WTA.GlabroName',
         value: -2,
-        paths: ['attributes.charisma', 'attributes.manipulation', 'attributes.composure'],
+        paths: ['attributes.charisma', 'attributes.manipulation', 'attributes.composure', 'social'],
         unless: ['skills.intimidation'],
         activeWhen: {
           check: 'isEqual',
@@ -103,7 +103,7 @@ export class WereForms extends BaseDefinitionClass {
       {
         source: 'WOD5E.WTA.CrinosName',
         value: 4,
-        paths: ['attributes.strength', 'attributes.dexterity', 'attributes.stamina'],
+        paths: ['attributes.strength', 'attributes.dexterity', 'attributes.stamina', 'physical'],
         activeWhen: {
           check: 'isEqual',
           path: 'activeForm',

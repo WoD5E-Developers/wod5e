@@ -2708,6 +2708,17 @@ body.uk .actor.sheet {
   margin-left: 10px;
   flex-grow: 1;
 }
+.spc.sheet .wereform {
+  margin-left: auto;
+  margin-right: auto;
+}
+.spc.sheet .wereform img.wereform-icon {
+  cursor: pointer;
+  border: 1px solid;
+}
+.spc.sheet .wereform .swap-form {
+  margin-left: 5px;
+}
 .locked .exceptional-pools-list {
   place-content: center;
 }

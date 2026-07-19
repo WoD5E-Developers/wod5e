@@ -6,7 +6,7 @@ export const _onLostTheWolf = async function (actor) {
   // Variables yet to be defined
   let buttons = {}
 
-  // If automatedRage is disabled, we don't wat to show this dialogue
+  // If automatedRage is disabled, we don't want to show this dialogue
   if (!game.settings.get('wod5e', 'automatedRage')) return
 
   // Define the template to be used
@@ -43,6 +43,59 @@ export const _onLostTheWolf = async function (actor) {
     actor.update({ 'system.formOverride': true })
   } else {
     actor.update({ 'system.activeForm': result })
+    _updateToken(actor, result)
+  }
+}
+
+export const _onSpcShiftForm = async function () {
+  // Top-level variables
+  const actor = this.actor
+
+  // Variables yet to be defined
+  let buttons = {}
+
+  // Define the template to be used
+  const template = `
+    <div class="form-group">
+        <label>${game.i18n.localize('WOD5E.WTA.ChooseFormShift')}</label>
+    </div>`
+
+  // Define the buttons and push them to the buttons variable
+  buttons = [
+    {
+      action: 'homid',
+      label: game.i18n.localize('WOD5E.WTA.HomidName'),
+      default: true
+    },
+    {
+      action: 'glabro',
+      label: game.i18n.localize('WOD5E.WTA.GlabroName')
+    },
+    {
+      action: 'crinos',
+      label: game.i18n.localize('WOD5E.WTA.CrinosName')
+    },
+    {
+      action: 'hispo',
+      label: game.i18n.localize('WOD5E.WTA.HispoName')
+    },
+    {
+      action: 'lupus',
+      label: game.i18n.localize('WOD5E.WTA.LupusName')
+    }
+  ]
+
+  const result = await foundry.applications.api.DialogV2.wait({
+    window: { title: game.i18n.localize('WOD5E.WTA.SwapForm') },
+    content: template,
+    buttons,
+    classes: ['wod5e', 'werewolf']
+  })
+
+  if (result) {
+    actor.update({
+      'system.activeForm': result
+    })
     _updateToken(actor, result)
   }
 }

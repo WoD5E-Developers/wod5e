@@ -38,11 +38,12 @@
                 {{/ifeq}}
 
                 {{#ifeq currentActorType 'werewolf'}}
-                    <div class="field-section">
-                        <div class="flexcol">
+                    <div class="field-section flexrow">
+                        <div class="flexcol shared-row">
                             <label class="resource-label field-header">{{localize 'WOD5E.WTA.Rage'}}</label>
                             {{> "systems/wod5e/display/wta/actors/parts/rage-value.hbs"}}
                         </div>
+                        {{> "systems/wod5e/display/shared/actors/parts/spc/spc-wereform.hbs"}}
                     </div>
                 {{/ifeq}}
 
@@ -57,7 +58,7 @@
                                     {{localize 'WOD5E.WTA.Power'}}
                                     <i class="fa-solid fa-dice-d10"></i>
                                 </a>
-                        {{#if locked}}
+                                {{#if locked}}
                                     <div class="resource stat-resource-background">
                                         {{power.value}}
                                     </div>
