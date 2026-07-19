@@ -5,7 +5,7 @@
     <div class="flex-group-center wereform flexrow">
         {{#each forms as |form id|}}
             {{#ifeq ../activeForm id}}
-                <img class='wereform-icon' src='{{form.glyph}}' width='24px' height='24px' title='{{form.displayName}}' data-form="{{id}}" data-action="editForm"/>
+                <img class='wereform-icon clickable' src='{{form.glyph}}' width='24px' height='24px' title='{{form.displayName}}' data-form="{{id}}" data-action="editForm"/>
             {{/ifeq}}
         {{/each}}
         <div class="swap-form clickable" title="{{localize 'WOD5E.WTA.SwapForm'}}" data-action="shiftForm">
