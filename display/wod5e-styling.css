@@ -2247,9 +2247,14 @@ body.uk .actor.sheet {
 .group.sheet .actor-header .cell-features .field-header,
 .group.sheet .actor-header .pack-features .field-header {
   max-width: 175px;
-  text-wrap-mode: nowrap;
-  text-overflow: ellipsis;
-  overflow-x: hidden;
+}
+.group.sheet .actor-header .coterie-features .resource .resource-header,
+.group.sheet .actor-header .cell-features .resource .resource-header,
+.group.sheet .actor-header .pack-features .resource .resource-header,
+.group.sheet .actor-header .coterie-features .field-header .resource-header,
+.group.sheet .actor-header .cell-features .field-header .resource-header,
+.group.sheet .actor-header .pack-features .field-header .resource-header {
+  text-wrap-mode: wrap;
 }
 .group.sheet .tab[data-tab="members"] .group-member {
   padding: 5px 0;
