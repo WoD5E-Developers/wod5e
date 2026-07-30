@@ -2265,6 +2265,8 @@ body.uk .actor.sheet {
   border: 1px solid;
   margin: 0 3px;
   cursor: pointer;
+  object-fit: cover;
+  object-position: 50% 0;
 }
 .group.sheet .tab[data-tab="members"] .group-member .sub-item.werewolf-form {
   float: inline-end;
