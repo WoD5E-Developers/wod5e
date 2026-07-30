@@ -2247,9 +2247,14 @@ body.uk .actor.sheet {
 .group.sheet .actor-header .cell-features .field-header,
 .group.sheet .actor-header .pack-features .field-header {
   max-width: 175px;
-  text-wrap-mode: nowrap;
-  text-overflow: ellipsis;
-  overflow-x: hidden;
+}
+.group.sheet .actor-header .coterie-features .resource .resource-header,
+.group.sheet .actor-header .cell-features .resource .resource-header,
+.group.sheet .actor-header .pack-features .resource .resource-header,
+.group.sheet .actor-header .coterie-features .field-header .resource-header,
+.group.sheet .actor-header .cell-features .field-header .resource-header,
+.group.sheet .actor-header .pack-features .field-header .resource-header {
+  text-wrap-mode: wrap;
 }
 .group.sheet .tab[data-tab="members"] .group-member {
   padding: 5px 0;
@@ -2707,6 +2712,17 @@ body.uk .actor.sheet {
   display: flex;
   margin-left: 10px;
   flex-grow: 1;
+}
+.spc.sheet .wereform {
+  margin-left: auto;
+  margin-right: auto;
+}
+.spc.sheet .wereform img.wereform-icon {
+  cursor: pointer;
+  border: 1px solid;
+}
+.spc.sheet .wereform .swap-form {
+  margin-left: 5px;
 }
 .locked .exceptional-pools-list {
   place-content: center;

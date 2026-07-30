@@ -1,4 +1,5 @@
 import { generateLocalizedLabel } from '../../../api/generate-localization.js'
+import { _updateToken } from '../scripts/forms.js'
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 
 export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -135,6 +136,11 @@ export class WereformApplication extends HandlebarsApplicationMixin(ApplicationV
   static async wereformHandler(event, form, formData) {
     // Update the source document
     await this.document.update(formData.object)
+
+    // If we're editing the currently active form, run the update token function
+    if (this.data.form === this.document.system.activeForm) {
+      await _updateToken(this.document, this.document.system.activeForm)
+    }
 
     // Re-render the application
     this.render()

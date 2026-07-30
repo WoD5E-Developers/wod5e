@@ -59,7 +59,13 @@ export class WoDChatMessage extends ChatMessage {
       img: this.flags?.wod5e?.img,
       alias: this.alias,
       speakerActor,
-      portrait: (speakerActor?.img ?? this.author?.avatar) || this.constructor.DEFAULT_AVATAR,
+
+      // If the user can't see the currently visible content, then prefer the author's avatar;
+      // Otherwise, use the character's avatar (if present), and fall back to the default avatar
+      // as a last resort
+      portrait:
+        ((this.isContentVisible ? speakerActor?.img : undefined) ?? this.author?.avatar) ||
+        this.constructor.DEFAULT_AVATAR,
 
       // CSS classes
       cssClass: [

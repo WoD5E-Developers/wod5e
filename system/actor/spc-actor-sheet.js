@@ -5,6 +5,7 @@ import { _onHaranoRoll, _onHaugloskRoll } from './wta/scripts/balance.js'
 // Base actor sheet to extend from
 import { WoDActorBase } from './wod-actor-base.js'
 import { _onToggleDespair } from './htr/scripts/toggle-despair.js'
+import { _onFormEdit, _onSpcShiftForm } from './wta/scripts/forms.js'
 // Mixin
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
@@ -21,7 +22,9 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
       editExceptionalPools: _onEditExceptionalPools,
       haranoRoll: _onHaranoRoll,
       haugloskRoll: _onHaugloskRoll,
-      toggleDespair: _onToggleDespair
+      toggleDespair: _onToggleDespair,
+      shiftForm: _onSpcShiftForm,
+      editForm: _onFormEdit
     }
   }
 
@@ -119,6 +122,8 @@ export class SPCActorSheet extends HandlebarsApplicationMixin(WoDActorBase) {
     if (data.currentActorType === 'werewolf') {
       data.rage = actorData.rage
       data.lostTheWolf = data.rage.value === 0
+      data.activeForm = actorData.activeForm
+      data.forms = actorData.forms
     }
 
     if (data.currentActorType === 'spirit') {

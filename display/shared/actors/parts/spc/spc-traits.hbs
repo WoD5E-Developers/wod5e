@@ -14,6 +14,39 @@
     </div>
     <div class="description-content resource list-resource">
         <div class="items-list flexcol">
+            {{#ifeq currentActorType 'werewolf'}}
+                {{#each forms as |form id|}}
+                    {{#ifeq ../activeForm id}}
+                        <div class="collapsible-container">
+                            <div class="item flexrow">
+                                <div class="item-image">
+                                    <img src="{{form.glyph}}" title="{{form.displayName}}" width="24" height="24" alt="{{form.displayName}}" />
+                                </div>
+                                <div class="item-name collapsible" data-action="toggleCollapse">
+                                    {{localize 'WOD5E.WTA.ActiveForm'}}: {{form.displayName}}
+                                </div>
+                                <div class="item-controls">
+                                    <a class="item-control item-edit" data-form="{{id}}" data-action="editForm" title="{{localize 'WOD5E.Edit'}}"><i
+                                        class="fas fa-edit"></i></a>
+                                </div>
+                            </div>
+                            <div class="collapsible-content trait-description">
+                                {{#if form.description}}
+                                    <div class="form-description">
+                                        {{{form.description}}}
+                                    </div>
+                                    <hr>
+                                {{/if}}
+                                <ul class="form-attributes">
+                                    {{#each form.attributes as |ability|}}
+                                        <li>{{ability.label}}{{#if ability.hintIcon}} <span class="ability-hint" title="{{ability.hintDescription}}">{{ability.hintIcon}}</span>{{/if}}</li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                        </div>
+                    {{/ifeq}}
+                {{/each}}
+            {{/ifeq}}
             {{#each traits as |trait id|}}
                 <div class="collapsible-container">
                     <div class="item flexrow" data-drag="true" data-item-id="{{trait.id}}" data-document-uuid="{{trait.uuid}}" data-type="Item">

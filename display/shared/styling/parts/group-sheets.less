@@ -75,9 +75,10 @@
       .resource,
       .field-header {
         max-width: 175px;
-        text-wrap-mode: nowrap;
-        text-overflow: ellipsis;
-        overflow-x: hidden;
+
+        .resource-header {
+          text-wrap-mode: wrap;
+        }
       }
     }
   }

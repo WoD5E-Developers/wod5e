@@ -72,6 +72,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/wod5e/display/shared/actors/parts/spc/spc-gifts.hbs',
     'systems/wod5e/display/shared/actors/parts/spc/spc-edges.hbs',
     'systems/wod5e/display/shared/actors/parts/spc/blood-potency.hbs',
+    'systems/wod5e/display/shared/actors/parts/spc/spc-wereform.hbs',
 
     // Group Sheet Partials
     'systems/wod5e/display/vtm/actors/coterie-sheet.hbs',
