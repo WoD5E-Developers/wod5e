@@ -26,7 +26,7 @@ export const _addActor = async function (group, uuid) {
 
   const actorHasGroup = actor.system.group
   const groupExists = game.actors.get(actorHasGroup)
-  const actorIsInGroup = groupExists.system.members.find((a) => a.id)
+  const actorIsInGroup = groupExists?.system?.members.find((a) => a.id)
 
   if (actorHasGroup && groupExists && actorIsInGroup) {
     ui.notifications.warn(`Actor ${actor.name} is already in an existing group.`)
