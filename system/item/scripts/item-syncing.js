@@ -4,6 +4,11 @@ export const _onSyncFromDataItem = async function (event) {
   const item = this.item
   const dataItemId = item.getFlag('wod5e', 'dataItemId')
 
+  // Inform the user if the Data Item ID is empty.
+  if (!dataItemId) {
+    return ui.notifications.info(game.i18n.localize('WOD5E.ItemsList.DataItemIdCannotBeEmpty'))
+  }
+
   // Search for an applicable data item - there should only be one
   const compendiumsList = game.packs.filter((compendium) => compendium.metadata.type === 'Item')
   const compendiumDataItems = []
