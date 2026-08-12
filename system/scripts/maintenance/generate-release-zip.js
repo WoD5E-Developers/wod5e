@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import archiver from 'archiver'
+import { ZipArchive } from 'archiver'
 
 // Output file
 const outputFile = 'wod5e.zip'
@@ -19,7 +19,7 @@ const files = ['LICENSE.md', 'README.md', 'system.json']
 const directories = ['assets', 'display', 'lang', 'lib', 'macros', 'packs', 'system']
 
 const output = fs.createWriteStream(outputFile)
-const archive = archiver('zip', {
+const archive = new ZipArchive('zip', {
   zlib: {
     level: 9
   }

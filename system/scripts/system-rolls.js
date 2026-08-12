@@ -412,8 +412,26 @@ class WOD5eDice {
                   return modifierTotal + (el.querySelector('.mod-value')?.valueAsNumber ?? 0)
                 }, 0)
 
-              // Send the roll to the _roll function
-              return await _roll(basicValue + modifierTotal, advancedValue, dialogHTML)
+              let modifiedBasicValue = basicValue + modifierTotal
+              let modifiedAdvancedValue = advancedValue
+
+              // If the basic pool drops below 0, carry the remainder into the advanced dice pool
+              if (modifiedBasicValue < 0) {
+                modifiedAdvancedValue += modifiedBasicValue
+                modifiedBasicValue = 0
+              }
+
+              // Neither pool should be below 0
+              modifiedAdvancedValue = Math.max(0, modifiedAdvancedValue)
+
+              // Account for the fact that advanced/basic dice could be disabled
+              // and we should still roll minimum of 1 dice
+              if (modifiedBasicValue === 0 && modifiedAdvancedValue === 0) {
+                if (disableAdvancedDice) modifiedBasicValue = 1
+                if (disableBasicDice) modifiedBasicValue = 1
+              }
+
+              return await _roll(modifiedBasicValue, modifiedAdvancedValue, dialogHTML)
             }
           },
           {
