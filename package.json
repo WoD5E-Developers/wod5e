@@ -52,7 +52,7 @@
   "homepage": "https://github.com/WoD5E-Developers/wod5e#readme",
   "dependencies": {
     "@eslint/compat": "^1.4.1",
-    "archiver": "^7.0.1",
+    "archiver": "^8.0.0",
     "eslint-plugin-prettier": "^5.5.4"
   }
 }
