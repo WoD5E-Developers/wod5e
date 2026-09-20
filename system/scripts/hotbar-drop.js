@@ -5,6 +5,10 @@ import { _rollItem } from '../actor/scripts/item-roll.js'
 // trying to inject its own macro if we make the function async
 export function loadHotbarDrop() {
   Hooks.on('hotbarDrop', (hotbar, data, slot) => {
+    // Let native Foundry handle drag-and-drop macros from compendiums and the like
+    // WoD5e's injection purely just handles items
+    if (data.type !== 'Item') return
+
     const item = fromUuidSync(data.uuid)
 
     // Check to make sure the item exists
