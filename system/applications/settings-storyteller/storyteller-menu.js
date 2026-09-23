@@ -8,8 +8,8 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 
 // Each category owns its editor; additional domain/wereform editors can be separate tabs.
 const categories = {
-  attribute: { definition: Attributes, label: 'WOD5E.AttributesList.Label', typed: true },
-  skill: { definition: Skills, label: 'WOD5E.SkillsList.Label', typed: true },
+  attribute: { definition: Attributes, label: 'WOD5E.AttributesList.Attributes', typed: true },
+  skill: { definition: Skills, label: 'WOD5E.SkillsList.Skills', typed: true },
   discipline: { definition: Disciplines, label: 'WOD5E.VTM.Disciplines' },
   edge: { definition: Edges, label: 'WOD5E.HTR.Edges' },
   gift: { definition: Gifts, label: 'WOD5E.WTA.Gifts' }
