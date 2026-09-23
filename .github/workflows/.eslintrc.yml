@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Run ESLint
-        run: npx run lint:js
+        run: npm run lint:js
 
       - name: Lint LESS
         run: npm run lint:less
