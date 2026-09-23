@@ -56,13 +56,13 @@
 .actor.sheet.hunter .item-image img {
   background-color: var(--hunter-theme-filter);
 }
-.actor.sheet.hunter .tab[data-tab="edges"] .powers-display-tree ul:before {
+.actor.sheet.hunter .tab[data-tab='edges'] .powers-display-tree ul:before {
   background-color: var(--hunter-color-1);
 }
-.actor.sheet.hunter .tab[data-tab="edges"] .powers-display-tree li:before {
+.actor.sheet.hunter .tab[data-tab='edges'] .powers-display-tree li:before {
   background-color: var(--hunter-color-1);
 }
-.actor.sheet.hunter .tab[data-tab="edges"] .edge-description {
+.actor.sheet.hunter .tab[data-tab='edges'] .edge-description {
   margin-bottom: 5px;
   border-bottom: 1px solid var(--system-color-5);
 }
@@ -78,7 +78,7 @@
 }
 .sheet.hunter .resource-value .resource-value-step.active,
 .sheet.hunter .resource-value-static .resource-value-static-step.active,
-.sheet.hunter .resource-counter .resource-counter-step[data-state="-"],
+.sheet.hunter .resource-counter .resource-counter-step[data-state='-'],
 .sheet.hunter .despair-box .despair-toggle.active {
   background-color: var(--hunter-color-1);
 }
@@ -130,7 +130,7 @@
   border: 1px solid var(--hunter-color-2);
 }
 .vampire-font-headers.en .hunter-button {
-  font-family: "vampireRevised", "sans-serif";
+  font-family: 'vampireRevised', 'sans-serif';
 }
 
 :root {
@@ -156,7 +156,7 @@
 }
 .sheet.mortal .resource-value .resource-value-step.active,
 .sheet.mortal .resource-value-static .resource-value-static-step.active,
-.sheet.mortal .resource-counter .resource-counter-step[data-state="-"] {
+.sheet.mortal .resource-counter .resource-counter-step[data-state='-'] {
   background-color: var(--mortal-color-1);
 }
 /* Dialog Windows */
@@ -333,22 +333,22 @@
 }
 /* Fonts */
 @font-face {
-  font-family: "cormorantLight";
-  src: url("../assets/fonts/Cormorant-Light-webfont.woff") format("woff");
+  font-family: 'cormorantLight';
+  src: url('../assets/fonts/Cormorant-Light-webfont.woff') format('woff');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
-  font-family: "wod5eSymbols";
-  src: url("../assets/fonts/wod5e-symbols.ttf") format("truetype");
+  font-family: 'wod5eSymbols';
+  src: url('../assets/fonts/wod5e-symbols.ttf') format('truetype');
 }
 @font-face {
-  font-family: "vampireRevised";
-  src: url("../assets/fonts/vampire-revised.ttf") format("truetype");
+  font-family: 'vampireRevised';
+  src: url('../assets/fonts/vampire-revised.ttf') format('truetype');
 }
 /* Define the class that will be used for WOD5E symbols */
 .wod5e-symbol {
-  font-family: "wod5eSymbols", "sans-serif";
+  font-family: 'wod5eSymbols', 'sans-serif';
   font-size: 16pt;
 }
 /* Application window Header */
@@ -376,7 +376,7 @@
 }
 /* Only use this font with the .vampire-font-headers class enabled */
 .vampire-font-headers.en #pause figcaption {
-  font-family: "vampireRevised", "sans-serif";
+  font-family: 'vampireRevised', 'sans-serif';
 }
 /* ProseMirror Alterations */
 .application.sheet prose-mirror {
@@ -396,11 +396,11 @@
   background: transparent;
 }
 /* Input Fields */
-input:not(type="checkbox") {
+input:not([type='checkbox']) {
   min-height: 26px;
   border-radius: 0;
 }
-input[type="number"] {
+input[type='number'] {
   max-width: 35px;
   min-width: 35px;
   text-align: center;
@@ -460,7 +460,7 @@ input[type="number"] {
   text-shadow: none;
 }
 .actors-sidebar .group-item.collapsed > .group-header h3 > i::before {
-  content: "\f07b";
+  content: '\f07b';
 }
 .actors-sidebar .group-item.collapsed > .group-header .create-folder {
   display: none;
@@ -655,7 +655,6 @@ h3.item-name {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding-right: 6px;
   border-right: 1px solid;
   padding: 10px;
 }
@@ -730,52 +729,6 @@ h3.item-name {
 
 .wod5e-config-form .config-category .subcategory {
   margin-bottom: 15px;
-}
-.wod5e-config-form.storyteller-menu .mod-header {
-  font-weight: bold;
-  text-decoration: underline;
-  text-align: center;
-}
-.wod5e-config-form.storyteller-menu .modification-row,
-.wod5e-config-form.storyteller-menu .custom-row {
-  margin-top: 3px;
-  margin-bottom: 3px;
-}
-.wod5e-config-form.storyteller-menu .mod-label {
-  font-weight: bold;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  margin-left: auto;
-  margin-right: auto;
-}
-.wod5e-config-form.storyteller-menu .mod-label input {
-  margin-left: 5px;
-}
-.wod5e-config-form.storyteller-menu .modification-row .mod-hidden {
-  margin-left: auto;
-  margin-right: auto;
-}
-.wod5e-config-form.storyteller-menu .mod-footer {
-  margin-top: 10px;
-  text-align: center;
-}
-.wod5e-config-form.storyteller-menu .addition-button {
-  border-radius: 0;
-  font-weight: bold;
-  letter-spacing: 0.05em;
-}
-.wod5e-config-form.storyteller-menu .addition-button:hover {
-  cursor: pointer;
-  outline: none;
-  transition-duration: 0.3s;
-}
-.wod5e-config-form.storyteller-menu .remove-mod-button {
-  cursor: pointer;
-}
-.wod5e-config-form.storyteller-menu .remove-custom-button {
-  cursor: pointer;
-  margin-top: 5px;
 }
 .roll-menu.application.minimized .roll-menu-hint,
 .roll-menu.application.minimizing .roll-menu-hint {
@@ -1040,6 +993,111 @@ h3.item-name {
   text-align: right;
 }
 
+.storyteller-menu .window-content {
+  overflow: hidden;
+}
+.storyteller-menu .storyteller-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  gap: 12px;
+}
+.storyteller-menu .storyteller-intro {
+  margin: 0;
+}
+.storyteller-menu .storyteller-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  flex: 0 0 auto;
+}
+.storyteller-menu .storyteller-tabs button {
+  flex: 1 1 auto;
+  width: auto;
+}
+.storyteller-menu .storyteller-tabs button.active {
+  border-color: var(--color-border-highlight);
+  font-weight: bold;
+}
+.storyteller-menu .storyteller-panels {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 2px;
+}
+.storyteller-menu .tab:not(.active) {
+  display: none;
+}
+.storyteller-menu .storyteller-section {
+  border: 1px solid var(--color-border-light-primary);
+  border-radius: 6px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+.storyteller-menu .storyteller-section header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.storyteller-menu .storyteller-section h2 {
+  margin: 0;
+  font-size: 1.2em;
+  border: 0;
+}
+.storyteller-menu .storyteller-section header button {
+  width: auto;
+}
+.storyteller-menu .storyteller-row {
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) minmax(100px, 1.4fr) auto 32px;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--color-border-light-primary);
+}
+.storyteller-menu .storyteller-name {
+  overflow-wrap: anywhere;
+}
+.storyteller-menu .storyteller-hidden {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+.storyteller-menu .storyteller-custom {
+  grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) 32px;
+  align-items: end;
+}
+.storyteller-menu .storyteller-custom > label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.storyteller-menu .storyteller-custom > .icon {
+  grid-column: 3;
+}
+.storyteller-menu .storyteller-empty {
+  padding: 16px;
+  text-align: center;
+  font-style: italic;
+}
+.storyteller-menu .storyteller-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex: 0 0 auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border-light-primary);
+}
+.storyteller-menu .storyteller-footer button {
+  width: auto;
+}
+
 :root {
   --vampire-color-1: #650202;
   --vampire-color-2: #d84343;
@@ -1057,7 +1115,7 @@ h3.item-name {
 .actor.sheet.vampire .profile-img,
 .actor.sheet.vampire .actor-header input,
 .actor.sheet.vampire .actor-header .resource,
-.actor.sheet.vampire .tab[data-tab="blood"] .resource input {
+.actor.sheet.vampire .tab[data-tab='blood'] .resource input {
   border: 1px solid var(--vampire-color-1);
 }
 .actor.sheet.vampire prose-mirror .editor-menu button:hover {
@@ -1067,23 +1125,23 @@ h3.item-name {
   scrollbar-color: var(--vampire-color-2) var(--color-scrollbar-track);
   font-size: 10pt;
 }
-.actor.sheet.vampire .tab[data-tab="blood"] .resource-label {
+.actor.sheet.vampire .tab[data-tab='blood'] .resource-label {
   font-size: 15pt;
 }
-.actor.sheet.vampire .tab[data-tab="blood"] .blood-details,
-.actor.sheet.vampire .tab[data-tab="blood"] .blood-potency {
+.actor.sheet.vampire .tab[data-tab='blood'] .blood-details,
+.actor.sheet.vampire .tab[data-tab='blood'] .blood-potency {
   align-self: flex-start;
   margin-left: 10px;
   margin-right: 10px;
 }
-.actor.sheet.vampire .tab[data-tab="blood"] .resource-contents:not(.prosemirror-resource),
-.actor.sheet.vampire .tab[data-tab="blood"] input.resource {
+.actor.sheet.vampire .tab[data-tab='blood'] .resource-contents:not(.prosemirror-resource),
+.actor.sheet.vampire .tab[data-tab='blood'] input.resource {
   font-weight: bold;
 }
-.actor.sheet.vampire .tab[data-tab="blood"] .resource .remorse-roll .field-header {
+.actor.sheet.vampire .tab[data-tab='blood'] .resource .remorse-roll .field-header {
   display: inline-flex;
 }
-.actor.sheet.vampire .tab[data-tab="blood"] .bane {
+.actor.sheet.vampire .tab[data-tab='blood'] .bane {
   text-align: initial;
 }
 .actor.sheet.vampire .sheet-banner {
@@ -1094,7 +1152,7 @@ h3.item-name {
   background-color: var(--vampire-color-2);
 }
 .actor.sheet.vampire .tabs-container .navicon .wod5e-symbol,
-.actor.sheet.vampire .tabs-container [data-tab="blood"] .navicon {
+.actor.sheet.vampire .tabs-container [data-tab='blood'] .navicon {
   color: var(--vampire-color-2);
 }
 .actor.sheet.vampire .tabs-container .active .navicon {
@@ -1110,35 +1168,35 @@ h3.item-name {
 .actor.sheet.vampire .item-image img {
   background-color: var(--vampire-theme-filter);
 }
-.actor.sheet.vampire .tab[data-tab="disciplines"] .powers-display-tree ul:before {
+.actor.sheet.vampire .tab[data-tab='disciplines'] .powers-display-tree ul:before {
   background-color: var(--vampire-color-1);
 }
-.actor.sheet.vampire .tab[data-tab="disciplines"] .powers-display-tree li:before {
+.actor.sheet.vampire .tab[data-tab='disciplines'] .powers-display-tree li:before {
   background-color: var(--vampire-color-1);
 }
-.actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list {
+.actor.sheet.vampire .tab[data-tab='disciplines'] .disciplines-list {
   display: flex;
   flex-direction: column;
   max-width: 350px;
   margin: 0px 10px 10px 10px;
 }
-.actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list .category.discipline {
+.actor.sheet.vampire .tab[data-tab='disciplines'] .disciplines-list .category.discipline {
   max-width: 500px;
 }
-.actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list .item-header {
+.actor.sheet.vampire .tab[data-tab='disciplines'] .disciplines-list .item-header {
   border-bottom: 1px solid var(--system-color-5);
 }
-.actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list .item-controls {
+.actor.sheet.vampire .tab[data-tab='disciplines'] .disciplines-list .item-controls {
   text-align: right;
   padding: 5px;
 }
-.actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list .controls {
+.actor.sheet.vampire .tab[data-tab='disciplines'] .disciplines-list .controls {
   border-bottom: 1px solid var(--system-color-5);
 }
-.actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list .item-name {
+.actor.sheet.vampire .tab[data-tab='disciplines'] .disciplines-list .item-name {
   text-wrap: nowrap;
 }
-.actor.sheet.vampire .tab[data-tab="disciplines"] .disciplines-list .discipline-description {
+.actor.sheet.vampire .tab[data-tab='disciplines'] .disciplines-list .discipline-description {
   margin-bottom: 5px;
 }
 /* All Sheets with the Vampire styling, including itemsheets */
@@ -1153,7 +1211,7 @@ h3.item-name {
 }
 .sheet.vampire .resource-value .resource-value-step.active,
 .sheet.vampire .resource-value-static .resource-value-static-step.active,
-.sheet.vampire .resource-counter .resource-counter-step[data-state="-"] {
+.sheet.vampire .resource-counter .resource-counter-step[data-state='-'] {
   background-color: var(--vampire-color-3);
 }
 .sheet.vampire .powers-display-tree .icon.selected,
@@ -1177,7 +1235,6 @@ h3.item-name {
   font-family: cormorantLight, serif;
   font-weight: 700;
   letter-spacing: 0.05em;
-  border: none;
   box-shadow: none;
   border: 1px solid var(--system-color-5);
   margin: 0;
@@ -1246,7 +1303,7 @@ h3.item-name {
   border: 1px solid var(--vampire-color-2);
 }
 .vampire-font-headers.en .vampire-button {
-  font-family: "vampireRevised", "sans-serif";
+  font-family: 'vampireRevised', 'sans-serif';
 }
 
 :root {
@@ -1282,7 +1339,7 @@ h3.item-name {
   background-color: var(--werewolf-color-2);
 }
 .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
-.actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
+.actor.sheet.werewolf .tabs-container .item[data-tab='wolf'] {
   color: var(--werewolf-color-2);
 }
 .actor.sheet.werewolf .tabs-container .active .navicon {
@@ -1298,68 +1355,68 @@ h3.item-name {
 .actor.sheet.werewolf .item-image img {
   background-color: var(--werewolf-theme-filter);
 }
-.actor.sheet.werewolf .tab[data-tab="gifts"] .powers-display-tree ul:before {
+.actor.sheet.werewolf .tab[data-tab='gifts'] .powers-display-tree ul:before {
   background-color: var(--werewolf-color-2);
 }
-.actor.sheet.werewolf .tab[data-tab="gifts"] .powers-display-tree li:before {
+.actor.sheet.werewolf .tab[data-tab='gifts'] .powers-display-tree li:before {
   background-color: var(--werewolf-color-2);
 }
-.actor.sheet.werewolf .tab[data-tab="gifts"] .gift-description {
+.actor.sheet.werewolf .tab[data-tab='gifts'] .gift-description {
   margin-bottom: 5px;
   border-bottom: 1px solid var(--system-color-5);
 }
-.actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
-.actor.sheet.werewolf .tab[data-tab="wolf"] .resource .resource-contents,
-.actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
+.actor.sheet.werewolf .tab[data-tab='wolf'] .resource input,
+.actor.sheet.werewolf .tab[data-tab='wolf'] .resource .resource-contents,
+.actor.sheet.werewolf .tab[data-tab='wolf'] .resource.form {
   background-color: var(--system-color-6);
   border: 1px solid var(--werewolf-color-1);
   flex-direction: column;
 }
-.actor.sheet.werewolf .tab[data-tab="wolf"] .garou-forms-label {
+.actor.sheet.werewolf .tab[data-tab='wolf'] .garou-forms-label {
   margin-top: 10px;
   font-size: 20pt;
   text-align: center;
 }
-.actor.sheet.werewolf .tab[data-tab="wolf"] .were-form-name,
-.actor.sheet.werewolf .tab[data-tab="wolf"] .were-form-title {
+.actor.sheet.werewolf .tab[data-tab='wolf'] .were-form-name,
+.actor.sheet.werewolf .tab[data-tab='wolf'] .were-form-title {
   text-align: center;
 }
-.actor.sheet.werewolf .tab[data-tab="wolf"] .were-form-name h3,
-.actor.sheet.werewolf .tab[data-tab="wolf"] .were-form-title h3 {
+.actor.sheet.werewolf .tab[data-tab='wolf'] .were-form-name h3,
+.actor.sheet.werewolf .tab[data-tab='wolf'] .were-form-title h3 {
   margin-bottom: 3px;
 }
-.actor.sheet.werewolf .tab[data-tab="wolf"] .were-form-title {
+.actor.sheet.werewolf .tab[data-tab='wolf'] .were-form-title {
   font-style: italic;
   font-weight: bold;
 }
-.actor.sheet.werewolf .tab[data-tab="wolf"] .forms {
+.actor.sheet.werewolf .tab[data-tab='wolf'] .forms {
   align-items: flex-start;
 }
-.actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form {
+.actor.sheet.werewolf .tab[data-tab='wolf'] .forms .form {
   border-radius: 0;
   background-color: var(--system-color-6);
   border: 1px solid var(--system-color-5);
 }
-.actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form .ability-hint {
+.actor.sheet.werewolf .tab[data-tab='wolf'] .forms .form .ability-hint {
   cursor: pointer;
 }
-.actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form hr {
+.actor.sheet.werewolf .tab[data-tab='wolf'] .forms .form hr {
   margin-top: 2px;
   margin-bottom: 2px;
 }
-.actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form .form-description {
+.actor.sheet.werewolf .tab[data-tab='wolf'] .forms .form .form-description {
   text-align: center;
   padding: 3px;
 }
-.actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form .form-attributes {
+.actor.sheet.werewolf .tab[data-tab='wolf'] .forms .form .form-attributes {
   list-style: none;
   padding: 0;
   text-align: center;
 }
-.actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form .form-attributes li {
+.actor.sheet.werewolf .tab[data-tab='wolf'] .forms .form .form-attributes li {
   padding: 1px;
 }
-.actor.sheet.werewolf .tab[data-tab="wolf"] .forms .form-active {
+.actor.sheet.werewolf .tab[data-tab='wolf'] .forms .form-active {
   background: #eca0589a;
 }
 /* All Sheets with the Werewolf styling, including itemsheets */
@@ -1375,7 +1432,7 @@ h3.item-name {
 }
 .sheet.werewolf .resource-value .resource-value-step.active,
 .sheet.werewolf .resource-value-static .resource-value-static-step.active,
-.sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
+.sheet.werewolf .resource-counter .resource-counter-step[data-state='-'] {
   background-color: var(--werewolf-color-2);
 }
 .sheet.werewolf .powers-display-tree .icon.selected,
@@ -1398,7 +1455,6 @@ h3.item-name {
   font-family: cormorantLight, serif;
   font-weight: 700;
   letter-spacing: 0.05em;
-  border: none;
   box-shadow: none;
   border: 1px solid var(--system-color-5);
   margin: 0;
@@ -1479,8 +1535,8 @@ h3.item-name {
 .group-header.pack {
   background-color: var(--pack-group-header) !important;
 }
-.sheet .tab[data-tab="details"] prose-mirror,
-.sheet .tab[data-tab="patronSpirit"] prose-mirror {
+.sheet .tab[data-tab='details'] prose-mirror,
+.sheet .tab[data-tab='patronSpirit'] prose-mirror {
   max-height: 150px;
 }
 /* Dialogs Windows */
@@ -1527,41 +1583,41 @@ h3.item-name {
 .vampire-font-headers .werewolf-button,
 .vampire-font-headers .garou-forms-label,
 .vampire-font-headers .forms .were-form-name {
-  font-family: "vampireRevised", "sans-serif";
+  font-family: 'vampireRevised', 'sans-serif';
 }
 
 
 
 @font-face {
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
-  src: url("https://fonts.gstatic.com/s/googlesans/v58/4UaRrENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iq2vgCIhMl07v0x.woff2") format("woff2");
+  src: url('https://fonts.gstatic.com/s/googlesans/v58/4UaRrENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iq2vgCIhMl07v0x.woff2') format('woff2');
 }
 body.ru {
-  font-family: "Roboto", "Arial", sans-serif;
+  font-family: 'Roboto', 'Arial', sans-serif;
 }
 body.ru .actor.sheet {
   min-width: 950px;
 }
 
 @font-face {
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
-  src: url("https://fonts.gstatic.com/s/googlesans/v58/4UaRrENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iq2vgCIhMl07v0x.woff2") format("woff2");
+  src: url('https://fonts.gstatic.com/s/googlesans/v58/4UaRrENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iq2vgCIhMl07v0x.woff2') format('woff2');
 }
 body.uk {
-  font-family: "Roboto", "Arial", sans-serif;
+  font-family: 'Roboto', 'Arial', sans-serif;
 }
 body.uk .actor.sheet {
   min-width: 950px;
 }
 
 :root {
-  --xp-gain-icon: url("/systems/wod5e/assets/icons/sheet/exp-gain.webp");
-  --xp-spend-icon: url("/systems/wod5e/assets/icons/sheet/exp-spend.webp");
-  --xp-neutral-icon: url("/systems/wod5e/assets/icons/sheet/exp-neutral.webp");
+  --xp-gain-icon: url('/systems/wod5e/assets/icons/sheet/exp-gain.webp');
+  --xp-spend-icon: url('/systems/wod5e/assets/icons/sheet/exp-spend.webp');
+  --xp-neutral-icon: url('/systems/wod5e/assets/icons/sheet/exp-neutral.webp');
 }
 /* The actor sheet itself */
 .actor.sheet:not(.minimized):not(.group) {
@@ -1641,29 +1697,29 @@ body.uk .actor.sheet {
   position: absolute;
   right: 23px;
 }
-.actor.sheet section[data-application-part="limited"] {
+.actor.sheet section[data-application-part='limited'] {
   overflow-y: scroll;
 }
-.actor.sheet section[data-application-part="limited"] .limited-actor-header {
+.actor.sheet section[data-application-part='limited'] .limited-actor-header {
   display: flex;
   flex-grow: 0;
 }
-.actor.sheet section[data-application-part="limited"] .limited-actor-header .charname {
+.actor.sheet section[data-application-part='limited'] .limited-actor-header .charname {
   font-size: 20pt;
 }
-.actor.sheet section[data-application-part="limited"] .limited-actor-header .header-content {
+.actor.sheet section[data-application-part='limited'] .limited-actor-header .header-content {
   flex-grow: 1;
   text-align: center;
   margin-top: auto;
 }
-.actor.sheet section[data-application-part="limited"] .limited-actor-header .header-content .profile-img {
+.actor.sheet section[data-application-part='limited'] .limited-actor-header .header-content .profile-img {
   margin-left: auto;
   margin-right: auto;
 }
-.actor.sheet section[data-application-part="limited"] .description-content {
+.actor.sheet section[data-application-part='limited'] .description-content {
   align-self: flex-start;
 }
-.actor.sheet section[data-application-part="limited"] .limited-description-body {
+.actor.sheet section[data-application-part='limited'] .limited-description-body {
   padding: 10px;
 }
 .actor.sheet .actor-header {
@@ -1717,7 +1773,7 @@ body.uk .actor.sheet {
 }
 .actor.sheet .actor-header .charname:not(input) {
   font-size: 35px;
-  font-family: "Modesto Condensed", serif;
+  font-family: 'Modesto Condensed', serif;
   width: 100%;
   text-align: center;
   backdrop-filter: blur(2px);
@@ -1761,33 +1817,33 @@ body.uk .actor.sheet {
   justify-content: center;
   margin-bottom: 0;
 }
-.actor.sheet .tab[data-tab="experience"] .experience-trackers {
+.actor.sheet .tab[data-tab='experience'] .experience-trackers {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
-.actor.sheet .tab[data-tab="experience"] .experience-trackers .tracker {
+.actor.sheet .tab[data-tab='experience'] .experience-trackers .tracker {
   margin-bottom: 10px;
   text-wrap: nowrap;
 }
-.actor.sheet .tab[data-tab="experience"] .experience-trackers .tracker .exp-tracker {
+.actor.sheet .tab[data-tab='experience'] .experience-trackers .tracker .exp-tracker {
   margin-left: 10px;
   margin-right: 10px;
 }
-.actor.sheet .tab[data-tab="experience"] .experience-trackers .tracker input {
+.actor.sheet .tab[data-tab='experience'] .experience-trackers .tracker input {
   max-width: 50px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
-.actor.sheet .tab[data-tab="experience"] .experience-trackers .tracker .field-header {
+.actor.sheet .tab[data-tab='experience'] .experience-trackers .tracker .field-header {
   font-size: 15pt;
 }
-.actor.sheet .tab[data-tab="experience"] .xp-header {
+.actor.sheet .tab[data-tab='experience'] .xp-header {
   font-weight: bold;
   font-size: 14pt;
 }
-.actor.sheet .tab[data-tab="experience"] .xp-icon {
+.actor.sheet .tab[data-tab='experience'] .xp-icon {
   width: 20px;
   max-width: 20px;
   height: 20px;
@@ -1797,117 +1853,117 @@ body.uk .actor.sheet {
   border-radius: 50%;
   padding: 2px;
 }
-.actor.sheet .tab[data-tab="experience"] .xp-spend-icon {
+.actor.sheet .tab[data-tab='experience'] .xp-spend-icon {
   content: var(--xp-spend-icon);
 }
-.actor.sheet .tab[data-tab="experience"] .xp-gain-icon {
+.actor.sheet .tab[data-tab='experience'] .xp-gain-icon {
   content: var(--xp-gain-icon);
 }
-.actor.sheet .tab[data-tab="experience"] .xp-neutral-icon {
+.actor.sheet .tab[data-tab='experience'] .xp-neutral-icon {
   content: var(--xp-neutral-icon);
 }
-.actor.sheet .tab[data-tab="experience"] .xp-amount {
+.actor.sheet .tab[data-tab='experience'] .xp-amount {
   text-align: right;
   min-width: 50px;
 }
-.actor.sheet .tab[data-tab="experience"] .xp-amount:not(.xp-header-label) {
+.actor.sheet .tab[data-tab='experience'] .xp-amount:not(.xp-header-label) {
   flex-grow: 0;
 }
-.actor.sheet .tab[data-tab="experience"] .xp-controls {
+.actor.sheet .tab[data-tab='experience'] .xp-controls {
   text-align: right;
 }
-.actor.sheet .tab[data-tab="experience"] .spend-experience,
-.actor.sheet .tab[data-tab="experience"] .add-experience {
+.actor.sheet .tab[data-tab='experience'] .spend-experience,
+.actor.sheet .tab[data-tab='experience'] .add-experience {
   font-size: 13pt;
   margin-left: auto;
   font-weight: bold;
 }
-.actor.sheet .tab[data-tab="features"] .character-details {
+.actor.sheet .tab[data-tab='features'] .character-details {
   max-width: 400px;
   margin-left: 10px;
   margin-right: 10px;
   align-self: flex-start;
 }
-.actor.sheet .tab[data-tab="features"] .character-details .field-header {
+.actor.sheet .tab[data-tab='features'] .character-details .field-header {
   font-size: 16pt;
 }
-.actor.sheet .tab[data-tab="features"] .character-details .detail-row {
+.actor.sheet .tab[data-tab='features'] .character-details .detail-row {
   width: 100%;
   margin-bottom: 5px;
 }
-.actor.sheet .tab[data-tab="features"] .character-details .detail-row .shared-row {
+.actor.sheet .tab[data-tab='features'] .character-details .detail-row .shared-row {
   margin-left: 2px;
   margin-right: 2px;
 }
-.actor.sheet .tab[data-tab="features"] .character-details .description-field {
+.actor.sheet .tab[data-tab='features'] .character-details .description-field {
   width: -webkit-fill-available;
   width: -moz-available;
 }
-.actor.sheet .tab[data-tab="features"] .character-details .description-field .resource-label {
+.actor.sheet .tab[data-tab='features'] .character-details .description-field .resource-label {
   flex-wrap: nowrap;
   display: inline-flex;
 }
-.actor.sheet .tab[data-tab="features"] .character-details .description-field .description-content {
+.actor.sheet .tab[data-tab='features'] .character-details .description-field .description-content {
   text-align: initial;
 }
-.actor.sheet .tab[data-tab="features"] .features-list .category {
+.actor.sheet .tab[data-tab='features'] .features-list .category {
   margin-left: auto;
   margin-right: auto;
 }
-.actor.sheet .tab[data-tab="equipment"] .equipment-notes {
+.actor.sheet .tab[data-tab='equipment'] .equipment-notes {
   max-width: 400px;
   margin-left: 10px;
   margin-right: 10px;
   align-self: flex-start;
 }
-.actor.sheet .tab[data-tab="equipment"] .equipment-notes .field-header {
+.actor.sheet .tab[data-tab='equipment'] .equipment-notes .field-header {
   font-size: 16pt;
 }
-.actor.sheet .tab[data-tab="equipment"] .equipment-list .category {
+.actor.sheet .tab[data-tab='equipment'] .equipment-list .category {
   margin-left: auto;
   margin-right: auto;
 }
-.actor.sheet .tab[data-tab="biography"] .detailed-section {
+.actor.sheet .tab[data-tab='biography'] .detailed-section {
   align-self: flex-start;
   margin-left: auto;
   margin-right: auto;
 }
-.actor.sheet .tab[data-tab="biography"] .detailed-section .details-header {
+.actor.sheet .tab[data-tab='biography'] .detailed-section .details-header {
   text-align: center;
 }
-.actor.sheet .tab[data-tab="biography"] .detailed-section .detail {
+.actor.sheet .tab[data-tab='biography'] .detailed-section .detail {
   margin-left: 10px;
   margin-right: 10px;
   text-align: center;
 }
-.actor.sheet .tab[data-tab="biography"] .detailed-section input {
+.actor.sheet .tab[data-tab='biography'] .detailed-section input {
   text-align: center;
 }
-.actor.sheet .tab[data-tab="biography"] .detailed-section input.number {
+.actor.sheet .tab[data-tab='biography'] .detailed-section input.number {
   min-width: 100px;
 }
-.actor.sheet .tab[data-tab="biography"] .descriptive-section {
+.actor.sheet .tab[data-tab='biography'] .descriptive-section {
   margin-top: 10px;
   align-items: flex-start;
 }
-.actor.sheet .tab[data-tab="biography"] .descriptive-section .field-header {
+.actor.sheet .tab[data-tab='biography'] .descriptive-section .field-header {
   font-size: 16pt;
 }
-.actor.sheet .tab[data-tab="biography"] .descriptive-section .description-field {
+.actor.sheet .tab[data-tab='biography'] .descriptive-section .description-field {
   margin-bottom: 5px;
   padding: 5px;
 }
-.actor.sheet .tab[data-tab="biography"] .descriptive-section .resource-label {
+.actor.sheet .tab[data-tab='biography'] .descriptive-section .resource-label {
   flex-wrap: nowrap;
   display: inline-flex;
 }
-.actor.sheet .tab[data-tab="notepad"] .note-container {
+.actor.sheet .tab[data-tab='notepad'] .note-container {
   padding: 3px;
   margin: 5px;
   width: 50%;
   align-self: flex-start;
 }
-.actor.sheet .tab[data-tab="notepad"] .note-container .field-header {
+.actor.sheet .tab[data-tab='notepad'] .note-container .field-header {
   font-size: 16pt;
 }
 .actor.sheet .toggle-limited {
@@ -2018,8 +2074,6 @@ body.uk .actor.sheet {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  margin-left: auto;
-  margin-right: auto;
   max-width: 425px;
   margin: 5px;
   padding: 5px;
@@ -2169,10 +2223,10 @@ body.uk .actor.sheet {
 .vampire-font-headers.en .field-header,
 .vampire-font-headers.en .resource-header,
 .vampire-font-headers.en .specialty {
-  font-family: "vampireRevised", "sans-serif";
+  font-family: 'vampireRevised', 'sans-serif';
 }
 .vampire-font-headers.en .item-header .item-name {
-  font-family: "vampireRevised", "sans-serif";
+  font-family: 'vampireRevised', 'sans-serif';
 }
 
 .skill.application .skillname {
@@ -2256,47 +2310,47 @@ body.uk .actor.sheet {
 .group.sheet .actor-header .pack-features .field-header .resource-header {
   text-wrap-mode: wrap;
 }
-.group.sheet .tab[data-tab="members"] .group-member {
+.group.sheet .tab[data-tab='members'] .group-member {
   padding: 5px 0;
 }
-.group.sheet .tab[data-tab="members"] .group-member .actor-name {
+.group.sheet .tab[data-tab='members'] .group-member .actor-name {
   font-size: 20px;
   font-weight: bold;
 }
-.group.sheet .tab[data-tab="members"] .group-member .actor-image {
+.group.sheet .tab[data-tab='members'] .group-member .actor-image {
   max-width: 60px;
 }
-.group.sheet .tab[data-tab="members"] .group-member .actor-image img {
+.group.sheet .tab[data-tab='members'] .group-member .actor-image img {
   border: 1px solid;
   margin: 0 3px;
   cursor: pointer;
 }
-.group.sheet .tab[data-tab="members"] .group-member .sub-item.werewolf-form {
+.group.sheet .tab[data-tab='members'] .group-member .sub-item.werewolf-form {
   float: inline-end;
 }
-.group.sheet .tab[data-tab="members"] .group-member .sub-item {
+.group.sheet .tab[data-tab='members'] .group-member .sub-item {
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
   padding-left: 5px;
   padding-right: 5px;
 }
-.group.sheet .tab[data-tab="members"] .group-member .sub-item .sub-item-name {
+.group.sheet .tab[data-tab='members'] .group-member .sub-item .sub-item-name {
   font-weight: bold;
 }
-.group.sheet .tab[data-tab="members"] .group-member .sub-item .werewolf-form-image {
+.group.sheet .tab[data-tab='members'] .group-member .sub-item .werewolf-form-image {
   align-self: center;
   border: 1px solid;
 }
-.group.sheet .tab[data-tab="members"] .group-member .sup-item {
+.group.sheet .tab[data-tab='members'] .group-member .sup-item {
   flex-grow: 0;
   display: flex;
 }
-.group.sheet .tab[data-tab="members"] .group-member .sup-item a {
+.group.sheet .tab[data-tab='members'] .group-member .sup-item a {
   margin-left: 2.5px;
   margin-right: 2.5px;
 }
-.group.sheet .tab[data-tab="members"] .group-member .sup-item.type {
+.group.sheet .tab[data-tab='members'] .group-member .sup-item.type {
   text-transform: uppercase;
   margin-right: 10px;
   text-wrap: nowrap;
@@ -2370,7 +2424,7 @@ body.uk .actor.sheet {
   text-align: center;
 }
 .wod5e .flex-left {
-  align-items: left;
+  align-items: flex-start;
   justify-content: left;
   text-align: left;
 }
@@ -2424,7 +2478,7 @@ body.uk .actor.sheet {
 .item.sheet .tabs a.active {
   font-weight: bold;
 }
-.item.sheet a[data-tab="dicepool"] .remove-dice {
+.item.sheet a[data-tab='dicepool'] .remove-dice {
   flex-grow: 0;
   padding: 4px;
 }
@@ -2625,16 +2679,16 @@ body.uk .actor.sheet {
 .flex-group-center:not(.flexrow) .cell-resource-counter {
   margin-top: 5px;
 }
-.tab[data-tab="disciplines"] .resource-value,
-.tab[data-tab="edges"] .resource-value {
+.tab[data-tab='disciplines'] .resource-value,
+.tab[data-tab='edges'] .resource-value {
   margin-top: 2px;
   text-align: center;
 }
-.tab[data-tab="features"] .dot-tracker {
+.tab[data-tab='features'] .dot-tracker {
   display: contents;
 }
-.tab[data-tab="features"] .resource-value,
-.tab[data-tab="features"] .resource-value-static {
+.tab[data-tab='features'] .resource-value,
+.tab[data-tab='features'] .resource-value-static {
   text-align: right;
   margin-left: auto;
 }
@@ -2664,7 +2718,7 @@ body.uk .actor.sheet {
   flex-direction: row;
   text-align: center;
   text-align: -webkit-center;
-  flex-flow: wrap;
+  flex-wrap: wrap;
 }
 .spc.sheet .exceptional-pools-list .spc-item-header {
   font-weight: bold;
@@ -2693,7 +2747,7 @@ body.uk .actor.sheet {
   padding: 3px;
 }
 .spc.sheet .power-category .power-category-header {
-  border-bottom: 1px solid #CCC;
+  border-bottom: 1px solid #ccc;
   margin-bottom: 5px;
   padding-bottom: 2px;
 }
@@ -2728,7 +2782,7 @@ body.uk .actor.sheet {
   place-content: center;
 }
 .locked .exceptional-pools-list a:not(:last-child)::after {
-  content: ", ";
+  content: ', ';
   white-space: pre;
 }
 .exceptional-edit.dialog .exceptional-pool {
@@ -2753,10 +2807,10 @@ body.uk .actor.sheet {
   --system-color-10: #4b4b4b;
   --system-color-11: #181818;
   --base-theme-filter: rgba(24, 51, 103, 0.5);
-  --ui-background-texture: url("../assets/ui/base_ui_background_texture.webp");
-  --sidebar-background: url("../assets/ui/base_sidebar.webp");
-  --actor-background-default: url("../assets/actor/actor_background.webp");
-  --actor-header-default: url("../assets/ui/Actor_Header_Background.webp");
+  --ui-background-texture: url('../assets/ui/base_ui_background_texture.webp');
+  --sidebar-background: url('../assets/ui/base_sidebar.webp');
+  --actor-background-default: url('../assets/actor/actor_background.webp');
+  --actor-header-default: url('../assets/ui/Actor_Header_Background.webp');
 }
 .wod5e {
   box-shadow: 0 0 5px var(--system-color-1);
@@ -2893,7 +2947,7 @@ prose-mirror .editor-menu button {
   cursor: pointer;
 }
 /* Experience Tab */
-.tab[data-tab="experience"] .xp-icon {
+.tab[data-tab='experience'] .xp-icon {
   background-color: #1c1c1c;
   border: 1px solid white;
 }
@@ -2912,19 +2966,19 @@ prose-mirror .editor-menu button {
 .resource-counter .resource-counter-step {
   border: 1px solid var(--system-color-5);
 }
-.resource-counter .resource-counter-step[data-state="/"] {
+.resource-counter .resource-counter-step[data-state='/'] {
   background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
 }
-.resource-counter .resource-counter-step[data-state="x"] {
+.resource-counter .resource-counter-step[data-state='x'] {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
 }
 .cell-resource-counter .cell-resource-counter-step {
   border: 1px solid var(--system-color-5);
 }
-.cell-resource-counter .cell-resource-counter-step[data-state="/"] {
+.cell-resource-counter .cell-resource-counter-step[data-state='/'] {
   background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
 }
-.cell-resource-counter .cell-resource-counter-step[data-state="x"] {
+.cell-resource-counter .cell-resource-counter-step[data-state='x'] {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-color-5) 45%, var(--system-color-5) 55%, transparent 57%, transparent 100%);
 }
 /* Item Sheets */
@@ -2963,7 +3017,7 @@ prose-mirror .editor-menu button {
 /* Headers */
 .combat-sidebar .combat-tracker-header,
 .directory .directory-header {
-  border-bottom: 2px groove #CCC;
+  border-bottom: 2px groove #ccc;
   background: var(--system-color-8);
 }
 /* Footers */
@@ -2972,7 +3026,7 @@ prose-mirror .editor-menu button {
 }
 /* Settings Sidebar */
 .settings-sidebar h2 {
-  border-bottom: 2px groove #CCC;
+  border-bottom: 2px groove #ccc;
   background: var(--system-color-11);
 }
 /* Roll Dialogs */
@@ -3000,7 +3054,7 @@ prose-mirror .editor-menu button {
 }
 .actors-sidebar .group-item > .group-header {
   color: var(--system-color-6);
-  background: rgba(255 255 255 20%);
+  background: rgba(255 255 255 / 20%);
   border-top: 1px sod var(--color-border-dark);
   border-bottom: 1px sod var(--color-border-dark);
 }
@@ -3016,7 +3070,7 @@ prose-mirror .editor-menu button {
   color: var(--color-text-hypernk);
 }
 .actors-sidebar .group-item.collapsed > .group-header {
-  background: rgba(0 0 0 50%);
+  background: rgba(0 0 0 / 50%);
 }
 .actors-sidebar .group-item.droptarget > header h3 {
   text-shadow: 1px 1px 3px var(--color-shadow-dark);
@@ -3170,7 +3224,7 @@ prose-mirror .editor-menu button {
 }
 .theme-dark .content-link {
   color: var(--system-dark-color-1);
-  background-color: #FFF;
+  background-color: #fff;
 }
 .theme-dark .app,
 .theme-dark .application.dialog,
@@ -3199,6 +3253,12 @@ prose-mirror .editor-menu button {
 .theme-dark .group-header {
   color: var(--system-dark-color-11);
 }
+.theme-dark .storyteller-section {
+  color: var(--system-dark-color-4);
+}
+.theme-dark .storyteller-section .hint {
+  color: var(--system-dark-color-8);
+}
 .theme-dark .standard-form .form-group > label,
 .theme-dark .standard-form .form-group:hover > label {
   color: var(--system-dark-color-4);
@@ -3211,7 +3271,7 @@ prose-mirror .editor-menu button {
 .theme-dark .standard-form .sheet-tabs {
   color: var(--system-dark-color-4);
 }
-.theme-dark .standard-form input[type=range] {
+.theme-dark .standard-form input[type='range'] {
   --range-thumb-background-color: var(--system-dark-color-4);
   --range-thumb-border-color: var(--system-dark-color-1);
 }
@@ -3335,10 +3395,10 @@ prose-mirror .editor-menu button {
 .theme-dark .actor.sheet .resource-counter .resource-counter-step {
   border: 1px solid var(--system-dark-color-4);
 }
-.theme-dark .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
+.theme-dark .actor.sheet .resource-counter .resource-counter-step[data-state='/'] {
   background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
-.theme-dark .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
+.theme-dark .actor.sheet .resource-counter .resource-counter-step[data-state='x'] {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
 .theme-dark .actor.sheet .item-list .category {
@@ -3362,13 +3422,13 @@ prose-mirror .editor-menu button {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.theme-dark .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
+.theme-dark .actor.sheet.vampire .tabs-container .active.item[data-tab='blood'],
 .theme-dark .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
 .theme-dark .sheet.werewolf .resource-value .resource-value-step.active,
 .theme-dark .sheet.werewolf .resource-value-static .resource-value-static-step.active,
-.theme-dark .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
+.theme-dark .sheet.werewolf .resource-counter .resource-counter-step[data-state='-'] {
   background-color: var(--werewolf-color-3);
 }
 .theme-dark .sheet.werewolf button.rage-button:hover {
@@ -3377,20 +3437,20 @@ prose-mirror .editor-menu button {
 .theme-dark .actor.sheet.werewolf .tabs-container .active.item .navicon {
   background-color: #752e11ea;
 }
-.theme-dark .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
+.theme-dark .actor.sheet.werewolf .tabs-container .active.item[data-tab='wolf'],
 .theme-dark .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
 .theme-dark .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
-.theme-dark .actor.sheet.werewolf .tabs-container [data-tab="wolf"] .navicon {
+.theme-dark .actor.sheet.werewolf .tabs-container [data-tab='wolf'] .navicon {
   color: var(--werewolf-color-3);
 }
-.theme-dark .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
-.theme-dark .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
+.theme-dark .actor.sheet.werewolf .tab[data-tab='wolf'] .resource input,
+.theme-dark .actor.sheet.werewolf .tab[data-tab='wolf'] .resource.form {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.theme-dark .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form.form-active {
+.theme-dark .actor.sheet.werewolf .tab[data-tab='wolf'] .resource.form.form-active {
   background-color: #833501e0;
 }
 .theme-dark .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
@@ -3403,7 +3463,7 @@ prose-mirror .editor-menu button {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-1);
 }
-.theme-dark .journal-entry .directory input[type="search"] {
+.theme-dark .journal-entry .directory input[type='search'] {
   background: transparent;
 }
 .theme-dark .app.journal-entry .journal-entry-content {
@@ -3419,7 +3479,7 @@ prose-mirror .editor-menu button {
 
 /* Variables */
 :root {
-  --hunter-theme-filter: #D18125;
+  --hunter-theme-filter: #d18125;
 }
 .wod-hunter-theme {
   /* All places that use a filter to apply the theme colour */
@@ -3458,7 +3518,7 @@ prose-mirror .editor-menu button {
 
 /* Variables */
 :root {
-  --vampire-theme-filter: #FF2B2B80;
+  --vampire-theme-filter: #ff2b2b80;
 }
 .wod-vampire-theme {
   /* All places that use a filter to apply the theme colour */
@@ -3476,7 +3536,7 @@ prose-mirror .editor-menu button {
 }
 .wod-vampire-theme .content-link {
   color: var(--system-dark-color-1);
-  background-color: #FFF;
+  background-color: #fff;
 }
 .wod-vampire-theme .app,
 .wod-vampire-theme .application.dialog,
@@ -3495,6 +3555,12 @@ prose-mirror .editor-menu button {
 .wod-vampire-theme #hotbar .macro {
   background: var(--vampire-theme-filter);
 }
+.wod-vampire-theme .storyteller-section {
+  color: var(--system-dark-color-4);
+}
+.wod-vampire-theme .storyteller-section .hint {
+  color: var(--system-dark-color-8);
+}
 .wod-vampire-theme .standard-form .form-group > label,
 .wod-vampire-theme .standard-form .form-group:hover > label {
   color: var(--system-dark-color-4);
@@ -3506,7 +3572,7 @@ prose-mirror .editor-menu button {
 .wod-vampire-theme .standard-form .sheet-tabs {
   color: var(--system-dark-color-4);
 }
-.wod-vampire-theme .standard-form input[type=range] {
+.wod-vampire-theme .standard-form input[type='range'] {
   --range-thumb-background-color: var(--system-dark-color-4);
   --range-thumb-border-color: var(--system-dark-color-1);
 }
@@ -3630,10 +3696,10 @@ prose-mirror .editor-menu button {
 .wod-vampire-theme .actor.sheet .resource-counter .resource-counter-step {
   border: 1px solid var(--system-dark-color-4);
 }
-.wod-vampire-theme .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
+.wod-vampire-theme .actor.sheet .resource-counter .resource-counter-step[data-state='/'] {
   background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
-.wod-vampire-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
+.wod-vampire-theme .actor.sheet .resource-counter .resource-counter-step[data-state='x'] {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
 .wod-vampire-theme .actor.sheet .item-list .category {
@@ -3657,13 +3723,13 @@ prose-mirror .editor-menu button {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.wod-vampire-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
+.wod-vampire-theme .actor.sheet.vampire .tabs-container .active.item[data-tab='blood'],
 .wod-vampire-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
 .wod-vampire-theme .sheet.werewolf .resource-value .resource-value-step.active,
 .wod-vampire-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
-.wod-vampire-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
+.wod-vampire-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state='-'] {
   background-color: var(--werewolf-color-3);
 }
 .wod-vampire-theme .sheet.werewolf button.rage-button:hover {
@@ -3672,20 +3738,20 @@ prose-mirror .editor-menu button {
 .wod-vampire-theme .actor.sheet.werewolf .tabs-container .active.item .navicon {
   background-color: #752e11ea;
 }
-.wod-vampire-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
+.wod-vampire-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab='wolf'],
 .wod-vampire-theme .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
 .wod-vampire-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
-.wod-vampire-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
+.wod-vampire-theme .actor.sheet.werewolf .tabs-container .item[data-tab='wolf'] {
   color: var(--werewolf-color-3);
 }
-.wod-vampire-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
-.wod-vampire-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
+.wod-vampire-theme .actor.sheet.werewolf .tab[data-tab='wolf'] .resource input,
+.wod-vampire-theme .actor.sheet.werewolf .tab[data-tab='wolf'] .resource.form {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.wod-vampire-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form.form-active {
+.wod-vampire-theme .actor.sheet.werewolf .tab[data-tab='wolf'] .resource.form.form-active {
   background-color: #833501e0;
 }
 .wod-vampire-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
@@ -3698,7 +3764,7 @@ prose-mirror .editor-menu button {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-1);
 }
-.wod-vampire-theme .journal-entry .directory input[type="search"] {
+.wod-vampire-theme .journal-entry .directory input[type='search'] {
   background: transparent;
 }
 .wod-vampire-theme .app.journal-entry .journal-entry-content {
@@ -3714,7 +3780,7 @@ prose-mirror .editor-menu button {
 
 /* Variables */
 :root {
-  --werewolf-theme-filter: #BE660080;
+  --werewolf-theme-filter: #be660080;
 }
 .wod-werewolf-theme {
   /* All places that use a filter to apply the theme colour */
@@ -3732,7 +3798,7 @@ prose-mirror .editor-menu button {
 }
 .wod-werewolf-theme .content-link {
   color: var(--system-dark-color-1);
-  background-color: #FFF;
+  background-color: #fff;
 }
 .wod-werewolf-theme .app,
 .wod-werewolf-theme .application.dialog,
@@ -3751,6 +3817,12 @@ prose-mirror .editor-menu button {
 .wod-werewolf-theme #hotbar .macro {
   background: var(--werewolf-theme-filter);
 }
+.wod-werewolf-theme .storyteller-section {
+  color: var(--system-dark-color-4);
+}
+.wod-werewolf-theme .storyteller-section .hint {
+  color: var(--system-dark-color-8);
+}
 .wod-werewolf-theme .standard-form .form-group > label,
 .wod-werewolf-theme .standard-form .form-group:hover > label {
   color: var(--system-dark-color-4);
@@ -3762,7 +3834,7 @@ prose-mirror .editor-menu button {
 .wod-werewolf-theme .standard-form .sheet-tabs {
   color: var(--system-dark-color-4);
 }
-.wod-werewolf-theme .standard-form input[type=range] {
+.wod-werewolf-theme .standard-form input[type='range'] {
   --range-thumb-background-color: var(--system-dark-color-4);
   --range-thumb-border-color: var(--system-dark-color-1);
 }
@@ -3886,10 +3958,10 @@ prose-mirror .editor-menu button {
 .wod-werewolf-theme .actor.sheet .resource-counter .resource-counter-step {
   border: 1px solid var(--system-dark-color-4);
 }
-.wod-werewolf-theme .actor.sheet .resource-counter .resource-counter-step[data-state="/"] {
+.wod-werewolf-theme .actor.sheet .resource-counter .resource-counter-step[data-state='/'] {
   background: linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
-.wod-werewolf-theme .actor.sheet .resource-counter .resource-counter-step[data-state="x"] {
+.wod-werewolf-theme .actor.sheet .resource-counter .resource-counter-step[data-state='x'] {
   background: linear-gradient(45deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%), linear-gradient(135deg, transparent 0%, transparent 43%, var(--system-dark-color-4) 45%, var(--system-dark-color-4) 55%, transparent 57%, transparent 100%);
 }
 .wod-werewolf-theme .actor.sheet .item-list .category {
@@ -3913,13 +3985,13 @@ prose-mirror .editor-menu button {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.wod-werewolf-theme .actor.sheet.vampire .tabs-container .active.item[data-tab="blood"],
+.wod-werewolf-theme .actor.sheet.vampire .tabs-container .active.item[data-tab='blood'],
 .wod-werewolf-theme .actor.sheet.vampire .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
 .wod-werewolf-theme .sheet.werewolf .resource-value .resource-value-step.active,
 .wod-werewolf-theme .sheet.werewolf .resource-value-static .resource-value-static-step.active,
-.wod-werewolf-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state="-"] {
+.wod-werewolf-theme .sheet.werewolf .resource-counter .resource-counter-step[data-state='-'] {
   background-color: var(--werewolf-color-3);
 }
 .wod-werewolf-theme .sheet.werewolf button.rage-button:hover {
@@ -3928,20 +4000,20 @@ prose-mirror .editor-menu button {
 .wod-werewolf-theme .actor.sheet.werewolf .tabs-container .active.item .navicon {
   background-color: #752e11ea;
 }
-.wod-werewolf-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab="wolf"],
+.wod-werewolf-theme .actor.sheet.werewolf .tabs-container .active.item[data-tab='wolf'],
 .wod-werewolf-theme .actor.sheet.werewolf .tabs-container .active .navicon .wod5e-symbol {
   color: var(--system-dark-color-4);
 }
 .wod-werewolf-theme .actor.sheet.werewolf .tabs-container .navicon .wod5e-symbol,
-.wod-werewolf-theme .actor.sheet.werewolf .tabs-container .item[data-tab="wolf"] {
+.wod-werewolf-theme .actor.sheet.werewolf .tabs-container .item[data-tab='wolf'] {
   color: var(--werewolf-color-3);
 }
-.wod-werewolf-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource input,
-.wod-werewolf-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form {
+.wod-werewolf-theme .actor.sheet.werewolf .tab[data-tab='wolf'] .resource input,
+.wod-werewolf-theme .actor.sheet.werewolf .tab[data-tab='wolf'] .resource.form {
   background-color: var(--system-dark-color-2);
   border-color: var(--system-dark-color-4);
 }
-.wod-werewolf-theme .actor.sheet.werewolf .tab[data-tab="wolf"] .resource.form.form-active {
+.wod-werewolf-theme .actor.sheet.werewolf .tab[data-tab='wolf'] .resource.form.form-active {
   background-color: #833501e0;
 }
 .wod-werewolf-theme .actor.sheet.hunter .tabs-container .active .navicon .wod5e-symbol {
@@ -3954,7 +4026,7 @@ prose-mirror .editor-menu button {
   color: var(--system-dark-color-4);
   background-color: var(--system-dark-color-1);
 }
-.wod-werewolf-theme .journal-entry .directory input[type="search"] {
+.wod-werewolf-theme .journal-entry .directory input[type='search'] {
   background: transparent;
 }
 .wod-werewolf-theme .app.journal-entry .journal-entry-content {

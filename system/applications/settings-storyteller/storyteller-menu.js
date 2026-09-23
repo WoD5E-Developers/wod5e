@@ -1,274 +1,221 @@
-/* Definitions */
 import { Attributes } from '../../api/def/attributes.js'
 import { Skills } from '../../api/def/skills.js'
 import { Disciplines } from '../../api/def/disciplines.js'
 import { Edges } from '../../api/def/edges.js'
 import { Gifts } from '../../api/def/gifts.js'
 
-export class StorytellerMenu extends FormApplication {
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      title: game.i18n.localize('WOD5E.Settings.StorytellerMenu'),
-      id: 'wod5e-storyteller',
-      classes: ['wod5e'],
-      template: 'systems/wod5e/display/ui/storyteller-menu.hbs',
-      width: 500,
-      height: 450,
-      resizable: true,
-      closeOnSubmit: true,
-      tabs: [
-        {
-          navSelector: '.sheet-tabs',
-          contentSelector: 'section',
-          initial: 'modifications'
-        }
-      ]
-    })
-  }
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 
-  constructor(application, options) {
-    super(application, options)
+// Each category owns its editor; additional domain/wereform editors can be separate tabs.
+const categories = {
+  attribute: { definition: Attributes, label: 'WOD5E.AttributesList.Attributes', typed: true },
+  skill: { definition: Skills, label: 'WOD5E.SkillsList.Skills', typed: true },
+  discipline: { definition: Disciplines, label: 'WOD5E.VTM.Disciplines' },
+  edge: { definition: Edges, label: 'WOD5E.HTR.Edges' },
+  gift: { definition: Gifts, label: 'WOD5E.WTA.Gifts' }
+}
 
-    this.listKeys = {
-      attribute: {
-        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
-          string: game.i18n.localize('WOD5E.AttributesList.Label')
-        }),
-        defCategory: 'Attributes',
-        labelCategory: 'AttributesList',
-        defClass: Attributes
-      },
-      skill: {
-        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
-          string: game.i18n.localize('WOD5E.SkillsList.Label')
-        }),
-        defCategory: 'Skills',
-        labelCategory: 'SkillsList',
-        defClass: Skills
-      },
-      discipline: {
-        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
-          string: game.i18n.localize('WOD5E.VTM.Discipline')
-        }),
-        defCategory: 'Disciplines',
-        labelCategory: 'DisciplinesList',
-        defClass: Disciplines
-      },
-      edge: {
-        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
-          string: game.i18n.localize('WOD5E.HTR.Edge')
-        }),
-        defCategory: 'Edges',
-        labelCategory: 'EdgesList',
-        defClass: Edges
-      },
-      gift: {
-        newModTitle: game.i18n.format('WOD5E.Settings.NewStringModification', {
-          string: game.i18n.localize('WOD5E.WTA.Gift')
-        }),
-        defCategory: 'Gifts',
-        labelCategory: 'GiftsList',
-        defClass: Gifts
-      }
+export class StorytellerMenu extends HandlebarsApplicationMixin(ApplicationV2) {
+  static DEFAULT_OPTIONS = {
+    tag: 'form',
+    id: 'wod5e-storyteller',
+    classes: ['wod5e', 'storyteller-menu'],
+    window: { title: 'WOD5E.Settings.StorytellerMenu', resizable: true },
+    position: { width: 760, height: 640 },
+    form: { handler: StorytellerMenu.saveChanges, closeOnSubmit: false },
+    actions: {
+      addModification: StorytellerMenu.addModification,
+      addCustom: StorytellerMenu.addCustom,
+      removeEntry: StorytellerMenu.removeEntry
     }
   }
 
-  /* -------------------------------------------- */
+  static TABS = {
+    primary: {
+      initial: 'attribute',
+      tabs: Object.entries(categories).map(([id, { label }]) => ({ id, label }))
+    }
+  }
 
-  /** @override */
-  async getData() {
-    const data = await super.getData()
+  static PARTS = {
+    editor: {
+      template: 'systems/wod5e/display/ui/storyteller-menu.hbs',
+      scrollable: ['.storyteller-panels']
+    }
+  }
 
-    data.attributeTypes = {
+  _draft = null
+  _baseline = null
+  _saving = false
+
+  _initializeDraft() {
+    if (this._draft) return
+    this._draft = {}
+    for (const [type, { definition }] of Object.entries(categories)) {
+      this._draft[type] = {}
+      for (const kind of ['modified', 'custom']) {
+        this._draft[type][kind] = foundry.utils.deepClone(
+          game.settings.get('wod5e', `${kind}${definition.defCategory}`)
+        )
+      }
+    }
+    this._baseline = foundry.utils.deepClone(this._draft)
+  }
+
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options)
+    this._initializeDraft()
+
+    context.categories = Object.entries(categories).map(([type, config]) => ({
+      ...config,
+      type,
+      tab: context.tabs[type],
+      modified: this._draft[type].modified,
+      custom: this._draft[type].custom,
+      modifiedTitle: `WOD5E.Settings.Modified${config.definition.defCategory}`,
+      customTitle: `WOD5E.Settings.Custom${config.definition.defCategory}`,
+      addModification: `WOD5E.Settings.Add${type[0].toUpperCase()}${type.slice(1)}Modification`,
+      addCustom: `WOD5E.Settings.AddCustom${type[0].toUpperCase()}${type.slice(1)}`,
+      typeLabel: `WOD5E.Settings.${type === 'attribute' ? 'Attribute' : 'Skill'}Type`
+    }))
+
+    context.attributeTypes = {
       physical: 'WOD5E.SPC.Physical',
       social: 'WOD5E.SPC.Social',
       mental: 'WOD5E.SPC.Mental'
     }
-
-    // Grab the modifications from the game settings and add them to the application data
-    data.attributeModifications = game.settings.get('wod5e', 'modifiedAttributes')
-    data.skillModifications = game.settings.get('wod5e', 'modifiedSkills')
-    data.disciplineModifications = game.settings.get('wod5e', 'modifiedDisciplines')
-    data.edgeModifications = game.settings.get('wod5e', 'modifiedEdges')
-    data.giftModifications = game.settings.get('wod5e', 'modifiedGifts')
-
-    // Grab the custom features from the game settings and add them to the application data
-    data.customAttributes = game.settings.get('wod5e', 'customAttributes')
-    data.customSkills = game.settings.get('wod5e', 'customSkills')
-    data.customDisciplines = game.settings.get('wod5e', 'customDisciplines')
-    data.customEdges = game.settings.get('wod5e', 'customEdges')
-    data.customGifts = game.settings.get('wod5e', 'customGifts')
-
-    return data
+    return context
   }
 
-  /* -------------------------------------------- */
-
-  /** @override */
-  activateListeners(html) {
-    const handleClick = (selector, handler) => {
-      html[0].querySelectorAll(selector).forEach((element) => {
-        element.addEventListener('click', function (event) {
-          event.preventDefault()
-          const data = event.target.dataset
-          handler(data)
-        })
-      })
+  // Capture all tabs before any action which re-renders the form.
+  _captureDraft(form = this.element) {
+    this._initializeDraft()
+    for (const row of form?.querySelectorAll('[data-entry]') || []) {
+      const { type, kind, id } = row.dataset
+      const entry = this._draft[type]?.[kind]?.find((item) => item.id === id)
+      if (!entry) continue
+      for (const input of row.querySelectorAll('[data-field]')) {
+        entry[input.dataset.field] = input.type === 'checkbox' ? input.checked : input.value
+      }
     }
-
-    const addCustomItem = async (listKey, label) => {
-      const list = await game.settings.get('wod5e', listKey)
-      const newItem = {
-        id: foundry.utils.randomID(8),
-        label
-      }
-
-      // Fill in extra default data for custom attributes/skills
-      if (listKey === 'customAttributes' || listKey === 'customSkills') {
-        newItem.type = 'physical'
-      }
-
-      // Push the default item into the main list and save the new setting
-      list.push(newItem)
-      await game.settings.set('wod5e', listKey, list)
-    }
-
-    handleClick('.add-mod-button', ({ type }) => this._onGenerateModPrompt(type))
-    handleClick('.remove-mod-button', ({ type, id }) => this._onRemoveChange(type, id))
-
-    handleClick('.add-custom-button', async ({ type }) => {
-      if (type === 'attribute') {
-        await addCustomItem('customAttributes', 'New Attribute')
-      } else if (type === 'skill') {
-        await addCustomItem('customSkills', 'New Skill')
-      } else if (type === 'discipline') {
-        await addCustomItem('customDisciplines', 'New Discipline')
-      } else if (type === 'edge') {
-        await addCustomItem('customEdges', 'New Edge')
-      } else if (type === 'gift') {
-        await addCustomItem('customGifts', 'New Gift')
-      }
-    })
-
-    handleClick('.remove-custom-button', ({ type, id }) => this._onRemoveCustom(type, id))
-
-    handleClick('.save-modifications', () => {
-      const modifications = {
-        attribute: [],
-        skill: [],
-        discipline: [],
-        edge: [],
-        gift: []
-      }
-      const custom = {
-        attribute: [],
-        skill: [],
-        discipline: [],
-        edge: [],
-        gift: []
-      }
-
-      const handleFeature = (feature, list) => {
-        const { id, type, label } = feature.dataset
-        const rename = $(feature).find('.mod-rename')[0].value
-        const hidden = $(feature).find('.mod-hidden')[0].checked
-        list[type].push({ id, rename, label, hidden })
-      }
-
-      const handleCustomFeature = (feature, customList) => {
-        const { id, type } = feature.dataset
-        const label = $(feature).find('.label')[0].value
-        const attrType = $(feature).find('.attr-type')[0]?.value || ''
-        const newItem = { id, label }
-        if (type === 'attribute' || type === 'skill') newItem.type = attrType
-        customList[type].push(newItem)
-      }
-
-      html[0].querySelectorAll('.modification-row').forEach(function (row) {
-        handleFeature(row, modifications)
-      })
-
-      html[0].querySelectorAll('.customization-row').forEach(function (row) {
-        handleCustomFeature(row, custom)
-      })
-
-      // Attributes
-      game.settings.set('wod5e', 'modifiedAttributes', modifications.attribute)
-      game.settings.set('wod5e', 'customAttributes', custom.attribute)
-      // SKills
-      game.settings.set('wod5e', 'modifiedSkills', modifications.skill)
-      game.settings.set('wod5e', 'customSkills', custom.skill)
-      // Disciplines
-      game.settings.set('wod5e', 'modifiedDisciplines', modifications.discipline)
-      game.settings.set('wod5e', 'customDisciplines', custom.discipline)
-      // Edges
-      game.settings.set('wod5e', 'modifiedEdges', modifications.edge)
-      game.settings.set('wod5e', 'customEdges', custom.edge)
-      // Gifts
-      game.settings.set('wod5e', 'modifiedGifts', modifications.gift)
-      game.settings.set('wod5e', 'customGifts', custom.gift)
-    })
   }
 
-  // Function for getting the information necessary for the selection dialog
-  async _onGenerateModPrompt(type) {
-    const list = await WOD5E[this.listKeys[type].defCategory].getList({})
-    this._onRenderPromptDialog(type, list, this.listKeys[type].newModTitle)
+  _onChangeForm(formConfig, event) {
+    super._onChangeForm(formConfig, event)
+    this._captureDraft()
   }
 
-  // Function for rendering the dialog for adding a new modification
-  async _onRenderPromptDialog(type, list, title) {
-    const modifiedKey = `modified${this.listKeys[type].defCategory}`
-    const modifiedList = await game.settings.get('wod5e', modifiedKey)
+  async close(options) {
+    if (this._saving) return this
 
-    const effectiveList = Object.fromEntries(
-      Object.entries(list).filter((item) => !modifiedList.some((mod) => mod.id === item[0]))
+    await super.close(options)
+    this._draft = null
+    this._baseline = null
+    return this
+  }
+
+  static async addModification(event, target) {
+    if (this._saving) return
+
+    this._captureDraft()
+
+    const { type } = target.dataset
+
+    const config = categories[type]
+    if (!config) return
+
+    const modified = this._draft[type].modified
+    const options = Object.fromEntries(
+      Object.entries(config.definition.getList({ useRenamedLabel: false })).filter(
+        ([id]) => !modified.some((item) => item.id === id)
+      )
     )
 
-    const template = 'systems/wod5e/display/ui/select-dialog.hbs'
-    const content = await foundry.applications.handlebars.renderTemplate(template, {
-      options: effectiveList
-    })
+    if (!Object.keys(options).length) {
+      ui.notifications.info(game.i18n.localize('WOD5E.Settings.NoMoreModifications'))
+      return
+    }
+
+    const content = await foundry.applications.handlebars.renderTemplate(
+      'systems/wod5e/display/ui/select-dialog.hbs',
+      { options }
+    )
 
     const result = await foundry.applications.api.DialogV2.input({
-      window: { title },
-      content,
-      ok: {
-        icon: 'fas fa-check',
-        label: game.i18n.localize('WOD5E.Add')
+      window: {
+        title: game.i18n.format('WOD5E.Settings.NewStringModification', {
+          string: game.i18n.localize(config.label)
+        })
       },
-      buttons: [
-        {
-          action: 'cancel',
-          icon: 'fas fa-times',
-          label: game.i18n.localize('WOD5E.Cancel'),
-          type: 'button'
-        }
-      ]
+      content,
+      ok: { label: game.i18n.localize('WOD5E.Add'), icon: 'fas fa-plus' },
+      rejectClose: false
     })
 
-    if (result !== 'cancel') {
-      const id = result.optionSelect
-      const label = list[id]?.label || id
-      modifiedList.push({ id, label, rename: '', hidden: false })
-      await game.settings.set('wod5e', modifiedKey, modifiedList)
+    const id = result?.optionSelect
+    if (!id || !options[id] || modified.some((entry) => entry.id === id)) return
+
+    this._captureDraft()
+    modified.push({ id, label: options[id].label, rename: '', hidden: false })
+
+    await this.render()
+  }
+
+  static async addCustom(event, target) {
+    if (this._saving) return
+    this._captureDraft()
+    const { type } = target.dataset
+    if (!categories[type]) return
+    const entry = { id: foundry.utils.randomID(8), label: '' }
+    if (categories[type].typed) entry.type = 'physical'
+    this._draft[type].custom.push(entry)
+    await this.render()
+  }
+
+  static async removeEntry(event, target) {
+    if (this._saving) return
+    this._captureDraft()
+    const { type, kind, id } = target.dataset
+    if (!this._draft[type]?.[kind]) return
+    this._draft[type][kind] = this._draft[type][kind].filter((entry) => entry.id !== id)
+    await this.render()
+  }
+
+  static async saveChanges(event, form) {
+    if (this._saving || !game.user.isGM) return
+
+    this._captureDraft(form)
+
+    // Custom entries need a usable name, including those on an inactive tab.
+    for (const [type, draft] of Object.entries(this._draft)) {
+      if (draft.custom.some((entry) => !entry.label.trim())) {
+        this.changeTab(type, 'primary')
+        ui.notifications.warn(game.i18n.localize('WOD5E.Settings.CustomNameRequired'))
+        return
+      }
     }
-  }
 
-  // Function for removing a change
-  async _onRemoveChange(type, id) {
-    const modifiedKey = `modified${this.listKeys[type].defCategory}`
-    let modifiedList = await game.settings.get('wod5e', modifiedKey)
-    modifiedList = modifiedList.filter((item) => item.id !== id)
-    await game.settings.set('wod5e', modifiedKey, modifiedList)
-  }
-
-  // Function for removing a custom feature
-  async _onRemoveCustom(type, id) {
-    const customKey = `custom${this.listKeys[type].defCategory}`
-    delete this.listKeys[type].defClass[id]
-    let customList = await game.settings.get('wod5e', customKey)
-    customList = customList.filter((item) => item.id !== id)
-    await game.settings.set('wod5e', customKey, customList)
+    this._saving = true
+    const snapshot = foundry.utils.deepClone(this._draft)
+    try {
+      for (const [type, { definition }] of Object.entries(categories)) {
+        for (const kind of ['custom', 'modified']) {
+          const entries = snapshot[type][kind]
+          if (JSON.stringify(entries) === JSON.stringify(this._baseline[type][kind])) continue
+          await game.settings.set(
+            'wod5e',
+            `${kind}${definition.defCategory}`,
+            foundry.utils.deepClone(entries)
+          )
+          this._baseline[type][kind] = foundry.utils.deepClone(entries)
+        }
+      }
+      ui.notifications.info(game.i18n.localize('WOD5E.Settings.StorytellerSaved'))
+    } catch (error) {
+      console.error('World of Darkness 5e | Storyteller settings could not be saved', error)
+      ui.notifications.error(game.i18n.localize('WOD5E.Settings.StorytellerSaveFailed'))
+    } finally {
+      this._saving = false
+    }
   }
 }
