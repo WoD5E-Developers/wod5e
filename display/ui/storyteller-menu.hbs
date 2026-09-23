@@ -1,24 +1,137 @@
-<form class='wod5e-config-form storyteller-menu' autocomplete='off'>
-  {{!-- Cell Sheet Tab Navigation --}}
-  <nav class='sheet-tabs tabs' data-group='primary'>
-    <div class='item' data-tab='modifications'>{{localize 'WOD5E.Settings.Modifications'}}</div>
-    <div class='item' data-tab='custom'>{{localize 'WOD5E.Settings.Custom'}}</div>
-  </nav>
-
-  {{!-- Menu Body --}}
-  <section class='sheet-body'>
-    {{!-- Modifications Tab --}}
-    {{> "systems/wod5e/display/ui/storyteller-menu/modification-menu.hbs"}}
-
-    {{!-- Custom Tab --}}
-    {{> "systems/wod5e/display/ui/storyteller-menu/custom-menu.hbs"}}
-
-    {{!-- Save button --}}
-    <hr />
-    <div>
-      <button class='save-modifications' type='button'>
-        {{localize 'WOD5E.Settings.SaveChanges'}}
+<div class='storyteller-editor'>
+  <p class='storyteller-intro'>{{localize 'WOD5E.Settings.StorytellerEditorHint'}}</p>
+  <nav class='tabs storyteller-tabs' aria-label="{{localize 'WOD5E.Settings.StorytellerMenu'}}">
+    {{#each tabs}}
+      <button
+        class='{{ cssClass }}'
+        type='button'
+        data-action='tab'
+        data-group='{{ group }}'
+        data-tab='{{ id }}'
+        aria-pressed='{{ active }}'
+      >
+        {{localize label}}
       </button>
-    </div>
-  </section>
-</form>
+    {{/each}}
+  </nav>
+  <div class='storyteller-panels'>
+    {{#each categories as |category|}}
+      <section class='tab {{ tab.cssClass }}' data-tab='{{ type }}' data-group='primary'>
+        <section class='storyteller-section'>
+          <header>
+            <h2>{{localize modifiedTitle}}</h2>
+            <button type='button' data-action='addModification' data-type='{{ type }}'>
+              <i class='fas fa-plus'></i>
+              {{localize addModification}}
+            </button>
+          </header>
+          <p class='hint'>{{localize 'WOD5E.Settings.ModificationEditorHint'}}</p>
+          {{#each modified}}
+            <div
+              class='storyteller-row'
+              data-entry
+              data-type='{{ category.type }}'
+              data-kind='modified'
+              data-id='{{ id }}'
+            >
+              <label class='storyteller-name' for='st-rename-{{ category.type }}-{{ id }}'>
+                {{localize label}}
+              </label>
+              <input
+                id='st-rename-{{ category.type }}-{{ id }}'
+                type='text'
+                data-field='rename'
+                value='{{ rename }}'
+                placeholder='{{localize label}}'
+                aria-label="{{localize 'WOD5E.Settings.Rename'}}: {{localize label}}"
+              />
+              <label class='storyteller-hidden'>
+                <input
+                  type='checkbox'
+                  data-field='hidden'
+                  {{checked hidden}}
+                />
+                {{localize 'WOD5E.Settings.Hidden'}}
+              </label>
+              <button
+                class='icon'
+                type='button'
+                data-action='removeEntry'
+                data-type='{{ category.type }}'
+                data-kind='modified'
+                data-id='{{ id }}'
+                aria-label="{{localize 'WOD5E.Settings.RemoveModification'}}: {{localize label}}"
+                title="{{localize 'WOD5E.Settings.RemoveModification'}}"
+              >
+                <i class='fas fa-rotate-left'></i>
+              </button>
+            </div>
+          {{else}}
+            <p class='storyteller-empty'>
+              {{localize 'WOD5E.Settings.NoModifications'}}
+            </p>
+          {{/each}}
+        </section>
+        <section class='storyteller-section'>
+          <header>
+            <h2>{{localize customTitle}}</h2>
+            <button type='button' data-action='addCustom' data-type='{{ type }}'>
+              <i class='fas fa-plus'></i>
+              {{localize addCustom}}
+            </button>
+          </header>
+          <p class='hint'>{{localize 'WOD5E.Settings.CustomEditorHint'}}</p>
+          {{#each custom}}
+            <div
+              class='storyteller-row storyteller-custom'
+              data-entry
+              data-type='{{ category.type }}'
+              data-kind='custom'
+              data-id='{{ id }}'
+            >
+              <label>
+                {{localize 'WOD5E.Label'}}
+                <input type='text' data-field='label' value='{{ label }}' />
+              </label>
+              {{#if category.typed}}
+                <label>
+                  {{localize category.typeLabel}}
+                  <select data-field='type'>
+                    {{selectOptions
+                      @root.attributeTypes
+                      selected=type
+                      localize=true
+                    }}
+                  </select>
+                </label>
+              {{/if}}
+              <button
+                class='icon'
+                type='button'
+                data-action='removeEntry'
+                data-type='{{ category.type }}'
+                data-kind='custom'
+                data-id='{{ id }}'
+                aria-label="{{localize 'WOD5E.Settings.RemoveCustom'}}: {{ label }}"
+                title="{{localize 'WOD5E.Settings.RemoveCustom'}}"
+              >
+                <i class='fas fa-trash'></i>
+              </button>
+            </div>
+          {{else}}
+            <p class='storyteller-empty'>
+              {{localize 'WOD5E.Settings.NoCustomEntries'}}
+            </p>
+          {{/each}}
+        </section>
+      </section>
+    {{/each}}
+  </div>
+  <footer class='storyteller-footer'>
+    <span class='hint'>{{localize 'WOD5E.Settings.StorytellerSaveHint'}}</span>
+    <button type='submit'>
+      <i class='fas fa-save'></i>
+      {{localize 'WOD5E.Settings.SaveChanges'}}
+    </button>
+  </footer>
+</div>

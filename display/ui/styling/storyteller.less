@@ -1,0 +1,106 @@
+.storyteller-menu {
+  .window-content {
+    overflow: hidden;
+  }
+  .storyteller-editor {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    gap: 12px;
+  }
+  .storyteller-intro {
+    margin: 0;
+  }
+  .storyteller-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    flex: 0 0 auto;
+  }
+  .storyteller-tabs button {
+    flex: 1 1 auto;
+    width: auto;
+  }
+  .storyteller-tabs button.active {
+    border-color: var(--color-border-highlight);
+    font-weight: bold;
+  }
+  .storyteller-panels {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 2px;
+  }
+  .tab:not(.active) {
+    display: none;
+  }
+  .storyteller-section {
+    border: 1px solid var(--color-border-light-primary);
+    border-radius: 6px;
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+  .storyteller-section header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .storyteller-section h2 {
+    margin: 0;
+    font-size: 1.2em;
+    border: 0;
+  }
+  .storyteller-section header button {
+    width: auto;
+  }
+  .storyteller-row {
+    display: grid;
+    grid-template-columns: minmax(100px, 1fr) minmax(100px, 1.4fr) auto 32px;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-top: 1px solid var(--color-border-light-primary);
+  }
+  .storyteller-name {
+    overflow-wrap: anywhere;
+  }
+  .storyteller-hidden {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+  .storyteller-custom {
+    grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) 32px;
+    align-items: end;
+  }
+  .storyteller-custom > label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .storyteller-custom > .icon {
+    grid-column: 3;
+  }
+  .storyteller-empty {
+    padding: 16px;
+    text-align: center;
+    font-style: italic;
+  }
+  .storyteller-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex: 0 0 auto;
+    padding-top: 10px;
+    border-top: 1px solid var(--color-border-light-primary);
+  }
+  .storyteller-footer button {
+    width: auto;
+  }
+}

@@ -191,9 +191,6 @@ export const loadSettings = async function () {
       default: [],
       type: Array,
       onChange: async () => {
-        // Re-render the storyteller menu window once settings are updated
-        _rerenderStorytellerWindow()
-
         // Re-init labels
         await value.defClass.initializeLabels()
       }
@@ -208,8 +205,16 @@ export const loadSettings = async function () {
       default: [],
       type: Array,
       onChange: async (custom) => {
-        // Re-render the storyteller menu window once settings are updated
-        _rerenderStorytellerWindow()
+        // Remove deleted world definitions on every client, preserving module definitions.
+        const retainedIds = new Set(custom.map((entry) => entry.id))
+        for (const module of game.modules.filter((module) => module.active)) {
+          for (const entry of module.flags?.wod5e?.[`custom${value.defCategory}`] || []) {
+            retainedIds.add(entry.id)
+          }
+        }
+        for (const [id, entry] of Object.entries(value.defClass)) {
+          if (entry?.custom && !retainedIds.has(id)) delete value.defClass[id]
+        }
 
         // Grab the custom attributes and send them to the function to update the list
         await value.defClass.addCustom(custom)
@@ -371,14 +376,6 @@ export const loadSettings = async function () {
       })
     })
   })
-}
-
-function _rerenderStorytellerWindow() {
-  const storytellerWindow = Object.values(ui.windows).filter((w) => w.id === 'wod5e-storyteller')[0]
-
-  if (storytellerWindow) {
-    storytellerWindow.render()
-  }
 }
 
 /**
