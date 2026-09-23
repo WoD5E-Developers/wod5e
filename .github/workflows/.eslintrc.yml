@@ -22,10 +22,13 @@ jobs:
         run: npm ci
 
       - name: Run ESLint
-        run: npx eslint . --config eslint.config.js --ext .ts,.tsx,.js,.jsx
+        run: npx run lint:js
 
       - name: Lint LESS
         run: npm run lint:less
 
       - name: Lint Handlebars
         run: npm run lint:hbs
+
+      - name: Check Handlebars and LESS Prettier formatting
+        run: npm run format:check

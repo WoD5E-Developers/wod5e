@@ -5,10 +5,12 @@
   "scripts": {
     "gulp": "gulp",
     "eslint": "eslint -c eslint.config.js *",
-    "lint": "npm run lint:js && npm run lint:less && npm run lint:hbs",
-    "lint:js": "npm run eslint",
+    "lint": "npm run lint:js && npm run lint:less && npm run lint:hbs && npm run format:check",
+    "lint:js": "eslint . --config eslint.config.js --ext .ts,.tsx,.js,.jsx",
     "lint:less": "stylelint \"display/**/*.less\" --max-warnings 0",
     "lint:hbs": "node scripts/lint-hbs.js",
+    "format:check": "prettier --check \"display/**/*.{hbs,handlebars,less}\"",
+    "format:write": "prettier --write \"display/**/*.{hbs,handlebars,less}\"",
     "convert-conditions": "fvtt package unpack -n Conditions --inputDirectory ./packs/ --outputDirectory ./packs/unpacked/_conditions && fvtt package pack -n Conditions --inputDirectory ./packs/unpacked/_conditions --outputDirectory ./packs --nedb",
     "convert-macros": "fvtt package unpack -n Macros --inputDirectory ./packs/ --outputDirectory ./packs/unpacked/_macros && fvtt package pack -n Macros --inputDirectory ./packs/unpacked/_macros --outputDirectory ./packs --nedb",
     "convert-packs": "npm run convert-conditions && npm run convert-macros",
@@ -26,6 +28,7 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/eslint-parser": "^7.25.1",
+    "@poliklot/prettier-plugin-handlebars": "0.4.1",
     "eslint": "^9.9.0",
     "eslint-plugin-hbs": "^1.0.3",
     "eslint-plugin-import": "^2.32.0",
@@ -37,6 +40,7 @@
     "jsdom": "^28.0.0",
     "less": "^4.2.0",
     "postcss-less": "^6.0.0",
+    "prettier": "3.9.8",
     "stylelint": "^16.26.1",
     "stylelint-config-recommended": "^16.0.0",
     "vitest": "^4.0.18"

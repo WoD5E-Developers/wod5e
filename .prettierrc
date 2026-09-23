@@ -7,5 +7,15 @@
   "arrowParens": "always",
   "endOfLine": "auto",
   "htmlWhitespaceSensitivity": "ignore",
-  "bracketSameLine": false
+  "bracketSameLine": false,
+  "plugins": ["@poliklot/prettier-plugin-handlebars"],
+  "overrides": [
+    {
+      "files": ["*.hbs", "*.handlebars"],
+      "options": {
+        "parser": "handlebars",
+        "htmlWhitespaceSensitivity": "strict"
+      }
+    }
+  ]
 }
