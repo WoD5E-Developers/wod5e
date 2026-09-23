@@ -12,7 +12,14 @@
 
 * Ensure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable.
 
-* Super-Linter is setup to ensure clean code. PRs will not be accepted until Super-Linter passes on the PR.
+* Install development dependencies with `npm ci`. Pull requests run JavaScript, LESS, and Handlebars lint checks, as well as unit tests once approved.
+
+### Local lint commands
+
+* `npm run lint` runs all three lint checks.
+* `npm run lint:js` runs the existing ESLint checks.
+* `npm run lint:less` checks `display/**/*.less` with Stylelint and the LESS parser. Use `npm run lint:less -- --fix` to apply supported fixes.
+* `npm run lint:hbs` checks all `.hbs` and `.handlebars` files under `display/` for Handlebars syntax errors, duplicate named helper arguments, and missing `systems/wod5e/` partial references (including incorrect filename casing)
 
 ## **Do you want to offer a suggestion to add a new feature or change an existing one?**
 

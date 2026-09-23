@@ -5,6 +5,10 @@
   "scripts": {
     "gulp": "gulp",
     "eslint": "eslint -c eslint.config.js *",
+    "lint": "npm run lint:js && npm run lint:less && npm run lint:hbs",
+    "lint:js": "npm run eslint",
+    "lint:less": "stylelint \"display/**/*.less\" --max-warnings 0",
+    "lint:hbs": "node scripts/lint-hbs.js",
     "convert-conditions": "fvtt package unpack -n Conditions --inputDirectory ./packs/ --outputDirectory ./packs/unpacked/_conditions && fvtt package pack -n Conditions --inputDirectory ./packs/unpacked/_conditions --outputDirectory ./packs --nedb",
     "convert-macros": "fvtt package unpack -n Macros --inputDirectory ./packs/ --outputDirectory ./packs/unpacked/_macros && fvtt package pack -n Macros --inputDirectory ./packs/unpacked/_macros --outputDirectory ./packs --nedb",
     "convert-packs": "npm run convert-conditions && npm run convert-macros",
@@ -29,8 +33,12 @@
     "gulp": "^5.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-less": "^5.0.0",
+    "handlebars": "^4.7.9",
     "jsdom": "^28.0.0",
     "less": "^4.2.0",
+    "postcss-less": "^6.0.0",
+    "stylelint": "^16.26.1",
+    "stylelint-config-recommended": "^16.0.0",
     "vitest": "^4.0.18"
   },
   "main": "gulpfile.js",

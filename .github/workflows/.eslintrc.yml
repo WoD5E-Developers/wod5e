@@ -23,3 +23,9 @@ jobs:
 
       - name: Run ESLint
         run: npx eslint . --config eslint.config.js --ext .ts,.tsx,.js,.jsx
+
+      - name: Lint LESS
+        run: npm run lint:less
+
+      - name: Lint Handlebars
+        run: npm run lint:hbs
