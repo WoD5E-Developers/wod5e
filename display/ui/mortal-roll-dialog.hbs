@@ -1,14 +1,24 @@
-<div class="dice-group-header flex-group-center">
-  <label>{{localize 'WOD5E.RollList.MortalDice' }}</label>
+<div class='dice-group-header flex-group-center'>
+  <label>{{localize 'WOD5E.RollList.MortalDice'}}</label>
 </div>
-<div class="base-dice-group flex-group-center">
-  <div class="basic-dice">
-    <div class="dice-input">
-      <img width="50" height="50" src="systems/wod5e/assets/icons/dialog/mortal-dice.png"/>
-      <div class="flexrow">
-        <i class="fas fa-minus dialog-control dialog-minus" data-action="minus" data-resource="inputBasicDice" data-resource-action="minus"></i>
-        <input type="number" min="0" id="inputBasicDice" value="{{basicDice}}">
-        <i class="fas fa-plus dialog-control dialog-plus" data-action="plus" data-resource="inputBasicDice" data-resource-action="plus"></i>
+<div class='base-dice-group flex-group-center'>
+  <div class='basic-dice'>
+    <div class='dice-input'>
+      <img width='50' height='50' src='systems/wod5e/assets/icons/dialog/mortal-dice.png' />
+      <div class='flexrow'>
+        <i
+          class='fas fa-minus dialog-control dialog-minus'
+          data-action='minus'
+          data-resource='inputBasicDice'
+          data-resource-action='minus'
+        ></i>
+        <input id='inputBasicDice' type='number' min='0' value='{{ basicDice }}' />
+        <i
+          class='fas fa-plus dialog-control dialog-plus'
+          data-action='plus'
+          data-resource='inputBasicDice'
+          data-resource-action='plus'
+        ></i>
       </div>
     </div>
   </div>

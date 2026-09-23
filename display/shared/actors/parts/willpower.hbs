@@ -1,23 +1,48 @@
-<div class="flexcol field-section">
-    <div class="flexcol">
-        <label class="field-header flexrow resource-label">
-            <i class="fas fa-minus resource-control resource-minus" data-action="resourceChange" data-resource="willpower" data-resource-action="minus"></i>
-            <label for="willpower" class="system-rollable willpower-roll" data-action="willpowerRoll" title="{{localize 'WOD5E.Chat.RollWillpower'}}">
-                {{localize "WOD5E.Willpower"}}
-                <i class="fa-solid fa-dice-d10"></i>
-            </label>
-            <i class="fas fa-plus resource-control resource-plus" data-action="resourceChange" data-resource="willpower" data-resource-action="plus"></i>
-        </label>
+<div class='flexcol field-section'>
+  <div class='flexcol'>
+    <label class='field-header flexrow resource-label'>
+      <i
+        class='fas fa-minus resource-control resource-minus'
+        data-action='resourceChange'
+        data-resource='willpower'
+        data-resource-action='minus'
+      ></i>
+      <label
+        class='system-rollable willpower-roll'
+        for='willpower'
+        data-action='willpowerRoll'
+        title="{{localize 'WOD5E.Chat.RollWillpower'}}"
+      >
+        {{localize "WOD5E.Willpower"}}
+        <i class='fa-solid fa-dice-d10'></i>
+      </label>
+      <i
+        class='fas fa-plus resource-control resource-plus'
+        data-action='resourceChange'
+        data-resource='willpower'
+        data-resource-action='plus'
+      ></i>
+    </label>
+  </div>
+  <div class='resource flex-group-center willpower'>
+    <div class='resource-content flexrow flex-center flex-between'>
+      <div
+        class='resource-counter editable'
+        data-states='/:superficial,x:aggravated'
+        data-max='{{ willpower.max }}'
+        data-superficial='{{ willpower.superficial }}'
+        data-aggravated='{{ willpower.aggravated }}'
+        data-name='system.willpower'
+      >
+        {{#numLoop willpower.max}}
+          <span
+            class='resource-counter-step'
+            data-action='squareCounterChange'
+            data-index='{{ this }}'
+            data-state=''
+          ></span>
+        {{/numLoop}}
+      </div>
     </div>
-    <div class="resource flex-group-center willpower">
-        <div class="resource-content flexrow flex-center flex-between">
-            <div class="resource-counter editable" data-states="/:superficial,x:aggravated" data-max="{{willpower.max}}"
-                data-superficial="{{willpower.superficial}}" data-aggravated="{{willpower.aggravated}}"
-                data-name="system.willpower">
-                {{#numLoop willpower.max}}
-                    <span class="resource-counter-step" data-action="squareCounterChange" data-index="{{this}}" data-state=""></span>
-                {{/numLoop}}
-            </div>
-        </div>
-    </div>
+  </div>
 </div>

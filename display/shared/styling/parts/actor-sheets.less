@@ -1,7 +1,7 @@
 :root {
-  --xp-gain-icon: url("/systems/wod5e/assets/icons/sheet/exp-gain.webp");
-  --xp-spend-icon: url("/systems/wod5e/assets/icons/sheet/exp-spend.webp");
-  --xp-neutral-icon: url("/systems/wod5e/assets/icons/sheet/exp-neutral.webp");
+  --xp-gain-icon: url('/systems/wod5e/assets/icons/sheet/exp-gain.webp');
+  --xp-spend-icon: url('/systems/wod5e/assets/icons/sheet/exp-spend.webp');
+  --xp-neutral-icon: url('/systems/wod5e/assets/icons/sheet/exp-neutral.webp');
 }
 
 /* The actor sheet itself */
@@ -79,9 +79,8 @@
     }
   }
 
-
   /* Limited Sheet */
-  section[data-application-part="limited"] {
+  section[data-application-part='limited'] {
     overflow-y: scroll;
 
     .limited-actor-header {
@@ -172,7 +171,7 @@
 
     .charname:not(input) {
       font-size: 35px;
-      font-family: "Modesto Condensed", serif;
+      font-family: 'Modesto Condensed', serif;
       width: 100%;
       text-align: center;
       backdrop-filter: blur(2px);
@@ -225,7 +224,7 @@
   }
 
   /* Experience Tab */
-  .tab[data-tab="experience"] {
+  .tab[data-tab='experience'] {
     .experience-trackers {
       margin-left: auto;
       margin-right: auto;
@@ -303,7 +302,7 @@
   }
 
   /* Features tab */
-  .tab[data-tab="features"] {
+  .tab[data-tab='features'] {
     .character-details {
       max-width: 400px;
       margin-left: 10px;
@@ -348,7 +347,7 @@
   }
 
   /* Equipment Tab */
-  .tab[data-tab="equipment"] {
+  .tab[data-tab='equipment'] {
     .equipment-notes {
       max-width: 400px;
       margin-left: 10px;
@@ -369,7 +368,7 @@
   }
 
   /* Biography Tab */
-  .tab[data-tab="biography"] {
+  .tab[data-tab='biography'] {
     .detailed-section {
       align-self: flex-start;
       margin-left: auto;
@@ -415,7 +414,7 @@
   }
 
   /* Notes Tab */
-  .tab[data-tab="notepad"] {
+  .tab[data-tab='notepad'] {
     .note-container {
       padding: 3px;
       margin: 5px;
@@ -754,12 +753,12 @@
   .field-header,
   .resource-header,
   .specialty {
-    font-family: "vampireRevised", "sans-serif";
+    font-family: 'vampireRevised', 'sans-serif';
   }
 
   .item-header {
     .item-name {
-      font-family: "vampireRevised", "sans-serif";
+      font-family: 'vampireRevised', 'sans-serif';
     }
   }
 }

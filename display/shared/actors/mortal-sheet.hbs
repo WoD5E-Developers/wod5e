@@ -1,17 +1,22 @@
 {{!-- Mortal Sheet Header --}}
-<header class="actor-header" {{#if headerbg}} style="background: url({{headerbg}}) center;"{{/if}}>
-    <div class="header-fields">
-        <div class="header-fields-left">
-            {{!-- Health Tracker --}}
-            {{> "systems/wod5e/display/shared/actors/parts/health.hbs"}}
-        </div>
+<header
+  class='actor-header'
+  {{#if headerbg}}
+    style="background: url({{ headerbg }}) center;"
+  {{/if}}
+>
+  <div class='header-fields'>
+    <div class='header-fields-left'>
+      {{!-- Health Tracker --}}
+      {{> "systems/wod5e/display/shared/actors/parts/health.hbs"}}
     </div>
-    <!-- Middle of the header -->
-    {{> "systems/wod5e/display/shared/actors/parts/header-profile.hbs"}}
-    <div class="header-fields">
-        <div class="header-fields-right">
-            {{!-- Willpower Tracker --}}
-            {{> "systems/wod5e/display/shared/actors/parts/willpower.hbs"}}
-        </div>
+  </div>
+  <!-- Middle of the header -->
+  {{> "systems/wod5e/display/shared/actors/parts/header-profile.hbs"}}
+  <div class='header-fields'>
+    <div class='header-fields-right'>
+      {{!-- Willpower Tracker --}}
+      {{> "systems/wod5e/display/shared/actors/parts/willpower.hbs"}}
     </div>
+  </div>
 </header>

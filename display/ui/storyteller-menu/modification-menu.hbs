@@ -1,130 +1,233 @@
-<div class="tab" data-group="primary" data-tab="modifications">
-  <div class="config-category">
+<div class='tab' data-group='primary' data-tab='modifications'>
+  <div class='config-category'>
     <h2>{{localize 'WOD5E.Settings.ModifiedAttributes'}}</h2>
-    <div class="subcategory">
-      <p class="notes">{{localize 'WOD5E.Settings.ModifiedAttributesHint'}}</p>
-      <div class="grid grid-3col">
-        <div class="mod-header">{{localize 'WOD5E.AttributesList.Label'}}</div>
-        <div class="mod-header">{{localize 'WOD5E.Settings.Rename'}}</div>
-        <div class="mod-header">{{localize 'WOD5E.Settings.Hidden'}}</div>
+    <div class='subcategory'>
+      <p class='notes'>{{localize 'WOD5E.Settings.ModifiedAttributesHint'}}</p>
+      <div class='grid grid-3col'>
+        <div class='mod-header'>{{localize 'WOD5E.AttributesList.Label'}}</div>
+        <div class='mod-header'>{{localize 'WOD5E.Settings.Rename'}}</div>
+        <div class='mod-header'>{{localize 'WOD5E.Settings.Hidden'}}</div>
       </div>
       {{#each attributeModifications as |attribute id|}}
-        <div class="modification-row grid grid-3col" data-type="attribute" data-id="{{attribute.id}}" data-label="{{attribute.label}}">
-          <div class="mod-label">
-            <i class="fas fa-trash remove-mod-button" data-type="attribute" data-id="{{attribute.id}}"></i>
-            {{attribute.label}}
+        <div
+          class='modification-row grid grid-3col'
+          data-type='attribute'
+          data-id='{{ attribute.id }}'
+          data-label='{{ attribute.label }}'
+        >
+          <div class='mod-label'>
+            <i
+              class='fas fa-trash remove-mod-button'
+              data-type='attribute'
+              data-id='{{ attribute.id }}'
+            ></i>
+            {{ attribute.label }}
           </div>
-          <input type="text" class="mod-rename" placeholder="{{attribute.label}}" value="{{attribute.rename}}">
-          <input type="checkbox" class="mod-hidden"{{#if attribute.hidden}} checked{{/if}}/>
+          <input
+            class='mod-rename'
+            type='text'
+            placeholder='{{ attribute.label }}'
+            value='{{ attribute.rename }}'
+          />
+          <input
+            class='mod-hidden'
+            type='checkbox'
+            {{#if attribute.hidden}}
+              checked
+            {{/if}}
+          />
         </div>
       {{/each}}
-      <div class="mod-footer">
-        <hr>
-        <div class="add-mod-button addition-button" data-type="attribute">{{localize 'WOD5E.Settings.AddAttributeModification'}}</div>
+      <div class='mod-footer'>
+        <hr />
+        <div class='add-mod-button addition-button' data-type='attribute'>
+          {{localize 'WOD5E.Settings.AddAttributeModification'}}
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="config-category">
+  <div class='config-category'>
     <h2>{{localize 'WOD5E.Settings.ModifiedSkills'}}</h2>
-    <div class="subcategory">
-      <p class="notes">{{localize 'WOD5E.Settings.ModifiedSkillsHint'}}</p>
-      <div class="grid grid-3col">
-        <div class="mod-header">{{localize 'WOD5E.SkillsList.Label'}}</div>
-        <div class="mod-header">{{localize 'WOD5E.Settings.Rename'}}</div>
-        <div class="mod-header">{{localize 'WOD5E.Settings.Hidden'}}</div>
+    <div class='subcategory'>
+      <p class='notes'>{{localize 'WOD5E.Settings.ModifiedSkillsHint'}}</p>
+      <div class='grid grid-3col'>
+        <div class='mod-header'>{{localize 'WOD5E.SkillsList.Label'}}</div>
+        <div class='mod-header'>{{localize 'WOD5E.Settings.Rename'}}</div>
+        <div class='mod-header'>{{localize 'WOD5E.Settings.Hidden'}}</div>
       </div>
       {{#each skillModifications as |skill id|}}
-        <div class="modification-row grid grid-3col" data-type="skill" data-id="{{skill.id}}" data-label="{{skill.label}}">
-          <div class="mod-label">
-            <i class="fas fa-trash remove-mod-button" data-type="skill" data-id="{{skill.id}}"></i>
-            {{skill.label}}
+        <div
+          class='modification-row grid grid-3col'
+          data-type='skill'
+          data-id='{{ skill.id }}'
+          data-label='{{ skill.label }}'
+        >
+          <div class='mod-label'>
+            <i class='fas fa-trash remove-mod-button' data-type='skill' data-id='{{ skill.id }}'
+            ></i>
+            {{ skill.label }}
           </div>
-          <input type="text" class="mod-rename" placeholder="{{skill.label}}" value="{{skill.rename}}">
-          <input type="checkbox" data-type="skill" class="mod-hidden"{{#if skill.hidden}} checked{{/if}}/>
+          <input
+            class='mod-rename'
+            type='text'
+            placeholder='{{ skill.label }}'
+            value='{{ skill.rename }}'
+          />
+          <input
+            class='mod-hidden'
+            type='checkbox'
+            data-type='skill'
+            {{#if skill.hidden}}
+              checked
+            {{/if}}
+          />
         </div>
       {{/each}}
-      <div class="mod-footer">
-        <hr>
-        <div class="add-mod-button addition-button" data-type="skill">{{localize 'WOD5E.Settings.AddSkillModification'}}</div>
+      <div class='mod-footer'>
+        <hr />
+        <div class='add-mod-button addition-button' data-type='skill'>
+          {{localize 'WOD5E.Settings.AddSkillModification'}}
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="config-category">
+  <div class='config-category'>
     <h2>{{localize 'WOD5E.Settings.ModifiedDisciplines'}}</h2>
-    <div class="subcategory">
-      <p class="notes">{{localize 'WOD5E.Settings.ModifiedDisciplinesHint'}}</p>
-      <div class="grid grid-3col">
-        <div class="mod-header">{{localize 'WOD5E.VTM.Discipline'}}</div>
-        <div class="mod-header">{{localize 'WOD5E.Settings.Rename'}}</div>
-        <div class="mod-header">{{localize 'WOD5E.Settings.Hidden'}}</div>
+    <div class='subcategory'>
+      <p class='notes'>{{localize 'WOD5E.Settings.ModifiedDisciplinesHint'}}</p>
+      <div class='grid grid-3col'>
+        <div class='mod-header'>{{localize 'WOD5E.VTM.Discipline'}}</div>
+        <div class='mod-header'>{{localize 'WOD5E.Settings.Rename'}}</div>
+        <div class='mod-header'>{{localize 'WOD5E.Settings.Hidden'}}</div>
       </div>
       {{#each disciplineModifications as |discipline id|}}
-        <div class="modification-row grid grid-3col" data-type="discipline" data-id="{{discipline.id}}" data-label="{{discipline.label}}">
-          <div class="mod-label">
-            <i class="fas fa-trash remove-mod-button" data-type="discipline" data-id="{{discipline.id}}"></i>
-            {{discipline.label}}
+        <div
+          class='modification-row grid grid-3col'
+          data-type='discipline'
+          data-id='{{ discipline.id }}'
+          data-label='{{ discipline.label }}'
+        >
+          <div class='mod-label'>
+            <i
+              class='fas fa-trash remove-mod-button'
+              data-type='discipline'
+              data-id='{{ discipline.id }}'
+            ></i>
+            {{ discipline.label }}
           </div>
-          <input type="text" class="mod-rename" placeholder="{{discipline.label}}" value="{{discipline.rename}}">
-          <input type="checkbox" data-type="discipline" class="mod-hidden"{{#if discipline.hidden}} checked{{/if}}/>
+          <input
+            class='mod-rename'
+            type='text'
+            placeholder='{{ discipline.label }}'
+            value='{{ discipline.rename }}'
+          />
+          <input
+            class='mod-hidden'
+            type='checkbox'
+            data-type='discipline'
+            {{#if discipline.hidden}}
+              checked
+            {{/if}}
+          />
         </div>
       {{/each}}
-      <div class="mod-footer">
-        <hr>
-        <div class="add-mod-button addition-button" data-type="discipline">{{localize 'WOD5E.Settings.AddDisciplineModification'}}</div>
+      <div class='mod-footer'>
+        <hr />
+        <div class='add-mod-button addition-button' data-type='discipline'>
+          {{localize 'WOD5E.Settings.AddDisciplineModification'}}
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="config-category">
+  <div class='config-category'>
     <h2>{{localize 'WOD5E.Settings.ModifiedEdges'}}</h2>
-    <div class="subcategory">
-      <p class="notes">{{localize 'WOD5E.Settings.ModifiedEdgesHint'}}</p>
-      <div class="grid grid-3col">
-        <div class="mod-header">{{localize 'WOD5E.HTR.Edge'}}</div>
-        <div class="mod-header">{{localize 'WOD5E.Settings.Rename'}}</div>
-        <div class="mod-header">{{localize 'WOD5E.Settings.Hidden'}}</div>
+    <div class='subcategory'>
+      <p class='notes'>{{localize 'WOD5E.Settings.ModifiedEdgesHint'}}</p>
+      <div class='grid grid-3col'>
+        <div class='mod-header'>{{localize 'WOD5E.HTR.Edge'}}</div>
+        <div class='mod-header'>{{localize 'WOD5E.Settings.Rename'}}</div>
+        <div class='mod-header'>{{localize 'WOD5E.Settings.Hidden'}}</div>
       </div>
       {{#each edgeModifications as |edge id|}}
-        <div class="modification-row grid grid-3col" data-type="edge" data-id="{{edge.id}}" data-label="{{edge.label}}">
-          <div class="mod-label">
-            <i class="fas fa-trash remove-mod-button" data-type="edge" data-id="{{edge.id}}"></i>
-            {{edge.label}}
+        <div
+          class='modification-row grid grid-3col'
+          data-type='edge'
+          data-id='{{ edge.id }}'
+          data-label='{{ edge.label }}'
+        >
+          <div class='mod-label'>
+            <i class='fas fa-trash remove-mod-button' data-type='edge' data-id='{{ edge.id }}'></i>
+            {{ edge.label }}
           </div>
-          <input type="text" class="mod-rename" placeholder="{{edge.label}}" value="{{edge.rename}}">
-          <input type="checkbox" data-type="edge" class="mod-hidden"{{#if edge.hidden}} checked{{/if}}/>
+          <input
+            class='mod-rename'
+            type='text'
+            placeholder='{{ edge.label }}'
+            value='{{ edge.rename }}'
+          />
+          <input
+            class='mod-hidden'
+            type='checkbox'
+            data-type='edge'
+            {{#if edge.hidden}}
+              checked
+            {{/if}}
+          />
         </div>
       {{/each}}
-      <div class="mod-footer">
-        <hr>
-        <div class="add-mod-button addition-button" data-type="edge">{{localize 'WOD5E.Settings.AddEdgeModification'}}</div>
+      <div class='mod-footer'>
+        <hr />
+        <div class='add-mod-button addition-button' data-type='edge'>
+          {{localize 'WOD5E.Settings.AddEdgeModification'}}
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="config-category">
+  <div class='config-category'>
     <h2>{{localize 'WOD5E.Settings.ModifiedGifts'}}</h2>
-    <div class="subcategory">
-      <p class="notes">{{localize 'WOD5E.Settings.ModifiedGiftsHint'}}</p>
-      <div class="grid grid-3col">
-        <div class="mod-header">{{localize 'WOD5E.WTA.Gift'}}</div>
-        <div class="mod-header">{{localize 'WOD5E.Settings.Rename'}}</div>
-        <div class="mod-header">{{localize 'WOD5E.Settings.Hidden'}}</div>
+    <div class='subcategory'>
+      <p class='notes'>{{localize 'WOD5E.Settings.ModifiedGiftsHint'}}</p>
+      <div class='grid grid-3col'>
+        <div class='mod-header'>{{localize 'WOD5E.WTA.Gift'}}</div>
+        <div class='mod-header'>{{localize 'WOD5E.Settings.Rename'}}</div>
+        <div class='mod-header'>{{localize 'WOD5E.Settings.Hidden'}}</div>
       </div>
       {{#each giftModifications as |gift id|}}
-        <div class="modification-row grid grid-3col" data-type="gift" data-id="{{gift.id}}" data-label="{{gift.label}}">
-          <div class="mod-label">
-            <i class="fas fa-trash remove-mod-button" data-type="gift" data-id="{{gift.id}}"></i>
-            {{gift.label}}
+        <div
+          class='modification-row grid grid-3col'
+          data-type='gift'
+          data-id='{{ gift.id }}'
+          data-label='{{ gift.label }}'
+        >
+          <div class='mod-label'>
+            <i class='fas fa-trash remove-mod-button' data-type='gift' data-id='{{ gift.id }}'></i>
+            {{ gift.label }}
           </div>
-          <input type="text" class="mod-rename" placeholder="{{gift.label}}" value="{{gift.rename}}">
-          <input type="checkbox" data-type="gift" class="mod-hidden"{{#if gift.hidden}} checked{{/if}}/>
+          <input
+            class='mod-rename'
+            type='text'
+            placeholder='{{ gift.label }}'
+            value='{{ gift.rename }}'
+          />
+          <input
+            class='mod-hidden'
+            type='checkbox'
+            data-type='gift'
+            {{#if gift.hidden}}
+              checked
+            {{/if}}
+          />
         </div>
       {{/each}}
-      <div class="mod-footer">
-        <hr>
-        <div class="add-mod-button addition-button" data-type="gift">{{localize 'WOD5E.Settings.AddGiftModification'}}</div>
+      <div class='mod-footer'>
+        <hr />
+        <div class='add-mod-button addition-button' data-type='gift'>
+          {{localize 'WOD5E.Settings.AddGiftModification'}}
+        </div>
       </div>
     </div>
   </div>

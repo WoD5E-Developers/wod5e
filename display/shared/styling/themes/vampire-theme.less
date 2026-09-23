@@ -1,6 +1,6 @@
 /* Variables */
 :root {
-  --vampire-theme-filter: #FF2B2B80;
+  --vampire-theme-filter: #ff2b2b80;
 }
 
 .wod-vampire-theme {
@@ -16,7 +16,7 @@
 
   .content-link {
     color: var(--system-dark-color-1);
-    background-color: #FFF;
+    background-color: #fff;
   }
 
   /* All places that use a filter to apply the theme colour */
@@ -57,7 +57,7 @@
       color: var(--system-dark-color-4);
     }
 
-    input[type=range] {
+    input[type='range'] {
       --range-thumb-background-color: var(--system-dark-color-4);
       --range-thumb-border-color: var(--system-dark-color-1);
     }
@@ -180,24 +180,25 @@
 
       .resource-value-empty {
         border: 1px solid var(--system-dark-color-3);
-        background: linear-gradient(
-          45deg,
-          transparent 0%,
-          transparent 43%,
-          rgb(165, 165, 165) 45%,
-          rgb(165, 165, 165) 55%,
-          transparent 57%,
-          transparent 100%
-        ),
-        linear-gradient(
-          135deg,
-          transparent 0%,
-          transparent 43%,
-          rgb(165, 165, 165) 45%,
-          rgb(165, 165, 165) 55%,
-          transparent 57%,
-          transparent 100%
-        );
+        background:
+          linear-gradient(
+            45deg,
+            transparent 0%,
+            transparent 43%,
+            rgb(165, 165, 165) 45%,
+            rgb(165, 165, 165) 55%,
+            transparent 57%,
+            transparent 100%
+          ),
+          linear-gradient(
+            135deg,
+            transparent 0%,
+            transparent 43%,
+            rgb(165, 165, 165) 45%,
+            rgb(165, 165, 165) 55%,
+            transparent 57%,
+            transparent 100%
+          );
       }
     }
 
@@ -206,7 +207,7 @@
         border: 1px solid var(--system-dark-color-4);
       }
 
-      .resource-counter-step[data-state="/"] {
+      .resource-counter-step[data-state='/'] {
         background: linear-gradient(
           135deg,
           transparent 0%,
@@ -218,25 +219,26 @@
         );
       }
 
-      .resource-counter-step[data-state="x"] {
-        background: linear-gradient(
-          45deg,
-          transparent 0%,
-          transparent 43%,
-          var(--system-dark-color-4) 45%,
-          var(--system-dark-color-4) 55%,
-          transparent 57%,
-          transparent 100%
-        ),
-        linear-gradient(
-          135deg,
-          transparent 0%,
-          transparent 43%,
-          var(--system-dark-color-4) 45%,
-          var(--system-dark-color-4) 55%,
-          transparent 57%,
-          transparent 100%
-        );
+      .resource-counter-step[data-state='x'] {
+        background:
+          linear-gradient(
+            45deg,
+            transparent 0%,
+            transparent 43%,
+            var(--system-dark-color-4) 45%,
+            var(--system-dark-color-4) 55%,
+            transparent 57%,
+            transparent 100%
+          ),
+          linear-gradient(
+            135deg,
+            transparent 0%,
+            transparent 43%,
+            var(--system-dark-color-4) 45%,
+            var(--system-dark-color-4) 55%,
+            transparent 57%,
+            transparent 100%
+          );
       }
     }
 
@@ -269,7 +271,7 @@
   /* Vampire Styling */
   .actor.sheet.vampire {
     .tabs-container {
-      .active.item[data-tab="blood"],
+      .active.item[data-tab='blood'],
       .active .navicon .wod5e-symbol {
         color: var(--system-dark-color-4);
       }
@@ -280,7 +282,7 @@
   .sheet.werewolf {
     .resource-value .resource-value-step.active,
     .resource-value-static .resource-value-static-step.active,
-    .resource-counter .resource-counter-step[data-state="-"] {
+    .resource-counter .resource-counter-step[data-state='-'] {
       background-color: var(--werewolf-color-3);
     }
 
@@ -295,18 +297,18 @@
         background-color: #752e11ea;
       }
 
-      .active.item[data-tab="wolf"],
+      .active.item[data-tab='wolf'],
       .active .navicon .wod5e-symbol {
         color: var(--system-dark-color-4);
       }
 
       .navicon .wod5e-symbol,
-      .item[data-tab="wolf"] {
+      .item[data-tab='wolf'] {
         color: var(--werewolf-color-3);
       }
     }
 
-    .tab[data-tab="wolf"] {
+    .tab[data-tab='wolf'] {
       .resource input,
       .resource.form {
         background-color: var(--system-dark-color-2);
@@ -341,7 +343,7 @@
 
   /* Journals */
   .journal-entry {
-    .directory input[type="search"] {
+    .directory input[type='search'] {
       background: transparent;
     }
   }

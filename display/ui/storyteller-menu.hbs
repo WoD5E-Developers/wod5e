@@ -1,12 +1,12 @@
-<form autocomplete="off" class="wod5e-config-form storyteller-menu">
+<form class='wod5e-config-form storyteller-menu' autocomplete='off'>
   {{!-- Cell Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    <div class="item" data-tab="modifications">{{localize 'WOD5E.Settings.Modifications'}}</div>
-    <div class="item" data-tab="custom">{{localize 'WOD5E.Settings.Custom'}}</div>
+  <nav class='sheet-tabs tabs' data-group='primary'>
+    <div class='item' data-tab='modifications'>{{localize 'WOD5E.Settings.Modifications'}}</div>
+    <div class='item' data-tab='custom'>{{localize 'WOD5E.Settings.Custom'}}</div>
   </nav>
 
   {{!-- Menu Body --}}
-  <section class="sheet-body">
+  <section class='sheet-body'>
     {{!-- Modifications Tab --}}
     {{> "systems/wod5e/display/ui/storyteller-menu/modification-menu.hbs"}}
 
@@ -14,9 +14,11 @@
     {{> "systems/wod5e/display/ui/storyteller-menu/custom-menu.hbs"}}
 
     {{!-- Save button --}}
-    <hr>
+    <hr />
     <div>
-      <button type="button" class="save-modifications">{{localize 'WOD5E.Settings.SaveChanges'}}</button>
+      <button class='save-modifications' type='button'>
+        {{localize 'WOD5E.Settings.SaveChanges'}}
+      </button>
     </div>
   </section>
 </form>

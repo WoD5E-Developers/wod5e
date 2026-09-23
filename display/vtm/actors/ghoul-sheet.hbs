@@ -1,25 +1,35 @@
 {{!-- Ghoul Sheet Header --}}
-<header class="actor-header" {{#if headerbg}} style="background: url({{headerbg}}) center;"{{/if}}>
-    <div class="header-fields">
-        <div class="header-fields-left">
-            {{!-- Health Tracker --}}
-            {{> "systems/wod5e/display/shared/actors/parts/health.hbs"}}
-            {{!-- Willpower Tracker --}}
-            {{> "systems/wod5e/display/shared/actors/parts/willpower.hbs"}}
-        </div>
+<header
+  class='actor-header'
+  {{#if headerbg}}
+    style="background: url({{ headerbg }}) center;"
+  {{/if}}
+>
+  <div class='header-fields'>
+    <div class='header-fields-left'>
+      {{!-- Health Tracker --}}
+      {{> "systems/wod5e/display/shared/actors/parts/health.hbs"}}
+      {{!-- Willpower Tracker --}}
+      {{> "systems/wod5e/display/shared/actors/parts/willpower.hbs"}}
     </div>
-    <!-- Middle of the header -->
-    {{> "systems/wod5e/display/shared/actors/parts/header-profile.hbs"}}
-    <div class="header-fields">
-        <div class="header-fields-right">
-            <div class="flexcol field-section">
-                <label class="resource-label field-header">{{localize "WOD5E.VTM.Humanity"}}</label>
-                {{> "systems/wod5e/display/vtm/actors/parts/humanity.hbs"}}
-            </div>
-            <div class="flexcol field-section">
-                <label class="resource-label field-header">{{localize 'WOD5E.VTM.Domitor'}}</label>
-                <input name="system.headers.domitor" type="text" value="{{domitor}}" placeholder="{{localize 'WOD5E.VTM.Domitor'}}" />
-            </div>
-        </div>
+  </div>
+  <!-- Middle of the header -->
+  {{> "systems/wod5e/display/shared/actors/parts/header-profile.hbs"}}
+  <div class='header-fields'>
+    <div class='header-fields-right'>
+      <div class='flexcol field-section'>
+        <label class='resource-label field-header'>{{localize "WOD5E.VTM.Humanity"}}</label>
+        {{> "systems/wod5e/display/vtm/actors/parts/humanity.hbs"}}
+      </div>
+      <div class='flexcol field-section'>
+        <label class='resource-label field-header'>{{localize 'WOD5E.VTM.Domitor'}}</label>
+        <input
+          name='system.headers.domitor'
+          type='text'
+          value='{{ domitor }}'
+          placeholder="{{localize 'WOD5E.VTM.Domitor'}}"
+        />
+      </div>
     </div>
+  </div>
 </header>

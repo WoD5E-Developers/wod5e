@@ -14,11 +14,11 @@
 
   --base-theme-filter: rgb(24 51 103 / 50%);
 
-  --ui-background-texture: url("../assets/ui/base_ui_background_texture.webp");
-  --sidebar-background: url("../assets/ui/base_sidebar.webp");
+  --ui-background-texture: url('../assets/ui/base_ui_background_texture.webp');
+  --sidebar-background: url('../assets/ui/base_sidebar.webp');
 
-  --actor-background-default: url("../assets/actor/actor_background.webp");
-  --actor-header-default: url("../assets/ui/Actor_Header_Background.webp");
+  --actor-background-default: url('../assets/actor/actor_background.webp');
+  --actor-header-default: url('../assets/ui/Actor_Header_Background.webp');
 }
 
 .wod5e {
@@ -40,7 +40,7 @@
 prose-mirror {
   button.icon.toggle {
     background-color: var(--system-color-1);
-    color: var(--system-color-2)
+    color: var(--system-color-2);
   }
 
   .editor-menu {
@@ -205,12 +205,12 @@ prose-mirror {
   }
 
   .clickable {
-    cursor: pointer
+    cursor: pointer;
   }
 }
 
 /* Experience Tab */
-.tab[data-tab="experience"] {
+.tab[data-tab='experience'] {
   .xp-icon {
     background-color: #1c1c1c;
     border: 1px solid white;
@@ -229,31 +229,32 @@ prose-mirror {
 
 .resource-value .resource-value-empty {
   border: 1px solid var(--system-color-5);
-  background: linear-gradient(
-    45deg,
-    transparent 0%,
-    transparent 43%,
-    var(--system-color-5) 45%,
-    var(--system-color-5) 55%,
-    transparent 57%,
-    transparent 100%
-  ),
-  linear-gradient(
-    135deg,
-    transparent 0%,
-    transparent 43%,
-    var(--system-color-5) 45%,
-    var(--system-color-5) 55%,
-    transparent 57%,
-    transparent 100%
-  );
+  background:
+    linear-gradient(
+      45deg,
+      transparent 0%,
+      transparent 43%,
+      var(--system-color-5) 45%,
+      var(--system-color-5) 55%,
+      transparent 57%,
+      transparent 100%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 43%,
+      var(--system-color-5) 45%,
+      var(--system-color-5) 55%,
+      transparent 57%,
+      transparent 100%
+    );
 }
 
 .resource-counter .resource-counter-step {
   border: 1px solid var(--system-color-5);
 }
 
-.resource-counter .resource-counter-step[data-state="/"] {
+.resource-counter .resource-counter-step[data-state='/'] {
   background: linear-gradient(
     135deg,
     transparent 0%,
@@ -265,32 +266,33 @@ prose-mirror {
   );
 }
 
-.resource-counter .resource-counter-step[data-state="x"] {
-  background: linear-gradient(
-    45deg,
-    transparent 0%,
-    transparent 43%,
-    var(--system-color-5) 45%,
-    var(--system-color-5) 55%,
-    transparent 57%,
-    transparent 100%
-  ),
-  linear-gradient(
-    135deg,
-    transparent 0%,
-    transparent 43%,
-    var(--system-color-5) 45%,
-    var(--system-color-5) 55%,
-    transparent 57%,
-    transparent 100%
-  );
+.resource-counter .resource-counter-step[data-state='x'] {
+  background:
+    linear-gradient(
+      45deg,
+      transparent 0%,
+      transparent 43%,
+      var(--system-color-5) 45%,
+      var(--system-color-5) 55%,
+      transparent 57%,
+      transparent 100%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 43%,
+      var(--system-color-5) 45%,
+      var(--system-color-5) 55%,
+      transparent 57%,
+      transparent 100%
+    );
 }
 
 .cell-resource-counter .cell-resource-counter-step {
   border: 1px solid var(--system-color-5);
 }
 
-.cell-resource-counter .cell-resource-counter-step[data-state="/"] {
+.cell-resource-counter .cell-resource-counter-step[data-state='/'] {
   background: linear-gradient(
     135deg,
     transparent 0%,
@@ -302,25 +304,26 @@ prose-mirror {
   );
 }
 
-.cell-resource-counter .cell-resource-counter-step[data-state="x"] {
-  background: linear-gradient(
-    45deg,
-    transparent 0%,
-    transparent 43%,
-    var(--system-color-5) 45%,
-    var(--system-color-5) 55%,
-    transparent 57%,
-    transparent 100%
-  ),
-  linear-gradient(
-    135deg,
-    transparent 0%,
-    transparent 43%,
-    var(--system-color-5) 45%,
-    var(--system-color-5) 55%,
-    transparent 57%,
-    transparent 100%
-  );
+.cell-resource-counter .cell-resource-counter-step[data-state='x'] {
+  background:
+    linear-gradient(
+      45deg,
+      transparent 0%,
+      transparent 43%,
+      var(--system-color-5) 45%,
+      var(--system-color-5) 55%,
+      transparent 57%,
+      transparent 100%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 43%,
+      var(--system-color-5) 45%,
+      var(--system-color-5) 55%,
+      transparent 57%,
+      transparent 100%
+    );
 }
 
 /* Item Sheets */
@@ -347,7 +350,7 @@ prose-mirror {
 }
 
 #sidebar-content #chat .chat-scroll {
-    direction: ltr;
+  direction: ltr;
 }
 
 .sidebar-tab {
@@ -368,7 +371,7 @@ prose-mirror {
 /* Headers */
 .combat-sidebar .combat-tracker-header,
 .directory .directory-header {
-  border-bottom: 2px groove #CCC;
+  border-bottom: 2px groove #ccc;
   background: var(--system-color-8);
 }
 
@@ -380,7 +383,7 @@ prose-mirror {
 /* Settings Sidebar */
 .settings-sidebar {
   h2 {
-    border-bottom: 2px groove #CCC;
+    border-bottom: 2px groove #ccc;
     background: var(--system-color-11);
   }
 }
@@ -397,7 +400,7 @@ prose-mirror {
 
   .dialog-control:hover,
   .dialog-control:focus {
-      color: var(--system-color-5);
+    color: var(--system-color-5);
   }
 
   .situational-modifiers {

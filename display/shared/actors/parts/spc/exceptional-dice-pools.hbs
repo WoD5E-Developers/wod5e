@@ -1,37 +1,79 @@
 <div>
-    <div class="resource-label field-header flex-center">
-        {{localize "WOD5E.SPC.ExceptionalDicePools"}}
-        <a class="edit-exceptional-pools" data-action="editExceptionalPools" title="Edit exceptional pools">
-            <i class="fas fa-edit"></i>
-        </a>
-    </div>
-    <div class="exceptional-pools-list{{#unless locked}} flexrow{{else}} resource stat-resource-background{{/unless}}">
-        <!-- Iterate through each of the skill lists -->
-        {{#if locked}}
-            {{#each exceptionalPools as |exceptionalskill key|}}
-                {{#if exceptionalskill.active}}
-                    <a class="exceptional-pool resource-label rollable{{#if ../locked}} locked{{/if}}" data-action="roll" data-value-paths="exceptionaldicepools.{{key}}.value"
-                            data-select-dialog="false" data-label="{{exceptionalskill.displayName}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}
-                            data-selectors="skills skills.{{key}}">
-                        <b>{{exceptionalskill.displayName}}</b> <span class="exceptional-value">{{exceptionalskill.value}}</span></a>
-                {{/if}}
-            {{/each}}
-        {{else}}
-            {{#each exceptionalPools as |exceptionalskill key|}}
-                {{#if exceptionalskill.active}}
-                    <div class="spc-item-header exceptional-pool">
-                        <div class="resource-label rollable" data-action="roll" data-value-paths="exceptionaldicepools.{{key}}.value" data-select-dialog="false"
-                            data-label="{{exceptionalskill.displayName}}" {{#if ../noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
-                            {{exceptionalskill.displayName}}
-                        </div>
-                        <div class="resource-value">
-                            <input type="number" name="system.exceptionaldicepools.{{key}}.value"
-                            value="{{exceptionalskill.value}}" data-name="system.exceptionaldicepools.{{key}}.value"/>
-                        </div>
-                    </div>
-                {{/if}}
-            {{/each}}
+  <div class='resource-label field-header flex-center'>
+    {{localize "WOD5E.SPC.ExceptionalDicePools"}}
+    <a
+      class='edit-exceptional-pools'
+      data-action='editExceptionalPools'
+      title='Edit exceptional pools'
+    >
+      <i class='fas fa-edit'></i>
+    </a>
+  </div>
+  <div
+    class='
+      exceptional-pools-list
+      {{#unless locked}}
+        flexrow
+      {{else}}
+        resource
+        stat-resource-background
+      {{/unless}}
+    '
+  >
+    <!-- Iterate through each of the skill lists -->
+    {{#if locked}}
+      {{#each exceptionalPools as |exceptionalskill key|}}
+        {{#if exceptionalskill.active}}
+          <a
+            class='
+              exceptional-pool
+              resource-label
+              rollable
+              {{#if ../locked}}
+                locked
+              {{/if}}
+            '
+            data-action='roll'
+            data-value-paths='exceptionaldicepools.{{ key }}.value'
+            data-select-dialog='false'
+            data-label='{{ exceptionalskill.displayName }}'
+            {{#if ../noAdvancedDice}}
+              data-disable-advanced-dice="true"
+            {{/if}}
+            data-selectors='skills skills.{{ key }}'
+          >
+            <b>{{ exceptionalskill.displayName }}</b>
+            <span class='exceptional-value'>{{ exceptionalskill.value }}</span>
+          </a>
         {{/if}}
-    </div>
+      {{/each}}
+    {{else}}
+      {{#each exceptionalPools as |exceptionalskill key|}}
+        {{#if exceptionalskill.active}}
+          <div class='spc-item-header exceptional-pool'>
+            <div
+              class='resource-label rollable'
+              data-action='roll'
+              data-value-paths='exceptionaldicepools.{{ key }}.value'
+              data-select-dialog='false'
+              data-label='{{ exceptionalskill.displayName }}'
+              {{#if ../noAdvancedDice}}
+                data-disable-advanced-dice="true"
+              {{/if}}
+            >
+              {{ exceptionalskill.displayName }}
+            </div>
+            <div class='resource-value'>
+              <input
+                type='number'
+                name='system.exceptionaldicepools.{{ key }}.value'
+                value='{{ exceptionalskill.value }}'
+                data-name='system.exceptionaldicepools.{{ key }}.value'
+              />
+            </div>
+          </div>
+        {{/if}}
+      {{/each}}
+    {{/if}}
+  </div>
 </div>
-

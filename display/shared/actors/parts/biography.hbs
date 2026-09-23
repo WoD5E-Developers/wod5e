@@ -1,79 +1,131 @@
-<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
-    <div class="flexcol">
-        <div class="details-header field-header flex-center big-header">{{localize "WOD5E.BiographyList.PersonalInformation"}}</div>
-        <div class="detailed-section flexrow">
-            <div class="detail">
-                <label>
-                    <b>{{localize "WOD5E.BiographyList.Age"}}</b>
-                </label>
-                <input type="text" class="number" name="system.bio.age.trueage" value="{{bio.age.trueage}}"{{#if locked}} disabled="true"{{/if}}/>
-            </div>
-            {{#ifeq currentActorType 'vampire'}}
-                <div class="detail">
-                    <label>
-                        <b>{{localize "WOD5E.BiographyList.ApparentAge"}}</b>
-                    </label>
-                    <input type="text" class="number" name="system.bio.age.apparent" value="{{bio.age.apparent}}"{{#if locked}} disabled="true"{{/if}}/>
-                </div>
-            {{/ifeq}}
-            <div class="detail">
-                <label>
-                    <b>{{localize "WOD5E.BiographyList.DateOfBirth"}}</b>
-                </label>
-                <input type="text" class="number" name="system.bio.dateof.birth" value="{{bio.dateof.birth}}"{{#if locked}} disabled="true"{{/if}}/>
-            </div>
-            {{#ifeq currentActorType 'vampire'}}
-                <div class="detail">
-                    <label>
-                        <b>{{localize "WOD5E.BiographyList.DateOfDeath"}}</b>
-                    </label>
-                    <input type="text" class="number" name="system.bio.dateof.death" value="{{bio.dateof.death}}"{{#if locked}} disabled="true"{{/if}}/>
-                </div>
-            {{/ifeq}}
-        </div>
-        <div class="descriptive-section flexrow">
-            <div class="description-field">
-                <div class="flex-center field-header">
-                    <label class="resource-label">
-                        {{localize "WOD5E.BiographyList.Label"}}
-                        <div class="toggle-limited{{#if settings.limited.biography}} visible{{/if}}" data-action="toggleLimited" data-name="system.settings.limited.biography"
-                            title="{{#if settings.limited.biography}}{{localize "WOD5E.Tabs.IsVisible"}}{{else}}{{localize "WOD5E.Tabs.IsNotVisible"}}{{/if}}">
-                            {{#if settings.limited.biography}}
-                                <i class="fa-solid fa-eye"></i>
-                            {{else}}
-                                <i class="fa-solid fa-eye-slash"></i>
-                            {{/if}}
-                        </div>
-                    </label>
-                </div>
-                <div class="description-content resource">
-                    <prose-mirror name="system.biography" value="{{biography}}"
-                        toggled="true" compact="true">
-                        {{{enrichedBiography}}}
-                    </prose-mirror>
-                </div>
-            </div>
-            <div class="description-field">
-                <div class="flex-center field-header">
-                    <label class="resource-label">
-                        {{localize "WOD5E.BiographyList.Appearance"}}
-                        <div class="toggle-limited{{#if settings.limited.appearance}} visible{{/if}}" data-action="toggleLimited" data-name="system.settings.limited.appearance"
-                            title="{{#if settings.limited.appearance}}{{localize "WOD5E.Tabs.IsVisible"}}{{else}}{{localize "WOD5E.Tabs.IsNotVisible"}}{{/if}}">
-                            {{#if settings.limited.appearance}}
-                                <i class="fa-solid fa-eye"></i>
-                            {{else}}
-                                <i class="fa-solid fa-eye-slash"></i>
-                            {{/if}}
-                        </div>
-                    </label>
-                </div>
-                <div class="description-content resource">
-                    <prose-mirror name="system.appearance" value="{{appearance}}"
-                        toggled="true" compact="true">
-                        {{{enrichedAppearance}}}
-                    </prose-mirror>
-                </div>
-            </div>
-        </div>
+<section class='tab {{ tab.cssClass }}' data-tab='{{ tab.id }}' data-group='{{ tab.group }}'>
+  <div class='flexcol'>
+    <div class='details-header field-header flex-center big-header'>
+      {{localize "WOD5E.BiographyList.PersonalInformation"}}
     </div>
+    <div class='detailed-section flexrow'>
+      <div class='detail'>
+        <label><b>{{localize "WOD5E.BiographyList.Age"}}</b></label>
+        <input
+          class='number'
+          type='text'
+          name='system.bio.age.trueage'
+          value='{{ bio.age.trueage }}'
+          {{#if locked}}
+            disabled="true"
+          {{/if}}
+        />
+      </div>
+      {{#ifeq currentActorType 'vampire'}}
+        <div class='detail'>
+          <label><b>{{localize "WOD5E.BiographyList.ApparentAge"}}</b></label>
+          <input
+            class='number'
+            type='text'
+            name='system.bio.age.apparent'
+            value='{{ bio.age.apparent }}'
+            {{#if locked}}
+              disabled="true"
+            {{/if}}
+          />
+        </div>
+      {{/ifeq}}
+      <div class='detail'>
+        <label><b>{{localize "WOD5E.BiographyList.DateOfBirth"}}</b></label>
+        <input
+          class='number'
+          type='text'
+          name='system.bio.dateof.birth'
+          value='{{ bio.dateof.birth }}'
+          {{#if locked}}
+            disabled="true"
+          {{/if}}
+        />
+      </div>
+      {{#ifeq currentActorType 'vampire'}}
+        <div class='detail'>
+          <label><b>{{localize "WOD5E.BiographyList.DateOfDeath"}}</b></label>
+          <input
+            class='number'
+            type='text'
+            name='system.bio.dateof.death'
+            value='{{ bio.dateof.death }}'
+            {{#if locked}}
+              disabled="true"
+            {{/if}}
+          />
+        </div>
+      {{/ifeq}}
+    </div>
+    <div class='descriptive-section flexrow'>
+      <div class='description-field'>
+        <div class='flex-center field-header'>
+          <label class='resource-label'>
+            {{localize "WOD5E.BiographyList.Label"}}
+            <div
+              class='
+                toggle-limited
+                {{#if settings.limited.biography}}
+                  visible
+                {{/if}}
+              '
+              data-action='toggleLimited'
+              data-name='system.settings.limited.biography'
+              title='{{#if settings.limited.biography}}{{localize "WOD5E.Tabs.IsVisible"}}{{else}}{{localize "WOD5E.Tabs.IsNotVisible"}}{{/if}}'
+            >
+              {{#if settings.limited.biography}}
+                <i class='fa-solid fa-eye'></i>
+              {{else}}
+                <i class='fa-solid fa-eye-slash'></i>
+              {{/if}}
+            </div>
+          </label>
+        </div>
+        <div class='description-content resource'>
+          <prose-mirror
+            name='system.biography'
+            value='{{ biography }}'
+            toggled='true'
+            compact='true'
+          >
+            {{{ enrichedBiography }}}
+          </prose-mirror>
+        </div>
+      </div>
+      <div class='description-field'>
+        <div class='flex-center field-header'>
+          <label class='resource-label'>
+            {{localize "WOD5E.BiographyList.Appearance"}}
+            <div
+              class='
+                toggle-limited
+                {{#if settings.limited.appearance}}
+                  visible
+                {{/if}}
+              '
+              data-action='toggleLimited'
+              data-name='system.settings.limited.appearance'
+              title='{{#if settings.limited.appearance}}{{localize "WOD5E.Tabs.IsVisible"}}{{else}}{{localize "WOD5E.Tabs.IsNotVisible"}}{{/if}}'
+            >
+              {{#if settings.limited.appearance}}
+                <i class='fa-solid fa-eye'></i>
+              {{else}}
+                <i class='fa-solid fa-eye-slash'></i>
+              {{/if}}
+            </div>
+          </label>
+        </div>
+        <div class='description-content resource'>
+          <prose-mirror
+            name='system.appearance'
+            value='{{ appearance }}'
+            toggled='true'
+            compact='true'
+          >
+            {{{ enrichedAppearance }}}
+          </prose-mirror>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

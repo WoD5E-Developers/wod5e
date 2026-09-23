@@ -1,39 +1,54 @@
-<div class="resource-label garou-forms-label">{{localize "WOD5E.WTA.FormsOfGarou"}}</div>
-<div class="flexrow grid grid-5col forms">
-    {{#each forms as |form id|}}
-        <div>
-            <label class="resource-label were-form-name"><h3>{{form.displayName}}</h3></label>
-            <div class="were-form-title flexcol flex-center">
-                <label class="were-form-nickname">{{form.nickname}}</label>
+<div class='resource-label garou-forms-label'>{{localize "WOD5E.WTA.FormsOfGarou"}}</div>
+<div class='flexrow grid grid-5col forms'>
+  {{#each forms as |form id|}}
+    <div>
+      <label class='resource-label were-form-name'>
+        <h3>{{ form.displayName }}</h3>
+      </label>
+      <div class='were-form-title flexcol flex-center'>
+        <label class='were-form-nickname'>{{ form.nickname }}</label>
+      </div>
+      <div
+        class='
+          form
+          resource
+          {{#if form.active}}
+            form-active
+          {{/if}}
+        '
+      >
+        {{#ifeq ../activeForm id}}
+          <button class='werewolf-button active' type='button'>
+            {{localize "WOD5E.WTA.Active"}}
+          </button>
+        {{else}}
+          <button class='werewolf-button change-form{{#if form.disabled}}disabled-form{{/if}}' type='button' title="{{#if form.disabled}}{{localize 'WOD5E.WTA.LostWolfFormChange'}}{{/if}}" data-form='{{ id }}' data-action='shiftForm' data-rage-cost='{{ form.cost }}' type='button' name='{{ id }}'>{{ form.cost }} {{localize "WOD5E.WTA.RageDice"}}</button>
+        {{/ifeq}}
+        <div class='resource-content'>
+          {{#if form.description}}
+            <div class='form-description'>
+              {{{ form.description }}}
             </div>
-            <div class="form resource{{#if form.active}} form-active{{/if}}">
-                {{#ifeq ../activeForm id}}
-                    <button type="button" class="werewolf-button active">{{localize "WOD5E.WTA.Active"}}</button>
-                {{else}}
-                    <button type="button" class="werewolf-button change-form{{#if form.disabled}} disabled-form{{/if}}"
-                    title="{{#if form.disabled}}{{localize 'WOD5E.WTA.LostWolfFormChange'}}{{/if}}"
-                    data-form="{{id}}" data-action="shiftForm" data-rage-cost="{{form.cost}}" type="button" name="{{id}}">
-                        {{form.cost}} {{localize "WOD5E.WTA.RageDice"}}
-                    </button>
-                {{/ifeq}}
-                <div class="resource-content">
-                    {{#if form.description}}
-                        <div class="form-description">
-                            {{{form.description}}}
-                        </div>
-                        <hr>
-                    {{/if}}
-                    <ul class="form-attributes">
-                        {{#each form.attributes as |ability|}}
-                            <li>{{ability.label}}{{#if ability.hintIcon}} <span class="ability-hint" title="{{ability.hintDescription}}">{{ability.hintIcon}}</span>{{/if}}</li>
-                        {{/each}}
-                    </ul>
-                </div>
-                <div class="flexrow">
-                    <button type="button" class="werewolf-button were-form-chat" data-form="{{id}}" data-action="formChat">{{localize "WOD5E.WTA.PostFormToChat"}}</button>
-                    <button type="button" class="werewolf-button were-form-edit lockable-button" data-form="{{id}}" data-action="editForm">{{localize "WOD5E.Edit"}}</button>
-                </div>
-            </div>
+            <hr />
+          {{/if}}
+          <ul class='form-attributes'>
+            {{#each form.attributes as |ability|}}
+              <li>
+                {{ ability.label }}
+                {{#if ability.hintIcon}}
+                  <span class='ability-hint' title='{{ ability.hintDescription }}'>
+                    {{ ability.hintIcon }}
+                  </span>
+                {{/if}}
+              </li>
+            {{/each}}
+          </ul>
         </div>
-    {{/each}}
+        <div class='flexrow'>
+          <button class='werewolf-button were-form-chat' type='button' data-form='{{ id }}' data-action='formChat'>{{localize "WOD5E.WTA.PostFormToChat"}}</button>
+          <button class='werewolf-button were-form-edit lockable-button' type='button' data-form='{{ id }}' data-action='editForm'>{{localize "WOD5E.Edit"}}</button>
+        </div>
+      </div>
+    </div>
+  {{/each}}
 </div>

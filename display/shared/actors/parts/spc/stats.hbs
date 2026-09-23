@@ -1,57 +1,63 @@
-<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
-    <div class="grid grid-2col flexrow spc-stats-body">
-        <div>
-            {{> "systems/wod5e/display/shared/actors/parts/spc/standard-dice-pools.hbs"}}
+<section class='tab {{ tab.cssClass }}' data-tab='{{ tab.id }}' data-group='{{ tab.group }}'>
+  <div class='grid grid-2col flexrow spc-stats-body'>
+    <div>
+      {{> "systems/wod5e/display/shared/actors/parts/spc/standard-dice-pools.hbs"}}
 
-            {{> "systems/wod5e/display/shared/actors/parts/spc/exceptional-dice-pools.hbs"}}
+      {{> "systems/wod5e/display/shared/actors/parts/spc/exceptional-dice-pools.hbs"}}
 
-            {{#if showDisciplines}}
-                {{> "systems/wod5e/display/shared/actors/parts/spc/spc-disciplines.hbs"}}
-            {{/if}}
+      {{#if showDisciplines}}
+        {{> "systems/wod5e/display/shared/actors/parts/spc/spc-disciplines.hbs"}}
+      {{/if}}
 
-            {{#if showGifts}}
-                {{> "systems/wod5e/display/shared/actors/parts/spc/spc-gifts.hbs"}}
-            {{/if}}
+      {{#if showGifts}}
+        {{> "systems/wod5e/display/shared/actors/parts/spc/spc-gifts.hbs"}}
+      {{/if}}
 
-            {{#if showEdges}}
-                {{> "systems/wod5e/display/shared/actors/parts/spc/spc-edges.hbs"}}
-            {{/if}}
-        </div>
-
-        <div>
-            {{#ifeq currentActorType 'spirit'}}
-                <div class="description-field">
-                    <div class="flex-center field-header">
-                        <label class="resource-label">
-                            {{localize "WOD5E.WTA.PossessionManifestation"}}
-                        </label>
-                    </div>
-                    <div class="description-content resource">
-                        <prose-mirror name="system.manifestation" value="{{manifestation}}"
-                            toggled="true" compact="true">
-                            {{{enrichedManifestation}}}
-                        </prose-mirror>
-                    </div>
-                </div>
-            {{/ifeq}}
-
-            {{> "systems/wod5e/display/shared/actors/parts/spc/spc-traits.hbs"}}
-
-            {{> "systems/wod5e/display/shared/actors/parts/spc/spc-conditions.hbs"}}
-
-            {{#if settings.genericNotesEnabled}}
-                <div class="description-field generic-notes">
-                    <div class="flex-center field-header">
-                        <label class="resource-label">{{localize "WOD5E.Tabs.Notes"}}</label>
-                    </div>
-                    <div class="description-content resource">
-                        <prose-mirror name="system.genericNotes" value="{{genericNotes}}"
-                            toggled="true" compact="true">
-                            {{{enrichedGenericNotes}}}
-                        </prose-mirror>
-                    </div>
-                </div>
-            {{/if}}
-        </div>
+      {{#if showEdges}}
+        {{> "systems/wod5e/display/shared/actors/parts/spc/spc-edges.hbs"}}
+      {{/if}}
     </div>
+
+    <div>
+      {{#ifeq currentActorType 'spirit'}}
+        <div class='description-field'>
+          <div class='flex-center field-header'>
+            <label class='resource-label'>{{localize "WOD5E.WTA.PossessionManifestation"}}</label>
+          </div>
+          <div class='description-content resource'>
+            <prose-mirror
+              name='system.manifestation'
+              value='{{ manifestation }}'
+              toggled='true'
+              compact='true'
+            >
+              {{{ enrichedManifestation }}}
+            </prose-mirror>
+          </div>
+        </div>
+      {{/ifeq}}
+
+      {{> "systems/wod5e/display/shared/actors/parts/spc/spc-traits.hbs"}}
+
+      {{> "systems/wod5e/display/shared/actors/parts/spc/spc-conditions.hbs"}}
+
+      {{#if settings.genericNotesEnabled}}
+        <div class='description-field generic-notes'>
+          <div class='flex-center field-header'>
+            <label class='resource-label'>{{localize "WOD5E.Tabs.Notes"}}</label>
+          </div>
+          <div class='description-content resource'>
+            <prose-mirror
+              name='system.genericNotes'
+              value='{{ genericNotes }}'
+              toggled='true'
+              compact='true'
+            >
+              {{{ enrichedGenericNotes }}}
+            </prose-mirror>
+          </div>
+        </div>
+      {{/if}}
+    </div>
+  </div>
 </section>

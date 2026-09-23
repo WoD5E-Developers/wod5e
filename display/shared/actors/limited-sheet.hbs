@@ -1,67 +1,70 @@
 <section>
-    {{!-- Sheet Header --}}
-    <header class="limited-actor-header flex-center">
-        <div class="header-content">
-            <img class="profile-img" src="{{img}}" data-edit="img" title="{{name}}" width="100" alt="Profile Image"/>
-            <div class="charname">
-                {{name}}
-            </div>
+  {{!-- Sheet Header --}}
+  <header class='limited-actor-header flex-center'>
+    <div class='header-content'>
+      <img
+        class='profile-img'
+        src='{{ img }}'
+        data-edit='img'
+        title='{{ name }}'
+        width='100'
+        alt='Profile Image'
+      />
+      <div class='charname'>{{ name }}</div>
+    </div>
+  </header>
+  <hr />
+  {{!-- Sheet Body --}}
+  <section class='sheet-body'>
+    <div class='tab description-content'>
+      <div class='flex-center'>
+        <label class='resource-label'>
+          <h2>{{localize "WOD5E.Tabs.PublicNotes"}}</h2>
+        </label>
+      </div>
+      <div class='limited-description-body'>{{{ enrichedNotes }}}</div>
+    </div>
+    <div class='grid grid-2col flexrow'>
+      {{#if settings.limited.biography}}
+        <div class='tab description-content'>
+          <div class='flex-center'>
+            <label class='resource-label'>
+              <h2>{{localize "WOD5E.BiographyList.Label"}}</h2>
+            </label>
+          </div>
+          <div class='limited-description-body'>{{{ enrichedBiography }}}</div>
         </div>
-    </header>
-    <hr>
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-        <div class="tab description-content">
-            <div class="flex-center">
-                <label class="resource-label">
-                    <h2>{{localize "WOD5E.Tabs.PublicNotes"}}</h2>
-                </label>
-            </div>
-            <div class="limited-description-body">
-                {{{enrichedNotes}}}
-            </div>
+      {{/if}}
+      {{#if settings.limited.appearance}}
+        <div class='tab description-content'>
+          <div class='flex-center'>
+            <label class='resource-label'>
+              <h2>{{localize "WOD5E.BiographyList.Appearance"}}</h2>
+            </label>
+          </div>
+          <div class='limited-description-body'>{{{ enrichedAppearance }}}</div>
         </div>
-        <div class="grid grid-2col flexrow">
-            {{#if settings.limited.biography}}
-                <div class="tab description-content">
-                    <div class="flex-center">
-                        <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.Label"}}</h2></label>
-                    </div>
-                    <div class="limited-description-body">
-                        {{{enrichedBiography}}}
-                    </div>
-                </div>
-            {{/if}}
-            {{#if settings.limited.appearance}}
-                <div class="tab description-content">
-                    <div class="flex-center">
-                        <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.Appearance"}}</h2></label>
-                    </div>
-                    <div class="limited-description-body">
-                        {{{enrichedAppearance}}}
-                    </div>
-                </div>
-            {{/if}}
-            {{#if settings.limited.touchstones}}
-                <div class="tab description-content">
-                    <div class="flex-center">
-                        <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.TouchstonesAndConvictions"}}</h2></label>
-                    </div>
-                    <div class="limited-description-body">
-                        {{{enrichedTouchstones}}}
-                    </div>
-                </div>
-            {{/if}}
-            {{#if settings.limited.tenets}}
-                <div class="tab description-content">
-                    <div class="flex-center">
-                        <label class="resource-label"><h2>{{localize "WOD5E.BiographyList.ChronicleTenets"}}</h2></label>
-                    </div>
-                    <div class="limited-description-body">
-                        {{{enrichedTenets}}}
-                    </div>
-                </div>
-            {{/if}}
+      {{/if}}
+      {{#if settings.limited.touchstones}}
+        <div class='tab description-content'>
+          <div class='flex-center'>
+            <label class='resource-label'>
+              <h2>{{localize "WOD5E.BiographyList.TouchstonesAndConvictions"}}</h2>
+            </label>
+          </div>
+          <div class='limited-description-body'>{{{ enrichedTouchstones }}}</div>
         </div>
-    </section>
+      {{/if}}
+      {{#if settings.limited.tenets}}
+        <div class='tab description-content'>
+          <div class='flex-center'>
+            <label class='resource-label'>
+              <h2>{{localize "WOD5E.BiographyList.ChronicleTenets"}}</h2>
+            </label>
+          </div>
+          <div class='limited-description-body'>{{{ enrichedTenets }}}</div>
+        </div>
+      {{/if}}
+    </div>
+  </section>
 </section>

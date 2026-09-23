@@ -1,42 +1,53 @@
 {{!-- Werewolf Sheet Header --}}
-<header class="actor-header" {{#if headerbg}} style="background: url({{headerbg}}) center;"{{/if}}>
-    <div class="header-fields">
-        <div class="header-fields-left">
-            {{!-- Health Tracker --}}
-            {{> "systems/wod5e/display/shared/actors/parts/health.hbs"}}
-            {{!-- Willpower Tracker --}}
-            {{> "systems/wod5e/display/shared/actors/parts/willpower.hbs"}}
-        </div>
+<header
+  class='actor-header'
+  {{#if headerbg}}
+    style="background: url({{ headerbg }}) center;"
+  {{/if}}
+>
+  <div class='header-fields'>
+    <div class='header-fields-left'>
+      {{!-- Health Tracker --}}
+      {{> "systems/wod5e/display/shared/actors/parts/health.hbs"}}
+      {{!-- Willpower Tracker --}}
+      {{> "systems/wod5e/display/shared/actors/parts/willpower.hbs"}}
     </div>
-    <!-- Middle of the header -->
-    {{> "systems/wod5e/display/shared/actors/parts/header-profile.hbs"}}
-    <div class="header-fields">
-        <div class="header-fields-right">
-            <div class="flexcol">
-                <div class="field-section">
-                    <div class="flexrow nowrap">
-                        <div class="flexcol shared-row">
-                            <label class="resource-label field-header">{{localize 'WOD5E.WTA.Tribe'}}</label>
-                            <div class="resource resource-content">
-                                {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs" item=tribe type="tribe"}}
-                            </div>
-                        </div>
-                        <div class="flexcol shared-row">
-                            <label class="resource-label field-header">{{localize 'WOD5E.WTA.Auspice'}}</label>
-                            <div class="resource resource-content">
-                                {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs" item=auspice type="auspice"}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flexcol field-section">
-                    <label class="resource-label field-header">{{localize "WOD5E.WTA.Rage"}}</label>
-                    <div class="flexrow">
-                        {{> "systems/wod5e/display/wta/actors/parts/rage-value.hbs"}}
-                        {{> "systems/wod5e/display/wta/actors/parts/rage-button.hbs"}}
-                    </div>
-                </div>
+  </div>
+  <!-- Middle of the header -->
+  {{> "systems/wod5e/display/shared/actors/parts/header-profile.hbs"}}
+  <div class='header-fields'>
+    <div class='header-fields-right'>
+      <div class='flexcol'>
+        <div class='field-section'>
+          <div class='flexrow nowrap'>
+            <div class='flexcol shared-row'>
+              <label class='resource-label field-header'>{{localize 'WOD5E.WTA.Tribe'}}</label>
+              <div class='resource resource-content'>
+                {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs"
+                  item=tribe
+                  type="tribe"
+                }}
+              </div>
             </div>
+            <div class='flexcol shared-row'>
+              <label class='resource-label field-header'>{{localize 'WOD5E.WTA.Auspice'}}</label>
+              <div class='resource resource-content'>
+                {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs"
+                  item=auspice
+                  type="auspice"
+                }}
+              </div>
+            </div>
+          </div>
         </div>
+        <div class='flexcol field-section'>
+          <label class='resource-label field-header'>{{localize "WOD5E.WTA.Rage"}}</label>
+          <div class='flexrow'>
+            {{> "systems/wod5e/display/wta/actors/parts/rage-value.hbs"}}
+            {{> "systems/wod5e/display/wta/actors/parts/rage-button.hbs"}}
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </header>
