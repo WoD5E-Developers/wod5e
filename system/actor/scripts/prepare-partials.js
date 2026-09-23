@@ -187,6 +187,12 @@ export const prepareSpcStatsContext = async function (context, actor) {
   context.standardPools = actorData.standarddicepools
   context.exceptionalPools = actorData.exceptionaldicepools
 
+  if (actorData.settings.genericNotesEnabled) {
+    context.genericNotes = actorData.genericNotes
+    context.enrichedGenericNotes =
+      await foundry.applications.ux.TextEditor.implementation.enrichHTML(actorData.genericNotes)
+  }
+
   context.traits = actorData.traits
   context.conditions = actorData.conditions
 

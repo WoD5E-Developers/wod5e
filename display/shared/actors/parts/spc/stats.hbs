@@ -38,6 +38,20 @@
             {{> "systems/wod5e/display/shared/actors/parts/spc/spc-traits.hbs"}}
 
             {{> "systems/wod5e/display/shared/actors/parts/spc/spc-conditions.hbs"}}
+
+            {{#if settings.genericNotesEnabled}}
+                <div class="description-field generic-notes">
+                    <div class="flex-center field-header">
+                        <label class="resource-label">{{localize "WOD5E.Tabs.Notes"}}</label>
+                    </div>
+                    <div class="description-content resource">
+                        <prose-mirror name="system.genericNotes" value="{{genericNotes}}"
+                            toggled="true" compact="true">
+                            {{{enrichedGenericNotes}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+            {{/if}}
         </div>
     </div>
 </section>

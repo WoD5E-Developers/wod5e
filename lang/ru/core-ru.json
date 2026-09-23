@@ -93,6 +93,7 @@
       "ShowDisciplines": "Показать дисциплины",
       "ShowEdges": "Показать грань",
       "ShowGeneralDifficulty": "Показать общую сложность",
+      "_ShowGenericNotes": "",
       "ShowGifts": "Показать дары",
       "UseInputFieldsForStats": "Использовать поля ввода для показателей"
     },

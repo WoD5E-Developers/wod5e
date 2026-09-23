@@ -14,6 +14,9 @@ export class SPCActorModel extends WoDActorModel {
     // Manifestation
     schema.manifestation = new fields.HTMLField({ initial: '' })
 
+    // Generic notes displayed on the main tab
+    schema.genericNotes = new fields.HTMLField({ initial: '' })
+
     // Power
     schema.power = new fields.SchemaField({
       value: new fields.NumberField({ initial: 0 })

@@ -93,6 +93,7 @@
       "ShowDisciplines": "Disziplinen anzeigen",
       "ShowEdges": "Trümpfe zeigen",
       "ShowGeneralDifficulty": "Vereinfachte Schwierigkeiten anzeigen",
+      "_ShowGenericNotes": "",
       "ShowGifts": "Gaben anzeigen",
       "UseInputFieldsForStats": "Eingabefelder für Charakter-Werte verwenden"
     },

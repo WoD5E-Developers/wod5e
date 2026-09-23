@@ -93,6 +93,7 @@
       "ShowDisciplines": "Afficher les disciplines",
       "ShowEdges": "Afficher les Ascendants",
       "ShowGeneralDifficulty": "Afficher la difficulté de base",
+      "_ShowGenericNotes": "",
       "ShowGifts": "Afficher les Dons",
       "UseInputFieldsForStats": "Utiliser les valeurs numériques pour les stats"
     },

@@ -93,6 +93,7 @@
       "ShowDisciplines": "訓えを表示",
       "ShowEdges": "エッジを表示",
       "ShowGeneralDifficulty": "汎用難易度を表示",
+      "_ShowGenericNotes": "",
       "ShowGifts": "天賦を表示",
       "UseInputFieldsForStats": "ステータスに入力欄を使用"
     },

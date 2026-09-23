@@ -93,6 +93,7 @@
       "ShowDisciplines": "Mostrar Disciplinas",
       "ShowEdges": "Mostrar bordas",
       "ShowGeneralDifficulty": "Mostrar Dificuldade Geral",
+      "_ShowGenericNotes": "",
       "ShowGifts": "Mostrar Dons",
       "UseInputFieldsForStats": "Usar campos de entrada para características"
     },
