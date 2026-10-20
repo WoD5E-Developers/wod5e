@@ -3,6 +3,7 @@ import js from '@eslint/js'
 import prettier from 'eslint-plugin-prettier'
 import _import from 'eslint-plugin-import'
 import { fixupPluginRules } from '@eslint/compat'
+import stylistic from '@stylistic/eslint-plugin'
 
 export default defineConfig([
   // Ignore build and dependency folders
@@ -57,6 +58,7 @@ export default defineConfig([
       }
     },
     plugins: {
+      '@stylistic': stylistic,
       import: fixupPluginRules(_import),
       prettier: fixupPluginRules(prettier)
     },
@@ -64,6 +66,16 @@ export default defineConfig([
       ...js.configs.recommended.rules,
       'no-extra-semi': 'error',
       indent: 'off',
+      '@stylistic/object-curly-newline': [
+        'error',
+        {
+          ObjectExpression: {
+            minProperties: 2,
+            consistent: true
+          }
+        }
+      ],
+      '@stylistic/object-property-newline': 'error',
       'prettier/prettier': [
         'error',
         {
