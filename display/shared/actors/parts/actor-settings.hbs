@@ -1,5 +1,13 @@
 <section class='tab {{ tab.cssClass }}' data-tab='{{ tab.id }}' data-group='{{ tab.group }}'>
-  <div class='form-group'>
+  {{#if canManageSheetHeaders}}
+    <div class='setting-row'>
+      <button class='manage-headers-button' type='button' data-action='manageSheetHeaders'>
+        {{localize "WOD5E.ActorSettings.ManageSheetHeaders"}}
+      </button>
+    </div>
+  {{/if}}
+
+  <div class='form-group setting-row'>
     <label>{{localize "WOD5E.ActorSettings.ActorHeaderBackground"}}</label>
     <div class='form-fields'>
       <file-picker
@@ -10,7 +18,8 @@
       ></file-picker>
     </div>
   </div>
-  <div class='form-group'>
+
+  <div class='form-group setting-row'>
     <label>{{localize "WOD5E.ActorSettings.ActorBackground"}}</label>
     <div class='form-fields'>
       <file-picker
@@ -21,7 +30,8 @@
       ></file-picker>
     </div>
   </div>
-  <div class='form-group'>
+
+  <div class='form-group setting-row'>
     <label>{{localize "WOD5E.ActorSettings.ActorType"}}</label>
     <div class='form-fields'>
       <select
@@ -44,7 +54,7 @@
   {{#if hasSkillAttributeData}}
     <div class='form-group'>
       <label>{{localize "WOD5E.ActorSettings.UseInputFieldsForStats"}}</label>
-      <div class='form-fields'>
+      <div class='form-fields setting-row'>
         <input
           type='checkbox'
           name='system.settings.skillAttributeInputs'
@@ -57,7 +67,7 @@
   {{/if}}
 
   {{#ifeq baseActorType 'spc'}}
-    <div class='form-group'>
+    <div class='form-group setting-row'>
       <label>{{localize "WOD5E.ActorSettings.ShowGenericNotes"}}</label>
       <div class='form-fields'>
         <input
@@ -69,7 +79,8 @@
         />
       </div>
     </div>
-    <div class='form-group'>
+
+    <div class='form-group setting-row'>
       <label>{{localize "WOD5E.ActorSettings.ShowGeneralDifficulty"}}</label>
       <div class='form-fields'>
         <input
@@ -85,7 +96,7 @@
 
   {{#if showOptionalPowers}}
     {{#ifeq gamesystem 'vampire'}}
-      <div class='form-group'>
+      <div class='form-group setting-row'>
         <label>{{localize "WOD5E.ActorSettings.ShowDisciplines"}}</label>
         <div class='form-fields'>
           <input
@@ -98,8 +109,9 @@
         </div>
       </div>
     {{/ifeq}}
+
     {{#ifeq gamesystem 'hunter'}}
-      <div class='form-group'>
+      <div class='form-group setting-row'>
         <label>{{localize "WOD5E.ActorSettings.ShowEdges"}}</label>
         <div class='form-fields'>
           <input
@@ -112,8 +124,9 @@
         </div>
       </div>
     {{/ifeq}}
+
     {{#ifeq gamesystem 'werewolf'}}
-      <div class='form-group'>
+      <div class='form-group setting-row'>
         <label>{{localize "WOD5E.ActorSettings.ShowGifts"}}</label>
         <div class='form-fields'>
           <input

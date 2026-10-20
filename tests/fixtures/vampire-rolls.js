@@ -3,9 +3,18 @@ export const vampireBasicOnlySuccess = {
   basicDice: {
     total: 1,
     results: [
-      { result: 7, discarded: false },
-      { result: 2, discarded: false },
-      { result: 4, discarded: false }
+      {
+        result: 7,
+        discarded: false
+      },
+      {
+        result: 2,
+        discarded: false
+      },
+      {
+        result: 4,
+        discarded: false
+      }
     ]
   },
   advancedDice: {
@@ -19,13 +28,24 @@ export const vampireMixedHungerSuccess = {
   basicDice: {
     total: 1,
     results: [
-      { result: 7, discarded: false },
-      { result: 2, discarded: false }
+      {
+        result: 7,
+        discarded: false
+      },
+      {
+        result: 2,
+        discarded: false
+      }
     ]
   },
   advancedDice: {
     total: 1,
-    results: [{ result: 6, discarded: false }]
+    results: [
+      {
+        result: 6,
+        discarded: false
+      }
+    ]
   }
 }
 
@@ -38,9 +58,18 @@ export const vampireHungerOnlyFailure = {
   advancedDice: {
     total: 0,
     results: [
-      { result: 3, discarded: false },
-      { result: 4, discarded: false },
-      { result: 1, discarded: false }
+      {
+        result: 3,
+        discarded: false
+      },
+      {
+        result: 4,
+        discarded: false
+      },
+      {
+        result: 1,
+        discarded: false
+      }
     ]
   }
 }

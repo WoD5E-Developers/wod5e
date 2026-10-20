@@ -1,7 +1,11 @@
 <div class='flex-group-center danger'>
   <div class='flexrow'>
     <label class='resource-label field-header' for='system.danger.value'>
-      {{localize "WOD5E.HTR.Danger"}}
+      {{#if groupSheetHeaders.danger}}
+        {{ groupSheetHeaders.danger }}
+      {{else}}
+        {{localize "WOD5E.HTR.Danger"}}
+      {{/if}}
     </label>
   </div>
   <div class='resource resource-content flexrow flex-group-center flex-between'>

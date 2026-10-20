@@ -29,6 +29,7 @@
     "@babel/core": "^7.25.2",
     "@babel/eslint-parser": "^7.25.1",
     "@poliklot/prettier-plugin-handlebars": "0.4.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "eslint": "^9.9.0",
     "eslint-plugin-hbs": "^1.0.3",
     "eslint-plugin-import": "^2.32.0",

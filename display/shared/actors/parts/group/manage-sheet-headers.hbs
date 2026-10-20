@@ -1,0 +1,14 @@
+{{#each headers as |header|}}
+  <div class='form-group'>
+    <label for='group-header-{{ header.key }}'>{{ header.label }}</label>
+    <div class='form-fields'>
+      <input
+        id='group-header-{{ header.key }}'
+        type='text'
+        name='{{ header.key }}'
+        value='{{ header.value }}'
+        placeholder='{{ header.label }}'
+      />
+    </div>
+  </div>
+{{/each}}

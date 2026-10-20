@@ -31,7 +31,19 @@ export class GroupActorModel extends WoDActorModel {
     // Setting fields
     schema.settings = new fields.SchemaField({
       headerbg: new fields.StringField({ initial: '' }),
-      background: new fields.StringField({ initial: '' })
+      background: new fields.StringField({ initial: '' }),
+      sheetHeaders: new fields.SchemaField({
+        chasse: new fields.StringField({ initial: '' }),
+        lien: new fields.StringField({ initial: '' }),
+        huntingDifficulty: new fields.StringField({ initial: '' }),
+        portillon: new fields.StringField({ initial: '' }),
+        danger: new fields.StringField({ initial: '' }),
+        desperation: new fields.StringField({ initial: '' }),
+        territory: new fields.StringField({ initial: '' }),
+        community: new fields.StringField({ initial: '' }),
+        spirit: new fields.StringField({ initial: '' }),
+        guidingSpirit: new fields.StringField({ initial: '' })
+      })
     })
 
     // Various other HTML fields

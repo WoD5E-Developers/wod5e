@@ -8,11 +8,28 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 
 // Each category owns its editor; additional domain/wereform editors can be separate tabs.
 const categories = {
-  attribute: { definition: Attributes, label: 'WOD5E.AttributesList.Attributes', typed: true },
-  skill: { definition: Skills, label: 'WOD5E.SkillsList.Skills', typed: true },
-  discipline: { definition: Disciplines, label: 'WOD5E.VTM.Disciplines' },
-  edge: { definition: Edges, label: 'WOD5E.HTR.Edges' },
-  gift: { definition: Gifts, label: 'WOD5E.WTA.Gifts' }
+  attribute: {
+    definition: Attributes,
+    label: 'WOD5E.AttributesList.Attributes',
+    typed: true
+  },
+  skill: {
+    definition: Skills,
+    label: 'WOD5E.SkillsList.Skills',
+    typed: true
+  },
+  discipline: {
+    definition: Disciplines,
+    label: 'WOD5E.VTM.Disciplines'
+  },
+  edge: {
+    definition: Edges,
+    label: 'WOD5E.HTR.Edges'
+  },
+  gift: {
+    definition: Gifts,
+    label: 'WOD5E.WTA.Gifts'
+  }
 }
 
 export class StorytellerMenu extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -20,9 +37,18 @@ export class StorytellerMenu extends HandlebarsApplicationMixin(ApplicationV2) {
     tag: 'form',
     id: 'wod5e-storyteller',
     classes: ['wod5e', 'storyteller-menu'],
-    window: { title: 'WOD5E.Settings.StorytellerMenu', resizable: true },
-    position: { width: 760, height: 640 },
-    form: { handler: StorytellerMenu.saveChanges, closeOnSubmit: false },
+    window: {
+      title: 'WOD5E.Settings.StorytellerMenu',
+      resizable: true
+    },
+    position: {
+      width: 760,
+      height: 640
+    },
+    form: {
+      handler: StorytellerMenu.saveChanges,
+      closeOnSubmit: false
+    },
     actions: {
       addModification: StorytellerMenu.addModification,
       addCustom: StorytellerMenu.addCustom,
@@ -33,7 +59,10 @@ export class StorytellerMenu extends HandlebarsApplicationMixin(ApplicationV2) {
   static TABS = {
     primary: {
       initial: 'attribute',
-      tabs: Object.entries(categories).map(([id, { label }]) => ({ id, label }))
+      tabs: Object.entries(categories).map(([id, { label }]) => ({
+        id,
+        label
+      }))
     }
   }
 
@@ -148,7 +177,10 @@ export class StorytellerMenu extends HandlebarsApplicationMixin(ApplicationV2) {
         })
       },
       content,
-      ok: { label: game.i18n.localize('WOD5E.Add'), icon: 'fas fa-plus' },
+      ok: {
+        label: game.i18n.localize('WOD5E.Add'),
+        icon: 'fas fa-plus'
+      },
       rejectClose: false
     })
 
@@ -156,7 +188,12 @@ export class StorytellerMenu extends HandlebarsApplicationMixin(ApplicationV2) {
     if (!id || !options[id] || modified.some((entry) => entry.id === id)) return
 
     this._captureDraft()
-    modified.push({ id, label: options[id].label, rename: '', hidden: false })
+    modified.push({
+      id,
+      label: options[id].label,
+      rename: '',
+      hidden: false
+    })
 
     await this.render()
   }
@@ -166,7 +203,10 @@ export class StorytellerMenu extends HandlebarsApplicationMixin(ApplicationV2) {
     this._captureDraft()
     const { type } = target.dataset
     if (!categories[type]) return
-    const entry = { id: foundry.utils.randomID(8), label: '' }
+    const entry = {
+      id: foundry.utils.randomID(8),
+      label: ''
+    }
     if (categories[type].typed) entry.type = 'physical'
     this._draft[type].custom.push(entry)
     await this.render()

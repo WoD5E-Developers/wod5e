@@ -183,7 +183,10 @@ export class wod5eAPI {
       if (skillSelect) {
         // Add it to the label
         labelArray.push(
-          await WOD5E.api.generateLabelAndLocalize({ string: skillSelect, type: 'skills' })
+          await WOD5E.api.generateLabelAndLocalize({
+            string: skillSelect,
+            type: 'skills'
+          })
         )
 
         // Add it to the value path if applicable
@@ -200,7 +203,10 @@ export class wod5eAPI {
       if (attributeSelect) {
         // Add it to the label
         labelArray.push(
-          await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect, type: 'attributes' })
+          await WOD5E.api.generateLabelAndLocalize({
+            string: attributeSelect,
+            type: 'attributes'
+          })
         )
 
         // Add it to the value path if applicable
@@ -221,7 +227,10 @@ export class wod5eAPI {
       if (attributeSelect2) {
         // Add it to the label
         labelArray.push(
-          await WOD5E.api.generateLabelAndLocalize({ string: attributeSelect2, type: 'attributes' })
+          await WOD5E.api.generateLabelAndLocalize({
+            string: attributeSelect2,
+            type: 'attributes'
+          })
         )
 
         // Add it to the value path if applicable
@@ -242,7 +251,10 @@ export class wod5eAPI {
       if (disciplineSelect) {
         // Add it to the label
         labelArray.push(
-          await WOD5E.api.generateLabelAndLocalize({ string: disciplineSelect, type: 'discipline' })
+          await WOD5E.api.generateLabelAndLocalize({
+            string: disciplineSelect,
+            type: 'discipline'
+          })
         )
 
         // Add it to the value path if applicable
@@ -267,7 +279,10 @@ export class wod5eAPI {
       if (renownSelect) {
         // Add it to the label
         labelArray.push(
-          await WOD5E.api.generateLabelAndLocalize({ string: renownSelect, type: 'renown' })
+          await WOD5E.api.generateLabelAndLocalize({
+            string: renownSelect,
+            type: 'renown'
+          })
         )
 
         // Add it to the value path if applicable

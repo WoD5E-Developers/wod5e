@@ -30,7 +30,11 @@ export function lintTemplate(source, knownPartials) {
   const errors = []
 
   const report = (node, message) => {
-    errors.push({ line: node.loc.start.line, column: node.loc.start.column + 1, message })
+    errors.push({
+      line: node.loc.start.line,
+      column: node.loc.start.column + 1,
+      message
+    })
   }
 
   let ast

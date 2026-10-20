@@ -2,7 +2,11 @@
   <div class='territory'>
     <div class='flexrow field-header'>
       <label class='resource-label' for='system.territory.value'>
-        {{localize "WOD5E.WTA.Territory"}}
+        {{#if groupSheetHeaders.territory}}
+          {{ groupSheetHeaders.territory }}
+        {{else}}
+          {{localize "WOD5E.WTA.Territory"}}
+        {{/if}}
       </label>
     </div>
     <div class='resource resource-content'>
@@ -22,7 +26,11 @@
   <div class='community'>
     <div class='flexrow field-header'>
       <label class='resource-label' for='system.community.value'>
-        {{localize "WOD5E.WTA.Community"}}
+        {{#if groupSheetHeaders.community}}
+          {{ groupSheetHeaders.community }}
+        {{else}}
+          {{localize "WOD5E.WTA.Community"}}
+        {{/if}}
       </label>
     </div>
     <div class='resource resource-content'>
@@ -42,7 +50,11 @@
   <div class='spirit'>
     <div class='flexrow field-header'>
       <label class='resource-label' for='system.spirit.value'>
-        {{localize "WOD5E.WTA.Spirit"}}
+        {{#if groupSheetHeaders.spirit}}
+          {{ groupSheetHeaders.spirit }}
+        {{else}}
+          {{localize "WOD5E.WTA.Spirit"}}
+        {{/if}}
       </label>
     </div>
     <div class='resource resource-content'>

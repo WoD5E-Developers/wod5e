@@ -19,7 +19,11 @@ export class WoDChatMessage extends ChatMessage {
     canDelete ??= game.user.isGM
 
     if (typeof this.system.renderHTML === 'function') {
-      const html = await this.system.renderHTML({ canDelete, canClose, ...rest })
+      const html = await this.system.renderHTML({
+        canDelete,
+        canClose,
+        ...rest
+      })
       Hooks.callAll('renderChatMessageHTML', this, html)
       return html
     }

@@ -90,6 +90,7 @@
       "ActorBackground": "Hintergrundbild des Charakters",
       "ActorHeaderBackground": "Hintergrundbild Kopfleiste des Charakters",
       "ActorType": "Typ des Charakters",
+      "_ManageSheetHeaders": "",
       "ShowDisciplines": "Disziplinen anzeigen",
       "ShowEdges": "Trümpfe zeigen",
       "ShowGeneralDifficulty": "Vereinfachte Schwierigkeiten anzeigen",

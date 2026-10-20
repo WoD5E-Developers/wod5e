@@ -3,9 +3,18 @@ export const hunterBasicOnlySuccess = {
   basicDice: {
     total: 2,
     results: [
-      { result: 6, discarded: false },
-      { result: 7, discarded: false },
-      { result: 2, discarded: false }
+      {
+        result: 6,
+        discarded: false
+      },
+      {
+        result: 7,
+        discarded: false
+      },
+      {
+        result: 2,
+        discarded: false
+      }
     ]
   },
   advancedDice: null
@@ -16,12 +25,23 @@ export const hunterMixedDesperationSuccess = {
   basicDice: {
     total: 1,
     results: [
-      { result: 6, discarded: false },
-      { result: 4, discarded: false }
+      {
+        result: 6,
+        discarded: false
+      },
+      {
+        result: 4,
+        discarded: false
+      }
     ]
   },
   advancedDice: {
     total: 1,
-    results: [{ result: 7, discarded: false }]
+    results: [
+      {
+        result: 7,
+        discarded: false
+      }
+    ]
   }
 }

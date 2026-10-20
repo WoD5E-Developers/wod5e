@@ -211,7 +211,10 @@ export const _onFormToChat = async function (event, target, originActor) {
 
   // Post the message to the chat
   const message = ChatMessage.applyRollMode(
-    { speaker: ChatMessage.getSpeaker({ actor }), content: chatMessage },
+    {
+      speaker: ChatMessage.getSpeaker({ actor }),
+      content: chatMessage
+    },
     game.settings.get('core', 'rollMode')
   )
   ChatMessage.create(message)
