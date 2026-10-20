@@ -75,7 +75,10 @@ export const MigrateSpecialties = async function () {
         })
 
         // Update the actor data with the new data when finished
-        actor.update({ system: actorData, 'items.invalidDocumentIds': actorInvalidItems })
+        actor.update({
+          system: actorData,
+          'items.invalidDocumentIds': actorInvalidItems
+        })
       }
     }
   }

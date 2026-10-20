@@ -17,6 +17,9 @@ export async function processExtendedRoll(context) {
       })
     }
 
-    context.messageData.rolls[key] = { ...context.messageData.rolls[key], rollData }
+    context.messageData.rolls[key] = {
+      ...context.messageData.rolls[key],
+      rollData
+    }
   }
 }
