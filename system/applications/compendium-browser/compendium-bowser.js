@@ -1,5 +1,5 @@
 import { _onToggleDropdown, _onUpdateFilter } from './scripts/dropdown-actions.js'
-import { getItems } from './scripts/get-items.js'
+import { getItemDisplayName, getItemRating, getItems } from './scripts/get-items.js'
 import { _onConfigureSources } from './scripts/on-configure-sources.js'
 import { _onOpenItem } from './scripts/on-open-item.js'
 
@@ -42,6 +42,10 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
 
     this.#dragDrop = this.#createDragDropHandlers()
 
+    this.ratingMin = ''
+    this.ratingMax = ''
+    this.sort = 'name'
+
     this.filters = {
       text: {
         string: ''
@@ -77,6 +81,19 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
             hidden: false
           }
         })
+      }
+    }
+
+    // Sheet defaults include shared options and the actor's own splat.
+    if (application?.splat) {
+      for (const splat of this.filters.splats.options) {
+        splat.enabled = splat.id === 'core' || splat.id === application.splat
+      }
+
+      for (const type of this.filters.types.options) {
+        type.hidden = !this.filters.splats.options.some(
+          (splat) => splat.id === type.splat && splat.enabled
+        )
       }
     }
 
@@ -144,6 +161,9 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
         subtypePath: type?.subtypePath,
         subtypes: type?.subtypes.filter((subtype) => subtype.enabled).map((subtype) => subtype.id)
       }))
+    data.ratingMin = this.ratingMin
+    data.ratingMax = this.ratingMax
+    data.sort = this.sort
     data.textFilter = this.filters.text?.string || ''
     // This is weird; normally we don't have to filter an object, but we don't want to pass everything over to
     // the filtering function. So, we do this
@@ -160,6 +180,11 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
     switch (partId) {
       case 'sidebar':
         // Part-specific data
+        context.sortOptions = {
+          name: 'WOD5E.CompendiumBrowser.Alphabetical',
+          ratingAsc: 'WOD5E.CompendiumBrowser.RatingAscending',
+          ratingDesc: 'WOD5E.CompendiumBrowser.RatingDescending'
+        }
         context.splatFilterOptions = this.filters.splats.options
         context.typeFilterOptions = this.filters.types.options.filter((option) => !option.hidden)
 
@@ -171,8 +196,20 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
           types: context.enabledTypes,
           subtypePath: context.subtypePath,
           text: context.textFilter,
-          disabledSources: context.disabledSources
+          disabledSources: context.disabledSources,
+          ratingMin: this.ratingMin,
+          ratingMax: this.ratingMax,
+          sort: this.sort
         })
+        context.itemsInList = context.itemsInList.map((item) => ({
+          uuid: item.uuid,
+          name: getItemDisplayName(item),
+          img: item.img,
+          type: item.type,
+          description: item.description,
+          rating: getItemRating(item),
+          hasRating: getItemRating(item) !== null
+        }))
 
         break
     }
@@ -185,6 +222,9 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
 
     // Grab what string we're using for the search and set it in our filters
     this.filters.text.string = data?.search || ''
+    this.ratingMin = data.ratingMin ?? ''
+    this.ratingMax = data.ratingMax ?? ''
+    this.sort = data.sort || 'name'
 
     // Re-render the body, since it's the only part we're modifying
     this.render(false, {
@@ -193,6 +233,19 @@ export class CompendiumBrowserApplication extends HandlebarsApplicationMixin(App
   }
 
   async _onRender() {
+    // Bind once per sidebar element; body-only renders preserve search focus.
+    const search = this.element.querySelector('input[name="search"]')
+    if (search && search !== this._searchInput) {
+      this._searchInput = search
+      search.addEventListener('input', () => {
+        window.clearTimeout(this._searchTimer)
+        this._searchTimer = setTimeout(() => {
+          this.filters.text.string = search.value
+          this.render(false, { parts: ['body'] })
+        }, 150)
+      })
+    }
+
     // Drag and drop functionality
     this.#dragDrop.forEach((d) => d.bind(this.element))
   }

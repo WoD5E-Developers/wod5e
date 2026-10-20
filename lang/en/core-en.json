@@ -148,12 +148,20 @@
       "WillpowerReroll": "Willpower Reroll"
     },
     "CompendiumBrowser": {
+      "AllRatings": "All Ratings",
+      "Alphabetical": "Alphabetically",
       "ConfigureSources": "Configure Sources",
       "ControlHint": "Opens the World of Darkness 5e compendium browser.",
       "ItemType": "Item Type",
       "Label": "Compendium Browser",
+      "Maximum": "Max",
+      "Minimum": "Min",
       "NoResultsFound": "No results found",
+      "Rating": "Dot Rating",
+      "RatingAscending": "Dot Rating (lowest first)",
+      "RatingDescending": "Dot Rating (highest first)",
       "SidebarLabel": "WOD5E Compendium Browser",
+      "Sort": "Sort Results",
       "System": "System"
     },
     "Compendiums": {
