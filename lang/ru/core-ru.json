@@ -90,6 +90,7 @@
       "ActorBackground": "Фон актера",
       "ActorHeaderBackground": "Фон заголовка актера",
       "ActorType": "Тип актера",
+      "_ManageSheetHeaders": "",
       "ShowDisciplines": "Показать дисциплины",
       "ShowEdges": "Показать грань",
       "ShowGeneralDifficulty": "Показать общую сложность",

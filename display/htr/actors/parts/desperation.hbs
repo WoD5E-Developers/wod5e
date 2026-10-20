@@ -1,7 +1,11 @@
 <div class='flex-group-center desperation'>
   <div class='flexrow field-header'>
     <label class='resource-label' for='system.desperation.value'>
-      {{localize "WOD5E.HTR.Desperation"}}
+      {{#if groupSheetHeaders.desperation}}
+        {{ groupSheetHeaders.desperation }}
+      {{else}}
+        {{localize "WOD5E.HTR.Desperation"}}
+      {{/if}}
     </label>
   </div>
   <div class='resource resource-content flexrow flex-group-center flex-between'>

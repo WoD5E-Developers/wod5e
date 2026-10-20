@@ -1636,6 +1636,7 @@ body.uk .actor.sheet {
   /* Equipment Tab */
   /* Biography Tab */
   /* Notes Tab */
+  /* Settings Tab */
   /* Limited View Toggle Button */
   /* Power Descriptions */
   /* Sheet Banner */
@@ -1965,6 +1966,9 @@ body.uk .actor.sheet {
 }
 .actor.sheet .tab[data-tab='notepad'] .note-container .field-header {
   font-size: 16pt;
+}
+.actor.sheet .tab[data-tab='settings'] .setting-row {
+  margin-top: 10px;
 }
 .actor.sheet .toggle-limited {
   font-size: 13pt;
@@ -2354,6 +2358,10 @@ body.uk .actor.sheet {
   text-transform: uppercase;
   margin-right: 10px;
   text-wrap: nowrap;
+}
+.group.sheet .tab[data-tab='settings'] .manage-headers-button {
+  margin-left: auto;
+  margin-right: auto;
 }
 .group.sheet .coterie-features {
   align-items: flex-end;

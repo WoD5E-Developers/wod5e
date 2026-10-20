@@ -1,3 +1,4 @@
+import { getGroupSheetHeaders, manageSheetHeaders } from './scripts/group-sheet-headers.js'
 // Preparation functions
 import { getActorHeader } from './scripts/get-actor-header.js'
 import { getActorBackground } from './scripts/get-actor-background.js'
@@ -81,6 +82,7 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
       removeMember: _removeActor,
 
       // Various other sheet functions
+      manageSheetHeaders,
       dotCounterChange: _onDotCounterChange,
       dotCounterEmpty: _onDotCounterEmpty,
       editImage: _onEditImage,
@@ -226,6 +228,8 @@ export class GroupActorSheet extends HandlebarsApplicationMixin(
       img: actor.img,
 
       settings: actorData.settings,
+      groupSheetHeaders: getGroupSheetHeaders(actor),
+      canManageSheetHeaders: this.isEditable,
 
       isOwner: actor.isOwner,
       locked,

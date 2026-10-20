@@ -90,6 +90,7 @@
       "ActorBackground": "Imagem de Fundo",
       "ActorHeaderBackground": "Imagem de Fundo de cabeçalho",
       "ActorType": "Tipo de Ator",
+      "_ManageSheetHeaders": "",
       "ShowDisciplines": "Mostrar Disciplinas",
       "ShowEdges": "Mostrar bordas",
       "ShowGeneralDifficulty": "Mostrar Dificuldade Geral",

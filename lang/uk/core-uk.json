@@ -90,6 +90,7 @@
       "ActorBackground": "Фон Персонажа",
       "ActorHeaderBackground": "Фон Заголовка Персонажа",
       "ActorType": "Тип Персонажа",
+      "_ManageSheetHeaders": "",
       "ShowDisciplines": "Показати Дисципліни",
       "ShowEdges": "Показати Козирі",
       "ShowGeneralDifficulty": "Показати Загальну Складність",

@@ -2,7 +2,11 @@
   <div class='chasse'>
     <div class='flexrow field-header'>
       <label class='resource-label' for='system.chasse.value'>
-        {{localize "WOD5E.VTM.Chasse"}}
+        {{#if groupSheetHeaders.chasse}}
+          {{ groupSheetHeaders.chasse }}
+        {{else}}
+          {{localize "WOD5E.VTM.Chasse"}}
+        {{/if}}
       </label>
     </div>
     <div class='resource resource-content'>
@@ -17,7 +21,13 @@
   </div>
   <div class='lien'>
     <div class='flexrow field-header'>
-      <label class='resource-label' for='system.lien.value'>{{localize "WOD5E.VTM.Lien"}}</label>
+      <label class='resource-label' for='system.lien.value'>
+        {{#if groupSheetHeaders.lien}}
+          {{ groupSheetHeaders.lien }}
+        {{else}}
+          {{localize "WOD5E.VTM.Lien"}}
+        {{/if}}
+      </label>
     </div>
     <div class='resource resource-content'>
       <div class='resource-value' data-value='{{ lien.value }}' data-name='system.lien.value'>
@@ -32,7 +42,13 @@
   {{#ifgr chasse.value 0}}
     <div class='hunting-difficulty'>
       <div class='flexrow field-header'>
-        <label class='resource-label'>{{localize "WOD5E.VTM.HuntingDifficulty"}}</label>
+        <label class='resource-label'>
+          {{#if groupSheetHeaders.huntingDifficulty}}
+            {{ groupSheetHeaders.huntingDifficulty }}
+          {{else}}
+            {{localize "WOD5E.VTM.HuntingDifficulty"}}
+          {{/if}}
+        </label>
       </div>
       <div class='resource resource-content'>
         <div class='resource-value'>{{ huntingDifficulty }}</div>
@@ -42,7 +58,11 @@
   <div class='portillon'>
     <div class='flexrow field-header'>
       <label class='resource-label' for='system.portillon.value'>
-        {{localize "WOD5E.VTM.Portillon"}}
+        {{#if groupSheetHeaders.portillon}}
+          {{ groupSheetHeaders.portillon }}
+        {{else}}
+          {{localize "WOD5E.VTM.Portillon"}}
+        {{/if}}
       </label>
     </div>
     <div class='resource resource-content'>

@@ -90,6 +90,7 @@
       "ActorBackground": "アクター背景画像",
       "ActorHeaderBackground": "アクターヘッダー背景画像",
       "ActorType": "アクタータイプ",
+      "_ManageSheetHeaders": "",
       "ShowDisciplines": "訓えを表示",
       "ShowEdges": "エッジを表示",
       "ShowGeneralDifficulty": "汎用難易度を表示",
