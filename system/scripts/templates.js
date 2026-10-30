@@ -115,6 +115,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/wod5e/display/ui/select-dialog.hbs',
 
     // Compendium partials
+    'systems/wod5e/display/ui/compendium-browser/parts/filter-dots.hbs',
     'systems/wod5e/display/ui/compendium-browser/parts/filter-splats.hbs',
     'systems/wod5e/display/ui/compendium-browser/parts/filter-types.hbs'
   ]

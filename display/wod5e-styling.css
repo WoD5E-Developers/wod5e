@@ -658,6 +658,12 @@ h3.item-name {
   border-right: 1px solid;
   padding: 10px;
 }
+.compendium-browser .compendium-browser-sidebar .results-sort {
+  margin-top: 10px;
+}
+.compendium-browser .compendium-browser-sidebar .rating-filter .rating-inputs {
+  border: 1px solid;
+}
 .compendium-browser .compendium-browser-sidebar .multi-select-toggle {
   cursor: pointer;
 }
@@ -670,6 +676,7 @@ h3.item-name {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
   padding-bottom: 20px;
 }
 .compendium-browser .compendium-browser-sidebar .search-filters .filters-section {

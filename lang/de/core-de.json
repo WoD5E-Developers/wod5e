@@ -148,12 +148,20 @@
       "WillpowerReroll": "Mit Willenskraft neuwürfeln …"
     },
     "CompendiumBrowser": {
+      "_AllRatings": "",
+      "_Alphabetical": "",
       "_ConfigureSources": "",
       "_ControlHint": "",
       "_ItemType": "",
       "_Label": "",
+      "_Maximum": "",
+      "_Minimum": "",
       "_NoResultsFound": "",
+      "_Rating": "",
+      "_RatingAscending": "",
+      "_RatingDescending": "",
       "_SidebarLabel": "",
+      "_Sort": "",
       "_System": ""
     },
     "Compendiums": {

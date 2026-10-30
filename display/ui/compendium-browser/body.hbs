@@ -19,6 +19,24 @@
               <i>{{localize (concat "TYPES.Item." item.type)}}</i>
             </div>
 
+            {{#if item.hasRating}}
+              <div class='result-rating'>
+                {{localize 'WOD5E.CompendiumBrowser.Rating'}}:<span
+                  aria-label='{{localize "WOD5E.CompendiumBrowser.Rating"}}: {{ item.rating }}'
+                  role='img'
+                  title='{{ item.rating }}'
+                >
+                  <span aria-hidden='true'>
+                    {{#if item.rating}}
+                      {{#numLoop item.rating}}&#9679;{{/numLoop}}
+                    {{else}}
+                      &#9675;
+                    {{/if}}
+                  </span>
+                </span>
+              </div>
+            {{/if}}
+
             {{#if item.description}}
               <div class='result-description'>
                 {{ item.description }}
