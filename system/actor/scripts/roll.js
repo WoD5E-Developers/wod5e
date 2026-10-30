@@ -43,7 +43,10 @@ export const _onConfirmRoll = async function (dataset, actor) {
   const title = dataset.label
   const data = dataset.itemId ? actor.items.get(dataset.itemId).system : actor.system
   const flavor = dataset.useFlavorPath
-    ? await WOD5E.api.getFlavorDescription({ valuePath: dataset.flavorPath, data })
+    ? await WOD5E.api.getFlavorDescription({
+        valuePath: dataset.flavorPath,
+        data
+      })
     : dataset.flavor
   const flatMod = parseInt(dataset.flatMod) || 0
   const absoluteValue = parseInt(dataset.absoluteValue) || 0

@@ -3,7 +3,13 @@
  * @return {Promise}
  */
 export const loadDiceSoNice = async function (dice3d) {
-  dice3d.addSystem({ id: 'wod5e', name: 'wod5e' }, true)
+  dice3d.addSystem(
+    {
+      id: 'wod5e',
+      name: 'wod5e'
+    },
+    true
+  )
   dice3d.addDicePreset(
     {
       type: 'dm',
@@ -330,7 +336,13 @@ export const loadDiceSoNice = async function (dice3d) {
     'default'
   )
 
-  dice3d.addSystem({ id: 'vtm5x', name: 'wod5e Custom' }, true)
+  dice3d.addSystem(
+    {
+      id: 'vtm5x',
+      name: 'wod5e Custom'
+    },
+    true
+  )
   dice3d.addDicePreset(
     {
       type: 'dv',
@@ -523,7 +535,13 @@ export const loadDiceSoNice = async function (dice3d) {
     'd10'
   )
 
-  dice3d.addSystem({ id: 'vtm5y', name: 'wod5e Colors' }, true)
+  dice3d.addSystem(
+    {
+      id: 'vtm5y',
+      name: 'wod5e Colors'
+    },
+    true
+  )
   dice3d.addDicePreset(
     {
       type: 'dv',

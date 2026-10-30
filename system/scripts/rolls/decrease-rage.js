@@ -12,7 +12,10 @@ export async function _decreaseRage(actor, amount, rollMode) {
 
     // Post the message to the chat
     const message = ChatMessage.applyRollMode(
-      { speaker: ChatMessage.getSpeaker({ actor }), content: chatMessage },
+      {
+        speaker: ChatMessage.getSpeaker({ actor }),
+        content: chatMessage
+      },
       rollMode
     )
     ChatMessage.create(message)

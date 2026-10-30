@@ -229,6 +229,11 @@ export async function generateRollMessageData({
       advancedDice
     })
 
-    return { totalResult, totalAndDifficulty, labelData, resultText }
+    return {
+      totalResult,
+      totalAndDifficulty,
+      labelData,
+      resultText
+    }
   }
 }

@@ -1,17 +1,40 @@
-<div class="modifier">
-    <div class="big-header"><input id="modifierSource" name="modifierSource" type="text" value="{{bonus.source}}" placeholder="{{localize 'WOD5E.Modifier.NewSpecialty'}}"/></div>
-    <div class="grid grid-2col flex-center">
-        <div class="flexcol flex-center">
-            <label for="modifierValue">{{localize "WOD5E.Value"}}</label>
-            <input class="input-value" id="modifierValue" name="modifierValue" type="number" value="{{bonus.value}}"/>
-        </div>
-        <div class="flexcol flex-center">
-            <label for="modifier">{{localize "WOD5E.Modifier.Selectors"}}</label>
-            <input type="text" id="modifier" name="modifier" list="skillOptions" value="{{splitArray bonus.paths}}">
-            <datalist id="skillOptions">
-              {{selectOptions skillOptions labelAttr="displayName" }}
-            </datalist>
-        </div>
+<div class='modifier'>
+  <div class='big-header'>
+    <input
+      id='modifierSource'
+      name='modifierSource'
+      type='text'
+      value='{{ bonus.source }}'
+      placeholder="{{localize 'WOD5E.Modifier.NewSpecialty'}}"
+    />
+  </div>
+  <div class='grid grid-2col flex-center'>
+    <div class='flexcol flex-center'>
+      <label for='modifierValue'>{{localize "WOD5E.Value"}}</label>
+      <input
+        id='modifierValue'
+        class='input-value'
+        name='modifierValue'
+        type='number'
+        value='{{ bonus.value }}'
+      />
     </div>
-    <hr>
+    <div class='flexcol flex-center'>
+      <label for='modifier'>{{localize "WOD5E.Modifier.Selectors"}}</label>
+      <input
+        id='modifier'
+        type='text'
+        name='modifier'
+        list='skillOptions'
+        value='{{splitArray bonus.paths}}'
+      />
+      <datalist id='skillOptions'>
+        {{selectOptions
+          skillOptions
+          labelAttr="displayName"
+        }}
+      </datalist>
+    </div>
+  </div>
+  <hr />
 </div>

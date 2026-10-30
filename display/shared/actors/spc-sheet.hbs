@@ -1,75 +1,93 @@
 {{!-- SPC Sheet Header --}}
-<header class="actor-header" {{#if headerbg}} style="background: url({{headerbg}}) center;"{{/if}}>
-    <div class="header-fields">
-        <div class="header-fields-left">
-            {{!-- Health Tracker --}}
-            {{> "systems/wod5e/display/shared/actors/parts/health.hbs"}}
+<header
+  class='actor-header'
+  {{#if headerbg}}
+    style="background: url({{ headerbg }}) center;"
+  {{/if}}
+>
+  <div class='header-fields'>
+    <div class='header-fields-left'>
+      {{!-- Health Tracker --}}
+      {{> "systems/wod5e/display/shared/actors/parts/health.hbs"}}
 
-            {{!-- Willpower Tracker --}}
-            {{> "systems/wod5e/display/shared/actors/parts/willpower.hbs"}}
-        </div>
+      {{!-- Willpower Tracker --}}
+      {{> "systems/wod5e/display/shared/actors/parts/willpower.hbs"}}
     </div>
-    <!-- Middle of the header -->
-    {{> "systems/wod5e/display/shared/actors/parts/header-profile.hbs"}}
-    <div class="header-fields">
-        <div class="header-fields-right">
-            <div class="flexcol">
-                {{#if generalDifficultyEnabled}}
-                    {{> "systems/wod5e/display/shared/actors/parts/spc/generaldifficulty.hbs"}}
-                {{/if}}
+  </div>
+  <!-- Middle of the header -->
+  {{> "systems/wod5e/display/shared/actors/parts/header-profile.hbs"}}
+  <div class='header-fields'>
+    <div class='header-fields-right'>
+      <div class='flexcol'>
+        {{#if generalDifficultyEnabled}}
+          {{> "systems/wod5e/display/shared/actors/parts/spc/generaldifficulty.hbs"}}
+        {{/if}}
 
-                {{#ifeq currentActorType 'vampire'}}
-                    <div class="flexrow field-section">
-                        <div class="flexcol">
-                            <label class="resource-label field-header">{{localize 'WOD5E.VTM.Hunger'}}</label>
-                            {{> "systems/wod5e/display/vtm/actors/parts/hunger.hbs"}}
-                        </div>
-                        {{> "systems/wod5e/display/shared/actors/parts/spc/blood-potency.hbs"}}
-                    </div>
-                {{/ifeq}}
-
-                {{#ifeq currentActorType 'hunter'}}
-                    <div class="field-section">
-                        <div class="flexcol">
-                            <label class="resource-label field-header">{{localize 'WOD5E.HTR.Despair'}}</label>
-                            {{> "systems/wod5e/display/htr/actors/parts/despair.hbs"}}
-                        </div>
-                    </div>
-                {{/ifeq}}
-
-                {{#ifeq currentActorType 'werewolf'}}
-                    <div class="field-section flexrow">
-                        <div class="flexcol shared-row">
-                            <label class="resource-label field-header">{{localize 'WOD5E.WTA.Rage'}}</label>
-                            {{> "systems/wod5e/display/wta/actors/parts/rage-value.hbs"}}
-                        </div>
-                        {{> "systems/wod5e/display/shared/actors/parts/spc/spc-wereform.hbs"}}
-                    </div>
-                {{/ifeq}}
-
-                {{#ifeq currentActorType 'spirit'}}
-                    <div class="field-section">
-                        <div class="flexcol">
-                            <!-- Power Dicepool -->
-                            <div class="flexcol flex-center">
-                                <a class="field-header flexrow resource-label rollable" for="{{localize 'WOD5E.WTA.Power'}}" data-action="roll" data-use-absolute-value="true"
-                                    data-absolute-value="{{power.value}}" data-label="{{localize 'WOD5E.WTA.Power'}}"
-                                    {{#if noAdvancedDice}} data-disable-advanced-dice="true"{{/if}}>
-                                    {{localize 'WOD5E.WTA.Power'}}
-                                    <i class="fa-solid fa-dice-d10"></i>
-                                </a>
-                                {{#if locked}}
-                                    <div class="resource stat-resource-background">
-                                        {{power.value}}
-                                    </div>
-                                {{else}}
-                                    <input type="number" name="system.power.value" value="{{power.value}}" data-dtype="Number"/>
-                                {{/if}}
-                            </div>
-                        </div>
-                    </div>
-                {{/ifeq}}
+        {{#ifeq currentActorType 'vampire'}}
+          <div class='flexrow field-section'>
+            <div class='flexcol'>
+              <label class='resource-label field-header'>{{localize 'WOD5E.VTM.Hunger'}}</label>
+              {{> "systems/wod5e/display/vtm/actors/parts/hunger.hbs"}}
             </div>
-        </div>
+            {{> "systems/wod5e/display/shared/actors/parts/spc/blood-potency.hbs"}}
+          </div>
+        {{/ifeq}}
+
+        {{#ifeq currentActorType 'hunter'}}
+          <div class='field-section'>
+            <div class='flexcol'>
+              <label class='resource-label field-header'>{{localize 'WOD5E.HTR.Despair'}}</label>
+              {{> "systems/wod5e/display/htr/actors/parts/despair.hbs"}}
+            </div>
+          </div>
+        {{/ifeq}}
+
+        {{#ifeq currentActorType 'werewolf'}}
+          <div class='field-section flexrow'>
+            <div class='flexcol shared-row'>
+              <label class='resource-label field-header'>{{localize 'WOD5E.WTA.Rage'}}</label>
+              {{> "systems/wod5e/display/wta/actors/parts/rage-value.hbs"}}
+            </div>
+            {{> "systems/wod5e/display/shared/actors/parts/spc/spc-wereform.hbs"}}
+          </div>
+        {{/ifeq}}
+
+        {{#ifeq currentActorType 'spirit'}}
+          <div class='field-section'>
+            <div class='flexcol'>
+              <!-- Power Dicepool -->
+              <div class='flexcol flex-center'>
+                <a
+                  class='field-header flexrow resource-label rollable'
+                  for="{{localize 'WOD5E.WTA.Power'}}"
+                  data-action='roll'
+                  data-use-absolute-value='true'
+                  data-absolute-value='{{ power.value }}'
+                  data-label="{{localize 'WOD5E.WTA.Power'}}"
+                  {{#if noAdvancedDice}}
+                    data-disable-advanced-dice="true"
+                  {{/if}}
+                >
+                  {{localize 'WOD5E.WTA.Power'}}
+                  <i class='fa-solid fa-dice-d10'></i>
+                </a>
+                {{#if locked}}
+                  <div class='resource stat-resource-background'>
+                    {{ power.value }}
+                  </div>
+                {{else}}
+                  <input
+                    type='number'
+                    name='system.power.value'
+                    value='{{ power.value }}'
+                    data-dtype='Number'
+                  />
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        {{/ifeq}}
+      </div>
     </div>
+  </div>
 </header>

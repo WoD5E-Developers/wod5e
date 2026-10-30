@@ -1,11 +1,22 @@
 {
   "singleQuote": true,
   "printWidth": 100,
+  "objectWrap": "preserve",
   "tabWidth": 2,
   "trailingComma": "none",
   "semi": true,
   "arrowParens": "always",
   "endOfLine": "auto",
   "htmlWhitespaceSensitivity": "ignore",
-  "bracketSameLine": false
+  "bracketSameLine": false,
+  "plugins": ["@poliklot/prettier-plugin-handlebars"],
+  "overrides": [
+    {
+      "files": ["*.hbs", "*.handlebars"],
+      "options": {
+        "parser": "handlebars",
+        "htmlWhitespaceSensitivity": "strict"
+      }
+    }
+  ]
 }

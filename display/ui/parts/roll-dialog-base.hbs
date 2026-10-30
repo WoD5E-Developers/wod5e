@@ -1,11 +1,21 @@
 {{> "systems/wod5e/display/ui/parts/situational-modifiers.hbs"}}
-<div class="form-group">
-    <label>{{localize 'WOD5E.RollList.Difficulty' }}</label>
-    <input type="number" min="0" id="inputDifficulty" value="{{difficulty}}" style="max-width: 100%; text-align: left;">
+<div class='form-group'>
+  <label>{{localize 'WOD5E.RollList.Difficulty'}}</label>
+  <input
+    id='inputDifficulty'
+    type='number'
+    min='0'
+    value='{{ difficulty }}'
+    style='max-width: 100%; text-align: left;'
+  />
 </div>
-<div class="form-group">
-    <label>{{localize 'WOD5E.RollList.RollMode'}}</label>
-    <select name="rollMode" data-type="String">
-        {{selectOptions rollModes selected=rollMode localize=true}}
-    </select>
+<div class='form-group'>
+  <label>{{localize 'WOD5E.RollList.RollMode'}}</label>
+  <select name='rollMode' data-type='String'>
+    {{selectOptions
+      rollModes
+      selected=rollMode
+      localize=true
+    }}
+  </select>
 </div>

@@ -1,5 +1,7 @@
 {{#each (getAttributesList) as |attribute key|}}
   {{#unless attribute.hidden}}
-    <option value="{{key}}">{{attribute.displayName}}</option>
+    <option value='{{ key }}'>
+      {{ attribute.displayName }}
+    </option>
   {{/unless}}
 {{/each}}

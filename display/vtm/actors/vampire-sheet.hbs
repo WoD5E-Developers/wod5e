@@ -1,37 +1,45 @@
 {{!-- Vampire Sheet Header --}}
-<header class="actor-header" {{#if headerbg}} style="background: url({{headerbg}}) center;"{{/if}}>
-    <div class="header-fields">
-        <div class="header-fields-left">
-            {{!-- Health Tracker --}}
-            {{> "systems/wod5e/display/shared/actors/parts/health.hbs"}}
-            {{!-- Willpower Tracker --}}
-            {{> "systems/wod5e/display/shared/actors/parts/willpower.hbs"}}
-        </div>
+<header
+  class='actor-header'
+  {{#if headerbg}}
+    style="background: url({{ headerbg }}) center;"
+  {{/if}}
+>
+  <div class='header-fields'>
+    <div class='header-fields-left'>
+      {{!-- Health Tracker --}}
+      {{> "systems/wod5e/display/shared/actors/parts/health.hbs"}}
+      {{!-- Willpower Tracker --}}
+      {{> "systems/wod5e/display/shared/actors/parts/willpower.hbs"}}
     </div>
-    <!-- Middle of the header -->
-    {{> "systems/wod5e/display/shared/actors/parts/header-profile.hbs"}}
-    <div class="header-fields">
-        <div class="header-fields-right">
-            <div class="flexcol">
-                <div class="field-section flexrow">
-                    <div class="flexrow nowrap flexend">
-                        <div class="flexcol shared-row">
-                            <label class="resource-label field-header">{{localize 'WOD5E.VTM.Clan'}}</label>
-                            <div class="resource resource-content">
-                                {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs" item=clan type="clan"}}
-                            </div>
-                        </div>
-                    </div>
-                    {{> "systems/wod5e/display/vtm/actors/parts/frenzy.hbs"}}
-                </div>
-                <div class="flexcol field-section">
-                    <label class="resource-label field-header">{{localize "WOD5E.VTM.Hunger"}}</label>
-                    <div class="flexrow">
-                        {{> "systems/wod5e/display/vtm/actors/parts/hunger.hbs"}}
-                        {{> "systems/wod5e/display/vtm/actors/parts/rouse.hbs"}}
-                    </div>
-                </div>
+  </div>
+  <!-- Middle of the header -->
+  {{> "systems/wod5e/display/shared/actors/parts/header-profile.hbs"}}
+  <div class='header-fields'>
+    <div class='header-fields-right'>
+      <div class='flexcol'>
+        <div class='field-section flexrow'>
+          <div class='flexrow nowrap flexend'>
+            <div class='flexcol shared-row'>
+              <label class='resource-label field-header'>{{localize 'WOD5E.VTM.Clan'}}</label>
+              <div class='resource resource-content'>
+                {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs"
+                  item=clan
+                  type="clan"
+                }}
+              </div>
             </div>
+          </div>
+          {{> "systems/wod5e/display/vtm/actors/parts/frenzy.hbs"}}
         </div>
+        <div class='flexcol field-section'>
+          <label class='resource-label field-header'>{{localize "WOD5E.VTM.Hunger"}}</label>
+          <div class='flexrow'>
+            {{> "systems/wod5e/display/vtm/actors/parts/hunger.hbs"}}
+            {{> "systems/wod5e/display/vtm/actors/parts/rouse.hbs"}}
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </header>

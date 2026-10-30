@@ -1,14 +1,34 @@
-<div class="header-profile">
-    <div class="header-profile-img">
-        <img class="profile-img" data-action="editImage" src="{{img}}" data-edit="img" title="{{actor.name}}"/>
-    </div>
-    <div class="flexrow name-field{{#if locked}} clickthrough{{/if}}">
-        {{#if locked}}
-            <div class="charname">
-                {{name}}
-            </div>
-        {{else}}
-            <input class="charname" name="name" type="text" value="{{name}}" placeholder="{{localize 'WOD5E.Name'}}"/>
-        {{/if}}
-    </div>
+<div class='header-profile'>
+  <div class='header-profile-img'>
+    <img
+      class='profile-img'
+      data-action='editImage'
+      src='{{ img }}'
+      data-edit='img'
+      title='{{ actor.name }}'
+    />
+  </div>
+  <div
+    class='
+      flexrow
+      name-field
+      {{#if locked}}
+        clickthrough
+      {{/if}}
+    '
+  >
+    {{#if locked}}
+      <div class='charname'>
+        {{ name }}
+      </div>
+    {{else}}
+      <input
+        class='charname'
+        name='name'
+        type='text'
+        value='{{ name }}'
+        placeholder="{{localize 'WOD5E.Name'}}"
+      />
+    {{/if}}
+  </div>
 </div>

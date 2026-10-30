@@ -7,7 +7,10 @@ export const getRollFooter = async function (system, data) {
   const labelData = await getLabel(system, data)
   const resultText = labelData.labelText
 
-  return { labelData, resultText }
+  return {
+    labelData,
+    resultText
+  }
 }
 
 export const getLabel = async function (system, data) {

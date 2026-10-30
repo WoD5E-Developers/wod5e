@@ -1,77 +1,86 @@
-<form class="dialog-contents">
-  <div class="selectors-group">
+<form class='dialog-contents'>
+  <div class='selectors-group'>
     {{#unless (or skill attribute)}}
-      <div class="primary-selector">
-        <div class="selector-title">
-          {{localize "WOD5E.SkillsList.Label"}}
-        </div>
-        <div class="selector-content">
-          <select id="skillSelect" name="skillSelect">
-            <option value="">{{localize "WOD5E.None"}}</option>
-            {{selectOptions skillOptions selected=skill}}
+      <div class='primary-selector'>
+        <div class='selector-title'>{{localize "WOD5E.SkillsList.Label"}}</div>
+        <div class='selector-content'>
+          <select id='skillSelect' name='skillSelect'>
+            <option value=''>{{localize "WOD5E.None"}}</option>
+            {{selectOptions
+              skillOptions
+              selected=skill
+            }}
           </select>
         </div>
       </div>
     {{else}}
-      <div class="primary-selector">
+      <div class='primary-selector'>
         {{#if skill}}
-          <div class="selector-title">
+          <div class='selector-title'>
             {{localize "WOD5E.SkillsList.Label"}}
           </div>
-          <div class="selector-content">
-            <select id="skillSelect" name="skillSelect">
-                <option value="">{{localize "WOD5E.None"}}</option>
-                {{selectOptions skillOptions selected=skill}}
+          <div class='selector-content'>
+            <select id='skillSelect' name='skillSelect'>
+              <option value=''>{{localize "WOD5E.None"}}</option>
+              {{selectOptions
+                skillOptions
+                selected=skill
+              }}
             </select>
           </div>
         {{else if attribute}}
-          <div class="selector-title">
-            {{localize "WOD5E.AttributesList.Label"}}
-          </div>
-          <div class="selector-content">
-            <select id="attributeSelect2" name="attributeSelect2">
-                <option value="">{{localize "WOD5E.None"}}</option>
-                {{selectOptions attributeOptions selected=attribute2}}
+          <div class='selector-title'>{{localize "WOD5E.AttributesList.Label"}}</div>
+          <div class='selector-content'>
+            <select id='attributeSelect2' name='attributeSelect2'>
+              <option value=''>{{localize "WOD5E.None"}}</option>
+              {{selectOptions
+                attributeOptions
+                selected=attribute2
+              }}
             </select>
           </div>
         {{/if}}
       </div>
     {{/unless}}
 
-    <div class="middle">+</div>
+    <div class='middle'>+</div>
 
     <!-- Attribute selection -->
-    <div class="primary-selector">
-        <div class="selector-title">
-          {{localize "WOD5E.AttributesList.Label"}}
-        </div>
-        <div class="selector-content">
-          <select id="attributeSelect" name="attributeSelect">
-            <option value="">{{localize "WOD5E.None"}}</option>
-            {{selectOptions attributeOptions selected=attribute}}
-          </select>
-        </div>
+    <div class='primary-selector'>
+      <div class='selector-title'>{{localize "WOD5E.AttributesList.Label"}}</div>
+      <div class='selector-content'>
+        <select id='attributeSelect' name='attributeSelect'>
+          <option value=''>{{localize "WOD5E.None"}}</option>
+          {{selectOptions
+            attributeOptions
+            selected=attribute
+          }}
+        </select>
+      </div>
     </div>
   </div>
 
   <!-- If the actor is a vampire, show option to add Discipline dots -->
   {{#ifeq system "vampire"}}
-    <hr>
-    <div class="flexrow">
-        <div class="secondary-selector">
-            <div class="selector-title">{{localize "WOD5E.VTM.AddDiscipline"}}</div>
-            <select id="disciplineSelect" name="disciplineSelect">
-            <option value="">{{localize "WOD5E.None"}}</option>
-            {{selectOptions disciplineOptions selected=discipline}}
-            </select>
-        </div>
+    <hr />
+    <div class='flexrow'>
+      <div class='secondary-selector'>
+        <div class='selector-title'>{{localize "WOD5E.VTM.AddDiscipline"}}</div>
+        <select id='disciplineSelect' name='disciplineSelect'>
+          <option value=''>{{localize "WOD5E.None"}}</option>
+          {{selectOptions
+            disciplineOptions
+            selected=discipline
+          }}
+        </select>
+      </div>
 
       <!-- If the actor isn't a ghoul and isn't at max hunger, show blood surge option -->
       {{#ifnoteq actorType 'ghoul'}}
         {{#ifnoteq hungerValue actor.system.hunger.max}}
-          <div class="secondary-selector">
-            <div class="selector-title">{{localize "WOD5E.VTM.BloodSurge"}}</div>
-            <input id="bloodSurge" class="blood-surge" name="bloodSurge" type="checkbox"/>
+          <div class='secondary-selector'>
+            <div class='selector-title'>{{localize "WOD5E.VTM.BloodSurge"}}</div>
+            <input id='bloodSurge' class='blood-surge' name='bloodSurge' type='checkbox' />
           </div>
         {{/ifnoteq}}
       {{/ifnoteq}}
@@ -80,13 +89,16 @@
 
   <!-- If the actor is a werewolf, show option to add Renown dots-->
   {{#ifeq system "werewolf"}}
-    <hr>
-    <div class="secondary-selector">
-        <div>{{localize "WOD5E.WTA.AddRenown"}}</div>
-        <select id="renownSelect" name="renownSelect">
-            <option value="">{{localize "WOD5E.None"}}</option>
-            {{selectOptions renownOptions selected=renown}}
-        </select>
+    <hr />
+    <div class='secondary-selector'>
+      <div>{{localize "WOD5E.WTA.AddRenown"}}</div>
+      <select id='renownSelect' name='renownSelect'>
+        <option value=''>{{localize "WOD5E.None"}}</option>
+        {{selectOptions
+          renownOptions
+          selected=renown
+        }}
+      </select>
     </div>
   {{/ifeq}}
 </form>

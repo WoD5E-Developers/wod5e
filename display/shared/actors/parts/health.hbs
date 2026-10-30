@@ -1,29 +1,59 @@
-<div class="flexcol field-section">
-    <div class="flexcol">
-        <label class="field-header flexrow resource-label">
-            <i class="fas fa-minus resource-control resource-minus" data-action="resourceChange" data-resource="health" data-resource-action="minus"></i>
-            {{localize "WOD5E.Health"}}
-            <i class="fas fa-plus resource-control resource-plus" data-action="resourceChange" data-resource="health" data-resource-action="plus"></i>
-        </label>
-    </div>
-    <div class="resource flex-group-center health">
-        <div class="resource-content flexcol flex-center flex-between">
-            <div class="resource-counter editable" data-states="/:superficial,x:aggravated" data-max="{{health.max}}"
-                data-superficial="{{health.superficial}}" data-aggravated="{{health.aggravated}}"
-                data-name="system.health">
-                {{#numLoop health.max}}
-                    <span class="resource-counter-step" data-action="squareCounterChange" data-index="{{this}}" data-state=""></span>
-                {{/numLoop}}
-            </div>
-            {{#ifeq activeForm "crinos"}}
-                <div class="resource-counter editable crinos-health" data-states="/:superficial,x:aggravated" data-max="{{crinosHealth.max}}"
-                    data-superficial="{{crinosHealth.superficial}}" data-aggravated="{{crinosHealth.aggravated}}"
-                    data-name="system.crinosHealth">
-                    {{#numLoop crinosHealth.max}}
-                        <span class="resource-counter-step" data-action="squareCounterChange" data-index="{{this}}" data-state=""></span>
-                    {{/numLoop}}
-                </div>
-            {{/ifeq}}
+<div class='flexcol field-section'>
+  <div class='flexcol'>
+    <label class='field-header flexrow resource-label'>
+      <i
+        class='fas fa-minus resource-control resource-minus'
+        data-action='resourceChange'
+        data-resource='health'
+        data-resource-action='minus'
+      ></i>
+      {{localize "WOD5E.Health"}}
+      <i
+        class='fas fa-plus resource-control resource-plus'
+        data-action='resourceChange'
+        data-resource='health'
+        data-resource-action='plus'
+      ></i>
+    </label>
+  </div>
+  <div class='resource flex-group-center health'>
+    <div class='resource-content flexcol flex-center flex-between'>
+      <div
+        class='resource-counter editable'
+        data-states='/:superficial,x:aggravated'
+        data-max='{{ health.max }}'
+        data-superficial='{{ health.superficial }}'
+        data-aggravated='{{ health.aggravated }}'
+        data-name='system.health'
+      >
+        {{#numLoop health.max}}
+          <span
+            class='resource-counter-step'
+            data-action='squareCounterChange'
+            data-index='{{ this }}'
+            data-state=''
+          ></span>
+        {{/numLoop}}
+      </div>
+      {{#ifeq activeForm "crinos"}}
+        <div
+          class='resource-counter editable crinos-health'
+          data-states='/:superficial,x:aggravated'
+          data-max='{{ crinosHealth.max }}'
+          data-superficial='{{ crinosHealth.superficial }}'
+          data-aggravated='{{ crinosHealth.aggravated }}'
+          data-name='system.crinosHealth'
+        >
+          {{#numLoop crinosHealth.max}}
+            <span
+              class='resource-counter-step'
+              data-action='squareCounterChange'
+              data-index='{{ this }}'
+              data-state=''
+            ></span>
+          {{/numLoop}}
         </div>
+      {{/ifeq}}
     </div>
+  </div>
 </div>

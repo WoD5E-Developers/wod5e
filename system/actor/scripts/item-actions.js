@@ -318,6 +318,17 @@ export const _onSearchItem = async function (event, target) {
 
   new CompendiumBrowserApplication({
     type,
-    subtype
+    subtype,
+    splat:
+      {
+        ghoul: 'vampire',
+        coterie: 'vampire',
+        cell: 'hunter',
+        pack: 'werewolf',
+        spirit: 'werewolf'
+      }[this.actor.system.spcType || this.actor.system.groupType || this.actor.type] ||
+      this.actor.system.spcType ||
+      this.actor.system.groupType ||
+      this.actor.type
   }).render(true)
 }

@@ -1,106 +1,141 @@
-<section class="tab {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
-    <div class="flexrow">
-        <!-- Blood Potency details -->
-        <div class="blood-potency flexcol">
-            <div class="flex-group-center nogrow">
-                <div class="flexcol resource">
-                    <label class="resource-label field-header">{{localize "WOD5E.VTM.BloodPotency"}}</label>
-                    <div class="resource-content flexrow flex-center flex-between">
-                        <div class="resource-value" data-value="{{blood.potency}}" data-name="system.blood.potency">
-                            <span class="resource-value-empty" data-action="dotCounterEmpty"></span>
-                            {{#numLoop 10}}
-                            <span class="resource-value-step" data-action="dotCounterChange" data-index="{{this}}"></span>
-                            {{/numLoop}}
-                        </div>
-                    </div>
-                </div>
+<section class='tab {{ tab.cssClass }}' data-tab='{{ tab.id }}' data-group='{{ tab.group }}'>
+  <div class='flexrow'>
+    <!-- Blood Potency details -->
+    <div class='blood-potency flexcol'>
+      <div class='flex-group-center nogrow'>
+        <div class='flexcol resource'>
+          <label class='resource-label field-header'>{{localize "WOD5E.VTM.BloodPotency"}}</label>
+          <div class='resource-content flexrow flex-center flex-between'>
+            <div
+              class='resource-value'
+              data-value='{{ blood.potency }}'
+              data-name='system.blood.potency'
+            >
+              <span class='resource-value-empty' data-action='dotCounterEmpty'></span>
+              {{#numLoop 10}}
+                <span
+                  class='resource-value-step'
+                  data-action='dotCounterChange'
+                  data-index='{{ this }}'
+                ></span>
+              {{/numLoop}}
             </div>
-
-            <div class="grid grid-2col">
-                <div class="flex-group-center">
-                    <label class="resource-label field-header">{{localize "WOD5E.VTM.BloodSurge"}}</label>
-                    <div class="resource-contents resource">{{bloodpotency.surge}}</div>
-                </div>
-                <div class="flex-group-center">
-                    <label class="resource-label field-header">{{localize "WOD5E.VTM.MendAmount"}}</label>
-                    <div class="resource-contents resource">{{bloodpotency.mend}}</div>
-                </div>
-                <div class="flex-group-center">
-                    <label class="resource-label field-header">{{localize "WOD5E.VTM.PowerBonus"}}</label>
-                    <div class="resource-contents resource">{{bloodpotency.power}}</div>
-                </div>
-                <div class="flex-group-center">
-                    <label class="resource-label field-header">{{localize "WOD5E.VTM.RouseReRoll"}}</label>
-                    <div class="resource-contents resource">{{bloodpotency.rouse}}</div>
-                </div>
-                <div class="flex-group-center">
-                    <label class="resource-label field-header">{{localize "WOD5E.VTM.FeedingPenalty"}}</label>
-                    <div class="resource-contents resource">{{bloodpotency.feeding}}</div>
-                </div>
-                <div class="flex-group-center">
-                    <label class="resource-label field-header">{{localize "WOD5E.VTM.BaneSeverity"}}</label>
-                    <div class="resource-contents resource">{{bloodpotency.bane}}</div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
 
-        <!-- All other blood details -->
-        <div class="blood-details flexcol">
-            <div class="flex-group-center nogrow">
-                <div class="flexcol resource">
-                    <div class="system-rollable remorse-roll" data-action="remorseRoll" title="{{localize 'WOD5E.VTM.RollRemorse'}}">
-                        <div class="resource-label field-header">
-                            {{localize "WOD5E.VTM.Humanity"}}
-                        </div>
-                        <i class="fa-solid fa-dice-d10"></i>
-                    </div>
-                    {{> "systems/wod5e/display/vtm/actors/parts/humanity.hbs"}}
-                </div>
-            </div>
-
-            <div class="flexrow nowrap flex-group-center nogrow">
-                <div class="flexcol">
-                    <label class="resource-label field-header">{{localize 'WOD5E.VTM.Sire'}}</label>
-                    <input class="resource" type="text" name="system.headers.sire" value="{{sire}}" placeholder="{{localize 'WOD5E.VTM.Sire'}}"/>
-                </div>
-                <div class="flexcol">
-                    <label class="resource-label field-header">{{localize 'WOD5E.VTM.Generation'}}</label>
-                    <input class="resource" type="text" name="system.headers.generation" value="{{generation}}" placeholder="{{localize 'WOD5E.VTM.Generation'}}"/>
-                </div>
-            </div>
-
-            <div class="flexrow nowrap flex-group-center nogrow">
-                <div class="flexcol">
-                    {{#if predator.system.dicepool}}
-                        <div class="system-rollable feeding-roll" data-action="rollItem" data-item-uuid="{{predator.uuid}}" title="{{localize 'WOD5E.VTM.FeedingRoll'}}">
-                            <label class="resource-label field-header">{{localize 'WOD5E.VTM.PredatorType'}}</label>
-                            <i class="fa-solid fa-dice-d10"></i>
-                        </div>
-                    {{else}}
-                        <label class="resource-label field-header">{{localize 'WOD5E.VTM.PredatorType'}}</label>
-                    {{/if}}
-                    <div class="resource resource-content">
-                        {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs" item=predator type="predatorType"}}
-                    </div>
-                </div>
-                <div class="flexcol">
-                    <label class="resource-label field-header">{{localize 'WOD5E.VTM.BloodResonance'}}</label>
-                    <div class="resource resource-content">
-                        {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs" item=resonance type="resonance"}}
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex-group-center">
-                <div class="flex-center">
-                    <label class="resource-label field-header">{{localize "WOD5E.VTM.ClanBane"}}</label>
-                </div>
-                <div class="resource-contents prosemirror-resource resource bane">
-                    <div>
-                        {{{enrichedBane}}}
-                    </div>
-                </div>
-            </div>
+      <div class='grid grid-2col'>
+        <div class='flex-group-center'>
+          <label class='resource-label field-header'>{{localize "WOD5E.VTM.BloodSurge"}}</label>
+          <div class='resource-contents resource'>{{ bloodpotency.surge }}</div>
         </div>
+        <div class='flex-group-center'>
+          <label class='resource-label field-header'>{{localize "WOD5E.VTM.MendAmount"}}</label>
+          <div class='resource-contents resource'>{{ bloodpotency.mend }}</div>
+        </div>
+        <div class='flex-group-center'>
+          <label class='resource-label field-header'>{{localize "WOD5E.VTM.PowerBonus"}}</label>
+          <div class='resource-contents resource'>{{ bloodpotency.power }}</div>
+        </div>
+        <div class='flex-group-center'>
+          <label class='resource-label field-header'>{{localize "WOD5E.VTM.RouseReRoll"}}</label>
+          <div class='resource-contents resource'>{{ bloodpotency.rouse }}</div>
+        </div>
+        <div class='flex-group-center'>
+          <label class='resource-label field-header'>{{localize "WOD5E.VTM.FeedingPenalty"}}</label>
+          <div class='resource-contents resource'>{{ bloodpotency.feeding }}</div>
+        </div>
+        <div class='flex-group-center'>
+          <label class='resource-label field-header'>{{localize "WOD5E.VTM.BaneSeverity"}}</label>
+          <div class='resource-contents resource'>{{ bloodpotency.bane }}</div>
+        </div>
+      </div>
     </div>
+
+    <!-- All other blood details -->
+    <div class='blood-details flexcol'>
+      <div class='flex-group-center nogrow'>
+        <div class='flexcol resource'>
+          <div
+            class='system-rollable remorse-roll'
+            data-action='remorseRoll'
+            title="{{localize 'WOD5E.VTM.RollRemorse'}}"
+          >
+            <div class='resource-label field-header'>{{localize "WOD5E.VTM.Humanity"}}</div>
+            <i class='fa-solid fa-dice-d10'></i>
+          </div>
+          {{> "systems/wod5e/display/vtm/actors/parts/humanity.hbs"}}
+        </div>
+      </div>
+
+      <div class='flexrow nowrap flex-group-center nogrow'>
+        <div class='flexcol'>
+          <label class='resource-label field-header'>{{localize 'WOD5E.VTM.Sire'}}</label>
+          <input
+            class='resource'
+            type='text'
+            name='system.headers.sire'
+            value='{{ sire }}'
+            placeholder="{{localize 'WOD5E.VTM.Sire'}}"
+          />
+        </div>
+        <div class='flexcol'>
+          <label class='resource-label field-header'>{{localize 'WOD5E.VTM.Generation'}}</label>
+          <input
+            class='resource'
+            type='text'
+            name='system.headers.generation'
+            value='{{ generation }}'
+            placeholder="{{localize 'WOD5E.VTM.Generation'}}"
+          />
+        </div>
+      </div>
+
+      <div class='flexrow nowrap flex-group-center nogrow'>
+        <div class='flexcol'>
+          {{#if predator.system.dicepool}}
+            <div
+              class='system-rollable feeding-roll'
+              data-action='rollItem'
+              data-item-uuid='{{ predator.uuid }}'
+              title="{{localize 'WOD5E.VTM.FeedingRoll'}}"
+            >
+              <label class='resource-label field-header'>
+                {{localize 'WOD5E.VTM.PredatorType'}}
+              </label>
+              <i class='fa-solid fa-dice-d10'></i>
+            </div>
+          {{else}}
+            <label class='resource-label field-header'>
+              {{localize 'WOD5E.VTM.PredatorType'}}
+            </label>
+          {{/if}}
+          <div class='resource resource-content'>
+            {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs"
+              item=predator
+              type="predatorType"
+            }}
+          </div>
+        </div>
+        <div class='flexcol'>
+          <label class='resource-label field-header'>{{localize 'WOD5E.VTM.BloodResonance'}}</label>
+          <div class='resource resource-content'>
+            {{> "systems/wod5e/display/shared/actors/partials/dynamic-item-display.hbs"
+              item=resonance
+              type="resonance"
+            }}
+          </div>
+        </div>
+      </div>
+
+      <div class='flex-group-center'>
+        <div class='flex-center'>
+          <label class='resource-label field-header'>{{localize "WOD5E.VTM.ClanBane"}}</label>
+        </div>
+        <div class='resource-contents prosemirror-resource resource bane'>
+          <div>{{{ enrichedBane }}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
