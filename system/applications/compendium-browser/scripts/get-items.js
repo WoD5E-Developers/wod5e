@@ -41,14 +41,17 @@ export const getItems = async function ({
   }
 
   return allReturnedItems.sort((a, b) => {
-    if (sort === 'ratingAsc') {
-      const difference = (getItemRating(a) ?? Infinity) - (getItemRating(b) ?? Infinity)
-      if (difference && !Number.isNaN(difference)) return difference
-    }
+    if (sort === 'ratingAsc' || sort === 'ratingDesc') {
+      const ratingA = getItemRating(a)
+      const ratingB = getItemRating(b)
 
-    if (sort === 'ratingDesc') {
-      const difference = (getItemRating(b) ?? Infinity) - (getItemRating(a) ?? Infinity)
-      if (difference && !Number.isNaN(difference)) return difference
+      // Missing ratings always follow rated items, regardless of sort direction.
+      if (ratingA === null && ratingB !== null) return 1
+      if (ratingB === null && ratingA !== null) return -1
+      if (ratingA !== null && ratingB !== null) {
+        const difference = sort === 'ratingDesc' ? ratingB - ratingA : ratingA - ratingB
+        if (difference) return difference
+      }
     }
 
     return getItemDisplayName(a).localeCompare(getItemDisplayName(b), game.i18n.lang, {
